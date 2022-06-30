@@ -1,0 +1,7 @@
+.top-bar {
+  background: var(--primary); // TODO
+  color: whitesmoke;
+  box-shadow: 0 0 0 100vmax var(--c);
+  clip-path: inset(0 -100vmax);
+  padding: 10px 0;
+}

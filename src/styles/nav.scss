@@ -1,0 +1,12 @@
+nav {
+  margin: 1.5rem;
+
+  ul {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-between;
+    margin-block-end: 1.5rem;
+    list-style: none;
+    padding-inline-start: 0;
+  }
+}

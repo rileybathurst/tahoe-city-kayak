@@ -1,26 +1,13 @@
-body {
-  font-size: 16px;
-  line-height: 1.5;
-}
+/*------------------*/
+//  #TAHOE CITY KAYAK
+/*------------------*/
 
-main,
-section,
-footer {
-  max-width: 40rem;
-  margin-inline: auto;
-}
-
-.pricing-chart {
-  display: flex;
-  text-align: center;
-
-  > * {
-    display: flex;
-    flex: 1 1 10rem;
-    flex-direction: column;
-  }
-
-  /* > :nth-child(odd) {
-    background-color: grey;
-  } */
-}
+@import "variables";
+@import "body";
+@import "typography";
+@import "nav";
+@import "layout";
+@import "color";
+@import "links";
+@import "buttons";
+@import "tables";

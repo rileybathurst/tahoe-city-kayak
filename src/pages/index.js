@@ -3,6 +3,7 @@ import * as React from "react"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
+import { Link } from "gatsby"
 
 const IndexPage = () => {
   return (
@@ -14,7 +15,11 @@ const IndexPage = () => {
       </main>
 
       <section id="rentals-demos">
-        <h3>Rentals &amp; Demos</h3>
+        <h3>
+          <Link to="rentals-demos">
+            Rentals &amp; Demos
+          </Link>
+        </h3>
         <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
 
         <article>

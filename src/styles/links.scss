@@ -1,0 +1,15 @@
+a {
+  color: var(--primary);
+}
+
+a:where(:hover, :focus) {
+  text-decoration: none;
+}
+
+.link__subtle {
+  text-decoration: none;
+}
+
+.link__subtle:where(:hover, :focus) {
+  text-decoration: underline;
+}
