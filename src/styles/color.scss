@@ -1,7 +1,29 @@
+/*------------------*/
+//  #COLOR
+/*------------------*/
+
 .top-bar {
-  background: var(--primary); // TODO
+  background: var(--mullen); // TODO
   color: whitesmoke;
   box-shadow: 0 0 0 100vmax var(--c);
   clip-path: inset(0 -100vmax);
   padding: 10px 0;
+}
+
+.logo a {
+  color: var(--almost);
+}
+
+// ! this isnt working
+a:where(:hover, :focus) {
+  color: var(--mullen);
+  text-decoration: none;
+}
+
+/*------------------*/
+//  #SINGLE PAGES
+/*------------------*/
+
+.home__main {
+  background-color: var(--sand);
 }

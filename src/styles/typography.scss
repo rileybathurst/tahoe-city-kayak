@@ -5,6 +5,7 @@ h4,
 h5,
 h6 {
   font-family: "Maecenas", serif; // TODO: adobe font
+  font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 /*------------------------------------*\
@@ -29,6 +30,7 @@ p {
   /* single line 30px */
   /* two lines 50px */
   /* multi lines + 20px each */
+  font-family: Arial, sans-serif;
 }
 
 h1 {
@@ -117,3 +119,7 @@ small {
 /* hr {} */
 
 /* button {} */
+
+.logo {
+  font-family: "Filmotype LaSalle", serif; // TODO: adobe font
+}

@@ -1,8 +1,8 @@
 button {
   background: none;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--mullen);
   border-radius: 0.25rem;
-  color: var(--primary);
+  color: var(--mullen);
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
@@ -11,7 +11,7 @@ button {
 }
 
 button:hover {
-  background: var(--primary); // TODO darker than this
+  background: var(--mullen); // TODO darker than this
   color: black;
 }
 
@@ -40,4 +40,13 @@ button:hover {
 .top-bar button {
   display: inline;
   color: whitesmoke;
+  margin: 0;
+}
+
+/*------------------*/
+//  #MENU
+/*------------------*/
+
+menu button {
+  margin: 0;
 }

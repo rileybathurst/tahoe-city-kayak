@@ -1,20 +1,62 @@
 import * as React from "react"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import { Link } from "gatsby"
 
+function TwoKayakers() {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tck-slide-2.jpg"
+    alt="two kayakers paddling across lake Tahoe"
+    className="img__wrapped"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
 const IndexPage = () => {
   return (
     <>
       <Header />
-      <main>
-        <p>Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak sales , SUP rentals, kayak rentals and tours. We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.</p>
-        <hr />
+      <main className="home__main">
+        <section>
+          <h2><Link to="/rentals-demos">On Water Rentals</Link></h2>
+          <article className="home__main--season">
+            <p>Season: May &ndash; October<br />
+              Open Daily<br />
+              9:30am &ndash; 5:30pm<br />
+              Weather Permitting
+            </p>
+
+            <p>Located at<br />
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145
+            </p>
+          </article>
+
+          <div className="button__double">
+            <button>RENTALS &amp; DEMOS<br />
+              BOOK NOW</button>
+
+            <button>TOURS &amp; LESSONS<br />
+              BOOK NOW</button>
+          </div>
+
+
+          <p>Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak sales , SUP rentals, kayak rentals and tours. We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.</p>
+          {/* <hr /> */}
+        </section>
+
+        <section>
+          <TwoKayakers />
+        </section>
       </main>
 
       <section id="rentals-demos">
+        {/* <div> */}
         <h3>
           <Link to="rentals-demos">
             Rentals &amp; Demos
@@ -33,6 +75,7 @@ const IndexPage = () => {
           <p>Open Daily Weather Permitting 9:30am &ndash;5:30pm</p>
 
           <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
+          {/* </div> */}
 
           <PricingChart />
         </article>

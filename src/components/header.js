@@ -43,8 +43,8 @@ const Header = () => {
   return (
     <header>
       <OpenSeason />
+      <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
       <Menu />
-      <h1><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
       <h2>North Tahoe&rsquo;s Premier Kayak &amp; SUP Provider of&nbsp;
         <Link to="/rentals-demos" className="link__subtle">Rentals</Link>,&nbsp;
         <Link to="/retail" className="link__subtle">Sales</Link>,&nbsp;
