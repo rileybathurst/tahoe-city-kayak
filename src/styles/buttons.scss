@@ -14,3 +14,30 @@ button:hover {
   background: var(--primary); // TODO darker than this
   color: black;
 }
+
+/*------------------*/
+//  #TOPBAR
+/*------------------*/
+
+// !:this flashes in on every load which is bad
+.top-bar {
+  transition: 0.5s ease;
+  height: 0;
+  opacity: 0;
+}
+
+.top-bar.shown {
+  opacity: 1;
+  height: auto;
+}
+
+.top-bar.hidden {
+  opacity: 0;
+  height: 0;
+}
+
+.top-bar p,
+.top-bar button {
+  display: inline;
+  color: whitesmoke;
+}
