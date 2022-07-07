@@ -20,6 +20,12 @@ a:where(:hover, :focus) {
   text-decoration: none;
 }
 
+footer {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+}
+
 /*------------------*/
 //  #SINGLE PAGES
 /*------------------*/

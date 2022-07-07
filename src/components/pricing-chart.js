@@ -5,19 +5,19 @@ const PricingChart = (props) => {
     <>
       <div className="pricing-chart">
         <div>
-          <h4>Rental Rates</h4>
+          <h4><span>Rental</span> <span>Rates</span></h4>
           <p>1 Hour</p>
-          <p>3 Hours</p>
-          <p>Full Day</p>
+          <p><span>3 Hours</span></p>
+          <p><span>Full Day</span></p>
         </div>
         <div>
-          <h4>Single Kayak / SUP</h4>
+          <h4><span>Single Kayak</span><span> / SUP</span></h4>
           <p>$30</p>
           <p>$60</p>
           <p>$90</p>
         </div>
         <div>
-          <h4>Tandem Kayak</h4>
+          <h4><span>Tandem</span> <span>Kayak</span></h4>
           <p>$45</p>
           <p>$90</p>
           <p>$110</p>

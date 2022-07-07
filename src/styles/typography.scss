@@ -116,9 +116,17 @@ small {
   @extend small;
 }
 
+/*------------------*/
+//  #HR
+/*------------------*/
+
 hr {
   border: none; // reset
   border-bottom: 1px solid var(--mercury);
+}
+
+hr.no {
+  display: none;
 }
 
 /* button {} */

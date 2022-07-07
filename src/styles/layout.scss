@@ -39,8 +39,7 @@ header {
 /*------------------*/
 
 main,
-section,
-footer {
+section {
   max-width: 40rem;
   margin-inline: auto;
   padding-inline: 0.75rem;
@@ -105,5 +104,79 @@ footer {
 
   > * {
     flex: 1;
+  }
+}
+
+.home__here {
+  max-width: 60rem;
+  margin-inline: auto;
+  display: flex;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.here__location {
+  display: flex;
+  gap: 1rem;
+}
+
+/*------------------*/
+//  #FOOTER
+/*------------------*/
+
+footer {
+  max-width: 60rem;
+  margin-inline: auto;
+
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    border-block-end: 1px solid var(--mercury);
+  }
+
+  > *:first-child,
+  *:last-child {
+    border-block-end: none;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pricing-chart {
+    flex: 2;
+
+    h4 {
+      font-size: 0.75rem;
+      font-weight: 400;
+      margin: 0.25px;
+
+      span {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+      }
+    }
+
+    p {
+      font-size: 0.75rem;
+      margin: 0.25px span {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+
+  svg {
+    height: 2.5rem;
+    max-width: 2.5rem;
   }
 }

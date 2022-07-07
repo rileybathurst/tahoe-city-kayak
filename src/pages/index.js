@@ -6,6 +6,8 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import MapLink from "../components/map-link"
+import KayakIcon from "../images/kayak"
+import StoreIcon from "../images/store";
 
 function TwoKayakers(props) {
   return <StaticImage
@@ -37,6 +39,17 @@ function AndyPaddling(props) {
   />
 }
 
+// TODO this will eventually be a svg
+function Map(props) {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/Tahoe-City-Map-2-fs8.png"
+    alt="tahoe city kayak map"
+    className={props.className}
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
 
 
 const IndexPage = () => {
@@ -47,12 +60,13 @@ const IndexPage = () => {
         nodes {
           id
           name
+          slug
         }
       }
     }
   `)
 
-  const more = { data }
+  // const more = { data }
   // console.log(more);
 
   let allTours = data.allStrapiTour.nodes
@@ -162,22 +176,77 @@ const IndexPage = () => {
       <div className="deck">
         {list.map((tour) => (
           <div key={tour.id} className="card">
-            {tour.name}
+            <WaterTexture className="card__placeholder" />
+
+            <h4 className="card__title">
+              <Link to={`/tours/${tour.slug}`}>
+                {tour.name}
+              </Link>
+            </h4>
+            <hr />
+            <p>TODO: add a description</p>
+            <hr />
+            <div className="card__details">
+              <h5>$cost</h5>
+              <button>Book Now</button>
+            </div>
           </div>
         ))}
-        <div className="">
-          {hasMore ? (
-            <>
-              <button onClick={handleLoadMore} className=''>Load More</button>
-              &nbsp;&nbsp;<span className="crest">Even More?</span>
-            </>
-          ) : (
-            <p>No more results</p>
-          )}
-        </div>
+      </div>
+      <div className="deck__more">
+        {hasMore ? (
+          <>
+            <button onClick={handleLoadMore} className=''>VIEW MORE TOURS &amp; LESSONS</button>
+            {/* &nbsp;&nbsp;<span className="crest">Even More?</span> */}
+          </>
+        ) : (
+          <p>Thats all the tours</p>
+        )}
       </div>
 
-      <section id="retail">
+
+      <section id="here" className="home__here">
+        <div>
+          <h3><Link to="/contact">WE ARE HERE</Link></h3>
+
+          <div className="here__location">
+            <KayakIcon />
+            <p>
+              On Water Rental Location<br />
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+              <MapLink>Google Maps</MapLink>
+            </p>
+
+            <p>
+              May – October<br />
+              Open Daily<br />
+              9:30am –5:30pm<br />
+              Weather Permitting<br />
+            </p>
+
+          </div>
+
+          <div className="here__location">
+            <StoreIcon />
+            <p>
+              Retail Location<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+              <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >Google Maps</a>
+            </p>
+
+            <p>
+              Open Daily<br />
+              9am – 6pm<br />
+            </p>
+          </div>
+        </div>
+        <Map />
+      </section>
+
+      {/* <section id="retail">
         <h3>Retail</h3>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
 
@@ -194,7 +263,7 @@ const IndexPage = () => {
         </address>
 
         <hr />
-      </section>
+      </section> */}
 
       <Footer />
     </>
