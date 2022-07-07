@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "gatsby"
 
 import Menu from "./menu"
+import PaddleIcon from '../images/paddle';
 
 
 function OpenSeason(key, defaultValue) {
@@ -43,12 +44,17 @@ const Header = () => {
   return (
     <header>
       <OpenSeason />
-      <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
+      <div className="logo-container">
+        <PaddleIcon className="paddle--left" />
+        <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
+        <PaddleIcon className="paddle--right" />
+      </div>
       <Menu />
-      <h2>North Tahoe&rsquo;s Premier Kayak &amp; SUP Provider of&nbsp;
+      {/* <h2>North Tahoe&rsquo;s Premier Kayak &amp; SUP Provider of&nbsp;
         <Link to="/rentals-demos" className="link__subtle">Rentals</Link>,&nbsp;
         <Link to="/retail" className="link__subtle">Sales</Link>,&nbsp;
-        <Link to="/tours-lessons" className="link__subtle">Lessons &amp; Tours</Link></h2>
+        <Link to="/tours-lessons" className="link__subtle">Lessons &amp; Tours</Link>
+  </h2> */}
     </header>
   )
 }

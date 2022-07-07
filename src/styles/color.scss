@@ -26,4 +26,12 @@ a:where(:hover, :focus) {
 
 .home__main {
   background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
+}
+
+.home__tours {
+  background-color: var(--sand);
+  box-shadow: 0 0 0 100vmax var(--sand);
+  clip-path: inset(0 -100vmax);
 }

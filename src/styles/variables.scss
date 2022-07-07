@@ -16,4 +16,14 @@
     0 4px 12px hsla(0, 0%, 0%, 0.12);
   --umbra: 0 5px 12px hsla(0, 0%, 0%, 0.4) /* Ambient light shadow */,
     0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
+
+  --lead: hsl(0, 0%, 10%);
+  --tungsten: hsl(0, 0%, 20%);
+  --iron: hsl(0, 0%, 30%);
+  --steel: hsl(0, 0%, 40%);
+  --nickel: hsl(0, 0%, 50%);
+  --aluminium: hsl(0, 0%, 60%);
+  --magnesium: hsl(0, 0%, 70%);
+  --silver: hsl(0, 0%, 80%);
+  --mercury: hsl(0, 0%, 90%);
 }

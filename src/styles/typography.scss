@@ -116,7 +116,10 @@ small {
   @extend small;
 }
 
-/* hr {} */
+hr {
+  border: none; // reset
+  border-bottom: 1px solid var(--mercury);
+}
 
 /* button {} */
 

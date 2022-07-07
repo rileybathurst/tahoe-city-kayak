@@ -1,3 +1,39 @@
+/*------------------*/
+//  #MEDIA
+/*------------------*/
+
+/*------------------*/
+//  #SVG
+/*------------------*/
+
+svg {
+  max-width: 5rem;
+  max-height: 5rem;
+}
+
+/*------------------*/
+//  #LOGO
+/*------------------*/
+
+.logo-container {
+  margin-inline: auto;
+  max-width: 20rem;
+  display: flex;
+  justify-content: center;
+
+  svg {
+    transform: rotate(90deg);
+  }
+
+  .paddle--right {
+    transform: rotate(-90deg);
+  }
+}
+
+/*------------------*/
+//  #IMAGE
+/*------------------*/
+
 .img__wrapped {
   border: 1px solid white;
   border-radius: 0.25rem;

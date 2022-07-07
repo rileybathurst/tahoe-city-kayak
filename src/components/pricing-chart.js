@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const PricingChart = () => {
+const PricingChart = (props) => {
   return (
     <>
       <div className="pricing-chart">
@@ -23,7 +23,9 @@ const PricingChart = () => {
           <p>$110</p>
         </div>
       </div>
-      <button>Book Now</button>
+      <div className={`pricing-chart__${props.book}`}>
+        <button>Book Now</button>
+      </div>
     </>
 
   )
