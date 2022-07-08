@@ -1,8 +1,19 @@
 import * as React from "react"
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+
+function WaterTexture(props) {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leung-Oc81QL8Crtg-unsplash-hd.jpg"
+    alt="water texture"
+    className={`img__wrapped ${props.className}`}
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
 
 const ToursLessonsPage = () => {
   return (
@@ -19,15 +30,27 @@ const ToursLessonsPage = () => {
       <StaticQuery
         query={query}
         render={data => (
-          <ul className="cards">
+          <section className="deck">
             {
               data.allStrapiTour.edges.map(tour => (
-                <li key={tour.node.id} className="card">
-                  {tour.node.name}
-                </li>
+                <article key={tour.node.id} className="card">
+                  <WaterTexture className="card__placeholder" />
+                  <h4 className="card__title">
+                    <Link to={`/tours/${tour.node.slug}`}>
+                      {tour.node.name}
+                    </Link>
+                  </h4>
+                  <hr />
+                  <p>TODO: add a description</p>
+                  <hr />
+                  <div className="card__details">
+                    <h5>$cost</h5>
+                    <button>Book Now</button>
+                  </div>
+                </article>
               ))
             }
-          </ul>
+          </section>
         )}
       />
 
@@ -45,6 +68,7 @@ query ToursQuery {
       node {
         id
         name
+        slug
       }
     }
   }

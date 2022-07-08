@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { StaticImage } from "gatsby-plugin-image"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"

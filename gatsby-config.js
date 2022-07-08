@@ -6,7 +6,8 @@ const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
-    'tour'
+    'tour',
+    'retail'
   ],
   singleTypes: [],
 };
@@ -23,6 +24,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
+    "gatsby-plugin-mdx",
     {
       resolve: 'gatsby-source-filesystem',
       options: {

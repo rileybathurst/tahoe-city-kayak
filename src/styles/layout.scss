@@ -38,12 +38,29 @@ header {
 //  #MAIN
 /*------------------*/
 
+// TODO: Check if this is actually used anywhere
 main,
-section {
+section,
+article {
   max-width: 40rem;
   margin-inline: auto;
   padding-inline: 0.75rem;
 }
+
+.main__full {
+  max-width: 60rem;
+  margin-inline: auto;
+
+  display: flex;
+
+  > * {
+    flex: 1;
+  }
+}
+
+/*------------------*/
+//  #HOME
+/*------------------*/
 
 .home__main {
   display: flex;
@@ -93,10 +110,6 @@ section {
   }
 }
 
-.pricing-chart__no {
-  display: none;
-}
-
 .home__tours {
   max-width: 60rem;
   margin-inline: auto;
@@ -120,6 +133,56 @@ section {
 .here__location {
   display: flex;
   gap: 1rem;
+}
+
+/*------------------*/
+//  #SINGLES
+/*------------------*/
+
+.single__description {
+  padding-block: 1.5rem;
+  background-color: var(--mercury);
+  box-shadow: 0 0 0 100vmax var(--mercury);
+  clip-path: inset(0 -100vmax);
+}
+
+// ? this might be a bad name if its also buy
+.single__book {
+  max-width: 40rem;
+  margin-inline: auto;
+  background-color: var(--mullen);
+  box-shadow: 0 0 0 100vmax var(--mullen);
+  clip-path: inset(0 -100vmax);
+  padding-block: 1.5rem;
+
+  button {
+    border-color: whitesmoke;
+    color: whitesmoke;
+  }
+}
+
+.single__other {
+  max-width: 60rem;
+  margin-inline: auto;
+}
+
+.hgroup__retail {
+  display: flex;
+  gap: 1rem;
+
+  .h_brand {
+    order: 1;
+  }
+
+  .h_title {
+    order: 2;
+  }
+}
+
+.spec {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid var(--mercury);
 }
 
 /*------------------*/

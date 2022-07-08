@@ -8,14 +8,23 @@ export const query = graphql`
       id
       name
     }
+
+    allStrapiTour(filter: {slug: {nin: [$slug] }}) {
+      nodes {
+        name
+        slug
+      }
+    }
   }
 `
 
 const TourPage = ({ data }) => {
   const tour = data.strapiTour;
+  const other = data.allStrapiTour;
   return (
     <TourView
       tour={tour}
+      other={other}
     />
   );
 };
