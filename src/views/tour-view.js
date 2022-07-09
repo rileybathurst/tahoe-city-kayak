@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Link, StaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image"
+import { Link } from "gatsby";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 
 import WaterTexture from "../images/watertexture";
+import BookNow from "../components/peek/book-now";
 
 const TourView = ({ tour, other }) => {
   return (
@@ -16,7 +16,7 @@ const TourView = ({ tour, other }) => {
         <div>
           <h1>{tour.name}</h1>
           <div>
-            <button>${/* // TODO */} Book Now</button>
+            <BookNow />
             <p>* Prices based on a
               {/* // TODO */} person minimum</p>
           </div>
@@ -43,7 +43,7 @@ const TourView = ({ tour, other }) => {
         <p>Tour Description</p>
       </article>
       <div className="single__book">
-        <button>$ {/* // TODO */} Book Now</button>
+        <BookNow />
       </div>
 
       <div className="single__other">

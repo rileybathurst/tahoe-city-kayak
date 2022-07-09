@@ -12,6 +12,9 @@ import StoreIcon from "../images/store";
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
+import BookNow from "../components/peek/book-now";
+import BookTour from "../components/peek/book-tour";
+import BookRental from "../components/peek/book-rental";
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -100,11 +103,8 @@ const IndexPage = () => {
           </article>
 
           <div className="button__double">
-            <button>RENTALS &amp; DEMOS<br />
-              BOOK NOW</button>
-
-            <button>TOURS &amp; LESSONS<br />
-              BOOK NOW</button>
+            <BookRental />
+            <BookTour />
           </div>
 
 
@@ -128,7 +128,7 @@ const IndexPage = () => {
             </Link>
           </h3>
           <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
-          <button>Book Now</button>
+          <BookNow />
         </div>
 
         <div>
@@ -142,7 +142,7 @@ const IndexPage = () => {
           <h3>Tours &amp; Lessons</h3>
           <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         </div>
-        <div>stay gold </div>
+        <div>{/* stay gold */}</div>
       </section>
 
       <div className="deck">
@@ -160,7 +160,7 @@ const IndexPage = () => {
             <hr />
             <div className="card__details">
               <h5>$cost</h5>
-              <button>Book Now</button>
+              <BookNow />
             </div>
           </div>
         ))}
@@ -194,7 +194,7 @@ const IndexPage = () => {
             <p>
               May – October<br />
               Open Daily<br />
-              9:30am –5:30pm<br />
+              9:30am – 5:30pm<br />
               Weather Permitting<br />
             </p>
 

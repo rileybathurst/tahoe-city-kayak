@@ -1,11 +1,11 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 
 import WaterTexture from "../images/watertexture";
+import BookNow from "../components/peek/book-now";
 
 const ToursLessonsPage = () => {
   return (
@@ -14,7 +14,7 @@ const ToursLessonsPage = () => {
       <main>
         <h3>Tours &amp; Lessons</h3>
         <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
-        <button>Book Now</button>
+        <BookNow />
         <hr />
       </main>
 
@@ -37,7 +37,7 @@ const ToursLessonsPage = () => {
                   <hr />
                   <div className="card__details">
                     <h5>$cost</h5>
-                    <button>Book Now</button>
+                    <BookNow />
                   </div>
                 </article>
               ))

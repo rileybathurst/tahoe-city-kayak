@@ -1,9 +1,9 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+import BookNow from "../components/peek/book-now";
 
 import WaterTexture from "../images/watertexture";
 
@@ -47,7 +47,7 @@ const RetailPage = () => {
                   <hr />
                   <div className="card__details">
                     <h5>$cost</h5>
-                    <button>Book Now</button>
+                    <BookNow />
                   </div>
                 </article>
               ))

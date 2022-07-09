@@ -50,3 +50,10 @@ button:hover {
 menu button {
   margin: 0;
 }
+
+.book-now {
+  @extend button;
+  margin-block-start: 0.75rem;
+  text-decoration: none;
+  text-align: center;
+}

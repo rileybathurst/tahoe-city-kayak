@@ -1,4 +1,5 @@
 import * as React from "react"
+import BookNow from "./peek/book-now"
 
 const PricingChart = (props) => {
   return (
@@ -24,7 +25,7 @@ const PricingChart = (props) => {
         </div>
       </div>
       <div className={`pricing-chart__${props.book}`}>
-        <button>Book Now</button>
+        <BookNow />
       </div>
     </>
 

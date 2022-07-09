@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Link, StaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image"
+import { Link } from "gatsby";
 
 import WaterTexture from "../images/watertexture";
 
@@ -11,6 +10,7 @@ import WaterTexture from "../images/watertexture";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+import BookNow from "../components/peek/book-now";
 
 
 function Capacity(props) {
@@ -39,7 +39,7 @@ const RetailView = ({ retail, other }) => {
             {/* <h3 className="h_type">{retail.type}</h3> */}
           </hgroup>
           <div>
-            <button>${/* // TODO */} Book Now</button>
+            <BookNow />
             <p>* Prices based on a
               {/* // TODO */} person minimum</p>
           </div>
