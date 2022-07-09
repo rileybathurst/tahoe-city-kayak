@@ -2,8 +2,8 @@ import * as React from "react";
 import { Link, StaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image"
 
-import { MDXProvider } from "@mdx-js/react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+// import { MDXProvider } from "@mdx-js/react"
+// import { MDXRenderer } from "gatsby-plugin-mdx"
 // import { Chart, Pullquote } from "./ui"
 // import { Message } from "theme-ui"
 
@@ -69,14 +69,15 @@ const RetailView = ({ retail, other }) => {
           {/* <MDXRenderer>{retail.features.data.features}</MDXRenderer> */}
 
           {/* test */}
-          <Test md={retail.features.data.features} />
+          {/* <Test md={retail.features.data.features} /> */}
           {retail.features.data.features}
           {/* <MDXProvider>{retail.features.data.features}</MDXProvider> */}
         </div>
 
       </main>
       <article className="single__description">
-        <MDXProvider components={{ List: () => <span style={{ color: 'tomato' }}>Pluto</span> }}>{retail.description.data.description}</MDXProvider>
+        {/* <MDXProvider components={{ List: () => <span style={{ color: 'tomato' }}>Pluto</span> }}>{retail.description.data.description}</MDXProvider> */}
+        {retail.description.data.description}
       </article>
       <div className="single__book">
         <button>$ {/* // TODO */} Buy Now</button>
