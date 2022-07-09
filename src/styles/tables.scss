@@ -41,6 +41,16 @@
     }
   }
 
+  h4 span {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+  }
+
+  p span {
+    white-space: nowrap;
+  }
+
   *:last-child > * {
     border-right: none;
   }

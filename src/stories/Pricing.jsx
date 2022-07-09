@@ -1,0 +1,45 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// import "../styles/styles.scss";
+
+export const Pricing = ({ primary }) => {
+  const mode = primary ? 'storybook-Pricing--primary' : 'storybook-Pricing--secondary';
+  return (
+    <>
+      <div className="pricing-chart">
+        <div>
+          <h4><span>Rental</span> <span>Rates</span></h4>
+          <p>1 Hour</p>
+          <p><span>3 Hours</span></p>
+          <p><span>Full Day</span></p>
+        </div>
+        <div>
+          <h4><span>Single Kayak</span><span> / SUP</span></h4>
+          <p>$30</p>
+          <p>$60</p>
+          <p>$90</p>
+        </div>
+        <div>
+          <h4><span>Tandem</span> <span>Kayak</span></h4>
+          <p>$45</p>
+          <p>$90</p>
+          <p>$110</p>
+        </div>
+      </div>
+      <div
+      // className={`pricing-chart__${props.book}`}
+      >
+        <button>Book Now</button>
+      </div>
+    </>
+  );
+};
+
+Pricing.propTypes = {
+  primary: PropTypes.bool,
+};
+
+Pricing.defaultProps = {
+  primary: false,
+};

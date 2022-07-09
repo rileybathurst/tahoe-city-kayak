@@ -65,6 +65,11 @@ article {
 .home__main {
   display: flex;
   max-width: 60rem;
+  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 20rem;
+  }
 }
 
 .home__main--season {
@@ -104,9 +109,10 @@ article {
   max-width: 60rem;
   margin-inline: auto;
   display: flex;
+  flex-flow: row wrap;
 
   > * {
-    flex: 1;
+    flex: 1 1 20rem;
   }
 }
 
@@ -124,9 +130,10 @@ article {
   max-width: 60rem;
   margin-inline: auto;
   display: flex;
+  flex-flow: row wrap;
 
   > * {
-    flex: 1;
+    flex: 1 1 20rem;
   }
 }
 
@@ -194,9 +201,11 @@ footer {
   margin-inline: auto;
 
   display: flex;
+  flex-flow: row wrap;
   gap: 1rem;
 
   > * {
+    flex: 1 1 5rem;
     border-block-end: 1px solid var(--mercury);
   }
 
@@ -217,19 +226,11 @@ footer {
       font-size: 0.75rem;
       font-weight: 400;
       margin: 0.25px;
-
-      span {
-        display: flex;
-        flex-direction: column;
-        white-space: nowrap;
-      }
     }
 
     p {
       font-size: 0.75rem;
-      margin: 0.25px span {
-        white-space: nowrap;
-      }
+      margin: 0.25px;
     }
   }
 }

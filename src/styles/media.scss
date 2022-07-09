@@ -20,6 +20,11 @@ svg {
   max-width: 20rem;
   display: flex;
   justify-content: center;
+  background-color: whitesmoke;
+  box-shadow: 0 0 0 100vmax whitesmoke;
+  clip-path: inset(0 -100vmax);
+  z-index: 1;
+  position: relative;
 
   svg {
     transform: rotate(90deg);

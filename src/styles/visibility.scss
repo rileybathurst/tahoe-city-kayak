@@ -1,3 +1,15 @@
 .pricing-chart__no {
   display: none;
 }
+
+@media (max-width: 40rem) {
+  .menu__large {
+    display: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .menu__small {
+    display: none;
+  }
+}
