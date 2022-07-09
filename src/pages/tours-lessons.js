@@ -5,15 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-function WaterTexture(props) {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leung-Oc81QL8Crtg-unsplash-hd.jpg"
-    alt="water texture"
-    className={`img__wrapped ${props.className}`}
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
+import WaterTexture from "../images/watertexture";
 
 const ToursLessonsPage = () => {
   return (

@@ -2,6 +2,8 @@ import * as React from "react";
 import { Link, StaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image"
 
+import WaterTexture from "../images/watertexture";
+
 // import { MDXProvider } from "@mdx-js/react"
 // import { MDXRenderer } from "gatsby-plugin-mdx"
 // import { Chart, Pullquote } from "./ui"
@@ -10,20 +12,6 @@ import { StaticImage } from "gatsby-plugin-image"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-function Test(props) {
-  console.log(props.md);
-  return null;
-}
-
-function WaterTexture(props) {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leung-Oc81QL8Crtg-unsplash-hd.jpg"
-    alt="water texture"
-    className={`img__wrapped ${props.className}`}
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
 
 function Capacity(props) {
   if (props.spec) {
@@ -70,7 +58,7 @@ const RetailView = ({ retail, other }) => {
 
           {/* test */}
           {/* <Test md={retail.features.data.features} /> */}
-          {retail.features.data.features}
+          {/* {retail.features.data.features} */}
           {/* <MDXProvider>{retail.features.data.features}</MDXProvider> */}
         </div>
 

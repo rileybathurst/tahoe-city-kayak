@@ -22,16 +22,32 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
+    /* {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `jpg`, `png`], // `webp`
+        }
+      }
+    }, */
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
     // "gatsby-plugin-mdx",
-    {
+    // "gatsby-source-filesystem",
+    /* {
       resolve: 'gatsby-source-filesystem',
       options: {
         "name": "images",
         "path": "./src/images/"
       },
       __key: "images"
+    }, */
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
     },
     {
       resolve: `gatsby-source-strapi`,
