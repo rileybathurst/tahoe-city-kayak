@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
-// import Header from "../components/header"
-// import Footer from "../components/footer"
-// import PricingChart from "../components/pricing-chart"
-// import MapLink from "../components/map-link"
-// import KayakIcon from "../images/kayak"
-// import StoreIcon from "../images/store";
+import Header from "../components/header"
+import Footer from "../components/footer"
+import PricingChart from "../components/pricing-chart"
+import MapLink from "../components/map-link"
+import KayakIcon from "../images/kayak"
+import StoreIcon from "../images/store";
 
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 
-/* // TODO this will eventually be a svg
+// TODO this will eventually be a svg
 function Map(props) {
   return <StaticImage
     src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/Tahoe-City-Map-2-fs8.png"
@@ -22,11 +22,11 @@ function Map(props) {
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
-} */
+}
 
 const IndexPage = () => {
 
-  /* const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query IndexQuery {
       allStrapiTour {
         nodes {
@@ -37,27 +37,27 @@ const IndexPage = () => {
       }
     }
   `)
- 
+
   // const more = { data }
   // console.log(more);
- 
+
   let allTours = data.allStrapiTour.nodes
   // console.log(allTours);
- 
+
   // State for the list
   const [list, setList] = useState([...allTours.slice(0, 2)])
- 
+
   // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false)
- 
+
   // State of whether there is more to load
   const [hasMore, setHasMore] = useState(allTours.length > 2)
- 
+
   // Load more button click
   const handleLoadMore = () => {
     setLoadMore(true)
   }
- 
+
   // Handle loading more articles
   useEffect(() => {
     if (loadMore && hasMore) {
@@ -70,16 +70,16 @@ const IndexPage = () => {
       setLoadMore(false)
     }
   }, [loadMore, hasMore])
- 
+
   //Check if there is more
   useEffect(() => {
     const isMore = list.length < allTours.length
     setHasMore(isMore)
-  }, [list]) */
+  }, [list])
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main className="home__main">
         <section>
           <h2><Link to="/rentals-demos">On Water Rentals</Link></h2>
@@ -91,11 +91,11 @@ const IndexPage = () => {
             </p>
 
             <p>Located at<br />
-              {/* <MapLink className="link__subtle"> */}
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145
-              {/* </MapLink> */}
+              <MapLink className="link__subtle">
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145
+              </MapLink>
             </p>
           </article>
 
@@ -114,9 +114,9 @@ const IndexPage = () => {
         </section>
 
         <section className="main__photo-grid">
-          {/*           <TwoKayakers className="kayakers" />
+          <TwoKayakers className="kayakers" />
           <WaterTexture className="texture" />
-          <AndyPaddling className="andy" /> */}
+          <AndyPaddling className="andy" />
         </section>
       </main>
 
@@ -132,7 +132,7 @@ const IndexPage = () => {
         </div>
 
         <div>
-          {/* <PricingChart book="no" /> */}
+          <PricingChart book="no" />
         </div>
       </section>
 
@@ -145,7 +145,7 @@ const IndexPage = () => {
         <div>stay gold </div>
       </section>
 
-      {/* <div className="deck">
+      <div className="deck">
         {list.map((tour) => (
           <div key={tour.id} className="card">
             <WaterTexture className="card__placeholder" />
@@ -169,16 +169,15 @@ const IndexPage = () => {
         {hasMore ? (
           <>
             <button onClick={handleLoadMore} className=''>VIEW MORE TOURS &amp; LESSONS</button>
-            // {/* &nbsp;&nbsp;<span className="crest">Even More?</span> */}
-      {/* </> */}
-      {/* ) : ( */}
-      {/* <p>Thats all the tours</p> */}
-      {/* ) */}
-      {/* } */}
-      {/* // </div > * /} */}
+            {/* &nbsp;&nbsp;<span className="crest">Even More?</span> */}
+          </>
+        ) : (
+          <p>Thats all the tours</p>
+        )
+        }
+      </div>
 
-
-      {/* < section id="here" className="home__here" >
+      < section id="here" className="home__here" >
         <div>
           <h3><Link to="/contact">WE ARE HERE</Link></h3>
 
@@ -217,9 +216,9 @@ const IndexPage = () => {
           </div>
         </div>
         <Map />
-      </section > */}
+      </section>
 
-      {/* <section id="retail">
+      <section id="retail">
         <h3>Retail</h3>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
 
@@ -236,9 +235,9 @@ const IndexPage = () => {
         </address>
 
         <hr />
-      </section> */}
+      </section>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

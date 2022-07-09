@@ -1,4 +1,4 @@
-{/* function Button() {
+function Button() {
   const [slide, setSlide] = useState('firstload');
   const [amount, setAmount] = useState(0);
   const ref = useRef();
@@ -87,4 +87,4 @@
       </div>
     );
   }
-} */}
+}
