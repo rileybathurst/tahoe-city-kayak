@@ -33,11 +33,16 @@ const ToursLessonsPage = () => {
                     </Link>
                   </h4>
                   <hr />
-                  <p>TODO: add a description</p>
+                  <p>{tour.node.information.data.information}</p>
                   <hr />
                   <div className="card__details">
-                    <h5>$cost</h5>
-                    <BookNow />
+                    <h5>${tour.node.price}</h5>
+                    <a
+                    href={tour.node.name}
+                    className="book-now"
+                    >
+                      BOOK NOW
+                    </a>
                   </div>
                 </article>
               ))
@@ -61,6 +66,13 @@ query ToursQuery {
         id
         name
         slug
+        peek
+        price
+        information {
+          data {
+            information
+          }
+        }
       }
     }
   }

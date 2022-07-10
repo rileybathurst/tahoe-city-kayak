@@ -7,7 +7,9 @@ const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
     'tour',
-    'retail'
+    'retail',
+    'faq',
+    'testimonial'
   ],
   singleTypes: [],
 };

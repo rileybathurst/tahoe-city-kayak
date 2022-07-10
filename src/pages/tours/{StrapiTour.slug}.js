@@ -7,6 +7,15 @@ export const query = graphql`
     strapiTour(slug: { eq: $slug }) {
       id
       name
+      information {
+        data {
+          information
+        }
+      }
+      start
+      finish
+      duration
+      minimum
     }
 
     allStrapiTour(filter: {slug: {nin: [$slug] }}) {
