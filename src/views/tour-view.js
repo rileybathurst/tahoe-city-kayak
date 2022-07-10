@@ -7,7 +7,7 @@ import Footer from "../components/footer"
 import WaterTexture from "../images/watertexture";
 import BookNow from "../components/peek/book-now";
 
-function HourMin(props) {
+/* function HourMin(props) {
   let hours = props.time.split(':')[0];
   let mins = props.time.split(':')[1];
 
@@ -17,7 +17,7 @@ function HourMin(props) {
     </>
   );
 
-}
+} */
 
 const TourView = ({ tour, other }) => {
   return (
@@ -39,11 +39,11 @@ const TourView = ({ tour, other }) => {
           </div>
           <hr />
           <h2>Tour Start Time</h2>
-          <h3><HourMin time={tour.start} /></h3>
+          {/* <h3><HourMin time={tour.start} /></h3> */}
 
           <hr />
           <h2>Tour Completion</h2>
-          <h3><HourMin time={tour.finish} /></h3>
+          {/* <h3><HourMin time={tour.finish} /></h3> */}
           <hr />
           <h2>Fitness Level</h2>
           <h3>Moderate</h3>
