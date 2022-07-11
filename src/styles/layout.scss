@@ -47,6 +47,10 @@ article {
   padding-inline: 0.75rem;
 }
 
+main {
+  margin-block-end: 3rem;
+}
+
 .main__full {
   max-width: 60rem;
   margin-inline: auto;
@@ -320,4 +324,14 @@ footer {
   margin-block-end: 1.5rem;
   padding-block-end: 1.5rem;
   text-transform: capitalize;
+}
+
+.tour__minimum {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+
+  p {
+    color: var(--steel);
+  }
 }

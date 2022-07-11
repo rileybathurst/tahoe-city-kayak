@@ -6,9 +6,10 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import MapLink from "../components/map-link"
+import Seo from "../components/seo";
+
 import KayakIcon from "../images/kayak"
 import StoreIcon from "../images/store";
-
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
@@ -36,6 +37,11 @@ const IndexPage = () => {
           id
           name
           slug
+          price
+          peek
+          childStrapiTourInformationTextnode {
+            information
+          }
         }
       }
     }
@@ -82,6 +88,9 @@ const IndexPage = () => {
 
   return (
     <>
+      <Seo
+        title="Tahoe City Kayak"
+      />
       <Header />
       <main className="home__main">
         <section>
@@ -156,11 +165,17 @@ const IndexPage = () => {
               </Link>
             </h4>
             <hr />
-            <p>TODO: add a description</p>
+            <p>{tour.childStrapiTourInformationTextnode.information}</p>
             <hr />
             <div className="card__details">
-              <h5>$cost</h5>
-              <BookNow />
+              <h5>${tour.price}</h5>
+              <a
+                href={tour.peek}
+                rel="noopener noreferrer"
+                className="book-now"
+              >
+                BOOK NOW
+              </a>
             </div>
           </div>
         ))}
@@ -192,9 +207,9 @@ const IndexPage = () => {
             </p>
 
             <p>
-              May – October<br />
+              May &ndash; October<br />
               Open Daily<br />
-              9:30am – 5:30pm<br />
+              9:30am &ndash; 5:30pm<br />
               Weather Permitting<br />
             </p>
 
@@ -211,7 +226,7 @@ const IndexPage = () => {
 
             <p>
               Open Daily<br />
-              9am – 6pm<br />
+              9am &ndash; 6pm<br />
             </p>
           </div>
         </div>

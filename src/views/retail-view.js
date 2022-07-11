@@ -7,7 +7,6 @@ import remarkGfm from 'remark-gfm'
 import WaterTexture from "../images/watertexture";
 import Header from "../components/header"
 import Footer from "../components/footer"
-import BookNow from "../components/peek/book-now";
 
 function Spec(props) {
   if (props.name === "Weight") {
@@ -130,8 +129,6 @@ const RetailView = ({ retail, other }) => {
         </div>
         <div>
           <WaterTexture />
-          {/* // TODO: the title needs to be behind an if */}
-          <h3></h3>
           <ReactMD
             raw={retail.childStrapiRetailFeaturesTextnode?.features}
             className="features"

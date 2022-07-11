@@ -16,7 +16,19 @@ const strapiConfig = {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://tahoe-city-kayak.netlify.app`
+    title: "Tahoe City Kayak",
+    siteUrl: 'https://tahoe-city-kayak.netlify.app',
+    url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
+    description: "North Tahoes Premier Kayak and SUP Provider of Rentals Sales Lessons and Tours",
+    openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00',
+    telephone: '(530) 581-4336',
+    email: 'tahoecitykayak@gmail.com',
+    logo: '/images/icon.png',
+    areaServed: 'tahoe city',
+    author: 'Tahoe City Kayak',
+    paymentAccepted: 'Cash check credit card',
+    itemType: 'LocalBusiness',
+    priceRange: '$50-2500',
   },
   plugins: [
     "gatsby-plugin-sass",
@@ -24,26 +36,8 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
-    /* {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        defaults: {
-          formats: [`auto`, `jpg`, `png`], // `webp`
-        }
-      }
-    }, */
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
-    // "gatsby-plugin-mdx",
-    // "gatsby-source-filesystem",
-    /* {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "images",
-        "path": "./src/images/"
-      },
-      __key: "images"
-    }, */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -54,5 +48,14 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,
-    },]
+    },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: process.env.TYPEKIT_ID,
+        },
+      },
+    },
+  ]
 };

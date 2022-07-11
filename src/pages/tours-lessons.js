@@ -11,6 +11,12 @@ const ToursLessonsPage = () => {
   return (
     <>
       <Header />
+
+      <div className="breadcrumbs">
+        <Link to="/">Home</Link>&nbsp;/&nbsp;
+        Tours &amp; Lessons
+      </div>
+
       <main>
         <h3>Tours &amp; Lessons</h3>
         <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
@@ -38,7 +44,7 @@ const ToursLessonsPage = () => {
                   <div className="card__details">
                     <h5>${tour.node.price}</h5>
                     <a
-                    href={tour.node.name}
+                    href={tour.node.peek}
                     className="book-now"
                     >
                       BOOK NOW

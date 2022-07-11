@@ -5,7 +5,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 
 import WaterTexture from "../images/watertexture";
-import BookNow from "../components/peek/book-now";
 
 function HourMin(props) {
   if (props.time) {
@@ -22,18 +21,17 @@ function HourMin(props) {
 function Spec(props) {
   if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
     return (
-      <>
+      <div className="spec">
         <h2>{props.name}</h2>
         <h3><HourMin time={props.spec} /></h3>
-      </>
+      </div>
     );
   } else if (props.spec) {
     return (
-      <>
+      <div className="spec">
         <h2>{props.name}</h2>
         <h3>{props.spec}</h3>
-        <hr />
-      </>
+      </div>
     );
   } else {
     return null;
@@ -44,13 +42,19 @@ const TourView = ({ tour, other }) => {
   return (
     <>
       <Header />
-      {/* // TODO: Breadcrumbs */}
+      
+      <div className="breadcrumbs">
+        <Link to="/">Home</Link>&nbsp;/&nbsp;
+        <Link to="/tours-lessons">Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+        {tour.name}
+      </div>
+
       <main className="main__full">
         <div>
           <h1>{tour.name}</h1>
-          <div>
+          <div className="tour__minimum">
             <a href={tour.peek}
-              rel="no"
+              rel="noopener noreferrer"
               className="book-now"
             >
               BOOK NOW
@@ -63,12 +67,15 @@ const TourView = ({ tour, other }) => {
 
           <Spec name="Tour Completiion" spec={tour.finish} />
 
-          <Spec name="Duration" spec={tour.duration} />
+          <Spec name="Duration" spec={tour.duration} unit="mins" />
 
           <Spec name="Fitness Level" spec={tour.fitness} />
+          
+          <div className="spec">
           <h2>Starts At</h2>
           <h3>Tahoe City</h3>
           <a href="{/* // TODO */}">Google Maps</a>
+          </div>
         </div>
         <div>
           <WaterTexture />
@@ -79,7 +86,13 @@ const TourView = ({ tour, other }) => {
         <p>{tour.information.data.information}</p>
       </article>
       <div className="single__book">
-        <BookNow />
+      <a
+      href={tour.peek}
+      rel="noopener noreferrer"
+      className="book-now"
+    >
+      BOOK NOW
+    </a>
       </div>
 
       <div className="single__other">

@@ -17,6 +17,7 @@ export const query = graphql`
       duration
       minimum
       fitness
+      peek
     }
 
     allStrapiTour(filter: {slug: {nin: [$slug] }}) {
