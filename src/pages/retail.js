@@ -3,9 +3,10 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 
 import Header from "../components/header"
 import Footer from "../components/footer"
-import BookNow from "../components/peek/book-now";
 
 import WaterTexture from "../images/watertexture";
+import KayakBrandList from "../components/kayak-brand-list";
+import SupBrandList from "../components/sup-brand-list";
 
 const RetailPage = () => {
   return (
@@ -35,17 +36,10 @@ const RetailPage = () => {
         </p>
 
         <h2><Link to="/retail/kayak">Kayaks</Link></h2>
-        <ul>
-          <li><Link to="/retail/kayak/hobie">Hobie</Link></li>
-          <li><Link to="/retail/kayak/wilderness-systems">Wilderness Systems</Link></li>
-          <li><Link to="/retail/kayak/eddyline">Eddyline</Link></li>
-          <li><Link to="/retail/kayak/perception">Perception</Link></li>
-          <li><Link to="/retail/kayak/delta">Delta</Link></li>
-          <li><Link to="/retail/kayak/bote">BOTE</Link></li>
-          <li><Link to="/retail/kayak/bru-surf">Bru Surf</Link></li>
-        </ul>
+        <KayakBrandList />
 
         <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
+        <SupBrandList />
       </main>
 
       {<StaticQuery

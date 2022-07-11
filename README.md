@@ -1,4 +1,5 @@
 # Tahoe City Kayak
 
-Restart of the design and build.
+// TODO
 
+- I'm sure I can use Gatsby node to create a bunch of pages based on enums
