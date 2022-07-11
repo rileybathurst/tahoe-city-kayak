@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+import Seo from "../components/seo";
 
 import WaterTexture from "../images/watertexture";
 
@@ -42,7 +43,9 @@ const TourView = ({ tour, other }) => {
   return (
     <>
       <Header />
-      
+      <Seo
+        title={tour.name}
+      />
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/tours-lessons">Tours &amp; Lessons</Link>&nbsp;/&nbsp;

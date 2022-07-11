@@ -1,16 +1,20 @@
 import * as React from "react"
 
-import Header from "../components/header"
-import Footer from "../components/footer"
-import PricingChart from "../components/pricing-chart"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import PricingChart from "../components/pricing-chart";
+import Seo from "../components/seo";
 
 const RentalsDemosPage = () => {
   return (
     <>
       <Header />
+      
+      <Seo
+        title="Rentals and Demos"
+      />
+
       <main>
-
-
         <h3>Rentals &amp; Demos</h3>
         <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
 

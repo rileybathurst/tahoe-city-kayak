@@ -4,6 +4,7 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import BookNow from "../../components/peek/book-now";
+import Seo from "../../components/seo";
 
 import WaterTexture from "../../images/watertexture";
 
@@ -11,6 +12,10 @@ const RetailPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Retail Kayak"
+      />
 
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;

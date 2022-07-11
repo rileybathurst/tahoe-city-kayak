@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import WaterTexture from "../images/watertexture";
 import Header from "../components/header"
 import Footer from "../components/footer"
+import Seo from "../components/seo";
 
 function Spec(props) {
   if (props.name === "Weight") {
@@ -92,6 +93,10 @@ const RetailView = ({ retail, other }) => {
   return (
     <>
       <Header />
+      <Seo
+        title={retail.brand}
+      />
+
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;

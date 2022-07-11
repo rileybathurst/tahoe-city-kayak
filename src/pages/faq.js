@@ -1,18 +1,22 @@
 import * as React from "react"
 import { StaticQuery, graphql } from 'gatsby';
 
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import Seo from "../components/seo";
 
 const FaqPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Frequntly Asked Questions"
+      />
+
       <main>
         <h1>Frequently Asked Questions</h1>
-
-
-
+        
         <StaticQuery
           query={query}
           render={data => (

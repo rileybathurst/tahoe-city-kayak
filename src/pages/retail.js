@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import Seo from "../components/seo";
 
 import WaterTexture from "../images/watertexture";
 import KayakBrandList from "../components/kayak-brand-list";
@@ -12,6 +13,10 @@ const RetailPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Retail"
+      />
 
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;

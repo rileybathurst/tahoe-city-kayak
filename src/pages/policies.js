@@ -1,12 +1,18 @@
 import * as React from "react"
 
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import Seo from "../components/seo";
 
 const PoliciesPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Store Policies"
+      />
+
       <main>
         <h1>Store Policies</h1>
 

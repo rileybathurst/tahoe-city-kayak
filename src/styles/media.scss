@@ -7,7 +7,9 @@
 /*------------------*/
 
 svg {
-  max-width: 5rem;
+  min-width: 2rem; // safari needs default mins
+  min-width: 2rem;
+  max-height: 5rem;
   max-height: 5rem;
 }
 
@@ -19,6 +21,7 @@ svg {
   margin-inline: auto;
   max-width: 20rem;
   display: flex;
+  gap: 1rem;
   justify-content: center;
   background-color: whitesmoke;
   box-shadow: 0 0 0 100vmax whitesmoke;

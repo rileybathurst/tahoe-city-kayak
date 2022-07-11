@@ -1,12 +1,18 @@
 import * as React from "react"
 
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/header";
+import Footer from "../components/footer";
+import Seo from "../components/seo";
 
 const InformationPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Paddlesports Information"
+      />
+
       <main>
         <h1>Paddlesports Information</h1>
         <h2>Before you go!</h2>

@@ -11,9 +11,11 @@ header {
   overflow: hidden;
   z-index: 1;
   position: relative;
-  width: 100%;
+  width: calc(100% - 1rem);
+  margin-inline: auto;
   background-color: var(--mullen);
   color: whitesmoke;
+  box-shadow: var(--penumbra);
 }
 
 .span-styles {
@@ -28,6 +30,7 @@ nav {
   margin: 1.5rem;
   margin-block-start: 0; // testing slide menu
   transition: 2s ease;
+  padding-inline-start: 1.5rem;
 
   ul {
     display: flex;
@@ -46,12 +49,20 @@ nav {
     gap: 1rem;
     z-index: 1;
     position: relative;
-    background-color: whitesmoke;
-    box-shadow: 0 0 0 100vmax whitesmoke;
+    background-color: var(--sand);
+    box-shadow: 0 0 0 100vmax var(--sand);
     clip-path: inset(0 -100vmax);
 
     li a {
-      padding: 0.5rem;
+      padding: 0.75rem;
+    }
+
+    li:first-child {
+      margin-block-start: 1.5rem;
+    }
+
+    li:last-child {
+      margin-block-end: 1.5rem;
     }
   }
 }

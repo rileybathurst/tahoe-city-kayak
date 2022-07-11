@@ -103,7 +103,7 @@ const IndexPage = () => {
             </p>
 
             <p>Located at<br />
-              <MapLink className="link__subtle">
+              <MapLink>
                 Commons Beach<br />
                 400 North Lake Blvd,<br />
                 Tahoe City 96145

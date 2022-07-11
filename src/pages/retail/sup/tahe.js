@@ -3,6 +3,7 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 
 import Header from "../../../components/header"
 import Footer from "../../../components/footer"
+import Seo from "../../../components/seo";
 
 import WaterTexture from "../../../images/watertexture";
 
@@ -10,6 +11,11 @@ const RetailPage = () => {
   return (
     <>
       <Header />
+
+      <Seo
+        title="Tahe SUPs"
+      />
+
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
