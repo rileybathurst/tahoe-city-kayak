@@ -11,8 +11,14 @@ const RetailPage = () => {
   return (
     <>
       <Header />
+
+      <div className="breadcrumbs">
+        <Link to="/">Home</Link>&nbsp;/&nbsp;
+        Retail
+      </div>
+
       <main>
-        <h3>Retail</h3>
+        <h1>Retail</h1>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
 
         <p>Our Store and our retail prices are competitive with big-city retailers! Hobie, Wilderness Systems, Eddyline, Tahoe SUP, Pau Hana, Amundson, Bic Paddlesurf and more. Try before you buy!</p>
@@ -27,6 +33,19 @@ const RetailPage = () => {
             CA 96145
           </address>
         </p>
+
+        <h2><Link to="/retail/kayak">Kayaks</Link></h2>
+        <ul>
+          <li><Link to="/retail/kayak/hobie">Hobie</Link></li>
+          <li><Link to="/retail/kayak/wilderness-systems">Wilderness Systems</Link></li>
+          <li><Link to="/retail/kayak/eddyline">Eddyline</Link></li>
+          <li><Link to="/retail/kayak/perception">Perception</Link></li>
+          <li><Link to="/retail/kayak/delta">Delta</Link></li>
+          <li><Link to="/retail/kayak/bote">BOTE</Link></li>
+          <li><Link to="/retail/kayak/bru-surf">Bru Surf</Link></li>
+        </ul>
+
+        <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
       </main>
 
       {<StaticQuery
@@ -43,11 +62,11 @@ const RetailPage = () => {
                     </Link>
                   </h4>
                   <hr />
-                  <p>TODO: add a description</p>
+                  <p>{retail.node.childStrapiRetailDescriptionTextnode?.description}</p>
                   <hr />
                   <div className="card__details">
-                    <h5>$cost</h5>
-                    <BookNow />
+                    <h4>{retail.node.type}</h4>
+                    <h5>{retail.node.length}' x {retail.node.width}"</h5>
                   </div>
                 </article>
               ))
@@ -71,6 +90,13 @@ query RetailsQuery {
         id
         title
         slug
+        length
+        width
+        type
+
+        childStrapiRetailDescriptionTextnode {
+          description
+        }
       }
     }
   }

@@ -7,17 +7,38 @@ import Footer from "../components/footer"
 import WaterTexture from "../images/watertexture";
 import BookNow from "../components/peek/book-now";
 
-/* function HourMin(props) {
-  let hours = props.time.split(':')[0];
-  let mins = props.time.split(':')[1];
+function HourMin(props) {
+  if (props.time) {
+    let hours = props.time.split(':')[0];
+    let mins = props.time.split(':')[1];
+    return (
+      <>{hours}:{mins}</>
+    );
+  } else {
+    return null;
+  }
+}
 
-  return (
-    <>
-    {hours}:{mins}
-    </>
-  );
-
-} */
+function Spec(props) {
+  if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
+    return (
+      <>
+        <h2>{props.name}</h2>
+        <h3><HourMin time={props.spec} /></h3>
+      </>
+    );
+  } else if (props.spec) {
+    return (
+      <>
+        <h2>{props.name}</h2>
+        <h3>{props.spec}</h3>
+        <hr />
+      </>
+    );
+  } else {
+    return null;
+  }
+}
 
 const TourView = ({ tour, other }) => {
   return (
@@ -29,25 +50,22 @@ const TourView = ({ tour, other }) => {
           <h1>{tour.name}</h1>
           <div>
             <a href={tour.peek}
-            rel="no"
-            className="book-now"
+              rel="no"
+              className="book-now"
             >
               BOOK NOW
             </a>
             <p>* Prices based on a<br />
               {tour.minimum} person minimum</p>
           </div>
-          <hr />
-          <h2>Tour Start Time</h2>
-          {/* <h3><HourMin time={tour.start} /></h3> */}
 
-          <hr />
-          <h2>Tour Completion</h2>
-          {/* <h3><HourMin time={tour.finish} /></h3> */}
-          <hr />
-          <h2>Fitness Level</h2>
-          <h3>Moderate</h3>
-          <hr />
+          <Spec name="Tour Start Time" spec={tour.start} />
+
+          <Spec name="Tour Completiion" spec={tour.finish} />
+
+          <Spec name="Duration" spec={tour.duration} />
+
+          <Spec name="Fitness Level" spec={tour.fitness} />
           <h2>Starts At</h2>
           <h3>Tahoe City</h3>
           <a href="{/* // TODO */}">Google Maps</a>

@@ -9,25 +9,29 @@ export const query = graphql`
       title
       brand
       type
+      series
+      crew
       capacity
+      length
+      hullweight
+      riggedweight
+      width
+      thickness
+      volume
+      inflatable
+      demo
+      type
 
-      description {
-        data {
-          description
-        }
+      childStrapiRetailDescriptionTextnode {
+        description
       }
 
-      features {
-        data {
-          internal {
-            content
-          }
-          features
-        }
+      childStrapiRetailFeaturesTextnode {
+        features
       }
     }
 
-    allStrapiRetail(filter: {slug: {nin: [$slug] }}) {
+    allStrapiRetail(filter: {slug: {nin: [$slug] }}, limit: 2) {
       nodes {
         title
         slug

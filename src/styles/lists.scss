@@ -1,0 +1,18 @@
+.features {
+  text-transform: uppercase;
+  font-size: 1rem;
+
+  ul {
+    list-style: none;
+    padding-inline-start: 0;
+
+    li {
+      line-height: 3rem;
+      border-bottom: 1px solid var(--silver);
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}

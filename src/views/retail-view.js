@@ -1,27 +1,90 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+
 import WaterTexture from "../images/watertexture";
-
-// import { MDXProvider } from "@mdx-js/react"
-// import { MDXRenderer } from "gatsby-plugin-mdx"
-// import { Chart, Pullquote } from "./ui"
-// import { Message } from "theme-ui"
-
 import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
 
-
-function Capacity(props) {
-  if (props.spec) {
+function Spec(props) {
+  if (props.name === "Weight") {
+    // and if
+    if (props.name === "Rigged Weight") {
+      return (
+        <>
+          <div className="spec">
+            <h2>Hull Weight</h2>
+            <h3>
+              {props.spec}
+              <span className="spec__unit">{props.unit}</span>
+            </h3>
+          </div>
+          <div className="spec">
+            <h2>Rigged Weight</h2>
+            <h3>{props.rigged}
+              <span className="spec__unit">{props.unit}</span>
+            </h3>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <div className="spec">
+          <h2>{props.name}</h2>
+          <h3>
+            {props.spec}
+            <span className="spec__unit">{props.unit}</span>
+          </h3>
+        </div>
+      );
+    }
+  } else if (props.spec === true) {
     return (
       <div className="spec">
-        <h3>{props.spec} Lbs</h3>
-        <h4>Capacity</h4>
+        <h2>{props.name}</h2>
+        <h3>Yes</h3>
       </div>
-    )
+    );
+  } else if (props.spec) {
+    return (
+      <div className="spec">
+        <h2>{props.name}</h2>
+        <h3>
+          {props.spec}
+          <span className="spec__unit">{props.unit}</span>
+        </h3>
+      </div>
+    );
   } else {
+    return null;
+  }
+}
+
+function ReactMD(props) {
+  if (props.raw) {
+    if (props.title) {
+      return (
+        <article className={props.className} >
+          <h3>{props.title}</h3>
+          <ReactMarkdown
+            children={props.raw}
+            remarkPlugins={[remarkGfm]}
+          />
+        </article>
+      );
+    } else {
+      return <article className={props.className} >
+        <ReactMarkdown
+          children={props.raw}
+          remarkPlugins={[remarkGfm]}
+        />
+      </article>
+    }
+  }
+  else {
     return null;
   }
 }
@@ -30,55 +93,69 @@ const RetailView = ({ retail, other }) => {
   return (
     <>
       <Header />
-      {/* // TODO: Breadcrumbs */}
+      <div className="breadcrumbs">
+        <Link to="/">Home</Link>&nbsp;/&nbsp;
+        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+        <Link to="/">{retail.type}</Link>&nbsp;/&nbsp;
+        <Link to="/">{retail.brand}</Link>&nbsp;/&nbsp;
+      </div>
+
       <main className="main__full">
         <div>
           <hgroup className="hgroup__retail">
             <h1 className="h_title">{retail.title}</h1>
             <h2 className="h_brand">{retail.brand}</h2>
-            {/* <h3 className="h_type">{retail.type}</h3> */}
+            <h3 className="h_series"><Spec name="series" spec={retail.series} /></h3>
           </hgroup>
-          <div>
-            <BookNow />
-            <p>* Prices based on a
-              {/* // TODO */} person minimum</p>
-          </div>
 
-          <Capacity spec={retail.capacity} />
+          <h3>Specs:</h3>
+          <Spec name="crew" spec={retail.crew} />
+          <Spec name="capacity" spec={retail.capacity} unit="lbs" />
+          <Spec name="length" spec={retail.length} unit="&quot;" />
+
+          <Spec
+            name="Weight"
+            spec={retail.hullweight}
+            rigged={retail.riggedweight}
+            unit="lbs"
+          />
+
+          <Spec name="width" spec={retail.width} unit="&quot;" />
+          <Spec name="thickness" spec={retail.thickness} />
+          <Spec name="volume" spec={retail.volume} />
+
+          <Spec name="Inflatable" spec={retail.inflatable} />
+          <Spec name="demo" spec={retail.demo} />
 
         </div>
         <div>
           <WaterTexture />
-          {/* <MDXRenderer components={{ List: () => <span style={{ color: 'tomato' }}>Pluto</span> }}>{retail.features.data.features}</MDXRenderer> */}
-          {/* <MDXRenderer>{retail.features.data.features}</MDXRenderer> */}
-          {/* <MDXRenderer>{retail.features}</MDXRenderer> */}
-          {/* <MDXRenderer>{retail.features.data.internal.content}</MDXRenderer> */}
-          {/* <MDXProvider><MDXRenderer>{retail.features.data.internal.content}</MDXRenderer></MDXProvider> */}
-          {/* <MDXRenderer>{retail.features.data.features}</MDXRenderer> */}
-
-          {/* test */}
-          {/* <Test md={retail.features.data.features} /> */}
-          {/* {retail.features.data.features} */}
-          {/* <MDXProvider>{retail.features.data.features}</MDXProvider> */}
+          {/* // TODO: the title needs to be behind an if */}
+          <h3></h3>
+          <ReactMD
+            raw={retail.childStrapiRetailFeaturesTextnode?.features}
+            className="features"
+            title="Features"
+          />
         </div>
 
       </main>
-      <article className="single__description">
-        {/* <MDXProvider components={{ List: () => <span style={{ color: 'tomato' }}>Pluto</span> }}>{retail.description.data.description}</MDXProvider> */}
-        {retail.description.data.description}
-      </article>
-      <div className="single__book">
-        <button>$ {/* // TODO */} Buy Now</button>
-      </div>
 
-      <div className="single__other">
+      <ReactMD raw={retail.childStrapiRetailDescriptionTextnode?.description} className="single__description" />
+
+      {/* <div className="single__book">
+        <button>$Buy Now</button>
+      </div > */}
+
+      {/* //TODO: this needs far more related */}
+      <div className="single__other" >
         <h3>Other Kayaks &amp; SUPs</h3>
         <section className="deck">
           {other.nodes.map(retail => (
             <article className="card">
               <WaterTexture className="card__placeholder" />
               <h4 className="card__title">
-                <Link to={`/tours/${retail.slug}`}>
+                <Link to={`/retail/${retail.slug}`}>
                   {retail.title}
                 </Link>
               </h4>
