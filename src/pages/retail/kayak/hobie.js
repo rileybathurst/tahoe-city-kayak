@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
@@ -34,14 +35,22 @@ const RetailPage = () => {
             {
               data.allStrapiRetail.edges.map(retail => (
                 <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
+                  <div className="card-collage">
+                    <WaterTexture className="card__placeholder texture" />
+                    <GatsbyImage
+                      image={retail.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                      alt={retail.node?.cutout?.alternativeText}
+                      className="cutout"
+                    />
+                  </div>
+
                   <h4 className="card__title">
                     <Link to={`/retail/${retail.node.slug}`}>
                       {retail.node.title}
                     </Link>
                   </h4>
                   <hr />
-                  <p>TODO: add a description</p>
+                  <p>{retail.node.excerpt}</p>
                 </article>
               ))
             }
@@ -67,6 +76,16 @@ query HobieQuery {
         id
         title
         slug
+        excerpt
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }

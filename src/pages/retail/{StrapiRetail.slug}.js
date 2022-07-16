@@ -29,6 +29,15 @@ export const query = graphql`
       childStrapiRetailFeaturesTextnode {
         features
       }
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiRetail(filter: {slug: {nin: [$slug] }}, limit: 2) {

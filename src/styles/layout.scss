@@ -341,3 +341,49 @@ footer {
     color: var(--steel);
   }
 }
+
+/*------------------*/
+//  #COLLAGE
+/*------------------*/
+
+.collage {
+  display: grid;
+  // grid-template-rows: 10rem auto auto;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .cutout {
+    grid-row: 2/4;
+    max-width: 90%;
+    object-fit: contain;
+    place-self: center;
+  }
+
+  .texture {
+    grid-row: 1/3;
+    max-height: 20rem;
+  }
+}
+
+.card-collage {
+  display: grid;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .cutout {
+    object-fit: contain;
+    place-self: center;
+    // box-shadow: var(--umbra);
+    filter: drop-shadow(5px 5px 5px #222);
+  }
+
+  .card__placeholder {
+    max-height: 20rem !important; // I can probably get around this once its built out
+  }
+}

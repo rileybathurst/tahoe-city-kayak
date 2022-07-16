@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -100,8 +101,8 @@ const RetailView = ({ retail, other }) => {
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        <Link to="/">{retail.type}</Link>&nbsp;/&nbsp;
-        <Link to="/">{retail.brand}</Link>&nbsp;/&nbsp;
+        <Link to={`/retail/${retail.type}`}>{retail.type}</Link>&nbsp;/&nbsp;
+        <Link to="/retail/{retail.brand}">{retail.brand}</Link>&nbsp;/&nbsp;
       </div>
 
       <main className="main__full">
@@ -133,7 +134,18 @@ const RetailView = ({ retail, other }) => {
 
         </div>
         <div>
-          <WaterTexture />
+          <div className="collage">
+            <WaterTexture className="texture" />
+
+            <GatsbyImage
+              image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={retail?.cutout?.alternativeText}
+              className="cutout"
+            />
+          </div>
+
+
+
           <ReactMD
             raw={retail.childStrapiRetailFeaturesTextnode?.features}
             className="features"
