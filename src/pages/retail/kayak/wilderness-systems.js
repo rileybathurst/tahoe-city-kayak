@@ -3,7 +3,7 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
-import Seo from "../../../components/footer"
+import Seo from "../../../components/seo"
 
 import WaterTexture from "../../../images/watertexture";
 
@@ -30,22 +30,47 @@ const RetailPage = () => {
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
-            {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                </article>
-              ))
-            }
-          </section>
+          <>
+            <article>
+              <h2>Sit On Top Series</h2>
+            </article>
+            <section className="deck">
+              {
+                data.sitontop.edges.map(retail => (
+                  <article key={retail.node.id} className="card">
+                    <WaterTexture className="card__placeholder" />
+                    <h4 className="card__title">
+                      <Link to={`/retail/${retail.node.slug}`}>
+                        {retail.node.title}
+                      </Link>
+                    </h4>
+                    <hr />
+                    <p>TODO: add a description</p>
+                  </article>
+                ))
+              }
+            </section>
+
+            <article>
+              <h2>Recreational Series</h2>
+            </article>
+            <section className="deck">
+              {
+                data.recreational.edges.map(retail => (
+                  <article key={retail.node.id} className="card">
+                    <WaterTexture className="card__placeholder" />
+                    <h4 className="card__title">
+                      <Link to={`/retail/${retail.node.slug}`}>
+                        {retail.node.title}
+                      </Link>
+                    </h4>
+                    <hr />
+                    <p>TODO: add a description</p>
+                  </article>
+                ))
+              }
+            </section>
+          </>
         )}
       />}
 
@@ -58,10 +83,25 @@ export default RetailPage
 
 const query = graphql`
 query WildernessSystemslineQuery {
-  allStrapiRetail(
+  sitontop: allStrapiRetail(
     filter: {type: {eq: "kayak"},
-    brand: {eq: "wilderness systems"}}
-    ) {
+    brand: {eq: "wilderness systems"},
+    series: {eq: "sit-on-top"}
+  }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  recreational: allStrapiRetail(
+    filter: {type: {eq: "kayak"},
+    brand: {eq: "wilderness systems"},
+    series: {eq: "recreational"}
+  }) {
     edges {
       node {
         id

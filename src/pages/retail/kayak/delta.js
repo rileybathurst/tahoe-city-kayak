@@ -30,22 +30,51 @@ const RetailPage = () => {
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
-            {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                </article>
-              ))
-            }
-          </section>
+          <>
+
+            <article>
+              <h2>Sit On Top Series</h2>
+            </article>
+
+            <section className="deck">
+              {
+                data.sitontop.edges.map(retail => (
+                  <article key={retail.node.id} className="card">
+                    <WaterTexture className="card__placeholder" />
+                    <h4 className="card__title">
+                      <Link to={`/retail/${retail.node.slug}`}>
+                        {retail.node.title}
+                      </Link>
+                    </h4>
+                    <hr />
+                    <p>TODO: add a description</p>
+                  </article>
+                ))
+              }
+            </section>
+
+            <article>
+              <h2>Adventure Recreational Series</h2>
+            </article>
+
+            <section className="deck">
+              {
+                data.adventurerecreational.edges.map(retail => (
+                  <article key={retail.node.id} className="card">
+                    <WaterTexture className="card__placeholder" />
+                    <h4 className="card__title">
+                      <Link to={`/retail/${retail.node.slug}`}>
+                        {retail.node.title}
+                      </Link>
+                    </h4>
+                    <hr />
+                    <p>TODO: add a description</p>
+                  </article>
+                ))
+              }
+            </section>
+
+          </>
         )}
       />}
 
@@ -58,10 +87,25 @@ export default RetailPage
 
 const query = graphql`
 query DeltaQuery {
-  allStrapiRetail(
+  sitontop: allStrapiRetail(
     filter: {type: {eq: "kayak"},
-    brand: {eq: "delta"}}
-    ) {
+    brand: {eq: "delta"},
+    series: {eq: "sit-on-top"}
+  }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  adventurerecreational: allStrapiRetail(
+    filter: {type: {eq: "kayak"},
+    brand: {eq: "delta"},
+    series: {eq: "adventure recreational"}
+  }) {
     edges {
       node {
         id

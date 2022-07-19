@@ -3,10 +3,30 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 
 import Header from "../../components/header"
 import Footer from "../../components/footer"
-import BookNow from "../../components/peek/book-now";
 import Seo from "../../components/seo";
+import Remainder from "../../components/remainder";
 
 import WaterTexture from "../../images/watertexture";
+
+function Card(props) {
+  return (
+    <article key={props.id} className="card">
+      <WaterTexture className="card__placeholder" />
+      <h4 className="card__title">
+        <Link to={`/retail/${props.slug}`}>
+          {props.title}
+        </Link>
+      </h4>
+      <hr />
+      <p>{props.excerpt}</p>
+      <hr />
+      <div className="card__details">
+        <h4><Remainder inches={props.length} /> tall by {props.width}" wide</h4>
+        <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
+      </div>
+    </article>
+  )
+}
 
 const RetailPage = () => {
   return (
@@ -54,27 +74,160 @@ const RetailPage = () => {
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
-            {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                  <hr />
-                  <div className="card__details">
-                    <h5>$cost</h5>
-                    <BookNow />
-                  </div>
-                </article>
-              ))
-            }
-          </section>
+          <>
+
+            <article>
+              <Link to="/retail/kayak/hobie">
+                <h2>Hobie</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.hobie.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <hr />
+              <Link to="/retail/kayak/eddyline">
+                <h2>Eddyline</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.eddyline.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <hr />
+              <Link to="/retail/kayak/perception">
+                <h2>Perception</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.perception.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <hr />
+              <Link to="/retail/kayak/wildernesssystems">
+                <h2>Wilderness Systems</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.wildernesssystems.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <hr />
+              <Link to="/retail/kayak/delta">
+                <h2>Delta</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.delta.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+            <article>
+              <hr />
+              <Link to="/retail/kayak/bote">
+                <h2>Bote</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.bote.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+            <article>
+              <hr />
+              <Link to="/retail/kayak/brusurf">
+                <h2>Bru Surf</h2>
+              </Link>
+            </article>
+
+            <section className="deck">
+              {
+                data.brusurf.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+          </>
         )}
       />}
 
@@ -87,12 +240,100 @@ export default RetailPage
 
 const query = graphql`
 query KayaksQuery {
-  allStrapiRetail(filter: {type: {eq: "kayak"}}) {
+  hobie: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "hobie"}}) {
     edges {
       node {
         id
         title
         slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  eddyline: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "eddyline"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  perception: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "perception"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  wildernesssystems: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "wilderness systems"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  delta: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "delta"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  bote: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "bote"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+      }
+    }
+  }
+  
+  brusurf: allStrapiRetail(filter: {type: {eq: "kayak"}, brand: {eq: "bru surf"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
       }
     }
   }

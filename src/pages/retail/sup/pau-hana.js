@@ -58,7 +58,7 @@ const query = graphql`
 query PauHanaSupQuery {
   allStrapiRetail(
     filter: {type: {eq: "sup"},
-    brand: {eq: "pau-hana"}}
+    brand: {eq: "pau hana"}}
     ) {
     edges {
       node {

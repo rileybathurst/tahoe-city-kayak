@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-const KayakBrandList = (props) => {
+const KayakBrandList = () => {
   return (
     <ul>
       <li><Link to="/retail/kayak/hobie">Hobie</Link></li>

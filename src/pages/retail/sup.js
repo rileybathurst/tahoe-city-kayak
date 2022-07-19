@@ -1,12 +1,32 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import BookNow from "../../components/peek/book-now";
+import Header from "../../components/header"
+import Footer from "../../components/footer"
 import Seo from "../../components/seo";
+import Remainder from "../../components/remainder";
 
 import WaterTexture from "../../images/watertexture";
+
+function Card(props) {
+  return (
+    <article key={props.id} className="card">
+      <WaterTexture className="card__placeholder" />
+      <h4 className="card__title">
+        <Link to={`/retail/${props.slug}`}>
+          {props.title}
+        </Link>
+      </h4>
+      <hr />
+      <p>{props.excerpt}</p>
+      <hr />
+      <div className="card__details">
+        <h4><Remainder inches={props.length} /> tall by {props.width}" wide</h4>
+        <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
+      </div>
+    </article>
+  )
+}
 
 const RetailPage = () => {
   return (
@@ -54,27 +74,207 @@ const RetailPage = () => {
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
-            {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                  <hr />
-                  <div className="card__details">
-                    <h5>$cost</h5>
-                    <BookNow />
-                  </div>
-                </article>
-              ))
-            }
-          </section>
+          <>
+            <article>
+              <Link to="/retail/sup/cross">
+                <h2>cross</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.cross.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/tahe">
+                <h2>tahe</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.tahe.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/hobie">
+                <h2>Hobie</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.hobie.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/sic">
+                <h2>sic</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.sic.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/bic">
+                <h2>bic</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.bic.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/bote">
+                <h2>bote</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.bote.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/hala">
+                <h2>Hala</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.hala.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/boardworks">
+                <h2>boardworks</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.boardworks.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/pauhana">
+                <h2>pauhana</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.pauhana.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+
+            <article>
+              <Link to="/retail/sup/drift">
+                <h2>drift</h2>
+              </Link>
+            </article>
+            <section className="deck">
+              {
+                data.drift.edges.map(retail => (
+                  <Card
+                    id={retail.node.id}
+                    slug={retail.node.slug}
+                    title={retail.node.title}
+                    capacity={retail.node.capacity}
+                    length={retail.node.length}
+                    width={retail.node.width}
+                  />
+                ))
+              }
+            </section>
+          </>
         )}
       />}
 
@@ -87,7 +287,137 @@ export default RetailPage
 
 const query = graphql`
 query SupQuery {
-  allStrapiRetail(filter: {type: {eq: "sup"}}) {
+  cross: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "cross"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  tahe: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "tahe"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  hobie: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "hobie"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+
+  sic: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "sic"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  bic: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "bic"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+
+  bote: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "bote"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  hala: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "hala"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  boardworks: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "boardworks"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  pauhana: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "pau hana"}
+    }) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+  
+  drift: allStrapiRetail(
+    filter: {
+      type: {eq: "sup"},
+      brand: {eq: "drift"}
+    }) {
     edges {
       node {
         id

@@ -23,6 +23,7 @@ function Map(props) {
     src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/Tahoe-City-Map-2-fs8.png"
     alt="tahoe city kayak map"
     className={props.className}
+    objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
@@ -39,9 +40,19 @@ const IndexPage = () => {
           slug
           price
           peek
-          childStrapiTourInformationTextnode {
-            information
-          }
+          excerpt
+        }
+      }
+
+      allStrapiRetail {
+        nodes {
+          id
+          title
+          slug
+          excerpt
+          type
+          length
+          width
         }
       }
     }
@@ -85,6 +96,39 @@ const IndexPage = () => {
     const isMore = list.length < allTours.length
     setHasMore(isMore)
   }, [list])
+
+
+
+
+
+
+
+  // Retail
+  let allRetail = data.allStrapiRetail.nodes
+  const [inventory, setInventory] = useState([...allRetail.slice(0, 2)])
+  const [loadExtra, setLoadExtra] = useState(false)
+  const [hasExtra, setHasExtra] = useState(allRetail.length > 2)
+  const handleLoadExtra = () => {
+    setLoadExtra(true)
+  }
+
+  useEffect(() => {
+    if (loadExtra && hasExtra) {
+      const currentRange = inventory.length
+      const isExtra = currentRange < allRetail.length
+      const nextOutcome = isExtra
+        ? allRetail.slice(currentRange, currentRange + 2)
+        : []
+      setInventory([...inventory, ...nextOutcome])
+      setLoadExtra(false)
+    }
+  }, [loadExtra, hasExtra])
+
+  //Check if there is more
+  useEffect(() => {
+    const isExtra = inventory.length < allRetail.length
+    setHasExtra(isExtra)
+  }, [inventory])
 
   return (
     <>
@@ -165,7 +209,7 @@ const IndexPage = () => {
               </Link>
             </h4>
             <hr />
-            <p>{tour.childStrapiTourInformationTextnode.information}</p>
+            <p>{tour.excerpt}</p>
             <hr />
             <div className="card__details">
               <h5>${tour.price}</h5>
@@ -251,6 +295,39 @@ const IndexPage = () => {
 
         <hr />
       </section>
+
+      <div className="deck">
+        {inventory.map((retail) => (
+          <div key={retail.id} className="card">
+            <WaterTexture className="card__placeholder" />
+            <h4 className="card__title">
+              <Link to={`/retail/${retail.slug}`}>
+                {retail.title}
+              </Link>
+            </h4>
+            <hr />
+            <p>{retail?.excerpt}</p>
+            <hr />
+            <div className="card__details">
+              <h4>{retail.type}</h4>
+              <h5>{retail.length}' x {retail.width}"</h5>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="deck__more">
+        {hasExtra ? (
+          <>
+            <button onClick={handleLoadExtra} className=''>VIEW MORE RETAIL</button>
+          </>
+        ) : (
+          <p>Thats all the retail</p>
+        )
+        }
+      </div>
+
+
+
 
       <Footer />
     </>
