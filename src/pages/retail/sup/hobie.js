@@ -1,71 +1,73 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Seo from "../../../components/seo";
+import Brand from "../../../views/brand";
+import SupBrandCard from "../../../components/sup-brand-card";
 
-import WaterTexture from "../../../images/watertexture";
-
-const RetailPage = () => {
+const HobieView = () => {
   return (
-    <>
-      <Header />
-      <Seo
-        title="Hobie SUPs"
-      />
+    <Brand
+      name="hobie"
+      type="sup"
+    >
 
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        <Link to="/retail/sup">SUP</Link>&nbsp;/&nbsp;
-        Hobie
-      </div>
-
-      <main>
-        <h1>Hobie</h1>
-      </main>
-
+      {/* // ? can I fold this inside the wrapper */}
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
+          <>
             {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                </article>
-              ))
+              <section className="deck">
+                {
+                  data.allStrapiRetail.edges.map(retail => (
+                    <SupBrandCard
+                      id={retail.node.id}
+                      slug={retail.node.slug}
+                      title={retail.node.title}
+                      capacity={retail.node.capacity}
+                      length={retail.node.length}
+                      width={retail.node.width}
+                      excerpt={retail.node.excerpt}
+                      cutout={retail.node?.cutout}
+                    />
+                  ))
+                }
+              </section>
             }
-          </section>
+          </>
         )}
       />}
 
-      <Footer />
-    </>
+    </Brand>
   )
 }
 
-export default RetailPage
+export default HobieView
 
 const query = graphql`
-query HobieSupQuery {
+query HobieSUPQuery {
   allStrapiRetail(
     filter: {type: {eq: "sup"},
-    brand: {eq: "hobie"}}
-    ) {
+    brand: {eq: "hobie"}
+  }) {
     edges {
       node {
         id
         title
         slug
+        excerpt
+        width
+        length
+        capacity
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }

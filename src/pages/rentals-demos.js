@@ -4,12 +4,13 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import Seo from "../components/seo";
+import MapStore from "../components/map-store";
 
 const RentalsDemosPage = () => {
   return (
     <>
       <Header />
-      
+
       <Seo
         title="Rentals and Demos"
       />
@@ -22,9 +23,13 @@ const RentalsDemosPage = () => {
           <h4>Season: May &ndash; October</h4>
           <p>On Water Rental Hours<br />
             Located at<br />
-            <address>Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145</address>
+            <address>
+              <MapStore>
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145
+              </MapStore>
+            </address>
           </p>
           <p>Open Daily Weather Permitting 9:30am &ndash;5:30pm</p>
 

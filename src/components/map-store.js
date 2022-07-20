@@ -1,10 +1,10 @@
 import * as React from "react"
 
-// Commons Beach address
-const MapLink = (props) => {
+// Store address
+const MapStore = (props) => {
   return (
     <a
-      href="https://goo.gl/maps/atoK4oyJRbV3EKuK9"
+      href="https://goo.gl/maps/FVDA3AiFhQiUU3NcA"
       rel="noopener noreferrer"
       className={props.className}
     >
@@ -13,4 +13,4 @@ const MapLink = (props) => {
   )
 }
 
-export default MapLink
+export default MapStore

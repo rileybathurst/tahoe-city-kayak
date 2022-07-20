@@ -1,74 +1,72 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Seo from "../../../components/seo";
-
-import WaterTexture from "../../../images/watertexture";
+import Brand from "../../../views/brand";
+import KayakBrandCard from "../../../components/kayak-brand-card";
 
 const RetailPage = () => {
   return (
-    <>
-      <Header />
-
-      <Seo
-        title="Perception Kayaks"
-      />
-
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
-        Perception
-      </div>
-
-      <main>
-        <h1>Perception</h1>
-      </main>
+    <Brand
+      name="Perception"
+    >
 
       {<StaticQuery
         query={query}
         render={data => (
-          <section className="deck">
+          <>
             {
-              data.allStrapiRetail.edges.map(retail => (
-                <article key={retail.node.id} className="card">
-                  <WaterTexture className="card__placeholder" />
-                  <h4 className="card__title">
-                    <Link to={`/retail/${retail.node.slug}`}>
-                      {retail.node.title}
-                    </Link>
-                  </h4>
-                  <hr />
-                  <p>TODO: add a description</p>
-                </article>
-              ))
+              <section className="deck">
+                {
+                  data.allStrapiRetail.edges.map(retail => (
+                    <KayakBrandCard
+                      id={retail.node.id}
+                      slug={retail.node.slug}
+                      title={retail.node.title}
+                      capacity={retail.node.capacity}
+                      length={retail.node.length}
+                      width={retail.node.width}
+                      excerpt={retail.node.excerpt}
+                      cutout={retail.node?.cutout}
+                    />
+                  ))
+                }
+              </section>
             }
-          </section>
+          </>
         )}
       />}
-
-      <Footer />
-    </>
+    </Brand>
   )
 }
 
 export default RetailPage
 
 const query = graphql`
-query PerceptionlineQuery {
-  allStrapiRetail(
-    filter: {type: {eq: "kayak"},
-    brand: {eq: "perception"}}
+  query PerceptionlineQuery {
+    allStrapiRetail(
+      filter: {type: {eq: "kayak"},
+      brand: {eq: "perception"}}
     ) {
-    edges {
-      node {
-        id
-        title
-        slug
+      edges {
+        node {
+          id
+          title
+          slug
+          excerpt
+          width
+          length
+          capacity
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
       }
     }
   }
-}
 `

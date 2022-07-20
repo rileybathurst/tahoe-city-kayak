@@ -7,10 +7,8 @@ export const query = graphql`
     strapiTour(slug: { eq: $slug }) {
       id
       name
-      information {
-        data {
-          information
-        }
+      childStrapiTourInformationTextnode {
+        information
       }
       start
       finish
@@ -18,12 +16,37 @@ export const query = graphql`
       minimum
       fitness
       peek
+
+      ogimage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiTour(filter: {slug: {nin: [$slug] }}) {
       nodes {
         name
         slug
+        excerpt
+        start
+        finish
+        duration
+        fitness
+        price
+        peek
+
+        ogimage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }

@@ -21,6 +21,7 @@ export const query = graphql`
       inflatable
       demo
       type
+      excerpt
 
       childStrapiRetailDescriptionTextnode {
         description

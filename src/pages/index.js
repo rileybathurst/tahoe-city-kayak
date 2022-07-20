@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
 import MapLink from "../components/map-link"
 import Seo from "../components/seo";
+import Remainder from "../components/remainder";
+import Time from "../components/time";
+import Fitness from "../components/fitness";
 
 import KayakIcon from "../images/kayak"
 import StoreIcon from "../images/store";
@@ -41,6 +44,19 @@ const IndexPage = () => {
           price
           peek
           excerpt
+          start
+          finish
+          duration
+          fitness
+
+          ogimage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
         }
       }
 
@@ -53,6 +69,15 @@ const IndexPage = () => {
           type
           length
           width
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
         }
       }
     }
@@ -96,12 +121,6 @@ const IndexPage = () => {
     const isMore = list.length < allTours.length
     setHasMore(isMore)
   }, [list])
-
-
-
-
-
-
 
   // Retail
   let allRetail = data.allStrapiRetail.nodes
@@ -192,7 +211,7 @@ const IndexPage = () => {
 
       <section id="tours-lessons" className="home__tours">
         <div>
-          <h3>Tours &amp; Lessons</h3>
+          <h3><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
           <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         </div>
         <div>{/* stay gold */}</div>
@@ -201,13 +220,27 @@ const IndexPage = () => {
       <div className="deck">
         {list.map((tour) => (
           <div key={tour.id} className="card">
-            <WaterTexture className="card__placeholder" />
+            <GatsbyImage
+              image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={tour?.ogimage?.alternativeText}
+              className="card__image"
+            />
 
             <h4 className="card__title">
               <Link to={`/tours/${tour.slug}`}>
                 {tour.name}
               </Link>
             </h4>
+
+            <div className="card__specs">
+              <Time
+                start={tour.start}
+                finish={tour.finish}
+                duration={tour.duration}
+              />
+              <Fitness fitness={tour.fitness} />
+            </div>
+
             <hr />
             <p>{tour.excerpt}</p>
             <hr />
@@ -299,7 +332,14 @@ const IndexPage = () => {
       <div className="deck">
         {inventory.map((retail) => (
           <div key={retail.id} className="card">
-            <WaterTexture className="card__placeholder" />
+            <div className="card-collage">
+              <WaterTexture className="card__placeholder" />
+              <GatsbyImage
+                image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={retail?.cutout?.alternativeText}
+                className="cutout"
+              />
+            </div>
             <h4 className="card__title">
               <Link to={`/retail/${retail.slug}`}>
                 {retail.title}
@@ -308,9 +348,9 @@ const IndexPage = () => {
             <hr />
             <p>{retail?.excerpt}</p>
             <hr />
-            <div className="card__details">
+            <div className="card__details uppercase">
               <h4>{retail.type}</h4>
-              <h5>{retail.length}' x {retail.width}"</h5>
+              <h5><Remainder inches={retail.length} /> tall by {retail.width}" wide</h5>
             </div>
           </div>
         ))}
@@ -325,9 +365,6 @@ const IndexPage = () => {
         )
         }
       </div>
-
-
-
 
       <Footer />
     </>

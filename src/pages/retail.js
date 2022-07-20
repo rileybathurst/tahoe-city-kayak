@@ -6,6 +6,8 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Seo from "../components/seo";
 import Remainder from "../components/remainder";
+// import MapLink from "../components/map-link"
+import MapStore from "../components/map-store";
 
 import WaterTexture from "../images/watertexture";
 import KayakBrandList from "../components/kayak-brand-list";
@@ -31,14 +33,17 @@ const RetailPage = () => {
 
         <p>Our Store and our retail prices are competitive with big-city retailers! Hobie, Wilderness Systems, Eddyline, Tahoe SUP, Pau Hana, Amundson, Bic Paddlesurf and more. Try before you buy!</p>
 
-        <p>Retail and Reservations
+        <p>Retail and Reservations<br />
+          {/* // TODO: single update */}
           Open 7 days a week 9:00am&ndash;6:00pm</p>
 
         <p>Located at
           <address>
-            521 N Lake Blvd<br />
-            Tahoe City,<br />
-            CA 96145
+            <MapStore>
+              521 N Lake Blvd<br />
+              Tahoe City,<br />
+              CA 96145
+            </MapStore>
           </address>
         </p>
 

@@ -1,139 +1,100 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { StaticQuery, graphql } from 'gatsby';
 
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Seo from "../../../components/seo";
+import Brand from "../../../views/brand";
+import KayakBrandCard from "../../../components/kayak-brand-card";
 
-import WaterTexture from "../../../images/watertexture";
-
-const RetailPage = () => {
+const HobieView = () => {
   return (
-    <>
-      <Header />
+    <Brand
+      name="hobie"
+    >
 
-      <Seo
-        title="Hobie Kayaks"
-      />
-
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
-        Hobie
-      </div>
-
-      <main>
-        <h1>Hobie</h1>
-      </main>
-
+      {/* // ? can I fold this inside the wrapper */}
       {<StaticQuery
         query={query}
         render={data => (
           <>
+            {
+              <>
 
-            <article>
-              <h2>Mirage Series</h2>
-            </article>
+                <article>
+                  <h2>Mirage Series</h2>
+                </article>
 
-            <section className="deck">
-              {
-                data.mirage.edges.map(retail => (
-                  <article key={retail.node.id} className="card">
-                    <div className="card-collage">
-                      <WaterTexture className="card__placeholder texture" />
-                      <GatsbyImage
-                        image={retail.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                        alt={retail.node?.cutout?.alternativeText}
-                        className="cutout"
+                <section className="deck">
+                  {
+                    data.mirage.edges.map(retail => (
+                      <KayakBrandCard
+                        id={retail.node.id}
+                        slug={retail.node.slug}
+                        title={retail.node.title}
+                        capacity={retail.node.capacity}
+                        length={retail.node.length}
+                        width={retail.node.width}
+                        excerpt={retail.node.excerpt}
+                        cutout={retail.node?.cutout}
                       />
-                    </div>
+                    ))
+                  }
+                </section>
 
-                    <h4 className="card__title">
-                      <Link to={`/retail/${retail.node.slug}`}>
-                        {retail.node.title}
-                      </Link>
-                    </h4>
-                    <hr />
-                    <p>{retail.node.excerpt}</p>
-                  </article>
-                ))
-              }
-            </section>
+                <article>
+                  <h2>Island Series</h2>
+                </article>
 
-
-            <article>
-              <h2>Island Series</h2>
-            </article>
-
-            <section className="deck">
-              {
-                data.island.edges.map(retail => (
-                  <article key={retail.node.id} className="card">
-                    <div className="card-collage">
-                      <WaterTexture className="card__placeholder texture" />
-                      <GatsbyImage
-                        image={retail.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                        alt={retail.node?.cutout?.alternativeText}
-                        className="cutout"
+                <section className="deck">
+                  {
+                    data.island.edges.map(retail => (
+                      <KayakBrandCard
+                        id={retail.node.id}
+                        slug={retail.node.slug}
+                        title={retail.node.title}
+                        capacity={retail.node.capacity}
+                        length={retail.node.length}
+                        width={retail.node.width}
+                        excerpt={retail.node.excerpt}
+                        cutout={retail.node?.cutout}
                       />
-                    </div>
+                    ))
+                  }
+                </section>
 
-                    <h4 className="card__title">
-                      <Link to={`/retail/${retail.node.slug}`}>
-                        {retail.node.title}
-                      </Link>
-                    </h4>
-                    <hr />
-                    <p>{retail.node.excerpt}</p>
-                  </article>
-                ))
-              }
-            </section>
+                <article>
+                  <h2>Inflatable Series</h2>
+                </article>
 
-            <article>
-              <h2>Inflatable Series</h2>
-            </article>
-
-            <section className="deck">
-              {
-                data.inflatable.edges.map(retail => (
-                  <article key={retail.node.id} className="card">
-                    <div className="card-collage">
-                      <WaterTexture className="card__placeholder texture" />
-                      <GatsbyImage
-                        image={retail.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                        alt={retail.node?.cutout?.alternativeText}
-                        className="cutout"
+                <section className="deck">
+                  {
+                    data.inflatable.edges.map(retail => (
+                      <KayakBrandCard
+                        id={retail.node.id}
+                        slug={retail.node.slug}
+                        title={retail.node.title}
+                        capacity={retail.node.capacity}
+                        length={retail.node.length}
+                        width={retail.node.width}
+                        excerpt={retail.node.excerpt}
+                        cutout={retail.node?.cutout}
                       />
-                    </div>
+                    ))
+                  }
+                </section>
 
-                    <h4 className="card__title">
-                      <Link to={`/retail/${retail.node.slug}`}>
-                        {retail.node.title}
-                      </Link>
-                    </h4>
-                    <hr />
-                    <p>{retail.node.excerpt}</p>
-                  </article>
-                ))
-              }
-            </section>
-
+              </>
+            }
           </>
         )}
       />}
 
-      <Footer />
-    </>
+    </Brand>
   )
 }
 
-export default RetailPage
+export default HobieView
 
 const query = graphql`
-query HobieQuery {
+query HobieKayakQuery {
   mirage: allStrapiRetail(
     filter: {type: {eq: "kayak"},
     brand: {eq: "hobie"},
@@ -145,6 +106,9 @@ query HobieQuery {
         title
         slug
         excerpt
+        width
+        length
+        capacity
 
         cutout {
           localFile {
@@ -169,6 +133,9 @@ query HobieQuery {
         title
         slug
         excerpt
+        width
+        length
+        capacity
 
         cutout {
           localFile {
@@ -193,6 +160,9 @@ query HobieQuery {
         title
         slug
         excerpt
+        width
+        length
+        capacity
 
         cutout {
           localFile {

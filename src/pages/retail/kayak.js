@@ -1,17 +1,26 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image";
 
-import Header from "../../components/header"
-import Footer from "../../components/footer"
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import Seo from "../../components/seo";
 import Remainder from "../../components/remainder";
+import MapStore from "../../components/map-store";
 
 import WaterTexture from "../../images/watertexture";
 
 function Card(props) {
   return (
     <article key={props.id} className="card">
-      <WaterTexture className="card__placeholder" />
+      <div className="card-collage">
+        <WaterTexture className="card__placeholder" />
+        <GatsbyImage
+          image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={props?.cutout?.alternativeText}
+          className="cutout"
+        />
+      </div>
       <h4 className="card__title">
         <Link to={`/retail/${props.slug}`}>
           {props.title}
@@ -59,14 +68,17 @@ const RetailPage = () => {
 
         <p>Try before you buy!</p>
 
-        <p>Retail and Reservations
+        <p>Retail and Reservations<br />
+          {/* // TODO: single update */}
           Open 7 days a week 9:00am&ndash;6:00pm</p>
 
         <p>Located at
           <address>
-            521 N Lake Blvd<br />
-            Tahoe City,<br />
-            CA 96145
+            <MapStore>
+              521 N Lake Blvd<br />
+              Tahoe City,<br />
+              CA 96145
+            </MapStore>
           </address>
         </p>
       </main>
@@ -92,6 +104,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -114,6 +128,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -136,6 +152,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -158,6 +176,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -180,6 +200,7 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
                   />
                 ))
               }
@@ -201,6 +222,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -222,6 +245,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -250,6 +275,15 @@ query KayaksQuery {
         capacity
         length
         width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }
@@ -264,6 +298,15 @@ query KayaksQuery {
         capacity
         length
         width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }
@@ -306,6 +349,15 @@ query KayaksQuery {
         capacity
         length
         width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }
@@ -320,6 +372,15 @@ query KayaksQuery {
         capacity
         length
         width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }
@@ -334,6 +395,15 @@ query KayaksQuery {
         capacity
         length
         width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }

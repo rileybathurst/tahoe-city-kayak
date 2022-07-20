@@ -387,3 +387,14 @@ footer {
     max-height: 20rem !important; // I can probably get around this once its built out
   }
 }
+
+.brand__hgroup {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: baseline;
+
+  h2 {
+    color: var(--steel);
+  }
+}

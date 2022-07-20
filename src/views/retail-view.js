@@ -96,13 +96,15 @@ const RetailView = ({ retail, other }) => {
       <Header />
       <Seo
         title={retail.brand}
+        description={retail.excerpt}
       />
 
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
         <Link to={`/retail/${retail.type}`}>{retail.type}</Link>&nbsp;/&nbsp;
-        <Link to="/retail/{retail.brand}">{retail.brand}</Link>&nbsp;/&nbsp;
+        <Link to={`/retail/${retail.brand}`}>{retail.brand}</Link>&nbsp;/&nbsp;
+        &nbsp;&nbsp;{retail.title}
       </div>
 
       <main className="main__full">

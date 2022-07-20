@@ -16,3 +16,32 @@
     }
   }
 }
+
+.faq {
+  padding-inline-start: 0; // reset
+
+  li {
+    list-style: none;
+    border-bottom: 1px solid var(--silver);
+    margin-block-end: 1.5rem;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  // question
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    margin-block-end: 0.625rem;
+  }
+
+  // answer
+  h3 {
+    font-size: 1rem;
+    line-height: 1.25;
+    font-weight: normal;
+    margin-block-end: 0.625rem;
+  }
+}

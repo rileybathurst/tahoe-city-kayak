@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -14,19 +14,23 @@ const FaqPage = () => {
         title="Frequntly Asked Questions"
       />
 
+      <div className="breadcrumbs">
+        <Link to="/">Home</Link>&nbsp;/&nbsp;
+        Frequently Asked Questions
+      </div>
+
       <main>
         <h1>Frequently Asked Questions</h1>
-        
+
         <StaticQuery
           query={query}
           render={data => (
-            <ul>
+            <ul className="faq">
               {
                 data.allStrapiFaq.edges.map(faq => (
                   <li key={faq.node.id}>
                     <h2>{faq.node.question}</h2>
                     <h3>{faq.node.answer}</h3>
-                    <hr />
                   </li>
                 ))
               }
