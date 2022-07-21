@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Header } from './Header';
 
+import "../styles/styles.scss";
+<link rel="stylesheet" href="https://use.typekit.net/npa6wap.css" />
+
 export default {
   title: 'Example/Header',
   component: Header,

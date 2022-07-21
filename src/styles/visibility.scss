@@ -2,8 +2,10 @@
   display: none;
 }
 
-@media (max-width: 40rem) {
-  .menu__large {
+.menu__large {
+  padding-inline-start: 0;
+
+  @media (max-width: 40rem) {
     display: none;
   }
 }

@@ -11,9 +11,19 @@ button {
   font-family: "Barlow-Condensed", Arial, sans-serif; // Google font
 }
 
+.button__hover,
 button:hover {
-  background: var(--mullen); // TODO darker than this
-  color: black;
+  background-color: var(--mullen);
+  color: var(--sand);
+  box-shadow: var(--penumbra);
+}
+
+.button__active,
+button:active {
+  background-color: var(--mullen__dark);
+  border-color: var(--mullen__dark);
+  color: var(--sand);
+  box-shadow: var(--antumbra);
 }
 
 /*------------------*/

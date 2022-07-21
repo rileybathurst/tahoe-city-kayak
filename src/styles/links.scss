@@ -13,3 +13,19 @@ a:where(:hover, :focus) {
 .link__subtle:where(:hover, :focus) {
   text-decoration: underline;
 }
+
+.link__backed {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+  border: 1px solid transparent;
+  transition: 0.5s ease;
+  text-decoration: none;
+}
+
+.link__backed--hover,
+.link__backed:hover {
+  background-color: var(--sand);
+  box-shadow: var(--penumbra);
+  border: 1px solid whitesmoke;
+}
