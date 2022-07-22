@@ -32,6 +32,11 @@ nav {
   transition: 2s ease;
   padding-inline-start: 1.5rem;
 
+  @media (min-width: 40rem) {
+    max-width: 60rem;
+    margin-inline: auto;
+  }
+
   ul {
     display: flex;
     flex-direction: row wrap;
@@ -41,6 +46,7 @@ nav {
     padding-block-start: 1.5rem;
     list-style: none;
     padding-inline-start: 0;
+    align-items: baseline;
   }
 }
 

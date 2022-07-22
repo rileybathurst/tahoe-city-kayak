@@ -70,6 +70,7 @@ main {
   display: flex;
   max-width: 60rem;
   flex-flow: row wrap;
+  padding-block-start: calc(var(--baseine) * 2);
 
   > * {
     flex: 1 1 20rem;
@@ -216,13 +217,39 @@ footer {
   }
 
   > *:first-child,
-  *:last-child {
+  *:last-child,
+  .logo-copy {
     border-block-end: none;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 0.75rem;
+  svg {
+    flex: 0.5;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-block-end: var(--baseline);
+  }
+
+  .copy {
+    font-size: 1rem;
+    margin-block-end: var(--baseline);
+  }
+
+  nav {
+    margin: 0;
+    padding: 0;
+
+    ul {
+      padding-block-start: 0;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+
+  hr {
+    margin-block-end: var(--baseline);
   }
 
   .pricing-chart {
@@ -248,6 +275,11 @@ footer {
 .social {
   display: flex;
   gap: 1rem;
+  margin-block-end: var(--baseline);
+
+  @media (min-width: 40rem) {
+    margin-block-end: 2.5rem;
+  }
 
   svg {
     height: 2.5rem;
