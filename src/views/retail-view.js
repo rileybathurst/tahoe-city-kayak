@@ -9,6 +9,8 @@ import WaterTexture from "../images/watertexture";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Seo from "../components/seo";
+import Remainder from "../components/remainder";
+import TextureBackgrounds from "../components/texturebackgrounds";
 
 function Spec(props) {
   if (props.name === "Weight") {
@@ -136,7 +138,7 @@ const RetailView = ({ retail, other }) => {
 
         </div>
         <div>
-          <div className="collage">
+          <div className="collage retail-collage">
             <WaterTexture className="texture" />
 
             <GatsbyImage
@@ -169,12 +171,26 @@ const RetailView = ({ retail, other }) => {
         <section className="deck">
           {other.nodes.map(retail => (
             <article className="card">
-              <WaterTexture className="card__placeholder" />
+              <div className="card-collage">
+                <TextureBackgrounds />
+                <GatsbyImage
+                  image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                  alt={retail?.cutout?.alternativeText}
+                  className="cutout"
+                />
+              </div>
               <h4 className="card__title">
                 <Link to={`/retail/${retail.slug}`}>
                   {retail.title}
                 </Link>
               </h4>
+              <hr />
+              <p>{retail.excerpt}</p>
+              <hr />
+              <div className="card__details">
+                <h4 className="capitalize">{retail.type}</h4>
+                <h5><Remainder inches={retail.length} /> tall by {retail.width}" wide</h5>
+              </div>
             </article>
           ))}
         </section>

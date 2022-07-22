@@ -45,6 +45,19 @@ export const query = graphql`
       nodes {
         title
         slug
+        excerpt
+        width
+        length
+        type
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }

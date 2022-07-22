@@ -9,6 +9,10 @@
   gap: 2rem;
 }
 
+.double-baseline {
+  margin-block-end: calc(var(--baseline) * 2);
+}
+
 /*------------------*/
 //  #HEADER
 /*------------------*/
@@ -62,6 +66,14 @@ main {
   }
 }
 
+.main__full--tour {
+  flex-flow: column-reverse;
+
+  @media (min-width: 40rem) {
+    flex-flow: row wrap;
+  }
+}
+
 /*------------------*/
 //  #HOME
 /*------------------*/
@@ -75,17 +87,44 @@ main {
   > * {
     flex: 1 1 20rem;
   }
+
+  @media (min-width: 80rem) {
+    max-width: 80rem;
+    > *:first-child {
+      flex: 1;
+    }
+
+    > *:nth-child(2) {
+      flex: 2;
+    }
+  }
 }
 
 .home__main--season {
   display: flex;
-  gap: 3rem;
+  gap: var(--baseline);
   // justify-content: space-between;
+  flex-flow: column;
+  padding-inline: 0;
+
+  @media (min-width: 40rem) {
+    flex-flow: row wrap;
+    gap: calc(var(--baseline) * 2);
+  }
+
+  /*   > * {
+    flex: 1 1 20rem;
+  } */
 }
 
 .main__photo-grid {
   display: grid;
   grid-template-rows: 4rem 1rem auto;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 40rem) {
+    grid-template-rows: 10rem 2rem auto;
+  }
 
   .kayakers {
     grid-row: 1/3;
@@ -99,14 +138,27 @@ main {
     margin-inline-start: 3rem;
     margin-inline-end: 2rem;
     max-height: 6rem;
+    z-index: -1;
   }
 
   .andy {
     grid-row: 3;
     grid-column: 2;
     max-height: 6rem;
+    margin-block-start: -2rem;
+    // margin-inline-start: 4rem;
     border-radius: 50%;
     aspect-ratio: 1;
+
+    @media (min-width: 40rem) {
+      max-height: 10rem;
+      margin-block-start: -4rem;
+      // margin-inline-start: 8rem;
+    }
+
+    img {
+      border-radius: 50%; // safari fix
+    }
   }
 }
 
@@ -126,8 +178,12 @@ main {
   margin-inline: auto;
   display: flex;
 
-  > * {
-    flex: 1;
+  @media (min-width: 40rem) {
+    display: flex;
+
+    > * {
+      flex: 1 1 20rem;
+    }
   }
 }
 
@@ -156,16 +212,22 @@ main {
   background-color: var(--mercury);
   box-shadow: 0 0 0 100vmax var(--mercury);
   clip-path: inset(0 -100vmax);
+  margin-block-end: calc(var(--baseline) * 2);
 }
 
 // ? this might be a bad name if its also buy
 .single__book {
   max-width: 40rem;
   margin-inline: auto;
+  margin-block-end: calc(var(--baseline) * 2);
   background-color: var(--mullen);
   box-shadow: 0 0 0 100vmax var(--mullen);
   clip-path: inset(0 -100vmax);
   padding-block: 1.5rem;
+
+  > * {
+    margin-inline: calc(var(--baseline) / 2);
+  }
 
   button {
     border-color: whitesmoke;
@@ -176,6 +238,10 @@ main {
 .single__other {
   max-width: 60rem;
   margin-inline: auto;
+
+  > h3 {
+    margin-inline: calc(var(--baseline) / 2);
+  }
 }
 
 .hgroup__retail {
@@ -257,6 +323,7 @@ footer {
 
     h4 {
       font-size: 0.75rem;
+      line-height: 1rem;
       font-weight: 400;
       margin: 0.25px;
     }
@@ -360,6 +427,7 @@ footer {
   border-bottom: 1px solid var(--silver);
   margin-block-end: 1.5rem;
   padding-block-end: 1.5rem;
+  padding-inline: calc(var(--baseline) / 2);
   text-transform: capitalize;
 }
 
@@ -367,6 +435,7 @@ footer {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  align-items: center;
 
   p {
     color: var(--steel);
@@ -397,6 +466,32 @@ footer {
     grid-row: 1/3;
     max-height: 20rem;
   }
+
+  .tour_texture {
+    grid-row: 1/3;
+    // grid-column: 1/3;
+    max-height: 20rem;
+    margin-block-start: 4rem;
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  .paddler {
+    // grid-column: 1/3;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: contain;
+    object-fit: cover;
+    border: 2px solid whitesmoke;
+    box-shadow: var(--umbra);
+    margin-block-start: 2rem;
+    margin-inline-start: 2rem;
+    max-width: 20rem;
+
+    img {
+      border-radius: 50%;
+    }
+  }
 }
 
 .card-collage {
@@ -407,15 +502,53 @@ footer {
     grid-column: 1;
   }
 
+  .texture-slice {
+    align-self: start;
+    margin: calc(var(--baseline) / 2);
+    border-radius: 0.25rem;
+    box-shadow: var(--penumbra);
+    border: 1px solid whitesmoke;
+  }
+
   .cutout {
     object-fit: contain;
     place-self: center;
     // box-shadow: var(--umbra);
     filter: drop-shadow(5px 5px 5px #222);
+    z-index: 2;
   }
 
   .card__placeholder {
     max-height: 20rem !important; // I can probably get around this once its built out
+  }
+
+  svg {
+    z-index: 1;
+    max-height: 100%; // overwrite the default
+    margin: calc(var(--baseline) / 2);
+  }
+}
+
+.tour-collage {
+  .texture {
+    width: 80%;
+    justify-self: end;
+    aspect-ratio: 16/9;
+  }
+}
+
+.retail-collage {
+  grid-template-rows: 3rem auto auto;
+  .texture {
+    width: 80%;
+    justify-self: center;
+    aspect-ratio: 16/9;
+    // max-height: 5rem;
+    // margin-block-start: 5rem;
+  }
+
+  .cutout {
+    filter: drop-shadow(5px 5px 5px hsla(0, 0%, 12.5%, 0.5));
   }
 }
 

@@ -16,6 +16,7 @@ export const query = graphql`
       minimum
       fitness
       peek
+      sport
 
       ogimage {
         localFile {

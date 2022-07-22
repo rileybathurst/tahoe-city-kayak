@@ -111,7 +111,7 @@ function Button() {
           <span
             style={{ transform: 'translateY(0)' }}
             className="span-styles"
-          >Open<br />Menu
+          >Close<br />Menu
           </span>
         </button>
         <nav
@@ -128,16 +128,34 @@ function Button() {
   }
 }
 
-const Header = () => {
+function Height() {
+  const [height, setHeight] = 0;
+  const ref = useRef();
+
   return (
-    <header>
-      <OpenSeason />
-      <div className="logo-container">
+    <>
+      <div className="logo-container"
+
+      >
         <PaddleIcon className="paddle--left" />
         <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
         <PaddleIcon className="paddle--right" />
       </div>
-      <Menu />
+      {/* TODO: if this gets too big its a problem */}
+      <Menu
+        style={{
+          height: height + 'px',
+        }}
+      />
+    </>
+  )
+}
+
+const Header = () => {
+  return (
+    <header>
+      <OpenSeason />
+      <Height />
       <Button />
       {/* <h2>North Tahoe&rsquo;s Premier Kayak &amp; SUP Provider of&nbsp;
         <Link to="/rentals-demos" className="link__subtle">Rentals</Link>,&nbsp;

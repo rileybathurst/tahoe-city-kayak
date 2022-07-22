@@ -6,12 +6,12 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Seo from "../components/seo";
 import Remainder from "../components/remainder";
-// import MapLink from "../components/map-link"
 import MapStore from "../components/map-store";
 
-import WaterTexture from "../images/watertexture";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
+
+import TextureBackgrounds from "../components/texturebackgrounds";
 
 const RetailPage = () => {
   return (
@@ -49,8 +49,6 @@ const RetailPage = () => {
 
         <h2><Link to="/retail/kayak">Kayaks</Link></h2>
         <KayakBrandList />
-
-
       </main>
 
       <StaticQuery
@@ -64,7 +62,7 @@ const RetailPage = () => {
                 data.kayak.edges.map(kayak => (
                   <article key={kayak.node.id} className="card">
                     <div className="card-collage">
-                      <WaterTexture className="card__placeholder" />
+                      <TextureBackgrounds />
                       <GatsbyImage
                         image={kayak.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                         alt={kayak.node?.cutout?.alternativeText}
@@ -101,7 +99,7 @@ const RetailPage = () => {
                 data.sup.edges.map(sup => (
                   <article key={sup.node.id} className="card">
                     <div className="card-collage">
-                      <WaterTexture className="card__placeholder" />
+                      <TextureBackgrounds />
                       <GatsbyImage
                         image={sup.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                         alt={sup.node?.cutout?.alternativeText}

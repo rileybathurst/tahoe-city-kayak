@@ -11,7 +11,8 @@ header {
   overflow: hidden;
   z-index: 1;
   position: relative;
-  width: calc(100% - 1rem);
+  // width: calc(100% - 1rem);
+  width: 100%;
   margin-inline: auto;
   background-color: var(--mullen);
   color: whitesmoke;
@@ -43,7 +44,8 @@ nav {
     justify-content: space-between;
     margin-block-start: 0; // testing slide menu
     margin-block-end: 1.5rem;
-    padding-block-start: 1.5rem;
+    padding-block-start: 1.25rem;
+    padding-block-start: calc(var(--baseline) / 2);
     list-style: none;
     padding-inline-start: 0;
     align-items: baseline;
@@ -57,15 +59,21 @@ nav {
     z-index: 1;
     position: relative;
     background-color: var(--sand);
-    box-shadow: 0 0 0 100vmax var(--sand);
+    background-color: hsl(25, 37%, 87.5%);
+    box-shadow: 0 0 0 100vmax hsl(25, 37%, 87.5%);
     clip-path: inset(0 -100vmax);
+    // border-block-end: 2px solid var(--industrial-revolution); // this isnt full width
 
     li a {
-      padding: 0.75rem;
+      padding-inline: calc(var(--baseline) / 2);
+      padding-block: calc(var(--baseline) / 2);
+      padding-block: calc(var(--baseline) / 4);
     }
 
     li:first-child {
       margin-block-start: 1.5rem;
+      margin-block-start: calc(var(--baseline) / 2);
+      margin-block-start: 0;
     }
 
     li:last-child {

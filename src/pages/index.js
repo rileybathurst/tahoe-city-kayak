@@ -179,8 +179,7 @@ const IndexPage = () => {
             <BookTour />
           </div>
 
-
-          <p>Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
+          <p className="double-baseline">Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
             We strive to give you the best in kayak sales, SUP rentals, kayak rentals and tours.
             We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.</p>
         </section>
@@ -199,7 +198,7 @@ const IndexPage = () => {
               Rentals &amp; Demos
             </Link>
           </h3>
-          <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
+          <p className="double-baseline">Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
           <BookNow />
         </div>
 
@@ -212,7 +211,7 @@ const IndexPage = () => {
       <section id="tours-lessons" className="home__tours">
         <div>
           <h3><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
-          <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
+          <p className="double-baseline">We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         </div>
         <div>{/* stay gold */}</div>
       </section>
@@ -311,7 +310,7 @@ const IndexPage = () => {
       </section>
 
       <section id="retail">
-        <h3>Retail</h3>
+        <h3><Link to="/retail" className="">Retail</Link></h3>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
 
         <p>Our Store and our retail prices are competitive with big-city retailers! Hobie, Wilderness Systems, Eddyline, Tahoe SUP, Pau Hana, Amundson, Bic Paddlesurf and more. Try before you buy!</p>

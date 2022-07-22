@@ -17,7 +17,6 @@ svg {
 
 .logo-container {
   margin-inline: auto;
-  max-width: 32rem; // guess and check
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -26,6 +25,12 @@ svg {
   clip-path: inset(0 -100vmax);
   z-index: 1;
   position: relative;
+  max-width: calc(100% - 2rem); // guess and check
+  padding-block: var(--baseline);
+
+  @media (min-width: 30rem) {
+    max-width: 32rem; // guess and check
+  }
 
   h1 {
     margin-block-end: 0.5rem; // needed for the drop on the "y"
@@ -49,4 +54,8 @@ svg {
   border: 1px solid white;
   border-radius: 0.25rem;
   box-shadow: var(--penumbra);
+}
+
+.crop {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
 }

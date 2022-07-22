@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -11,6 +11,42 @@ import Seo from "../components/seo";
 import Time from "../components/time";
 import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min";
+
+import WaterTexture from "../images/watertexture";
+
+function Kayaker(props) {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
+    alt="tahoe city kayak kayaker"
+    className={`${props.className} paddler img__wrapped`}
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
+function Supper(props) {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    alt="tahoe city kayak supper"
+    className={`${props.className} paddler img__wrapped`}
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
+function Paddler(props) {
+  if (props.sport === "kayak") {
+    return (
+      <Kayaker />
+    );
+  } else {
+    return (
+      <Supper />
+    );
+  }
+}
 
 function ReactMD(props) {
   return (
@@ -68,7 +104,7 @@ const TourView = ({ tour, other }) => {
         &nbsp;&nbsp;{tour.name}
       </div>
 
-      <main className="main__full">
+      <main className="main__full main__full--tour">
         <div>
           <h1>{tour.name}</h1>
           <div className="tour__minimum">
@@ -80,6 +116,8 @@ const TourView = ({ tour, other }) => {
             </a>
             <Minimum minimum={tour.minimum} />
           </div>
+
+          <Spec name="Sport" spec={tour.sport} />
 
           <Spec name="Tour Start Time" spec={tour.start} />
 
@@ -95,12 +133,14 @@ const TourView = ({ tour, other }) => {
             <a href="{/* // TODO */}">Google Maps</a>
           </div>
         </div>
-        <div>
+        <div className="collage tour-collage">
           <GatsbyImage
             image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
             alt={tour?.ogimage?.alternativeText}
-            className="card__image"
+            className="card__image tour_texture"
           />
+          <WaterTexture className="texture card__image" />
+          <Paddler sport={tour.sport} />
         </div>
 
       </main>
