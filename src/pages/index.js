@@ -10,7 +10,6 @@ import Seo from "../components/seo";
 import Remainder from "../components/remainder";
 import Time from "../components/time";
 import Fitness from "../components/fitness";
-
 import KayakIcon from "../images/kayak"
 import StoreIcon from "../images/store";
 import TwoKayakers from "../images/twokayakers";
@@ -19,6 +18,7 @@ import AndyPaddling from "../images/andypaddling";
 import BookNow from "../components/peek/book-now";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
+import TextureBackgrounds from "../components/texturebackgrounds";
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -332,7 +332,7 @@ const IndexPage = () => {
         {inventory.map((retail) => (
           <div key={retail.id} className="card">
             <div className="card-collage">
-              <WaterTexture className="card__placeholder" />
+              <TextureBackgrounds />
               <GatsbyImage
                 image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                 alt={retail?.cutout?.alternativeText}

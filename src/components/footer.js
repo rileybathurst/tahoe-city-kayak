@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 import PaddleIcon from '../images/paddle';
-import Menu from "./menu"
 import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";

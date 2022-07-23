@@ -128,7 +128,7 @@ function Button() {
   }
 }
 
-function Height() {
+/* function Height() {
   const [height, setHeight] = 0;
   const ref = useRef();
 
@@ -141,27 +141,27 @@ function Height() {
         <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
         <PaddleIcon className="paddle--right" />
       </div>
-      {/* TODO: if this gets too big its a problem */}
-      <Menu
-        style={{
-          height: height + 'px',
-        }}
-      />
+      TODO: if this gets too big its a problem 
+<Menu
+  style={{
+    height: height + 'px',
+  }}
+/>
     </>
   )
-}
+} */
 
 const Header = () => {
   return (
     <header>
       <OpenSeason />
-      <Height />
+      <div className="logo-container" >
+        <PaddleIcon className="paddle--left" />
+        <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
+        <PaddleIcon className="paddle--right" />
+      </div>
+      <Menu />
       <Button />
-      {/* <h2>North Tahoe&rsquo;s Premier Kayak &amp; SUP Provider of&nbsp;
-        <Link to="/rentals-demos" className="link__subtle">Rentals</Link>,&nbsp;
-        <Link to="/retail" className="link__subtle">Sales</Link>,&nbsp;
-        <Link to="/tours-lessons" className="link__subtle">Lessons &amp; Tours</Link>
-  </h2> */}
     </header>
   )
 }
