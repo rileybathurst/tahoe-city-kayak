@@ -19,6 +19,8 @@ import BookNow from "../components/peek/book-now";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
 import TextureBackgrounds from "../components/texturebackgrounds";
+import KayakBrandList from "../components/kayak-brand-list";
+import SupBrandList from "../components/sup-brand-list";
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -151,12 +153,16 @@ const IndexPage = () => {
 
   return (
     <>
+
+      {/* // ! this needs to remove the pipe */}
       <Seo
-        title="Tahoe City Kayak"
+        title=""
+      // image="test"
       />
       <Header />
       <main className="home__main">
-        <section>
+        {/* // TODO: test this */}
+        <section itemscope itemtype="https://schema.org/Service">
           <h2><Link to="/rentals-demos">On Water Rentals</Link></h2>
           <article className="home__main--season">
             <p>Season: May &ndash; October<br />
@@ -179,9 +185,19 @@ const IndexPage = () => {
             <BookTour />
           </div>
 
-          <p className="double-baseline">Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
-            We strive to give you the best in kayak sales, SUP rentals, kayak rentals and tours.
-            We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.</p>
+          <p
+            className="double-baseline"
+            itemprop="hasOfferCatalog"
+            itemscope
+            itemtype="https://schema.org/OfferCatalog"
+          >
+            Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
+            We strive to give you the best in
+            <span itemprop="name">kayak sales</span>,
+            <span itemprop="name">SUP rentals</span>,
+            <span itemprop="name">kayak rentals and tours</span>.
+            We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.
+          </p>
         </section>
 
         <section className="main__photo-grid">
@@ -276,10 +292,11 @@ const IndexPage = () => {
             <KayakIcon />
             <p>
               On Water Rental Location<br />
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
-              <MapLink>Google Maps</MapLink>
+              <MapLink>
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145<br />
+              </MapLink>
             </p>
 
             <p>
@@ -295,9 +312,9 @@ const IndexPage = () => {
             <StoreIcon />
             <p>
               Retail Location<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
-              <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >Google Maps</a>
+              <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
+                521 North Lake Blvd,<br />
+                Tahoe City 96145</a>
             </p>
 
             <p>
@@ -311,19 +328,18 @@ const IndexPage = () => {
 
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
+        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
 
-        <p>Our Store and our retail prices are competitive with big-city retailers! Hobie, Wilderness Systems, Eddyline, Tahoe SUP, Pau Hana, Amundson, Bic Paddlesurf and more. Try before you buy!</p>
-
-        <p>Retail and Reservations
-          Open 7 days a week 9:00am&ndash;6:00pm</p>
-
-        <p>Located at</p>
-        <address>
-          521 N Lake Blvd<br />
-          Tahoe City,<br />
-          CA 96145
-        </address>
+        <div className="reuseable__two-col">
+          <div>
+            <h4><Link to="/retail/kayaks">Kayaks</Link></h4>
+            <KayakBrandList />
+          </div>
+          <div>
+            <h4><Link to="/retail/sup">SUPs</Link></h4>
+            <SupBrandList />
+          </div>
+        </div>
 
         <hr />
       </section>

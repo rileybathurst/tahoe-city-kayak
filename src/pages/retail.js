@@ -14,24 +14,53 @@ import SupBrandList from "../components/sup-brand-list";
 import TextureBackgrounds from "../components/texturebackgrounds";
 
 const RetailPage = () => {
+  let title = "Retail";
+
   return (
     <>
       <Header />
 
       <Seo
-        title="Retail"
+        title={title}
+        description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
       />
 
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        Retail
-      </div>
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;/&nbsp;
+        </li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {title}
+            </span>
+            <meta itemprop="position" content="2" />
+          </span>
+        </li>
+      </ol>
 
       <main>
-        <h1>Retail</h1>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel.</p>
-
-        <p>Our Store and our retail prices are competitive with big-city retailers! Hobie, Wilderness Systems, Eddyline, Tahoe SUP, Pau Hana, Amundson, Bic Paddlesurf and more. Try before you buy!</p>
+        <h1>{title}</h1>
+        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
 
         <p>Retail and Reservations<br />
           {/* // TODO: single update */}

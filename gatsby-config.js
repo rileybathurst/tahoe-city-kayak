@@ -24,11 +24,28 @@ module.exports = {
     telephone: '(530) 581-4336',
     email: 'tahoecitykayak@gmail.com',
     logo: '/images/icon.png',
-    areaServed: 'tahoe city',
+    areaServed: 'Tahoe City',
     author: 'Tahoe City Kayak',
-    paymentAccepted: 'Cash check credit card',
+    paymentAccepted: 'Cash credit card',
     itemType: 'LocalBusiness',
     priceRange: '$50-2500',
+    location: {
+      '@type': 'Place',
+      'address': {
+        "@type": "PostalAddress",
+        "streetAddress": "521 North Lake Blvd",
+        "addressLocality": "Tahoe City",
+        "addressRegion": "CA",
+        "postalCode": "96145",
+      }
+    },
+    image: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage.jpg",
+    themeColor: '#bf4040',
+    numberOfEmployees: '10+',
+    slogan: 'North Tahoes Premier Kayak and SUP Provider of Rentals Sales Lessons and Tours',
+
+    titleTemplate: '%s | Gatsby SEO',
+
   },
   plugins: [
     "gatsby-plugin-sass",
@@ -55,6 +72,15 @@ module.exports = {
         typekit: {
           id: process.env.TYPEKIT_ID,
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: `Tahoe City Kayak`,
+        short_name: `TCK`,
+        start_url: `/`,
+        icon: "src/images/favicon.svg",
       },
     },
   ]

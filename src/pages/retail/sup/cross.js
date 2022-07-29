@@ -5,7 +5,7 @@ import Brand from "../../../views/brand";
 import SupBrandCard from "../../../components/sup-brand-card";
 
 
-const RetailPage = () => {
+const RetailCrossSupPage = () => {
   return (
     <Brand
       name="cross"
@@ -42,7 +42,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default RetailCrossSupPage
 
 const query = graphql`
 query CrossSupQuery {

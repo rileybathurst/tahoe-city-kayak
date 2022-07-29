@@ -72,7 +72,7 @@ function Spec(props) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
-        <h3>{props.spec} {props.unit}</h3>
+        <h3>{props.spec} <span className="unit">{props.unit}</span></h3>
       </div>
     );
   } else {
@@ -92,17 +92,59 @@ function Minimum(props) {
 }
 
 const TourView = ({ tour, other }) => {
+
   return (
     <>
       <Header />
       <Seo
         title={tour.name}
+        description={tour.excerpt}
       />
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/tours-lessons">Tours &amp; Lessons</Link>&nbsp;/&nbsp;
-        &nbsp;&nbsp;{tour.name}
-      </div>
+
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/tours-lessons" itemprop="item">
+            <span itemprop="name">Tours &amp; Lessons</span>
+            <meta itemprop="position" content="2" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {tour.name}
+            </span>
+            <meta itemprop="position" content="3" />
+          </span>
+        </li>
+      </ol>
 
       <main className="main__full main__full--tour">
         <div>

@@ -4,11 +4,11 @@ import { StaticQuery, graphql } from 'gatsby';
 import Brand from "../../../views/brand";
 import KayakBrandCard from "../../../components/kayak-brand-card";
 
-// TODO: RetailPage is duplicated
-const RetailPage = () => {
+const RetailDeltaPage = () => {
   return (
     <Brand
       name="delta"
+      type="kayak"
     >
 
       {<StaticQuery
@@ -70,7 +70,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default RetailDeltaPage
 
 const query = graphql`
 query DeltaQuery {

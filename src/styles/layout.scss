@@ -82,7 +82,8 @@ main {
   display: flex;
   max-width: 60rem;
   flex-flow: row wrap;
-  padding-block-start: calc(var(--baseine) * 2);
+  padding-block-start: calc(var(--baseline) * 2);
+  margin-block-start: calc(var(--baseline) * 2);
 
   > * {
     flex: 1 1 20rem;
@@ -177,6 +178,7 @@ main {
   max-width: 60rem;
   margin-inline: auto;
   display: flex;
+  padding-block-start: calc(var(--baseline) * 2);
 
   @media (min-width: 40rem) {
     display: flex;
@@ -201,6 +203,18 @@ main {
 .here__location {
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
+  border-block-end: 1px solid var(--kingly-cloud);
+  margin-block-end: 1.5rem;
+  padding-block-end: 1.5rem;
+
+  > * {
+    flex: 1;
+  }
+
+  > :first-child {
+    flex: 0.5;
+  }
 }
 
 /*------------------*/
@@ -419,9 +433,10 @@ footer {
 /*------------------*/
 
 .breadcrumbs {
+  list-style: none;
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
+  // gap: 1rem;
   max-width: 60rem;
   margin-inline: auto;
   border-bottom: 1px solid var(--silver);
@@ -514,8 +529,9 @@ footer {
     object-fit: contain;
     place-self: center;
     // box-shadow: var(--umbra);
-    filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222); // TODO make this a var
     z-index: 2;
+    grid-row: 1/1;
   }
 
   .card__placeholder {
@@ -539,6 +555,12 @@ footer {
 
 .retail-collage {
   grid-template-rows: 3rem auto auto;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
   .texture {
     width: 80%;
     justify-self: center;
@@ -561,4 +583,12 @@ footer {
   h2 {
     color: var(--steel);
   }
+}
+
+// TODO: document this
+.reuseable__two-col {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: baseline;
 }

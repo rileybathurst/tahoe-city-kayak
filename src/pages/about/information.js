@@ -1,20 +1,72 @@
 import * as React from "react"
+import { Link } from "gatsby"
 
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Seo from "../components/seo";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Seo from "../../components/seo";
 
 const InformationPage = () => {
+  let title = "Paddlesports Information";
+  let parent = "about";
+
   return (
     <>
       <Header />
 
       <Seo
-        title="Paddlesports Information"
+        title={title}
+        description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
       />
 
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;/&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to={`/${parent}`} itemprop="item">
+            <span itemprop="name">{parent}</span>
+            <meta itemprop="position" content="2" />
+          </Link>&nbsp;/&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {title}
+            </span>
+            <meta itemprop="position" content="3" />
+          </span>
+        </li>
+      </ol>
+
+      {/* // TODO this page could use accordions to make it easier to read */}
+
       <main>
-        <h1>Paddlesports Information</h1>
+        <h1>{title}</h1>
         <h2>Before you go!</h2>
 
         <article>
@@ -30,7 +82,7 @@ const InformationPage = () => {
         <article>
           <h3>Weather and Navigation</h3>
           <ul>
-            <li>Wind and Waves &ndash; Lake Tahoe is often windy and wavy from 2 to 6pm. Plan on being within view(less than a mile) of your final destination during this (or any windy) time.
+            <li>Wind and Waves &ndash; Lake Tahoe is often windy and wavy from 2 to 6pm. Plan on being within view (less than a mile) of your final destination during this (or any windy) time.
               *Head to the right and stay close to shore! &ndash; The wind usually blows from the Southwest at Lake Tahoe, so heading to the right along the West shore keeps you in calmer water
               and puts the wind at your back on the way home.</li>
             <li>Paddling Speed and Distance &ndash; Most paddlers average 2.5 miles per hour. Lake Tahoe is 12 miles across (4 ½ hours of paddling), so DO NOT ATTEMPT TO CROSS THE LAKE.</li>

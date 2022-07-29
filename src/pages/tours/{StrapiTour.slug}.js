@@ -17,6 +17,7 @@ export const query = graphql`
       fitness
       peek
       sport
+      excerpt
 
       ogimage {
         localFile {

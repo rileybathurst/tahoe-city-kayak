@@ -5,7 +5,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-import WaterTexture from "../images/watertexture";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Seo from "../components/seo";
@@ -22,13 +21,13 @@ function Spec(props) {
             <h2>Hull Weight</h2>
             <h3>
               {props.spec}
-              <span className="spec__unit">{props.unit}</span>
+              <span className="spec__unit">&thinsp;{props.unit}</span>
             </h3>
           </div>
           <div className="spec">
             <h2>Rigged Weight</h2>
             <h3>{props.rigged}
-              <span className="spec__unit">{props.unit}</span>
+              <span className="spec__unit">&thinsp;{props.unit}</span>
             </h3>
           </div>
         </>
@@ -39,7 +38,7 @@ function Spec(props) {
           <h2>{props.name}</h2>
           <h3>
             {props.spec}
-            <span className="spec__unit">{props.unit}</span>
+            <span className="spec__unit">&thinsp;{props.unit}</span>
           </h3>
         </div>
       );
@@ -57,7 +56,7 @@ function Spec(props) {
         <h2>{props.name}</h2>
         <h3>
           {props.spec}
-          <span className="spec__unit">{props.unit}</span>
+          <span className="spec__unit">&thinsp;{props.unit}</span>
         </h3>
       </div>
     );
@@ -70,7 +69,7 @@ function ReactMD(props) {
   if (props.raw) {
     if (props.title) {
       return (
-        <article className={props.className} >
+        <article className={props.className} itemprop="description" >
           <h3>{props.title}</h3>
           <ReactMarkdown
             children={props.raw}
@@ -96,24 +95,28 @@ const RetailView = ({ retail, other }) => {
   return (
     <>
       <Header />
+
+      {/* // TODO test rich results */}
       <Seo
-        title={retail.brand}
+        title={retail.title}
         description={retail.excerpt}
+        itemType="https://schema.org/ItemPage"
+        itemScope={true}
       />
 
       <div className="breadcrumbs">
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
         <Link to={`/retail/${retail.type}`}>{retail.type}</Link>&nbsp;/&nbsp;
-        <Link to={`/retail/${retail.brand}`}>{retail.brand}</Link>&nbsp;/&nbsp;
-        &nbsp;&nbsp;{retail.title}
+        <Link to={`/retail/${retail.type}/${retail.brand}`}>{retail.brand}</Link>&nbsp;/&nbsp;
+        &nbsp;{retail.title}
       </div>
 
-      <main className="main__full">
+      <main className="main__full" itemscope itemtype="https://schema.org/Product">
         <div>
           <hgroup className="hgroup__retail">
-            <h1 className="h_title">{retail.title}</h1>
-            <h2 className="h_brand">{retail.brand}</h2>
+            <h1 className="h_title" itemprop="name">{retail.title}</h1>
+            <h2 className="h_brand" itemprop="brand">{retail.brand}</h2>
             <h3 className="h_series"><Spec name="series" spec={retail.series} /></h3>
           </hgroup>
 
@@ -138,8 +141,8 @@ const RetailView = ({ retail, other }) => {
 
         </div>
         <div>
-          <div className="collage retail-collage">
-            <WaterTexture className="texture" />
+          <div className="collage card-collage">
+            <TextureBackgrounds />
 
             <GatsbyImage
               image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
@@ -177,6 +180,7 @@ const RetailView = ({ retail, other }) => {
                   image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                   alt={retail?.cutout?.alternativeText}
                   className="cutout"
+                  itemprop="image"
                 />
               </div>
               <h4 className="card__title">

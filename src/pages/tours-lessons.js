@@ -11,21 +11,52 @@ import Fitness from "../components/fitness";
 import BookNow from "../components/peek/book-now";
 
 const ToursLessonsPage = () => {
+  let title = "Tours & Lessons";
+
   return (
     <>
       <Header />
 
       <Seo
-        title="Tours and Lessons"
+        title={title}
+        description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
       />
 
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        Tours &amp; Lessons
-      </div>
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;/&nbsp;
+        </li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {title}
+            </span>
+            <meta itemprop="position" content="2" />
+          </span>
+        </li>
+      </ol>
 
       <main>
-        <h3>Tours &amp; Lessons</h3>
+        <h1>{title}</h1>
         <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         <BookNow />
         <hr />

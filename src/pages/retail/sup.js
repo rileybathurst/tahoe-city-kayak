@@ -7,14 +7,13 @@ import Footer from "../../components/footer"
 import Seo from "../../components/seo";
 import Remainder from "../../components/remainder";
 import MapStore from "../../components/map-store";
-
-import WaterTexture from "../../images/watertexture";
+import TextureBackgrounds from "../../components/texturebackgrounds";
 
 function Card(props) {
   return (
     <article key={props.id} className="card">
       <div className="card-collage">
-        <WaterTexture className="card__placeholder" />
+        <TextureBackgrounds />
         <GatsbyImage
           image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.cutout?.alternativeText}
@@ -37,20 +36,63 @@ function Card(props) {
   )
 }
 
-const RetailPage = () => {
+const RetailSupPage = () => {
+  let title = "SUP Retail";
+  let parent = "retail";
+
   return (
     <>
       <Header />
 
       <Seo
-        title="SUP Retail"
+        title={title}
+        description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
       />
 
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        SUP
-      </div>
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to={`/${parent}`} itemprop="item">
+            <span itemprop="name">{parent}</span>
+            <meta itemprop="position" content="2" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {title}
+            </span>
+            <meta itemprop="position" content="3" />
+          </span>
+        </li>
+      </ol>
 
       <main>
         <h1>Stand Up Paddleboards (SUPs)</h1>
@@ -145,6 +187,8 @@ const RetailPage = () => {
                     capacity={retail.node.capacity}
                     length={retail.node.length}
                     width={retail.node.width}
+                    excerpt={retail.node.excerpt}
+                    cutout={retail.node?.cutout}
                   />
                 ))
               }
@@ -312,7 +356,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default RetailSupPage
 
 const query = graphql`
 query SupQuery {

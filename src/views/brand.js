@@ -5,40 +5,71 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Seo from "../components/seo";
 
-function Type(props) {
-  if (props.type === "kayak") {
-    return (
-      <>
-        <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
-      </>
-    )
-  } else if (props.type === "sup") {
-    return (
-      <>
-        <Link to="/retail/sup">SUP</Link>&nbsp;/&nbsp;
-      </>
-    )
-  } else {
-    return null;
-  }
-}
-
-
 const Brand = (props) => {
   return (
     <>
       <Header />
 
       <Seo
-        title={`${props.name} Kayaks`}
+        title={`${props.name} ${props.type}s`}
+        description={`Tahoe City Kayaks retail page for ${props.name} ${props.type}s`}
       />
 
-      <div className="breadcrumbs">
-        <Link to="/">Home</Link>&nbsp;/&nbsp;
-        <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        <Type type={props.type} />
-        &nbsp;&nbsp;{props.name}
-      </div>
+      <ol
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/" itemprop="item">
+            <span itemprop="name">Home</span>
+            <meta itemprop="position" content="1" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to="/retail" itemprop="item">
+            <span itemprop="name">Retail</span>
+            <meta itemprop="position" content="2" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <Link to={`/retail/${props.type}`} itemprop="item">
+            <span itemprop="name">{props.type}</span>
+            <meta itemprop="position" content="3" />
+          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="item">
+            <span
+              itemprop="name"
+              aria-current="page"
+            >
+              {props.name}
+            </span>
+            <meta itemprop="position" content="4" />
+          </span>
+        </li>
+      </ol>
 
       <main>
         <hgroup className="brand__hgroup">

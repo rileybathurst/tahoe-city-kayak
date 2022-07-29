@@ -2,14 +2,14 @@ import * as React from "react"
 import { Link } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import WaterTexture from "../images/watertexture";
 import Remainder from "../components/remainder";
+import TextureBackgrounds from "./texturebackgrounds";
 
 const KayakBrandCard = (props) => {
   return (
     <article key={props.id} className="card">
       <div className="card-collage">
-        <WaterTexture className="card__placeholder" />
+        <TextureBackgrounds />
         <GatsbyImage
           image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.cutout?.alternativeText}

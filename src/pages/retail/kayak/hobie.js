@@ -8,6 +8,7 @@ const HobieView = () => {
   return (
     <Brand
       name="hobie"
+      type="kayak"
     >
 
       {/* // ? can I fold this inside the wrapper */}

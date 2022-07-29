@@ -37,7 +37,7 @@ function Deck(props) {
   )
 }
 
-const RetailPage = () => {
+const DeckPage = () => {
   return (
     <>
       <Header />
@@ -100,7 +100,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default DeckPage
 
 const query = graphql`
 query SupQuery {

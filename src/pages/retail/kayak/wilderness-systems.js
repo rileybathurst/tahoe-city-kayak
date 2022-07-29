@@ -4,10 +4,11 @@ import { StaticQuery, graphql } from 'gatsby';
 import Brand from "../../../views/brand";
 import KayakBrandCard from "../../../components/kayak-brand-card";
 
-const RetailPage = () => {
+const RetailWildernessSystemsPage = () => {
   return (
     <Brand
       name="Wilderness Systems"
+      type="kayak"
     >
 
       {<StaticQuery
@@ -68,7 +69,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default RetailWildernessSystemsPage
 
 const query = graphql`
 query WildernessSystemslineQuery {

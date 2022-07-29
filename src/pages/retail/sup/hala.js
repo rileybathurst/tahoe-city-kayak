@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import Brand from "../../../views/brand";
 import SupBrandCard from "../../../components/sup-brand-card";
 
-const RetailPage = () => {
+const RetailHalaSupPage = () => {
   return (
     <Brand
       name="hala"
@@ -42,7 +42,7 @@ const RetailPage = () => {
   )
 }
 
-export default RetailPage
+export default RetailHalaSupPage
 
 const query = graphql`
 query HalaSupQuery {
