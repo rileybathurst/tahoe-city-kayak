@@ -1,21 +1,48 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, StaticQuery, graphql } from 'gatsby';
 
-const SupBrandList = (props) => {
+// I dont know how dangerous this dangerously set is as its prebuilt
+function Danger(props) {
+  const svg = (props.svg)
   return (
-    <ul>
-      <li><Link to="/retail/sup/hobie">Hobie</Link></li>
-      <li><Link to="/retail/sup/cross">Cross</Link></li>
-      <li><Link to="/retail/sup/tahe">Tahe</Link></li>
-      <li><Link to="/retail/sup/sic">SIC</Link></li>
-      <li><Link to="/retail/sup/bic">BIC</Link></li>
-      <li><Link to="/retail/sup/hala">Hala</Link></li>
-      <li><Link to="/retail/sup/boardworks">Boardworks</Link></li>
-      <li><Link to="/retail/sup/bote">Bote</Link></li>
-      <li><Link to="/retail/sup/pau-hana">Pau Hana</Link></li>
-      <li><Link to="/retail/sup/drift">Drift</Link></li>
-    </ul>
+    <div
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  );
+}
+
+const SupBrandList = () => {
+  return (
+    <StaticQuery
+      query={query}
+      render={data => (
+        <ul className='brand_list'>
+          {data.allStrapiBrand.edges.map(sup => (
+            <li>
+              <Link to={`/retail/Sup/${sup.node.slug}`}>
+                <Danger svg={sup.node.svg} />
+                <p>{sup.node.name}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    />
   )
 }
 
 export default SupBrandList
+
+const query = graphql`
+query SupBrandQuery {
+  allStrapiBrand(filter: {sup: {eq: true}}) {
+    edges {
+      node {
+        name
+        slug
+        svg
+      }
+    }
+  }
+}
+`

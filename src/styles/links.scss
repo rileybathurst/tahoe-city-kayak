@@ -29,3 +29,11 @@ a:where(:hover, :focus) {
   box-shadow: var(--penumbra);
   border: 1px solid whitesmoke;
 }
+
+a svg {
+  transition: 0.2s ease;
+}
+
+a:hover svg {
+  fill: var(--mullen);
+}

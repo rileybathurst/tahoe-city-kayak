@@ -9,7 +9,8 @@ const strapiConfig = {
     'tour',
     'retail',
     'faq',
-    'testimonial'
+    'testimonial',
+    'brand'
   ],
   singleTypes: [],
 };

@@ -7,7 +7,6 @@ export const query = graphql`
     strapiRetail(slug: { eq: $slug }) {
       id
       title
-      brand
       type
       series
       crew

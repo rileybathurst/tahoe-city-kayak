@@ -365,7 +365,7 @@ const IndexPage = () => {
             <hr />
             <div className="card__details uppercase">
               <h4>{retail.type}</h4>
-              <h5><Remainder inches={retail.length} /> tall by {retail.width}" wide</h5>
+              <h5><Remainder inches={retail.length} /> long by {retail.width}" wide</h5>
             </div>
           </div>
         ))}
