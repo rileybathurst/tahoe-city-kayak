@@ -1,15 +1,7 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 
-// I dont know how dangerous this dangerously set is as its prebuilt
-function Danger(props) {
-  const svg = (props.svg)
-  return (
-    <div
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  );
-}
+import Danger from "./danger";
 
 const SupBrandList = () => {
   return (
@@ -19,7 +11,7 @@ const SupBrandList = () => {
         <ul className='brand_list'>
           {data.allStrapiBrand.edges.map(sup => (
             <li>
-              <Link to={`/retail/Sup/${sup.node.slug}`}>
+              <Link to={`/retail/sup/${sup.node.slug}`}>
                 <Danger svg={sup.node.svg} />
                 <p>{sup.node.name}</p>
               </Link>

@@ -21,6 +21,10 @@ export const query = graphql`
       demo
       type
       excerpt
+      
+      brand {
+        name
+      }
 
       childStrapiRetailDescriptionTextnode {
         description

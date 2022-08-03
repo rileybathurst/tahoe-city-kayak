@@ -10,7 +10,12 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Danger from "../components/danger";
 
-function Kayak(props) {
+function Null(props) {
+  // console.log(props.check);
+  return null;
+}
+
+function sup(props) {
   return (
     <article className="card">
       <div className="card-collage">
@@ -79,13 +84,13 @@ function Next(props) {
   }
 }
 
-const KayakBrandView = ({ data }) => {
+const supBrandView = ({ data }) => {
   return (
     <>
       <Header />
       <Seo
-        title={`Tahoe City Kayak sells ${data.brand.name} kayaks`}
-        description={`${data.brand.name} kayaks ${data.brand.tagline}`}
+        title={`Tahoe City sup sells ${data.brand.name} sups`}
+        description={`${data.brand.name} sups ${data.brand.tagline}`}
       />
 
       <ol
@@ -122,8 +127,8 @@ const KayakBrandView = ({ data }) => {
           itemScope
           itemType="https://schema.org/ListItem"
         >
-          <Link to="/retail/kayak" itemProp="item">
-            <span itemProp="name">Kayak</span>
+          <Link to="/retail/sup" itemProp="item">
+            <span itemProp="name">SUP</span>
             <meta itemProp="position" content="3" />
           </Link>&nbsp;/&nbsp;
         </li>
@@ -162,15 +167,15 @@ const KayakBrandView = ({ data }) => {
       {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
       <div className="deck">
         {
-          data.island.edges.map(kayak => (
-            <Kayak
-              key={kayak.node.id}
-              title={kayak.node.title}
-              slug={kayak.node.slug}
-              excerpt={kayak.node.excerpt}
-              length={kayak.node.length}
-              width={kayak.node.width}
-              cutout={kayak.node.cutout}
+          data.island.edges.map(sup => (
+            <sup
+              key={sup.node.id}
+              title={sup.node.title}
+              slug={sup.node.slug}
+              excerpt={sup.node.excerpt}
+              length={sup.node.length}
+              width={sup.node.width}
+              cutout={sup.node.cutout}
             />
           ))
         }
@@ -181,15 +186,15 @@ const KayakBrandView = ({ data }) => {
       </section>
       <div className="deck">
         {
-          data.mirage.edges.map(kayak => (
-            <Kayak
-              key={kayak.node.id}
-              title={kayak.node.title}
-              slug={kayak.node.slug}
-              excerpt={kayak.node.excerpt}
-              length={kayak.node.length}
-              width={kayak.node.width}
-              cutout={kayak.node.cutout}
+          data.mirage.edges.map(sup => (
+            <sup
+              key={sup.node.id}
+              title={sup.node.title}
+              slug={sup.node.slug}
+              excerpt={sup.node.excerpt}
+              length={sup.node.length}
+              width={sup.node.width}
+              cutout={sup.node.cutout}
             />
           ))
         }
@@ -200,15 +205,15 @@ const KayakBrandView = ({ data }) => {
       </section>
       <div className="deck">
         {
-          data.inflatable.edges.map(kayak => (
-            <Kayak
-              key={kayak.node.id}
-              title={kayak.node.title}
-              slug={kayak.node.slug}
-              excerpt={kayak.node.excerpt}
-              length={kayak.node.length}
-              width={kayak.node.width}
-              cutout={kayak.node.cutout}
+          data.inflatable.edges.map(sup => (
+            <sup
+              key={sup.node.id}
+              title={sup.node.title}
+              slug={sup.node.slug}
+              excerpt={sup.node.excerpt}
+              length={sup.node.length}
+              width={sup.node.width}
+              cutout={sup.node.cutout}
             />
           ))
         }
@@ -221,16 +226,19 @@ const KayakBrandView = ({ data }) => {
       </section>
       <div className="deck">
         {
-          data.null.edges.map(kayak => (
-            <Kayak
-              key={kayak.node.id}
-              title={kayak.node.title}
-              slug={kayak.node.slug}
-              excerpt={kayak.node.excerpt}
-              length={kayak.node.length}
-              width={kayak.node.width}
-              cutout={kayak.node.cutout}
+          data.null.edges.map(sup => (
+            <>
+            <Null check={sup} />
+            <sup
+              key={sup.node.id}
+              title={sup.node.title}
+              slug={sup.node.slug}
+              excerpt={sup.node.excerpt}
+              length={sup.node.length}
+              width={sup.node.width}
+              cutout={sup.node.cutout}
             />
+            </>
           ))
         }
       </div>
@@ -240,10 +248,10 @@ const KayakBrandView = ({ data }) => {
   );
 };
 
-export default KayakBrandView;
+export default supBrandView;
 
 export const query = graphql`
-  query KayakBrandsTemplate(
+  query SupBrandsTemplate(
     $slug: String!,
   ) {
     brand: strapiBrand(slug: {eq: $slug}) {
@@ -260,7 +268,7 @@ export const query = graphql`
   island: allStrapiRetail(
     filter: {
       brand: {slug: {eq: $slug}},
-      type: {eq: "kayak"},
+      type: {eq: "sup"},
       series: {eq: "island"}
     }
   ) {
@@ -287,7 +295,7 @@ export const query = graphql`
   mirage: allStrapiRetail(
   filter: {
     brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
+    type: {eq: "sup"},
     series: {eq: "mirage"}
   }
   ) {
@@ -314,7 +322,7 @@ export const query = graphql`
 inflatable: allStrapiRetail(
   filter: {
     brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
+    type: {eq: "sup"},
     series: {eq: "inflatable"}
   }
   ) {
@@ -341,29 +349,29 @@ inflatable: allStrapiRetail(
   null: allStrapiRetail(
     filter: {
       brand: {slug: {eq: $slug}},
-      type: {eq: "kayak"},
+      type: {eq: "sup"},
       series: {nin: ["island", "mirage", "inflatable"]}
     }
   ) {
     edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
+      node {
+        title
+        slug
+        excerpt
+        length
+        width
 
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
+          alternativeText
         }
-        alternativeText
       }
+    }
   }
-  }
-}
 
 
 

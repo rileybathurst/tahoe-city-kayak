@@ -108,7 +108,7 @@ const RetailView = ({ retail, other }) => {
         <Link to="/">Home</Link>&nbsp;/&nbsp;
         <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
         <Link to={`/retail/${retail.type}`}>{retail.type}</Link>&nbsp;/&nbsp;
-        <Link to={`/retail/${retail.type}/${retail.brand}`}>{retail.brand}</Link>&nbsp;/&nbsp;
+        <Link to={`/retail/${retail.type}/${retail.brand.name}`}>{retail.brand.name}</Link>&nbsp;/&nbsp;
         &nbsp;{retail.title}
       </div>
 
@@ -116,7 +116,7 @@ const RetailView = ({ retail, other }) => {
         <div>
           <hgroup className="hgroup__retail">
             <h1 className="h_title" itemprop="name">{retail.title}</h1>
-            <h2 className="h_brand" itemprop="brand">{retail.brand}</h2>
+            <h2 className="h_brand" itemprop="brand">{retail.brand.name}</h2>
             <h3 className="h_series"><Spec name="series" spec={retail.series} /></h3>
           </hgroup>
 

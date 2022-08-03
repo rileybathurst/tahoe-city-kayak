@@ -12,6 +12,10 @@ export const Typography = ({ primary }) => {
       <h5>Heading 5</h5>
       <h6>Heading 6</h6>
       <p>Paragraph</p>
+
+      <p className='typography__secondary'>
+      typography__secondary
+      </p>
     </>
   );
 };

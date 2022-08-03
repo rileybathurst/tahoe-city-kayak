@@ -68,10 +68,38 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   }); // .then(result) */
+  
+  const getSups = makeRequest(graphql, `
+    {
+      allStrapiBrand(filter: {sup: {eq: true}}) {
+        edges {
+          node {
+            slug
+            retail {
+              series
+            }
+          }
+        }
+      }
+    }
+    `).then(result => {
+    // Create pages for each partner resorts.
+    result.data.allStrapiBrand.edges.forEach(({ node }) => {
+      createPage({
+        path: `/retail/sup/${node.slug}`,
+        component: path.resolve(`src/templates/sup-brands.tsx`),
+        context: {
+          slug: node.slug,
+          retail: node.retail.series
+        },
+      })
+    })
+  }); // .then(result) */
 
   // Query for blog nodes to use in creating pages.
   return Promise.all([
     getRetails,
-    getKayaks
+    getKayaks,
+    getSups
   ])
 }
