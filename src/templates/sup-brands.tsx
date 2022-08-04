@@ -10,12 +10,7 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Danger from "../components/danger";
 
-function Null(props) {
-  // console.log(props.check);
-  return null;
-}
-
-function sup(props) {
+function Sup(props) {
   return (
     <article className="card">
       <div className="card-collage">
@@ -61,10 +56,15 @@ function Next(props) {
   const mySet1 = new Set();
 
   props.series.forEach(series => {
-    mySet1.add(series.series);
+
+    if (series.type === 'sup') {
+      mySet1.add(series.series);
+    }
   });
 
-  if (props.list === 'true') {
+  // console.log(mySet1);
+
+  if (props.list === 'true' && mySet1.size > 1) {
     return (
       <>
         <h2>Series</h2>
@@ -75,6 +75,8 @@ function Next(props) {
         </ul>
       </>
     );
+  } else if (props.title === 'null') {
+    return null;
   } else {
     return (
       <>
@@ -109,7 +111,6 @@ const supBrandView = ({ data }) => {
             <meta itemProp="position" content="1" />
           </Link>&nbsp;/&nbsp;
         </li>
-
 
         <li
           itemProp="itemListElement"
@@ -160,7 +161,7 @@ const supBrandView = ({ data }) => {
         <Next series={data.brand.retail} list='true' />
       </main>
 
-      <section id='island'>
+      <section id='island' className="possibly-empty">
         <Next series={data.brand.retail} list='false' title="island" />
       </section>
       {/* this has to be here */}
@@ -168,7 +169,7 @@ const supBrandView = ({ data }) => {
       <div className="deck">
         {
           data.island.edges.map(sup => (
-            <sup
+            <Sup
               key={sup.node.id}
               title={sup.node.title}
               slug={sup.node.slug}
@@ -181,13 +182,13 @@ const supBrandView = ({ data }) => {
         }
       </div>
 
-      <section id='mirage'>
+      <section id='mirage' className="possibly-empty">
         <Next series={data.brand.retail} title="mirage" />
       </section>
       <div className="deck">
         {
           data.mirage.edges.map(sup => (
-            <sup
+            <Sup
               key={sup.node.id}
               title={sup.node.title}
               slug={sup.node.slug}
@@ -200,13 +201,13 @@ const supBrandView = ({ data }) => {
         }
       </div>
 
-      <section id='inflatable'>
+      <section id='inflatable' className="possibly-empty">
         <Next series={data.brand.retail} title="inflatable" />
       </section>
       <div className="deck">
         {
           data.inflatable.edges.map(sup => (
-            <sup
+            <Sup
               key={sup.node.id}
               title={sup.node.title}
               slug={sup.node.slug}
@@ -221,15 +222,13 @@ const supBrandView = ({ data }) => {
 
       {/* //TODO: there needs to be more of a not in a series */}
 
-      <section>
+      <section className="possibly-empty">
         <Next series={data.brand.retail} title="null" />
       </section>
       <div className="deck">
         {
           data.null.edges.map(sup => (
-            <>
-            <Null check={sup} />
-            <sup
+            <Sup
               key={sup.node.id}
               title={sup.node.title}
               slug={sup.node.slug}
@@ -238,7 +237,6 @@ const supBrandView = ({ data }) => {
               width={sup.node.width}
               cutout={sup.node.cutout}
             />
-            </>
           ))
         }
       </div>
@@ -249,6 +247,8 @@ const supBrandView = ({ data }) => {
 };
 
 export default supBrandView;
+
+// TODO: add type into here
 
 export const query = graphql`
   query SupBrandsTemplate(
@@ -262,6 +262,7 @@ export const query = graphql`
     retail {
       series
       title
+      type
     }
   }
 

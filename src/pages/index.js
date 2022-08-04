@@ -29,8 +29,8 @@ function Map(props) {
     alt="tahoe city kayak map"
     className={props.className}
     objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
+  // breakpoints={[480, 960]} // TODO
+  // width={960}
   />
 }
 
@@ -329,57 +329,55 @@ const IndexPage = () => {
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+      </section>
 
-        <div className="reuseable__two-col">
-          <div>
-            <h4><Link to="/retail/kayaks">Kayaks</Link></h4>
-            <KayakBrandList />
-          </div>
-          <div>
-            <h4><Link to="/retail/sup">SUPs</Link></h4>
-            <SupBrandList />
+      <section className="reuseable__two-col">
+        <div>
+          <h4><Link to="/retail/kayaks">Kayaks</Link></h4>
+          <KayakBrandList />
+
+          <h4><Link to="/retail/sup">SUPs</Link></h4>
+          <SupBrandList />
+        </div>
+
+        <div className="deck deck__column">
+          {inventory.map((retail) => (
+            <div key={retail.id} className="card">
+              <div className="card-collage">
+                <TextureBackgrounds />
+                <GatsbyImage
+                  image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                  alt={retail?.cutout?.alternativeText}
+                  className="cutout"
+                />
+              </div>
+              <h4 className="card__title">
+                <Link to={`/retail/${retail.slug}`}>
+                  {retail.title}
+                </Link>
+              </h4>
+              <hr />
+              <p>{retail?.excerpt}</p>
+              <hr />
+              <div className="card__details uppercase">
+                <h4>{retail.type}</h4>
+                <h5><Remainder inches={retail.length} /> long by {retail.width}" wide</h5>
+              </div>
+            </div>
+          ))}
+          <div className="deck__more">
+            {hasExtra ? (
+              <>
+                <button onClick={handleLoadExtra} className=''>VIEW MORE RETAIL</button>
+              </>
+            ) : (
+              <p>Thats all the retail</p>
+            )
+            }
           </div>
         </div>
 
-        <hr />
       </section>
-
-      <div className="deck">
-        {inventory.map((retail) => (
-          <div key={retail.id} className="card">
-            <div className="card-collage">
-              <TextureBackgrounds />
-              <GatsbyImage
-                image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={retail?.cutout?.alternativeText}
-                className="cutout"
-              />
-            </div>
-            <h4 className="card__title">
-              <Link to={`/retail/${retail.slug}`}>
-                {retail.title}
-              </Link>
-            </h4>
-            <hr />
-            <p>{retail?.excerpt}</p>
-            <hr />
-            <div className="card__details uppercase">
-              <h4>{retail.type}</h4>
-              <h5><Remainder inches={retail.length} /> long by {retail.width}" wide</h5>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="deck__more">
-        {hasExtra ? (
-          <>
-            <button onClick={handleLoadExtra} className=''>VIEW MORE RETAIL</button>
-          </>
-        ) : (
-          <p>Thats all the retail</p>
-        )
-        }
-      </div>
 
       <Footer />
     </>

@@ -591,4 +591,11 @@ footer {
   flex-flow: row wrap;
   gap: 1rem;
   align-items: baseline;
+  max-width: 60rem;
+  margin-inline: auto;
+  align-items: flex-start;
+
+  > * {
+    flex: 1 1 20rem;
+  }
 }

@@ -80,6 +80,14 @@
   }
 }
 
+.deck:empty {
+  display: none;
+}
+
+.deck__column {
+  grid-template-columns: 1fr;
+}
+
 .deck__more {
   max-width: 60rem;
   margin-inline: auto;
@@ -109,7 +117,7 @@
   padding-inline: 0.75rem;
   align-items: center;
   font-size: 2rem; // grabs any h level
-  
+
   > * {
     margin-block-end: 0;
   }

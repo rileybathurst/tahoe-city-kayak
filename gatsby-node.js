@@ -24,6 +24,10 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             slug
             type
+
+            brand {
+              slug
+            }
           }
         }
       }
@@ -36,7 +40,8 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/retail.tsx`),
         context: {
           slug: node.slug,
-          type: node.type
+          type: node.type,
+          brand: node.brand.slug
         },
       })
     })
@@ -68,7 +73,7 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   }); // .then(result) */
-  
+
   const getSups = makeRequest(graphql, `
     {
       allStrapiBrand(filter: {sup: {eq: true}}) {

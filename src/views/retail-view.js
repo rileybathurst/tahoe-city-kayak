@@ -151,8 +151,6 @@ const RetailView = ({ retail, other }) => {
             />
           </div>
 
-
-
           <ReactMD
             raw={retail.childStrapiRetailFeaturesTextnode?.features}
             className="features"
