@@ -22,7 +22,7 @@ function Card(props) {
         />
       </div>
       <h4 className="card__title">
-        <Link to={`/retail/${props.slug}`}>
+        <Link to={`/retail/${props.type}/${props.slug}`}>
           {props.title}
         </Link>
       </h4>
@@ -120,6 +120,7 @@ const DemosPage = () => {
                       width={retail.node.width}
                       excerpt={retail.node.excerpt}
                       cutout={retail.node?.cutout}
+                      type={retail.node.type}
                     />
                   ))
                 }
@@ -141,6 +142,7 @@ const DemosPage = () => {
                       width={retail.node.width}
                       excerpt={retail.node.excerpt}
                       cutout={retail.node?.cutout}
+                      type={retail.node.type}
                     />
                   ))
                 }
@@ -170,6 +172,7 @@ query DemosQuery {
         capacity
         length
         width
+        type
 
         cutout {
           localFile {
@@ -193,6 +196,7 @@ query DemosQuery {
         capacity
         length
         width
+        type
 
         cutout {
           localFile {

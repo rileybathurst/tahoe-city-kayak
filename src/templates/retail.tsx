@@ -67,13 +67,13 @@ function Spec(props) {
 
 function ReactMD(props) {
 
-  console.log('markdown');
-  console.log(props.raw);
+  // console.log('markdown');
+  // console.log(props.raw);
 
   if (props.raw) {
     if (props.title) {
       return (
-        <article className={props.className} itemprop="description" >
+        <article className={props.className} itemProp="description" >
           <h3>{props.title}</h3>
           <ReactMarkdown
             children={props.raw}
@@ -96,6 +96,9 @@ function ReactMD(props) {
 }
 
 function Other(props) {
+
+  console.log('test');
+
   if (props.retail) {
     return (
       <article className="card">
@@ -105,11 +108,11 @@ function Other(props) {
             image={props.retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
             alt={props.retail?.cutout?.alternativeText}
             className="cutout"
-            itemprop="image"
+            itemProp="image"
           />
         </div>
         <h4 className="card__title">
-          <Link to={`/retail/${props.retail.slug}`}>
+          <Link to={`/retail/${props.retail.type}/${props.retail.slug}`}>
             {props.retail.title}
           </Link>
         </h4>
@@ -132,7 +135,7 @@ function OtherWrap(props) {
   if (props.retail.edges.length !== 0) {
     return (
       <>
-        <section>
+        <section className=''>
           <h2>Other {props.type}s by <span className='capitalize'>{props.brand}</span></h2>
         </section>
         <div className='deck'>
@@ -158,7 +161,7 @@ function None(props) {
 
   if (props.retail.edges.length === 0) {
     return (
-      <section>
+      <section className='none'>
         <h3>
           <Link to={`/retail/${props.type}`}>
             Browse other {props.type}s
@@ -260,7 +263,7 @@ const RetailTypeView = ({ data }) => {
         </li>
       </ol>
 
-      <main className="main__full" itemscope itemtype="https://schema.org/Product">
+      <main className="main__full" itemScope itemType="https://schema.org/Product">
         <div>
           <hgroup className="hgroup__retail">
             <h1 className="h_title" itemProp="name">{data.strapiRetail.title}</h1>
@@ -317,6 +320,7 @@ const RetailTypeView = ({ data }) => {
       </OtherWrap>
 
       {/* // The map just creates nothing so I cant go that way */}
+      {/* // It's a pretty rare case so I dont actually query a set of cards */}
       <None retail={data.allStrapiRetail} type={data.strapiRetail.type} />
 
       <Footer />

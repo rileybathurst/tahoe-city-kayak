@@ -5,11 +5,11 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-import Header from "../components/header"
-import Footer from "../components/footer"
-import Seo from "../components/seo";
-import Remainder from "../components/remainder";
-import TextureBackgrounds from "../components/texturebackgrounds";
+import Header from "../src/components/header"
+import Footer from "../src/components/footer"
+import Seo from "../src/components/seo";
+import Remainder from "../src/components/remainder";
+import TextureBackgrounds from "../src/components/texturebackgrounds";
 
 function Spec(props) {
   if (props.name === "Weight") {
@@ -182,7 +182,7 @@ const RetailView = ({ retail, other }) => {
                 />
               </div>
               <h4 className="card__title">
-                <Link to={`/retail/${retail.slug}`}>
+                <Link to={`/retail/${retail.type}/${retail.slug}`}>
                   {retail.title}
                 </Link>
               </h4>

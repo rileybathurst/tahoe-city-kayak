@@ -99,7 +99,7 @@ const RetailPage = () => {
                       />
                     </div>
                     <h4 className="card__title">
-                      <Link to={`/retail/${kayak.node.slug}`}>
+                      <Link to={`/retail/${kayak.node.type}/${kayak.node.slug}`}>
                         {kayak.node.title}
                       </Link>
                     </h4>
@@ -136,7 +136,7 @@ const RetailPage = () => {
                       />
                     </div>
                     <h4 className="card__title">
-                      <Link to={`/retail/${sup.node.slug}`}>
+                      <Link to={`/retail/${sup.node.type}/${sup.node.slug}`}>
                         {sup.node.title}
                       </Link>
                     </h4>

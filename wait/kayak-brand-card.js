@@ -2,10 +2,10 @@ import * as React from "react"
 import { Link } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import TextureBackgrounds from "./texturebackgrounds";
-import Remainder from "../components/remainder";
+import Remainder from "../src/components/remainder";
+import TextureBackgrounds from "../src/components/texturebackgrounds";
 
-const SupBrandCard = (props) => {
+const KayakBrandCard = (props) => {
   return (
     <article key={props.id} className="card">
       <div className="card-collage">
@@ -17,16 +17,13 @@ const SupBrandCard = (props) => {
         />
       </div>
       <h4 className="card__title">
-        <Link to={`/retail/${props.slug}`}>
+        <Link to={`/retail/${props.slug}/${props.slug}`}>
           {props.title}
         </Link>
       </h4>
       <hr />
       <p>{props.excerpt}</p>
       <hr />
-
-      {/* // TODO: these need to change and maybe need to be intergrated */}
-      {/* // ? thickness and volume I think? build these out maybe */}
 
       <div className="card__details">
         <h4><Remainder inches={props.length} /> long by {props.width}" wide</h4>
@@ -36,4 +33,4 @@ const SupBrandCard = (props) => {
   )
 }
 
-export default SupBrandCard
+export default KayakBrandCard

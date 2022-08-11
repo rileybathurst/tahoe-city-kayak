@@ -22,7 +22,7 @@ function Sup(props) {
         />
       </div>
       <h4 className="card__title">
-        <Link to={`/retail/${props.slug}`}>
+        <Link to={`/retail/sup/${props.slug}`}>
           {props.title}
         </Link>
       </h4>

@@ -229,6 +229,10 @@ main {
   // margin-block-end: calc(var(--baseline) * 2);
 }
 
+.none {
+  margin-block-start: 1.5rem;
+}
+
 // ? this might be a bad name if its also buy
 .single__book {
   max-width: 40rem;

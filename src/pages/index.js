@@ -354,7 +354,7 @@ const IndexPage = () => {
                 />
               </div>
               <h4 className="card__title">
-                <Link to={`/retail/${retail.slug}`}>
+                <Link to={`/retail/${retail.type}/${retail.slug}`}>
                   {retail.title}
                 </Link>
               </h4>
