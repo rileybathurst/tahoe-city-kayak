@@ -10,7 +10,7 @@ const SupBrandList = () => {
       render={data => (
         <ul className='brand_list'>
           {data.allStrapiBrand.edges.map(sup => (
-            <li>
+            <li key={sup.node.id}>
               <Link to={`/retail/sup/${sup.node.slug}`}>
                 <Danger svg={sup.node.svg} />
                 <p>{sup.node.name}</p>
@@ -30,6 +30,7 @@ query SupBrandQuery {
   allStrapiBrand(filter: {sup: {eq: true}}) {
     edges {
       node {
+        id
         name
         slug
         svg

@@ -6,7 +6,7 @@ function Danger(props) {
   const svg = (props.svg)
   return (
     <div
-      dangerouslySetInnerHTML={{__html: svg}}
+      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
 }
@@ -18,12 +18,12 @@ const KayakBrandList = () => {
       render={data => (
         <ul className='brand_list'>
           {data.allStrapiBrand.edges.map(kayak => (
-              <li>
-                <Link to={`/retail/kayak/${kayak.node.slug}`}>
-                  <Danger svg={kayak.node.svg} />
-                  <p>{kayak.node.name}</p>
-                </Link>
-              </li>
+            <li key={kayak.node.id}>
+              <Link to={`/retail/kayak/${kayak.node.slug}`}>
+                <Danger svg={kayak.node.svg} />
+                <p>{kayak.node.name}</p>
+              </Link>
+            </li>
           ))}
         </ul>
       )}
@@ -38,6 +38,7 @@ query KayakBrandQuery {
   allStrapiBrand(filter: {kayak: {eq: true}}) {
     edges {
       node {
+        id
         name
         slug
         svg

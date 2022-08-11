@@ -8,6 +8,7 @@ const Logo = () => {
     alt="tahoe city kayak and paddleboard logo"
     breakpoints={[294]}
     width={294}
+    objectFit="contain"
   />
 };
 

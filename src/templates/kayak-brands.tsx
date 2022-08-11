@@ -30,7 +30,7 @@ function Kayak(props) {
       <p>{props.excerpt}</p>
       <hr />
       <div className="card__details">
-        <h5><Remainder inches={props.length} /> tall by {props.width}" wide</h5>
+        <h5><Remainder inches={props.length} /> long by {props.width}" wide</h5>
       </div>
     </article>
   )

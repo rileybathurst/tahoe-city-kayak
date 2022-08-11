@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from "gatsby"
 
 import Menu from "./menu"
-import PaddleIcon from '../images/paddle';
+// import PaddleIcon from '../images/paddle';
 import MenuList from './menu-list';
 import Logo from '../images/logo';
 

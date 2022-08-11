@@ -29,7 +29,7 @@ const SupBrandCard = (props) => {
       {/* // ? thickness and volume I think? build these out maybe */}
 
       <div className="card__details">
-        <h4><Remainder inches={props.length} /> tall by {props.width}" wide</h4>
+        <h4><Remainder inches={props.length} /> long by {props.width}" wide</h4>
         <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
       </div>
     </article>

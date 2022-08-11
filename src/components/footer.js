@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
 
-import PaddleIcon from '../images/paddle';
+// import PaddleIcon from '../images/paddle';
 import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";
@@ -11,7 +11,7 @@ import Logo from "../images/logo";
 const Header = () => {
   return (
     <footer>
-      <PaddleIcon />
+      {/* <PaddleIcon /> */}
       <div className='logo-copy'>
         {/* <h3 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h3> */}
         <Logo />

@@ -62,15 +62,48 @@
   > li {
     flex: 1 1 10rem;
     border: 1px solid var(--tin-soldier);
-    padding-block: var(--baseline);
-    padding-inline: 1rem;
+    // padding-block: var(--baseline);
+    // padding-inline: 1rem;
     display: grid;
-    place-items: center;
+
+    // height: 100%;
 
     > a {
       display: flex;
       flex-direction: column;
       align-items: center;
+      // place-items: space-between;
+      justify-content: end;
+    }
+
+    > a:where(:hover, :focus) {
+      p {
+        background: var(--mullen__dark);
+        color: var(--kingly-cloud);
+        box-shadow: var(--penumbra);
+      }
+    }
+
+    svg {
+      transition: 0.2s ease;
+      margin-inline: 1rem;
+      margin-block: 0.75rem;
+    }
+
+    p {
+      transition: 0.2s ease;
+      text-align: center;
+      width: 100%;
+      background: var(--mullen);
+      color: whitesmoke;
+      align-self: end;
+      margin-block: 0;
+      // margin-inline: 0.75rem;
+      padding-block: 0.75rem;
+      text-decoration: underline;
+      text-transform: uppercase;
+      font-family: "Barlow-Condensed", Arial, sans-serif;
+      font-weight: 700;
     }
   }
 }
