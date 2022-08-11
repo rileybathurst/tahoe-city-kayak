@@ -21,6 +21,7 @@ import BookRental from "../components/peek/book-rental";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
+import MapSVG from "../images/map";
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -162,7 +163,7 @@ const IndexPage = () => {
       <Header />
       <main className="home__main">
         {/* // TODO: test this */}
-        <section itemscope itemtype="https://schema.org/Service">
+        <section itemScope itemType="https://schema.org/Service">
           <h2><Link to="/rentals-demos">On Water Rentals</Link></h2>
           <article className="home__main--season">
             <p>Season: May &ndash; October<br />
@@ -187,15 +188,15 @@ const IndexPage = () => {
 
           <p
             className="double-baseline"
-            itemprop="hasOfferCatalog"
-            itemscope
-            itemtype="https://schema.org/OfferCatalog"
+            itemProp="hasOfferCatalog"
+            itemScope
+            itemType="https://schema.org/OfferCatalog"
           >
             Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
             We strive to give you the best in
-            <span itemprop="name">kayak sales</span>,
-            <span itemprop="name">SUP rentals</span>,
-            <span itemprop="name">kayak rentals and tours</span>.
+            <span itemProp="name">kayak sales</span>,
+            <span itemProp="name">SUP rentals</span>,
+            <span itemProp="name">kayak rentals and tours</span>.
             We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.
           </p>
         </section>
@@ -323,7 +324,8 @@ const IndexPage = () => {
             </p>
           </div>
         </div>
-        <Map />
+        {/* <Map /> */}
+        <MapSVG />{/* this probably still needs more */}
       </section>
 
       <section id="retail">
@@ -385,3 +387,17 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+/* 
+
+this is a new thing that doesnt seems to be working yet but I'd like to get it there
+
+https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
+https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/
+
+
+export function Head() {
+  return (
+    <title>Hello World</title>
+  )
+} */

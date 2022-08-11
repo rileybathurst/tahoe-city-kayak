@@ -52,44 +52,44 @@ const RetailKayakPage = () => {
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemscope
-        itemtype="https://schema.org/BreadcrumbList"
+        itemScope
+        itemType="https://schema.org/BreadcrumbList"
       >
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <Link to="/" itemprop="item">
-            <span itemprop="name">Home</span>
-            <meta itemprop="position" content="1" />
+          <Link to="/" itemProp="item">
+            <span itemProp="name">Home</span>
+            <meta itemProp="position" content="1" />
           </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
         </li>
 
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <Link to={`/${parent}`} itemprop="item">
-            <span itemprop="name">{parent}</span>
-            <meta itemprop="position" content="2" />
+          <Link to={`/${parent}`} itemProp="item">
+            <span itemProp="name">{parent}</span>
+            <meta itemProp="position" content="2" />
           </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
         </li>
 
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <span itemprop="item">
+          <span itemProp="item">
             <span
-              itemprop="name"
+              itemProp="name"
               aria-current="page"
             >
               {title}
             </span>
-            <meta itemprop="position" content="2" />
+            <meta itemProp="position" content="2" />
           </span>
         </li>
       </ol>

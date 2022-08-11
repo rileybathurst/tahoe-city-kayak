@@ -6,13 +6,15 @@ import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";
 import MenuList from "./menu-list";
+import Logo from "../images/logo";
 
 const Header = () => {
   return (
     <footer>
       <PaddleIcon />
       <div className='logo-copy'>
-        <h3 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h3>
+        {/* <h3 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h3> */}
+        <Logo />
         &copy; {new Date().getFullYear()}
         <nav>
           <MenuList />

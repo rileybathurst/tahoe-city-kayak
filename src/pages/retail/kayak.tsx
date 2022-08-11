@@ -66,7 +66,7 @@ function More(props) {
 const RetailKayakPage = (data) => {
   let title = "Kayak Retail";
   let parent = "retail";
-  
+
   return (
     <>
       <Header />
@@ -75,53 +75,53 @@ const RetailKayakPage = (data) => {
         description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
       />
 
-<ol
+      <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemscope
-        itemtype="https://schema.org/BreadcrumbList"
+        itemScope
+        itemType="https://schema.org/BreadcrumbList"
       >
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <Link to="/" itemprop="item">
-            <span itemprop="name">Home</span>
-            <meta itemprop="position" content="1" />
+          <Link to="/" itemProp="item">
+            <span itemProp="name">Home</span>
+            <meta itemProp="position" content="1" />
           </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
         </li>
 
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <Link to={`/${parent}`} itemprop="item">
-            <span itemprop="name">{parent}</span>
-            <meta itemprop="position" content="2" />
+          <Link to={`/${parent}`} itemProp="item">
+            <span itemProp="name">{parent}</span>
+            <meta itemProp="position" content="2" />
           </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
         </li>
 
         <li
-          itemprop="itemListElement"
-          itemscope
-          itemtype="https://schema.org/ListItem"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
         >
-          <span itemprop="item">
+          <span itemProp="item">
             <span
-              itemprop="name"
+              itemProp="name"
               aria-current="page"
             >
               {title}
             </span>
-            <meta itemprop="position" content="2" />
+            <meta itemProp="position" content="2" />
           </span>
         </li>
       </ol>
 
-    <main>
-      <h1>{title}</h1>
+      <main>
+        <h1>{title}</h1>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
 
         <p>Retail and Reservations<br />
@@ -140,7 +140,7 @@ const RetailKayakPage = (data) => {
         <hr />
 
         <KayakBrandList />
-        </main>
+      </main>
 
       <StaticQuery
         query={query}
@@ -148,272 +148,272 @@ const RetailKayakPage = (data) => {
 
           <>
 
-            {data.hobie.edges.map(brand =>(
+            {data.hobie.edges.map(brand => (
               <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
                 </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
                 />
-                ))}
-              </div>
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
               </>
-            )) }
-            
-            {data.eddyline.edges.map(brand =>(
-              <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
-                </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
-                />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
-              </>
-            )) }
-            
-            {data.perception.edges.map(brand =>(
-              <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
-                </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
-                />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
-              </>
-            )) }
-            
-            {data.wildernesssystems.edges.map(brand =>(
-              <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
-                </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
-                />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
-              </>
-            )) }
-            
-            {data.delta.edges.map(brand =>(
-              <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
-                </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
-                />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
-              </>
-            )) }
-            
+            ))}
 
-{/* // TODO: // this is where I need to get rid of the sups */}
-            {data.bote.edges.map(brand =>(
+            {data.eddyline.edges.map(brand => (
               <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
                 </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
                 />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
               </>
-            )) }
-            
-            {data.brusurf.edges.map(brand =>(
+            ))}
+
+            {data.perception.edges.map(brand => (
               <>
-              <section>
-                <div className='brand-logo'>
-                  <Danger svg={brand.node.svg} />
-                  <h2 className='capitalize'>
-                    <Link to={brand.node.slug}>
-                      {brand.node.name}
-                    </Link>
-                  </h2>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
                 </div>
-                <p>{brand.node.tagline}.</p>
-                <hr />
-              </section>
-              <div className='deck'>
-                {brand.node.retail.slice(0, 4).map(retail => (
-                  <Card
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
                 />
-                ))}
-              </div>
-              {/* // TODO: this needs an if more than 4 */}
-              <More
-                retail={brand.node.retail}
-                brand={brand.node.name}
-                slug={brand.node.slug}
-              />
               </>
-            )) }
+            ))}
+
+            {data.wildernesssystems.edges.map(brand => (
+              <>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div>
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
+                />
+              </>
+            ))}
+
+            {data.delta.edges.map(brand => (
+              <>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div>
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
+                />
+              </>
+            ))}
+
+
+            {/* // TODO: // this is where I need to get rid of the sups */}
+            {data.bote.edges.map(brand => (
+              <>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div>
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
+                />
+              </>
+            ))}
+
+            {data.brusurf.edges.map(brand => (
+              <>
+                <section>
+                  <div className='brand-logo'>
+                    <Danger svg={brand.node.svg} />
+                    <h2 className='capitalize'>
+                      <Link to={brand.node.slug}>
+                        {brand.node.name}
+                      </Link>
+                    </h2>
+                  </div>
+                  <p>{brand.node.tagline}.</p>
+                  <hr />
+                </section>
+                <div className='deck'>
+                  {brand.node.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div>
+                {/* // TODO: this needs an if more than 4 */}
+                <More
+                  retail={brand.node.retail}
+                  brand={brand.node.name}
+                  slug={brand.node.slug}
+                />
+              </>
+            ))}
 
           </>
         )}

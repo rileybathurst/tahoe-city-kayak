@@ -10,6 +10,7 @@ const InstagramIcon = (props) => {
       height="40"
       width="40"
     >
+      <title>tahoe city kayak and paddleboard instagram</title>
       <defs>
         <linearGradient x1="69.27%" x2="128.20%" y1="129.46%" y2="29.46%" id="jsc_s_2">
           <stop offset="0" stopColor="#FDD074"></stop>

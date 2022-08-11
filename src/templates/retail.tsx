@@ -242,8 +242,8 @@ const RetailTypeView = ({ data }) => {
       <main className="main__full" itemscope itemtype="https://schema.org/Product">
         <div>
           <hgroup className="hgroup__retail">
-            <h1 className="h_title" itemprop="name">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand" itemprop="brand">{data.strapiRetail.brand.name}</h2>
+            <h1 className="h_title" itemProp="name">{data.strapiRetail.title}</h1>
+            <h2 className="h_brand" itemProp="brand">{data.strapiRetail.brand.name}</h2>
             <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
           </hgroup>
 

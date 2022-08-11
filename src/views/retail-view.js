@@ -69,7 +69,7 @@ function ReactMD(props) {
   if (props.raw) {
     if (props.title) {
       return (
-        <article className={props.className} itemprop="description" >
+        <article className={props.className} itemProp="description" >
           <h3>{props.title}</h3>
           <ReactMarkdown
             children={props.raw}
@@ -112,11 +112,11 @@ const RetailView = ({ retail, other }) => {
         &nbsp;{retail.title}
       </div>
 
-      <main className="main__full" itemscope itemtype="https://schema.org/Product">
+      <main className="main__full" itemScope itemType="https://schema.org/Product">
         <div>
           <hgroup className="hgroup__retail">
-            <h1 className="h_title" itemprop="name">{retail.title}</h1>
-            <h2 className="h_brand" itemprop="brand">{retail.brand.name}</h2>
+            <h1 className="h_title" itemProp="name">{retail.title}</h1>
+            <h2 className="h_brand" itemProp="brand">{retail.brand.name}</h2>
             <h3 className="h_series"><Spec name="series" spec={retail.series} /></h3>
           </hgroup>
 
@@ -178,7 +178,7 @@ const RetailView = ({ retail, other }) => {
                   image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                   alt={retail?.cutout?.alternativeText}
                   className="cutout"
-                  itemprop="image"
+                  itemProp="image"
                 />
               </div>
               <h4 className="card__title">

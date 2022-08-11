@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Menu from "./menu"
 import PaddleIcon from '../images/paddle';
 import MenuList from './menu-list';
+import Logo from '../images/logo';
 
 function OpenSeason(key, defaultValue) {
   const [banner, setBanner] = useState('shown');
@@ -156,9 +157,14 @@ const Header = () => {
     <header>
       <OpenSeason />
       <div className="logo-container" >
-        <PaddleIcon className="paddle--left" />
-        <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
-        <PaddleIcon className="paddle--right" />
+        {/* <PaddleIcon className="paddle--left" /> */}
+        <h1 className='logo'>
+          <Link to="/" className="link__subtle">
+            {/* Tahoe City Kayak */}
+            <Logo />
+          </Link>
+        </h1>
+        {/* <PaddleIcon className="paddle--right" /> */}
       </div>
       <Menu />
       <Button />
