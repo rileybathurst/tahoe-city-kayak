@@ -226,7 +226,7 @@ main {
   background-color: var(--mercury);
   box-shadow: 0 0 0 100vmax var(--mercury);
   clip-path: inset(0 -100vmax);
-  margin-block-end: calc(var(--baseline) * 2);
+  // margin-block-end: calc(var(--baseline) * 2);
 }
 
 // ? this might be a bad name if its also buy
@@ -238,6 +238,7 @@ main {
   box-shadow: 0 0 0 100vmax var(--mullen);
   clip-path: inset(0 -100vmax);
   padding-block: 1.5rem;
+  color: var(--brilliance);
 
   > * {
     margin-inline: calc(var(--baseline) / 2);
@@ -246,6 +247,12 @@ main {
   button {
     border-color: whitesmoke;
     color: whitesmoke;
+  }
+
+  // needs specificity
+  a:where(:hover, :focus) {
+    background-color: var(--mullen__dark) !important;
+    color: var(--kingly-cloud) !important;
   }
 }
 

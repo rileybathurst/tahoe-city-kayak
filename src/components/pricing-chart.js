@@ -12,7 +12,7 @@ const PricingChart = (props) => {
           <p><span>Full Day</span></p>
         </div>
         <div>
-          <h4><span>Single Kayak</span><span> / SUP</span></h4>
+          <h4><span>Single</span><span>Kayak</span></h4>
           <p>$30</p>
           <p>$60</p>
           <p>$90</p>
@@ -22,6 +22,12 @@ const PricingChart = (props) => {
           <p>$45</p>
           <p>$90</p>
           <p>$110</p>
+        </div>
+        <div>
+          <h4><span>&nbsp;</span><span>Paddleboard</span></h4>
+          <p>$30</p>
+          <p>$60</p>
+          <p>$90</p>
         </div>
       </div>
       <div className={`pricing-chart__${props.book}`}>

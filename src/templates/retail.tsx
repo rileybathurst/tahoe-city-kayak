@@ -152,6 +152,7 @@ function OtherWrap(props) {
   }
 }
 
+// references that there are no other by brand
 function None(props) {
   // console.log(props.retail.edges);
 
@@ -165,6 +166,26 @@ function None(props) {
         </h3>
       </section>
     )
+  } else {
+    return null;
+  }
+}
+
+function Demo(props) {
+  if (props.demo) {
+    return (
+      <div className="single__book">
+        <h3>Demo</h3>
+        <p>If you&rsquo;re looking to try this particular {props.type}, call the shop and request a demo.
+          We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season.
+          &#x28;Up to two full days rental charge&#x29;</p>
+        <p>Phone:&nbsp;
+          <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
+            (530) 581-4336
+          </a>
+        </p>
+      </div>
+    );
   } else {
     return null;
   }
@@ -264,7 +285,7 @@ const RetailTypeView = ({ data }) => {
           <Spec name="volume" spec={data.strapiRetail.volume} />
 
           <Spec name="Inflatable" spec={data.strapiRetail.inflatable} />
-          <Spec name="demo" spec={data.strapiRetail.demo} />
+          {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
         </div>
         <div>
           <div className="collage card-collage">
@@ -286,6 +307,8 @@ const RetailTypeView = ({ data }) => {
       </main>
 
       <ReactMD raw={data.strapiRetail.childStrapiRetailDescriptionTextnode?.description} className="single__description" />
+
+      <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
 
       <OtherWrap retail={data.allStrapiRetail} brand={data.strapiRetail.brand.name} slug={data.strapiRetail.brand.slug} type={data.strapiRetail.type}>
         {data.allStrapiRetail.edges.map(({ node }) => (

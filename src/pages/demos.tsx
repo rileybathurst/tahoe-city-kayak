@@ -37,8 +37,8 @@ function Card(props) {
   )
 }
 
-const RentalsDemosPage = () => {
-  let title = "Rentals & Demos";
+const DemosPage = () => {
+  let title = "Demos";
 
   return (
     <>
@@ -84,57 +84,71 @@ const RentalsDemosPage = () => {
 
       <main>
         <h1>{title}</h1>
-        <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
+        <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
 
-        <article>
-          <h4>Season: May &ndash; October</h4>
-          <p>On Water Rental Hours<br />
-            Located at<br />
-            <address>
-              <MapStore>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145
-              </MapStore>
-            </address>
-          </p>
-          <p>Open Daily Weather Permitting 9:30am &ndash;5:30pm</p>
+        <p>Phone:&nbsp;
+          <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
+            (530) 581-4336
+          </a>
+        </p>
 
-          <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
-
-          <PricingChart />
-        </article>
+        <PricingChart />
         <hr />
       </main>
 
-      {<StaticQuery
-        query={query}
-        render={data => (
-          <>
+      {
+        <StaticQuery
+          query={query}
+          render={data => (
+            <>
 
-            <article>
-              <h3>Demos</h3>
-            </article>
+              <article>
+                <h3>Demos</h3>
+                <hr />
+                <h4>Kayak</h4>
+              </article>
 
-            <section className="deck">
-              {
-                data.allStrapiRetail.edges.map(retail => (
-                  <Card
-                    id={retail.node.id}
-                    slug={retail.node.slug}
-                    title={retail.node.title}
-                    capacity={retail.node.capacity}
-                    length={retail.node.length}
-                    width={retail.node.width}
-                    excerpt={retail.node.excerpt}
-                    cutout={retail.node?.cutout}
-                  />
-                ))
-              }
-            </section>
-          </>
-        )}
-      />}
+              <section className="deck">
+                {
+                  data.kayak.edges.map(retail => (
+                    <Card
+                      id={retail.node.id}
+                      slug={retail.node.slug}
+                      title={retail.node.title}
+                      capacity={retail.node.capacity}
+                      length={retail.node.length}
+                      width={retail.node.width}
+                      excerpt={retail.node.excerpt}
+                      cutout={retail.node?.cutout}
+                    />
+                  ))
+                }
+              </section>
+
+              <article>
+                <h4>Paddleboards</h4>
+              </article>
+
+              <section className="deck">
+                {
+                  data.paddleboards.edges.map(retail => (
+                    <Card
+                      id={retail.node.id}
+                      slug={retail.node.slug}
+                      title={retail.node.title}
+                      capacity={retail.node.capacity}
+                      length={retail.node.length}
+                      width={retail.node.width}
+                      excerpt={retail.node.excerpt}
+                      cutout={retail.node?.cutout}
+                    />
+                  ))
+                }
+              </section>
+            </>
+          )}
+        />
+      }
 
 
       <Footer />
@@ -142,11 +156,34 @@ const RentalsDemosPage = () => {
   )
 }
 
-export default RentalsDemosPage
+export default DemosPage
 
 const query = graphql`
-query RentalsQuery {
-  allStrapiRetail(filter: {demo: {eq: true}}) {
+query DemosQuery {
+  kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+    }
+  }
+  
+  paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
     edges {
       node {
         id
