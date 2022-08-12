@@ -10,6 +10,7 @@ import Remainder from "../../components/remainder";
 import MapStore from "../../components/map-store";
 import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
+import KayakFeatureList from "../../components/kayak-feature-list";
 
 function Card(props) {
   if (props.type === 'kayak') {
@@ -128,17 +129,22 @@ const RetailKayakPage = (data) => {
           {/* // TODO: single update */}
           Open 7 days a week 9:00am&ndash;6:00pm</p>
 
-        <p>Located at
-          <address>
-            <MapStore>
-              521 N Lake Blvd<br />
-              Tahoe City,<br />
-              CA 96145
-            </MapStore>
-          </address>
-        </p>
+        <p>Located at</p>
+        <address>
+          <MapStore>
+            521 N Lake Blvd<br />
+            Tahoe City,<br />
+            CA 96145
+          </MapStore>
+        </address>
+
         <hr />
 
+        <h2>Browse By Feature</h2>
+        <KayakFeatureList />
+
+        <hr />
+        <h2>Browse By Brand</h2>
         <KayakBrandList />
       </main>
 
@@ -146,10 +152,12 @@ const RetailKayakPage = (data) => {
         query={query}
         render={data => (
 
+          // TODO: Warning: Each child in a list should have a unique "key" prop.
           <>
 
             {data.hobie.edges.map(brand => (
               <>
+                {/* // TODO: Warning: Each child in a list should have a unique "key" prop. */}
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -431,6 +439,7 @@ query KayaksQuery {
   hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -461,6 +470,7 @@ query KayaksQuery {
   eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -491,6 +501,7 @@ query KayaksQuery {
   perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -521,6 +532,7 @@ query KayaksQuery {
   wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -551,6 +563,7 @@ query KayaksQuery {
   delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -581,6 +594,7 @@ query KayaksQuery {
   bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline
@@ -611,6 +625,7 @@ query KayaksQuery {
   brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
     edges {
       node {
+        id
         name
         slug
         tagline

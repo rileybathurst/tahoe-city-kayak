@@ -6,7 +6,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import Seo from "../components/seo";
-import MapStore from "../components/map-store";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 
@@ -85,7 +84,8 @@ const DemosPage = () => {
       <main>
         <h1>{title}</h1>
         <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
-
+        {/* // TODO: this can be by a boolean */}
+        <p>* Pedal drive is an additional $5 per rental.</p>
         <p>Phone:&nbsp;
           <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
             (530) 581-4336

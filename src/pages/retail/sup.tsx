@@ -140,6 +140,13 @@ const RetailKayakPage = (data) => {
         </p>
         <hr />
 
+        <h2>Browse By Feature</h2>
+        <ul>
+          <li key='inflatable'><Link to="/retail/sup/inflatable">Inflatable</Link></li>
+        </ul>
+
+        <hr />
+        <h2>Browse By Brand</h2>
         <SupBrandList />
       </main>
 

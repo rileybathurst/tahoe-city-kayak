@@ -23,52 +23,20 @@
   --umbra: 0 5px 12px hsla(0, 0%, 0%, 0.4) /* Ambient light shadow */,
     0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
 
-  --lead: hsl(0, 0%, 10%);
-  --tungsten: hsl(0, 0%, 20%);
-  --iron: hsl(0, 0%, 30%);
-  --steel: hsl(0, 0%, 40%);
-  --nickel: hsl(0, 0%, 50%);
-  --aluminium: hsl(0, 0%, 60%);
-  --magnesium: hsl(0, 0%, 70%);
-  --silver: hsl(0, 0%, 80%);
-  --mercury: hsl(0, 0%, 90%);
-
-  // whats the louie equivalent of these
-  // https://api.color.pizza/v1/3f3f3f
-  // 100/8 = 12.5%;
-  // .1 = #030303 = Armor Wash
-  // .1 = #060606 = Black Metal // I think maybe this is more
-  // 12.5 = #202020 = Lead // i dont like the apple name
-  // 12.5 = #222222 = Black Out // i dont like the apple name
-  // 25 = #3f3f3f = Raven Black
-  // 37.5 = #747474 = Industrial Revolution
-  // 50 = #7e7e7e = Aged Moustache Grey // this is just long
-  // 50 = #808080 = Grey
-  // 62.5 = #9f9f9f = Cold Grey
-  // 75 = #bfbfbf = Silver
-  // 75 = #bebebe = Tin SOldier
-  // 87.5 = #dedede = Kingly Cloud
-  // 99 = #fbfbfb = Whiteout
-  // 99 = #fdfdfd = Brilliance
-
-  // I bet you could build a nice blue to yellow of the neutrals
-  // 808080 grey is 50
-  // silver c0c0c0 is 75 lightness
-  // slategrey is the same as #708090 50.19608 lightness a slight tint
-  // f5f5f5 whitesmoke is 96.07843
-  // a9a9a9 darkgrey is 66 lightness
-  // 696969 dimgrey is 41 lightness
-  // dcdcdc gainsboro is 86
-  // 778899 lightslategray is 53 lightness a slight tint
-
   // louie neutrals
   --black-metal: hsl(0, 0%, 2.5%);
   --black-out: hsl(0, 0%, 12.5%);
   --raven-black: hsl(0, 0%, 25%);
   --industrial-revolution: hsl(0, 0%, 37.5%);
-  --grey: hsl(0, 0%, 50%);
+  --grey: grey; // I can not use the variable here
   --cold-grey: hsl(0, 0%, 62.5%);
   --tin-soldier: hsl(0, 0%, 75%);
   --kingly-cloud: hsl(0, 0%, 87.5%);
   --brilliance: hsl(0, 0%, 97.5%);
+
+  /*------------------*/
+  //  #WIDTHS
+  /*------------------*/
+
+  --measure: 40rem;
 }

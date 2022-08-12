@@ -8,7 +8,7 @@
 
     li {
       line-height: 3rem;
-      border-bottom: 1px solid var(--silver);
+      border-bottom: 1px solid var(--tin-soldier);
     }
 
     li:last-child {
@@ -22,7 +22,7 @@
 
   li {
     list-style: none;
-    border-bottom: 1px solid var(--silver);
+    border-bottom: 1px solid var(--tin-soldier);
     margin-block-end: 1.5rem;
   }
 
@@ -115,4 +115,13 @@
 .series-list {
   list-style: none;
   padding: 0;
+}
+
+/*------------------*/
+//  #Feature list
+/*------------------*/
+
+.feature-list {
+  display: flex;
+  flex-flow: row wrap;
 }
