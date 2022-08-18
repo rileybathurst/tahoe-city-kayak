@@ -97,7 +97,7 @@ function ReactMD(props) {
 
 function Other(props) {
 
-  console.log('test');
+  // console.log('test');
 
   if (props.retail) {
     return (

@@ -53,7 +53,17 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
+
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `jpeg`]
+        },
+      },
+    },
+
+
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
     {
