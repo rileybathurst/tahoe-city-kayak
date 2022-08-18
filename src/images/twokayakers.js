@@ -9,6 +9,7 @@ const TwoKayakers = (props) => {
     className={`img__wrapped ${props.className}`}
     breakpoints={[300, 600, 900]}
     width={650}
+    formats={[`auto`, `webp`, `jpg`]}
   />
 };
 
