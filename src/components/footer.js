@@ -14,12 +14,13 @@ const Header = () => {
       {/* <PaddleIcon /> */}
       <div className='logo-copy'>
         {/* <h3 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h3> */}
+
         <Logo />
-        &copy; {new Date().getFullYear()}
+        <p>&copy; {new Date().getFullYear()}</p>
         <nav>
           <MenuList />
         </nav>
-        <div>
+        <div className="footer__contact">
           <p><a href="phone:(530) 581-4336" rel="norel norefferer">Phone: (530) 581-4336</a></p>
           <p><a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer">tahoecitykayak@gmail.com</a></p>
           <div className="social">

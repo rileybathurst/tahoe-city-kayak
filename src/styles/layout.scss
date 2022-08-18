@@ -337,6 +337,7 @@ footer {
     padding: 0;
 
     ul {
+      margin: 0;
       padding-block-start: 0;
       flex-direction: column;
       gap: 0.75rem;
@@ -365,6 +366,12 @@ footer {
 
   .book-now {
     border-block-end: 1px solid var(--mullen);
+  }
+
+  .footer__contact {
+    p {
+      margin-block-end: var(--baseline);
+    }
   }
 }
 

@@ -69,3 +69,12 @@ menu button {
   text-align: center;
   display: inline-block; // same as a button
 }
+
+/*------------------*/
+//  #BOOK NOW
+/*------------------*/
+
+footer .book-now {
+  margin-block-start: 0;
+  margin-block-end: var(--baseline);
+}

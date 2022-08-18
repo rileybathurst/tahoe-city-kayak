@@ -35,7 +35,11 @@ nav {
 
   @media (min-width: 40rem) {
     max-width: 60rem;
-    margin-inline: auto;
+    margin: 0 auto;
+
+    @supports not (margin-inline: auto) {
+      margin-inline: auto;
+    }
   }
 
   ul {

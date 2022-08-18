@@ -44,6 +44,11 @@
       align-items: baseline;
       justify-content: space-between;
       margin-inline: 0.75rem;
+      margin-block-end: var(--baseline);
+
+      > * {
+        margin: 0; // reset
+      }
     }
 
     .card__span {
@@ -65,20 +70,37 @@
       display: flex;
       width: calc(100% - 1.5rem);
       margin-inline: 0.75rem;
+      margin-block-end: var(--baseline);
       justify-content: space-between;
-    }
 
-    button {
-      background-color: var(--mullen);
-      color: whitesmoke;
-    }
+      > * {
+        margin: 0;
+      }
 
-    button:where(:hover, :focus) {
-      background-color: var(--sand);
-      color: var(--mullen);
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 2rem;
+        font-weight: normal;
+        line-height: 3rem;
+        color: var(--black-out);
+      }
+
+      button {
+        background-color: var(--mullen);
+        color: var(--brilliance);
+        line-height: 2rem;
+      }
+
+      button:where(:hover, :focus) {
+        background-color: var(--mullen__dark);
+        color: var(--kingly-cloud);
+      } // .button
     }
-  }
-}
+  } // .card
+} // .deck
 
 .deck:empty {
   display: none;

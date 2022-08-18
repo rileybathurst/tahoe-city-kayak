@@ -16,7 +16,7 @@ svg {
 /*------------------*/
 
 .logo-container {
-  margin-inline: auto;
+  margin: 0 auto;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -27,6 +27,10 @@ svg {
   position: relative;
   max-width: calc(100% - 2rem); // guess and check
   padding-block: var(--baseline);
+
+  @supports not (margin-inline: auto) {
+    margin-inline: auto;
+  }
 
   @media (min-width: 30rem) {
     max-width: 32rem; // guess and check
@@ -67,4 +71,21 @@ svg {
 .map-svg {
   max-width: 100%;
   max-height: 100%;
+}
+
+/*------------------*/
+//  #SOCIAL
+/*------------------*/
+
+.facebook {
+  .facebook__blue {
+    fill: grey;
+    transition: 0.5s ease;
+  }
+}
+
+.facebook:hover {
+  .facebook__blue {
+    fill: #1877f2;
+  }
 }
