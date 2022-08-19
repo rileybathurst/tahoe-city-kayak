@@ -34,6 +34,12 @@ a svg {
   transition: 0.2s ease;
 }
 
-a:hover svg {
+/* a:hover svg {
+  fill: var(--mullen);
+}
+ */
+
+// test
+a:hover svg:not(.instagram) {
   fill: var(--mullen);
 }

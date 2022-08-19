@@ -32,9 +32,11 @@ function OpenSeason(key, defaultValue) {
         <p>We are currently OPEN for 2022’s rental season.</p>
         <button onClick={closeBanner}>x</button>
       </div>
-      {process.env.NODE_ENV === "development" ? (
+      {/* // TODO this needs more work */}
+      <button onClick={openBanner} className="reseason">&nbsp;</button>
+      {/* {process.env.NODE_ENV === "development" ? (
         <button onClick={openBanner}>Put the banner back</button>
-      ) : null}
+      ) : null} */}
     </>
   );
 }

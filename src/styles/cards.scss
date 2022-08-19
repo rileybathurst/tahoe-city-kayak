@@ -83,6 +83,7 @@
       h5,
       h6 {
         font-size: 2rem;
+        font-size: clamp(1rem, 1.667vw, 2rem);
         font-weight: normal;
         line-height: 3rem;
         color: var(--black-out);

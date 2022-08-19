@@ -78,6 +78,7 @@ svg {
 /*------------------*/
 
 .facebook {
+  mix-blend-mode: multiply;
   .facebook__blue {
     fill: grey;
     transition: 0.5s ease;
@@ -85,7 +86,24 @@ svg {
 }
 
 .facebook:hover {
+  mix-blend-mode: normal;
   .facebook__blue {
     fill: #1877f2;
   }
+}
+
+.instagram {
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  transition: 0.5s ease;
+}
+
+.instagram:hover {
+  filter: grayscale(0%);
+  mix-blend-mode: normal;
+}
+
+a:hover .instagram {
+  filter: grayscale(0%);
+  mix-blend-mode: normal;
 }

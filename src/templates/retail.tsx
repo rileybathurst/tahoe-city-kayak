@@ -11,10 +11,18 @@ import Seo from "../components/seo";
 import Remainder from "../components/remainder";
 import TextureBackgrounds from "../components/texturebackgrounds";
 
+
 function Spec(props) {
-  if (props.name === "Weight") {
+  if (props.name === 'length' || props.name === 'width') {
+    return (
+      <div className="spec">
+        <h2>{props.name}</h2>
+        <h3><Remainder inches={props.spec} /></h3>
+      </div>
+    );
+  } else if (props.name === "Weight") {
     // and if
-    if (props.name === "Rigged Weight") {
+    if (props.name === "Weight") {
       return (
         <>
           <div className="spec">
@@ -278,6 +286,7 @@ const RetailTypeView = ({ data }) => {
           <Spec name="crew" spec={data.strapiRetail.crew} />
           <Spec name="capacity" spec={data.strapiRetail.capacity} unit="lbs" />
           <Spec name="length" spec={data.strapiRetail.length} unit="&quot;" />
+          <Spec name="width" spec={data.strapiRetail.width} unit="&quot;" />
 
           <Spec
             name="Weight"
@@ -286,7 +295,6 @@ const RetailTypeView = ({ data }) => {
             unit="lbs"
           />
 
-          <Spec name="width" spec={data.strapiRetail.width} unit="&quot;" />
           <Spec name="thickness" spec={data.strapiRetail.thickness} />
           <Spec name="volume" spec={data.strapiRetail.volume} />
 

@@ -103,8 +103,6 @@ main {
 
 .home__main--season {
   display: flex;
-  gap: var(--baseline);
-  // justify-content: space-between;
   flex-flow: column;
   padding-inline: 0;
 
@@ -113,9 +111,19 @@ main {
     gap: calc(var(--baseline) * 2);
   }
 
-  /*   > * {
-    flex: 1 1 20rem;
-  } */
+  // normal
+  > *:first-child {
+    margin-right: 0;
+    gap: var(--baseline);
+  }
+
+  // old
+  @supports not (gap: 1rem) {
+    > *:first-child {
+      margin-right: var(--baseline);
+      background-color: rebeccapurple;
+    }
+  }
 }
 
 .main__photo-grid {
@@ -301,6 +309,7 @@ footer {
   gap: 1rem;
 
   padding-block-start: 1.5rem;
+  padding-inline: var(--baseline);
 
   > * {
     flex: 1 1 5rem;

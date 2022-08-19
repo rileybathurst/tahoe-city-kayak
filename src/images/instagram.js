@@ -9,6 +9,7 @@ const InstagramIcon = (props) => {
       fill="url(#jsc_s_2)"
       height="40"
       width="40"
+      className="instagram"
     >
       <title>tahoe city kayak and paddleboard instagram</title>
       <defs>

@@ -45,6 +45,7 @@ button:active {
 .top-bar.hidden {
   opacity: 0;
   height: 0;
+  padding: 0;
 }
 
 .top-bar p,
@@ -52,6 +53,16 @@ button:active {
   display: inline;
   color: whitesmoke;
   margin: 0;
+}
+
+.reseason {
+  width: 100%;
+  height: 0.25rem;
+  background-color: var(--mullen);
+  transition: 0.5s ease;
+  margin-block-end: 0;
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
 }
 
 /*------------------*/
