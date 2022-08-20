@@ -51,6 +51,8 @@
 /*------------------*/
 
 .brand_list {
+  max-width: 60rem;
+  margin-inline: auto;
   list-style: none;
   padding: 0;
   display: flex;
@@ -103,7 +105,7 @@
       padding-block: 0.75rem;
       text-decoration: underline;
       text-transform: uppercase;
-      font-family: "Barlow-Condensed", Arial, sans-serif;
+      font-family: "Barlow-Condensed", Arial, sans-serif; // TODO this should be a variable
       font-weight: 700;
     }
   }
@@ -125,4 +127,9 @@
 .feature-list {
   display: flex;
   flex-flow: row wrap;
+  padding-inline-start: 0;
+  list-style: none;
+  gap: var(--baseline);
+  align-items: baseline;
+  justify-content: space-between;
 }

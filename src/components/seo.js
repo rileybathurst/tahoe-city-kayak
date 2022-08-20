@@ -36,7 +36,7 @@ const SEO = ({
   // but it doesnt get past the null problem
   // title: `${title} | ${defaultTitle}` || defaultTitle,
   const seo = {
-    title: title || defaultTitle,
+    title: `${title} - Tahoe City Kayak and Paddleboard` || defaultTitle,
     description: description || defaultDescription,
     image: image || defaultImage,
     ogImage: image,
@@ -61,7 +61,7 @@ const SEO = ({
     <Helmet
       // title={`${ seo.title } | Tahoe City Kayak`} // this works but needs the if it has something else
       title={seo.title}
-      titleTemplate={titleTemplate}
+      // titleTemplate={titleTemplate}
       // titleTemplate = '%s | Gatsby SEO';
       htmlAttributes={{
         lang: 'en-US',
@@ -168,7 +168,7 @@ const query = graphql`
   query SEO {
     site {
       siteMetadata {
-        defaultTitle: title
+        defaultTitle
         defaultDescription: description
         openingHours
         telephone

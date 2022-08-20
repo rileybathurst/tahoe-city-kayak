@@ -37,7 +37,7 @@ function Card(props) {
 }
 
 const RetailSupPage = () => {
-  let title = "SUP Retail";
+  let title = "Paddleboard Retail";
   let parent = "retail";
 
   return (

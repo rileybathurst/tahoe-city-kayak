@@ -5,7 +5,9 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import Seo from "../components/seo";
-import MapStore from "../components/map-store";
+// import MapStore from "../components/map-store";
+import KayakIcon from "../images/kayak";
+import MapLink from "../components/map-link";
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -58,17 +60,24 @@ const RentalsPage = () => {
 
         <article>
           <h4>Season: May &ndash; October</h4>
-          <p>On Water Rental Hours<br />
-            Located at<br />
-            <address>
-              <MapStore>
+          <div className="here__location here__card">
+            <KayakIcon />
+            <p>
+              <strong>On Water Rental</strong><br />
+              <MapLink>
                 Commons Beach<br />
                 400 North Lake Blvd,<br />
-                Tahoe City 96145
-              </MapStore>
-            </address>
-          </p>
-          <p>Open Daily Weather Permitting 9:30am &ndash;5:30pm</p>
+                Tahoe City 96145<br />
+              </MapLink>
+            </p>
+
+            <p>
+              May &ndash; October<br />
+              Open Daily<br />
+              9:30am &ndash; 5:30pm<br />
+              Weather Permitting<br />
+            </p>
+          </div>
 
           <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
 

@@ -15,7 +15,7 @@ export const Pricing = ({ primary }) => {
           <p><span>Full Day</span></p>
         </div>
         <div>
-          <h4><span>Single Kayak</span><span> / SUP</span></h4>
+          <h4><span>Single Kayak</span><span> / Paddleboard</span></h4>
           <p>$30</p>
           <p>$60</p>
           <p>$90</p>

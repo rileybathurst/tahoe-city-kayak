@@ -37,7 +37,7 @@ function Card(props) {
 }
 
 const DemosPage = () => {
-  let title = "Two Person Kayaks";
+  let title = "Inflatable Paddleboards";
 
   return (
     <>
@@ -45,7 +45,7 @@ const DemosPage = () => {
 
       <Seo
         title={title}
-        description="Our tandem kayaks are the perfect way to explore the water with friends"
+        description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
       />
 
       <ol
@@ -80,7 +80,7 @@ const DemosPage = () => {
           itemType="https://schema.org/ListItem"
         >
           <Link to="/retail/sup" itemProp="item">
-            <span itemProp="name">SUP</span>
+            <span itemProp="name">Paddleboard</span>
             <meta itemProp="position" content="3" />
           </Link>&nbsp;/&nbsp;
         </li>

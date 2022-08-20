@@ -13,6 +13,9 @@ import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min";
 
 import WaterTexture from "../images/watertexture";
+import MapSVG from "../images/map";
+import KayakIcon from "../images/kayak";
+import MapLink from "../components/map-link";
 
 function Kayaker(props) {
   return <StaticImage
@@ -30,7 +33,7 @@ function Supper(props) {
   return <StaticImage
     // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
     src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
-    alt="tahoe city kayak supper"
+    alt="tahoe city kayak paddleboarder"
     className={`${props.className} paddler img__wrapped`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
@@ -177,15 +180,38 @@ const TourView = ({ tour, other }) => {
             <a href="{/* // TODO */}">Google Maps</a>
           </div>
         </div>
-        <div className="collage tour-collage">
-          <GatsbyImage
-            image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={tour?.ogimage?.alternativeText}
-            className="card__image tour_texture"
-          />
-          <WaterTexture className="texture card__image" />
-          <Paddler sport={tour.sport} />
-        </div>
+        <section>
+          <div className="collage tour-collage">
+            <GatsbyImage
+              image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={tour?.ogimage?.alternativeText}
+              className="card__image tour_texture"
+            />
+            <WaterTexture className="texture card__image" />
+            <Paddler sport={tour.sport} />
+          </div>
+          <hr />
+          <h4>Meet us at the On Water Rentals</h4>
+          <div className="here__location here__card">
+            <KayakIcon />
+            <p>
+              <strong>On Water Rental</strong><br />
+              <MapLink>
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145<br />
+              </MapLink>
+            </p>
+
+            <p>
+              May &ndash; October<br />
+              Open Daily<br />
+              9:30am &ndash; 5:30pm<br />
+              Weather Permitting<br />
+            </p>
+          </div>
+          <MapSVG />
+        </section>
 
       </main>
       <article className="single__description">

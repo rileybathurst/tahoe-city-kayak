@@ -119,7 +119,7 @@ const InformationPage = () => {
                 <li>Stay Close to Shore &ndash; You&rsquo;ll deal with less waves and boat wakes here. On the shore side of the white buoys is the no&ndash;wake zone. Power boats are limited to 5 MPH here.</li>
               </ul>
             </li>
-            <li>SUP Paddle Strokes
+            <li>Paddleboard Strokes
               <ul>
                 <li>Forward Stroke &ndash; Keep your arms fairly straight and the paddle shaft vertical to the water. The paddle should enter the water well in front of you and exit the water at your feet.</li>
                 <li>Turning (Sweep) Stroke &ndash; The paddle shaft should be at a lower, 45 degree angle to the water. It should enter the water in front of you, and sweep past your feet (keep your stance wide for stability).</li>

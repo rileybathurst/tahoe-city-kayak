@@ -1,4 +1,5 @@
-button {
+button,
+.button {
   background: none;
   border: 1px solid var(--mullen);
   border-radius: 0.25rem;
@@ -6,11 +7,17 @@ button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--baseline);
   transition: 0.5s ease;
   font-family: "Barlow-Condensed", Arial, sans-serif; // Google font
+  display: block;
+  line-height: 1.5rem;
+  text-decoration: none;
+  width: max-content;
 }
 
+.button:hover,
+.button:active,
 .button__hover,
 button:hover {
   background-color: var(--mullen);

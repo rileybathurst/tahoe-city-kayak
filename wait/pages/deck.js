@@ -43,7 +43,7 @@ const DeckPage = () => {
       <Header />
 
       <Seo
-        title="SUP Retail"
+        title="Paddleboard Retail"
       />
 
       <div className="breadcrumbs">

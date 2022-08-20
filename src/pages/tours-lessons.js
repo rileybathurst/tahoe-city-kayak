@@ -7,6 +7,8 @@ import Footer from "../components/footer"
 import Seo from "../components/seo";
 import Time from "../components/time";
 import Fitness from "../components/fitness";
+import KayakIcon from "../images/kayak";
+import MapLink from "../components/map-link";
 
 import BookNow from "../components/peek/book-now";
 
@@ -60,6 +62,25 @@ const ToursLessonsPage = () => {
         <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         <BookNow />
         <hr />
+
+        <div className="here__location here__card">
+          <KayakIcon />
+          <p>
+            <strong>On Water Rental</strong><br />
+            <MapLink>
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+            </MapLink>
+          </p>
+
+          <p>
+            May &ndash; October<br />
+            Open Daily<br />
+            9:30am &ndash; 5:30pm<br />
+            Weather Permitting<br />
+          </p>
+        </div>
       </main>
 
       <StaticQuery
@@ -113,7 +134,8 @@ const ToursLessonsPage = () => {
             </div>
             <article>
               <hgroup>
-                <h1>SUP</h1><h2>Tours &amp; Lessons</h2>
+                <h1>Paddleboard</h1>
+                <h2>Tours &amp; Lessons</h2>
               </hgroup>
             </article>
             <div className="deck">

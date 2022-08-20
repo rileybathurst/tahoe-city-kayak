@@ -91,8 +91,8 @@ const supBrandView = ({ data }) => {
     <>
       <Header />
       <Seo
-        title={`Tahoe City sup sells ${data.brand.name} sups`}
-        description={`${data.brand.name} sups ${data.brand.tagline}`}
+        title={`Tahoe City Kayak sells ${data.brand.name} paddleboards`}
+        description={`${data.brand.name} paddleboards ${data.brand.tagline}`}
       />
 
       <ol
@@ -129,7 +129,7 @@ const supBrandView = ({ data }) => {
           itemType="https://schema.org/ListItem"
         >
           <Link to="/retail/sup" itemProp="item">
-            <span itemProp="name">SUP</span>
+            <span itemProp="name">Paddleboard</span>
             <meta itemProp="position" content="3" />
           </Link>&nbsp;/&nbsp;
         </li>

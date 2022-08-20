@@ -7,6 +7,8 @@ import Footer from "../components/footer";
 import Seo from "../components/seo";
 import Remainder from "../components/remainder";
 import MapStore from "../components/map-store";
+import StoreIcon from "../images/store";
+import KayakFeatureList from "../components/kayak-feature-list";
 
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
@@ -62,23 +64,29 @@ const RetailPage = () => {
         <h1>{title}</h1>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
 
-        <p>Retail and Reservations<br />
-          {/* // TODO: single update */}
-          Open 7 days a week 9:00am&ndash;6:00pm</p>
+        <div className="here__location here__card">
+          <StoreIcon />
+          <p>
+            <strong>Retail Location</strong><br />
+            <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
+              521 North Lake Blvd,<br />
+              Tahoe City 96145</a>
+          </p>
 
-        <p>Located at
-          <address>
-            <MapStore>
-              521 N Lake Blvd<br />
-              Tahoe City,<br />
-              CA 96145
-            </MapStore>
-          </address>
-        </p>
+          <p>
+            Open Daily<br />
+            9am &ndash; 6pm<br />
+          </p>
+        </div>
 
         <h2><Link to="/retail/kayak">Kayaks</Link></h2>
-        <KayakBrandList />
+        <h2>Browse By Feature</h2>
+        <KayakFeatureList />
       </main>
+      <section>
+        <h2>Browse By Brand</h2>
+      </section>
+      <KayakBrandList />
 
       <StaticQuery
         query={query}
@@ -120,8 +128,11 @@ const RetailPage = () => {
             <article>
               <hr />
               <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
-              <SupBrandList />
             </article>
+            <section>
+              <h2>Browse By Brand</h2>
+            </section>
+            <SupBrandList />
 
             <section className="deck">
               {
@@ -150,7 +161,7 @@ const RetailPage = () => {
                   </article>
                 ))
               }
-              <h2><Link to="/retail/sup">All SUPs</Link></h2>
+              <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
             </section>
           </>
         )} />

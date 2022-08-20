@@ -168,7 +168,7 @@ const RetailView = ({ retail, other }) => {
 
       {/* //TODO: this needs far more related */}
       <div className="single__other" >
-        <h3>Other Kayaks &amp; SUPs</h3>
+        <h3>Other Kayaks &amp; Paddleboards</h3>
         <section className="deck">
           {other.nodes.map(retail => (
             <article className="card">

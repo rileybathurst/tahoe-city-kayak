@@ -17,10 +17,11 @@ const strapiConfig = {
 
 module.exports = {
   siteMetadata: {
-    title: "Tahoe City Kayak",
+    title: "Tahoe City Kayak and Padddleboard",
+    defaultTitle: "Tahoe City Kayak and Padddleboard",
     siteUrl: 'https://tahoe-city-kayak.netlify.app',
     url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
-    description: "North Tahoes Premier Kayak and SUP Provider of Rentals Sales Lessons and Tours",
+    description: "North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours",
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00',
     telephone: '(530) 581-4336',
     email: 'tahoecitykayak@gmail.com',
@@ -43,7 +44,7 @@ module.exports = {
     image: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage.jpg",
     themeColor: '#bf4040',
     numberOfEmployees: '10+',
-    slogan: 'North Tahoes Premier Kayak and SUP Provider of Rentals Sales Lessons and Tours',
+    slogan: 'North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours',
 
     titleTemplate: '%s | Gatsby SEO',
 

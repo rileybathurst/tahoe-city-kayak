@@ -9,7 +9,8 @@ import TextureBackgrounds from "../../components/texturebackgrounds";
 import Remainder from "../../components/remainder";
 import MapStore from "../../components/map-store";
 import Danger from "../../components/danger";
-import SupBrandList from "../../components/sup-brand-list"
+import SupBrandList from "../../components/sup-brand-list";
+import StoreIcon from "../../images/store";
 
 function Card(props) {
   // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
@@ -52,7 +53,7 @@ function More(props) {
       <section>
         <h3 className='capitalize'>
           <Link to={props.slug}>
-            All {props.brand} kayaks
+            All {length} {props.brand} Paddleboards
           </Link>
         </h3>
         <hr />
@@ -64,8 +65,8 @@ function More(props) {
   }
 }
 
-const RetailKayakPage = (data) => {
-  let title = "SUP Retail";
+const RetailSupPage = (data) => {
+  let title = "Paddleboard Retail";
   let parent = "retail";
 
   return (
@@ -125,20 +126,20 @@ const RetailKayakPage = (data) => {
         <h1>{title}</h1>
         <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
 
-        <p>Retail and Reservations<br />
-          {/* // TODO: single update */}
-          Open 7 days a week 9:00am&ndash;6:00pm</p>
+        <div className="here__location here__card">
+          <StoreIcon />
+          <p>
+            <strong>Retail Location</strong><br />
+            <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
+              521 North Lake Blvd,<br />
+              Tahoe City 96145</a>
+          </p>
 
-        <p>Located at
-          <address>
-            <MapStore>
-              521 N Lake Blvd<br />
-              Tahoe City,<br />
-              CA 96145
-            </MapStore>
-          </address>
-        </p>
-        <hr />
+          <p>
+            Open Daily<br />
+            9am &ndash; 6pm<br />
+          </p>
+        </div>
 
         <h2>Browse By Feature</h2>
         <ul>
@@ -147,17 +148,17 @@ const RetailKayakPage = (data) => {
 
         <hr />
         <h2>Browse By Brand</h2>
-        <SupBrandList />
       </main>
+      <SupBrandList />
 
       <StaticQuery
         query={query}
         render={data => (
 
-          <>
+          <div className="brand_blocks">
 
             {data.hobie.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -190,11 +191,11 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
             {data.bote.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -228,11 +229,11 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
             {data.tahe.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -266,11 +267,11 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
             {data.sic.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -304,11 +305,11 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
             {data.hala.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -342,12 +343,12 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
 
             {data.boardworks.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -381,11 +382,11 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
             {data.pauhana.edges.map(brand => (
-              <>
+              <div>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -419,10 +420,10 @@ const RetailKayakPage = (data) => {
                   brand={brand.node.name}
                   slug={brand.node.slug}
                 />
-              </>
+              </div>
             ))}
 
-          </>
+          </div>
         )}
       />
 
@@ -431,7 +432,7 @@ const RetailKayakPage = (data) => {
   )
 }
 
-export default RetailKayakPage
+export default RetailSupPage
 
 const query = graphql`
 query SupQuery {
