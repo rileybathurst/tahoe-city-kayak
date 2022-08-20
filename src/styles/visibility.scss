@@ -3,7 +3,7 @@
 }
 
 .menu__large {
-  padding-inline-start: 0;
+  padding-inline: var(--baseline);
 
   @media (max-width: 40rem) {
     display: none;

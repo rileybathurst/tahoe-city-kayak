@@ -53,16 +53,14 @@ button:active {
   display: inline;
   color: whitesmoke;
   margin: 0;
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .reseason {
   width: 100%;
-  height: 0.25rem;
   background-color: var(--mullen);
   transition: 0.5s ease;
   margin-block-end: 0;
-  border-start-start-radius: 0;
-  border-start-end-radius: 0;
 }
 
 /*------------------*/

@@ -3,7 +3,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 function BaseOne() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/tim-mossholder-z3Xp1ZcvzgE-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/tim-mossholder-z3Xp1ZcvzgE-unsplash.jpg"
     alt="deepwater texture"
     className="texture-slice"
     objectFit="contain"
@@ -14,7 +14,7 @@ function BaseOne() {
 
 function BaseTwo() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/marissa-rodriguez-2mKYEVGA4jE-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/marissa-rodriguez-2mKYEVGA4jE-unsplash.jpg"
     alt="clear texture"
     className="texture-slice"
     objectFit="contain"
@@ -25,7 +25,7 @@ function BaseTwo() {
 
 function BaseThree() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/samara-doole-peaTniZsUQs-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/samara-doole-peaTniZsUQs-unsplash.jpg"
     alt="splash texture"
     className="texture-slice"
     objectFit="contain"
@@ -36,7 +36,7 @@ function BaseThree() {
 
 function TopOne() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.jpg"
     alt="sunset texture"
     className="texture-slice crop"
     objectFit="contain"
@@ -47,7 +47,7 @@ function TopOne() {
 
 function TopTwo() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
     alt="forrest texture"
     className="texture-slice crop"
     objectFit="contain"
@@ -58,7 +58,7 @@ function TopTwo() {
 
 function TopThree() {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.jpg"
     alt="sand texture"
     className="texture-slice crop"
     objectFit="contain"

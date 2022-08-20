@@ -2,12 +2,20 @@
 //  #COLOR
 /*------------------*/
 
-.top-bar {
+.top-wrapper {
   background: var(--mullen);
-  color: whitesmoke;
-  box-shadow: 0 0 0 100vmax var(--c);
   clip-path: inset(0 -100vmax);
-  padding: 10px 0;
+  border-end-end-radius: var(--border-radius);
+
+  .top-bar {
+    background: var(--mullen);
+    color: whitesmoke;
+    padding: 10px 0;
+  }
+
+  svg {
+    fill: var(--brilliance);
+  }
 }
 
 .logo a {

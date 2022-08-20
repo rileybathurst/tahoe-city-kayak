@@ -16,7 +16,8 @@ import WaterTexture from "../images/watertexture";
 
 function Kayaker(props) {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
     alt="tahoe city kayak kayaker"
     className={`${props.className} paddler img__wrapped`}
     objectFit="contain"
@@ -27,7 +28,8 @@ function Kayaker(props) {
 
 function Supper(props) {
   return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
     alt="tahoe city kayak supper"
     className={`${props.className} paddler img__wrapped`}
     objectFit="contain"

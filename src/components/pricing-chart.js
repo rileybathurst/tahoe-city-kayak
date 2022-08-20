@@ -24,7 +24,7 @@ const PricingChart = (props) => {
           <p>$110</p>
         </div>
         <div>
-          <h4><span>&nbsp;</span><span>Paddleboard</span></h4>
+          <h4><span>Paddle-<br />board</span></h4>
           <p>$30</p>
           <p>$60</p>
           <p>$90</p>
