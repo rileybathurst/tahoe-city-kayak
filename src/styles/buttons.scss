@@ -20,8 +20,8 @@ button,
 .button:active,
 .button__hover,
 button:hover {
-  background-color: var(--mullen);
-  color: var(--sand);
+  background-color: hsl(25, 37%, 87.5%);
+  color: var(--mullen__dark);
   box-shadow: var(--penumbra);
 }
 
@@ -57,6 +57,7 @@ button:active {
 
 .top-bar p,
 .top-bar button {
+  // ! fix this so its wide and actually works
   display: inline;
   color: whitesmoke;
   margin: 0;
@@ -78,17 +79,25 @@ menu button {
   margin: 0;
 }
 
+/*------------------*/
+//  #BOOK NOW // primary call to action
+/*------------------*/
+
 .book-now {
   @extend button;
   margin-block-start: 0.75rem;
   text-decoration: none;
   text-align: center;
   display: inline-block; // same as a button
+  background-color: var(--mullen);
+  color: var(--brilliance);
 }
 
-/*------------------*/
-//  #BOOK NOW
-/*------------------*/
+.book-now:hover,
+.book-now:active {
+  background-color: var(--mullen__dark);
+  color: var(--kingly-cloud);
+}
 
 footer .book-now {
   margin-block-start: 0;

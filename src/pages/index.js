@@ -25,6 +25,7 @@ import SupBrandList from "../components/sup-brand-list";
 import MapSVG from "../images/map";
 import Parking from "../components/parking";
 import KayakFeatureList from "../components/kayak-feature-list";
+import Here from '../components/here';
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -54,6 +55,7 @@ const IndexPage = () => {
           finish
           duration
           fitness
+          sport
 
           ogimage {
             localFile {
@@ -160,78 +162,56 @@ const IndexPage = () => {
 
       {/* // ! this needs to remove the pipe */}
       <Seo
-      // title=""
+        title=""
       // image="test"
       />
       <Header />
       <main className="home__main">
         {/* // TODO: test this */}
         <section itemScope itemType="https://schema.org/Service">
-          <h2><Link to="/rentals-demos">On Water Rentals</Link></h2>
-          <article className="home__main--season">
-            <p>Season: May &ndash; October<br />
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting
-            </p>
+          <h2 className="page-title">North Tahoe's Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours</h2>
 
-            <p>Located at<br />
-              <MapLink>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145
-              </MapLink>
-            </p>
-          </article>
+          <p
+            className=""
+            itemProp="hasOfferCatalog"
+            itemScope
+            itemType="https://schema.org/OfferCatalog"
+          >
+            Our mission at Tahoe City Kayak and paddleboard is to provide you with unparalleled customer service. We strive to give you the best in <span itemProp="name">sales</span>, <span itemProp="name">rentals</span>, <span itemProp="name">high-end demos</span>and <span itemProp="name">tours</span>. We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.
+          </p>
+
+          {/* <p> kayaking or standup paddleboarding with one of our high-end demos or rentals.</p> */}
+
+          <Here />
 
           <div className="button__double">
             <BookRental />
             <BookTour />
           </div>
 
-          <p
-            className="double-baseline"
-            itemProp="hasOfferCatalog"
-            itemScope
-            itemType="https://schema.org/OfferCatalog"
-          >
-            Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.
-            We strive to give you the best in
-            <span itemProp="name">kayak sales</span>,
-            <span itemProp="name">Paddleboard rentals</span>,
-            <span itemProp="name">kayak rentals and tours</span>.
-            We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.
-          </p>
+
         </section>
 
-        <section className="main__photo-grid">
-          <TwoKayakers className="kayakers" />
-          <WaterTexture className="texture" />
-          <AndyPaddling className="andy" />
-        </section>
-      </main>
-
-      <section id="rentals-demos" className="home__rentals">
         <div>
-          <h3>
-            <Link to="rentals-demos">
-              Rentals &amp; Demos
-            </Link>
-          </h3>
-          <p className="double-baseline">Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
-          <BookNow />
-        </div>
+          <section className="main__photo-grid">
+            <TwoKayakers className="kayakers" />
+            <WaterTexture className="texture" />
+            <AndyPaddling className="andy" />
+          </section>
 
-        <div>
+          <hr />
+
           <PricingChart book="no" />
         </div>
-      </section>
-
+      </main>
 
       <section id="tours-lessons" className="home__tours">
         <div>
-          <h3><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
-          <p className="double-baseline">We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
+          <hgroup className="crest">
+            <h3 className="brow"><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
+            <h4 className="supra">Enjoy the majesty of Lake Tahoe</h4>
+          </hgroup>
+          <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         </div>
         <div>{/* stay gold */}</div>
       </section>
@@ -257,7 +237,9 @@ const IndexPage = () => {
                 finish={tour.finish}
                 duration={tour.duration}
               />
-              <Fitness fitness={tour.fitness} />
+              {/* // TODO needs to be paddleboard not sup */}
+              <h4 className="uppercase">{tour.sport}</h4>
+              {/* <Fitness fitness={tour.fitness} /> */}
             </div>
 
             <hr />
@@ -289,65 +271,12 @@ const IndexPage = () => {
         <hr />
       </div>
 
-      <section id="here" className="home__here" >
-        <div>
-          <h3><Link to="/contact">WE ARE HERE</Link></h3>
-
-          <div className="here__location">
-            <KayakIcon />
-            <p>
-              <strong>On Water Rental</strong><br />
-              <MapLink>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </MapLink>
-            </p>
-
-            <p>
-              May &ndash; October<br />
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting<br />
-            </p>
-
-          </div>
-
-          <div className="here__location">
-            <StoreIcon />
-            <p>
-              <strong>Retail Location</strong><br />
-              <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
-                521 North Lake Blvd,<br />
-                Tahoe City 96145</a>
-            </p>
-
-            <p>
-              Open Daily<br />
-              9am &ndash; 6pm<br />
-            </p>
-          </div>
-
-          <div className="here__location">
-            <CarIcon />
-            <p><strong>Free Parking Lot</strong><br />
-              <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
-                Tahoe City 96145
-              </a>
-            </p>
-            <p><strong>Free On-Street Parking</strong><br />
-              In front of the retail store<br />
-              North Lake Blvd<br />
-            </p>
-          </div>
-        </div>
-        {/* <Map /> */}
-        <MapSVG />{/* this probably still needs more */}
-      </section>
+      {/* <MapSVG /> // TODO add this back inthis probably still needs more */}
 
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers!</p>
+        <p><Link to="/demos">Try before you buy with our demos!</Link></p>
       </section>
 
       <section className="reuseable__two-col">
@@ -407,15 +336,15 @@ const IndexPage = () => {
 
 export default IndexPage
 
+
+// this is a new thing that doesnt seems to be working yet but I'd like to get it there
+
 /* 
-
-this is a new thing that doesnt seems to be working yet but I'd like to get it there
-
 https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
 https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/
+*/
 
-
-export function Head() {
+/* export function Head() {
   return (
     <title>Hello World</title>
   )

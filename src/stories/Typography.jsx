@@ -16,6 +16,12 @@ export const Typography = ({ primary }) => {
       <p className='typography__secondary'>
       typography__secondary
       </p>
+
+      <hgroup class="crest">
+        <h3 class="brow">Brow</h3>
+        <h3 class="supra">Supra</h3>
+      </hgroup>
+      <p>These can be any version of h to be a well styled html doc as long as they have the hgroup wrapper with a class of crest</p>
     </>
   );
 };

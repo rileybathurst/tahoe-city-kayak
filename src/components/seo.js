@@ -36,7 +36,7 @@ const SEO = ({
   // but it doesnt get past the null problem
   // title: `${title} | ${defaultTitle}` || defaultTitle,
   const seo = {
-    title: `${title} - Tahoe City Kayak and Paddleboard` || defaultTitle,
+    title: title || defaultTitle, // this works
     description: description || defaultDescription,
     image: image || defaultImage,
     ogImage: image,
@@ -120,8 +120,6 @@ const SEO = ({
   );
 };
 
-export default SEO;
-
 SEO.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
@@ -197,3 +195,15 @@ const query = graphql`
 // defaultImage: image
 // ogImage: image
 // twitterImage: image
+
+export default SEO;
+
+/* 
+I kinda wanted to do something liek this but they are sort of different
+const TitleTemplate = () => {
+  return (
+    <> - Tahoe City Kayak &amp; Padddleboard</>
+  );
+};
+
+export default { SEO, TitleTemplate }; */

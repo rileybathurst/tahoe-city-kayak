@@ -5,8 +5,7 @@ const Time = (props) => {
   if (props.start) {
     return (
       <h4>
-        <time dateTime={props.start}>
-          <HourMin time={props.start} /> - <HourMin time={props.finish} />
+        <time dateTime={props.start}><HourMin time={props.start} /> - <HourMin time={props.finish} />
         </time>
       </h4>
     )

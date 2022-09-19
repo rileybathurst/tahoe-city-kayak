@@ -12,7 +12,7 @@ const HourMin = (props) => {
     }
 
     return (
-      <>{hours}:{mins}&thinsp;<span className="unit">{ampm}</span></>
+      <>{hours}:{mins}<span className="unit">{ampm}</span></>
     );
   } else {
     return null;

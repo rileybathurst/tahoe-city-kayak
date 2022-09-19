@@ -10,7 +10,7 @@ import Footer from "../components/footer"
 import Seo from "../components/seo";
 import Time from "../components/time";
 import Fitness from "../components/fitness";
-import HourMin from "../components/hour-min";
+import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 
 import WaterTexture from "../images/watertexture";
 import MapSVG from "../images/map";
@@ -164,6 +164,7 @@ const TourView = ({ tour, other }) => {
             <Minimum minimum={tour.minimum} />
           </div>
 
+          {/* // TODO needs to be paddleboard not sup */}
           <Spec name="Sport" spec={tour.sport} />
 
           <Spec name="Tour Start Time" spec={tour.start} />

@@ -4,7 +4,8 @@ import { Link } from 'gatsby';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import Seo from "../components/seo";
+import SEO from "../components/seo";
+import TitleTemplate from "../components/TitleTemplate";
 // import MapStore from "../components/map-store";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
@@ -15,11 +16,11 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-
-      <Seo
-        title={title}
+      <SEO
+        title={`${title}${TitleTemplate}`}
         description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
       />
+
 
       <ol
         aria-label="Breadcrumb"

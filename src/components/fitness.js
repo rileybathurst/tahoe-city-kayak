@@ -3,7 +3,7 @@ import * as React from "react"
 const Fitness = (props) => {
   if (props.fitness) {
     return (
-      <h4>
+      <h4 className="capitalize">
         {props.fitness} <span className="">Fitness</span>
       </h4>
     )

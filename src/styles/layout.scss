@@ -143,13 +143,13 @@ main {
 
   @media (min-width: 80rem) {
     max-width: 80rem;
-    > *:first-child {
+    /*    > *:first-child {
       flex: 1;
     }
 
     > *:nth-child(2) {
       flex: 2;
-    }
+    } */
   }
 }
 
@@ -227,7 +227,7 @@ main {
 }
 
 .home__rentals {
-  max-width: 60rem;
+  max-width: 80rem;
   margin-inline: auto;
   display: flex;
   flex-flow: row wrap;
