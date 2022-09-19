@@ -32,6 +32,11 @@ footer {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--sand__double-dark);
+    box-shadow: 0 0 0 100vmax var(--sand__double-dark);
+  }
 }
 
 /*------------------*/
@@ -42,10 +47,19 @@ footer {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--sand__double-dark);
+    box-shadow: 0 0 0 100vmax var(--sand__double-dark);
+  }
 }
 
 .unit {
   color: var(--industrial-revolution);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--cold-grey);
+  }
 }
 
 /*------------------*/
@@ -54,4 +68,8 @@ footer {
 
 .typography__secondary {
   color: var(--industrial-revolution);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--cold-grey);
+  }
 }

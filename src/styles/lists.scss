@@ -63,12 +63,12 @@
 
   > li {
     flex: 1 1 10rem;
-    border: 1px solid var(--tin-soldier);
-    // padding-block: var(--baseline);
-    // padding-inline: 1rem;
     display: grid;
+    border: 1px solid var(--tin-soldier);
 
-    // height: 100%;
+    @media (prefers-color-scheme: dark) {
+      border: 1px solid var(--raven-black);
+    }
 
     > a {
       display: flex;

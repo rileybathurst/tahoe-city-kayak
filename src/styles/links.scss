@@ -21,6 +21,11 @@ a:where(:hover, :focus) {
   border: 1px solid transparent;
   transition: 0.5s ease;
   text-decoration: none;
+
+  @media (min-width: $measure) {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
 }
 
 .link__backed--hover,
@@ -28,6 +33,11 @@ a:where(:hover, :focus) {
   background-color: var(--sand);
   box-shadow: var(--penumbra);
   border: 1px solid whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--sand__double-dark);
+    border: 1px solid var(--sand__dark);
+  }
 }
 
 a svg {

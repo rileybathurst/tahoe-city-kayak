@@ -5,25 +5,25 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import MapLink from "../components/map-link"
+// import MapLink from "../components/map-link"
 import Seo from "../components/seo";
 import Remainder from "../components/remainder";
 import Time from "../components/time";
-import Fitness from "../components/fitness";
-import KayakIcon from "../images/kayak"
-import StoreIcon from "../images/store";
-import CarIcon from "../images/car";
+// import Fitness from "../components/fitness";
+// import KayakIcon from "../images/kayak"
+// import StoreIcon from "../images/store";
+// import CarIcon from "../images/car";
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
-import BookNow from "../components/peek/book-now";
+// import BookNow from "../components/peek/book-now";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
-import MapSVG from "../images/map";
-import Parking from "../components/parking";
+// import MapSVG from "../images/map";
+// import Parking from "../components/parking";
 import KayakFeatureList from "../components/kayak-feature-list";
 import Here from '../components/here';
 

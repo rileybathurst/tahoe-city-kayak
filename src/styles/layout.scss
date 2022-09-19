@@ -267,9 +267,13 @@ main {
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  border-block-end: 1px solid var(--kingly-cloud);
   margin-block-end: 1.5rem;
   padding-block-end: 1.5rem;
+  border-block-end: 1px solid var(--kingly-cloud);
+
+  @media (prefers-color-scheme: dark) {
+    border-block-end: 1px solid var(--black-out);
+  }
 
   > * {
     flex: 1;
@@ -304,9 +308,14 @@ main {
 }
 
 .brand_blocks > *:nth-child(odd) {
+  clip-path: inset(0 -100vmax);
   background-color: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
-  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--sand__base), 5%);
+    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), 5%);
+  }
 }
 
 .none {
@@ -533,11 +542,15 @@ footer {
   // gap: 1rem;
   max-width: 60rem;
   margin-inline: auto;
-  border-bottom: 1px solid var(--tin-soldier);
   margin-block-end: 1.5rem;
   padding-block-end: 1.5rem;
   padding-inline: calc(var(--baseline) / 2);
   text-transform: capitalize;
+  border-bottom: 1px solid var(--tin-soldier);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--raven-black);
+  }
 }
 
 .tour__minimum {
@@ -617,15 +630,19 @@ footer {
     border-radius: 0.25rem;
     box-shadow: var(--penumbra);
     border: 1px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-metal);
+    }
   }
 
   .cutout {
     object-fit: contain;
     place-self: center;
     // box-shadow: var(--umbra);
-    filter: drop-shadow(5px 5px 5px #222); // TODO make this a var
     z-index: 2;
     grid-row: 1/1;
+    filter: drop-shadow(5px 5px 5px var(--black-out));
   }
 
   .card__placeholder {

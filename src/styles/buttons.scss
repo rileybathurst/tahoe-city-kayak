@@ -1,9 +1,7 @@
 button,
 .button {
   background: none;
-  border: 1px solid var(--mullen);
   border-radius: 0.25rem;
-  color: var(--mullen);
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
@@ -14,15 +12,23 @@ button,
   line-height: 1.5rem;
   text-decoration: none;
   width: max-content;
+
+  color: var(--mullen);
+  border: 1px solid var(--mullen);
 }
 
 .button:hover,
 .button:active,
 .button__hover,
 button:hover {
-  background-color: hsl(25, 37%, 87.5%);
+  background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
   color: var(--mullen__dark);
   box-shadow: var(--penumbra);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--sand__base), 7.5%); //custom
+    color: var(--mullen);
+  }
 }
 
 .button__active,
@@ -31,6 +37,11 @@ button:active {
   border-color: var(--mullen__dark);
   color: var(--sand);
   box-shadow: var(--antumbra);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--mullen__base), var(--dull));
+    color: var(--black-metal);
+  }
 }
 
 /*------------------*/
@@ -91,12 +102,22 @@ menu button {
   display: inline-block; // same as a button
   background-color: var(--mullen);
   color: var(--brilliance);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--mullen__dark);
+    color: var(--kingly-cloud);
+  }
 }
 
 .book-now:hover,
 .book-now:active {
   background-color: var(--mullen__dark);
   color: var(--kingly-cloud);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--mullen);
+    color: var(--brilliance);
+  }
 }
 
 footer .book-now {

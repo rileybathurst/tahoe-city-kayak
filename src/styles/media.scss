@@ -9,6 +9,11 @@
 svg {
   min-width: 2rem; // safari needs default mins
   max-height: 5rem;
+  fill: var(--black-metal);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--brilliance);
+  }
 }
 
 /*------------------*/
@@ -34,6 +39,11 @@ svg {
 
   @media (min-width: 30rem) {
     max-width: 32rem; // guess and check
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--sand__double-dark);
+    box-shadow: 0 0 0 100vmax var(--sand__double-dark);
   }
 
   h1 {
@@ -79,16 +89,31 @@ svg {
 
 .facebook {
   mix-blend-mode: multiply;
+
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: hard-light;
+  }
+
   .facebook__blue {
-    fill: grey;
     transition: 0.5s ease;
+    fill: grey;
   }
 }
 
 .facebook:hover {
   mix-blend-mode: normal;
+
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: normal;
+    // fill: green; // not yet working
+  }
+
   .facebook__blue {
     fill: #1877f2;
+
+    @media (prefers-color-scheme: dark) {
+      mix-blend-mode: normal;
+    }
   }
 }
 
@@ -96,11 +121,19 @@ svg {
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   transition: 0.5s ease;
+
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: screen;
+  }
 }
 
 .instagram:hover {
   filter: grayscale(0%);
   mix-blend-mode: normal;
+
+  @media (prefers-color-scheme: dark) {
+    fill: currentColor;
+  }
 }
 
 a:hover .instagram {
