@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Barlow-Condensed", Arial, sans-serif; // Google font
+  font-family: "Barlow", Arial, sans-serif; // Google font
   margin-block-start: 0; /* reset */
 }
 
@@ -147,12 +147,20 @@ hr.no {
   font-family: filmotype-lasalle, serif;
 } */
 
+/*------------------*/
+//  #SINGLES
+/*------------------*/
+
 .uppercase {
   text-transform: uppercase;
 }
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.condensed {
+  font-family: "Barlow Condensed", Arial, sans-serif;
 }
 
 /*------------------*/
@@ -184,6 +192,7 @@ hgroup {
 }
 
 .supra {
+  font-family: "Barlow Condensed", Arial, sans-serif;
   order: 2;
   @extend h2;
 }

@@ -57,11 +57,13 @@ const ToursLessonsPage = () => {
         </li>
       </ol>
 
-      <main>
-        <h1>{title}</h1>
-        <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
-        <BookNow />
-        <hr />
+      <div className="with-card">
+        <div>
+          <h1>{title}</h1>
+          <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
+          <BookNow />
+          <hr />
+        </div>
 
         <div className="here__location here__card">
           <KayakIcon />
@@ -81,7 +83,7 @@ const ToursLessonsPage = () => {
             Weather Permitting<br />
           </p>
         </div>
-      </main>
+      </div>
 
       <StaticQuery
         query={query}

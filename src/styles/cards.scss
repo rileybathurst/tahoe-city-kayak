@@ -175,12 +175,22 @@
 /*------------------*/
 
 .here__card {
-  background-color: var(--brilliance);
+  background-color: var(--mullen);
   // border: 1px solid var(--tin-soldier);
   padding: 0.5rem;
+  color: whitesmoke;
+  border-radius: 0.5rem;
+  font-weight: 600;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--black-out);
-    background-color: hsl((var(--sand__base)), 5%); // custom
+    background-color: var(--mullen__dark);
+  }
+
+  a {
+    color: var(--brilliance);
+  }
+
+  svg {
+    fill: whitesmoke;
   }
 }

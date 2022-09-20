@@ -265,6 +265,7 @@ main {
 
 .here__location {
   display: flex;
+  flex-flow: column;
   gap: 1rem;
   justify-content: space-between;
   margin-block-end: 1.5rem;
@@ -275,13 +276,13 @@ main {
     border-block-end: 1px solid var(--black-out);
   }
 
-  > * {
+  /*   > * {
     flex: 1;
   }
 
   > :first-child {
     flex: 0.33;
-  }
+  } */
 }
 
 /*------------------*/
@@ -708,5 +709,27 @@ footer {
 
   > * {
     flex: 1 1 20rem;
+  }
+}
+
+/*------------------*/
+//  #MOVE THESE IF THEY WORK
+/*------------------*/
+
+.with-card {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: flex-start;
+
+  > * {
+    flex: 2 1 20rem;
+  }
+
+  .here__card {
+    flex: 1 1 10rem;
   }
 }

@@ -55,35 +55,37 @@ const RentalsPage = () => {
         </li>
       </ol>
 
-      <main>
-        <h1>{title}</h1>
-        <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
-
-        <article>
+      <div className="with-card">
+        <div>
+          <h1>{title}</h1>
+          <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
           <h4>Season: May &ndash; October</h4>
-          <div className="here__location here__card">
-            <KayakIcon />
-            <p>
-              <strong>On Water Rental</strong><br />
-              <MapLink>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </MapLink>
-            </p>
+        </div>
 
-            <p>
-              May &ndash; October<br />
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting<br />
-            </p>
-          </div>
+        <div className="here__location here__card">
+          <KayakIcon />
+          <p>
+            <strong>On Water Rental</strong><br />
+            <MapLink>
+              Commons Beach<br />
+              400 North Lake Blvd,<br />
+              Tahoe City 96145<br />
+            </MapLink>
+          </p>
 
-          <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
+          <p>
+            May &ndash; October<br />
+            Open Daily<br />
+            9:30am &ndash; 5:30pm<br />
+            Weather Permitting<br />
+          </p>
+        </div>
 
-          <PricingChart />
-        </article>
+      </div>
+
+      <main>
+        <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
+        <PricingChart />
         <hr />
       </main>
 

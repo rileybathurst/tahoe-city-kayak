@@ -60,9 +60,11 @@ const RetailPage = () => {
         </li>
       </ol>
 
-      <main>
-        <h1>{title}</h1>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+      <main className="with-card">
+        <div>
+          <h1>{title}</h1>
+          <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+        </div>
 
         <div className="here__location here__card">
           <StoreIcon />
@@ -78,13 +80,12 @@ const RetailPage = () => {
             9am &ndash; 6pm<br />
           </p>
         </div>
-
-        <h2><Link to="/retail/kayak">Kayaks</Link></h2>
-        <h2>Browse By Feature</h2>
-        <KayakFeatureList />
       </main>
-      <section>
-        <h2>Browse By Brand</h2>
+      <section className="blocked">
+        <h2><Link to="/retail/kayak">Kayaks</Link></h2>
+        <h3 className="condensed">Browse By Feature</h3>
+        <KayakFeatureList />
+        <h3>Browse By Brand</h3>
       </section>
       <KayakBrandList />
 

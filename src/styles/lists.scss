@@ -65,6 +65,8 @@
     flex: 1 1 10rem;
     display: grid;
     border: 1px solid var(--tin-soldier);
+    background-color: var(--mullen);
+    border-radius: 0.25rem;
 
     @media (prefers-color-scheme: dark) {
       border: 1px solid var(--raven-black);
@@ -79,10 +81,18 @@
     }
 
     > a:where(:hover, :focus) {
+      background-color: var(--mullen__dark);
+      box-shadow: var(--penumbra);
+
       p {
-        background: var(--mullen__dark);
+        background-color: var(--mullen__dark);
         color: var(--kingly-cloud);
         box-shadow: var(--penumbra);
+      }
+
+      // TODO: fix this
+      svg {
+        fill: var(--kingly-cloud);
       }
     }
 
@@ -91,6 +101,7 @@
       margin-inline: 1rem;
       margin-block: 0.75rem;
       min-width: 10rem; // guess and check
+      fill: whitesmoke;
     }
 
     p {
@@ -105,7 +116,7 @@
       padding-block: 0.75rem;
       text-decoration: underline;
       text-transform: uppercase;
-      font-family: "Barlow-Condensed", Arial, sans-serif; // TODO this should be a variable
+      font-family: "Barlow Condensed", Arial, sans-serif; // TODO this should be a variable
       font-weight: 700;
     }
   }
