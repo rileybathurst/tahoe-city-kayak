@@ -7,7 +7,8 @@ import MenuList from './menu-list';
 import Logo from '../images/logo';
 
 function OpenSeason(key, defaultValue) {
-  const [banner, setBanner] = useState((window.localStorage.getItem('banner')));
+  const [banner, setBanner] = useState('shown');
+  // const [banner, setBanner] = useState((window.localStorage.getItem('banner')));
 
   useEffect(() => {
     // setBanner(JSON.parse(window.localStorage.getItem('banner')));
