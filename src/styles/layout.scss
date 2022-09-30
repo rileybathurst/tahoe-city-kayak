@@ -38,16 +38,19 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    z-index: 999;
+    z-index: 999; // has to be above everything I can do a better job of this
+    // TODO there is something about forrests here
     position: relative;
     column-gap: 0.5rem;
+    grid-template-columns: 1fr auto 1fr;
+    // grid-template-rows: repeat(2, 3rem); // ! testing only
 
     .top-bar {
-      width: 100%;
+      // width: 100%;
       text-align: center;
       padding-block-end: 0;
       grid-row: 1;
-      grid-column: 1;
+      grid-column: 2;
     }
 
     button:hover {
@@ -56,23 +59,32 @@ header {
 
     // opener
     .reseason {
-      grid-column: 1;
+      margin: 0; // reset
+      grid-column: 1/3;
       grid-row: 2;
-      width: 100%;
-      clip-path: inset(0 -100vmax);
+      width: 100%; // ? why is this not full width of the screen?
+      width: 100vw; // now its too wide?
+      width: calc(100vw - 1rem); // im not sure what this is adjusting for
       padding: 0;
-      height: var(--baseline);
+      height: 0.25rem;
+      border: none;
+      align-self: end; // vertical
+    }
+
+    .reseason:where(:hover, :focus) {
+      background-color: var(--mullen__dark);
     }
 
     // closer arrow
     .season {
       margin: 0;
-      grid-column: 2;
-      grid-row: 1/3;
-      align-self: end;
       padding: 0;
-      margin-block-start: -1.5rem;
-      margin-block-end: 0.25rem;
+      grid-column: 3;
+      grid-row: 1/3; // why 5 there shouldnt be 4 rows
+      align-self: end; // vertical
+      justify-self: start; // horizontal
+      margin-block-start: -1.5rem; // this is the animation
+      // margin-block-end: 0.25rem;
       transform: rotate(180deg);
     }
 

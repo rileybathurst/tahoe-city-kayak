@@ -55,20 +55,23 @@ button:active {
   opacity: 0;
 }
 
-.top-bar.shown {
+.shown .top-bar {
   opacity: 1;
   height: auto;
 }
 
-.top-bar.hidden {
-  opacity: 0;
-  height: 0;
-  padding: 0;
+// dont use display: none so I can animate
+.hidden {
+  .top-bar,
+  .season {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
 }
 
 .top-bar p,
 .top-bar button {
-  // ! fix this so its wide and actually works
   display: inline;
   color: whitesmoke;
   margin: 0;
