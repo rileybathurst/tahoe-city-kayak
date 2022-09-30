@@ -171,10 +171,36 @@
 }
 
 /*------------------*/
-//  #HERE CARD
+//  #LOCATION DECK AND CARDS
 /*------------------*/
 
-.here__card {
+.home__here, // TODO rename this to .location__multiple everywhere
+.location__deck {
+  max-width: 60rem;
+  margin-inline: auto;
+  display: flex;
+  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 20rem;
+  }
+}
+
+.here__location, // TODO rename this to .location everywhere
+.location_card {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-block-end: 1.5rem;
+  padding-block-end: 1.5rem;
+  border-block-end: 1px solid var(--kingly-cloud);
+
+  @media (prefers-color-scheme: dark) {
+    border-block-end: 1px solid var(--black-out);
+  }
+
+  // TODO this is a bad name
   background-color: var(--mullen);
   // border: 1px solid var(--tin-soldier);
   padding: 0.5rem;
@@ -194,3 +220,5 @@
     fill: whitesmoke;
   }
 }
+
+// can location cards be laid out horizontally but I think they never have a background if they are so maybe they are a seperate thing thing thats not a card?

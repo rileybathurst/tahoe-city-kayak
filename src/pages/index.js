@@ -17,7 +17,7 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
-import Here from '../components/here';
+import Complete from '../components/locations/complete';
 
 // TODO this will eventually be a svg
 function Map(props) {
@@ -174,7 +174,7 @@ const IndexPage = () => {
 
           {/* <p> kayaking or standup paddleboarding with one of our high-end demos or rentals.</p> */}
 
-          <Here />
+          <Complete />
 
           <div className="button__double">
             <BookRental />
@@ -201,7 +201,8 @@ const IndexPage = () => {
         <div>
           <hgroup className="crest">
             <h3 className="brow"><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
-            <h4 className="supra">Enjoy the majesty of Lake Tahoe</h4>
+            {/* think about capitalization here */}
+            <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
           <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
         </div>

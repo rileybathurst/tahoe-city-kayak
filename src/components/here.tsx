@@ -1,9 +1,10 @@
+// TODO this page needs to be really changed as I've moved the pieces
 import * as React from "react";
 
 import KayakIcon from "../images/kayak"
 import StoreIcon from "../images/store";
 import CarIcon from "../images/car";
-import MapLink from "../components/map-link"
+import MapLink from "../components/map-link";
 
 const Here = () => {
   return (

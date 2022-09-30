@@ -8,6 +8,7 @@ import PricingChart from "../components/pricing-chart";
 import Seo from "../components/seo";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
+import Store from "../components/locations/store";
 
 function Card(props) {
   return (
@@ -82,15 +83,23 @@ const DemosPage = () => {
       </ol>
 
       <main>
-        <h1>{title}</h1>
-        <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
-        {/* // TODO: this can be by a boolean */}
-        <p>* Pedal drive is an additional $5 per rental.</p>
-        <p>Phone:&nbsp;
-          <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
-            (530) 581-4336
-          </a>
-        </p>
+        <div className="div__with_location_card">
+          <div>
+            <h1>{title}</h1>
+            <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
+            {/* // TODO: this can be by a boolean */}
+            <p>* Pedal drive is an additional $5 per rental.</p>
+            <p>Phone:&nbsp;
+              <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
+                (530) 581-4336
+              </a>
+            </p>
+          </div>
+
+          <div className="location_card">
+            <Store />
+          </div>
+        </div>
 
         <PricingChart />
         <hr />

@@ -22,6 +22,7 @@ const KayakBrandList = () => {
               <Link to={`/retail/kayak/${kayak.node.slug}`}>
                 <Danger svg={kayak.node.svg} />
                 <p>{kayak.node.name}</p>
+                {/* Doubt?! https://caninclude.glitch.me/caninclude?child=p&parent=a */}
               </Link>
             </li>
           ))}

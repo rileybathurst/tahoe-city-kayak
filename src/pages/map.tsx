@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 import Seo from "../components/seo";
 import Here from "../components/here";
 import MapSVG from "../images/map";
+import Complete from "../components/locations/complete";
 
 const NotFoundPage = () => {
   let title = "Map";
@@ -55,7 +56,7 @@ const NotFoundPage = () => {
         <h1>{title}</h1>
       </main>
       <div className="home__here">
-        <Here />
+        <Complete />
         <MapSVG />
       </div>
 

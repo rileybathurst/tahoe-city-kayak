@@ -13,3 +13,8 @@ Primary.args = {
   primary: true,
   label: 'Link',
 };
+
+export const Hover = Template.bind({});
+Hover.args = {
+  label: 'Hover',
+};

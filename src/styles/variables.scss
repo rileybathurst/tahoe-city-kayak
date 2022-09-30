@@ -39,6 +39,25 @@
     0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
 
   /*------------------*/
+  //  #WIDTHS
+  /*------------------*/
+
+  --measure: 40rem;
+
+  --swan: 20rem;
+  --vulture: 30rem;
+  --stork: 40rem;
+  --condor: 50rem;
+  --pelican: 60rem;
+  --albatross: 80rem;
+
+  /*------------------*/
+  //  #TRANSITIONS
+  /*------------------*/
+  --easing: cubic-bezier(0.5, 0, 0.5, 1);
+  --fade: 0.2s var(--easing);
+
+  /*------------------*/
   //  #TAHOE CITY KAYAK
   /*------------------*/
 
@@ -54,22 +73,10 @@
   --sand__double-dark: hsl(25, 37%, 5%);
   --sand__pitch: hsl(var(--sand__base), var(--pitch));
 
+  --body_font: "Barlow", Arial, sans-serif;
+  --heading_font: "Barlow Condensed", Arial, sans-serif;
+
   --baseline: 1.25rem; // 20px
-
-  /*------------------*/
-  //  #WIDTHS
-  /*------------------*/
-
-  --measure: 40rem;
-
-  --swan: 20rem;
-  --vulture: 30rem;
-  --stork: 40rem;
-  --condor: 50rem;
-  --pelican: 60rem;
-  --albatross: 80rem;
-
-  --br: var(--baseline);
 }
 
 $measure: 40rem;

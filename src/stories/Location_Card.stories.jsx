@@ -1,12 +1,12 @@
 import React from 'react';
-import {Location} from './Location';
+import {Location_Card} from './Location_Card';
 
 export default {
-  title: 'Location',
-  component: Location,
+  title: 'Location Card',
+  component: Location_Card,
 };
 
-const Template = (args) => <Location {...args} />;
+const Template = (args) => <Location_Card {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

@@ -4,8 +4,8 @@ import { Link } from "gatsby"
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Seo from "../components/seo";
-import Here from "../components/here";
 import MapSVG from "../images/map";
+import Complete from "../components/locations/complete";
 
 const AboutPage = () => {
   let title = "About Us";
@@ -71,7 +71,8 @@ const AboutPage = () => {
       </main>
 
       <div className="home__here">
-        <Here />
+        {/* // * this is a bad name */}
+        <Complete />
         <MapSVG />
       </div>
 

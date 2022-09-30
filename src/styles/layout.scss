@@ -252,41 +252,6 @@ main {
   }
 }
 
-.home__here, // TODO rename this to .location__multiple everywhere
-.location__multiple {
-  max-width: 60rem;
-  margin-inline: auto;
-  display: flex;
-  flex-flow: row wrap;
-
-  > * {
-    flex: 1 1 20rem;
-  }
-}
-
-.here__location, // TODO rename this to .location everywhere
-.location {
-  display: flex;
-  flex-flow: column;
-  gap: 1rem;
-  justify-content: space-between;
-  margin-block-end: 1.5rem;
-  padding-block-end: 1.5rem;
-  border-block-end: 1px solid var(--kingly-cloud);
-
-  @media (prefers-color-scheme: dark) {
-    border-block-end: 1px solid var(--black-out);
-  }
-
-  /*   > * {
-    flex: 1;
-  }
-
-  > :first-child {
-    flex: 0.33;
-  } */
-}
-
 /*------------------*/
 //  #SINGLES
 /*------------------*/
@@ -718,8 +683,11 @@ footer {
 //  #MOVE THESE IF THEY WORK
 /*------------------*/
 
-.with-card {
-  max-width: var(--measure);
+.with-card, // TODO this is a bad name
+// TODO: I think this naming is still wrong
+.main__with-card,
+.div__with_location_card {
+  max-width: var(--measure); // 40rem
   margin-inline: auto;
   padding-inline: 1rem;
   display: flex;
@@ -731,7 +699,33 @@ footer {
     flex: 2 1 20rem;
   }
 
-  .here__card {
+  .here__card,
+  > .location_card {
+    // TODO this is a bad name
     flex: 1 1 10rem;
+  }
+}
+
+/*------------------*/
+//  #LOCATION
+/*------------------*/
+
+// this is to not use the .location class
+// as sometimes we dont want to flow in a row
+
+.locations__complete > * {
+  display: flex;
+  flex-flow: row wrap;
+  padding-block-end: calc(var(--baseline) / 2);
+  margin-block-end: var(--baseline);
+  gap: 0.75rem;
+  border-bottom: 1px solid gray;
+
+  > * {
+    flex: 3.5 1; // guess and check to get the parking on one row in the footer
+  }
+
+  > *:first-child {
+    flex: 1 1;
   }
 }
