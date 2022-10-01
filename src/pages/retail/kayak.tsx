@@ -12,6 +12,7 @@ import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
 import StoreIcon from "../../images/store";
+import Store from "../../components/locations/store";
 
 function Card(props) {
   if (props.type === 'kayak') {
@@ -123,22 +124,15 @@ const RetailKayakPage = (data) => {
       </ol>
 
       <main>
-        <h1>{title}</h1>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+        <div className="location_card-wrapper">
+          <div>
+            <h1>{title}</h1>
+            <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+          </div>
 
-        <div className="here__location here__card">
-          <StoreIcon />
-          <p>
-            <strong>Retail Location</strong><br />
-            <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
-              521 North Lake Blvd,<br />
-              Tahoe City 96145</a>
-          </p>
-
-          <p>
-            Open Daily<br />
-            9am &ndash; 6pm<br />
-          </p>
+          <div className="location_card">
+            <Store />
+          </div>
         </div>
 
         <h2>Browse By Feature</h2>

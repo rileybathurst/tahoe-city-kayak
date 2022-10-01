@@ -5,6 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Seo from "../components/seo";
+import Store from "../components/locations/store";
 
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
@@ -151,14 +152,20 @@ const supBrandView = ({ data }) => {
         </li>
       </ol>
 
-      <main>
-        <Danger svg={data.brand.svg} />
-        {/* // TODO: clean this up with the svg above */}
-        <h1 className="capitalize">{data.brand.name}</h1>
-        <p>{data.brand.tagline}.</p>
-        <hr />
+      <main className="location_card-wrapper">
+        <div>
+          <Danger svg={data.brand.svg} />
+          {/* // TODO: clean this up with the svg above */}
+          <h1 className="capitalize">{data.brand.name}</h1>
+          <p>{data.brand.tagline}.</p>
+          <hr />
 
-        <Next series={data.brand.retail} list='true' />
+          <Next series={data.brand.retail} list='true' />
+        </div>
+
+        <div className="location_card">
+          <Store />
+        </div>
       </main>
 
       <section id='island' className="possibly-empty">

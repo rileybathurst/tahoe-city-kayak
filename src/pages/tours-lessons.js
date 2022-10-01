@@ -57,7 +57,7 @@ const ToursLessonsPage = () => {
         </li>
       </ol>
 
-      <div className="with-card">
+      <div className="location_card-wrapper">
         <div>
           <h1>{title}</h1>
           <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>

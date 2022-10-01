@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -9,6 +9,31 @@ import Seo from "../components/seo";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Store from "../components/locations/store";
+import WaterTexture from "../images/watertexture";
+
+function Kayaker(props) {
+  return <StaticImage
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
+    alt="tahoe city kayak kayaker"
+    className="paddler img__wrapped"
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
+function Supper(props) {
+  return <StaticImage
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
+    alt="tahoe city kayak paddleboarder"
+    className={`${props.className} paddler img__wrapped`}
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
 
 function Card(props) {
   return (
@@ -83,7 +108,7 @@ const DemosPage = () => {
       </ol>
 
       <main>
-        <div className="div__with_location_card">
+        <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
             <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
@@ -111,10 +136,21 @@ const DemosPage = () => {
           render={data => (
             <>
 
-              <article>
-                <h3>Demos</h3>
-                <hr />
-                <h4>Kayak</h4>
+              <article className="main__full main__full--tour">
+                <div>
+                  <h3>Demos</h3>
+                  <hr />
+                  <h4>Kayak</h4>
+                </div>
+
+                <section>
+                  <div className="collage tour-collage">
+                    <TextureBackgrounds />
+                    <WaterTexture className="texture card__image" />
+                    <Kayaker />
+                  </div>
+                </section>
+
               </article>
 
               <section className="deck">
@@ -135,8 +171,16 @@ const DemosPage = () => {
                 }
               </section>
 
-              <article>
+              <article className="main__full main__full--tour">
                 <h4>Paddleboards</h4>
+
+                <section>
+                  <div className="collage tour-collage">
+                    <TextureBackgrounds />
+                    <WaterTexture className="texture card__image" />
+                    <Supper />
+                  </div>
+                </section>
               </article>
 
               <section className="deck">

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -14,6 +14,31 @@ import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 
 import TextureBackgrounds from "../components/texturebackgrounds";
+import WaterTexture from "../images/watertexture";
+
+function Kayaker(props) {
+  return <StaticImage
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
+    alt="tahoe city kayak kayaker"
+    className="paddler img__wrapped"
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
+function Supper(props) {
+  return <StaticImage
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
+    alt="tahoe city kayak paddleboarder"
+    className={`${props.className} paddler img__wrapped`}
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
 
 const RetailPage = () => {
   let title = "Retail";
@@ -60,7 +85,7 @@ const RetailPage = () => {
         </li>
       </ol>
 
-      <main className="with-card">
+      <main className="location_card-wrapper">
         <div>
           <h1>{title}</h1>
           <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
@@ -81,13 +106,27 @@ const RetailPage = () => {
           </p>
         </div>
       </main>
-      <section className="blocked">
-        <h2><Link to="/retail/kayak">Kayaks</Link></h2>
-        <h3 className="condensed">Browse By Feature</h3>
-        <KayakFeatureList />
-        <h3>Browse By Brand</h3>
-      </section>
-      <KayakBrandList />
+
+      <article className="main__full main__full--tour">
+        <section className="blocked">
+          <h2><Link to="/retail/kayak">Kayaks</Link></h2>
+          <h3 className="condensed">Browse By Feature</h3>
+          <KayakFeatureList />
+          <h3>Browse By Brand</h3>
+          <KayakBrandList />
+        </section>
+
+        <section>
+          <div className="collage tour-collage">
+            <TextureBackgrounds />
+            <WaterTexture className="texture card__image" />
+            <Kayaker />
+          </div>
+        </section>
+
+      </article>
+
+
 
       <StaticQuery
         query={query}
@@ -126,14 +165,24 @@ const RetailPage = () => {
               <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
             </section>
 
-            <article>
-              <hr />
-              <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
-            </article>
-            <section>
-              <h2>Browse By Brand</h2>
-            </section>
-            <SupBrandList />
+            <div className="main__full main__full--tour">
+              <article>
+                {/* <hr /> */}
+                <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
+                <section>
+                  <h2>Browse By Brand</h2>
+                </section>
+                <SupBrandList />
+              </article>
+
+              <section>
+                <div className="collage tour-collage">
+                  <TextureBackgrounds />
+                  <WaterTexture className="texture card__image" />
+                  <Supper />
+                </div>
+              </section>
+            </div>
 
             <section className="deck">
               {

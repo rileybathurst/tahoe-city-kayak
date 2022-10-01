@@ -5,7 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Seo from "../components/seo";
-import StoreIcon from "../images/store";
+import Store from "../components/locations/store";
 
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
@@ -146,33 +146,22 @@ const KayakBrandView = ({ data }) => {
         </li>
       </ol>
 
-      <main>
-        <div className="here__location here__card">
-          <StoreIcon />
-          <p>
-            <strong>Retail Location</strong><br />
-            <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
-              521 North Lake Blvd,<br />
-              Tahoe City 96145</a>
-          </p>
-
-          <p>
-            Open Daily<br />
-            9am &ndash; 6pm<br />
-          </p>
+      <main className="location_card-wrapper">
+        <div>
+          <div className="brand-logo">
+            <Danger svg={data.brand.svg} />
+            {/* // TODO: clean this up with the svg above */}
+            <h1 className="capitalize">{data.brand.name}</h1>
+          </div>
+          <p>{data.brand.tagline}.</p>
+          <hr />
+          <Next series={data.brand.retail} list='true' />
         </div>
 
-        <div className="brand-logo">
-          <Danger svg={data.brand.svg} />
-          {/* // TODO: clean this up with the svg above */}
-          <h1 className="capitalize">{data.brand.name}</h1>
+        <div className="location_card">
+          <Store />
         </div>
-        <p>{data.brand.tagline}.</p>
-        <hr />
 
-
-
-        <Next series={data.brand.retail} list='true' />
       </main>
 
       <section id='island'>
