@@ -7,8 +7,13 @@ import MenuList from './menu-list';
 import Logo from '../images/logo';
 
 function OpenSeason(key, defaultValue) {
-  const [banner, setBanner] = useState('shown');
-  // const [banner, setBanner] = useState((window.localStorage.getItem('banner')));
+  // * if you could use this it solves the problem of either state is the way to start but it cant do that
+  // there may be another way but I cant get my head around that yet as the whole put is use effect
+  if (window) {
+    const [banner, setBanner] = useState((window.localStorage.getItem('banner')));
+  } else {
+    const [banner, setBanner] = useState('shown');
+  }
 
   useEffect(() => {
     // setBanner(JSON.parse(window.localStorage.getItem('banner')));
