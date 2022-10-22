@@ -11,6 +11,7 @@ import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
 
 import BookNow from "../components/peek/book-now";
+import ToursLessons from "../content/tours-lessons";
 
 const ToursLessonsPage = () => {
   let title = "Tours & Lessons";
@@ -60,7 +61,7 @@ const ToursLessonsPage = () => {
       <div className="location_card-wrapper">
         <div>
           <h1>{title}</h1>
-          <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
+          <ToursLessons />
           <BookNow />
           <hr />
         </div>

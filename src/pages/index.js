@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -19,7 +19,12 @@ import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
 import Complete from '../components/locations/complete';
 
-// TODO this will eventually be a svg
+import Slogan from "../content/slogan";
+import AboutUs from "../content/about-us";
+import ToursLessons from "../content/tours-lessons";
+import Retail from "../content/retail";
+
+/* // TODO this will eventually be a svg
 function Map(props) {
   return <StaticImage
     src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/Tahoe-City-Map-2-fs8.png"
@@ -29,7 +34,7 @@ function Map(props) {
   // breakpoints={[480, 960]} // TODO
   // width={960}
   />
-}
+} */
 
 const IndexPage = () => {
 
@@ -161,18 +166,9 @@ const IndexPage = () => {
       <main className="home__main">
         {/* // TODO: test this */}
         <section itemScope itemType="https://schema.org/Service">
-          <h2 className="page-title">North Tahoe's Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours</h2>
+          <h2 className="page-title"><Slogan /></h2>
 
-          <p
-            className=""
-            itemProp="hasOfferCatalog"
-            itemScope
-            itemType="https://schema.org/OfferCatalog"
-          >
-            Our mission at Tahoe City Kayak and paddleboard is to provide you with unparalleled customer service. We strive to give you the best in <span itemProp="name">sales</span>, <span itemProp="name">rentals</span>, <span itemProp="name">high-end demos</span>and <span itemProp="name">tours</span>. We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.
-          </p>
-
-          {/* <p> kayaking or standup paddleboarding with one of our high-end demos or rentals.</p> */}
+          <AboutUs />
 
           <Complete />
 
@@ -204,7 +200,7 @@ const IndexPage = () => {
             {/* think about capitalization here */}
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
-          <p>We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake.</p>
+          <ToursLessons />
         </div>
         <div>{/* stay gold */}</div>
       </section>
@@ -268,8 +264,7 @@ const IndexPage = () => {
 
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>
-        <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers!</p>
-        <p><Link to="/demos">Try before you buy with our demos!</Link></p>
+        <Retail />
       </section>
 
       <section className="reuseable__two-col">

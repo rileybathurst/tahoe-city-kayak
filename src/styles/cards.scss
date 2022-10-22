@@ -22,7 +22,7 @@
     background-color: var(--sand);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--sand__double-dark);
+      background-color: hsl(var(--sand__base), var(--dark));
     }
 
     .card__placeholder {
@@ -56,7 +56,7 @@
     }
 
     .card__span {
-      // color: var(--sand__dark); // I dont think its quite there
+      // color: var(hsl(var(--sand__base), var(--dim))); // I dont think its quite there
       color: var(--industrial-revolution);
       font-size: 1rem;
       text-transform: uppercase;
@@ -104,7 +104,7 @@
       }
 
       button:where(:hover, :focus) {
-        background-color: var(--mullen__dark);
+        background-color: hsl(var(--mullen__base), var(--dim));
         color: var(--kingly-cloud);
       } // .button
     }
@@ -131,6 +131,12 @@
     // text-align: center;
     // why dont you want to be margin-inline?
     // I could do something with a flex if i needed to
+  }
+}
+
+.sand_backed--wide {
+  .card {
+    background-color: whitesmoke;
   }
 }
 
@@ -209,7 +215,7 @@
   font-weight: 600;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen__dark);
+    background-color: hsl(var(--mullen__base), var(--dim));
   }
 
   a {

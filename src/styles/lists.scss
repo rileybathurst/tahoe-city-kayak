@@ -96,7 +96,7 @@
     }
 
     > a:where(:hover, :focus) {
-      background-color: var(--mullen__dark);
+      background-color: hsl(var(--mullen__base), var(--dim));
       box-shadow: var(--penumbra);
       color: var(--kingly-cloud);
       box-shadow: var(--penumbra);

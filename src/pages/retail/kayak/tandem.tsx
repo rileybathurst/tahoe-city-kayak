@@ -104,7 +104,7 @@ const DemosPage = () => {
       <main>
         <h1>{title}</h1>
 
-        <p>Our tandem kayaks are the perfect way to explore the water with friends.</p>
+        <p>Tandem kayak.</p>
       </main>
 
       {

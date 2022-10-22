@@ -5,7 +5,9 @@ import CarIcon from "../../images/car";
 const Parking = () => {
   return (
     <section className="location">
-      <CarIcon />
+      <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">
+        <CarIcon />
+      </a>
       <p><strong>Free Parking Lot</strong><br />
         <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
           Tahoe City 96145

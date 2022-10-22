@@ -12,6 +12,7 @@ import Danger from "../../components/danger";
 import SupBrandList from "../../components/sup-brand-list";
 import StoreIcon from "../../images/store";
 import Store from "../../components/locations/store";
+import Retail from "../../content/retail";
 
 function Card(props) {
   // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
@@ -127,7 +128,7 @@ const RetailSupPage = (data) => {
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+            <Retail />
           </div>
           <div className="location_card">
             <Store />

@@ -1,3 +1,5 @@
+// TODO add the retail content
+
 import React, { useState, useEffect } from "react"
 import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"

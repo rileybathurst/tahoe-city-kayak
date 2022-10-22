@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 import Seo from "../components/seo";
 import MapSVG from "../images/map";
 import Complete from "../components/locations/complete";
+import AboutUs from "../content/about-us";
 
 const AboutPage = () => {
   let title = "About Us";
@@ -58,8 +59,9 @@ const AboutPage = () => {
       <main>
         <h1>{title}</h1>
         {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
-        <p>Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak sales , padddleboard rentals, kayak rentals and tours. We know that you have many choices when you come to Lake Tahoe and we thank you for considering us and look forward to serving you on your next trip to the lake.</p>
+        <AboutUs />
 
+        {/* // TODO: this needs better spacing */}
         <ul>
           <li><Link to="/about/faq">Frequently Asked Questions</Link></li>
           <li><Link to="/about/information">Paddlesports Information</Link></li>

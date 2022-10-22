@@ -9,6 +9,7 @@
   --dull: 25%;
   --dim: 37.5%;
   --mid: 50%;
+  --glow: 62.5%;
   --light: 75%;
   --bright: 87.5%;
   --brilliant: 97.5%;
@@ -18,7 +19,7 @@
   --black-out: hsl(0, 0%, 12.5%);
   --raven-black: hsl(0, 0%, 25%);
   --industrial-revolution: hsl(0, 0%, 37.5%);
-  --grey: grey; // I can not use the variable here
+  // --grey: grey; // this doesnt need to be a variable
   --cold-grey: hsl(0, 0%, 62.5%);
   --tin-soldier: hsl(0, 0%, 75%);
   --kingly-cloud: hsl(0, 0%, 87.5%);
@@ -44,6 +45,7 @@
 
   --measure: 40rem;
 
+  // https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan
   --swan: 20rem;
   --vulture: 30rem;
   --stork: 40rem;
@@ -63,15 +65,9 @@
 
   --mullen: hsl(0, 50%, 50%);
   --mullen__base: 0, 50%;
-  --mullen__dark: hsl(0, 50%, 40%);
-  --mullen__dim: hsl(0, 50%, var(--dim));
 
   --sand: hsl(25, 37%, 95%); // not a louie color because I dont want to hit 100
   --sand__base: 25, 37%;
-  --sand__dark: hsl(25, 37%, 37.5%);
-
-  --sand__double-dark: hsl(25, 37%, 5%);
-  --sand__pitch: hsl(var(--sand__base), var(--pitch));
 
   --body_font: "Barlow", Arial, sans-serif;
   --heading_font: "Barlow Condensed", Arial, sans-serif;

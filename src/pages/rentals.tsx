@@ -1,3 +1,5 @@
+// TODO: this page could be more exciting, possibly with photos
+
 import * as React from "react"
 import { Link } from 'gatsby';
 
@@ -6,9 +8,9 @@ import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import SEO from "../components/seo";
 import TitleTemplate from "../components/TitleTemplate";
-// import MapStore from "../components/map-store";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
+import Rentals from "../content/rentals";
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -58,12 +60,14 @@ const RentalsPage = () => {
       <div className="location_card-wrapper">
         <div>
           <h1>{title}</h1>
-          <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals. Kayak and Standup Paddleboard Rentals are open for the 2022 season. Tours and rentals can be booked in advance with the button below!</p>
+          <Rentals />
           <h4>Season: May &ndash; October</h4>
         </div>
 
         <div className="here__location here__card">
-          <KayakIcon />
+          <MapLink>
+            <KayakIcon />
+          </MapLink>
           <p>
             <strong>On Water Rental</strong><br />
             <MapLink>

@@ -11,6 +11,8 @@ import Remainder from "../components/remainder";
 import Store from "../components/locations/store";
 import WaterTexture from "../images/watertexture";
 
+import Demos from "../content/demos";
+
 function Kayaker(props) {
   return <StaticImage
     // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
@@ -59,6 +61,56 @@ function Card(props) {
         <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
       </div>
     </article>
+  )
+}
+
+// TODO move this to its own file
+function Danger(props) {
+  const svg = (props.svg)
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  );
+}
+
+function KayakDemoBrands(props) {
+  // console.log(props.brand);// brand={data.kayak.edges.map(brand => (brand.node.brand))}
+
+  // TODO I cant bring through more than one piece of info
+  const KayakSetNames = new Set();
+  props.brand.forEach(brand => {
+    KayakSetNames.add(brand.name);
+  });
+
+  console.log(KayakSetNames);
+
+  return (
+    <>
+      {[...KayakSetNames].map(brand => (
+        <li key={brand} className="capitalize">
+          {/* <Danger svg={brand.svg} /> */}
+          {brand}
+        </li>
+      ))}
+    </>
+  )
+}
+
+function SupDemoBrands(props) {
+  const SupSetNames = new Set();
+  props.brand.forEach(brand => {
+    SupSetNames.add(brand.name);
+  });
+  return (
+    <>
+      {[...SupSetNames].map(brand => (
+        <li key={brand} className="capitalize">
+          {/* <Danger svg={brand.svg} /> */}
+          {brand}
+        </li>
+      ))}
+    </>
   )
 }
 
@@ -111,9 +163,7 @@ const DemosPage = () => {
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <p>If you&rsquo;re looking to try out a particular kayak or board that we sell, call the shop and request a demo.  We&rsquo;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. &#x28;Up to two full days rental charge&#x29;</p>
-            {/* // TODO: this can be by a boolean */}
-            <p>* Pedal drive is an additional $5 per rental.</p>
+            <Demos />
             <p>Phone:&nbsp;
               <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
                 (530) 581-4336
@@ -135,44 +185,60 @@ const DemosPage = () => {
           query={query}
           render={data => (
             <>
+              <div className="sand_backed--wide baseline-spacing">
+                <article className="main__full main__full--tour ">
+                  <div>
+                    <h3>Demos</h3>
+                    <hr />
+                    <h4>Kayaks from these brands</h4>
+                    {/* // TODO add brands here */}
+                    <ul>
+                      <KayakDemoBrands
+                        brand={data.kayak.edges.map(brand => (brand.node.brand))}
+                      />
+                    </ul>
 
-              <article className="main__full main__full--tour">
-                <div>
-                  <h3>Demos</h3>
-                  <hr />
-                  <h4>Kayak</h4>
-                </div>
-
-                <section>
-                  <div className="collage tour-collage">
-                    <TextureBackgrounds />
-                    <WaterTexture className="texture card__image" />
-                    <Kayaker />
                   </div>
+
+                  <section>
+                    <div className="collage tour-collage">
+                      <TextureBackgrounds />
+                      <WaterTexture className="texture card__image" />
+                      <Kayaker />
+                    </div>
+                  </section>
+
+                </article>
+
+                <section className="deck">
+                  {
+                    data.kayak.edges.map(retail => (
+                      <Card
+                        id={retail.node.id}
+                        slug={retail.node.slug}
+                        title={retail.node.title}
+                        capacity={retail.node.capacity}
+                        length={retail.node.length}
+                        width={retail.node.width}
+                        excerpt={retail.node.excerpt}
+                        cutout={retail.node?.cutout}
+                        type={retail.node.type}
+                      />
+                    ))
+                  }
                 </section>
+              </div>
 
-              </article>
+              <article className="main__full main__full--tour baseline-spacing">
+                <div>
+                  <h4>Paddleboards from these brands</h4>
 
-              <section className="deck">
-                {
-                  data.kayak.edges.map(retail => (
-                    <Card
-                      id={retail.node.id}
-                      slug={retail.node.slug}
-                      title={retail.node.title}
-                      capacity={retail.node.capacity}
-                      length={retail.node.length}
-                      width={retail.node.width}
-                      excerpt={retail.node.excerpt}
-                      cutout={retail.node?.cutout}
-                      type={retail.node.type}
+                  <ul>
+                    <SupDemoBrands
+                      brand={data.paddleboards.edges.map(brand => (brand.node.brand))}
                     />
-                  ))
-                }
-              </section>
-
-              <article className="main__full main__full--tour">
-                <h4>Paddleboards</h4>
+                  </ul>
+                </div>
 
                 <section>
                   <div className="collage tour-collage">
@@ -204,8 +270,6 @@ const DemosPage = () => {
           )}
         />
       }
-
-
       <Footer />
     </>
   )
@@ -235,6 +299,10 @@ query DemosQuery {
           }
           alternativeText
         }
+
+        brand {
+          name
+        }
       }
     }
   }
@@ -258,6 +326,10 @@ query DemosQuery {
             }
           }
           alternativeText
+        }
+
+        brand {
+          name
         }
       }
     }

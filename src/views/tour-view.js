@@ -1,3 +1,5 @@
+// TODO this needs the content for tours lessons in this page somehere
+
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"

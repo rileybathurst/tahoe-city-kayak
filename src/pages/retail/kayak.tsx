@@ -7,12 +7,12 @@ import Footer from "../../components/footer";
 import Seo from "../../components/seo";
 import TextureBackgrounds from "../../components/texturebackgrounds";
 import Remainder from "../../components/remainder";
-import MapStore from "../../components/map-store";
 import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
-import StoreIcon from "../../images/store";
 import Store from "../../components/locations/store";
+
+import Retail from "../../content/retail";
 
 function Card(props) {
   if (props.type === 'kayak') {
@@ -127,7 +127,7 @@ const RetailKayakPage = (data) => {
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <p>Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, touring, and sales for over 17 years. We carry the best names in kayaks, stand up paddleboards, gear and apparel. Our Store and our retail prices are competitive with big-city retailers! Try before you buy!</p>
+            <Retail />
           </div>
 
           <div className="location_card">

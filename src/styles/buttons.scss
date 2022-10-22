@@ -17,12 +17,11 @@ button,
   border: 1px solid var(--mullen);
 }
 
+button:hover,
 .button:hover,
-.button:active,
-.button__hover,
-button:hover {
+.button__hover {
   background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
-  color: var(--mullen__dark);
+  color: hsl(var(--mullen__base), var(--dim));
   box-shadow: var(--penumbra);
 
   @media (prefers-color-scheme: dark) {
@@ -33,15 +32,37 @@ button:hover {
 
 .button__active,
 button:active {
-  background-color: var(--mullen__dark);
-  border-color: var(--mullen__dark);
-  color: var(--sand);
+  background-color: hsl(var(--sand__base), var(--glow));
+  border-color: hsl(var(--mullen__base), var(--dull));
+  color: hsl(var(--mullen__base), var(--dull));
   box-shadow: var(--antumbra);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--mullen__base), var(--dull));
     color: var(--black-metal);
   }
+}
+
+.button__mullen {
+  @extend button;
+  background-color: var(--mullen);
+  color: var(--brilliance);
+}
+
+.button__mullen:hover,
+.button__mullen--hover,
+// this is a weird thing you maybe need
+.button__mullen--hover:hover {
+  @extend .button__hover; // you cant use the :hover
+  background-color: hsl(var(--mullen__base), var(--dull));
+  color: var(--tin-soldier);
+}
+
+.button__mullen:active,
+.button__mullen--active {
+  @extend .button__active;
+  background-color: hsl(var(--mullen__base), var(--dark));
+  color: var(--industrial-revolution);
 }
 
 /*------------------*/
@@ -107,14 +128,14 @@ menu button {
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen__dark);
+    background-color: hsl(var(--mullen__base), var(--dim));
     color: var(--kingly-cloud);
   }
 }
 
 .book-now:hover,
 .book-now:active {
-  background-color: var(--mullen__dark);
+  background-color: hsl(var(--mullen__base), var(--dim));
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {

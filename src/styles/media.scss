@@ -42,8 +42,8 @@ svg {
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--sand__double-dark);
-    box-shadow: 0 0 0 100vmax var(--sand__double-dark);
+    background-color: hsl(var(--sand__base), var(--dark));
+    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--dark));
   }
 
   h1 {
@@ -88,32 +88,30 @@ svg {
 /*------------------*/
 
 .facebook {
-  mix-blend-mode: multiply;
-
-  @media (prefers-color-scheme: dark) {
-    mix-blend-mode: hard-light;
-  }
+  transition: 0.5s ease;
 
   .facebook__blue {
-    transition: 0.5s ease;
     fill: grey;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .facebook__blue {
+      fill: grey;
+    }
+
+    .facebook__white {
+      fill: hsl(var(--sand__base), var(--dark));
+    }
   }
 }
 
+.facebook__white {
+  fill: var(--sand);
+}
+
 .facebook:hover {
-  mix-blend-mode: normal;
-
-  @media (prefers-color-scheme: dark) {
-    mix-blend-mode: normal;
-    // fill: green; // not yet working
-  }
-
   .facebook__blue {
     fill: #1877f2;
-
-    @media (prefers-color-scheme: dark) {
-      mix-blend-mode: normal;
-    }
   }
 }
 

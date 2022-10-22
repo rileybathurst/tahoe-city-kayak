@@ -33,7 +33,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    // Create pages for each partner resorts.
+    // Create pages for each brand under the heirachy of sup or kayak
     result.data.allStrapiRetail.edges.forEach(({ node }) => {
       createPage({
         path: `/retail/${node.type}/${node.slug}`,
@@ -61,7 +61,6 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    // Create pages for each partner resorts.
     result.data.allStrapiBrand.edges.forEach(({ node }) => {
       createPage({
         path: `/retail/kayak/${node.slug}`,

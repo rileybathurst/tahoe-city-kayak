@@ -1,3 +1,6 @@
+// TODO add the retail content
+// TODO add the stripes for individual series
+
 import React, { useState, useEffect } from "react"
 import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
