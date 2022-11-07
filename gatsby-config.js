@@ -75,6 +75,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`, // ? I think this is where I need to stop the npm start errors and this might be doing that but I dont know if its actually helping
+      },
+    },
+    {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,
     },
