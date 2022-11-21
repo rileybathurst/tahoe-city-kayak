@@ -43,10 +43,10 @@ const DemosPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
         description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"

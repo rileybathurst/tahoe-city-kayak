@@ -76,10 +76,10 @@ const RetailSupPage = (data) => {
   return (
     <>
       <Header />
-      <Seo
+      {/*       <Seo
         title={title}
         description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"

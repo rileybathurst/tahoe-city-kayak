@@ -43,10 +43,10 @@ const DemosPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
         description="Our ultralight kayaks are Single kayaks under 46 pounds"
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"

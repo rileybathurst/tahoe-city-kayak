@@ -20,10 +20,10 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
         description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"

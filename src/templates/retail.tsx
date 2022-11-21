@@ -213,12 +213,12 @@ const RetailTypeView = ({ data }) => {
       <Header />
 
       {/* // TODO test rich results */}
-      <Seo
+      {/*       <Seo
         title={data.strapiRetail.title}
         description={data.strapiRetail.excerpt}
         itemType="https://schema.org/ItemPage"
         itemScope={true}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
