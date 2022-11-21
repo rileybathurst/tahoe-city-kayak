@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import Seo from "../components/seo";
 import Remainder from "../components/remainder";
 import Time from "../components/time";
 import TwoKayakers from "../images/twokayakers";
@@ -158,10 +159,10 @@ const IndexPage = () => {
     <>
 
       {/* // ! this needs to remove the pipe */}
-      <Seo
+      {/*       <Seo
         title=""
       // image="test"
-      />
+      /> */}
       <Header />
       <main className="home__main">
         {/* // TODO: test this */}
@@ -323,6 +324,15 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`About Us${TitleTemplate}`}
+      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}
 
 
 // this is a new thing that doesnt seems to be working yet but I'd like to get it there

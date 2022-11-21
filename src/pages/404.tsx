@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Seo from "../components/seo";
 
 const NotFoundPage = () => {
   let title = "404";
@@ -12,9 +13,9 @@ const NotFoundPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -63,3 +64,12 @@ const NotFoundPage = () => {
 }
 
 export default NotFoundPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`404${TitleTemplate}`}
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}

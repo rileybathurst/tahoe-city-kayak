@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { SEO } from "../../components/seo";
+import TitleTemplate from "../../components/title-template";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Seo from "../../components/seo";
 
 const InformationPage = () => {
   let title = "Paddlesports Information";
@@ -13,10 +14,10 @@ const InformationPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/* <Seo
         title={title}
         description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -156,3 +157,12 @@ const InformationPage = () => {
 }
 
 export default InformationPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Information${TitleTemplate}`}
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}

@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from "react"
 import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Seo from "../components/seo";
 import Store from "../components/locations/store";
 
 import TextureBackgrounds from "../components/texturebackgrounds";
@@ -93,10 +94,10 @@ const supBrandView = ({ data }) => {
   return (
     <>
       <Header />
-      <Seo
+      {/*       <Seo
         title={`Tahoe City Kayak sells ${data.brand.name} paddleboards`}
         description={`${data.brand.name} paddleboards ${data.brand.tagline}`}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -256,6 +257,15 @@ const supBrandView = ({ data }) => {
 };
 
 export default supBrandView;
+
+export const Head = () => {
+  return (
+    <SEO
+    // title={`About Us${TitleTemplate}`}
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}
 
 // TODO: add type into here
 

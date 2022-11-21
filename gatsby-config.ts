@@ -46,13 +46,12 @@ module.exports = {
     numberOfEmployees: '10+',
     slogan: 'North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours',
 
-    titleTemplate: '%s | Gatsby SEO',
+    TitleTemplate: '%s | Gatsby SEO',
 
   },
   plugins: [
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
 
     {

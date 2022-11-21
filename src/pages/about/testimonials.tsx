@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
+import { SEO } from "../../components/seo";
+import TitleTemplate from "../../components/title-template";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Seo from "../../components/seo";
 
 const FaqPage = () => {
   let title = "Testimonials";
@@ -13,10 +14,10 @@ const FaqPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
         description="Testimonials from our customers"
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -92,6 +93,15 @@ const FaqPage = () => {
 }
 
 export default FaqPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Testimonials${TitleTemplate}`}
+      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}
 
 const query = graphql`
 query TestimonialQuery {

@@ -3,13 +3,14 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
-
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
 import Header from "../components/header"
 import Footer from "../components/footer"
-import Seo from "../components/seo";
+
 import Time from "../components/time";
 import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
@@ -103,10 +104,10 @@ const TourView = ({ tour, other }) => {
   return (
     <>
       <Header />
-      <Seo
+      {/*       <Seo
         title={tour.name}
         description={tour.excerpt}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -280,3 +281,12 @@ const TourView = ({ tour, other }) => {
 };
 
 export default TourView;
+
+export const Head = () => {
+  return (
+    <SEO
+    // title={`About Us${TitleTemplate}`}
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}

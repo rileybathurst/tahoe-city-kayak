@@ -1,23 +1,24 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Seo from "../components/seo";
-import Here from "../components/here";
+// import Here from "../components/here";
 import MapSVG from "../images/map";
 import Complete from "../components/locations/complete";
 
-const NotFoundPage = () => {
+const MapPage = () => {
   let title = "Map";
 
   return (
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -65,4 +66,13 @@ const NotFoundPage = () => {
   )
 }
 
-export default NotFoundPage
+export default MapPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Map${TitleTemplate}`}
+    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}

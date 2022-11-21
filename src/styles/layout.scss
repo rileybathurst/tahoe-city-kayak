@@ -17,6 +17,14 @@
   padding-block: var(--baseline);
 }
 
+.flex1 {
+  display: flex;
+
+  > * {
+    flex: 1;
+  }
+}
+
 /*------------------*/
 //  #HEADER
 /*------------------*/
@@ -758,4 +766,13 @@ footer {
   > *:first-child {
     flex: 1 1;
   }
+}
+
+/*------------------*/
+//  #COMPARE TABLE
+/*------------------*/
+
+// ! test this in chrome, it doesnt have subgrid yet
+
+.compare-table {
 }

@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Seo from "../components/seo";
 import MapSVG from "../images/map";
 import Complete from "../components/locations/complete";
 import AboutUs from "../content/about-us";
@@ -14,47 +15,6 @@ const AboutPage = () => {
   return (
     <>
       <Header />
-
-      {/* // TODO test rich results */}
-      <Seo
-        title={title}
-        description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-        itemType="https://schema.org/AboutPage"
-        itemScope={true}
-      />
-
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
 
       <main>
         <h1>{title}</h1>
@@ -84,3 +44,17 @@ const AboutPage = () => {
 }
 
 export default AboutPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`About Us${TitleTemplate}`}
+      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}
+
+{/* // TODO test rich results
+  itemType="https://schema.org/AboutPage"
+  itemScope={true}
+ */ }

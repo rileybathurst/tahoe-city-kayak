@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
-import Seo from "../components/seo";
+
 import Time from "../components/time";
 import Fitness from "../components/fitness";
 import KayakIcon from "../images/kayak";

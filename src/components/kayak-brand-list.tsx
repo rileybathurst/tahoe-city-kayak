@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 
 // I dont know how dangerous this dangerously set is as its prebuilt
-function Danger(props) {
+function Danger(props: { svg: string; }) {
   const svg = (props.svg)
   return (
     <div
@@ -17,7 +17,14 @@ const KayakBrandList = () => {
       query={query}
       render={data => (
         <ul className='brand_list'>
-          {data.allStrapiBrand.edges.map(kayak => (
+          {data.allStrapiBrand.edges.map((kayak: {
+            node: {
+              id: React.Key;
+              slug: string;
+              svg: string;
+              name: string;
+            };
+          }) => (
             <li key={kayak.node.id}>
               <Link to={`/retail/kayak/${kayak.node.slug}`}>
                 <Danger svg={kayak.node.svg} />

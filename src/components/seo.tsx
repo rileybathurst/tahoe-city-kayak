@@ -1,22 +1,17 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-// ! Based on Sierra Lighting the title template is a default thing
-// its not working here yet tho
-
-const SEO = ({
+export const SEO = ({
   title,
   description,
   image,
-  itemScope,
-  itemType,
+  pathname,
+  children
 }) => {
-  const { site } = useStaticQuery(query);
+
   const {
     defaultTitle,
-    titleTemplate,
+    TitleTemplate,
     siteUrl,
     defaultDescription,
     defaultImage,
@@ -30,11 +25,8 @@ const SEO = ({
     themeColor,
     numberOfEmployees,
     slogan,
-  } = site.siteMetadata;
+  } = useSiteMetadata()
 
-  // the double pipe || is or
-  // but it doesnt get past the null problem
-  // title: `${title} | ${defaultTitle}` || defaultTitle,
   const seo = {
     title: title || defaultTitle, // this works
     description: description || defaultDescription,
@@ -46,30 +38,18 @@ const SEO = ({
     telephone: telephone,
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
-    itemScope: itemScope,
-    itemType: itemType,
-    streetAddress: location.address.streetAddress,
-    addressLocality: location.address.addressLocality,
-    addressRegion: location.address.addressRegion,
-    postalCode: location.address.postalCode,
+    // streetAddress: location.address.streetAddress,
+    // addressLocality: location.address.addressLocality,
+    // addressRegion: location.address.addressRegion,
+    // postalCode: location.address.postalCode,
     themeColor: themeColor,
     numberOfEmployees: numberOfEmployees,
     slogan: slogan,
   };
 
   return (
-    <Helmet
-      // title={`${ seo.title } | Tahoe City Kayak`} // this works but needs the if it has something else
-      title={seo.title}
-      // titleTemplate={titleTemplate}
-      // titleTemplate = '%s | Gatsby SEO';
-      htmlAttributes={{
-        lang: 'en-US',
-        itemScope: `${seo.itemScope} `,
-        itemType: `${seo.itemType} `,
-      }}
-    >
-      <meta itemProp="name" content={seo.title} />
+    <>
+      <title>{seo.title}</title>
 
       <meta name="description" content={seo.description} />
       <meta name="image" itemProp="image" content={seo.ogImage} />
@@ -115,95 +95,7 @@ const SEO = ({
       <meta name="theme-color" content={seo.themeColor} />
       <meta itemProp="numberOfEmployees" content={seo.numberOfEmployees} />
       <meta name="slogan" itemProp="slogan" content={seo.slogan} />
-
-    </Helmet>
+      {children}
+    </>
   );
 };
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  url: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  // ogImage: PropTypes.string,
-  // twitterImage: PropTypes.string,
-  article: PropTypes.bool,
-  openingHours: PropTypes.string,
-  telephone: PropTypes.string,
-  areaServed: PropTypes.string,
-  paymentAccepted: PropTypes.string,
-  location: PropTypes.string,
-  slogan: PropTypes.string,
-  gsv: PropTypes.string,
-  itemScope: PropTypes.bool,
-  itemType: PropTypes.string,
-  themeColor: PropTypes.string,
-  numberOfEmployees: PropTypes.string,
-};
-
-SEO.defaultProps = {
-  lang: `en`,
-  itemType: `https://schema.org/LocalBusiness`,
-  title: null,
-  url: null,
-  description: null,
-  image: null,
-  // ogImage: null,
-  // twitterImage: null,
-  article: false,
-  openingHours: null,
-  telephone: null,
-  areaServed: null,
-  paymentAccepted: null,
-  itemScope: false,
-  location: null,
-  themeColor: null,
-  numberOfEmployees: null,
-  slogan: null,
-};
-
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        defaultTitle
-        defaultDescription: description
-        openingHours
-        telephone
-        areaServed
-        paymentAccepted
-        itemType
-        location {
-          address {
-            _type
-            addressLocality
-            addressRegion
-            postalCode
-            streetAddress
-          }
-        }
-        defaultImage: image
-        themeColor
-        numberOfEmployees
-        slogan
-      }
-    }
-  }
-`;
-
-// url
-// defaultImage: image
-// ogImage: image
-// twitterImage: image
-
-export default SEO;
-
-/* 
-I kinda wanted to do something liek this but they are sort of different
-const TitleTemplate = () => {
-  return (
-    <> - Tahoe City Kayak &amp; Padddleboard</>
-  );
-};
-
-export default { SEO, TitleTemplate }; */

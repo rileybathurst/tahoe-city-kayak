@@ -9,7 +9,7 @@ import remarkGfm from 'remark-gfm'
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Seo from "../components/seo";
+
 import Remainder from "../components/remainder";
 import TextureBackgrounds from "../components/texturebackgrounds";
 

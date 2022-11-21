@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Seo from "../components/seo";
+
 
 const Brand = (props) => {
   return (

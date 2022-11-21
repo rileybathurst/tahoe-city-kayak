@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 import Header from "../../components/header"
 import Footer from "../../components/footer"
-import Seo from "../../components/seo";
+
 import Remainder from "../../components/remainder";
 import MapStore from "../../components/map-store";
 import TextureBackgrounds from "../../components/texturebackgrounds";

@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
+import { SEO } from "../../components/seo";
+import TitleTemplate from "../../components/title-template";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Seo from "../../components/seo";
 
 const FaqPage = () => {
   let title = "Frequently Asked Questions";
@@ -14,12 +15,12 @@ const FaqPage = () => {
       <Header />
 
       {/* // TODO: test rich results */}
-      <Seo
+      {/*       <Seo
         title={title}
         description="What is the best time of day to go paddling?"
         itemType="https://schema.org/FAQPage"
         itemScope={true}
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -92,6 +93,14 @@ const FaqPage = () => {
 }
 
 export default FaqPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`FAQ${TitleTemplate}`}
+    />
+  )
+}
 
 const query = graphql`
 query FaqQuery {

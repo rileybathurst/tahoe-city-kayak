@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import Seo from "../components/seo";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Store from "../components/locations/store";
@@ -121,10 +122,10 @@ const DemosPage = () => {
     <>
       <Header />
 
-      <Seo
+      {/*       <Seo
         title={title}
         description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
-      />
+      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -276,6 +277,15 @@ const DemosPage = () => {
 }
 
 export default DemosPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Demos${TitleTemplate}`}
+      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    />
+  )
+}
 
 const query = graphql`
 query DemosQuery {
