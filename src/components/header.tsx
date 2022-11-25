@@ -9,29 +9,7 @@ import Logo from '../images/logo';
 // const isBrowser = typeof window !== "undefined"
 
 function OpenSeason(key, defaultValue) {
-  // * if you could use this it solves the problem of either state is the way to start but it cant do that
-  // there may be another way but I cant get my head around that yet as the whole put is use effect
-  // https://www.gatsbyjs.com/docs/debugging-html-builds/
-
-  // that still doesnt solve the problem of the state being set to the default value
-  // https://reactjs.org/docs/react-component.html#componentdidmount
-
-  // otherwise this does work
   const [banner, setBanner] = useState('shown');
-  // const [banner, setBanner] = useState('');
-
-
-
-  /* componentWillMount = () => {
-    if (typeof window !== undefined) {
-      console.log('🦄');
-    }
-  }; */
-  /* componentDidMount = () => {
-    if (typeof window !== undefined) {
-      console.log('🦄');
-    }
-  }; */
 
   useEffect(() => {
     // setBanner(JSON.parse(window.localStorage.getItem('banner')));

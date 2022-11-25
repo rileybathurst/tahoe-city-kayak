@@ -788,7 +788,11 @@ footer {
 .comparesheet {
   display: grid;
   gap: 1rem;
-  grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: $vulture) {
+    grid-template-columns: auto 1fr 1fr;
+  }
 
   > * {
     grid-row: 1/11;
@@ -819,6 +823,11 @@ footer {
   }
 
   .comparesheet_titles {
+    display: none;
+
+    @media (min-width: $vulture) {
+      display: block;
+    }
     padding-inline-end: 1rem;
     text-align: end;
   }
