@@ -62,6 +62,7 @@ const ToursLessonsPage = () => {
         <div>
           <h1>{title}</h1>
           <ToursLessons />
+          <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
           <BookNow />
           <hr />
         </div>
@@ -107,7 +108,7 @@ const ToursLessonsPage = () => {
                     />
 
                     <h4 className="card__title">
-                      <Link to={`/tours/${tour.node.slug}`}>
+                      <Link to={`/tours-lessons/${tour.node.slug}`}>
                         {tour.node.name}
                       </Link>
                     </h4>
@@ -151,7 +152,7 @@ const ToursLessonsPage = () => {
                       className="card__image"
                     />
                     <h4 className="card__title">
-                      <Link to={`/tours/${tour.node.slug}`}>
+                      <Link to={`/tours-lessons/${tour.node.slug}`}>
                         {tour.node.name}
                       </Link>
                     </h4>

@@ -76,11 +76,26 @@ function Spec(props) {
         <h3><HourMin time={props.spec} /></h3>
       </div>
     );
+  } else if ((props.spec) && (props.unitPlace == "before")) {
+    return (
+      <div className="spec">
+        <h2>{props.name}</h2>
+        {/* // TODO: this needs a before and after on the unit this can be done with a flex */}
+        <h3 className="spec-flex unit-place__before">
+          <span className="specification">{props.spec}</span>
+          <span className="unit">{props.unit}</span>
+        </h3>
+      </div>
+    );
   } else if (props.spec) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
-        <h3>{props.spec} <span className="unit">{props.unit}</span></h3>
+        {/* // TODO: this needs a before and after on the unit this can be done with a flex */}
+        <h3 className="spec-flex">
+          <span className="specification">{props.spec}</span>
+          <span className="unit">{props.unit}</span>
+        </h3>
       </div>
     );
   } else {
@@ -180,10 +195,21 @@ const TourView = ({ tour, other }) => {
 
           <div className="spec">
             <h2>Starts At</h2>
+            {/* // ! I dont have this querying its just hard coded */}
             <h3>Tahoe City</h3>
             <a href="{/* // TODO */}">Google Maps</a>
           </div>
+
+          <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
+
+          <article className="single__description">
+            <ReactMD
+              raw={tour.childStrapiTourInformationTextnode?.information}
+            />
+          </article>
+
         </div>
+
         <section>
           <div className="collage tour-collage">
             <GatsbyImage
@@ -218,11 +244,7 @@ const TourView = ({ tour, other }) => {
         </section>
 
       </main>
-      <article className="single__description">
-        <ReactMD
-          raw={tour.childStrapiTourInformationTextnode?.information}
-        />
-      </article>
+
       <div className="single__book">
         <a
           href={tour.peek}
@@ -246,7 +268,7 @@ const TourView = ({ tour, other }) => {
                 className="card__image"
               />
               <h4 className="card__title">
-                <Link to={`/tours/${tour.slug}`}>
+                <Link to={`/tours-lessons/${tour.slug}`}>
                   {tour.name}
                 </Link>
               </h4>

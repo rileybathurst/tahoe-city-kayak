@@ -7,7 +7,10 @@ const HourMin = (props) => {
     let mins = props.time.split(':')[1];
     let ampm = hours >= 12 ? 'pm' : 'am';
 
-    if (hours > 12) {
+    if (hours < 10) {
+      hours = hours.replace('0', '');
+    } else if
+      (hours > 12) {
       hours = hours - 12;
     }
 

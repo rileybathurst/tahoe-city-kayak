@@ -216,7 +216,7 @@ const IndexPage = () => {
             />
 
             <h4 className="card__title">
-              <Link to={`/tours/${tour.slug}`}>
+              <Link to={`/tours-lessons/${tour.slug}`}>
                 {tour.name}
               </Link>
             </h4>

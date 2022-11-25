@@ -18,6 +18,7 @@ export const query = graphql`
       peek
       sport
       excerpt
+      price
 
       ogimage {
         localFile {

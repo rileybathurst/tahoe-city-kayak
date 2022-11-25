@@ -143,6 +143,10 @@ main {
   margin-block-end: 3rem;
 }
 
+.main__pelican {
+  max-width: var(--pelican);
+}
+
 .main__full {
   max-width: 60rem;
   margin-inline: auto;
@@ -297,11 +301,9 @@ main {
 /*------------------*/
 
 .single__description {
+  margin-block-start: var(--baseline);
   padding-block: 1.5rem;
   background-color: var(--kingly-cloud);
-  box-shadow: 0 0 0 100vmax var(--kingly-cloud);
-  clip-path: inset(0 -100vmax);
-  // margin-block-end: calc(var(--baseline) * 2);
 }
 
 .tin-soldier__wide {
@@ -335,8 +337,8 @@ main {
   max-width: 40rem;
   margin-inline: auto;
   margin-block-end: calc(var(--baseline) * 2);
-  background-color: var(--mullen);
-  box-shadow: 0 0 0 100vmax var(--mullen);
+  background-color: var(--cold-grey);
+  box-shadow: 0 0 0 100vmax var(--cold-grey);
   clip-path: inset(0 -100vmax);
   padding-block: 1.5rem;
   color: var(--brilliance);
@@ -383,6 +385,15 @@ main {
   display: flex;
   gap: 1rem;
   border-bottom: 2px solid var(--kingly-cloud);
+}
+
+// TODO: naming is bad its too close to .spec
+.spec-flex {
+  display: flex;
+}
+
+.unit-place__before {
+  flex-direction: row-reverse;
 }
 
 /*------------------*/
@@ -774,5 +785,49 @@ footer {
 
 // ! test this in chrome, it doesnt have subgrid yet
 
-.compare-table {
+.comparesheet {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr 1fr;
+
+  > * {
+    grid-row: 1/11;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: 1rem;
+    border-inline-end: 1px solid var(--tin-soldier);
+    padding-inline-end: 1rem;
+
+    > * {
+      align-self: stretch;
+    }
+
+    > *:nth-child(odd) {
+      background-color: var(--brilliance);
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+    }
+
+    > *:first-child {
+      background-color: transparent;
+    }
+  }
+
+  > *:last-child {
+    border-inline-end: none;
+    padding-inline-end: 0;
+  }
+
+  .comparesheet_titles {
+    padding-inline-end: 1rem;
+    text-align: end;
+  }
+}
+
+/*------------------*/
+//  #EXTRAS
+/*------------------*/
+
+.button-drop {
+  margin-block-start: 0.75rem;
 }
