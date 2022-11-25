@@ -19,6 +19,7 @@ export const query = graphql`
       sport
       excerpt
       price
+      slug
 
       ogimage {
         localFile {

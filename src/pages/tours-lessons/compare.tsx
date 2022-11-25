@@ -39,7 +39,7 @@ function Compare(props) {
   function Details1(props) {
     props.set.forEach(element => {
       if (element.node.name === props.show) {
-        setLink1(element.node.link);
+        setLink1(element.node.slug);
         setSport1(element.node.sport);
         setDuration1(element.node.duration);
         setStart1(element.node.start);
@@ -58,7 +58,7 @@ function Compare(props) {
   function Details2(props) {
     props.set.forEach(element => {
       if (element.node.name === props.show) {
-        setLink2(element.node.link);
+        setLink2(element.node.slug);
         setSport2(element.node.sport);
         setDuration2(element.node.duration);
         setStart2(element.node.start);
@@ -116,7 +116,7 @@ function Compare(props) {
       <div className='comparesheet'>
         <div className='comparesheet_titles'>
           <div>{/* stay gold */}</div>
-          <h3 className='h4'>Tour or<br />
+          <h3 className='h4 comparesheet_freeze'>Tour or<br />
             Lesson</h3>
           <p>Sport</p>
           <p>Time</p>
@@ -130,13 +130,13 @@ function Compare(props) {
 
         {/* Tour 1 */}
         <div>
-          <select name="tour3" id="tour3" onChange={first}>
+          <select name="tour3" id="tour3" onChange={first} className="emergent">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour1} other={tour2} />
             ))}
           </select>
-          <h2 className='h3'>
-            <Link to={link1}>
+          <h2 className='h3 comparesheet_select'>
+            <Link to={`/tours-lessons/${link1}`}>
               {tour1}
             </Link>
           </h2>
@@ -163,14 +163,15 @@ function Compare(props) {
 
         {/* Tour 2 */}
         <div>
-          <select name="tour3" id="tour3" onChange={second}>
+          <select name="tour3" id="tour3" onChange={second} className="emergent">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour2} other={tour1} />
             ))}
           </select>
-          <h2 className='h3'><Link to={link2}>
-            {tour2}
-          </Link></h2>
+          <h2 className='h3 comparesheet__title2'>
+            <Link to={`/tours-lessons/${link2}`}>
+              {tour2}
+            </Link></h2>
           <Details2 show={tour2} set={props.tours} />
           <h4 className='capitalize'>{sport2}</h4>
           <Time

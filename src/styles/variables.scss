@@ -54,6 +54,16 @@
   --albatross: 80rem;
 
   /*------------------*/
+  //  #Z INDEX
+  /*------------------*/
+
+  // https://en.wikipedia.org/wiki/Forest
+  --floor: 1;
+  --understory: 2;
+  --canopy: 3;
+  --emergent: 4;
+
+  /*------------------*/
   //  #TRANSITIONS
   /*------------------*/
   --easing: cubic-bezier(0.5, 0, 0.5, 1);

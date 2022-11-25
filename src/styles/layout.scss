@@ -799,7 +799,7 @@ footer {
     display: grid;
     grid-template-rows: subgrid;
     gap: 1rem;
-    border-inline-end: 1px solid var(--tin-soldier);
+    // border-inline-end: 1px solid var(--tin-soldier);
     padding-inline-end: 1rem;
 
     > * {
@@ -826,10 +826,32 @@ footer {
     display: none;
 
     @media (min-width: $vulture) {
-      display: block;
+      display: grid;
     }
     padding-inline-end: 1rem;
     text-align: end;
+  }
+
+  .comparesheet_select {
+    position: sticky;
+    top: -1px;
+    z-index: var(--);
+    z-index: var(--understory);
+    background-color: var(--brilliance);
+    box-shadow: 0 0 0 100vmax var(--brilliance);
+    clip-path: inset(0 -100vmax);
+  }
+
+  .comparesheet_freeze {
+    position: sticky;
+    top: -1px;
+    z-index: var(--canopy);
+  }
+
+  .comparesheet__title2 {
+    z-index: var(--canopy);
+    position: sticky;
+    top: -1px;
   }
 }
 
@@ -839,4 +861,8 @@ footer {
 
 .button-drop {
   margin-block-start: 0.75rem;
+}
+
+.emergent {
+  z-index: var(--emergent);
 }

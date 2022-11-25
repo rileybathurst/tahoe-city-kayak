@@ -208,6 +208,8 @@ const TourView = ({ tour, other }) => {
             />
           </article>
 
+          <p><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></p>
+
         </div>
 
         <section>
