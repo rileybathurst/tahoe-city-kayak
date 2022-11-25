@@ -9,6 +9,18 @@ import Time from "../../components/time";
 
 function Compare(props) {
 
+  function Option(props) {
+    if (props.name === props.other) {
+      return (
+        <option disabled key={props.key}>{props.name}</option>
+      )
+    } else {
+      return (
+        <option key={props.key}>{props.name}</option>
+      )
+    }
+  }
+
   function first(e) {
     setTour1(e.target.value);
     return null;
@@ -115,7 +127,7 @@ function Compare(props) {
         <div>
           <select name="tour3" id="tour3" onChange={first}>
             {props.tours.map((tour) => (
-              <option key={tour.id}>{tour.node.name}</option>
+              <Option key={tour.node.id} name={tour.node.name} other={tour2} />
             ))}
           </select>
           <h2 className='h3'>
@@ -148,7 +160,7 @@ function Compare(props) {
         <div>
           <select name="tour3" id="tour3" onChange={second}>
             {props.tours.map((tour) => (
-              <option key={tour.id} >{tour.node.name}</option>
+              <Option key={tour.node.id} name={tour.node.name} other={tour1} />
             ))}
           </select>
           <h2 className='h3'><Link to={link2}>
