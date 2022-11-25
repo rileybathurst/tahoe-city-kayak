@@ -9,8 +9,31 @@ import Time from "../../components/time";
 
 function Compare(props) {
 
-  function Option(props) {
-    if (props.name === props.other) {
+  // ! I think I am breaking the changing of the state here
+  function Option1(props) {
+    if (props.name === props.current) {
+      return (
+        <option selected key={props.key}>{props.name}</option>
+      )
+    }
+    else if (props.name === props.other) {
+      return (
+        <option disabled key={props.key}>{props.name}</option>
+      )
+    } else {
+      return (
+        <option key={props.key}>{props.name}</option>
+      )
+    }
+  }
+
+  function Option2(props) {
+    if (props.name === props.current) {
+      return (
+        <option selected key={props.key}>{props.name}</option>
+      )
+    }
+    else if (props.name === props.other) {
       return (
         <option disabled key={props.key}>{props.name}</option>
       )
@@ -127,7 +150,7 @@ function Compare(props) {
         <div>
           <select name="tour3" id="tour3" onChange={first}>
             {props.tours.map((tour) => (
-              <Option key={tour.node.id} name={tour.node.name} other={tour2} />
+              <Option1 key={tour.node.id} name={tour.node.name} current={tour1} other={tour2} />
             ))}
           </select>
           <h2 className='h3'>
@@ -160,7 +183,7 @@ function Compare(props) {
         <div>
           <select name="tour3" id="tour3" onChange={second}>
             {props.tours.map((tour) => (
-              <Option key={tour.node.id} name={tour.node.name} other={tour1} />
+              <Option2 key={tour.node.id} name={tour.node.name} current={tour2} other={tour1} />
             ))}
           </select>
           <h2 className='h3'><Link to={link2}>
