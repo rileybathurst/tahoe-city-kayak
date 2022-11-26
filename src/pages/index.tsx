@@ -328,22 +328,8 @@ export default IndexPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us${TitleTemplate}`}
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      title="Tahoe City Kayak & Paddeboard"
+      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.We strive to give you the best in kayak and padddleboard sales, rentals and tours."
     />
   )
 }
-
-
-// this is a new thing that doesnt seems to be working yet but I'd like to get it there
-
-/* 
-https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
-https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/
-*/
-
-/* export function Head() {
-  return (
-    <title>Hello World</title>
-  )
-} */

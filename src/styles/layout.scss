@@ -832,7 +832,7 @@ footer {
     text-align: end;
   }
 
-  .comparesheet_select {
+  .comparesheet__title1 {
     position: sticky;
     top: -1px;
     z-index: var(--);
@@ -863,6 +863,7 @@ footer {
   margin-block-start: 0.75rem;
 }
 
-.emergent {
+.comparesheet_select {
   z-index: var(--emergent);
+  max-width: calc(50vw - 2.25rem); // guess and check
 }

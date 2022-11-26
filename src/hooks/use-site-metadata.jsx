@@ -8,7 +8,26 @@ export const useSiteMetadata = () => {
           title
           description
           image
+          url
           siteUrl
+          name
+          openingHours
+          telephone
+
+          location {
+            address {
+              streetAddress
+              addressLocality
+              addressRegion
+              postalCode
+            }
+          }
+
+          geo {
+            latitude
+            longitude
+            geoRadius
+          }
         }
       }
     }

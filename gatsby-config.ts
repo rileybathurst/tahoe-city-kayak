@@ -18,6 +18,7 @@ const strapiConfig = {
 module.exports = {
   siteMetadata: {
     title: "Tahoe City Kayak and Padddleboard",
+    name: "Tahoe City Kayak and Padddleboard",
     defaultTitle: "Tahoe City Kayak and Padddleboard",
     siteUrl: 'https://tahoe-city-kayak.netlify.app',
     url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
@@ -40,6 +41,12 @@ module.exports = {
         "addressRegion": "CA",
         "postalCode": "96145",
       }
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      'latitude': '39.17138171971435',
+      'longitude': '-120.14098458679503',
+      'geoRadius': '80470',
     },
     image: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage.jpg",
     themeColor: '#bf4040',

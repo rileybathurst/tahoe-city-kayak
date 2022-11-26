@@ -130,12 +130,12 @@ function Compare(props) {
 
         {/* Tour 1 */}
         <div>
-          <select name="tour3" id="tour3" onChange={first} className="emergent">
+          <select name="tour3" id="tour3" onChange={first} className="comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour1} other={tour2} />
             ))}
           </select>
-          <h2 className='h3 comparesheet_select'>
+          <h2 className='h3 comparesheet__title1'>
             <Link to={`/tours-lessons/${link1}`}>
               {tour1}
             </Link>
@@ -163,7 +163,7 @@ function Compare(props) {
 
         {/* Tour 2 */}
         <div>
-          <select name="tour3" id="tour3" onChange={second} className="emergent">
+          <select name="tour3" id="tour3" onChange={second} className="comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour2} other={tour1} />
             ))}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 export const SEO = ({
@@ -12,6 +13,8 @@ export const SEO = ({
   const {
     defaultTitle,
     TitleTemplate,
+    name,
+    url,
     siteUrl,
     defaultDescription,
     defaultImage,
@@ -22,6 +25,7 @@ export const SEO = ({
     areaServed,
     paymentAccepted,
     location,
+    geo,
     themeColor,
     numberOfEmployees,
     slogan,
@@ -95,7 +99,46 @@ export const SEO = ({
       <meta name="theme-color" content={seo.themeColor} />
       <meta itemProp="numberOfEmployees" content={seo.numberOfEmployees} />
       <meta name="slogan" itemProp="slogan" content={seo.slogan} />
+
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org/",
+            "@type": "LocalBusiness",
+            "name": "${name}",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "${location.address.streetAddress}",
+              "addressLocality": "${location.address.addressLocality}",
+              "addressRegion": "${location.address.addressRegion}",
+              "postalCode": "${location.address.postalCode}"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "${geo.latitude}",
+              "longitude": "${geo.longitude}"
+            },
+            "areaServed": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "${geo.latitude}",
+                "longitude": "${geo.longitude}"
+              },
+              "geoRadius": "${geo.geoRadius}"
+            },
+            "openingHours": "${openingHours}",
+            "telephone": "${telephone}",
+            "url": "${url}"
+          }
+        `}
+      </Script>
       {children}
     </>
   );
 };
+
+// TODO: Recommended properties
+// priceRange
+// review
+// url
