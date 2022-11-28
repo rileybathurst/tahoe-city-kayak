@@ -11,7 +11,7 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Store from "../components/locations/store";
 import WaterTexture from "../images/watertexture";
-
+import Danger from "../components/danger";
 import Demos from "../content/demos";
 
 function Kayaker(props) {
@@ -65,33 +65,22 @@ function Card(props) {
   )
 }
 
-// TODO move this to its own file
-function Danger(props) {
-  const svg = (props.svg)
-  return (
-    <div
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  );
+// I dont understand this but it works
+// https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
+function getUniqueListBy(arr, key) {
+  return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 
 function KayakDemoBrands(props) {
   // console.log(props.brand);// brand={data.kayak.edges.map(brand => (brand.node.brand))}
-
-  // TODO I cant bring through more than one piece of info
-  const KayakSetNames = new Set();
-  props.brand.forEach(brand => {
-    KayakSetNames.add(brand.name);
-  });
-
-  console.log(KayakSetNames);
+  const dedupedbrands = getUniqueListBy(props.brand, 'name')
+  console.log(dedupedbrands)
 
   return (
     <>
-      {[...KayakSetNames].map(brand => (
-        <li key={brand} className="capitalize">
-          {/* <Danger svg={brand.svg} /> */}
-          {brand}
+      {dedupedbrands.map(brand => (
+        <li key={brand.slug} className="capitalize">
+          <Link to={`/retail/kayak/${brand.slug}`}>{brand.name}</Link>
         </li>
       ))}
     </>
@@ -99,16 +88,13 @@ function KayakDemoBrands(props) {
 }
 
 function SupDemoBrands(props) {
-  const SupSetNames = new Set();
-  props.brand.forEach(brand => {
-    SupSetNames.add(brand.name);
-  });
+  const dedupedbrands = getUniqueListBy(props.brand, 'name')
+
   return (
     <>
-      {[...SupSetNames].map(brand => (
-        <li key={brand} className="capitalize">
-          {/* <Danger svg={brand.svg} /> */}
-          {brand}
+      {dedupedbrands.map(brand => (
+        <li key={brand.slug} className="capitalize">
+          <Link to={`/retail/sup/${brand.slug}`}>{brand.name}</Link>
         </li>
       ))}
     </>
@@ -126,39 +112,6 @@ const DemosPage = () => {
         title={title}
         description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
       /> */}
-
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
 
       <main>
         <div className="location_card-wrapper">
@@ -192,7 +145,6 @@ const DemosPage = () => {
                     <h3>Demos</h3>
                     <hr />
                     <h4>Kayaks from these brands</h4>
-                    {/* // TODO add brands here */}
                     <ul>
                       <KayakDemoBrands
                         brand={data.kayak.edges.map(brand => (brand.node.brand))}
@@ -312,6 +264,7 @@ query DemosQuery {
 
         brand {
           name
+          slug
         }
       }
     }
@@ -340,6 +293,7 @@ query DemosQuery {
 
         brand {
           name
+          slug
         }
       }
     }

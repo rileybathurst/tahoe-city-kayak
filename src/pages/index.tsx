@@ -18,24 +18,13 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
+import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Complete from '../components/locations/complete';
-
+import Sport from "../components/sport";
 import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
-
-/* // TODO this will eventually be a svg
-function Map(props) {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/Tahoe-City-Map-2-fs8.png"
-    alt="tahoe city kayak map"
-    className={props.className}
-    objectFit="contain"
-  // breakpoints={[480, 960]} // TODO
-  // width={960}
-  />
-} */
 
 const IndexPage = () => {
 
@@ -165,7 +154,7 @@ const IndexPage = () => {
       /> */}
       <Header />
       <main className="home__main">
-        {/* // TODO: test this */}
+        {/* // TODO: move this to JSON */}
         <section itemScope itemType="https://schema.org/Service">
           <h2 className="page-title"><Slogan /></h2>
 
@@ -228,7 +217,7 @@ const IndexPage = () => {
                 duration={tour.duration}
               />
               {/* // TODO needs to be paddleboard not sup */}
-              <h4 className="uppercase">{tour.sport}</h4>
+              <h4 className="uppercase"><Sport sport={tour.sport} /></h4>
               {/* <Fitness fitness={tour.fitness} /> */}
             </div>
 
@@ -275,7 +264,7 @@ const IndexPage = () => {
           <KayakBrandList />
 
           <h4><Link to="/retail/sup">Paddleboards</Link></h4>
-          {/* <PaddleboardFeatureList /> // TODO once this is more of a thing */}
+          <PaddleboardFeatureList />
           <SupBrandList />
         </div>
 

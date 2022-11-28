@@ -21,7 +21,6 @@ const AboutPage = () => {
         {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
         <AboutUs />
 
-        {/* // TODO: this needs better spacing */}
         <ul>
           <li><Link to="/about/faq">Frequently Asked Questions</Link></li>
           <li><Link to="/about/information">Paddlesports Information</Link></li>

@@ -9,12 +9,11 @@ import Footer from "../../components/footer";
 
 import TextureBackgrounds from "../../components/texturebackgrounds";
 import Remainder from "../../components/remainder";
-import MapStore from "../../components/map-store";
 import Danger from "../../components/danger";
 import SupBrandList from "../../components/sup-brand-list";
-import StoreIcon from "../../images/store";
 import Store from "../../components/locations/store";
 import Retail from "../../content/retail";
+import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
 
 function Card(props) {
   // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
@@ -139,9 +138,7 @@ const RetailSupPage = (data) => {
         </div>
 
         <h2>Browse By Feature</h2>
-        <ul>
-          <li key='inflatable'><Link to="/retail/sup/inflatable">Inflatable</Link></li>
-        </ul>
+        <PaddleboardFeatureList />
 
         <hr />
         <h2>Browse By Brand</h2>

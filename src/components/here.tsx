@@ -1,4 +1,3 @@
-// TODO this page needs to be really changed as I've moved the pieces
 import * as React from "react";
 
 import KayakIcon from "../images/kayak"
