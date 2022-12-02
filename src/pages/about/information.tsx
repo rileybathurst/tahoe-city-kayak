@@ -64,7 +64,7 @@ const InformationPage = () => {
         </li>
       </ol>
 
-      {/* // TODO this page could use accordions to make it easier to read */}
+      {/* this page could use accordions to make it easier to read */}
 
       <main>
         <h1>{title}</h1>

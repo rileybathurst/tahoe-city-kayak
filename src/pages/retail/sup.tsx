@@ -6,7 +6,7 @@ import TitleTemplate from "../../components/title-template";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-
+import More from "../../components/more";
 import TextureBackgrounds from "../../components/texturebackgrounds";
 import Remainder from "../../components/remainder";
 import Danger from "../../components/danger";
@@ -16,56 +16,73 @@ import Retail from "../../content/retail";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
 
 function Card(props) {
-  // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
-  if (props.type === 'sup') {
-    return (
-      <article key={props.id} className="card">
-        <div className="card-collage">
-          <TextureBackgrounds />
-          <GatsbyImage
-            image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={props?.cutout?.alternativeText}
-            className="cutout"
-          />
-        </div>
-        <h4 className="card__title">
-          <Link to={`/retail/sup/${props.slug}`}>
-            {props.title}
-          </Link>
-        </h4>
-        <hr />
-        <p>{props.excerpt}</p>
-        <hr />
-        <div className="card__details">
-          <h4><Remainder inches={props.length} /> tall by {props.width}" wide</h4>
-          <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
-        </div>
-      </article>
-    )
-  } else {
-    return null;
-  }
+
+  return (
+    <div className='deck'>
+      {props.sups.map(retail => (
+        <article key={retail.id} className="card">
+          <div className="card-collage">
+            <TextureBackgrounds />
+            <GatsbyImage
+              image={retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={retail?.cutout?.alternativeText}
+              className="cutout"
+            />
+          </div>
+          <h4 className="card__title">
+            <Link to={`/retail/sup/${retail.slug}`}>
+              {retail.title}
+            </Link>
+          </h4>
+          <hr />
+          <p>{retail.excerpt}</p>
+          <hr />
+          <div className="card__details">
+            <h4><Remainder inches={retail.length} /> tall by {retail.width}" wide</h4>
+            <h5 className="capitalize">Capacity {retail.capacity}lbs</h5>
+          </div>
+        </article>
+      ))}
+    </div>
+  )
 }
 
-function More(props) {
-  // console.log(props.retail.length);
-  let length = props.retail.length;
+function Limiter(props) {
+  // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
 
-  if (length > 4) {
-    return (
-      <section>
-        <h3 className='capitalize'>
-          <Link to={props.slug}>
-            All {length} {props.brand} Paddleboards
-          </Link>
-        </h3>
-        <hr />
-      </section>
-    )
-  } else {
-    // console.log('less');
-    return null;
-  }
+  // console.log(props);
+  // console.log(props.brand);
+  // console.log(props.brand.map(retail) => retail.brand);
+
+  const sups = [];
+  const quad = [];
+
+  props.brand.map((retail => {
+    if (retail.type === 'sup') {
+
+      // create an array and add the things here
+      // then do the card thing
+      // console.log(retail.title);
+      sups.push(retail);
+    }
+  }));
+
+  console.log(sups);
+  sups.slice(0, 4).map((retail => {
+    console.log(retail.title);
+
+    quad.push(retail);
+  }));
+
+  console.log(quad);
+
+  // get this out enough to return it?
+
+
+  // putting this here lets its be a return at the lowest level which I need
+  return (
+    <Card sups={quad} />
+  )
 }
 
 const RetailSupPage = (data) => {
@@ -165,7 +182,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.map(retail => (
                     <Card
                       type={retail.type}
@@ -179,14 +196,22 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
+
+            {/* // ! this is only showing 2 of the 4 it needs to be showing when there are 8 sups */}
+            {/*
+            // this is because 2 of the first 4 are kayaks and 2 sups
+            // and that means the slice is too early
+            */}
 
             {data.bote.edges.map(brand => (
               <div>
@@ -202,26 +227,32 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
+                {/* <div className='deck'>
+                  {brand.node.retail.map(retail => (
+                    <>
+
+                      <Card
+                        type={retail.type}
+                        id={retail.id}
+                        slug={retail.slug}
+                        title={retail.title}
+                        capacity={retail.capacity}
+                        length={retail.length}
+                        width={retail.width}
+                        excerpt={retail.excerpt}
+                        cutout={retail?.cutout}
+                      />
+                    </>
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+
+                <Limiter brand={brand.node.retail} />
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
@@ -240,7 +271,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
                       type={retail.type}
@@ -254,12 +285,13 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
@@ -278,7 +310,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
                       type={retail.type}
@@ -292,12 +324,13 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
@@ -316,7 +349,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
                       type={retail.type}
@@ -330,12 +363,13 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
@@ -355,7 +389,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
                       type={retail.type}
@@ -369,12 +403,13 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}
@@ -393,7 +428,7 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                <div className='deck'>
+                {/* <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
                       type={retail.type}
@@ -407,12 +442,13 @@ const RetailSupPage = (data) => {
                       cutout={retail?.cutout}
                     />
                   ))}
-                </div>
-                {/* // TODO: this needs an if more than 4 */}
+                </div> */}
+                <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type='sup'
                 />
               </div>
             ))}

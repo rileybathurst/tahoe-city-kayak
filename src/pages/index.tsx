@@ -25,6 +25,7 @@ import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
+import MapSVG from "../images/map";
 
 const IndexPage = () => {
 
@@ -216,9 +217,7 @@ const IndexPage = () => {
                 finish={tour.finish}
                 duration={tour.duration}
               />
-              {/* // TODO needs to be paddleboard not sup */}
               <h4 className="uppercase"><Sport sport={tour.sport} /></h4>
-              {/* <Fitness fitness={tour.fitness} /> */}
             </div>
 
             <hr />
@@ -250,7 +249,8 @@ const IndexPage = () => {
         <hr />
       </div>
 
-      {/* <MapSVG /> // TODO add this back inthis probably still needs more */}
+      {/* <MapSVG /> */}
+      {/* // TODO add this back inthis probably still needs more */}
 
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>

@@ -12,7 +12,7 @@ import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
 import Store from "../../components/locations/store";
-
+import More from "../../components/more";
 import Retail from "../../content/retail";
 
 function Card(props) {
@@ -42,27 +42,6 @@ function Card(props) {
       </article>
     )
   } else {
-    return null;
-  }
-}
-
-function More(props) {
-  // console.log(props.retail.length);
-  let length = props.retail.length;
-
-  if (length > 4) {
-    return (
-      <section className="">
-        <h3 className='capitalize'>
-          <Link to={props.slug}>
-            All {length} {props.brand} kayaks
-          </Link>
-        </h3>
-        <hr />
-      </section>
-    )
-  } else {
-    // console.log('less');
     return null;
   }
 }
@@ -149,13 +128,10 @@ const RetailKayakPage = (data) => {
       <StaticQuery
         query={query}
         render={data => (
-
-          // TODO: Warning: Each child in a list should have a unique "key" prop.
           <div className="brand_blocks">
 
             {data.hobie.edges.map(brand => (
-              <div>
-                {/* // TODO: Warning: Each child in a list should have a unique "key" prop. */}
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -171,6 +147,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -187,12 +164,13 @@ const RetailKayakPage = (data) => {
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
             {data.eddyline.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -208,6 +186,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -220,17 +199,18 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
             {data.perception.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -246,6 +226,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -258,17 +239,18 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
             {data.wildernesssystems.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -284,6 +266,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -296,17 +279,18 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
             {data.delta.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -322,6 +306,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -334,19 +319,19 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
 
-            {/* // TODO: // this is where I need to get rid of the sups */}
             {data.bote.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -362,6 +347,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -374,17 +360,19 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
+                {/* // TODO: // this is where I need to get rid of the sups */}
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
 
             {data.brusurf.edges.map(brand => (
-              <div>
+              <div key={brand.node.id}>
                 <section>
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
@@ -400,6 +388,7 @@ const RetailKayakPage = (data) => {
                 <div className='deck'>
                   {brand.node.retail.slice(0, 4).map(retail => (
                     <Card
+                      key={retail.id}
                       type={retail.type}
                       id={retail.id}
                       slug={retail.slug}
@@ -412,11 +401,12 @@ const RetailKayakPage = (data) => {
                     />
                   ))}
                 </div>
-                {/* // TODO: this needs an if more than 4 */}
+
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}
                   slug={brand.node.slug}
+                  type="kayak"
                 />
               </div>
             ))}
@@ -598,7 +588,9 @@ query KayaksQuery {
     }
   }
   
-  bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
+  bote: allStrapiBrand(
+    filter: {name: {eq: "bote"}, kayak: {eq: true}}
+    ) {
     edges {
       node {
         id
