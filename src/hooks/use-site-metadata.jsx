@@ -28,6 +28,12 @@ export const useSiteMetadata = () => {
             longitude
             geoRadius
           }
+
+          offerCatalog {
+            itemOffered1
+            itemOffered2
+            itemOffered3
+          }
         }
       }
     }

@@ -29,6 +29,7 @@ export const SEO = ({
     themeColor,
     numberOfEmployees,
     slogan,
+    offerCatalog
   } = useSiteMetadata()
 
   const seo = {
@@ -129,7 +130,38 @@ export const SEO = ({
             },
             "openingHours": "${openingHours}",
             "telephone": "${telephone}",
-            "url": "${url}"
+            "url": "${url}",
+
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "kayak and paddleboard services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "${offerCatalog.itemOffered1}"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "${offerCatalog.itemOffered2}"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "${offerCatalog.itemOffered3}"
+                  }
+                }
+              ]
+            }
+
+
+
           }
         `}
       </Script>

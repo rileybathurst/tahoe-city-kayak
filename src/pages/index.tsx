@@ -147,16 +147,9 @@ const IndexPage = () => {
 
   return (
     <>
-
-      {/* // ! this needs to remove the pipe */}
-      {/*       <Seo
-        title=""
-      // image="test"
-      /> */}
       <Header />
       <main className="home__main">
-        {/* // TODO: move this to JSON */}
-        <section itemScope itemType="https://schema.org/Service">
+        <section>
           <h2 className="page-title"><Slogan /></h2>
 
           <AboutUs />

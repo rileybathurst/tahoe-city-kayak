@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, Script } from "gatsby"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
 
@@ -44,6 +44,7 @@ const AboutPage = () => {
 
 export default AboutPage
 
+// this isnt a https://schema.org/AboutPage as thats about creative works
 export const Head = () => {
   return (
     <SEO
@@ -52,8 +53,3 @@ export const Head = () => {
     />
   )
 }
-
-{/* // TODO test rich results
-  itemType="https://schema.org/AboutPage"
-  itemScope={true}
- */ }

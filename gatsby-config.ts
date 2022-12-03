@@ -53,7 +53,12 @@ module.exports = {
     numberOfEmployees: '10+',
     slogan: 'North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours',
 
-    TitleTemplate: '%s | Gatsby SEO',
+    offerCatalog: {
+      '@type': 'OfferCatalog',
+      'itemOffered1': 'kayak and paddleboard rentals',
+      'itemOffered2': 'kayak and paddleboard sales',
+      'itemOffered3': 'kayak and paddleboard tours and lessons'
+    }
 
   },
   plugins: [
