@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
 
@@ -13,14 +13,6 @@ const FaqPage = () => {
   return (
     <>
       <Header />
-
-      {/* // TODO: test rich results */}
-      {/*       <Seo
-        title={title}
-        description="What is the best time of day to go paddling?"
-        itemType="https://schema.org/FAQPage"
-        itemScope={true}
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -76,9 +68,9 @@ const FaqPage = () => {
                 data.allStrapiFaq.edges.map(faq => (
                   <li key={faq.node.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                     <h2 itemProp="name">{faq.node.question}</h2>
-                    <h3 itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                    <p itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                       <span itemProp="text">{faq.node.answer}</span>
-                    </h3>
+                    </p>
                   </li>
                 ))
               }
@@ -98,7 +90,31 @@ export const Head = () => {
   return (
     <SEO
       title={`FAQ${TitleTemplate}`}
-    />
+    >
+      {/* // ! this might be the first query im doing thats not basee level */}
+      <Script type="application/ld+json">
+
+
+        <StaticQuery
+          query={query}
+          render={data => (
+            <ul className="faq">
+              {
+                data.allStrapiFaq.edges.map(faq => (
+                  <li key={faq.node.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                    <h2 itemProp="name">{faq.node.question}</h2>
+                    <p itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                      <span itemProp="text">{faq.node.answer}</span>
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          )}
+        />
+      </Script>
+
+    </SEO>
   )
 }
 

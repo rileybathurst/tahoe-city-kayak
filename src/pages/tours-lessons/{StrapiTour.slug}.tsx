@@ -1,6 +1,9 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { SEO } from "../../components/seo";
+
 import TourView from "../../views/tour-view"
+import TitleTemplate from "../../components/title-template";
 
 export const query = graphql`
   query TourQuery($slug: String!) {
@@ -68,3 +71,12 @@ const TourPage = ({ data }) => {
 };
 
 export default TourPage;
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiTour.name}${TitleTemplate}`}
+      description={data.strapiTour.excerpt}
+    />
+  )
+}

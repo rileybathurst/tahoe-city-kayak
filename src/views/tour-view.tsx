@@ -1,10 +1,7 @@
-// TODO this needs the content for tours lessons in this page somehere
-
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
-import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
@@ -305,12 +302,3 @@ const TourView = ({ tour, other }) => {
 };
 
 export default TourView;
-
-export const Head = () => {
-  return (
-    <SEO
-    // title={`About Us${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-    />
-  )
-}

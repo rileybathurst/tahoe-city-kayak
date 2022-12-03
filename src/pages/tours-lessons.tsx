@@ -1,7 +1,9 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, ScriptStrategy } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
+import { SEO } from "../components/seo"
 
+import TitleTemplate from "../components/title-template";
 import Header from "../components/header"
 import Footer from "../components/footer"
 
@@ -191,6 +193,14 @@ const ToursLessonsPage = () => {
 }
 
 export default ToursLessonsPage
+
+export const Head = () => {
+  return (
+    <SEO
+    // title="{`FAQ${TitleTemplate}`}" // TODO fix this
+    />
+  )
+}
 
 const query = graphql`
 query ToursQuery {
