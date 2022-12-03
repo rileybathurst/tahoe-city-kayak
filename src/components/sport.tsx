@@ -5,6 +5,10 @@ function Sport(props: { sport: string }) {
     return (
       <>Paddleboard</>
     )
+  } else if (props.sport === "sups") {
+    return (
+      <>Paddleboards</>
+    )
   } else {
     return (
       <>{props.sport}</>
