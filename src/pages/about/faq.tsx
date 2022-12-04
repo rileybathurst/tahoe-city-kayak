@@ -3,8 +3,12 @@ import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
 
+// import True from "../../components/true";
+import { Strapi } from "../../components/strapi";
+
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+
 
 const FaqPage = () => {
   let title = "Frequently Asked Questions";
@@ -80,6 +84,7 @@ const FaqPage = () => {
       </main>
 
       <Footer />
+
     </>
   )
 }
@@ -92,27 +97,7 @@ export const Head = () => {
       title={`FAQ${TitleTemplate}`}
     >
       {/* // ! this might be the first query im doing thats not basee level */}
-      <Script type="application/ld+json">
-
-
-        <StaticQuery
-          query={query}
-          render={data => (
-            <ul className="faq">
-              {
-                data.allStrapiFaq.edges.map(faq => (
-                  <li key={faq.node.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-                    <h2 itemProp="name">{faq.node.question}</h2>
-                    <p itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                      <span itemProp="text">{faq.node.answer}</span>
-                    </p>
-                  </li>
-                ))
-              }
-            </ul>
-          )}
-        />
-      </Script>
+      <Strapi />
 
     </SEO>
   )
