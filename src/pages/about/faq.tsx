@@ -5,6 +5,7 @@ import TitleTemplate from "../../components/title-template";
 
 // import True from "../../components/true";
 import { Strapi } from "../../components/strapi";
+import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -97,7 +98,8 @@ export const Head = () => {
       title={`FAQ${TitleTemplate}`}
     >
       {/* // ! this might be the first query im doing thats not basee level */}
-      <Strapi />
+      {/* <Strapi /> */}
+      <StrapiMap />
 
     </SEO>
   )

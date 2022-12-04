@@ -4,8 +4,8 @@ export const useStrapiData = () => {
   const data = useStaticQuery(graphql`
     query {
       strapiBrand(name: {eq: "bote"}) {
-    name
-  }
+        name
+      }
     }
   `)
 

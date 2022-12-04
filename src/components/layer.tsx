@@ -3,20 +3,13 @@ import { Script } from "gatsby";
 import { useStrapiData } from "../hooks/use-strapi-data"
 
 export const Strapi = () => {
-
   const {
     name
   } = useStrapiData()
 
-  console.log(useStrapiData());
-  console.log(useStrapiData().name);
-
   const strapi = {
     name: name
   };
-
-  console.log(strapi);
-  // this keeps the useStrapiData info
 
   return (
     <>
