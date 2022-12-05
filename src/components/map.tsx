@@ -17,34 +17,25 @@ export const StrapiMap = () => {
 
 
   return (
-    <>
-      {/* this is allowed */}
-      {/* <meta name='check' content={useStrapiMap()[0].answer} /> */}
-
-      {/* now were getting close */}
-      {/*       {useStrapiMap().map((item) => (
-        <>
-          <meta name='tess' content={item.answer} />
-        </>
-      ))} */}
-
-      {/* this technically works but each one is a single input which isnt good but i think the build out is slightly different? */}
-      ${useStrapiMap().map((item) => (
-        <Script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-              "question": "${item.question}",
-              "answer": "${item.answer}"
+    <Script type="application/ld+json">
+      {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ${useStrapiMap().map((item) => (
+        `{
+          "@type": "Question",
+                  "name": "${item.question}",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                  "text": "${item.answer}"
                 }
-              ]
-            }
-          `}
-        </Script>
+                }`
       ))}
-    </>
+            ]
+          }s
+          `}
+    </Script>
   );
 };
