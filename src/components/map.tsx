@@ -22,6 +22,7 @@ export const StrapiMap = () => {
           {
             "@context": "https://schema.org",
             "@type": "FAQPage",
+            "name": "Frequently Asked Questions",
             "mainEntity": [
               ${useStrapiMap().map((item) => (
         `{

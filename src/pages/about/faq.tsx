@@ -71,10 +71,10 @@ const FaqPage = () => {
             <ul className="faq">
               {
                 data.allStrapiFaq.edges.map(faq => (
-                  <li key={faq.node.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-                    <h2 itemProp="name">{faq.node.question}</h2>
-                    <p itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                      <span itemProp="text">{faq.node.answer}</span>
+                  <li key={faq.node.id}>
+                    <h2>{faq.node.question}</h2>
+                    <p>
+                      <span>{faq.node.answer}</span>
                     </p>
                   </li>
                 ))
