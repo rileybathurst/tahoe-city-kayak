@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from "gatsby"
+import { Link, StaticQuery, graphql } from "gatsby"
 
 import Menu from "./menu"
 // import PaddleIcon from '../images/paddle';
 import MenuList from './menu-list';
 import Logo from '../images/logo';
+import { propTypes } from 'gatsby-plugin-image/dist/src/components/gatsby-image.server';
 
 // const isBrowser = typeof window !== "undefined"
 
-function OpenSeason(key, defaultValue) {
+function OpenSeason(props) {
   const [banner, setBanner] = useState('shown');
 
   useEffect(() => {
@@ -29,12 +30,16 @@ function OpenSeason(key, defaultValue) {
     return setBanner('shown');
   }
 
+  let topbar = props.topbar;
+
   return (
     <>
       <div className={`top-wrapper ${banner}`}>
         {/* <div className="top-wrapper__staygold">test</div> */}
         <div className="top-bar">
-          <p>We are currently OPEN<span className='top-bar_breaker'><br /></span> for 2022’s rental season.</p>
+          {/* <p>We are currently OPEN<span className='top-bar_breaker'><br /></span> for 2022’s rental season.</p> */}
+          {/* // TODO: this had a breaker in spans maybe build one with js? */}
+          <p>{topbar}</p>
         </div>
         <button onClick={closeBanner} className="season">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 48 48'>
@@ -142,33 +147,17 @@ function Button() {
   }
 }
 
-/* function Height() {
-  const [height, setHeight] = 0;
-  const ref = useRef();
-
-  return (
-    <>
-      <div className="logo-container"
-
-      >
-        <PaddleIcon className="paddle--left" />
-        <h1 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h1>
-        <PaddleIcon className="paddle--right" />
-      </div>
-      TODO: if this gets too big its a problem 
-<Menu
-  style={{
-    height: height + 'px',
-  }}
-/>
-    </>
-  )
-} */
-
 const Header = () => {
   return (
     <header>
-      <OpenSeason />
+
+      <StaticQuery
+        query={query}
+        render={data => (
+          <OpenSeason topbar={data.strapiTopbar.text} />
+        )}
+      />
+
       <div className="logo-container" >
         {/* <PaddleIcon className="paddle--left" /> */}
         <h1 className='logo'>
@@ -186,3 +175,11 @@ const Header = () => {
 }
 
 export default Header
+
+const query = graphql`
+query TopBarQuery {
+  strapiTopbar {
+    text
+  }
+}
+`

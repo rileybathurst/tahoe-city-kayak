@@ -1,3 +1,5 @@
+// ? Check what I was building here
+
 import React from 'react';
 import { Script } from "gatsby";
 import { useStrapiData } from "../hooks/use-strapi-data"

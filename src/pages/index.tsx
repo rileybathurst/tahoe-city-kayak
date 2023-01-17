@@ -4,6 +4,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
 
+import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
+
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
@@ -26,6 +28,9 @@ import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
 import MapSVG from "../images/map";
+
+import StrapiTop from "../seo/top";
+
 
 const IndexPage = () => {
 
@@ -309,9 +314,15 @@ export default IndexPage
 
 export const Head = () => {
   return (
-    <SEO
-      title="Tahoe City Kayak & Paddeboard"
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service.We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-    />
+    <>
+      {/* <SEO title="Home" /> */}
+      <SEO
+        // title="StrapiTop"
+        title={StrapiTop}
+      >
+        {/* <StrapiTop /> */}
+
+      </SEO>
+    </>
   )
 }

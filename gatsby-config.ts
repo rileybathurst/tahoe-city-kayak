@@ -12,7 +12,9 @@ const strapiConfig = {
     'testimonial',
     'brand'
   ],
-  singleTypes: [],
+  singleTypes: [
+    'topbar'
+  ],
 };
 
 module.exports = {

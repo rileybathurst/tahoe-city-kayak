@@ -2,6 +2,7 @@ import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
+import Url from "../../components/url";
 
 // import True from "../../components/true";
 import { Strapi } from "../../components/strapi";
@@ -100,6 +101,39 @@ export const Head = () => {
       {/* // ! this might be the first query im doing thats not basee level */}
       {/* <Strapi /> */}
       <StrapiMap />
+
+      <meta name="test" content={Url} />
+
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          name: "FAQ Breadcrumb List",
+          "itemListElement":
+          [
+          {
+            "@type": "ListItem",
+          "position": 1,
+          "item":
+          {
+            "@id": "${Url}"dresses",
+        "name": "Dresses"
+      }
+    },
+        {
+          "@type": "ListItem",
+        "position": 2,
+        "item":
+        {
+          "@id": "https://example.com/dresses/real",
+        "name": "Real Dresses"
+          }
+          }
+        ]
+}
+`}
+      </Script>
 
     </SEO>
   )

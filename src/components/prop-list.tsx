@@ -11,8 +11,8 @@ const PropList = (props) => {
             <>
               <p>{kayak.node.name}</p>
 
-              https://www.gatsbyjs.com/docs/how-to/querying-data/page-query/#how-to-add-query-variables-to-a-page-query
-              Variables can be added to page queries (but not static queries)
+              {/* https://www.gatsbyjs.com/docs/how-to/querying-data/page-query/#how-to-add-query-variables-to-a-page-query */}
+              {/* Variables can be added to page queries (but not static queries) */}
             </>
           ))}
         </>

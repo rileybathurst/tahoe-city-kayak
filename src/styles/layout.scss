@@ -64,9 +64,11 @@ header {
       grid-row: 1;
       grid-column: 2;
 
+      /* 
+      I cant use this with the query unless I build in a js breaker
       p {
         white-space: pre;
-      }
+      } */
 
       // guess and check size to about a line of text
       @media (min-width: 20rem) {
