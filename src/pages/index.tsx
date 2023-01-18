@@ -30,6 +30,8 @@ import Retail from "../content/retail";
 import MapSVG from "../images/map";
 
 import StrapiTop from "../seo/top";
+import StrapiBottom from "../seo/bottom";
+import TT from "../seo/tt";
 
 
 const IndexPage = () => {
@@ -318,11 +320,15 @@ export const Head = () => {
       {/* <SEO title="Home" /> */}
       <SEO
         // title="StrapiTop"
-        title={StrapiTop}
-      >
-        {/* <StrapiTop /> */}
-
-      </SEO>
+        // title={StrapiTop}
+        // title={useStrapiTopBar()}
+        title={`Tahoe City Kayak - ${useStrapiTopBar()}`}
+      // title={StrapiBottom}
+      // title={TT}
+      />
+      {/* <StrapiTop /> */}
+      {/* <StrapiBottom /> */}
+      {/* </SEO> */}
     </>
   )
 }

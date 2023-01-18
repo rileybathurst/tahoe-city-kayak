@@ -10,4 +10,6 @@ export const useStrapiTopBar = () => {
   `)
 
   return data.strapiTopbar.text
+  // return `${data.strapiTopbar.text}`
+  // return `test`
 }

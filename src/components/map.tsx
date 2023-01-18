@@ -13,6 +13,7 @@ export const StrapiMap = () => {
   console.log(useStrapiMap());
   // this gets the first answer
   console.log(useStrapiMap()[0].answer);
+  // console.log(nodes); // this isnt anything
 
 
 
