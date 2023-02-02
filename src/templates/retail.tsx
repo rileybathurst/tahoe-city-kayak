@@ -348,8 +348,8 @@ export const Head = ({ data }) => {
           {
             "@context": "https://schema.org/",
             "@type": "Product",
-            "name": ${data.strapiRetail.title},
-            "description": ${data.strapiRetail.excerpt},
+            "name": "${data.strapiRetail.title}",
+            "description": "${data.strapiRetail.excerpt}",
             "offers": {
               "@type": "Offer",
               "availability": "https://schema.org/InStock",
