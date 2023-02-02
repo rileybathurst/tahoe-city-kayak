@@ -14,6 +14,11 @@ export const TestimoialSEO = () => {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": "TCK",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "116"
+          },
           "review": [
             ${useStrapiTestimonial().map((item) => (
         `{
