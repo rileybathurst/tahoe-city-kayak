@@ -217,64 +217,27 @@ const RetailTypeView = ({ data }) => {
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
+        <li>
+          <Link to="/">Home</Link>&nbsp;/&nbsp;
         </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail" itemProp="item">
-            <span itemProp="name">Retail</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
+        <li>
+          <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
         </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to={`/retail/${data.strapiRetail.type}`} itemProp="item">
-            <span itemProp="name">{data.strapiRetail.type}</span>
-            <meta itemProp="position" content="3" />
-          </Link>&nbsp;/&nbsp;
+        <li>
+          <Link to={`/retail/${data.strapiRetail.type}`}>{data.strapiRetail.type}</Link>&nbsp;/&nbsp;
         </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {data.strapiRetail.title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
+        <li>{data.strapiRetail.title}</li>
       </ol>
 
-      <main className="main__full" itemScope itemType="https://schema.org/Product">
+      <main className="main__full">
         <div>
           <hgroup className="hgroup__retail">
-            <h1 className="h_title" itemProp="name">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand" itemProp="brand">{data.strapiRetail.brand.name}</h2>
+            <h1 className="h_title">{data.strapiRetail.title}</h1>
+            <h2 className="h_brand">{data.strapiRetail.brand.name}</h2>
             <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
           </hgroup>
 
