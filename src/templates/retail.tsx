@@ -350,10 +350,16 @@ export const Head = ({ data }) => {
             "@type": "Product",
             "name": "${data.strapiRetail.title}",
             "description": "${data.strapiRetail.excerpt}",
+            "brand": {
+              "@type": "Brand",
+              "name": "${data.strapiRetail.brand.name}"
+            },
+            "image": "${data.strapiRetail?.cutout?.alternativeText}",
             "offers": {
               "@type": "Offer",
               "availability": "https://schema.org/InStock",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "price": ""
             }
           }
       `}
