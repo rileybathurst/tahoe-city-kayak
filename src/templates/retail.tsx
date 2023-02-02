@@ -354,7 +354,7 @@ export const Head = ({ data }) => {
               "@type": "Offer",
               "availability": "https://schema.org/InStock",
               "priceCurrency": "USD"
-            },
+            }
           }
       `}
       </Script>
