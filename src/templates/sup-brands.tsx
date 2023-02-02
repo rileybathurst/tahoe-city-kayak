@@ -94,10 +94,6 @@ const supBrandView = ({ data }) => {
   return (
     <>
       <Header />
-      {/*       <Seo
-        title={`Tahoe City Kayak sells ${data.brand.name} paddleboards`}
-        description={`${data.brand.name} paddleboards ${data.brand.tagline}`}
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -258,16 +254,15 @@ const supBrandView = ({ data }) => {
 
 export default supBrandView;
 
-export const Head = () => {
+export const Head = ({ data }) => {
   return (
     <SEO
-    // title={`About Us${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-    />
+      title={`${data.brand.name} standup paddleboards sold at${TitleTemplate}`}
+      description={`${data.brand.name} standup paddleboards ${data.brand.tagline}`} />
   )
 }
 
-// TODO: add type into here
+// ? // TODO: add type into here
 
 export const query = graphql`
   query SupBrandsTemplate(

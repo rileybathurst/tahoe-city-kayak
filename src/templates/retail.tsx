@@ -300,6 +300,8 @@ const RetailTypeView = ({ data }) => {
 
 export default RetailTypeView;
 
+// ! // TODO this has to have a price or its invalid
+
 export const Head = ({ data }) => {
   return (
     <SEO
