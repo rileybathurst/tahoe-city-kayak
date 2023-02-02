@@ -17,8 +17,16 @@ export const TestimoialSEO = () => {
           "review": [
             ${useStrapiTestimonial().map((item) => (
         `{
+          "@context": "https://schema.org/",
                 "@type": "Review",
-                  "author": "${item.customer}",
+                "itemReviewed": {
+                  "@type": "LocalBusiness",
+                  "name": "K"
+                },
+                  "author": {
+                    "@type": "Person",
+                    "name": "${item.customer}"
+                  },
                   "reviewBody": "${item.testimonial}"
                 }`
       ))}
