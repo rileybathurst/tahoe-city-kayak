@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
 
@@ -97,6 +97,24 @@ export const Head = () => {
     >
       {/* // TODO: Naming */}
       <StrapiMap />
+      <Script>
+
+        {
+          "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+        "position": 1,
+        "name": "Literature",
+        "item": "https://example.com/literature"
+      },{
+          "@type": "ListItem",
+        "position": 2,
+        "name": "Award Winners"
+      }]
+    }
+
+      </Script>
     </SEO>
   )
 }

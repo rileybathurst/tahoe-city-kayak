@@ -116,10 +116,6 @@ const TourView = ({ tour, other }) => {
   return (
     <>
       <Header />
-      {/*       <Seo
-        title={tour.name}
-        description={tour.excerpt}
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
