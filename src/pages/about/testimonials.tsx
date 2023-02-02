@@ -65,12 +65,12 @@ const FaqPage = () => {
         <StaticQuery
           query={query}
           render={data => (
-            <ul>
+            <ul className="testimonials">
               {
                 data.allStrapiTestimonial.edges.map(testimonial => (
-                  <li key={testimonial.node.id} itemProp="review" itemScope itemType="https://schema.org/Review">
-                    <h2 itemProp="author">{testimonial.node.customer}</h2>
-                    <p itemProp="reviewBody">{testimonial.node.testimonial}</p>
+                  <li key={testimonial.node.id} >
+                    <h2>{testimonial.node.customer}</h2>
+                    <p>{testimonial.node.testimonial}</p>
                     <p>{testimonial.node.sign}</p>
                     <p>{testimonial.node.location}</p>
                     <hr />
