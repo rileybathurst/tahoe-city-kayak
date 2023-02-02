@@ -27,12 +27,6 @@ import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
-import MapSVG from "../images/map";
-
-import StrapiTop from "../seo/top";
-import StrapiBottom from "../seo/bottom";
-import TT from "../seo/tt";
-
 
 const IndexPage = () => {
 

@@ -1,8 +1,10 @@
 // TODO add the retail content
 
 import React from 'react';
-import { Link, graphql, StaticQuery } from 'gatsby';
+import { Link, graphql, StaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
+import { SEO } from "../components/seo";
+import TitleTemplate from "../components/title-template";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -212,14 +214,6 @@ const RetailTypeView = ({ data }) => {
     <>
       <Header />
 
-      {/* // TODO test rich results */}
-      {/*       <Seo
-        title={data.strapiRetail.title}
-        description={data.strapiRetail.excerpt}
-        itemType="https://schema.org/ItemPage"
-        itemScope={true}
-      /> */}
-
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -342,6 +336,27 @@ const RetailTypeView = ({ data }) => {
 };
 
 export default RetailTypeView;
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at ${TitleTemplate}`}
+      description={data.strapiRetail.excerpt}>
+
+      <Script type="application/ld+json">
+        {`
+    {
+          "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": ${data.strapiRetail.title},
+        "description": ${data.strapiRetail.excerpt},
+    }
+    `}
+      </Script>
+
+    </SEO>
+  )
+}
 
 export const query = graphql`
   query RetailTemplate(

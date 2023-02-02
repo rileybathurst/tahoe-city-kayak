@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
+import { SEO } from "../../../components/seo";
+import TitleTemplate from "../../../components/title-template";
 
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
@@ -35,17 +37,12 @@ function Card(props) {
   )
 }
 
-const DemosPage = () => {
+const UltralightTandemPage = () => {
   let title = "Ultralight Tandem Kayaks";
 
   return (
     <>
       <Header />
-
-      {/*       <Seo
-        title={title}
-        description="Our ultralight kayaks are two person kayaks under 70 pounds"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -142,7 +139,17 @@ const DemosPage = () => {
   )
 }
 
-export default DemosPage
+export default UltralightTandemPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Ultralight Tandem Kayaks${TitleTemplate}`}
+      description="Our ultralight kayaks are two person kayaks under 70 pounds"
+    // TODO image
+    />
+  )
+}
 
 const query = graphql`
 query UltraLightTandemQuery {

@@ -1,11 +1,10 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
-
+import { SEO } from "../../../components/seo";
+import TitleTemplate from "../../../components/title-template";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
-import PricingChart from "../../../components/pricing-chart";
-
 import TextureBackgrounds from "../../../components/texturebackgrounds";
 import Remainder from "../../../components/remainder";
 
@@ -36,17 +35,12 @@ function Card(props) {
   )
 }
 
-const DemosPage = () => {
+const InflateablePage = () => {
   let title = "Inflatable Paddleboards";
 
   return (
     <>
       <Header />
-
-      {/*       <Seo
-        title={title}
-        description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -138,7 +132,17 @@ const DemosPage = () => {
   )
 }
 
-export default DemosPage
+export default InflateablePage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Inflatable StandUp Paddleboards${TitleTemplate}`}
+      description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
+    // TODO image
+    />
+  )
+}
 
 const query = graphql`
 query InflatableKayakQuery {

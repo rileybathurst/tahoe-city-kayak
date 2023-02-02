@@ -92,10 +92,6 @@ const RetailSupPage = (data) => {
   return (
     <>
       <Header />
-      {/*       <Seo
-        title={title}
-        description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -467,8 +463,8 @@ export default RetailSupPage
 export const Head = () => {
   return (
     <SEO
-    // title={`About Us${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      title={`Standup Paddleboard${TitleTemplate}`}
+    // TODO description and image
     />
   )
 }

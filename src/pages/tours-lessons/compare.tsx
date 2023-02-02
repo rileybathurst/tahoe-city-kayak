@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
-
+import TitleTemplate from "../../components/title-template";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -221,8 +221,8 @@ export default ComparePage
 export const Head = () => {
   return (
     <SEO
-    // title={`About Us${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      title={`Compare Tours${TitleTemplate}`}
+    // TODO description and image
     />
   )
 }

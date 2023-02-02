@@ -1,7 +1,8 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
-
+import { SEO } from "../../../components/seo";
+import TitleTemplate from "../../../components/title-template";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 
@@ -36,17 +37,12 @@ function Card(props) {
   )
 }
 
-const DemosPage = () => {
+const UltralightPage = () => {
   let title = "Ultralight Kayaks";
 
   return (
     <>
       <Header />
-
-      {/*       <Seo
-        title={title}
-        description="Our ultralight kayaks are Single kayaks under 46 pounds"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -104,6 +100,7 @@ const DemosPage = () => {
       <main>
         <h1>{title}</h1>
 
+        {/* // TODO: this is doubled between ultralight and ultralight tandem */}
         <p>Many companies are finding ways to make their kayaks or paddleboards weigh less.</p>
         <ul>
           <li><Link to="/retail/kayak/eddyline">Eddyline Kayaks</Link> uses a lightweight polycarbonate material called “Carbonlite” that mimics the properties of fiberglass, but is far more durable. Both fiberglass and Carbonlite are considerably lighter than the polyethylene plastics that most kayaks are constructed with.</li>
@@ -148,7 +145,17 @@ const DemosPage = () => {
   )
 }
 
-export default DemosPage
+export default UltralightPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Ultralight Kayaks${TitleTemplate}`}
+      description="Our ultralight kayaks are Single kayaks under 46 pounds"
+    // TODO image
+    />
+  )
+}
 
 const query = graphql`
 query UltraLightQuery {

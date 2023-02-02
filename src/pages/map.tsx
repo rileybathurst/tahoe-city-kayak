@@ -16,10 +16,6 @@ const MapPage = () => {
     <>
       <Header />
 
-      {/*       <Seo
-        title={title}
-      /> */}
-
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -72,7 +68,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Map${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+    // TODO description and image
     />
   )
 }

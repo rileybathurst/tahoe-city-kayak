@@ -13,10 +13,6 @@ const NotFoundPage = () => {
     <>
       <Header />
 
-      {/*       <Seo
-        title={title}
-      /> */}
-
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"

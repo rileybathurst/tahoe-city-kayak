@@ -1,7 +1,7 @@
 // TODO add the retail content
 // TODO add the stripes for individual series
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
@@ -88,10 +88,6 @@ const KayakBrandView = ({ data }) => {
   return (
     <>
       <Header />
-      {/*       <Seo
-        title={`Tahoe City Kayak sells ${data.brand.name} kayaks`}
-        description={`${data.brand.name} kayaks ${data.brand.tagline}`}
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -255,12 +251,11 @@ const KayakBrandView = ({ data }) => {
 
 export default KayakBrandView;
 
-export const Head = () => {
+export const Head = ({ data }) => {
   return (
     <SEO
-    // title={`About Us${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-    />
+      title={`${data.brand.name} Kayaks sold at${TitleTemplate}`}
+      description={`${data.brand.name} kayaks ${data.brand.tagline}`} />
   )
 }
 

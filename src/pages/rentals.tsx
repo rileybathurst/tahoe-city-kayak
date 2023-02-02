@@ -16,11 +16,6 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-      {/*       <SEO
-        title={`${title}${TitleTemplate}`}
-        description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
-      /> */}
-
 
       <ol
         aria-label="Breadcrumb"
@@ -102,7 +97,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Rentals${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      description="Enjoy the majesty of Lake Tahoe while kayaking in one of our demos."
     />
   )
 }

@@ -7,8 +7,7 @@ export const TestimoialSEO = () => {
 
   // * this has hard coded data from google rankings dated Feb 2 2023
   // I dont know if I can get around that as google requires an aggregateRating
-
-  // TODO: This produces double reviews for each, one is correct and one isnt
+  // TODO find the api to query this 
 
   return (
     <Script type="application/ld+json">

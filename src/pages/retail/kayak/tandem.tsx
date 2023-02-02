@@ -6,7 +6,6 @@ import TitleTemplate from "../../../components/title-template";
 
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
-import PricingChart from "../../../components/pricing-chart";
 import TextureBackgrounds from "../../../components/texturebackgrounds";
 import Remainder from "../../../components/remainder";
 
@@ -37,17 +36,12 @@ function Card(props) {
   )
 }
 
-const DemosPage = () => {
+const TandemPage = () => {
   let title = "Two Person Kayaks";
 
   return (
     <>
       <Header />
-
-      {/*       <Seo
-        title={title}
-        description="Our tandem kayaks are the perfect way to explore the water with friends"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -139,13 +133,14 @@ const DemosPage = () => {
   )
 }
 
-export default DemosPage
+export default TandemPage
 
 export const Head = () => {
   return (
     <SEO
       title={`Tandem${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      description="Our tandem kayaks are the perfect way to explore the water with friends"
+    // TODO image
     />
   )
 }

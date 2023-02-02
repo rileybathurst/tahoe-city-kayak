@@ -108,11 +108,6 @@ const DemosPage = () => {
     <>
       <Header />
 
-      {/*       <Seo
-        title={title}
-        description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
-      /> */}
-
       <main>
         <div className="location_card-wrapper">
           <div>
@@ -235,7 +230,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Demos${TitleTemplate}`}
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
     />
   )
 }
