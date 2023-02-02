@@ -36,7 +36,7 @@ export const StrapiMap = () => {
                 }`
       ))}
             ]
-          }s
+          }
           `}
     </Script>
   );

@@ -14,11 +14,6 @@ const PoliciesPage = () => {
     <>
       <Header />
 
-      {/*       <Seo
-        title={title}
-        description="Transportation, Tour Booking Procedure and Cancellation Policy"
-      /> */}
-
       <ol
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -103,7 +98,8 @@ export const Head = () => {
   return (
     <SEO
       title={`About Us${TitleTemplate}`}
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      description="Transportation, Tour Booking Procedure and Cancellation Policy."
+    // image={image} // TODO
     />
   )
 }

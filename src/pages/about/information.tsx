@@ -1,3 +1,5 @@
+// TOD: I started moving this to starpi but it needs some more thought
+
 import * as React from "react"
 import { Link } from "gatsby"
 import { SEO } from "../../components/seo";
@@ -13,11 +15,6 @@ const InformationPage = () => {
   return (
     <>
       <Header />
-
-      {/* <Seo
-        title={title}
-        description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -162,7 +159,8 @@ export const Head = () => {
   return (
     <SEO
       title={`Information${TitleTemplate}`}
-    // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
+      description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
+    // image={undefined} // TODO
     />
   )
 }

@@ -2,9 +2,9 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { TestimoialSEO } from "../../seo/testimonial";
 
 const FaqPage = () => {
   let title = "Testimonials";
@@ -13,11 +13,6 @@ const FaqPage = () => {
   return (
     <>
       <Header />
-
-      {/*       <Seo
-        title={title}
-        description="Testimonials from our customers"
-      /> */}
 
       <ol
         aria-label="Breadcrumb"
@@ -98,8 +93,11 @@ export const Head = () => {
   return (
     <SEO
       title={`Testimonials${TitleTemplate}`}
-      description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
-    />
+      description="Testimonials from our customers."
+    // image={} // TODO
+    >
+      <TestimoialSEO />
+    </SEO>
   )
 }
 
