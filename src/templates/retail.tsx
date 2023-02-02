@@ -345,13 +345,18 @@ export const Head = ({ data }) => {
 
       <Script type="application/ld+json">
         {`
-    {
-          "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": ${data.strapiRetail.title},
-        "description": ${data.strapiRetail.excerpt},
-    }
-    `}
+          {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": ${data.strapiRetail.title},
+            "description": ${data.strapiRetail.excerpt},
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "USD"
+            },
+          }
+      `}
       </Script>
 
     </SEO>
