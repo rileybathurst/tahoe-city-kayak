@@ -35,8 +35,9 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), var(--dark));
-    border: 1px solid var(hsl(var(--sand__base), var(--dim)));
+    color: hsl(var(--mullen__base), var(--light));
+    background-color: hsl(var(--mullen__base), var(--dark));
+    border: 1px solid hsl(var(--mullen__base), var(--dull));
   }
 }
 

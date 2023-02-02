@@ -22,7 +22,7 @@
     background-color: var(--sand);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--sand__base), var(--dark));
+      background-color: var(--ink);
     }
 
     .card__placeholder {
@@ -137,6 +137,11 @@
 .sand_backed--wide {
   .card {
     background-color: whitesmoke;
+
+    // TODO: I dont like this its too subtle
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--ink__h), 50%, 5%);
+    }
   }
 }
 

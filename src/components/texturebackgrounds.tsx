@@ -100,9 +100,19 @@ const TextureBackgrounds = (props) => {
     <>
       <BaseTexture />
       <TopTexture />
-      <svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="630" x2="1200" y2="0" stroke="whitesmoke" strokeWidth="3" />
+      {/* // TODO: dark */}
+      <svg
+        viewBox="0 0 1200 630"
+        xmlns="http://www.w3.org/2000/svg"
+        className="texture-slice"
+      >
+        <line
+          x1="0" y1="630" x2="1200" y2="0"
+          // stroke="whitesmoke"
+          strokeWidth="3"
+        />
       </svg>
+      {/* // TODO: maybe import the svg file? <Slice /> */}
     </>
   )
 }

@@ -625,11 +625,15 @@ footer {
     border-radius: 50%;
     object-fit: contain;
     object-fit: cover;
-    border: 2px solid whitesmoke;
     box-shadow: var(--umbra);
     margin-block-start: 2rem;
     margin-inline-start: 2rem;
     max-width: 20rem;
+    border: 2px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-metal);
+    }
 
     img {
       border-radius: 50%;

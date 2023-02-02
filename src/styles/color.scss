@@ -8,8 +8,8 @@
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--dark));
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
   }
 }
 
@@ -53,8 +53,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--dark));
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
   }
 }
 

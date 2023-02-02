@@ -42,8 +42,8 @@ svg {
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--dark));
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
   }
 
   h1 {
@@ -65,9 +65,13 @@ svg {
 /*------------------*/
 
 .img__wrapped {
-  border: 1px solid white;
   border-radius: 0.25rem;
   box-shadow: var(--penumbra);
+  border: 1px solid white;
+
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid var(--metal);
+  }
 }
 
 .crop {
@@ -137,4 +141,12 @@ svg {
 a:hover .instagram {
   filter: grayscale(0%);
   mix-blend-mode: normal;
+}
+
+.texture-slice {
+  stroke: whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    stroke: var(--black-metal);
+  }
 }

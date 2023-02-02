@@ -139,6 +139,7 @@ const DemosPage = () => {
           query={query}
           render={data => (
             <>
+              {/* // TODO: this has a bad name sand_backed--wide */}
               <div className="sand_backed--wide baseline-spacing">
                 <article className="main__full main__full--tour ">
                   <div>
