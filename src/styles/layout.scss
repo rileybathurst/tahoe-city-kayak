@@ -815,33 +815,63 @@ footer {
 
     .grid__title--select {
       grid-area: grid__title--select;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--name {
       grid-area: grid__title--name;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--sport {
       grid-area: grid__title--sport;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--time {
       grid-area: grid__title--time;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--fitness {
       grid-area: grid__title--fitness;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--location {
       grid-area: grid__title--location;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--about {
       grid-area: grid__title--about;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--minimum {
       grid-area: grid__title--minimum;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--price {
       grid-area: grid__title--price;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
     .grid__title--book {
       grid-area: grid__title--book;
+      @media (max-width: $vulture) {
+        display: none;
+      }
     }
 
     .grid__one--select {
@@ -927,6 +957,7 @@ footer {
       border-radius: 0.25rem;
       padding: 0.5rem;
       background-color: var(--brilliance);
+      background-color: hotpink; // ! test
 
       @media (prefers-color-scheme: dark) {
         background-color: var(--ink);
