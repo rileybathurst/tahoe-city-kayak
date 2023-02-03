@@ -126,11 +126,7 @@
 
   button {
     margin-block-start: 1.5rem;
-    margin-inline: auto; // !
-    // display: inline-block;
-    // text-align: center;
-    // why dont you want to be margin-inline?
-    // I could do something with a flex if i needed to
+    margin-inline: auto;
   }
 }
 

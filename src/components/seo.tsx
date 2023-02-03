@@ -54,12 +54,6 @@ export const SEO = ({
     slogan: slogan,
   };
 
-  console.log("🦄");
-  console.log(description); // ! why is this undefined?
-  console.log(defaultDescription); // ! why is this undefined?
-  console.log(title);
-  console.log(location.address.postalCode);
-
   return (
     <>
       <title>{seo.title}</title>
@@ -67,7 +61,7 @@ export const SEO = ({
       <meta name="description" content={seo.description} />
       <meta name="image" itemProp="image" content={seo.ogImage} />
       <meta property="og:type" content="website" />
-      {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />} {/* // ! this isnt there yet */}
+      {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />}
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />

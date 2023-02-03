@@ -164,12 +164,6 @@ const RetailSupPage = (data) => {
               </div>
             ))}
 
-            {/* // ! this is only showing 2 of the 4 it needs to be showing when there are 8 sups */}
-            {/*
-            // this is because 2 of the first 4 are kayaks and 2 sups
-            // and that means the slice is too early
-            */}
-
             {data.bote.edges.map(brand => (
               <div>
                 <section>

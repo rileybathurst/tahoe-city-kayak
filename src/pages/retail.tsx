@@ -127,15 +127,15 @@ const RetailPage = () => {
               <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
             </section>
 
-            <div className="main__full main__full--tour">
-              <article>
+            <article className="main__full main__full--tour">
+              <section className="blocked">
                 {/* <hr /> */}
                 <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
                 <section>
                   <h2>Browse By Brand</h2>
                 </section>
                 <SupBrandList />
-              </article>
+              </section>
 
               <section>
                 <div className="collage tour-collage">
@@ -144,7 +144,7 @@ const RetailPage = () => {
                   <Supper />
                 </div>
               </section>
-            </div>
+            </article>
 
             <section className="deck">
               {

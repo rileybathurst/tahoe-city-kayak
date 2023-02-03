@@ -3,6 +3,7 @@ a {
 }
 
 a:where(:hover, :focus) {
+  color: hsl(var(--mullen__base), var(--dim));
   text-decoration: none;
 }
 

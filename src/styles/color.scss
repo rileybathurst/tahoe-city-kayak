@@ -33,12 +33,6 @@
   color: var(--black-metal);
 }
 
-// ! this isnt working
-a:where(:hover, :focus) {
-  color: var(--mullen);
-  text-decoration: none;
-}
-
 footer {
   @extend .sand_backed--wide;
 }
@@ -78,8 +72,14 @@ footer {
   }
 }
 
-// ! this is editing the whole page
-/* .blocked {
+.blocked {
+  padding-block-start: var(--baseline);
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
-} */
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+}
