@@ -951,13 +951,16 @@ footer {
 
     > * {
       align-self: stretch;
+      padding: 0.25rem;
+
+      @media (min-width: $vulture) {
+        padding: 0.5rem;
+      }
     }
 
     > *:nth-child(odd) {
       border-radius: 0.25rem;
-      padding: 0.5rem;
       background-color: var(--brilliance);
-      background-color: hotpink; // ! test
 
       @media (prefers-color-scheme: dark) {
         background-color: var(--ink);

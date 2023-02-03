@@ -118,25 +118,17 @@ function Compare(props) {
       <div className='comparesheet'>
         <div className='comparesheet_titles subgrid-passthrough'>
 
-          <div className='comparesheet__transparent'>{/* stay gold */}</div>
-          <h3 className='h4 comparesheet_freeze'>Tour or<br />
+          <div className='grid__title--select comparesheet__transparent'>{/* stay gold */}</div>
+          <h3 className='grid__title--name h4 comparesheet_freeze'>Tour or<br />
             Lesson</h3>
-          <p>Sport
-            <br />line
-            <br />line
-            <br />line
-            <br />line
-            <br />line
-            <br />line
-
-          </p>
-          <p>Time</p>
-          <p>Fitness</p>
-          <p>Location</p>
-          <p>About</p>
-          <p>Minimum People</p>
-          <p>Price</p>
-          <p className='button-drop'>Book Now</p>
+          <p className='grid__title--sport'>Sport</p>
+          <p className='grid__title--time'>Time</p>
+          <p className='grid__title--fitness'>Fitness</p>
+          <p className='grid__title--location'>Location</p>
+          <p className='grid__title--about'>About</p>
+          <p className='grid__title--minimum'>Minimum People</p>
+          <p className='grid__title--price'>Price</p>
+          <p className='grid__title--book button-drop'>Book Now</p>
         </div>
 
         {/* Tour 1 */}
@@ -161,10 +153,12 @@ function Compare(props) {
               finish={finish1}
             />
           </div>
-          <p className='grid__one--fitness capitalize'>{fitness1}</p>
-          <p className='grid__one--location'>Tahoe City</p>
+          <p className='grid__one--fitness capitalize'>{fitness1}
+            <span className='show-below__vulture'>&nbsp;fitness</span>
+          </p>
+          <p className='grid__one--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
           <p className='grid__one--about'>{excerpt1}</p>
-          <p className='grid__one--minimum'>{minimum1}</p>
+          <p className='grid__one--minimum'>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
           <p className='grid__one--price'>${price1}</p>
           <p className='grid__one--book'><a href={peeks1}
             rel="noopener noreferrer"
@@ -195,10 +189,10 @@ function Compare(props) {
               finish={finish2}
             />
           </div>
-          <p className='grid__two--fitness capitalize'>{fitness2}</p>
-          <p className='grid__two--location'>Tahoe City</p>
+          <p className='grid__two--fitness capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
+          <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
           <p className='grid__two--about'>{excerpt2}</p>
-          <p className='grid__two--minimum'>{minimum2}</p>
+          <p className='grid__two--minimum'>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
           <p className='grid__two--price'>${price2}</p>
           <p className='grid__two--book'><a href={peeks2}
             rel="noopener noreferrer"

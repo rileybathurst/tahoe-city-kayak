@@ -19,3 +19,10 @@
 .possibly-empty:empty {
   display: none;
 }
+
+// used in the compare tables
+.show-below__vulture {
+  @media (min-width: $vulture) {
+    display: none;
+  }
+}
