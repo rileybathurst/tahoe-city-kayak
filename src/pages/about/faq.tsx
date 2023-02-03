@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
-
+import URLQuery from "../../seo/breadcrumb-url";
 import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
@@ -93,27 +93,33 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`FAQ${TitleTemplate}`}
+      title={`Frequently Asked Questions${TitleTemplate}`}
     >
+      {/* testing */}
+      <URLQuery />
+
+      <meta test="what happen here" />
+      <meta test="what happen here" />
+
       {/* // TODO: Naming */}
       <StrapiMap />
-      <Script>
-
-        {
-          "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-          "@type": "ListItem",
-        "position": 1,
-        "name": "Literature",
-        "item": "https://example.com/literature"
-      },{
-          "@type": "ListItem",
-        "position": 2,
-        "name": "Award Winners"
-      }]
-    }
-
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "About",
+              "item": "https://example.com/about"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Frequently Asked Questions"
+            }]
+          }
+        `}
       </Script>
     </SEO>
   )
