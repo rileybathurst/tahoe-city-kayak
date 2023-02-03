@@ -112,7 +112,6 @@ const TextureBackgrounds = (props) => {
           strokeWidth="3"
         />
       </svg>
-      {/* // TODO: maybe import the svg file? <Slice /> */}
     </>
   )
 }

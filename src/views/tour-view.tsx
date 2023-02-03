@@ -156,9 +156,9 @@ const TourView = ({ tour, other }) => {
 
           <div className="spec">
             <h2>Starts At</h2>
-            {/* // ! I dont have this querying its just hard coded */}
+            {/* // ! I dont have this querying its just hard coded and is like this multiple places */}
             <h3>Tahoe City</h3>
-            <a href="{/* // TODO */}">Google Maps</a>
+            {/* // TODO <a href="">Google Maps</a>*/}
           </div>
 
           <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />

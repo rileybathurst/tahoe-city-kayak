@@ -1,3 +1,5 @@
+// TODO this might not be used I think it was testing
+
 import React, { useState } from 'react';
 import { StaticQuery, graphql } from "gatsby"
 

@@ -4,6 +4,9 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
 
+import { useSiteName } from '../hooks/use-site-name'; // ! test
+
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Remainder from "../components/remainder";
@@ -188,7 +191,7 @@ export default RetailPage
 export const Head = () => {
   return (
     <SEO
-      title={`Retail${TitleTemplate}`}
+      title={`Retail - ${useSiteName}`}
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     />
   )

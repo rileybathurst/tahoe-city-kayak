@@ -37,8 +37,6 @@ function OpenSeason(props) {
       <div className={`top-wrapper ${banner}`}>
         {/* <div className="top-wrapper__staygold">test</div> */}
         <div className="top-bar">
-          {/* <p>We are currently OPEN<span className='top-bar_breaker'><br /></span> for 2022’s rental season.</p> */}
-          {/* // TODO: this had a breaker in spans maybe build one with js? */}
           <p>{topbar}</p>
         </div>
         <button onClick={closeBanner} className="season">
