@@ -116,12 +116,20 @@ function Compare(props) {
   return (
     <>
       <div className='comparesheet'>
-        {/* // ? why did I need to add this to make it a subgird */}
-        <div className='comparesheet_titles'>
+        <div className='comparesheet_titles subgrid-passthrough'>
+
           <div className='comparesheet__transparent'>{/* stay gold */}</div>
           <h3 className='h4 comparesheet_freeze'>Tour or<br />
             Lesson</h3>
-          <p>Sport</p>
+          <p>Sport
+            <br />line
+            <br />line
+            <br />line
+            <br />line
+            <br />line
+            <br />line
+
+          </p>
           <p>Time</p>
           <p>Fitness</p>
           <p>Location</p>
@@ -132,30 +140,33 @@ function Compare(props) {
         </div>
 
         {/* Tour 1 */}
-        <div>
-          <select name="tour3" id="tour3" onChange={first} className="comparesheet_select">
+        <div className='subgrid-passthrough'>
+          <select name="tour3" id="tour3" onChange={first} className="grid__one--select comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour1} other={tour2} />
             ))}
           </select>
-          <h2 className='h3 comparesheet__title1'>
+          <h2 className='grid__one--name h3 comparesheet__title1'>
+
             <Link to={`/tours-lessons/${link1}`}>
               {tour1}
             </Link>
           </h2>
           <Details1 show={tour1} set={props.tours} />
-          <h4 className='capitalize'>{sport1}</h4>
-          <Time
-            duration={duration1}
-            start={start1}
-            finish={finish1}
-          />
-          <p className='capitalize'>{fitness1}</p>
-          <p>Tahoe City</p>
-          <p>{excerpt1}</p>
-          <p>{minimum1}</p>
-          <p>${price1}</p>
-          <p><a href={peeks1}
+          <h4 className='grid__one--sport capitalize'>{sport1}</h4>
+          <div className='grid__one--time'>
+            <Time
+              duration={duration1}
+              start={start1}
+              finish={finish1}
+            />
+          </div>
+          <p className='grid__one--fitness capitalize'>{fitness1}</p>
+          <p className='grid__one--location'>Tahoe City</p>
+          <p className='grid__one--about'>{excerpt1}</p>
+          <p className='grid__one--minimum'>{minimum1}</p>
+          <p className='grid__one--price'>${price1}</p>
+          <p className='grid__one--book'><a href={peeks1}
             rel="noopener noreferrer"
             className="book-now"
           >
@@ -165,29 +176,31 @@ function Compare(props) {
         </div>
 
         {/* Tour 2 */}
-        <div>
-          <select name="tour3" id="tour3" onChange={second} className="comparesheet_select">
+        <div className='subgrid-passthrough'>
+          <select name="tour3" id="tour3" onChange={second} className="grid__two--select comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.node.id} name={tour.node.name} current={tour2} other={tour1} />
             ))}
           </select>
-          <h2 className='h3 comparesheet__title2'>
+          <h2 className='grid__two--name h3 comparesheet__title2'>
             <Link to={`/tours-lessons/${link2}`}>
               {tour2}
             </Link></h2>
           <Details2 show={tour2} set={props.tours} />
-          <h4 className='capitalize'>{sport2}</h4>
-          <Time
-            duration={duration2}
-            start={start2}
-            finish={finish2}
-          />
-          <p className='capitalize'>{fitness2}</p>
-          <p>Tahoe City</p>
-          <p>{excerpt2}</p>
-          <p>{minimum2}</p>
-          <p>${price2}</p>
-          <p><a href={peeks2}
+          <h4 className='grid__two--sport capitalize'>{sport2}</h4>
+          <div className='grid__two--time'>
+            <Time
+              duration={duration2}
+              start={start2}
+              finish={finish2}
+            />
+          </div>
+          <p className='grid__two--fitness capitalize'>{fitness2}</p>
+          <p className='grid__two--location'>Tahoe City</p>
+          <p className='grid__two--about'>{excerpt2}</p>
+          <p className='grid__two--minimum'>{minimum2}</p>
+          <p className='grid__two--price'>${price2}</p>
+          <p className='grid__two--book'><a href={peeks2}
             rel="noopener noreferrer"
             className="book-now"
           >

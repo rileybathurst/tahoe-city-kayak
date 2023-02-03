@@ -800,6 +800,117 @@ footer {
     grid-template-columns: auto 1fr 1fr;
   }
 
+  @supports not (grid-template-rows: subgrid) {
+    grid-template-areas:
+      "grid__title--select grid__one--select grid__two--select"
+      "grid__title--name grid__one--name grid__two--name"
+      "grid__title--sport grid__one--sport grid__two--sport"
+      "grid__title--time grid__one--time grid__two--time"
+      "grid__title--fitness grid__one--fitness grid__two--fitness"
+      "grid__title--location grid__one--location grid__two--location"
+      "grid__title--about grid__one--about grid__two--about"
+      "grid__title--minimum grid__one--minimum grid__two--minimum"
+      "grid__title--price grid__one--price grid__two--price"
+      "grid__title--book grid__one--book grid__two--book";
+
+    .grid__title--select {
+      grid-area: grid__title--select;
+    }
+    .grid__title--name {
+      grid-area: grid__title--name;
+    }
+    .grid__title--sport {
+      grid-area: grid__title--sport;
+    }
+    .grid__title--time {
+      grid-area: grid__title--time;
+    }
+    .grid__title--fitness {
+      grid-area: grid__title--fitness;
+    }
+    .grid__title--location {
+      grid-area: grid__title--location;
+    }
+    .grid__title--about {
+      grid-area: grid__title--about;
+    }
+    .grid__title--minimum {
+      grid-area: grid__title--minimum;
+    }
+    .grid__title--price {
+      grid-area: grid__title--price;
+    }
+    .grid__title--book {
+      grid-area: grid__title--book;
+    }
+
+    .grid__one--select {
+      grid-area: grid__one--select;
+    }
+    .grid__one--name {
+      grid-area: grid__one--name;
+    }
+    .grid__one--sport {
+      grid-area: grid__one--sport;
+    }
+    .grid__one--time {
+      grid-area: grid__one--time;
+    }
+    .grid__one--fitness {
+      grid-area: grid__one--fitness;
+    }
+    .grid__one--location {
+      grid-area: grid__one--location;
+    }
+    .grid__one--about {
+      grid-area: grid__one--about;
+    }
+    .grid__one--minimum {
+      grid-area: grid__one--minimum;
+    }
+    .grid__one--price {
+      grid-area: grid__one--price;
+    }
+    .grid__one--book {
+      grid-area: grid__one--book;
+    }
+
+    .grid__two--select {
+      grid-area: grid__two--select;
+    }
+    .grid__two--name {
+      grid-area: grid__two--name;
+    }
+    .grid__two--sport {
+      grid-area: grid__two--sport;
+    }
+    .grid__two--time {
+      grid-area: grid__two--time;
+    }
+    .grid__two--fitness {
+      grid-area: grid__two--fitness;
+    }
+    .grid__two--location {
+      grid-area: grid__two--location;
+    }
+    .grid__two--about {
+      grid-area: grid__two--about;
+    }
+    .grid__two--minimum {
+      grid-area: grid__two--minimum;
+    }
+    .grid__two--price {
+      grid-area: grid__two--price;
+    }
+    .grid__two--book {
+      grid-area: grid__two--book;
+    }
+
+    .subgrid-passthrough {
+      display: contents !important; // overrides things that are needed when I have subgrid
+    }
+  }
+
   > * {
     grid-row: 1/11;
     display: grid;
@@ -826,182 +937,6 @@ footer {
     > *:first-child {
       // background-color: transparent; // you cant do this due to dark mode
     }
-  }
-
-  > *:last-child {
-    border-inline-end: none;
-    padding-inline-end: 0;
-  }
-
-  .comparesheet_titles {
-    display: none;
-
-    @media (min-width: $vulture) {
-      display: grid;
-    }
-    padding-inline-end: 1rem;
-    text-align: end;
-  }
-
-  .comparesheet__title1 {
-    position: sticky;
-    top: -1px;
-    z-index: var(--);
-    z-index: var(--understory);
-    background-color: var(--brilliance);
-    box-shadow: 0 0 0 100vmax var(--brilliance);
-    clip-path: inset(0 -100vmax);
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--ink);
-      box-shadow: 0 0 0 100vmax var(--ink);
-    }
-  }
-
-  .comparesheet_freeze {
-    position: sticky;
-    top: -1px;
-    z-index: var(--canopy);
-  }
-
-  .comparesheet__title2 {
-    z-index: var(--canopy);
-    position: sticky;
-    top: -1px;
-  }
-
-  .comparesheet__transparent {
-    background-color: transparent;
-  }
-}
-
-/*------------------*/
-//  #COMPARE TABLE
-/*------------------*/
-
-// * test this in chrome, it doesnt have subgrid yet
-.comparesheet-nosub {
-  display: grid;
-  gap: 1rem;
-
-  grid-template-areas:
-    "grid__title--select grid__one--select grid__two--select"
-    "grid__title--name grid__one--name grid__two--name"
-    "grid__title--sport grid__one--sport grid__two--sport"
-    "grid__title--time grid__one--time grid__two--time"
-    "grid__title--fitness grid__one--fitness grid__two--fitness"
-    "grid__title--location grid__one--location grid__two--location"
-    "grid__title--about grid__one--about grid__two--about"
-    "grid__title--minimum grid__one--minimum grid__two--minimum"
-    "grid__title--price grid__one--price grid__two--price"
-    "grid__title--book grid__one--book grid__two--book";
-
-  .grid__title--select {
-    grid-area: grid__title--select;
-  }
-  .grid__title--name {
-    grid-area: grid__title--name;
-  }
-  .grid__title--sport {
-    grid-area: grid__title--sport;
-  }
-  .grid__title--time {
-    grid-area: grid__title--time;
-  }
-  .grid__title--fitness {
-    grid-area: grid__title--fitness;
-  }
-  .grid__title--location {
-    grid-area: grid__title--location;
-  }
-  .grid__title--about {
-    grid-area: grid__title--about;
-  }
-  .grid__title--minimum {
-    grid-area: grid__title--minimum;
-  }
-  .grid__title--price {
-    grid-area: grid__title--price;
-  }
-  .grid__title--book {
-    grid-area: grid__title--book;
-  }
-
-  .grid__one--select {
-    grid-area: grid__one--select;
-  }
-  .grid__one--name {
-    grid-area: grid__one--name;
-  }
-  .grid__one--sport {
-    grid-area: grid__one--sport;
-  }
-  .grid__one--time {
-    grid-area: grid__one--time;
-  }
-  .grid__one--fitness {
-    grid-area: grid__one--fitness;
-  }
-  .grid__one--location {
-    grid-area: grid__one--location;
-  }
-  .grid__one--about {
-    grid-area: grid__one--about;
-  }
-  .grid__one--minimum {
-    grid-area: grid__one--minimum;
-  }
-  .grid__one--price {
-    grid-area: grid__one--price;
-  }
-  .grid__one--book {
-    grid-area: grid__one--book;
-  }
-
-  .grid__two--select {
-    grid-area: grid__two--select;
-  }
-  .grid__two--name {
-    grid-area: grid__two--name;
-  }
-  .grid__two--sport {
-    grid-area: grid__two--sport;
-  }
-  .grid__two--time {
-    grid-area: grid__two--time;
-  }
-  .grid__two--fitness {
-    grid-area: grid__two--fitness;
-  }
-  .grid__two--location {
-    grid-area: grid__two--location;
-  }
-  .grid__two--about {
-    grid-area: grid__two--about;
-  }
-  .grid__two--minimum {
-    grid-area: grid__two--minimum;
-  }
-  .grid__two--price {
-    grid-area: grid__two--price;
-  }
-  .grid__two--book {
-    grid-area: grid__two--book;
-  }
-
-  > *:nth-child(odd) {
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    background-color: var(--brilliance);
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--ink);
-      color: whitesmoke;
-    }
-  }
-
-  > *:first-child {
-    // background-color: transparent; // you cant do this due to dark mode
   }
 
   > *:last-child {
