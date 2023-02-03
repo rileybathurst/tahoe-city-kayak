@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import TitleTemplate from "../../../components/title-template";
+import { useSiteUrl } from "../../../hooks/use-site-url";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import TextureBackgrounds from "../../../components/texturebackgrounds";
@@ -42,58 +43,20 @@ const InflateablePage = () => {
     <>
       <Header />
 
-      <ol
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail" itemProp="item">
-            <span itemProp="name">Retail</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail/sup" itemProp="item">
-            <span itemProp="name">Paddleboard</span>
-            <meta itemProp="position" content="3" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="4" />
-          </span>
-        </li>
-      </ol>
+        <ol>
+          <li>
+            <Link to={`/retail`}>Retail</Link>&nbsp;/&nbsp;
+          </li>
+          <li>
+            <Link to={`/retail/sup`}>Standup Paddleboard</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
 
       <main>
         <h1>{title}</h1>
@@ -140,7 +103,32 @@ export const Head = () => {
       title={`Inflatable StandUp Paddleboards${TitleTemplate}`}
       description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
     // TODO image
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Standup Paddleboard",
+            "item": "${useSiteUrl()}/retail/sup"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Inflatable Paddleboards"
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }
 

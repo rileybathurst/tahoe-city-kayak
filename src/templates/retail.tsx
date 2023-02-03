@@ -5,6 +5,7 @@ import { Link, graphql, StaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
+import { useSiteUrl } from "../hooks/use-site-url";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -214,24 +215,26 @@ const RetailTypeView = ({ data }) => {
     <>
       <Header />
 
-      <ol
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
       >
-        <li>
-          <Link to="/">Home</Link>&nbsp;/&nbsp;
-        </li>
+        <ol>
+          <li>
+            <Link to="/">Home</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li>
-          <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        </li>
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li>
-          <Link to={`/retail/${data.strapiRetail.type}`}>{data.strapiRetail.type}</Link>&nbsp;/&nbsp;
-        </li>
+          <li>
+            <Link to={`/retail/${data.strapiRetail.type}`}>{data.strapiRetail.type}</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li>{data.strapiRetail.title}</li>
-      </ol>
+          <li aria-current="page">{data.strapiRetail.title}</li>
+        </ol>
+      </nav>
 
       <main className="main__full">
         <div>
@@ -326,6 +329,29 @@ export const Head = ({ data }) => {
               "priceCurrency": "USD",
               "price": ""
             }
+          }
+        `}
+      </Script>
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Retail",
+              "item": "${useSiteUrl()}/retail"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Retail",
+              "item": "${useSiteUrl()}/retail/${data.strapiRetail.type}"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "${data.strapiRetail.title}"
+            }]
           }
       `}
       </Script>

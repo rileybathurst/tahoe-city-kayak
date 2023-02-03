@@ -16,6 +16,7 @@ import WaterTexture from "../images/watertexture";
 import MapSVG from "../images/map";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
+import ParentTitleBreadcrumb from "../components/parent-title-breadcrumb";
 
 function Kayaker(props) {
   return <StaticImage
@@ -117,50 +118,17 @@ const TourView = ({ tour, other }) => {
     <>
       <Header />
 
-      <ol
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/tours-lessons" itemProp="item">
-            <span itemProp="name">Tours &amp; Lessons</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {tour.name}
-            </span>
-            <meta itemProp="position" content="3" />
-          </span>
-        </li>
-      </ol>
+        <ol>
+          <li>
+            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">{tour.name}</li>
+        </ol>
+      </nav>
 
       <main className="main__full main__full--tour">
         <div>

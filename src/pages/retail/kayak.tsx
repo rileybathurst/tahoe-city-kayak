@@ -1,9 +1,9 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
-
+import { useSiteUrl } from "../../hooks/use-site-url";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import TextureBackgrounds from "../../components/texturebackgrounds";
@@ -14,6 +14,7 @@ import KayakFeatureList from "../../components/kayak-feature-list";
 import Store from "../../components/locations/store";
 import More from "../../components/more";
 import Retail from "../../content/retail";
+import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 function Card(props) {
   if (props.type === 'kayak') {
@@ -54,50 +55,10 @@ const RetailKayakPage = (data) => {
     <>
       <Header />
 
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to={`/${parent}`} itemProp="item">
-            <span itemProp="name">{parent}</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
 
       <main>
         <div className="location_card-wrapper">
@@ -424,23 +385,43 @@ export const Head = () => {
       title={`Kayak${TitleTemplate}`}
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     // TODO Image
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kayaks",
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }
 
 const query = graphql`
-query KayaksQuery {
-  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-    edges {
-      node {
+      query KayaksQuery {
+        hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
           title
           slug
@@ -461,188 +442,188 @@ query KayaksQuery {
     }
   }
 
-  eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
-    edges {
-      node {
+      eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
     }
   }
-  
-  perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
-    edges {
-      node {
+
+      perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
     }
   }
-  
-  wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
-    edges {
-      node {
+
+      wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
     }
   }
-  
-  delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
-    edges {
-      node {
+
+      delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
     }
   }
-  
-  bote: allStrapiBrand(
-    filter: {name: {eq: "bote"}, kayak: {eq: true}}
-    ) {
-    edges {
-      node {
+
+      bote: allStrapiBrand(
+      filter: {name: {eq: "bote"}, kayak: {eq: true}}
+      ) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
     }
   }
-  
-  brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
-    edges {
-      node {
+
+      brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
+        edges {
+        node {
         id
         name
-        slug
-        tagline
-        svg
+      slug
+      tagline
+      svg
 
-        retail {
-          type
+      retail {
+        type
           id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      cutout {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
             }
-            alternativeText
+      alternativeText
           }
         }
       }
@@ -651,4 +632,4 @@ query KayaksQuery {
 
 
 }
-`
+      `

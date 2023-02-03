@@ -1,9 +1,9 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import TitleTemplate from "../../../components/title-template";
-
+import { useSiteUrl } from "../../../hooks/use-site-url";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import TextureBackgrounds from "../../../components/texturebackgrounds";
@@ -43,63 +43,24 @@ const TandemPage = () => {
     <>
       <Header />
 
-      <ol
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail" itemProp="item">
-            <span itemProp="name">Retail</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail/kayak" itemProp="item">
-            <span itemProp="name">Kayak</span>
-            <meta itemProp="position" content="3" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="4" />
-          </span>
-        </li>
-      </ol>
+        <ol>
+          <li>
+            <Link to={`/retail`}>Retail</Link>&nbsp;/&nbsp;
+          </li>
+          <li>
+            <Link to={`/retail/kayak`}>Kayak</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
 
       <main>
         <h1>{title}</h1>
-
-        <p>Tandem kayak.</p>
+        <p>Tandem Kayak.</p>
       </main>
 
       {
@@ -119,6 +80,7 @@ const TandemPage = () => {
                     excerpt={retail.node.excerpt}
                     cutout={retail.node?.cutout}
                     type={retail.node.type}
+                  // TODO can I just pass the whole thing up and deal with it from there?
                   />
                 ))
               }
@@ -126,7 +88,6 @@ const TandemPage = () => {
           )}
         />
       }
-
 
       <Footer />
     </>
@@ -138,10 +99,34 @@ export default TandemPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tandem${TitleTemplate}`}
+      title={`Two Person Kayaks${TitleTemplate}`}
       description="Our tandem kayaks are the perfect way to explore the water with friends"
     // TODO image
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Retail",
+              "item": "${useSiteUrl()}/retail"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Kayak",
+              "item": "${useSiteUrl()}/retail/kayak"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Two Person Kayaks"
+            }]
+          }
+        `}
+      </Script>
+    </SEO>
   )
 }
 

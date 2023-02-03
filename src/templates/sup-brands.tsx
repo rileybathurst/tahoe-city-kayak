@@ -1,10 +1,11 @@
 // TODO add the retail content
 
 import React, { useState, useEffect } from "react"
-import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
+import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
+import { useSiteUrl } from "../hooks/use-site-url";
 
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -95,61 +96,26 @@ const supBrandView = ({ data }) => {
     <>
       <Header />
 
-      <ol
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
+        <ol>
+          <li>
+            <Link to="/">Home</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail" itemProp="item">
-            <span itemProp="name">Retail</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail/sup" itemProp="item">
-            <span itemProp="name">Paddleboard</span>
-            <meta itemProp="position" content="3" />
-          </Link>&nbsp;/&nbsp;
-        </li>
+          <li>
+            <Link to="/retail/sup">Standup Paddleboard</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {data.brand.name}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
+          <li aria-current="page">{data.brand.name}</li>
+        </ol>
+      </nav>
 
       <main className="location_card-wrapper">
         <div>
@@ -258,7 +224,38 @@ export const Head = ({ data }) => {
   return (
     <SEO
       title={`${data.brand.name} standup paddleboards sold at${TitleTemplate}`}
-      description={`${data.brand.name} standup paddleboards ${data.brand.tagline}`} />
+      description={`${data.brand.name} standup paddleboards ${data.brand.tagline}`}
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Standup Paddleboard",
+            "item": "${useSiteUrl()}/retail/sup"
+          },{
+            "@type": "ListItem",
+            "position": 4,
+            "name": "${data.brand.name}"
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }
 

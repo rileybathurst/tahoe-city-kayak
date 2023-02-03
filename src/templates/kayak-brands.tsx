@@ -1,11 +1,13 @@
 // TODO add the retail content
 // TODO add the stripes for individual series
+// TODO document why this is different from sup brands and if i should combine them
 
 import React from "react"
-import { Link, graphql, StaticQuery, useStaticQuery } from 'gatsby'
+import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import TitleTemplate from "../components/title-template";
+import { useSiteUrl } from "../hooks/use-site-url";
 
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -89,62 +91,27 @@ const KayakBrandView = ({ data }) => {
     <>
       <Header />
 
-      <ol
+      {/* // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/ */}
+      <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
       >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
+        <ol>
+          <li>
+            <Link to="/">Home</Link>&nbsp;/&nbsp;
+          </li>
 
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail" itemProp="item">
-            <span itemProp="name">Retail</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
+          <li>
+            <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
+          </li>
 
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/retail/kayak" itemProp="item">
-            <span itemProp="name">Kayak</span>
-            <meta itemProp="position" content="3" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {data.brand.name}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
+          <li aria-current="page">{data.brand.name}</li>
+        </ol>
+      </nav>
 
       <main className="location_card-wrapper">
         <div>
@@ -255,7 +222,38 @@ export const Head = ({ data }) => {
   return (
     <SEO
       title={`${data.brand.name} Kayaks sold at${TitleTemplate}`}
-      description={`${data.brand.name} kayaks ${data.brand.tagline}`} />
+      description={`${data.brand.name} kayaks ${data.brand.tagline}`}
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/retail"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Kayak",
+            "item": "${useSiteUrl()}/retail/kayak"
+          },{
+            "@type": "ListItem",
+            "position": 4,
+            "name": "${data.brand.name}"
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }
 

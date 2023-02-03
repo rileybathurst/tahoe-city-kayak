@@ -2,13 +2,13 @@ import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
-import URLQuery from "../../seo/breadcrumb-url";
+import { useSiteUrl } from "../../hooks/use-site-url";
 import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-import { useSiteUrl } from "../../hooks/use-site-url";
+import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 
 const FaqPage = () => {
@@ -19,49 +19,10 @@ const FaqPage = () => {
     <>
       <Header />
 
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to={`/${parent}`} itemProp="item">
-            <span itemProp="name">{parent}</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="3" />
-          </span>
-        </li>
-      </ol>
-
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
       <main>
         <h1>{title}</h1>
 

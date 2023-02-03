@@ -5,7 +5,6 @@ import TitleTemplate from "../components/title-template";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-// import Here from "../components/here";
 import MapSVG from "../images/map";
 import Complete from "../components/locations/complete";
 
@@ -15,39 +14,6 @@ const MapPage = () => {
   return (
     <>
       <Header />
-
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
 
       <main>
         <h1>{title}</h1>

@@ -556,7 +556,8 @@ footer {
 //  #BREADCRUMBS
 /*------------------*/
 
-.breadcrumbs {
+// https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/
+.breadcrumbs ol {
   list-style: none;
   display: flex;
   flex-flow: row wrap;

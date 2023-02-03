@@ -17,39 +17,6 @@ const RentalsPage = () => {
     <>
       <Header />
 
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="2" />
-          </span>
-        </li>
-      </ol>
-
       <div className="location_card-wrapper">
         <div>
           <h1>{title}</h1>

@@ -1,7 +1,9 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Script } from "gatsby"
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
+import { useSiteUrl } from "../../hooks/use-site-url";
+
 import TourView from "../../views/tour-view"
 
 export const query = graphql`
@@ -77,6 +79,26 @@ export const Head = ({ data }) => {
       title={`${data.strapiTour.name}${TitleTemplate}`}
       description={data.strapiTour.excerpt}
     // TODO image
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Retail",
+            "item": "${useSiteUrl()}/tours-lessons"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "${data.strapiTour.name}",
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }

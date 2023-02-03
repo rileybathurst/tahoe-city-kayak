@@ -5,7 +5,7 @@ import { Link, Script } from "gatsby"
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
 import { useSiteUrl } from "../../hooks/use-site-url";
-
+import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -17,50 +17,10 @@ const InformationPage = () => {
     <>
       <Header />
 
-      <ol
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
-      >
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to="/" itemProp="item">
-            <span itemProp="name">Home</span>
-            <meta itemProp="position" content="1" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <Link to={`/${parent}`} itemProp="item">
-            <span itemProp="name">{parent}</span>
-            <meta itemProp="position" content="2" />
-          </Link>&nbsp;/&nbsp;
-        </li>
-
-        <li
-          itemProp="itemListElement"
-          itemScope
-          itemType="https://schema.org/ListItem"
-        >
-          <span itemProp="item">
-            <span
-              itemProp="name"
-              aria-current="page"
-            >
-              {title}
-            </span>
-            <meta itemProp="position" content="3" />
-          </span>
-        </li>
-      </ol>
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
 
       {/* this page could use accordions to make it easier to read */}
 
@@ -177,7 +137,7 @@ export const Head = () => {
             },{
               "@type": "ListItem",
               "position": 2,
-              "name": "Frequently Asked Questions"
+              "name": "Information",
             }]
           }
         `}

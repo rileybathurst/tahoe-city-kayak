@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { StaticQuery, graphql, Link, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
+import { useSiteUrl } from "../../hooks/use-site-url";
+
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -201,6 +203,18 @@ const ComparePage = () => {
     <>
       <Header />
 
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to={`/tours-lessons`}>Tours and Lessons</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">Compare</li>
+        </ol>
+      </nav>
+
       <main className='main__pelican'>
         <h1>Compare</h1>
         <StaticQuery
@@ -223,7 +237,27 @@ export const Head = () => {
     <SEO
       title={`Compare Tours${TitleTemplate}`}
     // TODO description and image
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Tours & Lessons",
+            "item": "${useSiteUrl()}/tours-lessons"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Compare",
+          }]
+        }
+      `}
+      </Script>
+
+    </SEO>
   )
 }
 
