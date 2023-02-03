@@ -45,14 +45,20 @@ export const SEO = ({
     telephone: telephone,
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
-    // streetAddress: location.address.streetAddress,
-    // addressLocality: location.address.addressLocality,
-    // addressRegion: location.address.addressRegion,
-    // postalCode: location.address.postalCode,
+    streetAddress: location.address.streetAddress,
+    addressLocality: location.address.addressLocality,
+    addressRegion: location.address.addressRegion,
+    postalCode: location.address.postalCode,
     themeColor: themeColor,
     numberOfEmployees: numberOfEmployees,
     slogan: slogan,
   };
+
+  console.log("🦄");
+  console.log(description); // ! why is this undefined?
+  console.log(defaultDescription); // ! why is this undefined?
+  console.log(title);
+  console.log(location.address.postalCode);
 
   return (
     <>

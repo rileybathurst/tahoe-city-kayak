@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import { Link } from "gatsby"
 import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";
@@ -14,7 +14,7 @@ const Header = () => {
         {/* <PaddleIcon /> */}
         <div className='logo-copy'>
           {/* <h3 className='logo'><Link to="/" className="link__subtle">Tahoe City Kayak</Link></h3> */}
-          <Logo />
+          <Link to="/"><Logo /></Link>
           <p>&copy; {new Date().getFullYear()}</p>
           <hr />
           <nav>
