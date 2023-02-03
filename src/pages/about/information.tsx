@@ -1,9 +1,10 @@
 // TOD: I started moving this to starpi but it needs some more thought
 
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, Script } from "gatsby"
 import { SEO } from "../../components/seo";
 import TitleTemplate from "../../components/title-template";
+import { useSiteUrl } from "../../hooks/use-site-url";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -161,6 +162,27 @@ export const Head = () => {
       title={`Information${TitleTemplate}`}
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
     // image={undefined} // TODO
-    />
+    >
+
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "About",
+              "item": "${useSiteUrl()}/about"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Frequently Asked Questions"
+            }]
+          }
+        `}
+      </Script>
+
+    </SEO>
   )
 }

@@ -10,12 +10,10 @@ export const StrapiMap = () => {
   } = useStrapiMap()
 
   // this throws out the array
-  console.log(useStrapiMap());
+  // console.log(useStrapiMap());
   // this gets the first answer
-  console.log(useStrapiMap()[0].answer);
+  // console.log(useStrapiMap()[0].answer);
   // console.log(nodes); // this isnt anything
-
-
 
   return (
     <Script type="application/ld+json">

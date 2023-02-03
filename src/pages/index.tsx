@@ -310,19 +310,9 @@ export default IndexPage
 
 export const Head = () => {
   return (
-    <>
-      {/* <SEO title="Home" /> */}
-      <SEO
-        // title="StrapiTop"
-        // title={StrapiTop}
-        // title={useStrapiTopBar()}
-        title={`Tahoe City Kayak - ${useStrapiTopBar()}`}
-      // title={StrapiBottom}
-      // title={TT}
-      />
-      {/* <StrapiTop /> */}
-      {/* <StrapiBottom /> */}
-      {/* </SEO> */}
-    </>
+    <SEO
+      // TODO: this needs to come from a query that I will also use in title template
+      title={`Tahoe City Kayak and Padddleboard - ${useStrapiTopBar()}`}
+    />
   )
 }

@@ -8,6 +8,8 @@ import { StrapiMap } from "../../components/map";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
+import { useSiteUrl } from "../../hooks/use-site-url";
+
 
 const FaqPage = () => {
   let title = "Frequently Asked Questions";
@@ -95,11 +97,6 @@ export const Head = () => {
     <SEO
       title={`Frequently Asked Questions${TitleTemplate}`}
     >
-      {/* testing */}
-      <URLQuery />
-
-      <meta test="what happen here" />
-      <meta test="what happen here" />
 
       {/* // TODO: Naming */}
       <StrapiMap />
@@ -112,7 +109,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "https://example.com/about"
+              "item": "${useSiteUrl()}/about"
             },{
               "@type": "ListItem",
               "position": 2,
