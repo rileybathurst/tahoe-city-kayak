@@ -76,7 +76,6 @@ function Compare(props) {
     return null;
   }
 
-  // TODO: start with a default
   const [tour1, setTour1] = useState('Sunset Kayak Tour on Lake Tahoe');
   const [tour2, setTour2] = useState('Historic West Shore Tour');
 

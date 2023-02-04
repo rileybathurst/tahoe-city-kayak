@@ -17,6 +17,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  // retail.tsx
   const getRetails = makeRequest(graphql, `
     {
       allStrapiRetail {
@@ -47,6 +48,7 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
+  // kayak-brands.tsx
   const getKayaks = makeRequest(graphql, `
     {
       allStrapiBrand(filter: {kayak: {eq: true}}) {
@@ -67,12 +69,14 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/kayak-brands.tsx`),
         context: {
           slug: node.slug,
-          retail: node.retail.series
+          retail: node.retail.series,
+          type: 'kayak'
         },
       })
     })
   }); // .then(result) */
 
+  // sup-brands.tsx
   const getSups = makeRequest(graphql, `
     {
       allStrapiBrand(filter: {sup: {eq: true}}) {
@@ -94,7 +98,8 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/sup-brands.tsx`),
         context: {
           slug: node.slug,
-          retail: node.retail.series
+          retail: node.retail.series,
+          type: 'sup'
         },
       })
     })

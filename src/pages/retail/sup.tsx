@@ -49,8 +49,6 @@ function Card(props) {
 }
 
 function Limiter(props) {
-  // TODO: there needs to be a stop after 4 not a slice before counting if its a sup
-
   // console.log(props);
   // console.log(props.brand);
   // console.log(props.brand.map(retail) => retail.brand);

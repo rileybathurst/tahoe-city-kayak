@@ -318,7 +318,6 @@ const RetailKayakPage = (data) => {
                   ))}
                 </div>
 
-                {/* // TODO: // this is where I need to get rid of the sups */}
                 <More
                   retail={brand.node.retail}
                   brand={brand.node.name}

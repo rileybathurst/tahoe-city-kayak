@@ -1,5 +1,3 @@
-// TODO add the retail content
-
 import React from 'react';
 import { Link, graphql, StaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -133,8 +131,7 @@ function Other(props) {
         <p>{props.retail.excerpt}</p>
         <hr />
         <div className="card__details">
-          {/* // TODO: change this to capcity */}
-          <h4 className="capitalize">{props.retail.type}</h4>
+          <h4 className="capitalize">Capacity {props.retail.capacity}LBS</h4>
           <h5><Remainder inches={props.retail.length} /> tall by {props.retail.width}" wide</h5>
         </div>
       </article>
@@ -423,6 +420,7 @@ export const query = graphql`
           width
           length
           type
+          capacity
 
           cutout {
             localFile {

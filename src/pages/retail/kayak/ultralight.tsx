@@ -2,7 +2,8 @@ import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
-import TitleTemplate from "../../../components/title-template";
+import { useSiteName } from "../../../hooks/use-site-name";
+
 import { useSiteUrl } from "../../../hooks/use-site-url";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
@@ -10,6 +11,7 @@ import Footer from "../../../components/footer";
 import TextureBackgrounds from "../../../components/texturebackgrounds";
 import Remainder from "../../../components/remainder";
 import KayakFeatureList from "../../../components/kayak-feature-list";
+import Ultralight from "../../../components/ultralight";
 
 function Card(props) {
   return (
@@ -62,14 +64,7 @@ const UltralightPage = () => {
 
       <main>
         <h1>{title}</h1>
-
-        {/* // TODO: this is doubled between ultralight and ultralight tandem */}
-        <p>Many companies are finding ways to make their kayaks or paddleboards weigh less.</p>
-        <ul>
-          <li><Link to="/retail/kayak/eddyline">Eddyline Kayaks</Link> uses a lightweight polycarbonate material called “Carbonlite” that mimics the properties of fiberglass, but is far more durable. Both fiberglass and Carbonlite are considerably lighter than the polyethylene plastics that most kayaks are constructed with.</li>
-          <li><Link to="/retail/kayak/hobie">Hobie</Link> and <Link to="/retail/sup/pauhana">Pau Hana</Link> are using the latest inflatable technology on some of their watercraft, and have been able to shave about 20% of the weight that their older inflatable designs had.</li>
-          <li>Oru kayaks has made a folding kayak out of an innovative polymer. Some of their models are weighing in around 20 lbs.</li>
-        </ul>
+        <Ultralight />
       </main>
 
       {

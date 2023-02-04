@@ -113,7 +113,7 @@ module.exports = {
         name: `Tahoe City Kayak`,
         short_name: `TCK`,
         start_url: `/`,
-        icon: "src/images/favicon.svg",
+        icon: "src/images/favicon.svg", // TODO something new // theres not quite the right emoji for this
       },
     },
   ]

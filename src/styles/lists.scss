@@ -16,6 +16,23 @@ ul {
 }
 
 /*------------------*/
+//  #PARAGRAPH LIST
+/*------------------*/
+
+.paragraph-list {
+  p {
+  }
+
+  li {
+    margin-block-end: var(--baseline);
+  }
+
+  a {
+    display: inline;
+  }
+}
+
+/*------------------*/
 //  #FEATURES
 /*------------------*/
 

@@ -1,4 +1,6 @@
+// TODO add the retail content
 // TODO add the stripes for individual series
+// TODO document why this is different from sup brands and if i should combine them
 
 import React from "react"
 import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
@@ -87,6 +89,8 @@ function Next(props) {
 const KayakBrandView = ({ data }) => {
   return (
     <>
+      {data.brand.name}
+
       <Header />
 
       {/* // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/ */}
@@ -129,91 +133,84 @@ const KayakBrandView = ({ data }) => {
 
       </main>
 
-      <div className="series">
-        {/* // TODO moving the query up would be nicer to be able to stripe things */}
-        <section id='island'>
-          <Next series={data.brand.retail} list='false' title="island" />
+      <section id='island'>
+        <Next series={data.brand.retail} list='false' title="island" />
+      </section>
+      {/* this has to be here */}
+      {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
+      <div className="deck">
+        {
+          data.island.edges.map(kayak => (
+            <Kayak
+              key={kayak.node.id}
+              title={kayak.node.title}
+              slug={kayak.node.slug}
+              excerpt={kayak.node.excerpt}
+              length={kayak.node.length}
+              width={kayak.node.width}
+              cutout={kayak.node.cutout}
+            />
+          ))
+        }
+      </div>
 
-          {/* this has to be here */}
-          {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
-          <div className="deck">
-            {
-              data.island.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                />
-              ))
-            }
-          </div>
-        </section>
+      <section id='mirage'>
+        <Next series={data.brand.retail} title="mirage" />
+      </section>
+      <div className="deck">
+        {
+          data.mirage.edges.map(kayak => (
+            <Kayak
+              key={kayak.node.id}
+              title={kayak.node.title}
+              slug={kayak.node.slug}
+              excerpt={kayak.node.excerpt}
+              length={kayak.node.length}
+              width={kayak.node.width}
+              cutout={kayak.node.cutout}
+            />
+          ))
+        }
+      </div>
 
-        <section id='mirage'>
-          <Next series={data.brand.retail} title="mirage" />
+      <section id='inflatable'>
+        <Next series={data.brand.retail} title="inflatable" />
+      </section>
+      <div className="deck">
+        {
+          data.inflatable.edges.map(kayak => (
+            <Kayak
+              key={kayak.node.id}
+              title={kayak.node.title}
+              slug={kayak.node.slug}
+              excerpt={kayak.node.excerpt}
+              length={kayak.node.length}
+              width={kayak.node.width}
+              cutout={kayak.node.cutout}
+            />
+          ))
+        }
+      </div>
 
-          <div className="deck">
-            {
-              data.mirage.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                />
-              ))
-            }
-          </div>
-        </section>
+      {/* //TODO: there needs to be more of a not in a series */}
 
-        <section id='inflatable'>
-          <Next series={data.brand.retail} title="inflatable" />
-
-          <div className="deck">
-            {
-              data.inflatable.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                />
-              ))
-            }
-          </div>
-        </section>
-
-        {/* //TODO: there needs to be more of a not in a series */}
-
-        <section>
-          <Next series={data.brand.retail} title="null" />
-
-          <div className="deck">
-            {
-              data.null.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                />
-              ))
-            }
-          </div>
-        </section>
+      <section>
+        <Next series={data.brand.retail} title="null" />
+      </section>
+      <div className="deck">
+        {
+          data.null.edges.map(kayak => (
+            <Kayak
+              key={kayak.node.id}
+              title={kayak.node.title}
+              slug={kayak.node.slug}
+              excerpt={kayak.node.excerpt}
+              length={kayak.node.length}
+              width={kayak.node.width}
+              cutout={kayak.node.cutout}
+            />
+          ))
+        }
       </div>
 
       <Footer />
@@ -263,7 +260,7 @@ export const Head = ({ data }) => {
 }
 
 export const query = graphql`
-  query KayakBrandsTemplate(
+  query AllBrandsTemplate(
     $slug: String!,
   ) {
     brand: strapiBrand(slug: {eq: $slug}) {
