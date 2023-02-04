@@ -11,6 +11,7 @@ import StoreIcon from "../images/store";
 import KayakFeatureList from "../components/kayak-feature-list";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
+import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import WaterTexture from "../images/watertexture";
 
@@ -74,8 +75,6 @@ const RetailPage = () => {
           <h2><Link to="/retail/kayak">Kayaks</Link></h2>
           <h3 className="condensed">Browse By Feature</h3>
           <KayakFeatureList />
-          <h3>Browse By Brand</h3>
-          <KayakBrandList />
         </section>
 
         <section>
@@ -87,6 +86,11 @@ const RetailPage = () => {
         </section>
 
       </article>
+
+      <section className="brand_list">
+        <h3>Browse By Brand</h3>
+      </section>
+      <KayakBrandList />
 
 
 
@@ -131,10 +135,8 @@ const RetailPage = () => {
               <section className="blocked">
                 {/* <hr /> */}
                 <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
-                <section>
-                  <h2>Browse By Brand</h2>
-                </section>
-                <SupBrandList />
+                <h3 className="condensed">Browse By Feature</h3>
+                <PaddleboardFeatureList />
               </section>
 
               <section>
@@ -145,6 +147,11 @@ const RetailPage = () => {
                 </div>
               </section>
             </article>
+
+            <section className="brand_list">
+              <h3>Browse By Brand</h3>
+            </section>
+            <SupBrandList />
 
             <section className="deck">
               {

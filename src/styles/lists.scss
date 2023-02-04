@@ -93,8 +93,13 @@ ul {
   margin-inline: auto;
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  // this doesnt work on the home page as its wider so it can fill its won space
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+
   gap: 1rem;
 
   > li {
@@ -147,6 +152,10 @@ ul {
       }
     }
   }
+}
+
+.brand_list--home {
+  max-width: var(--vulture);
 }
 
 /*------------------*/

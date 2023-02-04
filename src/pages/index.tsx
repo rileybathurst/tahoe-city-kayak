@@ -235,14 +235,10 @@ const IndexPage = () => {
       </div>
       <div className="deck__more">
         {hasMore ? (
-          <>
-            <button onClick={handleLoadMore} className=''>VIEW MORE TOURS &amp; LESSONS</button>
-            {/* &nbsp;&nbsp;<span className="crest">Even More?</span> */}
-          </>
+          <button onClick={handleLoadMore} className=''>VIEW MORE TOURS &amp; LESSONS</button>
         ) : (
           <p>Thats all the tours</p>
-        )
-        }
+        )}
         <hr />
       </div>
 
@@ -250,19 +246,36 @@ const IndexPage = () => {
       {/* <MapSVG /> */}
 
       <section id="retail">
-        <h3><Link to="/retail" className="">Retail</Link></h3>
+        {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
+
+        <hgroup className="crest">
+          <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
+          <h4 className="supra">Kayaks and Paddleboards</h4>
+        </hgroup>
+
         <Retail />
+        <hr />
       </section>
 
       <section className="reuseable__two-col">
         <div>
-          <h4><Link to="/retail/kayaks">Kayaks</Link></h4>
+          <h4><Link to="/retail/kayak">Shop All Kayaks</Link></h4>
+          <h5>Shop By Feature</h5>
           <KayakFeatureList />
-          <KayakBrandList />
+          <h5>Shop By Brand</h5>
+          <div className="brand_list--home">
+            <KayakBrandList />
+          </div>
 
-          <h4><Link to="/retail/sup">Paddleboards</Link></h4>
+          <hr />
+
+          <h4><Link to="/retail/sup">Shop All Paddleboards</Link></h4>
+          <h5>Shop By Feature</h5>
           <PaddleboardFeatureList />
-          <SupBrandList />
+          <h5>Shop By Brand</h5>
+          <div className="brand_list--home">
+            <SupBrandList />
+          </div>
         </div>
 
         <div className="deck deck__column">
@@ -293,10 +306,10 @@ const IndexPage = () => {
           <div className="deck__more">
             {hasExtra ? (
               <>
-                <button onClick={handleLoadExtra} className=''>VIEW MORE RETAIL</button>
+                <button onClick={handleLoadExtra} className=''>VIEW MORE PRODUCTS</button>
               </>
             ) : (
-              <p>Thats all the retail</p>
+              <p>Thats all the products</p>
             )
             }
           </div>

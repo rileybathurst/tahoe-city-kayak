@@ -514,6 +514,15 @@ footer {
 //  #RETAIL
 /*------------------*/
 
+#retail {
+  max-width: var(--pelican);
+
+  hgroup,
+  p {
+    max-width: var(--vulture);
+  }
+}
+
 .spec {
   display: flex;
   gap: 1rem;
@@ -527,10 +536,6 @@ footer {
   h2 {
     color: grey;
     font-size: 1.5rem;
-  }
-
-  // spec
-  h3 {
   }
 
   .spec__unit {
