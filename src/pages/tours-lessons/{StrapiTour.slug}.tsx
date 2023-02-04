@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql, Script } from "gatsby"
 import { SEO } from "../../components/seo";
-import TitleTemplate from "../../components/title-template";
+import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 
 import TourView from "../../views/tour-view"
@@ -76,7 +76,7 @@ export default TourPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiTour.name}${TitleTemplate}`}
+      title={`${data.strapiTour.name} - ${useSiteName()}`}
       description={data.strapiTour.excerpt}
     // TODO image
     >

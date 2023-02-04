@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 import { useSiteUrl } from "../hooks/use-site-url";
 
 import Header from '../components/header';
@@ -223,7 +223,7 @@ export default supBrandView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.brand.name} standup paddleboards sold at${TitleTemplate}`}
+      title={`${data.brand.name} standup paddleboards sold at - ${useSiteName()}`}
       description={`${data.brand.name} standup paddleboards ${data.brand.tagline}`}
     >
       <Script type="application/ld+json">

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Link, Script } from "gatsby"
 import { SEO } from "../../components/seo";
-import TitleTemplate from "../../components/title-template";
+import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
@@ -119,7 +119,7 @@ export default InformationPage
 export const Head = () => {
   return (
     <SEO
-      title={`Information${TitleTemplate}`}
+      title={`Information - ${useSiteName()}`}
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
     // image={undefined} // TODO
     >

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -33,7 +33,7 @@ export default MapPage
 export const Head = () => {
   return (
     <SEO
-      title={`Map${TitleTemplate}`}
+      title={`Map - ${useSiteName()}`}
     // TODO description and image
     />
   )

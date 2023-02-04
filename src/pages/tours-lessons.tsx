@@ -3,7 +3,7 @@ import { Link, StaticQuery, graphql, ScriptStrategy } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo"
 
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 import Header from "../components/header"
 import Footer from "../components/footer"
 
@@ -159,7 +159,7 @@ export default ToursLessonsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tours and Lessons${TitleTemplate}`}
+      title={`Tours and Lessons - ${useSiteName()}`}
       description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )

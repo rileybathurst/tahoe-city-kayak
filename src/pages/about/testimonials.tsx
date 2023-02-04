@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import TitleTemplate from "../../components/title-template";
+import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -54,7 +54,7 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials${TitleTemplate}`}
+      title={`Testimonials - ${useSiteName()}`}
       description="Testimonials from our customers."
     // image={} // TODO
     >

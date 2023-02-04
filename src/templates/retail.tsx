@@ -4,7 +4,7 @@ import React from 'react';
 import { Link, graphql, StaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 import { useSiteUrl } from "../hooks/use-site-url";
 
 import ReactMarkdown from "react-markdown";
@@ -308,7 +308,7 @@ export default RetailTypeView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at ${TitleTemplate}`}
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at  - ${useSiteName()}`}
       description={data.strapiRetail.excerpt}>
 
       <Script type="application/ld+json">

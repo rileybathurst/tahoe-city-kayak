@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import TitleTemplate from "../../components/title-template";
+import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import { StrapiMap } from "../../components/map";
 
@@ -56,7 +56,7 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Frequently Asked Questions${TitleTemplate}`}
+      title={`Frequently Asked Questions - ${useSiteName()}`}
     >
 
       {/* // TODO: Naming */}

@@ -99,7 +99,7 @@ export default TandemPage
 export const Head = () => {
   return (
     <SEO
-      title={`Two Person Kayaks${TitleTemplate}`}
+      title={`Two Person Kayaks - ${useSiteName()}`}
       description="Our tandem kayaks are the perfect way to explore the water with friends"
     // TODO image
     >

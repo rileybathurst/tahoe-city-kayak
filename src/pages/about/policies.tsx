@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import TitleTemplate from "../../components/title-template";
+import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
@@ -58,7 +58,7 @@ export default PoliciesPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us${TitleTemplate}`}
+      title={`About Us - ${useSiteName()}`}
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
     // image={image} // TODO
     >

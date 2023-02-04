@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from 'gatsby';
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -63,7 +63,7 @@ export default RentalsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Rentals${TitleTemplate}`}
+      title={`Rentals - ${useSiteName()}`}
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our demos."
     />
   )

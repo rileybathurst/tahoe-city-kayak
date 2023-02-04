@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -229,7 +229,7 @@ export default DemosPage
 export const Head = () => {
   return (
     <SEO
-      title={`Demos${TitleTemplate}`}
+      title={`Demos - ${useSiteName()}`}
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
     />
   )

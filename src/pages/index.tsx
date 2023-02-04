@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
+import { useSiteName } from '../hooks/use-site-name';
 
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 
@@ -311,8 +311,7 @@ export default IndexPage
 export const Head = () => {
   return (
     <SEO
-      // TODO: this needs to come from a query that I will also use in title template
-      title={`Tahoe City Kayak and Padddleboard - ${useStrapiTopBar()}`}
+      title={`${useSiteName()} - ${useStrapiTopBar()}`}
     />
   )
 }

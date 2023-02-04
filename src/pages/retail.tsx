@@ -2,10 +2,7 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import TitleTemplate from "../components/title-template";
-
-import { useSiteName } from '../hooks/use-site-name'; // ! test
-
+import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
