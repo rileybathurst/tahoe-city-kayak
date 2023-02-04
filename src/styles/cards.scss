@@ -34,6 +34,12 @@
 
     .card__image {
       margin-block-end: 1.5rem;
+      transition: var(--fade);
+    }
+
+    .card__image:where(:hover, :focus) {
+      // opacity: 0.8;
+      filter: brightness(80%);
     }
 
     .card__title {

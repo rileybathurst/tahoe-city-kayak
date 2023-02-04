@@ -27,6 +27,7 @@ import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
+import MapSVG from "../images/map";
 
 const IndexPage = () => {
 
@@ -193,11 +194,13 @@ const IndexPage = () => {
       <div className="deck">
         {list.map((tour) => (
           <div key={tour.id} className="card">
-            <GatsbyImage
-              image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={tour?.ogimage?.alternativeText}
-              className="card__image"
-            />
+            <Link to={`/tours-lessons/${tour.slug}`}>
+              <GatsbyImage
+                image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={tour?.ogimage?.alternativeText}
+                className="card__image"
+              />
+            </Link>
 
             <h4 className="card__title">
               <Link to={`/tours-lessons/${tour.slug}`}>
@@ -243,8 +246,8 @@ const IndexPage = () => {
         <hr />
       </div>
 
-      {/* <MapSVG /> */}
       {/* // TODO add this back inthis probably still needs more */}
+      {/* <MapSVG /> */}
 
       <section id="retail">
         <h3><Link to="/retail" className="">Retail</Link></h3>
