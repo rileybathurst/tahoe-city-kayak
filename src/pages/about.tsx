@@ -48,7 +48,7 @@ export default AboutPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us - ${useSiteName()}`}
+      title={`About Us | ${useSiteName()}`}
       description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
     />
   )

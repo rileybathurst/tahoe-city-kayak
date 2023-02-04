@@ -33,7 +33,7 @@ export default MapPage
 export const Head = () => {
   return (
     <SEO
-      title={`Map - ${useSiteName()}`}
+      title={`Map | ${useSiteName()}`}
     // TODO description and image
     />
   )

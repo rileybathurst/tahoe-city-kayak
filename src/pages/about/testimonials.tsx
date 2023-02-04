@@ -54,7 +54,7 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials - ${useSiteName()}`}
+      title={`Testimonials | ${useSiteName()}`}
       description="Testimonials from our customers."
     // image={} // TODO
     >

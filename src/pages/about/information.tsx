@@ -119,7 +119,7 @@ export default InformationPage
 export const Head = () => {
   return (
     <SEO
-      title={`Information - ${useSiteName()}`}
+      title={`Information | ${useSiteName()}`}
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
     // image={undefined} // TODO
     >

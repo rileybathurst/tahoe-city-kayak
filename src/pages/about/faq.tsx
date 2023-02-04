@@ -56,7 +56,7 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Frequently Asked Questions - ${useSiteName()}`}
+      title={`Frequently Asked Questions | ${useSiteName()}`}
     >
 
       {/* // TODO: Naming */}

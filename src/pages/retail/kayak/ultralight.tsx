@@ -113,7 +113,7 @@ export default UltralightPage
 export const Head = () => {
   return (
     <SEO
-      title={`Ultralight Kayaks - ${useSiteName()}`}
+      title={`Ultralight Kayaks | ${useSiteName()}`}
       description="Our ultralight kayaks are Single kayaks under 46 pounds"
     // TODO image
     >

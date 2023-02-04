@@ -229,7 +229,7 @@ export default DemosPage
 export const Head = () => {
   return (
     <SEO
-      title={`Demos - ${useSiteName()}`}
+      title={`Demos | ${useSiteName()}`}
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
     />
   )

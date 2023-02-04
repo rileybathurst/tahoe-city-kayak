@@ -418,7 +418,7 @@ export default RetailSupPage
 export const Head = () => {
   return (
     <SEO
-      title={`Standup Paddleboard - ${useSiteName()}`}
+      title={`Standup Paddleboard | ${useSiteName()}`}
     // TODO description and image
     >
       <Script type="application/ld+json">

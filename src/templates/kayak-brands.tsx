@@ -221,7 +221,7 @@ export default KayakBrandView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.brand.name} Kayaks sold at - ${useSiteName()}`}
+      title={`${data.brand.name} Kayaks sold at ${useSiteName()}`}
       description={`${data.brand.name} kayaks ${data.brand.tagline}`}
     >
       <Script type="application/ld+json">

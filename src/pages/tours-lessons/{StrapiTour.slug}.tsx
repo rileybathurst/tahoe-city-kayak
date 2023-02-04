@@ -76,7 +76,7 @@ export default TourPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiTour.name} - ${useSiteName()}`}
+      title={`${data.strapiTour.name} | ${useSiteName()}`}
       description={data.strapiTour.excerpt}
     // TODO image
     >

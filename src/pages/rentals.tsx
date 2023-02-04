@@ -63,7 +63,7 @@ export default RentalsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Rentals - ${useSiteName()}`}
+      title={`Rentals | ${useSiteName()}`}
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our demos."
     />
   )

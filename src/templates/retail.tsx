@@ -308,7 +308,7 @@ export default RetailTypeView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at  - ${useSiteName()}`}
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at  | ${useSiteName()}`}
       description={data.strapiRetail.excerpt}>
 
       <Script type="application/ld+json">

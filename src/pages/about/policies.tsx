@@ -58,7 +58,7 @@ export default PoliciesPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us - ${useSiteName()}`}
+      title={`About Us | ${useSiteName()}`}
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
     // image={image} // TODO
     >

@@ -223,7 +223,7 @@ export default supBrandView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.brand.name} standup paddleboards sold at - ${useSiteName()}`}
+      title={`${data.brand.name} standup paddleboards sold at ${useSiteName()}`}
       description={`${data.brand.name} standup paddleboards ${data.brand.tagline}`}
     >
       <Script type="application/ld+json">

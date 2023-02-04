@@ -159,7 +159,7 @@ export default ToursLessonsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tours and Lessons - ${useSiteName()}`}
+      title={`Tours and Lessons | ${useSiteName()}`}
       description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )

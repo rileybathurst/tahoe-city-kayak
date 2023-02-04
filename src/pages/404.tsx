@@ -31,7 +31,7 @@ export default NotFoundPage
 export const Head = () => {
   return (
     <SEO
-      title={`404 - ${useSiteName()}`}
+      title={`404 | ${useSiteName()}`}
     // description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
     />
   )

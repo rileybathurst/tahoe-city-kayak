@@ -100,7 +100,7 @@ export default InflateablePage
 export const Head = () => {
   return (
     <SEO
-      title={`Inflatable StandUp Paddleboards - ${useSiteName()}`}
+      title={`Inflatable StandUp Paddleboards | ${useSiteName()}`}
       description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
     // TODO image
     >

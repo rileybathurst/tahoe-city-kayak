@@ -243,7 +243,7 @@ export default ComparePage
 export const Head = () => {
   return (
     <SEO
-      title={`Compare Tours - ${useSiteName()}`}
+      title={`Compare Tours | ${useSiteName()}`}
     // TODO description and image
     >
       <Script type="application/ld+json">
