@@ -192,7 +192,6 @@ function Demo(props) {
         <p>If you&rsquo;re looking to try this particular {props.type}, call the shop and request a demo.
           We&rsquo;ll charge you our rental fee*, but we will credit that fee if you decide to purchase a boat or board from us in the same season.
           &#x28;Up to two full days rental charge&#x29;</p>
-        {/* // TODO: this can be by a boolean */}
         {/* // TODO cost may be a single query */}
         <p>* Pedal drive is an additional $5 per rental.</p>
         <p>Phone:&nbsp;

@@ -163,6 +163,7 @@ main {
 
 .main__full--tour {
   flex-flow: column-reverse;
+  margin-block-end: 0;
 
   @media (min-width: 40rem) {
     flex-flow: row wrap;
@@ -373,11 +374,16 @@ main {
   }
 }
 
+.single__book--tour {
+  max-width: var(--pelican);
+}
+
 .single__other {
   max-width: 60rem;
   margin-inline: auto;
 
-  > h3 {
+  > h3,
+  > h4 {
     margin-inline: calc(var(--baseline) / 2);
   }
 }

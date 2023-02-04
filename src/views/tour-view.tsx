@@ -11,9 +11,10 @@ import Footer from "../components/footer"
 import Time from "../components/time";
 import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
-
+import Sport from "../components/sport";
 import WaterTexture from "../images/watertexture";
 import MapSVG from "../images/map";
+import MapIconSVG from "../images/map-icon";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
 import ParentTitleBreadcrumb from "../components/parent-title-breadcrumb";
@@ -74,11 +75,19 @@ function Spec(props) {
         <h3><HourMin time={props.spec} /></h3>
       </div>
     );
+  } else if (props.name === "Sport") {
+    return (
+      <div className="spec" >
+        <h2><Sport sport={props.name} /></h2>
+        <h3 className="spec-flex">
+          <span className="specification"><Sport sport={props.spec} /></span>
+        </h3>
+      </div>
+    );
   } else if ((props.spec) && (props.unitPlace == "before")) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
-        {/* // TODO: this needs a before and after on the unit this can be done with a flex */}
         <h3 className="spec-flex unit-place__before">
           <span className="specification">{props.spec}</span>
           <span className="unit">{props.unit}</span>
@@ -89,7 +98,6 @@ function Spec(props) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
-        {/* // TODO: this needs a before and after on the unit this can be done with a flex */}
         <h3 className="spec-flex">
           <span className="specification">{props.spec}</span>
           <span className="unit">{props.unit}</span>
@@ -143,7 +151,6 @@ const TourView = ({ tour, other }) => {
             <Minimum minimum={tour.minimum} />
           </div>
 
-          {/* // TODO needs to be paddleboard not sup */}
           <Spec name="Sport" spec={tour.sport} />
 
           <Spec name="Tour Start Time" spec={tour.start} />
@@ -156,9 +163,8 @@ const TourView = ({ tour, other }) => {
 
           <div className="spec">
             <h2>Starts At</h2>
-            {/* // ! I dont have this querying its just hard coded and is like this multiple places */}
-            <h3>Tahoe City</h3>
-            {/* // TODO <a href="">Google Maps</a>*/}
+            {/* // TODO I dont have this querying its just hard coded and is like this multiple places */}
+            <MapLink><h3>Tahoe City</h3></MapLink>
           </div>
 
           <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
@@ -168,8 +174,6 @@ const TourView = ({ tour, other }) => {
               raw={tour.childStrapiTourInformationTextnode?.information}
             />
           </article>
-
-          <p><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></p>
 
         </div>
 
@@ -184,31 +188,31 @@ const TourView = ({ tour, other }) => {
             <Paddler sport={tour.sport} />
           </div>
           <hr />
-          <h4>Meet us at the On Water Rentals</h4>
-          <div className="here__location here__card">
-            <KayakIcon />
-            <p>
-              <strong>On Water Rental</strong><br />
-              <MapLink>
+          <div className="here__location here__card card--split">
+            <MapLink>
+              <KayakIcon />
+              <p>
+                <strong>Tour Start Location</strong><br />
                 Commons Beach<br />
                 400 North Lake Blvd,<br />
                 Tahoe City 96145<br />
-              </MapLink>
-            </p>
-
-            <p>
-              May &ndash; October<br />
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting<br />
-            </p>
+              </p>
+            </MapLink>
+            <Link to="/map">
+              <MapIconSVG />
+              <p>
+                View The Map<br />
+                For The Store,<br />
+                Tours, Rentals, Parking<br />
+                and Directions
+              </p>
+            </Link>
           </div>
-          <MapSVG />
         </section>
 
       </main>
 
-      <div className="single__book">
+      <div className="single__book single__book--tour">
         <a
           href={tour.peek}
           rel="noopener noreferrer"
@@ -220,8 +224,8 @@ const TourView = ({ tour, other }) => {
 
       <div className="single__other">
         <h3>Other Tours &amp; Lessons</h3>
+        <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
 
-        {/* // TODO this could be by specific sport */}
         <section className="deck">
           {other.nodes.map(tour => (
             <article className="card">

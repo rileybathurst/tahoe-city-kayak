@@ -1,7 +1,5 @@
 import * as React from "react";
 
-// I got this from the instagram website rather than the brand book as that one was a mess
-
 const MapSVG = (props) => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

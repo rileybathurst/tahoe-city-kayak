@@ -1,3 +1,7 @@
+/*------------------*/
+//  #CARD
+/*------------------*/
+
 .deck {
   max-width: 60rem;
   margin-inline: auto;
@@ -144,6 +148,13 @@
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--ink__h), 50%, 5%);
     }
+  }
+}
+
+.card--split {
+  flex-direction: row !important; // TODO can I increase the specificity
+  > * {
+    flex: 1 1 50%;
   }
 }
 

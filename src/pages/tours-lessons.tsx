@@ -65,11 +65,13 @@ const ToursLessonsPage = () => {
                 data.kayak.edges.map(tour => (
 
                   <article key={tour.node.id} className="card">
-                    <GatsbyImage
-                      image={tour.node?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                      alt={tour.node?.ogimage?.alternativeText}
-                      className="card__image"
-                    />
+                    <Link to={`/tours-lessons/${tour.node.slug}`}>
+                      <GatsbyImage
+                        image={tour.node?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+                        alt={tour.node?.ogimage?.alternativeText}
+                        className="card__image"
+                      />
+                    </Link>
 
                     <h4 className="card__title">
                       <Link to={`/tours-lessons/${tour.node.slug}`}>
