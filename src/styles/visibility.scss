@@ -1,3 +1,13 @@
+/*------------------*/
+//  #Visibility
+/*------------------*/
+
+.sr-only {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .pricing-chart__no {
   display: none;
 }
