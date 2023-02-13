@@ -2,7 +2,8 @@ import * as React from "react"
 import { Link, StaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
-import TitleTemplate from "../../../components/title-template";
+
+import { useSiteName } from "../../../hooks/use-site-name";
 import { useSiteUrl } from "../../../hooks/use-site-url";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
