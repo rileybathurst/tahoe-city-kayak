@@ -11,8 +11,10 @@ export const query = graphql`
     strapiTour(slug: { eq: $slug }) {
       id
       name
-      childStrapiTourInformationTextnode {
-        information
+      information {
+        data {
+          information
+        }
       }
       start
       finish

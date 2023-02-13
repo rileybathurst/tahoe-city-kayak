@@ -171,7 +171,7 @@ const TourView = ({ tour, other }) => {
 
           <article className="single__description">
             <ReactMD
-              raw={tour.childStrapiTourInformationTextnode?.information}
+              raw={tour.information?.data?.information}
             />
           </article>
 

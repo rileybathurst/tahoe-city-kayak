@@ -271,14 +271,14 @@ const RetailTypeView = ({ data }) => {
           </div>
 
           <ReactMD
-            raw={data.strapiRetail.childStrapiRetailFeaturesTextnode?.features}
+            raw={data.strapiRetail?.features?.data?.features}
             className="features"
             title="Features"
           />
         </div>
       </main>
 
-      <ReactMD raw={data.strapiRetail.childStrapiRetailDescriptionTextnode?.description} className="single__description" />
+      <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description" />
 
       <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
 
@@ -384,12 +384,16 @@ export const query = graphql`
         slug
       }
 
-      childStrapiRetailDescriptionTextnode {
-        description
+      description {
+        data {
+          description
+        }
       }
 
-      childStrapiRetailFeaturesTextnode {
-        features
+      features {
+        data {
+          features
+        }
       }
 
       cutout {

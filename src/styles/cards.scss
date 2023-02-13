@@ -18,15 +18,16 @@
   }
 
   .card {
-    box-shadow: var(--penumbra);
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--sand);
+    box-shadow: var(--penumbra);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
+      box-shadow: var(--penumbra--dark);
     }
 
     .card__placeholder {
