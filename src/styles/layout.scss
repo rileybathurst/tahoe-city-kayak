@@ -2,8 +2,17 @@
 //  #LAYOUT
 /*------------------*/
 
+/*------------------*/
+//  #SINGLES
+/*------------------*/
+
 .baseline-spacing {
   padding-block: var(--baseline);
+}
+
+.pelican-inline {
+  max-width: var(--pelican);
+  margin-inline: auto;
 }
 
 /*------------------*/
@@ -960,6 +969,12 @@ footer {
   display: flex;
   justify-content: center;
   padding-block-start: 0.25rem;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    background-color: hsl(var(--ink__h), 50%, var(--dark));
+    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 50%, var(--dark));
+  }
 
   p {
     margin-block-end: 0.25rem;

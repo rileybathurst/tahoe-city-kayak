@@ -244,7 +244,7 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail">
+      <section id="retail" className="pelican-inline">
         {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
 
         <hgroup className="crest">

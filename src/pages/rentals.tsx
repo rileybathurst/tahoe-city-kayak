@@ -13,13 +13,25 @@ import MapLink from "../components/map-link";
 // import Rentals from "../content/rentals";
 
 // import Rentals from "../components/locations/rentals"; // I dont want all the info
-import Parking from "../components/locations/parking";
+import CarIcon from "../images/car";
 
 import TextureBackgrounds from "../components/texturebackgrounds";
 import WaterTexture from "../images/watertexture";
 
 import Kayaker from "../images/kayaker";
+import BookNow from "../components/peek/book-now";
 
+
+function Sand() {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.jpg"
+    alt="sand texture"
+    className=""
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -27,32 +39,36 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-      <main>
-        <article className="main__full main__full--tour">
-          <section>
-            <h1>{title}</h1>
-            <h2>Season: May &ndash; October</h2>
-            <p>
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting
-            </p>
+      <main className="rentals">
+        <article>
+          <h1>{title}</h1>
+          <h2>Season: May &ndash; October</h2>
+          <p>
+            Open Daily<br />
+            9:30am &ndash; 5:30pm<br />
+            Weather Permitting
+          </p>
 
-            {/*           <hgroup className="crest">
+          {/*           <hgroup className="crest">
             <h3 className="brow">Brow</h3>
             <h4 className="supra">Supra</h4>
           </hgroup> */}
 
 
-            <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
-          </section>
+          <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
+          <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
 
-          <div className="collage tour-collage">
-            <TextureBackgrounds />
-            <WaterTexture className="texture card__image" />
-            <Kayaker />
-          </div>
+          {/* // TODO should this be a dropdown? */}
+          <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+
         </article>
+        <div className="montage">
+          <Sand />
+          <WaterTexture />
+          <Kayaker />
+        </div>
+
+        <BookNow />
 
         <div className="here__location here__card">
           <section className="location">
@@ -68,13 +84,17 @@ const RentalsPage = () => {
               </MapLink>
             </p>
           </section>
-          <Parking />
+          <section className="location">
+            <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">
+              <CarIcon />
+            </a>
+            <p><strong>Free Parking Lot</strong><br />
+              <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
+                Tahoe City 96145
+              </a>
+            </p>
+          </section>
         </div>
-
-
-        <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
-        <PricingChart /> {/* // ? this is in the footer do we need it here? */}
-        <hr />
 
       </main>
 

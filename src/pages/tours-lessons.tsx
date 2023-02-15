@@ -55,7 +55,7 @@ const ToursLessonsPage = () => {
         query={query}
         render={data => (
           <>
-            <article>
+            <article className="pelican-inline">
               <hgroup>
                 <h1>KAYAK</h1><h2>Tours &amp; Lessons</h2>
               </hgroup>
@@ -102,7 +102,7 @@ const ToursLessonsPage = () => {
                 ))
               }
             </div>
-            <article>
+            <article className="pelican-inline">
               <hgroup>
                 <h1>Paddleboard</h1>
                 <h2>Tours &amp; Lessons</h2>

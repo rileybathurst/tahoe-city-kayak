@@ -39,6 +39,17 @@ function Supper(props) {
   />
 }
 
+function TopTwo() {
+  return <StaticImage
+    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
+    alt="forrest texture"
+    className="texture-slice crop"
+    objectFit="contain"
+  // breakpoints={[300, 600, 900]}
+  // width={650}
+  />
+}
+
 function Card(props) {
   return (
     <article key={props.id} className="card">
@@ -103,8 +114,6 @@ function SupDemoBrands(props) {
 }
 
 const DemosPage = () => {
-  let title = "Demos";
-
   return (
     <>
       <Header />
@@ -112,7 +121,7 @@ const DemosPage = () => {
       <main>
         <div className="location_card-wrapper">
           <div>
-            <h1>{title}</h1>
+            <h1>Demos</h1>
             <Demos />
             <p>Phone:&nbsp;
               <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
@@ -151,7 +160,8 @@ const DemosPage = () => {
 
                   <section>
                     <div className="collage tour-collage">
-                      <TextureBackgrounds />
+                      {/* <TextureBackgrounds /> */}
+                      <TopTwo />
                       <WaterTexture className="texture card__image" />
                       <Kayaker />
                     </div>

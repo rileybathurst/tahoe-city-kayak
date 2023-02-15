@@ -77,6 +77,8 @@ nav {
     clip-path: inset(0 -100vmax);
     // border-block-end: 2px solid var(--industrial-revolution); // this isnt full width
 
+    // ! dark
+
     li a {
       padding-inline: calc(var(--baseline) / 2);
       padding-block: calc(var(--baseline) / 4);

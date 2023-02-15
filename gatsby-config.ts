@@ -21,7 +21,7 @@ module.exports = {
   siteMetadata: {
     title: "Tahoe City Kayak and Padddleboard",
     name: "Tahoe City Kayak and Padddleboard",
-    defaultTitle: "Tahoe City Kayak and Padddleboard",
+    defaultTitle: "Tahoe City Kayak and Padddleboard", // TODO I dont need this 3 times
     siteUrl: 'https://tahoe-city-kayak.netlify.app',
     url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
     description: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",

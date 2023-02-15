@@ -77,9 +77,11 @@ const RetailKayakPage = (data) => {
 
         <hr />
       </main>
-      <section>
+
+      <section className="pelican-inline">
         <h2>Browse By Brand</h2>
       </section>
+
       <KayakBrandList />
 
       <StaticQuery
@@ -89,7 +91,7 @@ const RetailKayakPage = (data) => {
 
             {data.hobie.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -128,7 +130,7 @@ const RetailKayakPage = (data) => {
 
             {data.eddyline.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -168,7 +170,7 @@ const RetailKayakPage = (data) => {
 
             {data.perception.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -208,7 +210,7 @@ const RetailKayakPage = (data) => {
 
             {data.wildernesssystems.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -248,7 +250,7 @@ const RetailKayakPage = (data) => {
 
             {data.delta.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -289,7 +291,7 @@ const RetailKayakPage = (data) => {
 
             {data.bote.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -329,7 +331,7 @@ const RetailKayakPage = (data) => {
 
             {data.brusurf.edges.map(brand => (
               <div key={brand.node.id}>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>

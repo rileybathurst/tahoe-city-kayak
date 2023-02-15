@@ -91,6 +91,8 @@ svg {
 //  #SOCIAL
 /*------------------*/
 
+// ! this still isnt right
+
 .facebook {
   transition: 0.5s ease;
 
@@ -148,5 +150,33 @@ a:hover .instagram {
 
   @media (prefers-color-scheme: dark) {
     stroke: var(--black-metal);
+  }
+}
+
+/*------------------*/
+//  #MONTAGE
+/*------------------*/
+
+.montage {
+  display: grid;
+
+  .paddler {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: contain;
+    object-fit: cover;
+    box-shadow: var(--umbra);
+    margin-block-start: 2rem;
+    margin-inline-start: 2rem;
+    max-width: var(--swan);
+    border: 2px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-metal);
+    }
+
+    img {
+      border-radius: 50%;
+    }
   }
 }
