@@ -1,5 +1,26 @@
 :root {
   /*------------------*/
+  //  #TAHOE CITY KAYAK
+  /*------------------*/
+
+  --mullen: hsl(0, 50%, 50%); //#bf4040
+  --mullen__base: 0, 50%;
+
+  --sand: hsl(25, 37%, 95%); // not a louie color because I dont want to hit 100
+  --sand__base: 25, 37%;
+
+  // sand gets ugly in dark colors so Im going to a darker blue
+  --ink: hsl(210, 50%, 7.5%); // #0a131d
+  --ink__h: 210;
+
+  --body_font: "Barlow", Arial, sans-serif;
+  --heading_font: "Barlow Condensed", Arial, sans-serif;
+
+  --baseline: 1.25rem; // 20px
+
+  --card-radius: 0.25rem;
+
+  /*------------------*/
   //  #DEFAULTS
   /*------------------*/
 
@@ -45,11 +66,8 @@
 
   /*------------------*/
   //  #WIDTHS
-  /*------------------*/
-
-  --measure: 40rem;
-
   // https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan
+  /*------------------*/
   --swan: 20rem;
   --vulture: 30rem;
   --stork: 40rem;
@@ -59,9 +77,9 @@
 
   /*------------------*/
   //  #Z INDEX
+  // https://en.wikipedia.org/wiki/Forest
   /*------------------*/
 
-  // https://en.wikipedia.org/wiki/Forest
   --floor: 1;
   --understory: 2;
   --canopy: 3;
@@ -72,27 +90,9 @@
   /*------------------*/
   --easing: cubic-bezier(0.5, 0, 0.5, 1);
   --fade: 0.2s var(--easing);
-
-  /*------------------*/
-  //  #TAHOE CITY KAYAK
-  /*------------------*/
-
-  --mullen: hsl(0, 50%, 50%);
-  --mullen__base: 0, 50%;
-
-  --sand: hsl(25, 37%, 95%); // not a louie color because I dont want to hit 100
-  --sand__base: 25, 37%;
-
-  // sand just gets ugly in dark colors so Im going to a darker blue
-  --ink: hsl(210, 50%, 7.5%);
-  --ink__h: 210;
-
-  --body_font: "Barlow", Arial, sans-serif;
-  --heading_font: "Barlow Condensed", Arial, sans-serif;
-
-  --baseline: 1.25rem; // 20px
 }
 
+//  #WIDTHS FOR MEDIA QUERIES
 $measure: 40rem;
 $swan: 20rem;
 $vulture: 30rem;

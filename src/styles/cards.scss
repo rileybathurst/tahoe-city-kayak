@@ -3,7 +3,7 @@
 /*------------------*/
 
 .deck {
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
   margin-block: 3rem;
 
@@ -13,7 +13,7 @@
 
   padding-inline: 0.75rem;
 
-  @media (min-width: 40rem) {
+  @media (min-width: $stork) {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -24,10 +24,13 @@
     justify-content: space-between;
     background-color: var(--sand);
     box-shadow: var(--penumbra);
+    border: 1px solid transparent;
+    border-radius: var(--card-radius);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
-      box-shadow: var(--penumbra--dark);
+      border-color: hsl(var(--ink__h), 50%, var(--dull)); // 1.75 contrast
+      // border-color: hsl(var(--ink__h), 50%, var(--dark)); // 1.13 contrast too slim
     }
 
     .card__placeholder {
@@ -131,7 +134,7 @@
 }
 
 .deck__more {
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
   padding-inline: 0.75rem;
 
@@ -201,7 +204,7 @@
 
 .home__here, // TODO rename this to .location__multiple everywhere
 .location__deck {
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
   display: flex;
   flex-flow: row wrap;

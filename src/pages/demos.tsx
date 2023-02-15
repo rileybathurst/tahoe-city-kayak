@@ -14,6 +14,7 @@ import WaterTexture from "../images/watertexture";
 import Danger from "../components/danger";
 import Demos from "../content/demos";
 
+// TODO these need to be image components
 function Kayaker(props) {
   return <StaticImage
     // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
@@ -134,9 +135,8 @@ const DemosPage = () => {
           query={query}
           render={data => (
             <>
-              {/* // TODO: this has a bad name sand_backed--wide */}
-              <div className="sand_backed--wide baseline-spacing">
-                <article className="main__full main__full--tour ">
+              <section className="demo__kayak">
+                <div className="demo__kayak--header">
                   <div>
                     <h3>Demos</h3>
                     <hr />
@@ -157,7 +157,7 @@ const DemosPage = () => {
                     </div>
                   </section>
 
-                </article>
+                </div>
 
                 <section className="deck">
                   {
@@ -176,7 +176,7 @@ const DemosPage = () => {
                     ))
                   }
                 </section>
-              </div>
+              </section>
 
               <article className="main__full main__full--tour baseline-spacing">
                 <div>

@@ -13,15 +13,16 @@
   }
 }
 
+// no longer a button so no longer mullen background
 .top-wrapper {
-  background: var(--mullen);
+  // background: var(--mullen);
+  background: whitesmoke;
   clip-path: inset(0 -100vmax);
   border-end-end-radius: var(--border-radius);
 
   .top-bar {
     background: var(--mullen);
     color: whitesmoke;
-    padding: 10px 0;
   }
 
   svg {

@@ -8,10 +8,25 @@ export const Backgrounds = ({ primary }) => {
     <>
       <section>
         Default Body
+        These relate to the z index variables
+
+        --floor: 1;
+        --understory: 2;
+        --canopy: 3;
+        --emergent: 4;
+
+        They get lighter as they get closer to the foreground
+
+
+        default should be the darkest<br />
+
+
+
       </section>
       <section className="background__1">
         background__1<br />
-        Sand / Ink
+        Sand / Ink<br />
+        --understory
       </section>
 
       {/*       <section className="background__2">
@@ -22,6 +37,7 @@ export const Backgrounds = ({ primary }) => {
       <section className="background__3">
         background__3<br />
         {/* I like this a lot less, it feels out of the theme */}
+        --floor
       </section>
     </>
   );

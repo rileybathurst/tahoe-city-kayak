@@ -89,7 +89,7 @@ ul {
 /*------------------*/
 
 .brand_list {
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
   list-style: none;
   padding: 0;

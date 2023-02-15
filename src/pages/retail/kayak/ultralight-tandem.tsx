@@ -137,7 +137,7 @@ const query = graphql`
 query UltraLightTandemQuery {
   allStrapiRetail(
     filter: {type: {eq: "kayak"}, hullweight: {lt: 70}, crew: {eq: "tandem"}}
-    sort: {order: ASC, fields: hullweight}
+    sort: {hullweight: ASC}
     ) {
     edges {
       node {

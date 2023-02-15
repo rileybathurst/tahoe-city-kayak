@@ -1,5 +1,7 @@
 import * as React from "react"
 import { Link } from 'gatsby';
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 
@@ -8,7 +10,16 @@ import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
-import Rentals from "../content/rentals";
+// import Rentals from "../content/rentals";
+
+// import Rentals from "../components/locations/rentals"; // I dont want all the info
+import Parking from "../components/locations/parking";
+
+import TextureBackgrounds from "../components/texturebackgrounds";
+import WaterTexture from "../images/watertexture";
+
+import Kayaker from "../images/kayaker";
+
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -16,41 +27,55 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
+      <main>
+        <article className="main__full main__full--tour">
+          <section>
+            <h1>{title}</h1>
+            <h2>Season: May &ndash; October</h2>
+            <p>
+              Open Daily<br />
+              9:30am &ndash; 5:30pm<br />
+              Weather Permitting
+            </p>
 
-      <div className="location_card-wrapper">
-        <div>
-          <h1>{title}</h1>
-          <Rentals />
-          <h4>Season: May &ndash; October</h4>
-        </div>
+            {/*           <hgroup className="crest">
+            <h3 className="brow">Brow</h3>
+            <h4 className="supra">Supra</h4>
+          </hgroup> */}
+
+
+            <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
+          </section>
+
+          <div className="collage tour-collage">
+            <TextureBackgrounds />
+            <WaterTexture className="texture card__image" />
+            <Kayaker />
+          </div>
+        </article>
 
         <div className="here__location here__card">
-          <MapLink>
-            <KayakIcon />
-          </MapLink>
-          <p>
-            <strong>On Water Rental</strong><br />
+          <section className="location">
             <MapLink>
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
+              <KayakIcon />
             </MapLink>
-          </p>
-
-          <p>
-            May &ndash; October<br />
-            Open Daily<br />
-            9:30am &ndash; 5:30pm<br />
-            Weather Permitting<br />
-          </p>
+            <p>
+              <strong>On Water Rental</strong><br />
+              <MapLink>
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145<br />
+              </MapLink>
+            </p>
+          </section>
+          <Parking />
         </div>
 
-      </div>
 
-      <main>
         <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
-        <PricingChart />
+        <PricingChart /> {/* // ? this is in the footer do we need it here? */}
         <hr />
+
       </main>
 
       <Footer />

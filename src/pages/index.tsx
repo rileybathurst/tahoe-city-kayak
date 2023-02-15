@@ -163,7 +163,6 @@ const IndexPage = () => {
             <BookTour />
           </div>
 
-
         </section>
 
         <div>

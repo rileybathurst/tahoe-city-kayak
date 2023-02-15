@@ -37,7 +37,7 @@ svg {
     margin-inline: auto;
   }
 
-  @media (min-width: 30rem) {
+  @media (min-width: $vulture) {
     max-width: 32rem; // guess and check
   }
 

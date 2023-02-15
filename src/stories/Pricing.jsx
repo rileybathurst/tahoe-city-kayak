@@ -30,6 +30,9 @@ export const Pricing = ({ primary }) => {
       <div
       // className={`pricing-chart__${props.book}`}
       >
+        {/* // ? this might need a props if it comes in */}
+        <p>Rentals can be booked in advance with the button below!</p>
+        
         <button>Book Now</button>
       </div>
     </>

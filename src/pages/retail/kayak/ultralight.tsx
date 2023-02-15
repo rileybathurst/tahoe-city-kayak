@@ -141,8 +141,13 @@ export const Head = () => {
 
 const query = graphql`
 query UltraLightQuery {
-  allStrapiRetail(filter: {type: {eq: "kayak"}, hullweight: {lt: 46}, crew: {eq: "single"}}
-  sort: {order: ASC, fields: hullweight}
+  allStrapiRetail(
+    filter: {
+      type: {eq: "kayak"},
+      hullweight: {lt: 46},
+      crew: {eq: "single"}
+    }
+    sort: {hullweight: ASC}
   ) {
     edges {
       node {
@@ -155,7 +160,6 @@ query UltraLightQuery {
         width
         type
         hullweight
-
         cutout {
           localFile {
             childImageSharp {

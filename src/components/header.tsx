@@ -149,12 +149,24 @@ const Header = () => {
   return (
     <header>
 
+      {/*
+      // TODO this would be nice to be able to close but I dont have it right yet
       <StaticQuery
         query={query}
         render={data => (
           <OpenSeason topbar={data.strapiTopbar.text} />
         )}
-      />
+      /> */}
+
+      {/* // I renamed this as it was conflicting with the topbar that moves */}
+      <div className="cap">
+        <StaticQuery
+          query={query}
+          render={data => (
+            <p>{data.strapiTopbar.text}</p>
+          )}
+        />
+      </div>
 
       <div className="logo-container" >
         {/* <PaddleIcon className="paddle--left" /> */}
