@@ -101,9 +101,7 @@ const supBrandView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-          <li>
-            <Link to="/">Home</Link>&nbsp;/&nbsp;
-          </li>
+
 
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;

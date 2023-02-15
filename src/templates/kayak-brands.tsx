@@ -95,9 +95,7 @@ const KayakBrandView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-          <li>
-            <Link to="/">Home</Link>&nbsp;/&nbsp;
-          </li>
+
 
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
@@ -114,6 +112,7 @@ const KayakBrandView = ({ data }) => {
       <main className="location_card-wrapper">
         <div>
           <div className="brand-logo">
+
             <Danger svg={data.brand.svg} />
             {/* // TODO: clean this up with the svg above */}
             <h1 className="capitalize">{data.brand.name}</h1>

@@ -54,6 +54,16 @@ function Spec(props) {
         </div>
       );
     }
+  } else if ((props.spec) && (props.unitPlace == "before")) {
+    return (
+      <div className="spec">
+        <h2>{props.name}</h2>
+        <h3 className="spec-flex unit-place__before">
+          <span className="specification">{props.spec}</span>&thinsp;
+          <span className="unit">{props.unit}</span>
+        </h3>
+      </div>
+    );
   } else if (props.spec === true) {
     return (
       <div className="spec">
@@ -216,9 +226,7 @@ const RetailTypeView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-          <li>
-            <Link to="/">Home</Link>&nbsp;/&nbsp;
-          </li>
+
 
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
@@ -235,6 +243,7 @@ const RetailTypeView = ({ data }) => {
       <main className="main__full">
         <div>
           <hgroup className="hgroup__retail">
+            {/* // TODO brand logo */}
             <h1 className="h_title">{data.strapiRetail.title}</h1>
             <h2 className="h_brand">{data.strapiRetail.brand.name}</h2>
             <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
@@ -258,6 +267,7 @@ const RetailTypeView = ({ data }) => {
 
           <Spec name="Inflatable" spec={data.strapiRetail.inflatable} />
           {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
+          <Spec name="price" spec={data.strapiRetail.price} unit="$" unitPlace="before" />
         </div>
         <div>
           <div className="collage card-collage">
@@ -323,7 +333,7 @@ export const Head = ({ data }) => {
               "@type": "Offer",
               "availability": "https://schema.org/InStock",
               "priceCurrency": "USD",
-              "price": ""
+              "price": "${data.strapiRetail.price}"
             }
           }
         `}
@@ -378,6 +388,7 @@ export const query = graphql`
       volume
       inflatable
       demo
+      price
 
       brand {
         name
