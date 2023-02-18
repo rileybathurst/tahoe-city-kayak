@@ -54,3 +54,35 @@ a svg:where(:hover, :focus) {
 a:hover svg:not(.instagram) {
   fill: hsl(var(--mullen__base), var(--dull));
 }
+
+/*------------------*/
+//  #FOOTER
+/*------------------*/
+
+footer {
+  .link__backed {
+    border: 1px solid transparent;
+  }
+
+  // TODO: dark
+  .link__backed:hover {
+    background-color: whitesmoke;
+    box-shadow: var(--antumbra);
+    border-color: var(--brilliance);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--ink__h), 50%, 5%);
+      border-color: black;
+    }
+  }
+
+  .link__backed:focus {
+    background-color: var(--brilliance);
+    box-shadow: var(--umbra);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--ink__h), 50%, 5%);
+      border-color: black;
+    }
+  }
+}

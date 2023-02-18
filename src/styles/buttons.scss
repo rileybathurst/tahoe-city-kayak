@@ -15,29 +15,38 @@ button,
 
   color: var(--mullen);
   border: 1px solid var(--mullen);
+  box-shadow: var(--penumbra);
 }
 
 button:hover,
 .button:hover,
 // below is for the storyboard showcase
 .button__hover {
-  background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
+  // background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
   // TODO this going sand doesnt make too much sense the button isnt sand
+  // background-color: hsl(0, 12.5%, 87.5%); // custom louie color
+  // background-color: hsl(0, 12.5%, 75%); // custom louie color
+
   color: hsl(var(--mullen__base), var(--dim));
-  box-shadow: var(--penumbra);
+  border-color: hsl(var(--mullen__base), var(--dim));
+  box-shadow: var(--penumbra); // maybe we got the other way
+  box-shadow: var(--antumbra);
+
+  // TODO this doesnt do enough in dark to see the change
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), 7.5%); //custom
+    // background-color: hsl(var(--sand__base), 7.5%); //custom
     color: var(--mullen);
   }
 }
 
 .button__active,
 button:active {
-  background-color: hsl(var(--sand__base), var(--glow));
+  // background-color: hsl(var(--sand__base), var(--glow));
   border-color: hsl(var(--mullen__base), var(--dull));
   color: hsl(var(--mullen__base), var(--dull));
   box-shadow: var(--antumbra);
+  box-shadow: var(--umbra);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--mullen__base), var(--dull));
