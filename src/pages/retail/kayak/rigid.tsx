@@ -47,11 +47,11 @@ function Card(retail) {
   )
 }
 
-const InflatableKayakPage = () => {
+const RigidKayakPage = () => {
 
   const { allStrapiRetail } = useStaticQuery(graphql`
     query {
-      allStrapiRetail(filter: {inflatable: {eq: true}, type: {eq: "kayak"}}) {
+      allStrapiRetail(filter: {inflatable: {eq: false}, type: {eq: "kayak"}}) {
         nodes {
           id
           title
@@ -89,12 +89,12 @@ const InflatableKayakPage = () => {
           <li key="kayak">
             <Link to={`/retail/kayak`}>Kayak</Link>&nbsp;/&nbsp;
           </li>
-          <li aria-current="page" key="inflatable">Inflatable Kayaks</li>
+          <li aria-current="page" key="rigid">Rigid Kayaks</li>
         </ol>
       </nav>
 
       <main>
-        <h1>Inflatable Kayaks</h1>
+        <h1>Rigid Kayaks</h1>
         <p>// TODO: </p>
       </main>
 
@@ -119,7 +119,7 @@ const InflatableKayakPage = () => {
   )
 }
 
-export default InflatableKayakPage
+export default RigidKayakPage
 
 export const Head = () => {
   return (
@@ -146,7 +146,7 @@ export const Head = () => {
             },{
               "@type": "ListItem",
               "position": 3,
-              "name": "Inflatable Kayaks"
+              "name": "Rigid Kayaks"
             }]
           }
         `}

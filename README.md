@@ -24,3 +24,12 @@ There is a set of content for default info in strapi but I dont think thats bes 
 3. weight
 4. capacity
 5. crew // this is more obvious so its later
+
+### Weights
+
+Kayaks generally have a riggedweight and hullweight
+although some only have hullweight
+sup generally have a hullweight only
+
+if we have both riggedweight and hullweight show both but often there is only a hullweight
+if we have neither 

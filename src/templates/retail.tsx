@@ -1,3 +1,6 @@
+// TODO: child keys
+// TODO: too many greys in the title area
+
 import React from 'react';
 import { Link, graphql, StaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -23,9 +26,15 @@ function Spec(props) {
         <h3><Remainder inches={props.spec} /></h3>
       </div>
     );
+
   } else if (props.name === "Weight") {
-    // and if
-    if (props.name === "Weight") {
+    // this needs 3 options
+    // a rigged and a hull weight
+    // an only one just called weight
+    // final catch all to return null
+
+    // this is both weights
+    if (props.rigged) {
       return (
         <>
           <div className="spec">
@@ -43,7 +52,9 @@ function Spec(props) {
           </div>
         </>
       );
-    } else {
+
+      // this is a single weight
+    } else if (props.spec && !props.rigged) {
       return (
         <div className="spec">
           <h2>{props.name}</h2>
@@ -53,7 +64,13 @@ function Spec(props) {
           </h3>
         </div>
       );
+
+      // this is no weights
+    } else {
+      return null;
     }
+
+    // if unitPlace is before
   } else if ((props.spec) && (props.unitPlace == "before")) {
     return (
       <div className="spec">
@@ -64,6 +81,8 @@ function Spec(props) {
         </h3>
       </div>
     );
+
+    // if spec is boolean
   } else if (props.spec === true) {
     return (
       <div className="spec">
@@ -71,6 +90,8 @@ function Spec(props) {
         <h3>Yes</h3>
       </div>
     );
+
+    // this is the default unit after
   } else if (props.spec) {
     return (
       <div className="spec">
@@ -81,6 +102,8 @@ function Spec(props) {
         </h3>
       </div>
     );
+
+    // catch all
   } else {
     return null;
   }
@@ -226,8 +249,6 @@ const RetailTypeView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-
-
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>

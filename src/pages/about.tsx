@@ -22,10 +22,11 @@ const AboutPage = () => {
         <AboutUs />
 
         <ul>
-          <li><Link to="/about/faq">Frequently Asked Questions</Link></li>
-          <li><Link to="/about/information">Paddlesports Information</Link></li>
-          <li><Link to="/about/policies">Store Policies</Link></li>
-          <li><Link to="/about/testimonials">Testimonials</Link></li>
+          <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
+          <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
+          <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
+          <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
+          <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
         </ul>
         <hr />
         {/* <h2>We are here</h2> */}
