@@ -1,7 +1,7 @@
 // TODO this can be a template
 
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
@@ -13,33 +13,33 @@ import Remainder from "../../../components/remainder";
 import KayakFeatureList from "../../../components/kayak-feature-list";
 
 function Card(retail) {
-  console.log(retail);
-  console.log(retail.kayak.node.id);
+  // console.log(retail);
+  // console.log(retail.kayak.id);
 
   return (
     <article
-      key={retail.kayak.node.id}
+      key={retail.kayak.id}
       className="card">
       <div className="card-collage">
         <TextureBackgrounds />
         <GatsbyImage
-          image={retail.kayak.node.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={retail.kayak.node.cutout?.alternativeText}
+          image={retail.kayak.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={retail.kayak.cutout?.alternativeText}
           className="cutout"
         />
       </div>
       {/* // ? does this need a brand */}
       <h4 className="card__title">
-        <Link to={`/retail/${retail.kayak.node.type}/${retail.kayak.node.slug}`}>
-          {retail.kayak.node.title}
+        <Link to={`/retail/${retail.kayak.type}/${retail.kayak.slug}`}>
+          {retail.kayak.title}
         </Link>
       </h4>
       <hr />
-      <p>{retail.kayak.node.excerpt}</p>
+      <p>{retail.kayak.excerpt}</p>
       <hr />
       <div className="card__details">
-        <h4><Remainder inches={retail.kayak.node.length} /> long by {retail.kayak.node.width}" wide</h4>
-        <h5 className="capitalize">Capacity {retail.kayak.node.capacity}lbs</h5>
+        <h4><Remainder inches={retail.kayak.length} /> long by {retail.kayak.width}" wide</h4>
+        <h5 className="capitalize">Capacity {retail.kayak.capacity}lbs</h5>
         {/* // TODO: if no capacity */}
       </div>
     </article >
@@ -47,6 +47,32 @@ function Card(retail) {
 }
 
 const InflatableKayakPage = () => {
+
+  const { allStrapiRetail } = useStaticQuery(graphql`
+    query {
+      allStrapiRetail {
+        nodes {
+          id
+          title
+          type
+          slug
+          length
+          width
+          capacity
+          excerpt
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <>
       <Header />
@@ -71,26 +97,18 @@ const InflatableKayakPage = () => {
         <p>// TODO: </p>
       </main>
 
-
-      <StaticQuery
-        query={query}
-        render={data => (
-          <section className="deck" key="deck">
-            {
-              data.allStrapiRetail.edges.map(retail => (
-                <Card
-                  kayak={retail}
-                />
-              ))
-            }
-          </section >
-        )}
-      />
+      <section className="deck" key="deck">
+        {allStrapiRetail.nodes.map(retail => (
+          <Card
+            kayak={retail}
+          />
+        ))
+        }
+      </section >
 
       < hr className="pelican-inline" />
 
       <section className="pelican-inline" >
-
         <h3>Browse More Kayaks by Features</h3>
         <KayakFeatureList />
       </section>
@@ -135,39 +153,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-  query InflatableKayakQuery {
-    allStrapiRetail(filter: {inflatable: {eq: true}, type: {eq: "kayak"}}) {
-      nodes {
-        title
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-      `
-
-// filter: {inflatable: {eq: true}, type: {eq: "kayak"}}(limit: 4), 
-/* allStrapiRetail {
-  edges {
-    node {
-      
-    }
-  }
-} */
