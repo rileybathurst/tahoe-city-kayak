@@ -93,6 +93,7 @@ ul {
   margin-inline: auto;
   list-style: none;
   padding: 0;
+  padding-inline: 0.75rem;
   display: grid;
 
   grid-template-columns: 1fr 1fr;
@@ -178,7 +179,8 @@ ul {
   list-style: none;
   gap: var(--baseline);
   align-items: baseline;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: start;
 }
 
 /*------------------*/

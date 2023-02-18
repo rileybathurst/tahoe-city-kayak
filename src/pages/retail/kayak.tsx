@@ -411,18 +411,111 @@ export const Head = () => {
 }
 
 const query = graphql`
-      query KayaksQuery {
-        hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-        edges {
+  query KayaksQuery {
+    hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+      edges {
+        node {
+          id
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+
+    eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
+      edges {
         node {
         id
         name
-      slug
-      tagline
-      svg
+        slug
+        tagline
+        svg
 
-      retail {
-        type
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+
+    perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
+      edges {
+        node {
+          id
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+
+    wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
+      edges {
+        node {
+          id
+          name
+          slug
+          tagline
+          svg
+
+        retail {
+          type
           id
           title
           slug
@@ -437,200 +530,107 @@ const query = graphql`
               }
             }
             alternativeText
-          }
-        }
-      }
-    }
-  }
-
-      eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
-        edges {
-        node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
-          id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
             }
-      alternativeText
           }
         }
       }
     }
-  }
 
-      perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
-        edges {
+    delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
+      edges {
         node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
           id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
             }
-      alternativeText
           }
         }
       }
     }
-  }
 
-      wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
-        edges {
+    bote: allStrapiBrand(
+    filter: {name: {eq: "bote"}, kayak: {eq: true}}
+    ) {
+      edges {
         node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
           id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+          type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
             }
-      alternativeText
           }
         }
       }
     }
-  }
 
-      delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
-        edges {
+    brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
+      edges {
         node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
           id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
             }
-      alternativeText
           }
         }
       }
     }
+
+
   }
-
-      bote: allStrapiBrand(
-      filter: {name: {eq: "bote"}, kayak: {eq: true}}
-      ) {
-        edges {
-        node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
-          id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-            }
-      alternativeText
-          }
-        }
-      }
-    }
-  }
-
-      brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
-        edges {
-        node {
-        id
-        name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
-          id
-      title
-      slug
-      excerpt
-      capacity
-      length
-      width
-      cutout {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-            }
-      alternativeText
-          }
-        }
-      }
-    }
-  }
-
-
-}
-      `
+`

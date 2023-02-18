@@ -16,3 +16,11 @@ There is a set of content for default info in strapi but I dont think thats bes 
 - About Us
 - More Info
 - Additional Tahoe activities
+
+## Hierachy of Specs
+
+1. sport
+2. dimensions
+3. weight
+4. capacity
+5. crew // this is more obvious so its later

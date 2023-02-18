@@ -125,7 +125,7 @@ const RetailSupPage = (data) => {
 
             {data.hobie.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -137,21 +137,6 @@ const RetailSupPage = (data) => {
                   <p>{brand.node.tagline}.</p>
                   <hr />
                 </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
                 <Limiter brand={brand.node.retail} />
                 <More
                   retail={brand.node.retail}
@@ -164,7 +149,7 @@ const RetailSupPage = (data) => {
 
             {data.bote.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -208,7 +193,7 @@ const RetailSupPage = (data) => {
 
             {data.tahe.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -247,7 +232,7 @@ const RetailSupPage = (data) => {
 
             {data.sic.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -286,7 +271,7 @@ const RetailSupPage = (data) => {
 
             {data.hala.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -326,7 +311,7 @@ const RetailSupPage = (data) => {
 
             {data.boardworks.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>
@@ -365,7 +350,7 @@ const RetailSupPage = (data) => {
 
             {data.pauhana.edges.map(brand => (
               <div>
-                <section>
+                <section className="pelican-inline">
                   <div className='brand-logo'>
                     <Danger svg={brand.node.svg} />
                     <h2 className='capitalize'>

@@ -155,13 +155,13 @@ function OtherWrap(props) {
   if (props.retail.edges.length !== 0) {
     return (
       <>
-        <section className=''>
+        <section className='pelican-inline'>
           <h2>Other {props.type}s by <span className='capitalize'>{props.brand}</span></h2>
         </section>
         <div className='deck'>
           {props.children}
         </div>
-        <section>
+        <section className='pelican-inline'>
           <h3>
             <Link to={`/retail/${props.type}/${props.slug}`}>
               More {props.type}s by <span className='capitalize'>{props.brand}</span>

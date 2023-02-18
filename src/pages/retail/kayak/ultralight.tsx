@@ -71,28 +71,31 @@ const UltralightPage = () => {
         <StaticQuery
           query={query}
           render={data => (
-            <section className="deck">
-              {
-                data.allStrapiRetail.edges.map(retail => (
-                  <Card
-                    id={retail.node.id}
-                    slug={retail.node.slug}
-                    title={retail.node.title}
-                    hullweight={retail.node.hullweight}
-                    length={retail.node.length}
-                    width={retail.node.width}
-                    excerpt={retail.node.excerpt}
-                    cutout={retail.node?.cutout}
-                    type={retail.node.type}
-                  />
-                ))
-              }
-            </section>
+            <>
+              <section className="deck">
+                {
+                  data.allStrapiRetail.edges.map(retail => (
+                    <Card
+                      id={retail.node.id}
+                      slug={retail.node.slug}
+                      title={retail.node.title}
+                      hullweight={retail.node.hullweight}
+                      length={retail.node.length}
+                      width={retail.node.width}
+                      excerpt={retail.node.excerpt}
+                      cutout={retail.node?.cutout}
+                      type={retail.node.type}
+                    />
+                  ))
+                }
+              </section>
+              <hr className="pelican-inline" />
+            </>
           )}
         />
       }
 
-      <section>
+      <section className="pelican-inline">
         <h3>Browse Kayaks by Feature</h3>
         <KayakFeatureList />
       </section>

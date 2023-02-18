@@ -130,7 +130,8 @@ const KayakBrandView = ({ data }) => {
 
       <div className="series">
         {/* // TODO moving the query up would be nicer to be able to stripe things */}
-        <section id='island'>
+        {/* im sure i saw something about this using hidden as a base prop maybe on codepen */}
+        <section id='island' className="pelican-inline">
           <Next series={data.brand.retail} list='false' title="island" />
 
           {/* this has to be here */}
@@ -152,7 +153,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='mirage'>
+        <section id='mirage' className="pelican-inline">
           <Next series={data.brand.retail} title="mirage" />
 
           <div className="deck">
@@ -172,7 +173,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='inflatable'>
+        <section id='inflatable' className="pelican-inline">
           <Next series={data.brand.retail} title="inflatable" />
 
           <div className="deck">
@@ -192,9 +193,69 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
+        <section id='performance' className="pelican-inline">
+          <Next series={data.brand.retail} title="performance" />
+
+          <div className="deck">
+            {
+              data.performance.edges.map(kayak => (
+                <Kayak
+                  key={kayak.node.id}
+                  title={kayak.node.title}
+                  slug={kayak.node.slug}
+                  excerpt={kayak.node.excerpt}
+                  length={kayak.node.length}
+                  width={kayak.node.width}
+                  cutout={kayak.node.cutout}
+                />
+              ))
+            }
+          </div>
+        </section>
+
+        <section id='recreational' className="pelican-inline">
+          <Next series={data.brand.retail} title="recreational" />
+
+          <div className="deck">
+            {
+              data.recreational.edges.map(kayak => (
+                <Kayak
+                  key={kayak.node.id}
+                  title={kayak.node.title}
+                  slug={kayak.node.slug}
+                  excerpt={kayak.node.excerpt}
+                  length={kayak.node.length}
+                  width={kayak.node.width}
+                  cutout={kayak.node.cutout}
+                />
+              ))
+            }
+          </div>
+        </section>
+
+        <section id='sit-on-top' className="pelican-inline">
+          <Next series={data.brand.retail} title="sit-on-top" />
+
+          <div className="deck">
+            {
+              data.sitontop.edges.map(kayak => (
+                <Kayak
+                  key={kayak.node.id}
+                  title={kayak.node.title}
+                  slug={kayak.node.slug}
+                  excerpt={kayak.node.excerpt}
+                  length={kayak.node.length}
+                  width={kayak.node.width}
+                  cutout={kayak.node.cutout}
+                />
+              ))
+            }
+          </div>
+        </section>
+
         {/* //TODO: there needs to be more of a not in a series */}
 
-        <section>
+        <section className="pelican-inline">
           <Next series={data.brand.retail} title="null" />
 
           <div className="deck">
@@ -357,11 +418,99 @@ inflatable: allStrapiRetail(
   }
 }
 
+performance: allStrapiRetail(
+  filter: {
+    brand: {slug: {eq: $slug}},
+    type: {eq: "kayak"},
+    series: {eq: "performance"}
+  }
+  ) {
+    edges {
+    node {
+      title
+      slug
+      excerpt
+      length
+      width
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+  }
+  }
+}
+
+recreational: allStrapiRetail(
+  filter: {
+    brand: {slug: {eq: $slug}},
+    type: {eq: "kayak"},
+    series: {eq: "recreational"}
+  }
+  ) {
+    edges {
+    node {
+      title
+      slug
+      excerpt
+      length
+      width
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+  }
+  }
+}
+
+sitontop: allStrapiRetail(
+  filter: {
+    brand: {slug: {eq: $slug}},
+    type: {eq: "kayak"},
+    series: {eq: "sit-on-top"}
+  }
+  ) {
+    edges {
+    node {
+      title
+      slug
+      excerpt
+      length
+      width
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+  }
+  }
+}
+
   null: allStrapiRetail(
     filter: {
       brand: {slug: {eq: $slug}},
       type: {eq: "kayak"},
-      series: {nin: ["island", "mirage", "inflatable"]}
+      series: {nin: [
+        "island",
+        "mirage",
+        "inflatable",
+        "performance",
+        "recreational",
+        "sit-on-top"
+        ]}
     }
   ) {
     edges {
@@ -388,3 +537,6 @@ inflatable: allStrapiRetail(
 
 }
   `;
+
+// hobie has a series of inflatable, mirage, performance, island
+// eddyline has a series of performance, recreational, sit-on-top

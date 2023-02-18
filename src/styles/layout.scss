@@ -10,9 +10,16 @@
   padding-block: var(--baseline);
 }
 
+.stork-inline {
+  max-width: var(--stork);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+
 .pelican-inline {
   max-width: var(--pelican);
   margin-inline: auto;
+  padding-inline: 0.75rem;
 }
 
 /*------------------*/
@@ -59,6 +66,7 @@ main {
 .main__full {
   max-width: var(--pelican);
   margin-inline: auto;
+  padding-inline: 0.75rem;
 
   display: flex;
   gap: 1rem;
@@ -88,6 +96,8 @@ main {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
+  max-width: var(--pelican);
+  margin-inline: auto;
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
@@ -369,21 +379,30 @@ footer {
 /*------------------*/
 
 // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/
-.breadcrumbs ol {
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  // gap: 1rem;
-  max-width: var(--pelican);
-  margin-inline: auto;
-  margin-block-end: 1.5rem;
-  padding-block-end: 1.5rem;
-  padding-inline: calc(var(--baseline) / 2);
-  text-transform: capitalize;
-  border-bottom: 1px solid var(--tin-soldier);
+.breadcrumbs {
+  margin-inline: auto; // overwrite nav
+  padding-inline: 0.75rem; // overwrite nav
+  line-height: calc(
+    var(--baseline) * 1.5
+  ); // these are pretty small tap targets give it some space
 
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--raven-black);
+  ol {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    // gap: 1rem;
+    max-width: var(--pelican);
+    margin-inline: auto;
+    margin-block-end: 1.5rem;
+    padding-block-end: 1.5rem;
+    // padding-inline: calc(var(--baseline) / 2); // deprecated but still checking
+    padding-inline: 0;
+    text-transform: capitalize;
+    border-bottom: 1px solid var(--kingly-cloud);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-out);
+    }
   }
 }
 
@@ -557,7 +576,7 @@ footer {
 .location_card-wrapper {
   max-width: var(--stork); // 40rem
   margin-inline: auto;
-  padding-inline: 1rem;
+  // padding-inline: 1rem;
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;

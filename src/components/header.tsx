@@ -68,7 +68,11 @@ function Button() {
   if (slide === "firstload") {
     // console.log('first');
     return (
-      <div className='menu__small'>
+      <div className='menu__small'
+        style={{
+          height: '2rem',
+        }}
+      >
         <button
           className="button-styles"
           onClick={() => setSlide('close')}
@@ -84,6 +88,7 @@ function Button() {
           style={{
             transform: 'translateY(-' + amount + 'px)',
             marginBottom: '-' + amount + 'px',
+            visibility: "hidden",
           }}
           ref={ref}
         >
@@ -110,6 +115,7 @@ function Button() {
           style={{
             transform: 'translateY(-' + amount + 'px)',
             marginBottom: '-' + amount + 'px',
+            visibility: "hidden",
           }}
           ref={ref}
         >
@@ -120,7 +126,11 @@ function Button() {
   } else {
     // console.log('else');
     return (
-      <div className='menu__small'>
+      <div className='menu__small'
+        style={{
+          height: '2rem',
+        }}
+      >
         <button
           className="button-styles"
           onClick={() => setSlide('menu')}

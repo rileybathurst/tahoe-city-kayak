@@ -22,134 +22,136 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
-      <div className="location_card-wrapper">
-        <div>
-          <h1>{title}</h1>
-          <ToursLessons />
-          <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
-          <BookNow />
-          <hr />
+      <main className="tours">
+        <div className="location_card-wrapper">
+          <div>
+            <h1>{title}</h1>
+            <ToursLessons />
+            <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
+            <BookNow />
+            <hr />
+          </div>
+
+          <div className="here__location here__card">
+            <KayakIcon />
+            <p>
+              <strong>On Water Rental</strong><br />
+              <MapLink>
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145<br />
+              </MapLink>
+            </p>
+
+            <p>
+              May &ndash; October<br />
+              Open Daily<br />
+              9:30am &ndash; 5:30pm<br />
+              Weather Permitting<br />
+            </p>
+          </div>
         </div>
 
-        <div className="here__location here__card">
-          <KayakIcon />
-          <p>
-            <strong>On Water Rental</strong><br />
-            <MapLink>
-              Commons Beach<br />
-              400 North Lake Blvd,<br />
-              Tahoe City 96145<br />
-            </MapLink>
-          </p>
+        <StaticQuery
+          query={query}
+          render={data => (
+            <>
+              <article className="pelican-inline">
+                <hgroup>
+                  <h1>KAYAK</h1><h2>Tours &amp; Lessons</h2>
+                </hgroup>
+              </article>
+              <div className="deck">
+                {
+                  data.kayak.edges.map(tour => (
 
-          <p>
-            May &ndash; October<br />
-            Open Daily<br />
-            9:30am &ndash; 5:30pm<br />
-            Weather Permitting<br />
-          </p>
-        </div>
-      </div>
+                    <article key={tour.node.id} className="card">
+                      <Link to={`/tours-lessons/${tour.node.slug}`}>
+                        <GatsbyImage
+                          image={tour.node?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+                          alt={tour.node?.ogimage?.alternativeText}
+                          className="card__image"
+                        />
+                      </Link>
 
-      <StaticQuery
-        query={query}
-        render={data => (
-          <>
-            <article className="pelican-inline">
-              <hgroup>
-                <h1>KAYAK</h1><h2>Tours &amp; Lessons</h2>
-              </hgroup>
-            </article>
-            <div className="deck">
-              {
-                data.kayak.edges.map(tour => (
-
-                  <article key={tour.node.id} className="card">
-                    <Link to={`/tours-lessons/${tour.node.slug}`}>
+                      <h4 className="card__title">
+                        <Link to={`/tours-lessons/${tour.node.slug}`}>
+                          {tour.node.name}
+                        </Link>
+                      </h4>
+                      <div className="card__specs">
+                        <Time
+                          start={tour.node.start}
+                          finish={tour.node.finish}
+                          duration={tour.node.duration}
+                        />
+                        <Fitness fitness={tour.node.fitness} />
+                      </div>
+                      <hr />
+                      <p>{tour.node.excerpt}</p>
+                      <hr />
+                      <div className="card__details">
+                        <h5>${tour.node.price}</h5>
+                        <a
+                          href={tour.node.peek}
+                          className="book-now"
+                        >
+                          BOOK NOW
+                        </a>
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+              <article className="pelican-inline">
+                <hgroup>
+                  <h1>Paddleboard</h1>
+                  <h2>Tours &amp; Lessons</h2>
+                </hgroup>
+              </article>
+              <div className="deck">
+                {
+                  data.sup.edges.map(tour => (
+                    <article key={tour.node.id} className="card">
                       <GatsbyImage
                         image={tour.node?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
                         alt={tour.node?.ogimage?.alternativeText}
                         className="card__image"
                       />
-                    </Link>
-
-                    <h4 className="card__title">
-                      <Link to={`/tours-lessons/${tour.node.slug}`}>
-                        {tour.node.name}
-                      </Link>
-                    </h4>
-                    <div className="card__specs">
-                      <Time
-                        start={tour.node.start}
-                        finish={tour.node.finish}
-                        duration={tour.node.duration}
-                      />
-                      <Fitness fitness={tour.node.fitness} />
-                    </div>
-                    <hr />
-                    <p>{tour.node.excerpt}</p>
-                    <hr />
-                    <div className="card__details">
-                      <h5>${tour.node.price}</h5>
-                      <a
-                        href={tour.node.peek}
-                        className="book-now"
-                      >
-                        BOOK NOW
-                      </a>
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-            <article className="pelican-inline">
-              <hgroup>
-                <h1>Paddleboard</h1>
-                <h2>Tours &amp; Lessons</h2>
-              </hgroup>
-            </article>
-            <div className="deck">
-              {
-                data.sup.edges.map(tour => (
-                  <article key={tour.node.id} className="card">
-                    <GatsbyImage
-                      image={tour.node?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                      alt={tour.node?.ogimage?.alternativeText}
-                      className="card__image"
-                    />
-                    <h4 className="card__title">
-                      <Link to={`/tours-lessons/${tour.node.slug}`}>
-                        {tour.node.name}
-                      </Link>
-                    </h4>
-                    <div className="card__specs">
-                      <Time
-                        start={tour.node.start}
-                        finish={tour.node.finish}
-                        duration={tour.node.duration}
-                      />
-                      <Fitness fitness={tour.node.fitness} />
-                    </div>
-                    <hr />
-                    <p>{tour.node.excerpt}</p>
-                    <hr />
-                    <div className="card__details">
-                      <h5>${tour.node.price}</h5>
-                      <a
-                        href={tour.node.peek}
-                        className="book-now"
-                      >
-                        BOOK NOW
-                      </a>
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-          </>
-        )
-        }
-      />
+                      <h4 className="card__title">
+                        <Link to={`/tours-lessons/${tour.node.slug}`}>
+                          {tour.node.name}
+                        </Link>
+                      </h4>
+                      <div className="card__specs">
+                        <Time
+                          start={tour.node.start}
+                          finish={tour.node.finish}
+                          duration={tour.node.duration}
+                        />
+                        <Fitness fitness={tour.node.fitness} />
+                      </div>
+                      <hr />
+                      <p>{tour.node.excerpt}</p>
+                      <hr />
+                      <div className="card__details">
+                        <h5>${tour.node.price}</h5>
+                        <a
+                          href={tour.node.peek}
+                          className="book-now"
+                        >
+                          BOOK NOW
+                        </a>
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </>
+          )
+          }
+        />
+      </main>
 
       < Footer />
     </>

@@ -25,6 +25,7 @@ function Card(props) {
           className="cutout"
         />
       </div>
+      {/* // ? does this need a brand */}
       <h4 className="card__title">
         <Link to={`/retail/${props.kayak.type}/${props.kayak.slug}`}>
           {props.kayak.title}
@@ -36,14 +37,13 @@ function Card(props) {
       <div className="card__details">
         <h4><Remainder inches={props.kayak.length} /> long by {props.kayak.width}" wide</h4>
         <h5 className="capitalize">Capacity {props.kayak.capacity}lbs</h5>
+        {/* // TODO: if no capacity */}
       </div>
     </article>
   )
 }
 
-const TandemPage = () => {
-  let title = "Two Person Kayaks";
-
+const InflatableKayakPage = () => {
   return (
     <>
       <Header />
@@ -59,29 +59,20 @@ const TandemPage = () => {
           <li>
             <Link to={`/retail/kayak`}>Kayak</Link>&nbsp;/&nbsp;
           </li>
-          <li aria-current="page">{title}</li>
+          <li aria-current="page">Inflatable Kayaks</li>
         </ol>
       </nav>
 
       <main>
-        <h1>Two Person (Tandem) Kayaks</h1>
-        <p>Our tandem kayaks are the perfect way to explore the water with friends.</p>
+        <h1>Inflatable Kayaks</h1>
+        <p>// TODO: </p>
       </main>
+
 
       <StaticQuery
         query={query}
         render={data => (
           <>
-
-            <section
-              // className="faq"
-              className="stork-inline"
-            >
-              <h2 className="h3">{data.strapiFaq.question}</h2>
-              <p>{data.strapiFaq.answer}</p>{/* // TODO ? is this markdown */}
-              <Link to="/about/faq">Read more of our FAQs</Link>
-            </section>
-
             <section className="deck">
               {
                 data.allStrapiRetail.edges.map(retail => (
@@ -108,7 +99,7 @@ const TandemPage = () => {
   )
 }
 
-export default TandemPage
+export default InflatableKayakPage
 
 export const Head = () => {
   return (
@@ -135,7 +126,7 @@ export const Head = () => {
             },{
               "@type": "ListItem",
               "position": 3,
-              "name": "Two Person Kayaks"
+              "name": "Inflatable Kayaks"
             }]
           }
         `}
@@ -145,34 +136,36 @@ export const Head = () => {
 }
 
 const query = graphql`
-query TandemQuery {
-  allStrapiRetail(filter: {crew: {eq: "tandem"}, type: {eq: "kayak"}}) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
+query InflatableKayakQuery {
+  allStrapiRetail(filter: {inflatable: {eq: true}, type: {eq: "kayak"}}) {
+    nodes {
+      title
     }
-  }
-
-  strapiFaq(question: {eq: "Is it best to go in a two-person (tandem) kayak?"}) {
-    question
-    answer
   }
 }
 `
+
+// filter: {inflatable: {eq: true}, type: {eq: "kayak"}}(limit: 4), 
+/* allStrapiRetail {
+  edges {
+    node {
+      id
+      title
+      slug
+      excerpt
+      capacity
+      length
+      width
+      type
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+} */
