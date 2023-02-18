@@ -13,8 +13,8 @@ import Remainder from "../../../components/remainder";
 import KayakFeatureList from "../../../components/kayak-feature-list";
 
 function Card(retail) {
-  // console.log(retail);
-  // console.log(retail.kayak.node.id);
+  console.log(retail);
+  console.log(retail.kayak.node.id);
 
   return (
     <article
