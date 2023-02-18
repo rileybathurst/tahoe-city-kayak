@@ -12,9 +12,6 @@ one for the<br />
 
 collage is for the cards
 Montage is for the other
-
-<br />
-main__photo-grid already exists
 </>
 );
 };

@@ -18,7 +18,8 @@
       border-bottom: 0.5px solid var(--industrial-revolution);
       border-right: 0.5px solid var(--industrial-revolution);
       // border-left: none;
-      padding: var(--baseline);
+      // padding: var(--baseline);
+      padding: clamp(0.5rem, 1vw, 1rem);
 
       > * {
         margin: 0;

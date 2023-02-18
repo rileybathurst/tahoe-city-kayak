@@ -133,15 +133,33 @@ small {
 //  #HR
 /*------------------*/
 
+// default use on whitesmoke background
 hr {
   border: none; // reset
   border-bottom: 1px solid var(--kingly-cloud);
 
+  // default useage on hsl(var(--ink__h), 50%, 5%);
   @media (prefers-color-scheme: dark) {
     border-bottom: 1px solid var(--black-out);
   }
 }
 
+// for use on a sand background
+// name is hard
+// its only on sand on light
+// its darker on light only
+// maybe step 2
+// rename it if I get a better idea
+// only use the class when needed try put it on the class with the background
+.hr-step2 {
+  border-color: var(--tin-soldier);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--raven-black);
+  }
+}
+
+// This is hard to search for its part of pricing sheet
 hr.no {
   display: none;
 }

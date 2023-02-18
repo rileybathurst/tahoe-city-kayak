@@ -150,7 +150,7 @@ const IndexPage = () => {
   return (
     <>
       <Header />
-      <main className="home__main">
+      <main className="home">
         <section>
           <h2 className="page-title"><Slogan /></h2>
 
@@ -166,7 +166,7 @@ const IndexPage = () => {
         </section>
 
         <div>
-          <section className="main__photo-grid">
+          <section className="home__photo-grid">
             <TwoKayakers className="kayakers" />
             <WaterTexture className="texture" />
             <AndyPaddling className="andy" />

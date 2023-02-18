@@ -19,8 +19,10 @@ button,
 
 button:hover,
 .button:hover,
+// below is for the storyboard showcase
 .button__hover {
   background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
+  // TODO this going sand doesnt make too much sense the button isnt sand
   color: hsl(var(--mullen__base), var(--dim));
   box-shadow: var(--penumbra);
 

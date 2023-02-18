@@ -11,6 +11,14 @@
     background-color: var(--ink);
     box-shadow: 0 0 0 100vmax var(--ink);
   }
+
+  hr {
+    border-color: var(--tin-soldier);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--raven-black);
+    }
+  }
 }
 
 // no longer a button so no longer mullen background
@@ -36,13 +44,21 @@
 
 footer {
   @extend .sand_backed--wide;
+
+  .locations__complete > * {
+    border-color: var(--tin-soldier);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--raven-black);
+    }
+  }
 }
 
 /*------------------*/
 //  #SINGLE PAGES
 /*------------------*/
 
-.home__main {
+.home {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
