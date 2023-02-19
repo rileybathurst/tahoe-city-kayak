@@ -66,14 +66,14 @@ function Limiter(props) {
     }
   }));
 
-  console.log(sups);
+  // console.log(sups);
   sups.slice(0, 4).map((retail => {
-    console.log(retail.title);
+    // console.log(retail.title);
 
     quad.push(retail);
   }));
 
-  console.log(quad);
+  // console.log(quad);
 
   // get this out enough to return it?
 

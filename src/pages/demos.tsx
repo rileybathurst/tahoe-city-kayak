@@ -86,7 +86,8 @@ function getUniqueListBy(arr, key) {
 function KayakDemoBrands(props) {
   // console.log(props.brand);// brand={data.kayak.edges.map(brand => (brand.node.brand))}
   const dedupedbrands = getUniqueListBy(props.brand, 'name')
-  console.log(dedupedbrands)
+
+  // console.log(dedupedbrands)
 
   return (
     <>

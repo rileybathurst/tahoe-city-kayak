@@ -14,11 +14,11 @@ function myTag(strings, personExp, ageExp) {
   const str2 = strings[2]; // "."
 
   const a3 = useStrapiTopBar();
-  console.log(a3);
+  // console.log(a3);
 
   const ageStr = ageExp > 99 ? "centenarian" : "youngster";
 
-  console.log('🦖');
+  // console.log('🦖');
 
   // console.log(useStrapiTopBar()); // Im not allowed to call this here
   //  I think it has to be called in the component? const? something like that
