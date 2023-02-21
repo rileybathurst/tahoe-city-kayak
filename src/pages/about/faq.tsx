@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
@@ -12,6 +12,19 @@ import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 
 const FaqPage = () => {
+
+  const { allStrapiFaq } = useStaticQuery(graphql`
+    query FaqQuery {
+      allStrapiFaq {
+        nodes {
+          id
+          question
+          answer
+        }
+      }
+    }
+  `)
+
   let title = "Frequently Asked Questions";
   let parent = "about";
 
@@ -26,27 +39,20 @@ const FaqPage = () => {
       <main>
         <h1>{title}</h1>
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <ul className="faq">
-              {
-                data.allStrapiFaq.edges.map(faq => (
-                  <li key={faq.node.id}>
-                    <h2>{faq.node.question}</h2>
-                    <p>
-                      <span>{faq.node.answer}</span>
-                    </p>
-                  </li>
-                ))
-              }
-            </ul>
-          )}
-        />
+        <ul className="faq">
+          {allStrapiFaq.nodes.map(faq => (
+            <li key={faq.id}>
+              <h2>{faq.question}</h2>
+              <p>
+                <span>{faq.answer}</span>
+              </p>
+            </li>
+          ))
+          }
+        </ul>
       </main>
 
       <Footer />
-
     </>
   )
 }
@@ -82,17 +88,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-query FaqQuery {
-  allStrapiFaq {
-    edges {
-      node {
-        id
-        question
-        answer
-      }
-    }
-  }
-}
-`

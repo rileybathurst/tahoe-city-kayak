@@ -1,3 +1,5 @@
+// ? should I combine this with map-store.tsx
+
 import * as React from "react"
 
 // Commons Beach address

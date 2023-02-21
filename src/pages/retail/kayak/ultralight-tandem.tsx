@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
@@ -40,6 +40,36 @@ function Card(props) {
 }
 
 const UltralightTandemPage = () => {
+
+  const { allStrapiRetail } = useStaticQuery(graphql`
+query UltraLightTandemQuery {
+  allStrapiRetail(
+    filter: {type: {eq: "kayak"}, hullweight: {lt: 70}, crew: {eq: "tandem"}}
+    sort: {hullweight: ASC}
+    ) {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        type
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+    }
+  }
+`)
+
   let title = "Ultralight Two Person Kayaks";
 
   return (
@@ -66,31 +96,23 @@ const UltralightTandemPage = () => {
 
         <Ultralight />
       </main>
-
-      {
-        <StaticQuery
-          query={query}
-          render={data => (
-            <section className="deck">
-              {
-                data.allStrapiRetail.edges.map(retail => (
-                  <Card
-                    id={retail.node.id}
-                    slug={retail.node.slug}
-                    title={retail.node.title}
-                    capacity={retail.node.capacity}
-                    length={retail.node.length}
-                    width={retail.node.width}
-                    excerpt={retail.node.excerpt}
-                    cutout={retail.node?.cutout}
-                    type={retail.node.type}
-                  />
-                ))
-              }
-            </section>
-          )}
-        />
-      }
+      <section className="deck">
+        {
+          allStrapiRetail.nodes.map(retail => (
+            <Card
+              id={retail.id}
+              slug={retail.slug}
+              title={retail.title}
+              capacity={retail.capacity}
+              length={retail.length}
+              width={retail.width}
+              excerpt={retail.excerpt}
+              cutout={retail.node?.cutout}
+              type={retail.type}
+            />
+          ))
+        }
+      </section>
 
       <Footer />
     </>
@@ -132,34 +154,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-query UltraLightTandemQuery {
-  allStrapiRetail(
-    filter: {type: {eq: "kayak"}, hullweight: {lt: 70}, crew: {eq: "tandem"}}
-    sort: {hullweight: ASC}
-    ) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-}
-`

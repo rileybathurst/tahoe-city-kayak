@@ -5,7 +5,7 @@ import StoreIcon from "../../images/store";
 const Store = () => {
   return (
     <section className="location">
-      <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
+      <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" aria-label="retail location icon">
         <StoreIcon />
       </a>
       <p>

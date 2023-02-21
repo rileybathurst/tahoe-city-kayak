@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, StaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Menu from "./menu"
 // import PaddleIcon from '../images/paddle';
@@ -156,6 +156,15 @@ function Button() {
 }
 
 const Header = () => {
+
+  const { strapiTopbar } = useStaticQuery(graphql`
+    query TopBarQuery {
+      strapiTopbar {
+        text
+      }
+    }
+  `)
+
   return (
     <header>
 
@@ -170,12 +179,7 @@ const Header = () => {
 
       {/* // I renamed this as it was conflicting with the topbar that moves */}
       <div className="cap">
-        <StaticQuery
-          query={query}
-          render={data => (
-            <p>{data.strapiTopbar.text}</p>
-          )}
-        />
+        <p>{strapiTopbar.text}</p>
       </div>
 
       <div className="logo-container" >
@@ -195,11 +199,3 @@ const Header = () => {
 }
 
 export default Header
-
-const query = graphql`
-query TopBarQuery {
-  strapiTopbar {
-    text
-  }
-}
-`

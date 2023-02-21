@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // I dont know how dangerous this dangerously set is as its prebuilt
 function Danger(props: { svg: string; }) {
@@ -12,40 +12,11 @@ function Danger(props: { svg: string; }) {
 }
 
 const KayakBrandList = () => {
-  return (
-    <StaticQuery
-      query={query}
-      render={data => (
-        <ul className='brand_list'>
-          {data.allStrapiBrand.edges.map((kayak: {
-            node: {
-              id: React.Key;
-              slug: string;
-              svg: string;
-              name: string;
-            };
-          }) => (
-            <li key={kayak.node.id}>
-              <Link to={`/retail/kayak/${kayak.node.slug}`}>
-                <Danger svg={kayak.node.svg} />
-                <p>{kayak.node.name}</p>
-                {/* Doubt?! https://caninclude.glitch.me/caninclude?child=p&parent=a */}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    />
-  )
-}
 
-export default KayakBrandList
-
-const query = graphql`
+  const { allStrapiBrand } = useStaticQuery(graphql`
 query KayakBrandQuery {
   allStrapiBrand(filter: {kayak: {eq: true}}) {
-    edges {
-      node {
+      nodes {
         id
         name
         slug
@@ -53,5 +24,26 @@ query KayakBrandQuery {
       }
     }
   }
+`)
+
+  return (
+    <ul className='brand_list'>
+      {allStrapiBrand.nodes.map((kayak: {
+        id: React.Key;
+        slug: string;
+        svg: string;
+        name: string;
+      }) => (
+        <li key={kayak.id}>
+          <Link to={`/retail/kayak/${kayak.slug}`}>
+            <Danger svg={kayak.svg} />
+            <p>{kayak.name}</p>
+            {/* Doubt?! https://caninclude.glitch.me/caninclude?child=p&parent=a */}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
 }
-`
+
+export default KayakBrandList

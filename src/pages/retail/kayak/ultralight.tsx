@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
@@ -14,6 +14,9 @@ import KayakFeatureList from "../../../components/kayak-feature-list";
 import Ultralight from "../../../components/ultralight";
 
 function Card(props) {
+
+  console.log(props);
+
   return (
     <article key={props.id} className="card">
       <div className="card-collage">
@@ -41,6 +44,40 @@ function Card(props) {
 }
 
 const UltralightPage = () => {
+
+  const { allStrapiRetail } = useStaticQuery(graphql`
+query UltraLightQuery {
+  allStrapiRetail(
+    filter: {
+      type: {eq: "kayak"},
+      hullweight: {lt: 46},
+      crew: {eq: "single"}
+    }
+    sort: {hullweight: ASC}
+  ) {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        type
+        hullweight
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+  }
+}
+`)
+
   let title = "Ultralight Kayaks";
 
   return (
@@ -67,33 +104,24 @@ const UltralightPage = () => {
         <Ultralight />
       </main>
 
-      {
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              <section className="deck">
-                {
-                  data.allStrapiRetail.edges.map(retail => (
-                    <Card
-                      id={retail.node.id}
-                      slug={retail.node.slug}
-                      title={retail.node.title}
-                      hullweight={retail.node.hullweight}
-                      length={retail.node.length}
-                      width={retail.node.width}
-                      excerpt={retail.node.excerpt}
-                      cutout={retail.node?.cutout}
-                      type={retail.node.type}
-                    />
-                  ))
-                }
-              </section>
-              <hr className="pelican-inline" />
-            </>
-          )}
-        />
-      }
+
+      <section className="deck">
+        {allStrapiRetail.nodes.map(retail => (
+          <Card
+            id={retail.id}
+            slug={retail.slug}
+            title={retail.title}
+            hullweight={retail.hullweight}
+            length={retail.length}
+            width={retail.width}
+            excerpt={retail.excerpt}
+            cutout={retail.node?.cutout}
+            type={retail.type}
+          />
+        ))}
+      </section>
+      <hr className="pelican-inline" />
+
 
       <section className="pelican-inline">
         <h3>Browse Kayaks by Feature</h3>
@@ -141,38 +169,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-query UltraLightQuery {
-  allStrapiRetail(
-    filter: {
-      type: {eq: "kayak"},
-      hullweight: {lt: 46},
-      crew: {eq: "single"}
-    }
-    sort: {hullweight: ASC}
-  ) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-        hullweight
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-}
-`

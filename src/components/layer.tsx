@@ -1,3 +1,5 @@
+// TODO: is this used?
+
 import React from 'react';
 import { Script } from "gatsby";
 import { useStrapiData } from "../hooks/use-strapi-data"

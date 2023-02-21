@@ -1,7 +1,7 @@
 // TODO this can be a template
 
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
@@ -42,6 +42,41 @@ function Card(props) {
 }
 
 const TandemPage = () => {
+
+  const data = useStaticQuery(graphql`
+    query TandemQuery {
+      allStrapiRetail(filter: {crew: {eq: "tandem"}, type: {eq: "kayak"}}) {
+        nodes {
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          type
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+
+      strapiFaq(question: {eq: "Is it best to go in a two-person (tandem) kayak?"}) {
+        question
+        answer
+      }
+    }
+  `)
+
+  let allStrapiRetail = data.allStrapiRetail.nodes;
+  let tandem = data.strapiFaq;
+
   let title = "Two Person Kayaks";
 
   return (
@@ -68,36 +103,29 @@ const TandemPage = () => {
         <p>Our tandem kayaks are the perfect way to explore the water with friends.</p>
       </main>
 
-      <StaticQuery
-        query={query}
-        render={data => (
-          <>
+      <section
+        // className="faq"
+        className="stork-inline"
+      >
 
-            <section
-              // className="faq"
-              className="stork-inline"
-            >
-              <h2 className="h3">{data.strapiFaq.question}</h2>
-              <p>{data.strapiFaq.answer}</p>{/* // TODO ? is this markdown */}
-              <Link to="/about/faq">Read more of our FAQs</Link>
-            </section>
+        <h2 className="h3">{tandem.question}</h2>
+        {/* // TODO ? is this markdown */}
+        <p>{tandem.answer}</p>
+        <Link to="/about/faq">Read more of our FAQs</Link>
+      </section>
 
-            <section className="deck">
-              {
-                data.allStrapiRetail.edges.map(retail => (
-                  <Card
-                    kayak={retail.node}
-                  />
-                ))
-              }
-            </section>
+      <section className="deck">
+        {allStrapiRetail.map(retail => (
+          <Card
+            kayak={retail}
+          />
+        ))}
+      </section>
 
-            <hr className="pelican-inline" />
-          </>
-        )}
-      />
+      <hr className="pelican-inline" />
 
-      <section className="pelican-inline">
+
+      <section className="pelican-inline" >
 
         <h3>Browse More Kayaks by Features</h3>
         <KayakFeatureList />
@@ -143,36 +171,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-query TandemQuery {
-  allStrapiRetail(filter: {crew: {eq: "tandem"}, type: {eq: "kayak"}}) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-
-  strapiFaq(question: {eq: "Is it best to go in a two-person (tandem) kayak?"}) {
-    question
-    answer
-  }
-}
-`

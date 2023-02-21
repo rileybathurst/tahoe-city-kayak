@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
@@ -9,6 +9,21 @@ import { TestimoialSEO } from "../../seo/testimonial";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 const FaqPage = () => {
+
+  const { allStrapiTestimonial } = useStaticQuery(graphql`
+    query TestimonialQuery {
+      allStrapiTestimonial {
+      nodes {
+        id
+        testimonial
+        customer
+        sign
+        location
+        }
+      }
+    }
+  `)
+
   let title = "Testimonials";
   let parent = "about";
 
@@ -24,24 +39,19 @@ const FaqPage = () => {
       <main>
         <h1>{title}</h1>
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <ul className="testimonials">
-              {
-                data.allStrapiTestimonial.edges.map(testimonial => (
-                  <li key={testimonial.node.id} >
-                    <h2>{testimonial.node.customer}</h2>
-                    <p>{testimonial.node.testimonial}</p>
-                    <p>{testimonial.node.sign}</p>
-                    <p>{testimonial.node.location}</p>
-                    <hr />
-                  </li>
-                ))
-              }
-            </ul>
-          )}
-        />
+        <ul className="testimonials">
+          {
+            allStrapiTestimonial.nodes.map(testimonial => (
+              <li key={testimonial.id} >
+                <h2>{testimonial.customer}</h2>
+                <p>{testimonial.testimonial}</p>
+                <p>{testimonial.sign}</p>
+                <p>{testimonial.location}</p>
+                <hr />
+              </li>
+            ))
+          }
+        </ul>
       </main>
 
       <Footer />
@@ -80,19 +90,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-      query TestimonialQuery {
-        allStrapiTestimonial {
-        edges {
-        node {
-        id
-        testimonial
-      customer
-      sign
-      location
-      }
-    }
-  }
-}
-      `
