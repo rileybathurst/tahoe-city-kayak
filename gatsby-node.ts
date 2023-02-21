@@ -1,96 +1,57 @@
-const path = require("path")
-
-exports.createPages = async ({ graphql, actions, reporter }) => {
+const path = require(`path`)
+// Log out information after a build is done
+exports.onPostBuild = ({ reporter }) => {
+  reporter.info(`Your Gatsby site has been built!`)
+}
+// Create blog pages dynamically
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  
+  const blogPostTemplate = path.resolve(`src/templates/test.tsx`)
+  const result = await graphql(`
+    query {
+      allStrapiBrand {
+        nodes {
+          slug
+        }
+      }
+    }
+  `)
+  result.data.allStrapiBrand.nodes.forEach(edge => {
+    createPage({
+      path: `test/${edge.slug}`,
+      component: blogPostTemplate,
+      context: {
+        slug: edge.slug,
+      },
+    })
+  })
 
-  // 1️⃣ Test
-  const articlePost = path.resolve("./src/templates/test.tsx")
+  // 2️⃣
+  const retailPostTemplate = path.resolve(`src/templates/retail.tsx`)
+  const retailResult = await graphql(`
+    query {
+      allStrapiRetail {
+        nodes {
+          slug
+          type
 
-  const result = await graphql(
-    `
-      {
-        allStrapiBrand {
-          nodes {
+          brand {
             slug
           }
         }
       }
-    `
-  )
-
-  if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your Strapi articles`,
-      result.errors
-    )
-
-    return
-  }
-
-  const articles = result.data.allStrapiBrand.nodes
-
-  if (articles.length > 0) {
-    articles.forEach((article) => {
-      createPage({
-        path: `/test/${article.slug}`,
-        component: articlePost,
-        context: {
-          slug: article.slug,
-        },
-      })
+    }
+  `)
+  retailResult.data.allStrapiRetail.nodes.forEach(edge => {
+    createPage({
+      path: `/retail/${edge.type}/${edge.slug}`,
+      component: retailPostTemplate,
+      context: {
+        slug: edge.slug,
+        type: edge.type,
+        brand: edge.brand.slug
+      },
     })
-  }
-
-
-  // 2️⃣ Another do I start here
-
-
-  const retailPage = path.resolve("./src/templates/retail.tsx")
-
-  const resultRetail = await graphql(
-    `
-      {
-        allStrapiRetail {
-          nodes {
-            slug
-            type
-
-            brand {
-              slug
-            }
-          }
-        }
-      }
-    `
-  )
-
-  if (resultRetail.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your Strapi articles`,
-      resultRetail.errors
-    )
-
-    return
-  }
-
-  const retails = resultRetail.data.allStrapiRetail.nodes
-
-  if (retails.length > 0) {
-    retails.forEach((retail) => {
-      createPage({
-        path: `/retail/${retail.type}/${retail.slug}`,
-        component: articlePost,
-        context: {
-          slug: retail.slug,
-          type: retail.type,
-          brand: retail.brand.slug
-        },
-      })
-    })
-  }
-
-
-
-
-
+  })
 }
