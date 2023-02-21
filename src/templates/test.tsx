@@ -10,6 +10,8 @@ const Test = ({ data }) => {
   return (
     <>
       <h1>{data.strapiBrand.name}</h1>
+      {data.strapiBrand.id}<br />
+      one two three
     </>
   );
 };
@@ -18,6 +20,7 @@ export const testQuery = graphql`
     query ($slug: String!) {
       strapiBrand(slug: {eq: $slug}) {
         name
+        id
       }
     }
 `;
