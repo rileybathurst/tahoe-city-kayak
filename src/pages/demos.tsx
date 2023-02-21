@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -84,7 +84,7 @@ function getUniqueListBy(arr, key) {
 }
 
 function KayakDemoBrands(props) {
-  // console.log(props.brand);// brand={data.kayak.edges.map(brand => (brand.node.brand))}
+  // console.log(props.brand);// brand={kayak.nodes.map(brand => (brand.brand))}
   const dedupedbrands = getUniqueListBy(props.brand, 'name')
 
   // console.log(dedupedbrands)
@@ -115,6 +115,70 @@ function SupDemoBrands(props) {
 }
 
 const DemosPage = () => {
+
+  const query = useStaticQuery(graphql`
+query DemosQuery {
+  kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
+
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        type
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+
+        brand {
+          name
+          slug
+        }
+      }
+    }
+  
+  paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
+
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        type
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+
+        brand {
+          name
+          slug
+        }
+      }
+    }
+}
+`)
+
+  let kayak = query.kayak;
+  let paddleboards = query.paddleboards;
+
   return (
     <>
       <Header />
@@ -140,96 +204,85 @@ const DemosPage = () => {
         <hr />
       </main>
 
-      {
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              <section className="demo__kayak">
-                <div className="demo__kayak--header">
-                  <div>
-                    <h3>Demos</h3>
-                    <hr />
-                    <h4>Kayaks from these brands</h4>
-                    <ul>
-                      <KayakDemoBrands
-                        brand={data.kayak.edges.map(brand => (brand.node.brand))}
-                      />
-                    </ul>
 
-                  </div>
+      <section className="demo__kayak">
+        <div className="demo__kayak--header">
+          <div>
+            <h3>Demos</h3>
+            <hr />
+            <h4>Kayaks from these brands</h4>
+            <ul>
+              <KayakDemoBrands
+                brand={kayak.nodes.map(brand => (brand.brand))}
+              />
+            </ul>
 
-                  <section>
-                    <div className="collage tour-collage">
-                      {/* <TextureBackgrounds /> */}
-                      <TopTwo />
-                      <WaterTexture className="texture card__image" />
-                      <Kayaker />
-                    </div>
-                  </section>
+          </div>
 
-                </div>
+          <section>
+            <div className="collage tour-collage">
+              {/* <TextureBackgrounds /> */}
+              <TopTwo />
+              <WaterTexture className="texture card__image" />
+              <Kayaker />
+            </div>
+          </section>
 
-                <section className="deck">
-                  {
-                    data.kayak.edges.map(retail => (
-                      <Card
-                        id={retail.node.id}
-                        slug={retail.node.slug}
-                        title={retail.node.title}
-                        capacity={retail.node.capacity}
-                        length={retail.node.length}
-                        width={retail.node.width}
-                        excerpt={retail.node.excerpt}
-                        cutout={retail.node?.cutout}
-                        type={retail.node.type}
-                      />
-                    ))
-                  }
-                </section>
-              </section>
+        </div>
 
-              <article className="main__full main__full--tour baseline-spacing">
-                <div>
-                  <h4>Paddleboards from these brands</h4>
+        <section className="deck">
+          {kayak.nodes.map(retail => (
+            <Card
+              id={retail.id}
+              slug={retail.slug}
+              title={retail.title}
+              capacity={retail.capacity}
+              length={retail.length}
+              width={retail.width}
+              excerpt={retail.excerpt}
+              cutout={retail.cutout}
+              type={retail.type}
+            />
+          ))}
+        </section>
+      </section>
 
-                  <ul>
-                    <SupDemoBrands
-                      brand={data.paddleboards.edges.map(brand => (brand.node.brand))}
-                    />
-                  </ul>
-                </div>
+      <article className="main__full main__full--tour baseline-spacing">
+        <div>
+          <h4>Paddleboards from these brands</h4>
 
-                <section>
-                  <div className="collage tour-collage">
-                    <TextureBackgrounds />
-                    <WaterTexture className="texture card__image" />
-                    <Supper />
-                  </div>
-                </section>
-              </article>
+          <ul>
+            <SupDemoBrands
+              brand={paddleboards.nodes.map(brand => (brand.brand))}
+            />
+          </ul>
+        </div>
 
-              <section className="deck">
-                {
-                  data.paddleboards.edges.map(retail => (
-                    <Card
-                      id={retail.node.id}
-                      slug={retail.node.slug}
-                      title={retail.node.title}
-                      capacity={retail.node.capacity}
-                      length={retail.node.length}
-                      width={retail.node.width}
-                      excerpt={retail.node.excerpt}
-                      cutout={retail.node?.cutout}
-                      type={retail.node.type}
-                    />
-                  ))
-                }
-              </section>
-            </>
-          )}
-        />
-      }
+        <section>
+          <div className="collage tour-collage">
+            <TextureBackgrounds />
+            <WaterTexture className="texture card__image" />
+            <Supper />
+          </div>
+        </section>
+      </article>
+
+      <section className="deck">
+        {paddleboards.nodes.map(retail => (
+          <Card
+            id={retail.id}
+            slug={retail.slug}
+            title={retail.title}
+            capacity={retail.capacity}
+            length={retail.length}
+            width={retail.width}
+            excerpt={retail.excerpt}
+            cutout={retail.cutout}
+            type={retail.type}
+          />
+        ))}
+      </section>
+
       <Footer />
     </>
   )
@@ -246,64 +299,3 @@ export const Head = () => {
   )
 }
 
-const query = graphql`
-query DemosQuery {
-  kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-
-        brand {
-          name
-          slug
-        }
-      }
-    }
-  }
-  
-  paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
-    edges {
-      node {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-
-        brand {
-          name
-          slug
-        }
-      }
-    }
-  }
-}
-`

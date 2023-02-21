@@ -3,7 +3,7 @@
 // TODO document why this is different from sup brands and if i should combine them
 
 import React from "react"
-import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
+import { Link, graphql, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -99,8 +99,6 @@ const KayakBrandView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-
-
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>

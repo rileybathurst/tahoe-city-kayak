@@ -15,7 +15,9 @@ import Ultralight from "../../../components/ultralight";
 
 function Card(props) {
 
-  console.log(props);
+  // console.log(props);
+  // console.log(props.cutout);
+  // console.log(props.cutout?.localFile?.childImageSharp?.gatsbyImageData);
 
   return (
     <article key={props.id} className="card">
@@ -46,37 +48,38 @@ function Card(props) {
 const UltralightPage = () => {
 
   const { allStrapiRetail } = useStaticQuery(graphql`
-query UltraLightQuery {
-  allStrapiRetail(
-    filter: {
-      type: {eq: "kayak"},
-      hullweight: {lt: 46},
-      crew: {eq: "single"}
-    }
-    sort: {hullweight: ASC}
-  ) {
-      nodes {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-        hullweight
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
+    query UltraLightQuery {
+      allStrapiRetail(
+        filter: {
+          type: {eq: "kayak"},
+          hullweight: {lt: 46},
+          crew: {eq: "single"}
+        }
+        sort: {hullweight: ASC}
+      ) {
+        nodes {
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          type
+          hullweight
+          
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
             }
+            alternativeText
           }
-          alternativeText
         }
       }
-  }
-}
-`)
+    }
+  `)
 
   let title = "Ultralight Kayaks";
 
@@ -106,6 +109,7 @@ query UltraLightQuery {
 
 
       <section className="deck">
+        {/* // TODO: I can just send the whole lot and deal with it up the top */}
         {allStrapiRetail.nodes.map(retail => (
           <Card
             id={retail.id}
@@ -115,7 +119,7 @@ query UltraLightQuery {
             length={retail.length}
             width={retail.width}
             excerpt={retail.excerpt}
-            cutout={retail.node?.cutout}
+            cutout={retail.cutout}
             type={retail.type}
           />
         ))}

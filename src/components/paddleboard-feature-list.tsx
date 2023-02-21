@@ -7,6 +7,7 @@ const PaddleboardFeatureList = () => {
   return (
     <ul className="feature-list">
       <li key='inflatable'><Link to="/retail/sup/inflatable">Inflatable</Link></li>
+      <li key='rigid'><Link to="/retail/sup/rigid">Rigid</Link></li>
     </ul>
   )
 }

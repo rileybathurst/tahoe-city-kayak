@@ -107,7 +107,7 @@ query UltraLightTandemQuery {
               length={retail.length}
               width={retail.width}
               excerpt={retail.excerpt}
-              cutout={retail.node?.cutout}
+              cutout={retail.cutout}
               type={retail.type}
             />
           ))

@@ -2,7 +2,7 @@
 // TODO: too many greys in the title area
 
 import React from 'react';
-import { Link, graphql, StaticQuery, Script } from 'gatsby';
+import { Link, graphql, useStaticQuery, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -240,6 +240,94 @@ function Demo(props) {
 }
 
 const RetailTypeView = ({ data }) => {
+
+  const query = useStaticQuery(graphql`
+    query RetailTemplate(
+      $slug: String!,
+      $type: String!,
+      $brand: String!
+    ) {
+      strapiRetail(slug: {eq: $slug}) {
+        id
+        title
+        type
+        excerpt
+        series
+        crew
+        capacity
+        length
+        hullweight
+        riggedweight
+        width
+        thickness
+        volume
+        inflatable
+        demo
+        price
+
+        brand {
+          name
+          slug
+        }
+
+        description {
+          data {
+            description
+          }
+        }
+
+        features {
+          data {
+            features
+          }
+        }
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+
+      allStrapiRetail(filter:
+        {
+          slug: {ne: $slug},
+          type: {eq: $type},
+          brand: {slug: {eq: $brand}}
+        }
+        limit: 2
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug
+            excerpt
+            width
+            length
+            type
+            capacity
+
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  let retail = query.strapiRetail;
+  // let other = query.allStrapiRetail;s
+
   return (
     <>
       <Header />
@@ -254,10 +342,10 @@ const RetailTypeView = ({ data }) => {
           </li>
 
           <li>
-            <Link to={`/retail/${data.strapiRetail.type}`}>{data.strapiRetail.type}</Link>&nbsp;/&nbsp;
+            <Link to={`/retail/${retail.type}`}>{retail.type}</Link>&nbsp;/&nbsp;
           </li>
 
-          <li aria-current="page">{data.strapiRetail.title}</li>
+          <li aria-current="page">{retail.title}</li>
         </ol>
       </nav>
 
@@ -265,63 +353,67 @@ const RetailTypeView = ({ data }) => {
         <div>
           <hgroup className="hgroup__retail">
             {/* // TODO brand logo */}
-            <h1 className="h_title">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand">{data.strapiRetail.brand.name}</h2>
-            <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
+            <h1 className="h_title">{retail.title}</h1>
+            <h2 className="h_brand">{retail.brand.name}</h2>
+            <h3 className="h_series"><Spec name="series" spec={retail.series} /></h3>
           </hgroup>
 
           <h3>Specs:</h3>
-          <Spec name="crew" spec={data.strapiRetail.crew} />
-          <Spec name="capacity" spec={data.strapiRetail.capacity} unit="lbs" />
-          <Spec name="length" spec={data.strapiRetail.length} unit="&quot;" />
-          <Spec name="width" spec={data.strapiRetail.width} unit="&quot;" />
+          <Spec name="crew" spec={retail.crew} />
+          <Spec name="capacity" spec={retail.capacity} unit="lbs" />
+          <Spec name="length" spec={retail.length} unit="&quot;" />
+          <Spec name="width" spec={retail.width} unit="&quot;" />
 
           <Spec
             name="Weight"
-            spec={data.strapiRetail.hullweight}
-            rigged={data.strapiRetail.riggedweight}
+            spec={retail.hullweight}
+            rigged={retail.riggedweight}
             unit="lbs"
           />
 
-          <Spec name="thickness" spec={data.strapiRetail.thickness} />
-          <Spec name="volume" spec={data.strapiRetail.volume} />
+          <Spec name="thickness" spec={retail.thickness} />
+          <Spec name="volume" spec={retail.volume} />
 
-          <Spec name="Inflatable" spec={data.strapiRetail.inflatable} />
-          {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
-          <Spec name="price" spec={data.strapiRetail.price} unit="$" unitPlace="before" />
+          <Spec name="Inflatable" spec={retail.inflatable} />
+          {/* <Spec name="demo" spec={retail.demo} /> */}
+          <Spec name="price" spec={retail.price} unit="$" unitPlace="before" />
         </div>
         <div>
           <div className="collage card-collage">
             <TextureBackgrounds />
 
             <GatsbyImage
-              image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={data.strapiRetail?.cutout?.alternativeText}
+              image={retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={retail.cutout?.alternativeText}
               className="cutout"
             />
           </div>
 
           <ReactMD
-            raw={data.strapiRetail?.features?.data?.features}
+            raw={retail.features?.data?.features}
             className="features"
             title="Features"
           />
         </div>
       </main>
 
-      <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description" />
+      <ReactMD raw={retail.description?.data?.description} className="single__description" />
 
-      <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
+      <Demo demo={retail.demo} type={retail.type} />
 
-      <OtherWrap retail={data.allStrapiRetail} brand={data.strapiRetail.brand.name} slug={data.strapiRetail.brand.slug} type={data.strapiRetail.type}>
-        {data.allStrapiRetail.edges.map(({ node }) => (
+      // ! test one step at a time
+      {/* <OtherWrap retail={other} brand={retail.brand.name} slug={retail.brand.slug} type={retail.type}> */}
+      {/*
+// ! test one step at a time
+{other.edges.map(({ node }) => (
           <Other retail={node} />
         ))}
-      </OtherWrap>
+    </OtherWrap>
+     */}
 
       {/* // The map just creates nothing so I cant go that way */}
       {/* // It's a pretty rare case so I dont actually query a set of cards */}
-      <None retail={data.allStrapiRetail} type={data.strapiRetail.type} />
+      {/* <None retail={other} type={retail.type} /> */}
 
       <Footer />
     </>
@@ -332,29 +424,30 @@ export default RetailTypeView;
 
 // ! // TODO this has to have a price or its invalid
 
-export const Head = ({ data }) => {
+// ! two steps at a time
+/* export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at  | ${useSiteName()}`}
-      description={data.strapiRetail.excerpt}>
+      title={`${retail.title} by ${retail.brand.name} sold at  | ${useSiteName()}`}
+      description={retail.excerpt}>
 
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "Product",
-            "name": "${data.strapiRetail.title}",
-            "description": "${data.strapiRetail.excerpt}",
+            "name": "${retail.title}",
+            "description": "${retail.excerpt}",
             "brand": {
               "@type": "Brand",
-              "name": "${data.strapiRetail.brand.name}"
+              "name": "${retail.brand.name}"
             },
-            "image": "${data.strapiRetail?.cutout?.alternativeText}",
+            "image": "${retail.cutout?.alternativeText}",
             "offers": {
               "@type": "Offer",
               "availability": "https://schema.org/InStock",
               "priceCurrency": "USD",
-              "price": "${data.strapiRetail.price}"
+              "price": "${retail.price}"
             }
           }
         `}
@@ -373,11 +466,11 @@ export const Head = ({ data }) => {
               "@type": "ListItem",
               "position": 2,
               "name": "Retail",
-              "item": "${useSiteUrl()}/retail/${data.strapiRetail.type}"
+              "item": "${useSiteUrl()}/retail/${retail.type}"
             },{
               "@type": "ListItem",
               "position": 3,
-              "name": "${data.strapiRetail.title}"
+              "name": "${retail.title}"
             }]
           }
       `}
@@ -385,88 +478,4 @@ export const Head = ({ data }) => {
 
     </SEO>
   )
-}
-
-export const query = graphql`
-  query RetailTemplate(
-    $slug: String!,
-    $type: String!,
-    $brand: String!
-  ) {
-    strapiRetail(slug: {eq: $slug}) {
-      id
-      title
-      type
-      excerpt
-      series
-      crew
-      capacity
-      length
-      hullweight
-      riggedweight
-      width
-      thickness
-      volume
-      inflatable
-      demo
-      price
-
-      brand {
-        name
-        slug
-      }
-
-      description {
-        data {
-          description
-        }
-      }
-
-      features {
-        data {
-          features
-        }
-      }
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-    }
-
-    allStrapiRetail(filter:
-      {
-        slug: {ne: $slug},
-        type: {eq: $type},
-        brand: {slug: {eq: $brand}}
-      }
-      limit: 2
-    ) {
-      edges {
-        node {
-          id
-          title
-          slug
-          excerpt
-          width
-          length
-          type
-          capacity
-
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-`;
+} */

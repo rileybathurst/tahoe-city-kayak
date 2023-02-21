@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -42,6 +42,59 @@ function Supper(props) {
 }
 
 const RetailPage = () => {
+
+
+  const query = useStaticQuery(graphql`
+query RetailsQuery {
+  kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
+    
+      nodes {
+        id
+        title
+        slug
+        length
+        width
+        type
+        excerpt
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+    }
+  }
+  
+  sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4) {
+    
+      nodes {
+        id
+        title
+        slug
+        length
+        width
+        type
+        excerpt
+
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+    }
+  }
+}
+`)
+
+  let kayak = query.kayak;
+  let sup = query.sup;
+
   let title = "Retail";
 
   return (
@@ -92,98 +145,84 @@ const RetailPage = () => {
       </section>
       <KayakBrandList />
 
+      <section className="deck">
+        {kayak.nodes.map(kayak => (
+          <article key={kayak.id} className="card">
+            <div className="card-collage">
+              <TextureBackgrounds />
+              <GatsbyImage
+                image={kayak.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={kayak.cutout?.alternativeText}
+                className="cutout"
+              />
+            </div>
+            <h4 className="card__title">
+              <Link to={`/retail/${kayak.type}/${kayak.slug}`}>
+                {kayak.title}
+              </Link>
+            </h4>
+            <hr />
+            <p>{kayak.excerpt}</p>
+            <hr />
+            <div className="card__details">
+              <h4 className="capitalize">{kayak.type}</h4>
+              <h5><Remainder inches={kayak.length} /> tall by {kayak.width}" wide</h5>
+            </div>
+          </article>
+        ))}
 
+        <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
+      </section>
 
-      <StaticQuery
-        query={query}
-        render={data => (
+      <article className="main__full main__full--tour">
+        <section className="blocked">
+          {/* <hr /> */}
+          <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
+          <h3 className="condensed">Browse By Feature</h3>
+          <PaddleboardFeatureList />
+        </section>
 
-          <>
+        <section>
+          <div className="collage tour-collage">
+            <TextureBackgrounds />
+            <WaterTexture className="texture card__image" />
+            <Supper />
+          </div>
+        </section>
+      </article>
 
-            <section className="deck">
-              {
-                data.kayak.edges.map(kayak => (
-                  <article key={kayak.node.id} className="card">
-                    <div className="card-collage">
-                      <TextureBackgrounds />
-                      <GatsbyImage
-                        image={kayak.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                        alt={kayak.node?.cutout?.alternativeText}
-                        className="cutout"
-                      />
-                    </div>
-                    <h4 className="card__title">
-                      <Link to={`/retail/${kayak.node.type}/${kayak.node.slug}`}>
-                        {kayak.node.title}
-                      </Link>
-                    </h4>
-                    <hr />
-                    <p>{kayak.node.excerpt}</p>
-                    <hr />
-                    <div className="card__details">
-                      <h4 className="capitalize">{kayak.node.type}</h4>
-                      <h5><Remainder inches={kayak.node.length} /> tall by {kayak.node.width}" wide</h5>
-                    </div>
-                  </article>
-                ))
-              }
+      <section className="brand_list">
+        <h3>Browse By Brand</h3>
+      </section>
+      <SupBrandList />
 
-              <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
-            </section>
-
-            <article className="main__full main__full--tour">
-              <section className="blocked">
-                {/* <hr /> */}
-                <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
-                <h3 className="condensed">Browse By Feature</h3>
-                <PaddleboardFeatureList />
-              </section>
-
-              <section>
-                <div className="collage tour-collage">
-                  <TextureBackgrounds />
-                  <WaterTexture className="texture card__image" />
-                  <Supper />
-                </div>
-              </section>
-            </article>
-
-            <section className="brand_list">
-              <h3>Browse By Brand</h3>
-            </section>
-            <SupBrandList />
-
-            <section className="deck">
-              {
-                data.sup.edges.map(sup => (
-                  <article key={sup.node.id} className="card">
-                    <div className="card-collage">
-                      <TextureBackgrounds />
-                      <GatsbyImage
-                        image={sup.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                        alt={sup.node?.cutout?.alternativeText}
-                        className="cutout"
-                      />
-                    </div>
-                    <h4 className="card__title">
-                      <Link to={`/retail/${sup.node.type}/${sup.node.slug}`}>
-                        {sup.node.title}
-                      </Link>
-                    </h4>
-                    <hr />
-                    <p>{sup.node.excerpt}</p>
-                    <hr />
-                    <div className="card__details">
-                      <h4 className="capitalize">{sup.node.type}</h4>
-                      <h5><Remainder inches={sup.node.length} /> tall by {sup.node.width}" wide</h5>
-                    </div>
-                  </article>
-                ))
-              }
-              <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
-            </section>
-          </>
-        )} />
+      <section className="deck">
+        {sup.nodes.map(sup => (
+          <article key={sup.id} className="card">
+            <div className="card-collage">
+              <TextureBackgrounds />
+              <GatsbyImage
+                image={sup.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={sup.cutout?.alternativeText}
+                className="cutout"
+              />
+            </div>
+            <h4 className="card__title">
+              <Link to={`/retail/${sup.type}/${sup.slug}`}>
+                {sup.title}
+              </Link>
+            </h4>
+            <hr />
+            <p>{sup.excerpt}</p>
+            <hr />
+            <div className="card__details">
+              <h4 className="capitalize">{sup.type}</h4>
+              <h5><Remainder inches={sup.length} /> tall by {sup.width}" wide</h5>
+            </div>
+          </article>
+        ))}
+        <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
+      </section>
 
       <Footer />
     </>
@@ -201,52 +240,3 @@ export const Head = () => {
   )
 }
 
-const query = graphql`
-query RetailsQuery {
-  kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
-    edges {
-      node {
-        id
-        title
-        slug
-        length
-        width
-        type
-        excerpt
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-  
-  sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4) {
-    edges {
-      node {
-        id
-        title
-        slug
-        length
-        width
-        type
-        excerpt
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-}
-`

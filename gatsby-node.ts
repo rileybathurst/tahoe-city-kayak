@@ -91,7 +91,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    // Create pages for each partner resorts.
+    // Create pages for each
     result.data.allStrapiBrand.edges.forEach(({ node }) => {
       createPage({
         path: `/retail/sup/${node.slug}`,
@@ -104,11 +104,37 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   }); // .then(result) */
+  
+  // ! test
+  // TODO: remove the edges
+  const getTests = makeRequest(graphql, `
+    {
+      allStrapiBrand {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+    `).then(result => {
+    // Create pages for each
+    result.data.allStrapiBrand.edges.forEach(({ node }) => {
+      createPage({
+        path: `/test/${node.slug}`,
+        component: path.resolve(`src/templates/test.tsx`),
+        context: {
+          slug: node.slug,
+        },
+      })
+    })
+  }); // .then(result) */
 
   // Query for blog nodes to use in creating pages.
   return Promise.all([
     getRetails,
     getKayaks,
-    getSups
+    getSups,
+    getTests
   ])
 }

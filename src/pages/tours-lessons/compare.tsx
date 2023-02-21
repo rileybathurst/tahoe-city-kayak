@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StaticQuery, graphql, Link, Script } from 'gatsby';
+import { useStaticQuery, graphql, Link, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
@@ -40,18 +40,18 @@ function Compare(props) {
 
   function Details1(props) {
     props.set.forEach(element => {
-      if (element.node.name === props.show) {
-        setLink1(element.node.slug);
-        setSport1(element.node.sport);
-        setDuration1(element.node.duration);
-        setStart1(element.node.start);
-        setFinish1(element.node.finish);
-        setFitness1(element.node.fitness);
-        setLocation1(element.node.location);
-        setExcerpt1(element.node.excerpt);
-        setMinimum1(element.node.minimum);
-        setPrice1(element.node.price);
-        setPeeks1(element.node.peek);
+      if (element.name === props.show) {
+        setLink1(element.slug);
+        setSport1(element.sport);
+        setDuration1(element.duration);
+        setStart1(element.start);
+        setFinish1(element.finish);
+        setFitness1(element.fitness);
+        setLocation1(element.location);
+        setExcerpt1(element.excerpt);
+        setMinimum1(element.minimum);
+        setPrice1(element.price);
+        setPeeks1(element.peek);
       }
     });
     return null;
@@ -59,18 +59,18 @@ function Compare(props) {
 
   function Details2(props) {
     props.set.forEach(element => {
-      if (element.node.name === props.show) {
-        setLink2(element.node.slug);
-        setSport2(element.node.sport);
-        setDuration2(element.node.duration);
-        setStart2(element.node.start);
-        setFinish2(element.node.finish);
-        setFitness2(element.node.fitness);
-        setLocation2(element.node.location);
-        setExcerpt2(element.node.excerpt);
-        setMinimum2(element.node.minimum);
-        setPrice2(element.node.price);
-        setPeeks2(element.node.peek);
+      if (element.name === props.show) {
+        setLink2(element.slug);
+        setSport2(element.sport);
+        setDuration2(element.duration);
+        setStart2(element.start);
+        setFinish2(element.finish);
+        setFitness2(element.fitness);
+        setLocation2(element.location);
+        setExcerpt2(element.excerpt);
+        setMinimum2(element.minimum);
+        setPrice2(element.price);
+        setPeeks2(element.peek);
       }
     });
     return null;
@@ -134,7 +134,7 @@ function Compare(props) {
         <div className='subgrid-passthrough'>
           <select name="tour3" id="tour3" onChange={first} className="grid__one--select comparesheet_select">
             {props.tours.map((tour) => (
-              <Option key={tour.node.id} name={tour.node.name} current={tour1} other={tour2} />
+              <Option key={tour.id} name={tour.name} current={tour1} other={tour2} />
             ))}
           </select>
           <h2 className='grid__one--name h3 comparesheet__title1'>
@@ -172,7 +172,7 @@ function Compare(props) {
         <div className='subgrid-passthrough'>
           <select name="tour3" id="tour3" onChange={second} className="grid__two--select comparesheet_select">
             {props.tours.map((tour) => (
-              <Option key={tour.node.id} name={tour.node.name} current={tour2} other={tour1} />
+              <Option key={tour.id} name={tour.name} current={tour2} other={tour1} />
             ))}
           </select>
           <h2 className='grid__two--name h3 comparesheet__title2'>
@@ -206,6 +206,29 @@ function Compare(props) {
 }
 
 const ComparePage = () => {
+
+
+  const { allStrapiTour } = useStaticQuery(graphql`
+query TourCompareQuery {
+  allStrapiTour {
+      nodes {
+        id
+        fitness
+        slug
+        start
+        sport
+        peek
+        price
+        name
+        minimum
+        finish
+        excerpt
+        duration
+      }
+  }
+}
+`)
+
   return (
     <>
       <Header />
@@ -224,12 +247,7 @@ const ComparePage = () => {
 
       <main className='main__pelican'>
         <h1>Compare</h1>
-        <StaticQuery
-          query={query}
-          render={data => (
-            <Compare tours={data.allStrapiTour.edges} />
-          )}
-        />
+        <Compare tours={allStrapiTour.nodes} />
       </main>
 
       <Footer />
@@ -267,26 +285,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-  query TourCompareQuery {
-    allStrapiTour {
-      edges {
-        node {
-          id
-          fitness
-          slug
-          start
-          sport
-          peek
-          price
-          name
-          minimum
-          finish
-          excerpt
-          duration
-        }
-      }
-    }
-  }
-`

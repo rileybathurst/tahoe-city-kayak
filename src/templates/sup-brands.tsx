@@ -1,7 +1,7 @@
 // TODO add the retail content
 
 import React, { useState, useEffect } from "react"
-import { Link, graphql, StaticQuery, useStaticQuery, Script } from 'gatsby'
+import { Link, graphql, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';

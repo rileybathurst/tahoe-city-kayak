@@ -40,8 +40,8 @@ function Card(props) {
 const InflateablePage = () => {
 
   const { allStrapiRetail } = useStaticQuery(graphql`
-query InflatableKayakQuery {
-  allStrapiRetail(filter: {type: {eq: "sup"}, inflatable: {eq: true}}) {
+query RigidKayakQuery {
+  allStrapiRetail(filter: {type: {eq: "sup"}, inflatable: {eq: false}}) {
       nodes {
         id
         title
@@ -65,7 +65,7 @@ query InflatableKayakQuery {
 }
 `)
 
-  let title = "Inflatable Paddleboards";
+  let title = "Rigid Paddleboards";
 
   return (
     <>
@@ -120,8 +120,8 @@ export default InflateablePage
 export const Head = () => {
   return (
     <SEO
-      title={`Inflatable StandUp Paddleboards | ${useSiteName()}`}
-      description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
+      title={`Rigid StandUp Paddleboards | ${useSiteName()}`}
+    // TODO description
     // TODO image
     >
       <Script type="application/ld+json">
@@ -142,7 +142,7 @@ export const Head = () => {
           },{
             "@type": "ListItem",
             "position": 3,
-            "name": "Inflatable Paddleboards"
+            "name": "Rigid Paddleboards"
           }]
         }
       `}

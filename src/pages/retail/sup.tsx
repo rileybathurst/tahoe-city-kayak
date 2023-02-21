@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
@@ -85,6 +85,222 @@ function Limiter(props) {
 }
 
 const RetailSupPage = (data) => {
+
+  const query = useStaticQuery(graphql`
+query SupQuery {
+  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+
+  bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+  
+  tahe: allStrapiBrand(filter: {name: {eq: "tahe"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+  
+  sic: allStrapiBrand(filter: {name: {eq: "sic"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+  
+  hala: allStrapiBrand(filter: {name: {eq: "hala"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+  
+  boardworks: allStrapiBrand(filter: {name: {eq: "boardworks"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+  
+  pauhana: allStrapiBrand(filter: {name: {eq: "pauhana"}}) {
+
+      nodes {
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+  }
+}
+`)
+
+  let hobie = query.hobie;
+  let bote = query.bote;
+  let tahe = query.tahe;
+  let sic = query.sic;
+  let hala = query.hala;
+  let boardworks = query.boardworks;
+  let pauhana = query.pauhana;
+
   let title = "Paddleboard Retail";
   let parent = "retail";
 
@@ -117,52 +333,48 @@ const RetailSupPage = (data) => {
       </main>
       <SupBrandList />
 
-      <StaticQuery
-        query={query}
-        render={data => (
+      <div className="brand_blocks">
 
-          <div className="brand_blocks">
-
-            {data.hobie.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
+        {hobie.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
               </div>
-            ))}
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
 
-            {data.bote.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.map(retail => (
+        {bote.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.map(retail => (
                     <>
 
                       <Card
@@ -180,216 +392,214 @@ const RetailSupPage = (data) => {
                   ))}
                 </div> */}
 
-                <Limiter brand={brand.node.retail} />
+            <Limiter brand={brand.retail} />
 
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
-            {data.tahe.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
-            {data.sic.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
-            {data.hala.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
-
-            {data.boardworks.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
-            {data.pauhana.edges.map(brand => (
-              <div>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                {/* <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-                <Limiter brand={brand.node.retail} />
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type='sup'
-                />
-              </div>
-            ))}
-
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
           </div>
-        )}
-      />
+        ))}
+
+        {tahe.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div> */}
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
+
+        {sic.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div> */}
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
+
+        {hala.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div> */}
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
+
+
+        {boardworks.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div> */}
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
+
+        {pauhana.nodes.map(brand => (
+          <div>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            {/* <div className='deck'>
+                  {brand.retail.slice(0, 4).map(retail => (
+                    <Card
+                      type={retail.type}
+                      id={retail.id}
+                      slug={retail.slug}
+                      title={retail.title}
+                      capacity={retail.capacity}
+                      length={retail.length}
+                      width={retail.width}
+                      excerpt={retail.excerpt}
+                      cutout={retail?.cutout}
+                    />
+                  ))}
+                </div> */}
+            <Limiter brand={brand.retail} />
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type='sup'
+            />
+          </div>
+        ))}
+
+      </div>
 
       <Footer />
     </>
@@ -426,219 +636,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-query SupQuery {
-  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-
-  bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-  
-  tahe: allStrapiBrand(filter: {name: {eq: "tahe"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-  
-  sic: allStrapiBrand(filter: {name: {eq: "sic"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-  
-  hala: allStrapiBrand(filter: {name: {eq: "hala"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-  
-  boardworks: allStrapiBrand(filter: {name: {eq: "boardworks"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-  
-  pauhana: allStrapiBrand(filter: {name: {eq: "pauhana"}}) {
-    edges {
-      node {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-    }
-  }
-
-
-}
-`

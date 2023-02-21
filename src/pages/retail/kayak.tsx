@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
@@ -48,6 +48,234 @@ function Card(props) {
 }
 
 const RetailKayakPage = (data) => {
+
+
+  const query = useStaticQuery(graphql`
+query KayaksQuery {
+  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+
+  eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
+    
+      nodes {
+      id
+      name
+      slug
+      tagline
+      svg
+
+      retail {
+        type
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+
+  perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+    }
+  }
+
+  wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+      retail {
+        type
+        id
+        title
+        slug
+        excerpt
+        capacity
+        length
+        width
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+          }
+        }
+    }
+  }
+
+  delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+  }
+
+  bote: allStrapiBrand(
+  filter: {name: {eq: "bote"}, kayak: {eq: true}}
+  ) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+        type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+  }
+
+  brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
+    
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+  }
+
+
+}
+`)
+
+  let hobie = query.hobie;
+  let eddyline = query.eddyline;
+  let perception = query.perception;
+  let wildernesssystems = query.wildernesssystems;
+  let delta = query.delta;
+  let bote = query.bote;
+  let brusurf = query.brusurf;
+
   let title = "Kayak Retail";
   let parent = "retail";
 
@@ -84,294 +312,290 @@ const RetailKayakPage = (data) => {
 
       <KayakBrandList />
 
-      <StaticQuery
-        query={query}
-        render={data => (
-          <div className="brand_blocks">
+      <div className="brand_blocks">
 
-            {data.hobie.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
+        {hobie.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
               </div>
-            ))}
-
-            {data.eddyline.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
                 />
-              </div>
-            ))}
-
-            {data.perception.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
-              </div>
-            ))}
-
-            {data.wildernesssystems.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
-              </div>
-            ))}
-
-            {data.delta.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
-              </div>
-            ))}
-
-
-            {data.bote.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
-              </div>
-            ))}
-
-            {data.brusurf.edges.map(brand => (
-              <div key={brand.node.id}>
-                <section className="pelican-inline">
-                  <div className='brand-logo'>
-                    <Danger svg={brand.node.svg} />
-                    <h2 className='capitalize'>
-                      <Link to={brand.node.slug}>
-                        {brand.node.name}
-                      </Link>
-                    </h2>
-                  </div>
-                  <p>{brand.node.tagline}.</p>
-                  <hr />
-                </section>
-                <div className='deck'>
-                  {brand.node.retail.slice(0, 4).map(retail => (
-                    <Card
-                      key={retail.id}
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div>
-
-                <More
-                  retail={brand.node.retail}
-                  brand={brand.node.name}
-                  slug={brand.node.slug}
-                  type="kayak"
-                />
-              </div>
-            ))}
-
+              ))}
+            </div>
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
           </div>
-        )}
-      />
+        ))}
+
+        {eddyline.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+        {perception.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+        {wildernesssystems.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+        {delta.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+
+        {bote.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+        {brusurf.nodes.map(brand => (
+          <div key={brand.id}>
+            <section className="pelican-inline">
+              <div className='brand-logo'>
+                <Danger svg={brand.svg} />
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
+              </div>
+              <p>{brand.tagline}.</p>
+              <hr />
+            </section>
+            <div className='deck'>
+              {brand.retail.slice(0, 4).map(retail => (
+                <Card
+                  key={retail.id}
+                  type={retail.type}
+                  id={retail.id}
+                  slug={retail.slug}
+                  title={retail.title}
+                  capacity={retail.capacity}
+                  length={retail.length}
+                  width={retail.width}
+                  excerpt={retail.excerpt}
+                  cutout={retail?.cutout}
+                />
+              ))}
+            </div>
+
+            <More
+              retail={brand.retail}
+              brand={brand.name}
+              slug={brand.slug}
+              type="kayak"
+            />
+          </div>
+        ))}
+
+      </div>
+
 
       <Footer />
     </>
@@ -409,228 +633,3 @@ export const Head = () => {
     </SEO>
   )
 }
-
-const query = graphql`
-  query KayaksQuery {
-    hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
-      edges {
-        node {
-        id
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    bote: allStrapiBrand(
-    filter: {name: {eq: "bote"}, kayak: {eq: true}}
-    ) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-          type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-    brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
-      edges {
-        node {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
-          }
-        }
-      }
-    }
-
-
-  }
-`
