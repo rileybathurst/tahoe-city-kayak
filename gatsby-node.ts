@@ -14,7 +14,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 }); // makeRequests
 
 // Create blog pages dynamically
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   // retail.tsx
@@ -107,19 +107,58 @@ exports.createPages = ({ actions, graphql }) => {
   
   // ! test
   // TODO: remove the edges
-  const getTests = makeRequest(graphql, `
-    {
-      allStrapiBrand {
-        edges {
-          node {
+
+
+ // Define a template for blog post
+  const testPost = path.resolve("./src/templates/test.tsx")
+
+  const result = await graphql(
+    `
+      {
+        allStrapiBrand {
+          nodes {
             slug
           }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your Strapi articles`,
+      result.errors
+    )
+
+    return
+  }
+
+  const tests = result.data.allStrapiBrand.nodes
+
+  if (tests.length > 0) {
+    tests.forEach((article) => {
+      createPage({
+        path: `/test/${article.slug}`,
+        component: testPost,
+        context: {
+          slug: article.slug,
+        },
+      })
+    })
+  }
+
+
+/*   const getTests = makeRequest(graphql, `
+    {
+      allStrapiBrand {
+        nodes {
+          slug
         }
       }
     }
     `).then(result => {
     // Create pages for each
-    result.data.allStrapiBrand.edges.forEach(({ node }) => {
+    result.data.allStrapiBrand.nodes.forEach(({ node }) => {
       createPage({
         path: `/test/${node.slug}`,
         component: path.resolve(`src/templates/test.tsx`),
@@ -135,6 +174,6 @@ exports.createPages = ({ actions, graphql }) => {
     getRetails,
     getKayaks,
     getSups,
-    getTests
+    // getTests
   ])
 }
