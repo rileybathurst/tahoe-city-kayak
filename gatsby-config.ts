@@ -81,18 +81,16 @@ module.exports = {
 
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
+
+    // Nodes can only be updated by their owner. Node "7dea09dc-1639-5d5d-9dd1-03947e6650bc" is
+    // owned by "gatsby-source-filesystem" and another plugin "gatsby-plugin-image"
+    // tried to update it.
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images/`, // ? I think this is where I need to stop the npm start errors and this might be doing that but I dont know if its actually helping
       },
     },
     {

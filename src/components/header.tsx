@@ -2,12 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Menu from "./menu"
-// import PaddleIcon from '../images/paddle';
 import MenuList from './menu-list';
 import Logo from '../images/logo';
-import { propTypes } from 'gatsby-plugin-image/dist/src/components/gatsby-image.server';
-
-// const isBrowser = typeof window !== "undefined"
 
 function OpenSeason(props) {
   const [banner, setBanner] = useState('shown');
