@@ -5,17 +5,17 @@
 import React from "react"
 import { Link, graphql, useStaticQuery, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
-import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
-import { useSiteUrl } from "../hooks/use-site-url";
+import { SEO } from "../src/components/seo";
+import { useSiteName } from '../src/hooks/use-site-name';
+import { useSiteUrl } from "../src/hooks/use-site-url";
 
-import Header from '../components/header';
-import Footer from '../components/footer';
-import Store from "../components/locations/store";
+import Header from '../src/components/header';
+import Footer from '../src/components/footer';
+import Store from "../src/components/locations/store";
 
-import TextureBackgrounds from "../components/texturebackgrounds";
-import Remainder from "../components/remainder";
-import Danger from "../components/danger";
+import TextureBackgrounds from "../src/components/texturebackgrounds";
+import Remainder from "../src/components/remainder";
+import Danger from "../src/components/danger";
 
 function Kayak(props) {
   return (

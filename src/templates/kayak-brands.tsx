@@ -1,7 +1,7 @@
 // TODO add the stripes for individual series
 
 import React from "react"
-import { Link, graphql, useStaticQuery, Script } from 'gatsby'
+import { Link, graphql, Script } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -86,221 +86,6 @@ function Next(props) {
 
 const KayakBrandView = ({ data }) => {
 
-  const query = useStaticQuery(graphql`
-  query KayakBrandsTemplate(
-    $slug: String!,
-  ) {
-    brand: strapiBrand(slug: {eq: $slug}) {
-    id
-    name
-    tagline
-    svg
-    retail {
-      series
-      title
-    }
-  }
-
-  island: allStrapiRetail(
-    filter: {
-      brand: {slug: {eq: $slug}},
-      type: {eq: "kayak"},
-      series: {eq: "island"}
-    }
-  ) {
-    edges {
-      node {
-        title
-        slug
-        excerpt
-        length
-        width
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-  }
-
-  mirage: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "mirage"}
-  }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-  
-inflatable: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "inflatable"}
-  }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-
-performance: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "performance"}
-  }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-
-recreational: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "recreational"}
-  }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-
-sitontop: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "sit-on-top"}
-  }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-
-  null: allStrapiRetail(
-    filter: {
-      brand: {slug: {eq: $slug}},
-      type: {eq: "kayak"},
-      series: {nin: [
-        "island",
-        "mirage",
-        "inflatable",
-        "performance",
-        "recreational",
-        "sit-on-top"
-        ]}
-    }
-  ) {
-    edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
-
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-  }
-  }
-}
-
-
-
-}
-  `);
 
   // hobie has a series of inflatable, mirage, performance, island
   // eddyline has a series of performance, recreational, sit-on-top
@@ -502,6 +287,223 @@ sitontop: allStrapiRetail(
 };
 
 export default KayakBrandView;
+
+
+export const query = graphql`
+query (
+  $slug: String!,
+) {
+  brand: strapiBrand(slug: {eq: $slug}) {
+  id
+  name
+  tagline
+  svg
+  retail {
+    series
+    title
+  }
+}
+
+island: allStrapiRetail(
+  filter: {
+    brand: {slug: {eq: $slug}},
+    type: {eq: "kayak"},
+    series: {eq: "island"}
+  }
+) {
+  edges {
+    node {
+      title
+      slug
+      excerpt
+      length
+      width
+
+      cutout {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+}
+
+mirage: allStrapiRetail(
+filter: {
+  brand: {slug: {eq: $slug}},
+  type: {eq: "kayak"},
+  series: {eq: "mirage"}
+}
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+inflatable: allStrapiRetail(
+filter: {
+  brand: {slug: {eq: $slug}},
+  type: {eq: "kayak"},
+  series: {eq: "inflatable"}
+}
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+performance: allStrapiRetail(
+filter: {
+  brand: {slug: {eq: $slug}},
+  type: {eq: "kayak"},
+  series: {eq: "performance"}
+}
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+recreational: allStrapiRetail(
+filter: {
+  brand: {slug: {eq: $slug}},
+  type: {eq: "kayak"},
+  series: {eq: "recreational"}
+}
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+sitontop: allStrapiRetail(
+filter: {
+  brand: {slug: {eq: $slug}},
+  type: {eq: "kayak"},
+  series: {eq: "sit-on-top"}
+}
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+null: allStrapiRetail(
+  filter: {
+    brand: {slug: {eq: $slug}},
+    type: {eq: "kayak"},
+    series: {nin: [
+      "island",
+      "mirage",
+      "inflatable",
+      "performance",
+      "recreational",
+      "sit-on-top"
+      ]}
+  }
+) {
+  edges {
+  node {
+    title
+    slug
+    excerpt
+    length
+    width
+
+    cutout {
+      localFile {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      alternativeText
+    }
+}
+}
+}
+
+
+
+}
+`;
 
 export const Head = ({ data }) => {
   return (
