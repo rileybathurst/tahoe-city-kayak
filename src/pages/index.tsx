@@ -149,10 +149,6 @@ const IndexPage = () => {
 
   return (
     <>
-
-      {/* {AndyPaddling} */}
-      <AndyPaddling />
-
       <Header />
       <main className="home">
         <section>
@@ -173,7 +169,7 @@ const IndexPage = () => {
           <section className="home__photo-grid">
             <TwoKayakers className="kayakers" />
             <WaterTexture className="texture" />
-            {/* <AndyPaddling className="andy" /> */}
+            <AndyPaddling className="andy" />
           </section>
 
           <hr />

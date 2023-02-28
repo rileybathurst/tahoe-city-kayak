@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby"
 
 export const useStrapiAndy = () => {
-  const data = useStaticQuery(graphql`
+  const { strapiImagegrab } = useStaticQuery(graphql`
     query {
       strapiImagegrab(title: {eq: "andy"}) {
         title
@@ -16,5 +16,5 @@ export const useStrapiAndy = () => {
     }
   `)
 
-  return data.strapiImagegrab.title
+  return strapiImagegrab
 }

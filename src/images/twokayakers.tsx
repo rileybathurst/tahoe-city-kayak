@@ -1,36 +1,19 @@
 import * as React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
+import { useStrapiTwoKayakers } from "../hooks/use-strapi-two-kayakers";
 
 const TwoKayakers = (props) => {
 
-  /*  const { strapiImagegrab } = useStaticQuery(graphql`
-     query MyQuery {
-       strapiImagegrab(title: {eq: "Two Kayakers"}) {
-         image {
-           localFile {
-             childImageSharp {
-               gatsbyImageData
-             }
-           }
-         }
-       }
-     }
-   `) */
+  const { title, image } = useStrapiTwoKayakers()
 
   return (
-    <>
-      {/*     <GatsbyImage
-        // src="../images/tck-slide-2.webp"
-        // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tck-slide-2.jpg"
-        image={strapiImagegrab?.image?.localFile?.childImageSharp?.gatsbyImageData}
-        alt="two kayakers paddling across lake Tahoe"
-        className={`img__wrapped ${props.className}`}
-      // breakpoints={[325, 650, 1300]}
-      // width={650}
-  /> */}
-    // todo
-    </>
+    <GatsbyImage
+      // src="../images/tck-slide-2.webp"
+      // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tck-slide-2.jpg"
+      image={image?.localFile?.childImageSharp?.gatsbyImageData}
+      alt={title}
+      className={`img__wrapped ${props.className}`}
+    />
   )
 };
 
