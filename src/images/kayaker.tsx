@@ -19,14 +19,18 @@ const Kayaker = (props) => {
   `)
 
   return (
-    <GatsbyImage
+    <>
+      {/*     <GatsbyImage
       // src="../images/andy-paddling.webp"
       // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/andy-paddling.jpg"
-      image={strapiImagegrab.image.localFile.childImageSharp.gatsbyImageData}
-      alt="andy paddling in the sunshine" // TODO query this
-      className={`img__wrapped ${props.className}`}
-    // breakpoints={[300, 600, 900]}
-    />
+      image={strapiImagegrab?.image?.localFile?.childImageSharp?.gatsbyImageData}
+      alt="andy paddling in the sunshine"
+      // TODO query this
+      // className={`img__wrapped ${props.className}`}
+      // breakpoints={[300, 600, 900]}
+      /> */}
+      // TODO:
+    </>
   );
 };
 
