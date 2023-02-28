@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -20,7 +20,6 @@ import WaterTexture from "../images/watertexture";
 
 import Kayaker from "../images/kayaker";
 import BookNow from "../components/peek/book-now";
-
 
 function Sand() {
   return <StaticImage
