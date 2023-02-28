@@ -85,7 +85,7 @@ query ToursQuery {
     <>
       <Header />
 
-      <main className="tours">
+      <main className="pelican-inline">
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>

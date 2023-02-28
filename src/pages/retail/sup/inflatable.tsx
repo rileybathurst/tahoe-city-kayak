@@ -40,30 +40,30 @@ function Card(props) {
 const InflateablePage = () => {
 
   const { allStrapiRetail } = useStaticQuery(graphql`
-query InflatableKayakQuery {
-  allStrapiRetail(filter: {type: {eq: "sup"}, inflatable: {eq: true}}) {
-      nodes {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
+    query InflatableKayakQuery {
+      allStrapiRetail(filter: {type: {eq: "sup"}, inflatable: {eq: true}}) {
+          nodes {
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            type
 
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
             }
           }
-          alternativeText
         }
-      }
     }
-}
-`)
+  `)
 
   let title = "Inflatable Paddleboards";
 

@@ -1,13 +1,33 @@
 import * as React from "react";
-import { StaticImage } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
 
-const Kayaker = () => {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
-    alt="tahoe city kayak kayaker"
-    className="paddler img__wrapped"
-    objectFit="contain"
-  />
+const Kayaker = (props) => {
+
+  const { strapiImagegrab } = useStaticQuery(graphql`
+    query MyQuery {
+      strapiImagegrab(title: {eq: "kayaker"}) {
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  return (
+    <GatsbyImage
+      // src="../images/andy-paddling.webp"
+      // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/andy-paddling.jpg"
+      image={strapiImagegrab.image.localFile.childImageSharp.gatsbyImageData}
+      alt="andy paddling in the sunshine" // TODO query this
+      className={`img__wrapped ${props.className}`}
+    // breakpoints={[300, 600, 900]}
+    />
+  );
 };
 
 export default Kayaker;

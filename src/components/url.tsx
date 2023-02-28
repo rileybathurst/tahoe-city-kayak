@@ -1,4 +1,5 @@
-// Im not 100 sure this is the best way but it works for now
+// TODO grab this from meta
+
 const Url = 'https://www.tahoecitykayak.com/';
 
 export default Url;
