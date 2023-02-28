@@ -12,20 +12,20 @@ const AndyPaddling = (props) => {
   console.log({ useStrapiAndy });
   console.log(<useStrapiAndy />);
 
-  const { strapiImagegrab } = useStaticQuery(graphql`
-    query MyQuery {
-      strapiImagegrab(title: {eq: "andy"}) {
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
+  /*   const { strapiImagegrab } = useStaticQuery(graphql`
+      query MyQuery {
+        strapiImagegrab(title: {eq: "andy"}) {
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
             }
           }
         }
       }
-    }
-  `)
-
+    `)
+   */
 
   return (
     <>
