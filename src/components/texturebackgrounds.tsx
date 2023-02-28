@@ -1,9 +1,17 @@
 import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
+
+import { useStrapiTextures } from "../hooks/use-strapi-textures"
+// const { query } = useStrapiTextures()
+// console.log(query)
 
 function BaseOne() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/tim-mossholder-z3Xp1ZcvzgE-unsplash.jpg"
+
+  const { query } = useStrapiTextures()
+  // console.log(query.baseone);
+
+  return <GatsbyImage
+    image={query.baseone.image.localFile.childImageSharp.gatsbyImageData}
     alt="deepwater texture"
     className="texture-slice"
     objectFit="contain"
@@ -13,8 +21,10 @@ function BaseOne() {
 }
 
 function BaseTwo() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/marissa-rodriguez-2mKYEVGA4jE-unsplash.jpg"
+  const { query } = useStrapiTextures()
+  return <GatsbyImage
+    // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/marissa-rodriguez-2mKYEVGA4jE-unsplash.jpg"
+    image={query.basetwo.image.localFile.childImageSharp.gatsbyImageData}
     alt="clear texture"
     className="texture-slice"
     objectFit="contain"
@@ -24,8 +34,11 @@ function BaseTwo() {
 }
 
 function BaseThree() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/samara-doole-peaTniZsUQs-unsplash.jpg"
+  const { query } = useStrapiTextures()
+
+  return <GatsbyImage
+    // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/samara-doole-peaTniZsUQs-unsplash.jpg"
+    image={query.basethree.image.localFile.childImageSharp.gatsbyImageData}
     alt="splash texture"
     className="texture-slice"
     objectFit="contain"
@@ -35,8 +48,11 @@ function BaseThree() {
 }
 
 function TopOne() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.jpg"
+  const { query } = useStrapiTextures()
+
+  return <GatsbyImage
+    // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.jpg"
+    image={query.topone.image.localFile.childImageSharp.gatsbyImageData}
     alt="sunset texture"
     className="texture-slice crop"
     objectFit="contain"
@@ -46,8 +62,11 @@ function TopOne() {
 }
 
 function TopTwo() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
+  const { query } = useStrapiTextures()
+
+  return <GatsbyImage
+    // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
+    image={query.toptwo.image.localFile.childImageSharp.gatsbyImageData}
     alt="forrest texture"
     className="texture-slice crop"
     objectFit="contain"
@@ -57,8 +76,11 @@ function TopTwo() {
 }
 
 function TopThree() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.jpg"
+  const { query } = useStrapiTextures()
+
+  return <GatsbyImage
+    // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.jpg"
+    image={query.topthree.image.localFile.childImageSharp.gatsbyImageData}
     alt="sand texture"
     className="texture-slice crop"
     objectFit="contain"
@@ -96,8 +118,14 @@ function TopTexture(props) {
 }
 
 const TextureBackgrounds = (props) => {
+
+  // const { baseone } = useStrapiTextures()
+
   return (
     <>
+
+      {/* {baseone} */}
+
       <BaseTexture />
       <TopTexture />
       {/* // TODO: dark */}
