@@ -15,31 +15,10 @@ import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import WaterTexture from "../images/watertexture";
 
+import Kayaker from "../images/kayaker";
+import Supper from "../images/supper";
+
 import Retail from "../content/retail";
-
-function Kayaker(props) {
-  return <StaticImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
-    alt="tahoe city kayak kayaker"
-    className="paddler img__wrapped"
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
-
-function Supper(props) {
-  return <StaticImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
-    alt="tahoe city kayak paddleboarder"
-    className={`${props.className} paddler img__wrapped`}
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
 
 const RetailPage = () => {
 

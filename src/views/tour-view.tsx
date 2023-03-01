@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -19,29 +19,8 @@ import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
 import ParentTitleBreadcrumb from "../components/parent-title-breadcrumb";
 
-function Kayaker(props) {
-  return <StaticImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
-    alt="tahoe city kayak kayaker"
-    className={`${props.className} paddler img__wrapped`}
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
-
-function Supper(props) {
-  return <StaticImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
-    alt="tahoe city kayak paddleboarder"
-    className={`${props.className} paddler img__wrapped`}
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
+import Kayaker from "../images/kayaker";
+import Supper from "../images/supper";
 
 function Paddler(props) {
   if (props.sport === "kayak") {

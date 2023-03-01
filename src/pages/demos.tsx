@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 
@@ -14,12 +14,17 @@ import WaterTexture from "../images/watertexture";
 import Danger from "../components/danger";
 import Demos from "../content/demos";
 
-// TODO these need to be image components
+import { useStrapiKayaker } from "../hooks/use-strapi-kayaker";
+import { useStrapiSupper } from "../hooks/use-strapi-supper";
+
 function Kayaker(props) {
-  return <StaticImage
+
+  const { title, image } = useStrapiKayaker()
+
+  return <GatsbyImage
     // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.jpg"
-    alt="tahoe city kayak kayaker"
+    image={image.localFile.childImageSharp.gatsbyImageData}
+    alt={title}
     className="paddler img__wrapped"
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
@@ -28,22 +33,14 @@ function Kayaker(props) {
 }
 
 function Supper(props) {
-  return <StaticImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash-crop.jpg"
-    alt="tahoe city kayak paddleboarder"
-    className={`${props.className} paddler img__wrapped`}
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
 
-function TopTwo() {
-  return <StaticImage
-    src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
-    alt="forrest texture"
-    className="texture-slice crop"
+  const { title, image } = useStrapiSupper()
+
+  return <GatsbyImage
+    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
+    image={image.localFile.childImageSharp.gatsbyImageData}
+    alt={title}
+    className={`${props.className} paddler img__wrapped`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
@@ -222,7 +219,7 @@ query DemosQuery {
           <section>
             <div className="collage tour-collage">
               {/* <TextureBackgrounds /> */}
-              <TopTwo />
+              {/* <TopTwo /> // ! fix */}
               <WaterTexture className="texture card__image" />
               <Kayaker />
             </div>
@@ -260,7 +257,6 @@ query DemosQuery {
 
         <section>
           <div className="collage tour-collage">
-            <TextureBackgrounds />
             <WaterTexture className="texture card__image" />
             <Supper />
           </div>
