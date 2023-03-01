@@ -4,3 +4,4 @@ public
 .env*
 
 .storybook/preview-head.html
+storybook-static/

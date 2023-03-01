@@ -47,30 +47,42 @@ function Supper(props) {
   />
 }
 
-function Card(props) {
-  return (
-    <article key={props.id} className="card">
+function Deck(props) {
+
+  // console.log(props.retail);
+
+  const cards = props.retail.map(card => (
+    <article
+      key={card.id}
+      className="card"
+    >
       <div className="card-collage">
         <TextureBackgrounds />
         <GatsbyImage
-          image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.cutout?.alternativeText}
+          image={card.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={card.cutout?.alternativeText}
           className="cutout"
         />
       </div>
       <h4 className="card__title">
-        <Link to={`/retail/${props.type}/${props.slug}`}>
-          {props.title}
+        <Link to={`/retail/${card.type}/${card.slug}`}>
+          {card.title}
         </Link>
       </h4>
       <hr />
-      <p>{props.excerpt}</p>
+      <p>{card.excerpt}</p>
       <hr />
       <div className="card__details">
-        <h4><Remainder inches={props.length} /> long by {props.width}" wide</h4>
-        <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
+        <h4><Remainder inches={card.length} /> long by {card.width}" wide</h4>
+        <h5 className="capitalize">Capacity {card.capacity}lbs</h5>
       </div>
     </article>
+  ))
+
+  return (
+    <section className="deck">
+      {cards}
+    </section>
   )
 }
 
@@ -114,64 +126,62 @@ function SupDemoBrands(props) {
 const DemosPage = () => {
 
   const query = useStaticQuery(graphql`
-query DemosQuery {
-  kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
-
-      nodes {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-
-        brand {
-          name
+    query DemosQuery {
+      kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
+        nodes {
+          id
+          title
           slug
+          excerpt
+          capacity
+          length
+          width
+          type
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+
+          brand {
+            name
+            slug
+          }
         }
       }
-    }
   
-  paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
-
-      nodes {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-
-        brand {
-          name
+      paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
+        nodes {
+          id
+          title
           slug
+          excerpt
+          capacity
+          length
+          width
+          type
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+
+          brand {
+            name
+            slug
+          }
         }
       }
     }
-}
-`)
+  `)
 
   let kayak = query.kayak;
   let paddleboards = query.paddleboards;
@@ -218,7 +228,6 @@ query DemosQuery {
 
           <section>
             <div className="collage tour-collage">
-              {/* <TextureBackgrounds /> */}
               {/* <TopTwo /> // ! fix */}
               <WaterTexture className="texture card__image" />
               <Kayaker />
@@ -227,21 +236,9 @@ query DemosQuery {
 
         </div>
 
-        <section className="deck">
-          {kayak.nodes.map(retail => (
-            <Card
-              id={retail.id}
-              slug={retail.slug}
-              title={retail.title}
-              capacity={retail.capacity}
-              length={retail.length}
-              width={retail.width}
-              excerpt={retail.excerpt}
-              cutout={retail.cutout}
-              type={retail.type}
-            />
-          ))}
-        </section>
+
+        <Deck retail={kayak.nodes} />
+
       </section>
 
       <article className="main__full main__full--tour baseline-spacing">
@@ -263,21 +260,7 @@ query DemosQuery {
         </section>
       </article>
 
-      <section className="deck">
-        {paddleboards.nodes.map(retail => (
-          <Card
-            id={retail.id}
-            slug={retail.slug}
-            title={retail.title}
-            capacity={retail.capacity}
-            length={retail.length}
-            width={retail.width}
-            excerpt={retail.excerpt}
-            cutout={retail.cutout}
-            type={retail.type}
-          />
-        ))}
-      </section>
+      <Deck retail={paddleboards.nodes} />
 
       <Footer />
     </>
