@@ -1,23 +1,24 @@
+// ! something is totally broken in here and including it breaks the build
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Logo from '../images/logo';
-import FacebookIcon from '../images/facebook';
-import InstagramIcon from '../images/instagram';
-import PricingChart from '../components/pricing-chart';
-import BookNow from '../components/peek/book-now';
+// import Logo from '../images/logo';
+// import FacebookIcon from '../images/facebook';
+// import InstagramIcon from '../images/instagram';
+// import PricingChart from '../components/pricing-chart';
+// import BookNow from '../components/peek/book-now';
 
 export const Footer = ({ primary }) => {
   const mode = primary ? 'storybook-Footer--primary' : 'storybook-Footer--secondary';
   return (
     <footer>
-      <div>
+      {/* <div>
         <h3 className='sr-only'><a href="/">Tahoe City Kayak and Paddleboard</a></h3>
-        {/* <a href="/"><Logo /></a> */}
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
         <nav>
-          {/* <MenuList /> */}
+          // <MenuList />
         </nav>
         <hr />
         <div className="footer__contact">
@@ -38,9 +39,9 @@ export const Footer = ({ primary }) => {
         <PricingChart book="no" />
         <hr />
         <section className="home__here" >
-          {/* <Complete /> */}
+          // <Complete />
         </section>
-      </div>
+      </div> */}
 
     </footer >
   );
