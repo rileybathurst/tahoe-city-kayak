@@ -230,14 +230,17 @@ footer {
     border-block-end: 1px solid var(--kingly-cloud);
   }
 
-  > *:first-child,
-  *:last-child,
-  .logo-copy {
-    border-block-end: none;
+  .logo-link {
+    display: inline-block;
+    transition: var(--fade);
+
+    .gatsby-image-wrapper {
+      margin-block-end: var(--baseline);
+    }
   }
 
-  .logo-copy img {
-    margin-block-end: 1.5rem;
+  .logo-link:where(:hover, :focus) {
+    filter: brightness(0.5);
   }
 
   svg {
@@ -513,32 +516,13 @@ footer {
   }
 }
 
+// TODO: bad naming
+// it doesnt explain why I would use this instead
 .tour-collage {
   .texture {
     width: 80%;
     justify-self: end;
     aspect-ratio: 16/9;
-  }
-}
-
-.retail-collage {
-  grid-template-rows: 3rem auto auto;
-
-  > * {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .texture {
-    width: 80%;
-    justify-self: center;
-    aspect-ratio: 16/9;
-    // max-height: 5rem;
-    // margin-block-start: 5rem;
-  }
-
-  .cutout {
-    filter: drop-shadow(5px 5px 5px hsla(0, 0%, 12.5%, 0.5));
   }
 }
 

@@ -186,7 +186,6 @@ const Header = () => {
             <Logo />
           </Link>
         </h1>
-        {/* <PaddleIcon className="paddle--right" /> */}
       </div>
       <Menu />
       <Button />

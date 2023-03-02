@@ -8,7 +8,10 @@ export const useStrapiLogos = () => {
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 294)
+              gatsbyImageData(
+                width: 294
+                transformOptions: {fit: CONTAIN}
+              )
             }
           }
         }

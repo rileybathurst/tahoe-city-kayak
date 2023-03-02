@@ -10,9 +10,9 @@ import Complete from './locations/complete';
 const Header = () => {
   return (
     <footer>
-      <div className='logo-copy'>
+      <div>
         <h3 className='sr-only'><Link to="/">Tahoe City Kayak and Paddleboard</Link></h3>
-        <Link to="/"><Logo /></Link>
+        <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
         <nav>

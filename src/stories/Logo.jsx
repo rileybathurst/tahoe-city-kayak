@@ -10,7 +10,6 @@ export const Logo = ({ primary }) => {
       <div className="logo-container">
         <PaddleIcon className="paddle--left" />
         <h1 className='logo'><a href="/" className="link__subtle">Tahoe City<br /> Kayak</a></h1>
-        <PaddleIcon className="paddle--right" />
       </div>
     </header>
   );

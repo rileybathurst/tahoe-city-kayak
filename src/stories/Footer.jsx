@@ -11,7 +11,7 @@ export const Footer = ({ primary }) => {
   const mode = primary ? 'storybook-Footer--primary' : 'storybook-Footer--secondary';
   return (
     <footer>
-      <div className='logo-copy'>
+      <div>
         <h3 className='sr-only'><a href="/">Tahoe City Kayak and Paddleboard</a></h3>
         {/* <a href="/"><Logo /></a> */}
         <p>&copy; {new Date().getFullYear()}</p>
