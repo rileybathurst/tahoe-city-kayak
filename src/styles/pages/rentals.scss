@@ -10,14 +10,14 @@
   grid-template-areas:
     ".info"
     ".book-now"
-    ".montage"
+    ".composition"
     ".here__location";
 
   @media (min-width: $vulture) {
     grid-template-columns: repeat(auto-fit, minmax(29rem, 1fr));
 
     grid-template-areas:
-      ".info .montage"
+      ".info .composition"
       ".book-now .here__location";
   }
 

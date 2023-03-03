@@ -157,7 +157,7 @@ const TourView = ({ tour, other }) => {
         </div>
 
         <section>
-          <div className="collage tour-collage">
+          <div className="collage composition">
             <GatsbyImage
               image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
               alt={tour?.ogimage?.alternativeText}

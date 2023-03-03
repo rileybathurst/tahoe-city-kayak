@@ -110,7 +110,7 @@ query RetailsQuery {
         </section>
 
         <section>
-          <div className="collage tour-collage">
+          <div className="collage composition">
             <TextureBackgrounds />
             <WaterTexture className="texture card__image" />
             <Kayaker />
@@ -162,7 +162,7 @@ query RetailsQuery {
         </section>
 
         <section>
-          <div className="collage tour-collage">
+          <div className="collage composition">
             <TextureBackgrounds />
             <WaterTexture className="texture card__image" />
             <Supper />

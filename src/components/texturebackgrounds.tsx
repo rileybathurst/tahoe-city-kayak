@@ -5,7 +5,7 @@ import { useStrapiTextures } from "../hooks/use-strapi-textures"
 // const { query } = useStrapiTextures()
 // console.log(query)
 
-function BaseOne() {
+function BaseOne(props) {
 
   const { query } = useStrapiTextures()
   // console.log(query.baseone);
@@ -13,55 +13,55 @@ function BaseOne() {
   return <GatsbyImage
     image={query.baseone.image.localFile.childImageSharp.gatsbyImageData}
     alt="deepwater texture"
-    className="texture-slice"
+    className={`texture-slice ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
 }
 
-function BaseTwo() {
+function BaseTwo(props) {
   const { query } = useStrapiTextures()
   return <GatsbyImage
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/marissa-rodriguez-2mKYEVGA4jE-unsplash.jpg"
     image={query.basetwo.image.localFile.childImageSharp.gatsbyImageData}
     alt="clear texture"
-    className="texture-slice"
+    className={`texture-slice ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
 }
 
-function BaseThree() {
+function BaseThree(props) {
   const { query } = useStrapiTextures()
 
   return <GatsbyImage
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/samara-doole-peaTniZsUQs-unsplash.jpg"
     image={query.basethree.image.localFile.childImageSharp.gatsbyImageData}
     alt="splash texture"
-    className="texture-slice"
+    className={`texture-slice ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
 }
 
-function TopOne() {
+function TopOne(props) {
   const { query } = useStrapiTextures()
 
   return <GatsbyImage
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.jpg"
     image={query.topone.image.localFile.childImageSharp.gatsbyImageData}
     alt="sunset texture"
-    className="texture-slice crop"
+    className={`texture-slice crops ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
   />
 }
 
-function TopTwo() {
+function TopTwo(props) {
   const { query } = useStrapiTextures()
 
   return <GatsbyImage
@@ -75,7 +75,7 @@ function TopTwo() {
   />
 }
 
-function TopThree() {
+function TopThree(props) {
   const { query } = useStrapiTextures()
 
   return <GatsbyImage

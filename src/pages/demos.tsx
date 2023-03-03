@@ -227,7 +227,7 @@ const DemosPage = () => {
           </div>
 
           <section>
-            <div className="collage tour-collage">
+            <div className="collage composition">
               {/* <TopTwo /> // ! fix */}
               <WaterTexture className="texture card__image" />
               <Kayaker />
@@ -253,7 +253,7 @@ const DemosPage = () => {
         </div>
 
         <section>
-          <div className="collage tour-collage">
+          <div className="collage composition">
             <WaterTexture className="texture card__image" />
             <Supper />
           </div>

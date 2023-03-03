@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -19,6 +20,21 @@ import WaterTexture from "../images/watertexture";
 
 import Kayaker from "../images/kayaker";
 import BookNow from "../components/peek/book-now";
+
+import { useStrapiTextures } from "../hooks/use-strapi-textures"
+
+function TopOne(props) {
+
+  const { query } = useStrapiTextures()
+  // console.log(query.baseone);
+
+  return <GatsbyImage
+    image={query.topthree.image.localFile.childImageSharp.gatsbyImageData}
+    alt="deepwater texture"
+    className={`texture-slice crops ${props.className}`}
+    objectFit="contain"
+  />
+}
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -51,9 +67,12 @@ const RentalsPage = () => {
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 
         </article>
-        <div className="montage">
-          <WaterTexture className="water_texture" />
-          <Kayaker />{/* // ! this needs a class */}
+
+        {/* // ! these also need to be a component that way I shouldn't get lost with them */}
+        <div className="composition">
+          <WaterTexture className="t1" />
+          <TopOne className="t2 img__wrapped" />
+          <Kayaker className="paddler" />
         </div>
 
         <BookNow />
