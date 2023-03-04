@@ -18,6 +18,8 @@ import WaterTexture from "../images/watertexture";
 import Kayaker from "../images/kayaker";
 import Supper from "../images/supper";
 
+import Composition from "../components/composition";
+
 import Retail from "../content/retail";
 
 const RetailPage = () => {
@@ -109,13 +111,7 @@ query RetailsQuery {
           <KayakFeatureList />
         </section>
 
-        <section>
-          <div className="collage composition">
-            <TextureBackgrounds />
-            <WaterTexture className="texture card__image" />
-            <Kayaker />
-          </div>
-        </section>
+        <Composition sport="kayak" />
 
       </article>
 
@@ -161,13 +157,7 @@ query RetailsQuery {
           <PaddleboardFeatureList />
         </section>
 
-        <section>
-          <div className="collage composition">
-            <TextureBackgrounds />
-            <WaterTexture className="texture card__image" />
-            <Supper />
-          </div>
-        </section>
+        <Composition sport="sup" />
       </article>
 
       <section className="brand_list">

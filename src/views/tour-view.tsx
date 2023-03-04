@@ -22,6 +22,8 @@ import ParentTitleBreadcrumb from "../components/parent-title-breadcrumb";
 import Kayaker from "../images/kayaker";
 import Supper from "../images/supper";
 
+import Composition from "../components/composition";
+
 function Paddler(props) {
   if (props.sport === "kayak") {
     return (
@@ -157,15 +159,8 @@ const TourView = ({ tour, other }) => {
         </div>
 
         <section>
-          <div className="collage composition">
-            <GatsbyImage
-              image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={tour?.ogimage?.alternativeText}
-              className="card__image tour_texture"
-            />
-            <WaterTexture className="texture card__image" />
-            <Paddler sport={tour.sport} />
-          </div>
+          <Composition sport={tour.sport} />
+
           <hr />
           <div className="here__location here__card card--split">
             <MapLink>

@@ -10,18 +10,9 @@ import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
-// import Rentals from "../content/rentals";
-
-// import Rentals from "../components/locations/rentals"; // I dont want all the info
 import CarIcon from "../images/car";
-
-import TextureBackgrounds from "../components/texturebackgrounds";
-import WaterTexture from "../images/watertexture";
-
-import Kayaker from "../images/kayaker";
 import BookNow from "../components/peek/book-now";
-
-import { useStrapiTextures } from "../hooks/use-strapi-textures"
+import Composition from "../components/composition";
 
 function TopOne(props) {
 
@@ -68,12 +59,7 @@ const RentalsPage = () => {
 
         </article>
 
-        {/* // ! these also need to be a component that way I shouldn't get lost with them */}
-        <div className="composition">
-          <WaterTexture className="t1" />
-          <TopOne className="t2 img__wrapped" />
-          <Kayaker className="paddler" />
-        </div>
+        <Composition />
 
         <BookNow />
 

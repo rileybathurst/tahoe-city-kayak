@@ -16,6 +16,7 @@ import Demos from "../content/demos";
 
 import { useStrapiKayaker } from "../hooks/use-strapi-kayaker";
 import { useStrapiSupper } from "../hooks/use-strapi-supper";
+import Composition from "../components/composition";
 
 function Kayaker(props) {
 
@@ -223,17 +224,9 @@ const DemosPage = () => {
                 brand={kayak.nodes.map(brand => (brand.brand))}
               />
             </ul>
-
           </div>
 
-          <section>
-            <div className="collage composition">
-              {/* <TopTwo /> // ! fix */}
-              <WaterTexture className="texture card__image" />
-              <Kayaker />
-            </div>
-          </section>
-
+          <Composition sport="kayak" />
         </div>
 
 
@@ -252,12 +245,7 @@ const DemosPage = () => {
           </ul>
         </div>
 
-        <section>
-          <div className="collage composition">
-            <WaterTexture className="texture card__image" />
-            <Supper />
-          </div>
-        </section>
+        <Composition sport="sup" />
       </article>
 
       <Deck retail={paddleboards.nodes} />
