@@ -244,7 +244,7 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="pelican-inline">
+      <section id="retail" className="passage">
         {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
 
         <hgroup className="crest">
@@ -256,15 +256,13 @@ const IndexPage = () => {
         <hr />
       </section>
 
-      <section className="reuseable__two-col">
-        <div>
+      <section className="home__retail">
+        <div className="passage">
           <h4><Link to="/retail/kayak">Shop All Kayaks</Link></h4>
           <h5>Shop By Feature</h5>
           <KayakFeatureList />
           <h5>Shop By Brand</h5>
-          <div className="brand_list--home">
-            <KayakBrandList />
-          </div>
+          <KayakBrandList />
 
           <hr />
 
@@ -272,9 +270,7 @@ const IndexPage = () => {
           <h5>Shop By Feature</h5>
           <PaddleboardFeatureList />
           <h5>Shop By Brand</h5>
-          <div className="brand_list--home">
-            <SupBrandList />
-          </div>
+          <SupBrandList />
         </div>
 
         <div className="deck deck__column">

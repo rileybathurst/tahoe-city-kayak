@@ -5,7 +5,8 @@
 .deck {
   max-width: var(--pelican);
   margin-inline: auto;
-  margin-block: 3rem;
+  // margin-block: 3rem;
+  margin-block-end: calc(var(--baseline) * 2);
 
   display: grid;
   grid-template-columns: 1fr;

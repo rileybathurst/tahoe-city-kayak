@@ -124,10 +124,10 @@ const UltralightPage = () => {
           />
         ))}
       </section>
-      <hr className="pelican-inline" />
+      <hr className="passage" />
 
 
-      <section className="pelican-inline">
+      <section className="passage">
         <h3>Browse Kayaks by Feature</h3>
         <KayakFeatureList />
       </section>

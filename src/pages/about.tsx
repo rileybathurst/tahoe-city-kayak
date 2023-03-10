@@ -32,8 +32,7 @@ const AboutPage = () => {
         {/* <h2>We are here</h2> */}
       </main>
 
-      <div className="home__here">
-        {/* // * this is a bad name */}
+      <div className="about__info">
         <Complete />
         <MapSVG />
       </div>

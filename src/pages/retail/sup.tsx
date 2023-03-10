@@ -337,7 +337,7 @@ query SupQuery {
 
         {hobie.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -361,7 +361,7 @@ query SupQuery {
 
         {bote.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -405,7 +405,7 @@ query SupQuery {
 
         {tahe.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -444,7 +444,7 @@ query SupQuery {
 
         {sic.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -483,7 +483,7 @@ query SupQuery {
 
         {hala.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -523,7 +523,7 @@ query SupQuery {
 
         {boardworks.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -562,7 +562,7 @@ query SupQuery {
 
         {pauhana.nodes.map(brand => (
           <div>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>

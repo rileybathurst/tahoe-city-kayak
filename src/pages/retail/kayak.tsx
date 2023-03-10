@@ -306,7 +306,7 @@ query KayaksQuery {
         <hr />
       </main>
 
-      <section className="pelican-inline">
+      <section className="passage">
         <h2>Browse By Brand</h2>
       </section>
 
@@ -316,7 +316,7 @@ query KayaksQuery {
 
         {hobie.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -355,7 +355,7 @@ query KayaksQuery {
 
         {eddyline.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -395,7 +395,7 @@ query KayaksQuery {
 
         {perception.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -435,7 +435,7 @@ query KayaksQuery {
 
         {wildernesssystems.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -475,7 +475,7 @@ query KayaksQuery {
 
         {delta.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -516,7 +516,7 @@ query KayaksQuery {
 
         {bote.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>
@@ -556,7 +556,7 @@ query KayaksQuery {
 
         {brusurf.nodes.map(brand => (
           <div key={brand.id}>
-            <section className="pelican-inline">
+            <section className="passage">
               <div className='brand-logo'>
                 <Danger svg={brand.svg} />
                 <h2 className='capitalize'>

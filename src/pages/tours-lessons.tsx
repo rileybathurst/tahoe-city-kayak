@@ -17,12 +17,11 @@ import ToursLessons from "../content/tours-lessons";
 
 const ToursLessonsPage = () => {
 
-
   const query = useStaticQuery(graphql`
-query ToursQuery {
-  kayak: allStrapiTour
-    (filter: { sport: { eq: "kayak" } })
-  {
+    query ToursQuery {
+      kayak: allStrapiTour
+        (filter: { sport: { eq: "kayak" } })
+      {
 
       nodes {
         id
@@ -85,7 +84,7 @@ query ToursQuery {
     <>
       <Header />
 
-      <main className="pelican-inline">
+      <main className="passage">
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
@@ -116,9 +115,10 @@ query ToursQuery {
         </div>
 
 
-        <article className="pelican-inline">
+        <article className="passage">
           <hgroup>
-            <h1>KAYAK</h1><h2>Tours &amp; Lessons</h2>
+            <h1>KAYAK</h1>
+            <h2>Tours &amp; Lessons</h2>
           </hgroup>
         </article>
         <div className="deck">
@@ -162,7 +162,7 @@ query ToursQuery {
           ))
           }
         </div>
-        <article className="pelican-inline">
+        <article className="passage">
           <hgroup>
             <h1>Paddleboard</h1>
             <h2>Tours &amp; Lessons</h2>

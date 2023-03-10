@@ -21,7 +21,7 @@ const More = (props) => {
   if (typeLength > 4) {
 
     return (
-      <section className="pelican-inline">
+      <section className="passage">
         <h3 className='capitalize'>
           <Link to={props.slug}>
             All {typeLength} {props.brand} <Sport sport={`${props.type}s`} />

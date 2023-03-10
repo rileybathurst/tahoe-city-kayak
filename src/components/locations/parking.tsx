@@ -9,13 +9,15 @@ const Parking = () => {
         <CarIcon />
       </a>
       <p><strong>Free Parking Lot</strong><br />
-        <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
+        <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd,<br className="no-below-vulture" />
+          <span className="only-below-vulture">&nbsp;</span>
           Tahoe City 96145
         </a>
       </p>
       <p><strong>Free On-Street Parking</strong><br />
-        In front of the retail store<br />
-        North Lake Blvd<br />
+        In front of the retail store<br className="no-below-vulture" />
+        <span className="only-below-vulture">&nbsp;</span>
+        North Lake Blvd
       </p>
     </section>
   )

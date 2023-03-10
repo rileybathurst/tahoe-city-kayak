@@ -107,9 +107,9 @@ const RigidKayakPage = () => {
         }
       </section >
 
-      < hr className="pelican-inline" />
+      < hr className="passage" />
 
-      <section className="pelican-inline" >
+      <section className="passage" >
         <h3>Browse More Kayaks by Features</h3>
         <KayakFeatureList />
       </section>

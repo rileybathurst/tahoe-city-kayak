@@ -11,7 +11,8 @@ const Store = () => {
       <p>
         <strong>Retail Location</strong><br />
         <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
-          521 North Lake Blvd,<br />
+          521 North Lake Blvd,<br className="no-below-vulture" />
+          <span className="only-below-vulture">&nbsp;</span>
           Tahoe City 96145</a>
       </p>
 

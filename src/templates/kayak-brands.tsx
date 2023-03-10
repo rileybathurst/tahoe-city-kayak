@@ -136,7 +136,7 @@ const KayakBrandView = ({ data }) => {
       <div className="series">
         {/* // TODO moving the query up would be nicer to be able to stripe things */}
         {/* im sure i saw something about this using hidden as a base prop maybe on codepen */}
-        <section id='island' className="pelican-inline">
+        <section id='island' className="passage">
           <Next series={data.brand.retail} list='false' title="island" />
 
           {/* this has to be here */}
@@ -158,7 +158,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='mirage' className="pelican-inline">
+        <section id='mirage' className="passage">
           <Next series={data.brand.retail} title="mirage" />
 
           <div className="deck">
@@ -178,7 +178,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='inflatable' className="pelican-inline">
+        <section id='inflatable' className="passage">
           <Next series={data.brand.retail} title="inflatable" />
 
           <div className="deck">
@@ -198,7 +198,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='performance' className="pelican-inline">
+        <section id='performance' className="passage">
           <Next series={data.brand.retail} title="performance" />
 
           <div className="deck">
@@ -218,7 +218,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='recreational' className="pelican-inline">
+        <section id='recreational' className="passage">
           <Next series={data.brand.retail} title="recreational" />
 
           <div className="deck">
@@ -238,7 +238,7 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
 
-        <section id='sit-on-top' className="pelican-inline">
+        <section id='sit-on-top' className="passage">
           <Next series={data.brand.retail} title="sit-on-top" />
 
           <div className="deck">
@@ -260,7 +260,7 @@ const KayakBrandView = ({ data }) => {
 
         {/* //TODO: there needs to be more of a not in a series */}
 
-        <section className="pelican-inline">
+        <section className="passage">
           <Next series={data.brand.retail} title="null" />
 
           <div className="deck">

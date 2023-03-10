@@ -3,8 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { useStrapiWaterTexture } from "../hooks/use-strapi-watertexture";
 
-const WaterTexture = (props) => {
-
+const WaterTexture = (props: { className?: string; }) => {
   const { title, image } = useStrapiWaterTexture()
 
   return (

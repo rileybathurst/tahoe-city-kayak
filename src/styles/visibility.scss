@@ -36,3 +36,15 @@
     display: none;
   }
 }
+
+.no-below-vulture {
+  @media (max-width: $vulture) {
+    display: none;
+  }
+}
+
+.only-below-vulture {
+  @media (min-width: $vulture) {
+    display: none;
+  }
+}

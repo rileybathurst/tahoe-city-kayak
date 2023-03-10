@@ -10,7 +10,8 @@ const Rentals = () => {
       <p>
         <strong>On Water Rental</strong><br />
         <MapLink>
-          Commons Beach<br />
+          Commons Beach<br className="no-below-vulture" />
+          <span className="only-below-vulture">&nbsp;</span>
           400 North Lake Blvd,<br />
           Tahoe City 96145<br />
         </MapLink>

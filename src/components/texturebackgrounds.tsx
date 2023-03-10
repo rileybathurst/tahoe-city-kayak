@@ -54,7 +54,7 @@ function TopOne(props) {
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/dewang-gupta-ESEnXckWlLY-unsplash.jpg"
     image={query.topone.image.localFile.childImageSharp.gatsbyImageData}
     alt="sunset texture"
-    className={`texture-slice crops ${props.className}`}
+    className={`texture-slice crop ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
@@ -68,7 +68,7 @@ function TopTwo(props) {
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jason-leem-50bzI1F6urA-unsplash.jpg"
     image={query.toptwo.image.localFile.childImageSharp.gatsbyImageData}
     alt="forrest texture"
-    className="texture-slice crop"
+    className={`texture-slice crop ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
@@ -82,7 +82,7 @@ function TopThree(props) {
     // image="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/textures/jim-gade-eYWNaMffWHI-unsplash.jpg"
     image={query.topthree.image.localFile.childImageSharp.gatsbyImageData}
     alt="sand texture"
-    className="texture-slice crop"
+    className={`texture-slice crop ${props.className}`}
     objectFit="contain"
   // breakpoints={[300, 600, 900]}
   // width={650}
@@ -103,7 +103,7 @@ function BaseTexture() {
   );
 }
 
-function TopTexture(props) {
+function TopTexture(props: { crop?: string; }) {
   const textures = [
     <TopOne crop={props.crop} />,
     <TopTwo crop={props.crop} />,
@@ -123,20 +123,15 @@ const TextureBackgrounds = (props) => {
 
   return (
     <>
-
-      {/* {baseone} */}
-
       <BaseTexture />
       <TopTexture />
-      {/* // TODO: dark */}
       <svg
         viewBox="0 0 1200 630"
         xmlns="http://www.w3.org/2000/svg"
-        className="texture-slice"
       >
         <line
           x1="0" y1="630" x2="1200" y2="0"
-          // stroke="whitesmoke"
+          // only color the stroke in css so it has dark mode
           strokeWidth="3"
         />
       </svg>

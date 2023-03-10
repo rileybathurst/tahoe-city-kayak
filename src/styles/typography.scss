@@ -187,7 +187,7 @@ hr.no {
 hgroup {
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
+  column-gap: 1ch;
   align-items: baseline;
 }
 
