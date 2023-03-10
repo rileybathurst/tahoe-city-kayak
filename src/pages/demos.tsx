@@ -214,7 +214,7 @@ const DemosPage = () => {
 
 
       <section className="demo__kayak">
-        <div className="demo__kayak--header">
+        <div className="demo__kayak--header passage">
           <div>
             <h3>Demos</h3>
             <hr />

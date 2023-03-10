@@ -239,8 +239,8 @@ const RetailTypeView = ({ data }) => {
         </ol>
       </nav>
 
-      <main className="main__full">
-        <div>
+      <main className="retail">
+        <div className='passage specs'>
           <hgroup className="hgroup__retail">
             {/* // TODO brand logo */}
             <h1 className="h_title">{data.strapiRetail.title}</h1>
@@ -268,26 +268,26 @@ const RetailTypeView = ({ data }) => {
           {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
           <Spec name="price" spec={data.strapiRetail.price} unit="$" unitPlace="before" />
         </div>
-        <div>
-          <div className="collage card-collage">
-            <TextureBackgrounds />
 
-            <GatsbyImage
-              image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={data.strapiRetail?.cutout?.alternativeText}
-              className="cutout"
-            />
-          </div>
+        <div className="collage card-collage hero">
+          <TextureBackgrounds />
 
-          <ReactMD
-            raw={data.strapiRetail?.features?.data?.features}
-            className="features"
-            title="Features"
+          <GatsbyImage
+            image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={data.strapiRetail?.cutout?.alternativeText}
+            className="cutout"
           />
         </div>
+
+        <ReactMD
+          raw={data.strapiRetail?.features?.data?.features}
+          className="features"
+          title="Features"
+        />
+
       </main>
 
-      <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description" />
+      <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description passage" />
 
       <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
 

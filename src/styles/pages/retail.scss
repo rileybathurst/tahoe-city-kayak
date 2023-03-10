@@ -1,0 +1,38 @@
+/*------------------*/
+//  #RETAIL
+/*------------------*/
+
+.retail {
+  max-width: var(--pelican);
+  display: grid;
+  column-gap: 0.75rem;
+  row-gap: var(--baseline);
+
+  grid-template-areas:
+    "hero"
+    "specs"
+    "features";
+
+  @media (min-width: $vulture) {
+    grid-template-areas:
+      "specs hero"
+      "specs features";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero {
+    grid-area: hero;
+  }
+
+  .specs {
+    grid-area: specs;
+
+    @media (min-width: $vulture) {
+      width: calc(100% - 0.75rem);
+    }
+  }
+
+  .features {
+    grid-area: features;
+  }
+}
