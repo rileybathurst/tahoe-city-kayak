@@ -20,9 +20,11 @@ function Kayak(props) {
     <article className="card">
       <div className="card-collage">
         <TextureBackgrounds />
+
         <GatsbyImage
           image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.cutout?.alternativeText}
+          objectFit="contain"
           className="cutout"
         />
       </div>
@@ -86,7 +88,6 @@ function Next(props) {
 
 const KayakBrandView = ({ data }) => {
 
-
   // hobie has a series of inflatable, mirage, performance, island
   // eddyline has a series of performance, recreational, sit-on-top
 
@@ -100,8 +101,6 @@ const KayakBrandView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-
-
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>
@@ -304,32 +303,32 @@ query (
   }
 }
 
-island: allStrapiRetail(
-  filter: {
-    brand: {slug: {eq: $slug}},
-    type: {eq: "kayak"},
-    series: {eq: "island"}
-  }
-) {
-  edges {
-    node {
-      title
-      slug
-      excerpt
-      length
-      width
+  island: allStrapiRetail(
+    filter: {
+      brand: {slug: {eq: $slug}},
+      type: {eq: "kayak"},
+      series: {eq: "island"}
+    }
+  ) {
+    edges {
+      node {
+        title
+        slug
+        excerpt
+        length
+        width
 
-      cutout {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
+          alternativeText
         }
-        alternativeText
       }
     }
   }
-}
 
 mirage: allStrapiRetail(
 filter: {

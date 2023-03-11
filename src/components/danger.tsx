@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Danger = (props) => {
+const Danger = (props: { svg: string; }) => {
   const svg = (props.svg);
 
   return (

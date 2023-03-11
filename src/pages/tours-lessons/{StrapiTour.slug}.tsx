@@ -39,6 +39,7 @@ export const query = graphql`
 
     allStrapiTour(filter: {slug: {nin: [$slug] }}) {
       nodes {
+        id
         name
         slug
         excerpt

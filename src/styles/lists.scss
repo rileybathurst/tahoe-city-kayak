@@ -132,6 +132,11 @@ ul {
       font-weight: 600;
 
       display: grid;
+
+      // I know it breaks the inception rule its very short
+      > p {
+        align-self: end;
+      }
     }
 
     svg {

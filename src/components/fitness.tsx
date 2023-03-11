@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Fitness = (props) => {
+const Fitness = (props: { fitness: string; }) => {
   if (props.fitness) {
     return (
       <h4 className="capitalize">

@@ -41,7 +41,13 @@ const FaqPage = () => {
 
         <ul className="testimonials">
           {
-            allStrapiTestimonial.nodes.map(testimonial => (
+            allStrapiTestimonial.nodes.map((testimonial: {
+              id: string;
+              customer: string;
+              testimonial: string;
+              sign: string;
+              location: string;
+            }) => (
               <li key={testimonial.id} >
                 <h2>{testimonial.customer}</h2>
                 <p>{testimonial.testimonial}</p>

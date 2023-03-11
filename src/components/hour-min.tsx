@@ -1,6 +1,8 @@
 import * as React from "react"
 
-const HourMin = (props) => {
+const HourMin = (props: {
+  time: any; // TODO: Date? Number? String? What is this?
+}) => {
   if (props.time) {
     let hours = props.time.split(':')[0];
     let mins = props.time.split(':')[1];

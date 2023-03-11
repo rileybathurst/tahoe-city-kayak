@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Remainder = (props) => {
+const Remainder = (props: { inches: number }) => {
   if (props.inches) {
     let inches = props.inches;
     let feet = Math.floor(inches / 12);
@@ -16,9 +16,10 @@ const Remainder = (props) => {
         </>
       )
     }
-  } else {
-    return null;
   }
+  /*   else {
+      return null;
+    } */
 }
 
 export default Remainder

@@ -186,6 +186,9 @@ const IndexPage = () => {
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
           <ToursLessons />
+          <h4>
+            <Link to="/tours-lessons/compare">Compare Tours &amp; Lessons</Link>
+          </h4>
         </div>
         <div>{/* stay gold */}</div>
       </section>

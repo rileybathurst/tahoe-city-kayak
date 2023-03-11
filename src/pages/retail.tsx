@@ -129,6 +129,7 @@ query RetailsQuery {
                 image={kayak.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                 alt={kayak.cutout?.alternativeText}
                 className="cutout"
+                objectFit="contain"
               />
             </div>
             <h4 className="card__title">
@@ -174,6 +175,7 @@ query RetailsQuery {
                 image={sup.cutout?.localFile?.childImageSharp?.gatsbyImageData}
                 alt={sup.cutout?.alternativeText}
                 className="cutout"
+                objectFit="contain"
               />
             </div>
             <h4 className="card__title">

@@ -117,33 +117,45 @@ function ReactMD(props) {
 
 function Other(props) {
 
-  // console.log('test');
-
+  // console.log(props.retail);
   if (props.retail) {
-    return (
-      <article className="card">
+    const cards = props.retail.edges.map(edge => (
+
+      // console.log(edge.node.title);
+
+      <article
+        key={edge.node.id}
+        className="card"
+      >
         <div className="card-collage">
           <TextureBackgrounds />
           <GatsbyImage
-            image={props.retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={props.retail?.cutout?.alternativeText}
+            image={edge.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={edge.node?.cutout?.alternativeText}
             className="cutout"
             itemProp="image"
+            objectFit="contain"
           />
         </div>
         <h4 className="card__title">
-          <Link to={`/retail/${props.retail.type}/${props.retail.slug}`}>
-            {props.retail.title}
+          <Link to={`/retail/${edge.node.type}/${edge.node.slug}`}>
+            {edge.node.title}
           </Link>
         </h4>
         <hr />
-        <p>{props.retail.excerpt}</p>
+        <p>{edge.node.excerpt}</p>
         <hr />
         <div className="card__details">
-          <h4 className="capitalize">Capacity {props.retail.capacity}LBS</h4>
-          <h5><Remainder inches={props.retail.length} /> tall by {props.retail.width}" wide</h5>
+          <h4 className="capitalize">Capacity {edge.node.capacity}LBS</h4>
+          <h5><Remainder inches={edge.node.length} /> tall by {edge.node.width}" wide</h5>
         </div>
       </article>
+    ));
+
+    return (
+      <section className='deck'>
+        {cards}
+      </section>
     )
   } else {
     return null;
@@ -157,9 +169,7 @@ function OtherWrap(props) {
         <section className='passage'>
           <h2>Other {props.type}s by <span className='capitalize'>{props.brand}</span></h2>
         </section>
-        <div className='deck'>
-          {props.children}
-        </div>
+        {props.children}
         <section className='passage'>
           <h3>
             <Link to={`/retail/${props.type}/${props.slug}`}>
@@ -225,8 +235,6 @@ const RetailTypeView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-
-
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>
@@ -276,6 +284,7 @@ const RetailTypeView = ({ data }) => {
             image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
             alt={data.strapiRetail?.cutout?.alternativeText}
             className="cutout"
+            objectFit="contain"
           />
         </div>
 
@@ -292,9 +301,7 @@ const RetailTypeView = ({ data }) => {
       <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
 
       <OtherWrap retail={data.allStrapiRetail} brand={data.strapiRetail.brand.name} slug={data.strapiRetail.brand.slug} type={data.strapiRetail.type}>
-        {data.allStrapiRetail.edges.map(({ node }) => (
-          <Other retail={node} />
-        ))}
+        <Other retail={data.allStrapiRetail} />
       </OtherWrap>
 
       {/* // The map just creates nothing so I cant go that way */}

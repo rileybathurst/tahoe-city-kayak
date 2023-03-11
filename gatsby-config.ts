@@ -19,6 +19,7 @@ const strapiConfig = {
 };
 
 module.exports = {
+  graphqlTypegen: true,
   siteMetadata: {
     title: "Tahoe City Kayak and Padddleboard",
     name: "Tahoe City Kayak and Padddleboard",

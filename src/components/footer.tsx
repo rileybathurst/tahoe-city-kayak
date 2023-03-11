@@ -24,10 +24,17 @@ const Header = () => {
           <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer" className="button">tahoecitykayak@gmail.com</a>
           <hr />
           <div className="social">
-            <a href="https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736" target='_blank' rel='noopener noreferrer'>
+            <a
+              href="https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736"
+              target='_blank' rel='noopener noreferrer'
+              aria-label="tahoe city kayak and paddleboard facebook"
+            >
               <FacebookIcon />
             </a>
-            <a href="https://www.instagram.com/tahoecitykayak/" target='_blank' rel='noopener noreferrer'>
+            <a href="https://www.instagram.com/tahoecitykayak/"
+              target='_blank' rel='noopener noreferrer'
+              aria-label="tahoe city kayak and paddleboard instagram"
+            >
               <InstagramIcon />
             </a>
           </div>

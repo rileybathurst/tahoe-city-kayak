@@ -202,7 +202,10 @@ const TourView = ({ tour, other }) => {
 
         <section className="deck">
           {other.nodes.map(tour => (
-            <article className="card">
+            <article
+              key={tour.id}
+              className="card"
+            >
               <GatsbyImage
                 image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
                 alt={tour?.ogimage?.alternativeText}

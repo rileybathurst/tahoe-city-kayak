@@ -24,6 +24,7 @@ function Sup(props) {
           image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.cutout?.alternativeText}
           className="cutout"
+          objectFit="contain"
         />
       </div>
       <h4 className="card__title">
@@ -101,8 +102,6 @@ const supBrandView = ({ data }) => {
         className="breadcrumbs"
       >
         <ol>
-
-
           <li>
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>
@@ -152,7 +151,7 @@ const supBrandView = ({ data }) => {
         }
       </div>
 
-      <section id='mirage' className="possibly-empty">
+      <section id='mirage' className="possibly-empty passage">
         <Next series={data.brand.retail} title="mirage" />
       </section>
       <div className="deck">

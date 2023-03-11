@@ -39,6 +39,7 @@ function Card(retail) {
       <p>{retail.kayak.excerpt}</p>
       <hr />
       <div className="card__details">
+        {/* // TODO: 'Remainder' cannot be used as a JSX component. */}
         <h4><Remainder inches={retail.kayak.length} /> long by {retail.kayak.width}" wide</h4>
         <h5 className="capitalize">Capacity {retail.kayak.capacity}lbs</h5>
         {/* // TODO: if no capacity */}
@@ -98,6 +99,7 @@ const InflatableKayakPage = () => {
         <p>// TODO: </p>
       </main>
 
+      {/* // TODO: move this to a component and also give it keys properly */}
       <section className="deck" key="deck">
         {allStrapiRetail.nodes.map(retail => (
           <Card

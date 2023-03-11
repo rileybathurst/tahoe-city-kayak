@@ -40,7 +40,12 @@ const FaqPage = () => {
         <h1>{title}</h1>
 
         <ul className="faq">
-          {allStrapiFaq.nodes.map(faq => (
+          {allStrapiFaq.nodes.map((faq:
+            {
+              id: string;
+              question: string;
+              answer: string;
+            }) => (
             <li key={faq.id}>
               <h2>{faq.question}</h2>
               <p>

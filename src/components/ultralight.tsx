@@ -2,7 +2,7 @@
 import * as React from "react"
 import { Link } from 'gatsby';
 
-const Ultralight = (props) => {
+const Ultralight = () => {
   return (
     <>
       <div className="paragraph-list">
