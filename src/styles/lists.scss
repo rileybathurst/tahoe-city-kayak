@@ -97,12 +97,20 @@ ul {
 
   // grid-template-columns: 1fr 1fr;
   // this doesnt work on the home page as its wider so it can fill its won space
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  // grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); // guess and check
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(8rem, 1fr)
+  ); // guess and check
   gap: 1rem;
 
   @media (min-width: $vulture) {
     max-width: var(--pelican);
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    // grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(12rem, 1fr)
+    ); // guess and check this seems best on front page
   }
 
   > li {
@@ -143,10 +151,14 @@ ul {
       transition: var(--fade);
       margin: var(--baseline);
       fill: whitesmoke;
-      min-width: 5rem; // guess and check
+      min-width: 3rem; // guess and check
+
+      @media (min-width: $swan) {
+        min-width: 4rem; // guess and check
+      }
 
       @media (min-width: $vulture) {
-        min-width: 10rem; // guess and check
+        min-width: 8rem; // guess and check
       }
     }
 

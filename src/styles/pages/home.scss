@@ -130,5 +130,12 @@
 
   .brand_list {
     padding-inline: 0;
+    // without this i get a single column front page
+    max-width: initial;
+
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(10rem, 1fr)
+    ); // guess and check this seems best on front page
   }
 }
