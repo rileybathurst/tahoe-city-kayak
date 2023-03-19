@@ -6,7 +6,8 @@
 //  #DEFAULTS
 /*------------------*/
 
-ul {
+ul,
+ol {
   li {
     a {
       display: block;
@@ -16,13 +17,57 @@ ul {
 }
 
 /*------------------*/
+//  #BREADCRUMBS
+/*------------------*/
+
+// https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/
+.breadcrumbs {
+  margin-inline: auto; // overwrite nav
+  padding-inline: 0.75rem; // overwrite nav
+  line-height: calc(
+    var(--baseline) * 1.5
+  ); // these are pretty small tap targets give it some space
+
+  ol {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    // gap: 1rem;
+    max-width: var(--pelican);
+    margin-inline: auto;
+    margin-block-end: 1.5rem;
+    padding-block-end: 1.5rem;
+    // padding-inline: calc(var(--baseline) / 2); // deprecated but still checking
+    padding-inline: 0;
+    text-transform: capitalize;
+    border-bottom: 1px solid var(--kingly-cloud);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--black-out);
+    }
+
+    a {
+      display: inline;
+    }
+  }
+}
+
+.tour__minimum {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+
+  p {
+    color: var(--industrial-revolution);
+  }
+}
+
+/*------------------*/
 //  #PARAGRAPH LIST
 /*------------------*/
 
 .paragraph-list {
-  p {
-  }
-
   li {
     margin-block-end: var(--baseline);
   }

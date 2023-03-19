@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from 'gatsby';
 
-const ParentTitleBreadcrumb = (props) => {
+const ParentTitleBreadcrumb = (props: { parent: string; title: string; }) => {
   return (
     <nav
       aria-label="Breadcrumb"
