@@ -1,5 +1,6 @@
 import * as React from "react"
-
+import Header from '../components/header'
+import Footer from '../components/footer'
 
 function Map() {
 
@@ -14,8 +15,11 @@ allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></
 const CurvePage = () => {
 
   return (
-
+<>
+<Header />
     <Map />
+    <Footer />
+</>
 
   )
 }

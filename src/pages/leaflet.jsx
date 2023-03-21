@@ -1,8 +1,8 @@
 import * as React from "react"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
-
-
+import Header from '../components/header'
+import Footer from '../components/footer'
 function Map() {
 
   return (
@@ -34,8 +34,11 @@ function Map() {
 const CurvePage = () => {
 
   return (
-
+<>
+<Header />
     <Map />
+    <Footer />
+</>
 
   )
 }
