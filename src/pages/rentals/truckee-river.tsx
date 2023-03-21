@@ -8,12 +8,12 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
 // import L from 'leaflet'
 // import { curve, Curve } from 'leaflet'; // for TypeScript
-import '@elfalem/leaflet-curve'
+// import '@elfalem/leaflet-curve'
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
-import Composition from "../../components/composition";
+// import Composition from "../../components/composition";
 
 
 
@@ -107,13 +107,13 @@ const TruckeeRiverPage = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <Polyline
+          {/*           <Polyline
             // positions={[39.17123, -120.14093][39.18576, -120.19524]}
             positions={[
               [39.17123, -120.14093],
               [39.18576, -120.19524]
             ]}
-          />
+          /> */}
 
           <Marker position={[39.17123, -120.14093]}>
             <Popup>
