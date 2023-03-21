@@ -1,14 +1,22 @@
-import * as React from "react"
+import React, { useRef } from "react"
 import { Script } from "gatsby";
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
+
+
+// import L from 'leaflet'
+// import { curve, Curve } from 'leaflet'; // for TypeScript
+import '@elfalem/leaflet-curve'
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Composition from "../../components/composition";
+
+
+
 
 const TruckeeRiverPage = () => {
 
@@ -83,7 +91,61 @@ const TruckeeRiverPage = () => {
             <li><a href="https://www.nrs.com/nrs-outlaw-legend-ii-inflatable-kayak/p8bn" target='_blank' rel='noopener noreferrer'>NRS Outlaw Legend II Inflatable Kayak</a></li>
           </ul>
         </article>
-        <Composition />
+        {/* <Composition /> */}
+        <MapContainer
+          // move this to a component with props on whats needed per page
+          // TODO change this to a classname
+          // this could be interesting as a container query
+          style={{ height: '400px' }}
+          center={[39.164, -120.149]}
+          zoom={12}
+          scrollWheelZoom={false}
+        // ref={useRef}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          <Polyline
+            // positions={[39.17123, -120.14093][39.18576, -120.19524]}
+            positions={[
+              [39.17123, -120.14093],
+              [39.18576, -120.19524]
+            ]}
+          />
+
+          <Marker position={[39.17123, -120.14093]}>
+            <Popup>
+              Store
+            </Popup>
+          </Marker>
+
+          <Marker position={[39.16879, -120.14199]}>
+            <Popup>
+              Beach Rental
+            </Popup>
+          </Marker>
+
+          <Marker position={[39.16490, -120.14587]}>
+            <Popup>
+              64 Acres Parking
+            </Popup>
+          </Marker>
+
+          <Marker position={[39.16514, -120.14727]}>
+            <Popup>
+              Launch
+            </Popup>
+          </Marker>
+
+          <Marker position={[39.18576, -120.19524]}>
+            <Popup>
+              River Ranch
+            </Popup>
+          </Marker>
+
+        </MapContainer>
       </main>
 
       <Footer />

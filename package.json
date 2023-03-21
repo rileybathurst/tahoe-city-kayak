@@ -19,6 +19,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@elfalem/leaflet-curve": "^0.9.2",
     "@fontsource/barlow": "^4.5.7",
     "@fontsource/barlow-condensed": "^4.5.7",
     "@storybook/preset-scss": "^1.0.3",
@@ -39,6 +40,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-leaflet": "^4.2.1",
+    "react-leaflet-curve": "^2.0.1",
     "react-markdown": "^8.0.3"
   },
   "devDependencies": {
