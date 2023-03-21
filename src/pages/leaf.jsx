@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react"
 
 import { MapContainer, TileLayer, Marker, Popup, Polyline, SVGOverlay } from 'react-leaflet'
 // import { Curve } from 'react-leaflet-curve' // i cant import this without hitting errors so maybe go back a step
-
+/* 
 import L from 'leaflet'
-import '@elfalem/leaflet-curve'
+import '@elfalem/leaflet-curve' */
 
 function Map() {
 
