@@ -39,6 +39,8 @@ const FaqPage = () => {
       <main>
         <h1>{title}</h1>
 
+        {/* // TODO links to delivery and demos */}
+
         <ul className="faq">
           {allStrapiFaq.nodes.map((faq:
             {

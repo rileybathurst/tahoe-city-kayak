@@ -116,5 +116,11 @@ module.exports = {
         icon: "src/images/favicon.svg", // TODO something new // theres not quite the right emoji for this
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-leaflet',
+      options: {
+        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
+      }
+    }
   ]
 };

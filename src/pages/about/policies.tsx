@@ -20,6 +20,8 @@ const PoliciesPage = () => {
         title={title}
       />
 
+      {/* // TODO composition */}
+
       <main>
         <h1>{title}</h1>
 
@@ -30,7 +32,9 @@ const PoliciesPage = () => {
 
           <h2>Tour Booking Procedure</h2>
           <ul>
-            <li>Tours can also be booked with VISA/MC/AMEX directly over the phone at (530) 581-4336 or on-line.</li>
+            <li>
+              {/* // TODO links to phone and online booking */}
+              Tours can also be booked with VISA/MC/AMEX directly over the phone at (530) 581-4336 or on-line.</li>
             <li>Please list your phone number if purchasing with Paypal so we can contact you with any changes that may arise with your tour.</li>
             <li>We can usually book any of our tours for you with 48 hours notice (depending on availability).</li>
             <li>We offer kayak tours from May through September 30th. (We’ll operate into October if weather cooperates.)</li>

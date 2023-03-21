@@ -7,7 +7,6 @@ import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import PricingChart from "../components/pricing-chart";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
 import CarIcon from "../images/car";
@@ -33,6 +32,7 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
+      {/* // TODO check if this is just progression now */}
       <main className="rentals">
         <article className="info">
           {/* classes relate to grid area */}
