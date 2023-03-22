@@ -1,46 +1,28 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react"
+import React, { useState } from "react"
 import Header from '../components/header'
 import Footer from '../components/footer'
 
 import { MapContainer, TileLayer } from 'react-leaflet'
 
-const center = [51.505, -0.09]
-const zoom = 13
-
 function DisplayPosition({ map }) {
-  const [position, setPosition] = useState(() => map.getCenter())
-
-  const onClick = useCallback(() => {
-    map.setView(center, zoom)
-  }, [map])
-
-  const onMove = useCallback(() => {
-    setPosition(map.getCenter())
-  }, [map])
-
-  useEffect(() => {
-    map.on('move', onMove)
-    return () => {
-      map.off('move', onMove)
-    }
-  }, [map, onMove])
+  const onClick = () => {
+    map.setView([51.505, -0.09], 13)
+  }
 
   return (
-    <p>
-      latitude: {position.lat.toFixed(4)}, longitude: {position.lng.toFixed(4)}{' '}
-      <button onClick={onClick}>reset</button>
-    </p>
+    <button onClick={onClick}>To London</button>
   )
 }
 
 function ExternalStateExample() {
   const [map, setMap] = useState(null)
 
-  const displayMap = useMemo(
-    () => (
+  return (
+    <>
+      {map ? <DisplayPosition map={map} /> : null}
       <MapContainer
-        center={center}
-        zoom={zoom}
+        center={[51.505, -0.09]}
+        zoom={13}
         scrollWheelZoom={false}
         ref={setMap}
         style={{ height: '400px' }}
@@ -50,14 +32,6 @@ function ExternalStateExample() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       </MapContainer>
-    ),
-    [],
-  )
-
-  return (
-    <>
-      {map ? <DisplayPosition map={map} /> : null}
-      {displayMap}
     </>
   )
 }
