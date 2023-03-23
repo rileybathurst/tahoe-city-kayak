@@ -43,7 +43,7 @@ function Markers() {
   const map = useMapEvents({
     zoom: () => {
       if (map.getZoom() > 12) {
-        console.log('show popup');
+        // console.log('show popup');
         setMarks([
           // ...marks, // if i want to keep the previous ones
           RetailLocation,
@@ -54,7 +54,7 @@ function Markers() {
       }
 
       if (map.getZoom() < 12) {
-        console.log('hide popup');
+        // console.log('hide popup');
         // remove the last item in the array
         setMarks([
           // ...marks, // if i want to keep the previous ones
