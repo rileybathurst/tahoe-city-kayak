@@ -15,16 +15,16 @@ function DisplayPosition({ map }) {
 }
 
 function ExternalStateExample() {
-  const [map, setMap] = useState(null)
+  const [zap, setZap] = useState(null)
 
   return (
     <>
-      {map ? <DisplayPosition map={map} /> : null}
+      {zap ? <DisplayPosition map={zap} /> : null}
       <MapContainer
         center={[51.505, -0.09]}
         zoom={13}
         scrollWheelZoom={false}
-        ref={setMap}
+        ref={setZap}
         style={{ height: '400px' }}
         >
         <TileLayer
