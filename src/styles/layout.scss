@@ -894,3 +894,14 @@ footer {
     margin-block-end: 0.25rem;
   }
 }
+
+/*------------------*/
+//  #MAP
+/*------------------*/
+
+.map {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  margin-block-end: calc(2 * var(--baseline));
+}

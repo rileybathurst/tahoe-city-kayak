@@ -125,3 +125,15 @@ footer .book-now {
   align-items: center;
   gap: 2rem;
 }
+
+/*------------------*/
+//  #BUTTON GROUP
+/*------------------*/
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: row wrap;
+  gap: 1rem;
+  margin-block-end: var(--baseline);
+}
