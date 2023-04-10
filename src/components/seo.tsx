@@ -1,9 +1,16 @@
 import React from 'react';
 import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
+import { title } from 'process';
 // this throws an error but is as documented here:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
 
+interface SEO {
+  title: string;
+  // id: number;
+}
+
+// add types to the SEO const
 export const SEO = ({
   title,
   description,
@@ -16,7 +23,7 @@ export const SEO = ({
     siteUrl,
     defaultDescription,
     defaultImage,
-    // ogImage, // TODO: add ogImage
+    // ogImage, // TODO:  add ogImage
     telephone,
     openingHours,
     areaServed,
@@ -30,7 +37,7 @@ export const SEO = ({
   } = useSiteMetadata()
 
   const seo = {
-    title: title, // this works
+    title: title,
     description: description || defaultDescription,
     image: image || defaultImage,
     ogImage: image,
@@ -168,7 +175,7 @@ export const SEO = ({
   );
 };
 
-// TODO: Recommended properties
+// TODO: // Later Recommended properties
 // priceRange
 // review
 // url

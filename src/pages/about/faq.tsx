@@ -71,8 +71,6 @@ export const Head = () => {
     <SEO
       title={`Frequently Asked Questions | ${useSiteName()}`}
     >
-
-      {/* // TODO: Naming */}
       <StrapiMap />
       <Script type="application/ld+json">
         {`
