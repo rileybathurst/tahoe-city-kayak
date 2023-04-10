@@ -8,20 +8,15 @@ export const SEO = ({
   title,
   description,
   image,
-  pathname,
   children
 }) => {
 
   const {
-    defaultTitle,
-    TitleTemplate,
-    name,
     url,
     siteUrl,
     defaultDescription,
     defaultImage,
-    // ogImage,
-    // twitterImage,
+    // ogImage, // TODO: add ogImage
     telephone,
     openingHours,
     areaServed,
@@ -35,11 +30,10 @@ export const SEO = ({
   } = useSiteMetadata()
 
   const seo = {
-    title: title || defaultTitle, // this works
+    title: title, // this works
     description: description || defaultDescription,
     image: image || defaultImage,
     ogImage: image,
-    // twitterImage: twitterImage,
     url: `${siteUrl}`,
     openingHours: `${openingHours} `,
     telephone: telephone,
@@ -110,7 +104,7 @@ export const SEO = ({
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
-            "name": "${name}",
+            "name": "${title}",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "${location.address.streetAddress}",

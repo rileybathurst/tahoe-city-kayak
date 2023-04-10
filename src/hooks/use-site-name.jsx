@@ -5,11 +5,11 @@ export const useSiteName = () => {
     query {
       site {
         siteMetadata {
-          name
+          title
         }
       }
     }
   `)
 
-  return data.site.siteMetadata.name
+  return data.site.siteMetadata.title
 }

@@ -11,7 +11,6 @@ export const useSiteMetadata = () => {
           image
           url
           siteUrl
-          name
           openingHours
           telephone
 

@@ -22,9 +22,7 @@ module.exports = {
   graphqlTypegen: true,
   siteMetadata: {
     title: "Tahoe City Kayak and Padddleboard",
-    name: "Tahoe City Kayak and Padddleboard",
-    defaultTitle: "Tahoe City Kayak and Padddleboard", // TODO I dont need this 3 times
-    siteUrl: 'https://tahoe-city-kayak.netlify.app',
+    siteUrl: 'https://tahoe-city-kayak.netlify.app', // TODO DO I need both
     url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
     description: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
     defaultDescription: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
@@ -75,7 +73,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`, `jpg`]
+          formats: [`auto`, `webp`, `jpg`] // TODO do I need this?
         },
       },
     },
