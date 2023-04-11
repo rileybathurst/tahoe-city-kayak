@@ -6,15 +6,21 @@ import { title } from 'process';
 
 // import BookNow from '../components/peek/book-now';
 
-export const Card = ({ primary }) => {
-  const mode = primary ? 'storybook-Card--primary' : 'storybook-Card--secondary';
+export const Card = ({ primary, user, onLogin }) => {
+  // const mode = primary ? 'storybook-Card--primary' : 'storybook-Card--secondary';
 
   // variables
   console.log(primary); // true false boolean
   console.log(title); // ? browser
   // console.log(label); // label is not defined
+  // console.log({ label }); // label is not defined
   console.log(primary.label); // undefined
-  console.log()
+  console.log(primary.args)
+  console.log(Card)
+  // console.log({ emoji })
+  // console.log(primary.args.emoji)
+
+  // console.log(user); // null
 
   return (
     <>
@@ -58,9 +64,21 @@ export const Card = ({ primary }) => {
 };
 
 Card.propTypes = {
-  primary: PropTypes.bool,
+  // primary: PropTypes.bool,
+  primary: PropTypes.shape({}),
+  label: PropTypes.string,
+  user: PropTypes.shape({}),
+  onLogin: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
-  primary: false,
+  // primary: false,
+  primary: null,
+  label: 'card',
+  /* 
+    user: {
+      name: 'John Doe',
+    }, */
+
+
 };
