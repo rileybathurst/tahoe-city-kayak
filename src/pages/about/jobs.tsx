@@ -39,8 +39,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Jobs | ${useSiteName()}`}
-      description="// TODO"
-    // image={image} // TODO
+      description="“Are you looking for a job in kayaking or paddleboarding? Look no further than Tahoe City Kayak & Paddleboard! We’re currently hiring for several positions, including kayak rental staff, paddleboard instructors, and more. Apply today and join our team!"
     >
       <Script type="application/ld+json">
         {`

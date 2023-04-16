@@ -126,7 +126,6 @@ export const Head = () => {
     <SEO
       title={`Ultralight Tandem Kayaks | ${useSiteName()}`}
       description="Our ultralight kayaks are two person kayaks under 70 pounds"
-    // TODO image
     >
       <Script type="application/ld+json">
         {`

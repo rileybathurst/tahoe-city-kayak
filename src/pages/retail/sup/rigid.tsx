@@ -121,8 +121,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Rigid StandUp Paddleboards | ${useSiteName()}`}
-    // TODO description
-    // TODO image
+      description="Shop Tahoe City Kayak’s selection of rigid paddleboards for sale! Our paddleboards are designed with high strength advanced hull design and feature miragedrive w/ glide technology, removable kick-up rudder, high-grip EVA deckpads, cargo bungee, quick set adjustable handlebar and steering controls. Our paddleboards are perfect for those looking for a fun and exciting way to explore Lake Tahoe’s crystal clear waters."
     >
       <Script type="application/ld+json">
         {`

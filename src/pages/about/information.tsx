@@ -121,7 +121,6 @@ export const Head = () => {
     <SEO
       title={`Information | ${useSiteName()}`}
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
-    // image={undefined} // TODO
     >
 
       <Script type="application/ld+json">

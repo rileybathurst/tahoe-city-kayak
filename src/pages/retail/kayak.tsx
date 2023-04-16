@@ -609,7 +609,6 @@ export const Head = () => {
     <SEO
       title={`Kayak | ${useSiteName()}`}
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
-    // TODO Image
     >
       <Script type="application/ld+json">
         {`

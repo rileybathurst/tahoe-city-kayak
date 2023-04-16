@@ -8,6 +8,7 @@ export const useSiteMetadata = () => {
           title
           description
           defaultDescription
+          defaultImage
           image
           url
           siteUrl
@@ -34,6 +35,10 @@ export const useSiteMetadata = () => {
             itemOffered2
             itemOffered3
           }
+
+          themeColor
+          numberOfEmployees
+          slogan
         }
       }
     }

@@ -612,7 +612,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Standup Paddleboard | ${useSiteName()}`}
-    // TODO description and image
+      description="Shop Tahoe City Kayak and Paddleboards’s selection of stand up paddleboards for sale! Our paddleboards are perfect for those looking for a fun and exciting way to explore Lake Tahoe’s crystal clear waters. Our selection includes leading brands of standup paddleboards for sale. The beach is just outside our back door, so you can walk your purchase right out to the sand and launch into the lake for a day’s journey."
     >
       <Script type="application/ld+json">
         {`

@@ -6,10 +6,10 @@ export default {
   component: Card,
 };
 
-const Template = (args) => <Card {...args} />;
+const Template = (card) => <Card {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
+Primary.card = {
   primary: true,
   label: 'Card',
   emoji: '👋',

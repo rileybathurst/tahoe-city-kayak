@@ -72,7 +72,6 @@ export const Head = () => {
     <SEO
       title={`Testimonials | ${useSiteName()}`}
       description="Testimonials from our customers."
-    // image={} // TODO
     >
       <TestimoialSEO />
       <Script type="application/ld+json">

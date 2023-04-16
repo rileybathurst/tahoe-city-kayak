@@ -23,7 +23,6 @@ export const SEO = ({
     siteUrl,
     defaultDescription,
     defaultImage,
-    // ogImage, // TODO:  add ogImage
     telephone,
     openingHours,
     areaServed,
@@ -55,14 +54,18 @@ export const SEO = ({
     slogan: slogan,
   };
 
+  console.log("seo", seo)
+
   return (
     <>
       <title>{seo.title}</title>
 
       {/* <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛶</text></svg>" /> */}
 
+      {seo.image}
+
       <meta name="description" content={seo.description} />
-      <meta name="image" itemProp="image" content={seo.ogImage} />
+      <meta name="image" itemProp="image" content={seo.image} />
       <meta property="og:type" content="website" />
       {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />}
       {seo.title && <meta property="og:title" content={seo.title} />}
@@ -112,6 +115,7 @@ export const SEO = ({
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
             "name": "${title}",
+            "description": "${description}",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "${location.address.streetAddress}",
@@ -164,8 +168,6 @@ export const SEO = ({
                 }
               ]
             }
-
-
 
           }
         `}

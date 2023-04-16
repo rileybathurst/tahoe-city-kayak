@@ -7,11 +7,11 @@ interface ArgsProps {
   primary: boolean;
 }
 
-export const Args = (Args: ArgsProps) => {
+export const Args = (args: ArgsProps) => {
 
   return (
     <>
-      {Args.label}
+      {args.label}
     </>
   );
 };

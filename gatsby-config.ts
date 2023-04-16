@@ -26,6 +26,7 @@ module.exports = {
     url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
     description: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
     defaultDescription: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
+    defaultImage: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00',
     telephone: '(530) 581-4336',
     email: 'tahoecitykayak@gmail.com',

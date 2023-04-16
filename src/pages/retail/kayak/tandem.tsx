@@ -143,7 +143,6 @@ export const Head = () => {
     <SEO
       title={`Two Person Kayaks | ${useSiteName()}`}
       description="Our tandem kayaks are the perfect way to explore the water with friends"
-    // TODO image
     >
       <Script type="application/ld+json">
         {`

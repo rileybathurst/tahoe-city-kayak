@@ -64,7 +64,6 @@ export const Head = () => {
     <SEO
       title={`About Us | ${useSiteName()}`}
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
-    // image={image} // TODO
     >
       <Script type="application/ld+json">
         {`
