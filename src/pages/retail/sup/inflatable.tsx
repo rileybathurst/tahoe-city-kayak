@@ -122,7 +122,6 @@ export const Head = () => {
     <SEO
       title={`Inflatable StandUp Paddleboards | ${useSiteName()}`}
       description="Our inflatable paddleboards are the perfect way to have a lightweight and portable paddleboard"
-    // TODO image
     >
       <Script type="application/ld+json">
         {`
