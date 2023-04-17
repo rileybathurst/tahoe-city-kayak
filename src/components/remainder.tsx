@@ -8,7 +8,11 @@ const Remainder = (props: { inches: number }) => {
     let leftover = inches % 12;
 
     if (leftover === 0) {
-      return `${feet}'`;
+      return (
+        <>
+          {feet}
+        </>
+      )
     } else {
       return (
         <>
@@ -17,9 +21,9 @@ const Remainder = (props: { inches: number }) => {
       )
     }
   }
-  /*   else {
-      return null;
-    } */
+  else {
+    return null;
+  }
 }
 
 export default Remainder

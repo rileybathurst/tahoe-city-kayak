@@ -74,7 +74,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`, `jpg`] // TODO do I need this?
+          formats: [`auto`, `webp`, `jpg`] // adds jpg even if starts as webp
         },
       },
     },

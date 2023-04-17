@@ -37,6 +37,7 @@ function Sup(props) {
       <hr />
       <div className="card__details">
         <h5><Remainder inches={props.length} /> long by {props.width}" wide</h5>
+        <h5>Hull weight: {props.hullweight} lbs</h5>
       </div>
     </article>
   )
@@ -146,6 +147,7 @@ const supBrandView = ({ data }) => {
               length={sup.node.length}
               width={sup.node.width}
               cutout={sup.node.cutout}
+              hullweight={sup.node.hullweight}
             />
           ))
         }
@@ -165,6 +167,7 @@ const supBrandView = ({ data }) => {
               length={sup.node.length}
               width={sup.node.width}
               cutout={sup.node.cutout}
+              hullweight={sup.node.hullweight}
             />
           ))
         }
@@ -184,6 +187,7 @@ const supBrandView = ({ data }) => {
               length={sup.node.length}
               width={sup.node.width}
               cutout={sup.node.cutout}
+              hullweight={sup.node.hullweight}
             />
           ))
         }
@@ -205,6 +209,7 @@ const supBrandView = ({ data }) => {
               length={sup.node.length}
               width={sup.node.width}
               cutout={sup.node.cutout}
+              hullweight={sup.node.hullweight}
             />
           ))
         }
@@ -288,6 +293,7 @@ export const query = graphql`
         excerpt
         length
         width
+        hullweight
 
         cutout {
           localFile {
@@ -315,6 +321,7 @@ export const query = graphql`
       excerpt
       length
       width
+      hullweight
 
       cutout {
         localFile {
@@ -342,6 +349,7 @@ inflatable: allStrapiRetail(
       excerpt
       length
       width
+      hullweight
 
       cutout {
         localFile {
@@ -369,6 +377,7 @@ inflatable: allStrapiRetail(
         excerpt
         length
         width
+        hullweight
 
         cutout {
           localFile {

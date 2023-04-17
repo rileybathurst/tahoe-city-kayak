@@ -38,6 +38,7 @@ function Kayak(props) {
       <hr />
       <div className="card__details">
         <h5><Remainder inches={props.length} /> long by {props.width}" wide</h5>
+        <h5>Hull weight: {props.hullweight} lbs</h5>
       </div>
     </article>
   )
@@ -151,6 +152,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -171,6 +173,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -191,6 +194,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -211,6 +215,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -231,6 +236,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -251,6 +257,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -273,6 +280,7 @@ const KayakBrandView = ({ data }) => {
                   length={kayak.node.length}
                   width={kayak.node.width}
                   cutout={kayak.node.cutout}
+                  hullweight={kayak.node.hullweight}
                 />
               ))
             }
@@ -317,6 +325,7 @@ query (
         excerpt
         length
         width
+        hullweight
 
         cutout {
           localFile {
@@ -344,6 +353,7 @@ filter: {
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {
@@ -371,6 +381,7 @@ filter: {
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {
@@ -398,6 +409,7 @@ filter: {
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {
@@ -425,6 +437,7 @@ filter: {
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {
@@ -452,6 +465,7 @@ filter: {
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {
@@ -486,6 +500,7 @@ null: allStrapiRetail(
     excerpt
     length
     width
+    hullweight
 
     cutout {
       localFile {

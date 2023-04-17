@@ -7,9 +7,8 @@ import { useStrapiTestimonial } from "../hooks/use-strapi-testimonial"
 export const TestimoialSEO = () => {
   const { } = useStrapiTestimonial()
 
-  // * this has hard coded data from google rankings dated Feb 2 2023
-  // I dont know if I can get around that as google requires an aggregateRating
-  // TODO find the api to query this 
+  // * Dont use this as google rankings doesnt like it
+  // unless theres a totally open format for all to live update
 
   return (
     <Script type="application/ld+json">
