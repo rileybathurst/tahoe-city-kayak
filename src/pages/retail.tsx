@@ -13,10 +13,6 @@ import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import TextureBackgrounds from "../components/texturebackgrounds";
-import WaterTexture from "../images/watertexture";
-
-import Kayaker from "../images/kayaker";
-import Supper from "../images/supper";
 
 import Composition from "../components/composition";
 
@@ -26,9 +22,30 @@ const RetailPage = () => {
 
 
   const query = useStaticQuery(graphql`
-query RetailsQuery {
-  kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
+    query RetailsQuery {
+      kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
     
+        nodes {
+          id
+          title
+          slug
+          length
+          width
+          type
+          excerpt
+
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+
+    sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4) {
       nodes {
         id
         title
@@ -46,37 +63,13 @@ query RetailsQuery {
           }
           alternativeText
         }
+      }
     }
   }
-  
-  sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4) {
-    
-      nodes {
-        id
-        title
-        slug
-        length
-        width
-        type
-        excerpt
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-    }
-  }
-}
 `)
 
   let kayak = query.kayak;
   let sup = query.sup;
-
-  let title = "Retail";
 
   return (
     <>
@@ -84,7 +77,7 @@ query RetailsQuery {
 
       <main className="location_card-wrapper">
         <div>
-          <h1>{title}</h1>
+          <h1>Retail</h1>
           <Retail />
         </div>
 

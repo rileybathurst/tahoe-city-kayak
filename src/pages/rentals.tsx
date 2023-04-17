@@ -102,7 +102,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Rentals | ${useSiteName()}`}
-      description="Enjoy the majesty of Lake Tahoe while kayaking in one of our demos."
+      description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
     />
   )
 }

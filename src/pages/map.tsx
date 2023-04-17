@@ -9,15 +9,16 @@ import MapSVG from "../images/map";
 import Complete from "../components/locations/complete";
 
 const MapPage = () => {
-  let title = "Map";
 
   return (
     <>
       <Header />
 
-      <main>
-        <h1>{title}</h1>
+      <main className="progression">
+        <h1>Map</h1>
       </main>
+
+      {/* // TODO: naming */}
       <div className="home__here">
         <Complete />
         <MapSVG />
@@ -34,7 +35,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Map | ${useSiteName()}`}
-    // TODO description and image
+      description="Find our store location, rental location and parking areas near you with our map. Our map shows you all the important details you need to know about each location, including hours of operation, contact information and more"
     />
   )
 }

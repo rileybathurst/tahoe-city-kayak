@@ -10,14 +10,13 @@ import Complete from "../components/locations/complete";
 import AboutUs from "../content/about-us";
 
 const AboutPage = () => {
-  let title = "About Us";
 
   return (
     <>
       <Header />
 
       <main>
-        <h1>{title}</h1>
+        <h1>About Us</h1>
         {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
         <AboutUs />
 
