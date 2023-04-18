@@ -1,13 +1,10 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import TextureBackgrounds from "../../components/texturebackgrounds";
-import Remainder from "../../components/remainder";
 import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
@@ -15,40 +12,23 @@ import Store from "../../components/locations/store";
 import More from "../../components/more";
 import Retail from "../../content/retail";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
+import Card from "../../components/card";
 
-function Card(props) {
-  if (props.type === 'kayak') {
+function OnlyKayak(retail: { retail: { type: string; id?: React.Key; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; }; }) {
+
+  // console.log(retail);
+  // console.log(retail.retail.type);
+
+  if (retail.retail.type === 'kayak') {
     return (
-      <article key={props.id} className="card">
-        <div className="card-collage">
-          <TextureBackgrounds />
-          <GatsbyImage
-            image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={props?.cutout?.alternativeText}
-            className="cutout"
-          />
-        </div>
-        <h4 className="card__title">
-          <Link to={`/retail/kayak/${props.slug}`}>
-            {props.title}
-          </Link>
-        </h4>
-        <hr />
-        <p>{props.excerpt}</p>
-        <hr />
-        <div className="card__details">
-          <h4><strong><Remainder inches={props.length} /></strong> long by <strong>{props.width}"</strong> wide</h4>
-          <h5 className="capitalize">Capacity <strong>{props.capacity}lbs</strong></h5>
-        </div>
-      </article>
+      <Card retail={retail.retail} />
     )
   } else {
     return null;
   }
 }
 
-const RetailKayakPage = (data) => {
-
+const RetailKayakPage = (data: any) => {
 
   const query = useStaticQuery(graphql`
 query KayaksQuery {
@@ -314,7 +294,7 @@ query KayaksQuery {
 
       <div className="brand_blocks">
 
-        {hobie.nodes.map(brand => (
+        {hobie.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -329,18 +309,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -353,7 +324,7 @@ query KayaksQuery {
           </div>
         ))}
 
-        {eddyline.nodes.map(brand => (
+        {eddyline.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -368,18 +339,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -393,7 +355,7 @@ query KayaksQuery {
           </div>
         ))}
 
-        {perception.nodes.map(brand => (
+        {perception.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -408,18 +370,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -433,7 +386,7 @@ query KayaksQuery {
           </div>
         ))}
 
-        {wildernesssystems.nodes.map(brand => (
+        {wildernesssystems.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -448,18 +401,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -473,7 +417,7 @@ query KayaksQuery {
           </div>
         ))}
 
-        {delta.nodes.map(brand => (
+        {delta.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -488,18 +432,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -514,7 +449,7 @@ query KayaksQuery {
         ))}
 
 
-        {bote.nodes.map(brand => (
+        {bote.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -529,18 +464,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>
@@ -554,7 +480,7 @@ query KayaksQuery {
           </div>
         ))}
 
-        {brusurf.nodes.map(brand => (
+        {brusurf.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
           <div key={brand.id}>
             <section className="passage">
               <div className='brand-logo'>
@@ -569,18 +495,9 @@ query KayaksQuery {
               <hr />
             </section>
             <div className='deck'>
-              {brand.retail.slice(0, 4).map(retail => (
-                <Card
-                  key={retail.id}
-                  type={retail.type}
-                  id={retail.id}
-                  slug={retail.slug}
-                  title={retail.title}
-                  capacity={retail.capacity}
-                  length={retail.length}
-                  width={retail.width}
-                  excerpt={retail.excerpt}
-                  cutout={retail?.cutout}
+              {brand.retail.slice(0, 4).map((retail: any) => (
+                <OnlyKayak
+                  retail={retail}
                 />
               ))}
             </div>

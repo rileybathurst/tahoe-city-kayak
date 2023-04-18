@@ -20,13 +20,14 @@ function Kayak(props) {
     <article className="card">
       <div className="card-collage">
         <TextureBackgrounds />
-
-        <GatsbyImage
-          image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.cutout?.alternativeText}
-          objectFit="contain"
-          className="cutout"
-        />
+        <Link to={`/retail/kayak/${props.slug}`} className="image-link">
+          <GatsbyImage
+            image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={props?.cutout?.alternativeText}
+            objectFit="contain"
+            className="cutout"
+          />
+        </Link>
       </div>
       <h4 className="card__title">
         <Link to={`/retail/kayak/${props.slug}`}>

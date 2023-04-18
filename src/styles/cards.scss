@@ -41,6 +41,16 @@
       margin-block-end: 1.5rem;
     }
 
+    .image-link {
+      transition: var(--fade);
+      transform: scale(1);
+      z-index: var(--floor);
+    }
+
+    .image-link:where(:hover, :focus) {
+      transform: scale(1.05);
+    }
+
     .card__image {
       margin-block-end: 1.5rem;
       transition: var(--fade);

@@ -12,7 +12,7 @@ interface CardProps {
 
 export const Card = (Card: CardProps) => {
 
-  console.log(Card);
+  // console.log(Card);
 
   return (
     <div className="card">

@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
@@ -8,46 +7,40 @@ import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import More from "../../components/more";
-import TextureBackgrounds from "../../components/texturebackgrounds";
-import Remainder from "../../components/remainder";
 import Danger from "../../components/danger";
 import SupBrandList from "../../components/sup-brand-list";
 import Store from "../../components/locations/store";
 import Retail from "../../content/retail";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
+import Card from "../../components/card";
 
-function Card(props) {
-
+function Brand(props) {
   return (
-    <div className='deck'>
-      {props.sups.map(retail => (
-        <article key={retail.id} className="card">
-          <div className="card-collage">
-            <TextureBackgrounds />
-            <GatsbyImage
-              image={retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={retail?.cutout?.alternativeText}
-              className="cutout"
-            />
-          </div>
-          <h4 className="card__title">
-            <Link to={`/retail/sup/${retail.slug}`}>
-              {retail.title}
+    <div key={props.brand.slug}>
+      <section className="passage">
+        <div className='brand-logo'>
+          <Danger svg={props.brand.svg} />
+          <h2 className='capitalize'>
+            <Link to={props.brand.slug}>
+              {props.brand.name}
             </Link>
-          </h4>
-          <hr />
-          <p>{retail.excerpt}</p>
-          <hr />
-          <div className="card__details">
-            <h4><Remainder inches={retail.length} /> tall by {retail.width}" wide</h4>
-            <h5 className="capitalize">Capacity {retail.capacity}lbs</h5>
-          </div>
-        </article>
-      ))}
+          </h2>
+        </div>
+        <p>{props.brand.tagline}.</p>
+        <hr />
+      </section>
+      <Limiter brand={props.brand.retail} />
+      <More
+        retail={props.brand.retail}
+        brand={props.brand.name}
+        slug={props.brand.slug}
+        type='sup'
+      />
     </div>
   )
 }
 
+// TODO: ? is this a fancier way than the kayak page does this?
 function Limiter(props) {
   // console.log(props);
   // console.log(props.brand);
@@ -69,22 +62,26 @@ function Limiter(props) {
   // console.log(sups);
   sups.slice(0, 4).map((retail => {
     // console.log(retail.title);
-
     quad.push(retail);
   }));
 
-  // console.log(quad);
+  // console.log(quad.length);
+  // console.log(quad[0]);
 
   // get this out enough to return it?
 
-
-  // putting this here lets its be a return at the lowest level which I need
   return (
-    <Card sups={quad} />
+    <div className='deck'>
+      {quad.map((retail) => {
+        return (
+          <Card retail={retail} />
+        )
+      })}
+    </div>
   )
 }
 
-const RetailSupPage = (data) => {
+const RetailSupPage = () => {
 
   const query = useStaticQuery(graphql`
 query SupQuery {
@@ -301,6 +298,8 @@ query SupQuery {
   let boardworks = query.boardworks;
   let pauhana = query.pauhana;
 
+  // TODO: needs an unkown brand
+
   let title = "Paddleboard Retail";
   let parent = "retail";
 
@@ -334,269 +333,33 @@ query SupQuery {
       <SupBrandList />
 
       <div className="brand_blocks">
-
         {hobie.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
         {bote.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.map(retail => (
-                    <>
-
-                      <Card
-                        type={retail.type}
-                        id={retail.id}
-                        slug={retail.slug}
-                        title={retail.title}
-                        capacity={retail.capacity}
-                        length={retail.length}
-                        width={retail.width}
-                        excerpt={retail.excerpt}
-                        cutout={retail?.cutout}
-                      />
-                    </>
-                  ))}
-                </div> */}
-
-            <Limiter brand={brand.retail} />
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
         {tahe.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
         {sic.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
         {hala.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
 
         {boardworks.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
         {pauhana.nodes.map(brand => (
-          <div>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            {/* <div className='deck'>
-                  {brand.retail.slice(0, 4).map(retail => (
-                    <Card
-                      type={retail.type}
-                      id={retail.id}
-                      slug={retail.slug}
-                      title={retail.title}
-                      capacity={retail.capacity}
-                      length={retail.length}
-                      width={retail.width}
-                      excerpt={retail.excerpt}
-                      cutout={retail?.cutout}
-                    />
-                  ))}
-                </div> */}
-            <Limiter brand={brand.retail} />
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type='sup'
-            />
-          </div>
+          <Brand brand={brand} />
         ))}
 
       </div>

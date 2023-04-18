@@ -54,7 +54,7 @@ export const SEO = ({
     slogan: slogan,
   };
 
-  console.log("seo", seo)
+  // console.log("seo", seo)
 
   return (
     <>

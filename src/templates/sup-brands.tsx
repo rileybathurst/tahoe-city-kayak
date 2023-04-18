@@ -15,17 +15,27 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Remainder from "../components/remainder";
 import Danger from "../components/danger";
 
+function Brand(children) {
+  return (
+    <section id='island' className="possibly-empty">
+      <Next series={data.brand.retail} list='false' title="island" />
+    </section>
+  )
+}
+
 function Sup(props) {
   return (
     <article className="card">
       <div className="card-collage">
         <TextureBackgrounds />
-        <GatsbyImage
-          image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.cutout?.alternativeText}
-          className="cutout"
-          objectFit="contain"
-        />
+        <Link to={`/retail/sup/${props.slug}`} className="image-link">
+          <GatsbyImage
+            image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={props?.cutout?.alternativeText}
+            className="cutout"
+            objectFit="contain"
+          />
+        </Link>
       </div>
       <h4 className="card__title">
         <Link to={`/retail/sup/${props.slug}`}>
@@ -131,6 +141,8 @@ const supBrandView = ({ data }) => {
         </div>
       </main>
 
+
+
       <section id='island' className="possibly-empty">
         <Next series={data.brand.retail} list='false' title="island" />
       </section>
@@ -153,6 +165,7 @@ const supBrandView = ({ data }) => {
         }
       </div>
 
+      {/* // ? why has this got an extra className */}
       <section id='mirage' className="possibly-empty passage">
         <Next series={data.brand.retail} title="mirage" />
       </section>
@@ -214,6 +227,10 @@ const supBrandView = ({ data }) => {
           ))
         }
       </div>
+
+      {/*       <hr />
+      <h1>// ! Test</h1>
+      <Brand /> */}
 
       <Footer />
     </>

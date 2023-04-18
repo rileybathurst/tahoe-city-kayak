@@ -3,20 +3,17 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
-
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import Remainder from "../components/remainder";
 import Time from "../components/time";
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
-import TextureBackgrounds from "../components/texturebackgrounds";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
@@ -27,7 +24,7 @@ import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
 import ToursLessons from "../content/tours-lessons";
 import Retail from "../content/retail";
-import MapSVG from "../images/map";
+import Card from "../components/card";
 
 const IndexPage = () => {
 
@@ -278,28 +275,7 @@ const IndexPage = () => {
 
         <div className="deck deck__column">
           {inventory.map((retail) => (
-            <div key={retail.id} className="card">
-              <div className="card-collage">
-                <TextureBackgrounds />
-                <GatsbyImage
-                  image={retail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                  alt={retail?.cutout?.alternativeText}
-                  className="cutout"
-                />
-              </div>
-              <h4 className="card__title">
-                <Link to={`/retail/${retail.type}/${retail.slug}`}>
-                  {retail.title}
-                </Link>
-              </h4>
-              <hr />
-              <p>{retail?.excerpt}</p>
-              <hr />
-              <div className="card__details uppercase">
-                <h4><strong>{retail.type}</strong></h4>
-                <h5><strong><Remainder inches={retail.length} /></strong> long by <strong>{retail.width}"</strong> wide</h5>
-              </div>
-            </div>
+            <Card retail={retail} />
           ))}
           <div className="deck__more">
             {hasExtra ? (

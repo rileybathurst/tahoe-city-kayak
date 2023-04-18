@@ -1,18 +1,16 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Remainder from "../components/remainder";
 import StoreIcon from "../images/store";
 import KayakFeatureList from "../components/kayak-feature-list";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
-import TextureBackgrounds from "../components/texturebackgrounds";
+import Card from "../components/card";
 
 import Composition from "../components/composition";
 
@@ -33,6 +31,7 @@ const RetailPage = () => {
           width
           type
           excerpt
+          capacity
 
           cutout {
             localFile {
@@ -54,6 +53,7 @@ const RetailPage = () => {
         width
         type
         excerpt
+        capacity
 
         cutout {
           localFile {
@@ -115,29 +115,7 @@ const RetailPage = () => {
 
       <section className="deck">
         {kayak.nodes.map(kayak => (
-          <article key={kayak.id} className="card">
-            <div className="card-collage">
-              <TextureBackgrounds />
-              <GatsbyImage
-                image={kayak.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={kayak.cutout?.alternativeText}
-                className="cutout"
-                objectFit="contain"
-              />
-            </div>
-            <h4 className="card__title">
-              <Link to={`/retail/${kayak.type}/${kayak.slug}`}>
-                {kayak.title}
-              </Link>
-            </h4>
-            <hr />
-            <p>{kayak.excerpt}</p>
-            <hr />
-            <div className="card__details">
-              <h4 className="capitalize">{kayak.type}</h4>
-              <h5><Remainder inches={kayak.length} /> tall by {kayak.width}" wide</h5>
-            </div>
-          </article>
+          <Card retail={kayak} />
         ))}
 
         <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
@@ -161,29 +139,7 @@ const RetailPage = () => {
 
       <section className="deck">
         {sup.nodes.map(sup => (
-          <article key={sup.id} className="card">
-            <div className="card-collage">
-              <TextureBackgrounds />
-              <GatsbyImage
-                image={sup.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={sup.cutout?.alternativeText}
-                className="cutout"
-                objectFit="contain"
-              />
-            </div>
-            <h4 className="card__title">
-              <Link to={`/retail/${sup.type}/${sup.slug}`}>
-                {sup.title}
-              </Link>
-            </h4>
-            <hr />
-            <p>{sup.excerpt}</p>
-            <hr />
-            <div className="card__details">
-              <h4 className="capitalize">{sup.type}</h4>
-              <h5><Remainder inches={sup.length} /> tall by {sup.width}" wide</h5>
-            </div>
-          </article>
+          <Card retail={sup} />
         ))}
         <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
       </section>
