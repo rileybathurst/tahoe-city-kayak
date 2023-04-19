@@ -120,6 +120,9 @@ module.exports = {
       options: {
         linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
       }
-    }
+    },
+    {
+      resolve: "@sentry/gatsby",
+    },
   ]
 };
