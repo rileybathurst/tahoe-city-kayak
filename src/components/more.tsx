@@ -8,14 +8,21 @@ const More = (props) => {
   // console.log(props.retail.length);
   let typeLength = 0;
   // check which are kayaks and only add those to a new length
-  props.retail.map(retail => {
+  /*   props.retail.map(retail => {
+  
+      if (retail.type === props.type) {
+        // TODO: I think this is the key issue
+        // console.log('we got a kayak'); // 28 is all the times this happens
+        typeLength = typeLength + 1;
+        // console.log(typeLength);
+      }
+  
+    }); */
 
+  props.retail.forEach(retail => {
     if (retail.type === props.type) {
-      // console.log('we got a kayak'); // 28 is all the times this happens
       typeLength = typeLength + 1;
-      // console.log(typeLength);
     }
-
   });
 
   if (typeLength > 4) {

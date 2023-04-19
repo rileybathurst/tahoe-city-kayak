@@ -14,9 +14,57 @@ import Retail from "../../content/retail";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
 import Card from "../../components/card";
 
+function Others(props) {
+
+  // console.log(props.nodes);
+  let any = [];
+
+  props.nodes.forEach(element => {
+
+    // console.log(element.retail);
+    element.retail.forEach(retail => {
+      if (retail.type === 'sup') {
+        any.push(retail);
+
+        // console.log(retail);
+        // console.log(any)
+      };
+    });
+  });
+
+  // console.log(any);
+
+  if (any.length !== 0) {
+    return (
+      <div>
+        <section className="passage">
+          <h2>
+            Additional Paddleboards
+          </h2>
+          <hr />
+        </section >
+        <div className='deck'>
+          {any.map((retail) => {
+            return (
+              <div key={retail.id}>
+                <Card retail={retail} />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
+
 function Brand(props) {
+
+  // console.log(props.brand.slug)
+
   return (
-    <div key={props.brand.slug}>
+    <>
       <section className="passage">
         <div className='brand-logo'>
           <Danger svg={props.brand.svg} />
@@ -29,6 +77,8 @@ function Brand(props) {
         <p>{props.brand.tagline}.</p>
         <hr />
       </section>
+
+      {/* // * both below might have react key issues */}
       <Limiter brand={props.brand.retail} />
       <More
         retail={props.brand.retail}
@@ -36,34 +86,55 @@ function Brand(props) {
         slug={props.brand.slug}
         type='sup'
       />
-    </div>
+    </>
   )
 }
 
 // TODO: ? is this a fancier way than the kayak page does this?
 function Limiter(props) {
+  // Im trying to make a set of 4 cards from the props.brand.retail array
+  // using foreach to remove the react key issues
+
+
   // console.log(props);
   // console.log(props.brand);
   // console.log(props.brand.map(retail) => retail.brand);
 
+  // set a couple of empty arrays
+  // all the sups
   const sups = [];
+
+  // only the first 4
   const quad = [];
 
-  props.brand.map((retail => {
-    if (retail.type === 'sup') {
+  // I wonder if this should be a map or a forEach
+  /*   props.brand.map((retail => {
+      // console.log(retail);
+      if (retail.type === 'sup') {
+  
+        // create an array and add the things here
+        // then do the card thing
+        // console.log(retail.title);
+        sups.push(retail);
+      }
+    })); */
 
-      // create an array and add the things here
-      // then do the card thing
+  props.brand.forEach(retail => {
+    if (retail.type === 'sup') {
       // console.log(retail.title);
       sups.push(retail);
     }
-  }));
+  });
 
   // console.log(sups);
-  sups.slice(0, 4).map((retail => {
-    // console.log(retail.title);
+  /*   sups.slice(0, 4).map((retail => {
+      // console.log(retail.title);
+      quad.push(retail);
+    })); */
+
+  sups.slice(0, 4).forEach(retail => {
     quad.push(retail);
-  }));
+  });
 
   // console.log(quad.length);
   // console.log(quad[0]);
@@ -73,10 +144,17 @@ function Limiter(props) {
   return (
     <div className='deck'>
       {quad.map((retail) => {
+        {/* // * this is weird it needs a nested return */ }
         return (
-          <Card retail={retail} />
+          <div key={retail.id}>
+            <Card retail={retail} />
+          </div>
         )
       })}
+
+      {/*       {quad.map((retail) => {
+        <Card retail={retail} />
+      })} */}
     </div>
   )
 }
@@ -84,211 +162,239 @@ function Limiter(props) {
 const RetailSupPage = () => {
 
   const query = useStaticQuery(graphql`
-query SupQuery {
-  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
 
-      nodes {
-        name
-        slug
-        tagline
-        svg
+      # let others = [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pau hana" ];
 
-        retail {
-          type
-          id
-          title
+
+    query SupQuery {
+      hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+        nodes {
+          name
           slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
               }
+              alternativeText
             }
-            alternativeText
-          }
-        }
-    }
-  }
-
-  bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-  
-  tahe: allStrapiBrand(filter: {name: {eq: "tahe"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-  
-  sic: allStrapiBrand(filter: {name: {eq: "sic"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-  
-  hala: allStrapiBrand(filter: {name: {eq: "hala"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-  
-  boardworks: allStrapiBrand(filter: {name: {eq: "boardworks"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-  
-  pauhana: allStrapiBrand(filter: {name: {eq: "pauhana"}}) {
-
-      nodes {
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
           }
         }
       }
-  }
-}
-`)
+
+      bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+  
+      tahe: allStrapiBrand(filter: {name: {eq: "tahe"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      sic: allStrapiBrand(filter: {name: {eq: "sic"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+  
+      hala: allStrapiBrand(filter: {name: {eq: "hala"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+  
+      boardworks: allStrapiBrand(filter: {name: {eq: "boardworks"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+  
+      pauhana: allStrapiBrand(filter: {name: {eq: "pau hana"}}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      # let others = [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pauhana" ];
+
+      other: allStrapiBrand(filter: {name: {nin: [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pau hana" ] }}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+    }
+  `)
 
   let hobie = query.hobie;
   let bote = query.bote;
@@ -297,18 +403,18 @@ query SupQuery {
   let hala = query.hala;
   let boardworks = query.boardworks;
   let pauhana = query.pauhana;
+  let other = query.other;
 
   // TODO: needs an unkown brand
 
   let title = "Paddleboard Retail";
-  let parent = "retail";
 
   return (
     <>
       <Header />
 
       <ParentTitleBreadcrumb
-        parent={parent}
+        parent="retail"
         title={title}
       />
 
@@ -333,36 +439,56 @@ query SupQuery {
       <SupBrandList />
 
       <div className="brand_blocks">
+
         {hobie.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug} >
+            {/* // * wrap this for react keys */}
+            {/* // {brand.slug} testing */}
+            < Brand brand={brand} />
+          </div>
         ))}
 
         {bote.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
         {tahe.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
+
         {sic.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
         {hala.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
 
         {boardworks.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
         {pauhana.nodes.map(brand => (
-          <Brand brand={brand} />
+          <div key={brand.slug}>
+            <Brand brand={brand} />
+          </div>
         ))}
 
-      </div>
+        <Others nodes={other.nodes} />
+
+      </div >
 
       <Footer />
     </>

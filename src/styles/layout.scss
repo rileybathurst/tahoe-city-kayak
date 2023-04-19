@@ -148,6 +148,11 @@ main {
   }
 }
 
+// Im double checking for other brands which are generally empty
+.brand_blocks > *:empty {
+  display: none;
+}
+
 .none {
   margin-block-start: 1.5rem;
 }
