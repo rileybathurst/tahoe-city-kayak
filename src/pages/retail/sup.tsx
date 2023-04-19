@@ -1,171 +1,21 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import More from "../../components/more";
-import Danger from "../../components/danger";
 import SupBrandList from "../../components/sup-brand-list";
 import Store from "../../components/locations/store";
 import Retail from "../../content/retail";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
-import Card from "../../components/card";
-
-function Others(props) {
-
-  // console.log(props.nodes);
-  let any = [];
-
-  props.nodes.forEach(element => {
-
-    // console.log(element.retail);
-    element.retail.forEach(retail => {
-      if (retail.type === 'sup') {
-        any.push(retail);
-
-        // console.log(retail);
-        // console.log(any)
-      };
-    });
-  });
-
-  // console.log(any);
-
-  if (any.length !== 0) {
-    return (
-      <div>
-        <section className="passage">
-          <h2>
-            Additional Paddleboards
-          </h2>
-          <hr />
-        </section >
-        <div className='deck'>
-          {any.map((retail) => {
-            return (
-              <div key={retail.id}>
-                <Card retail={retail} />
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    );
-  } else {
-    return null;
-  }
-}
-
-function Brand(props) {
-
-  // console.log(props.brand.slug)
-
-  return (
-    <>
-      <section className="passage">
-        <div className='brand-logo'>
-          <Danger svg={props.brand.svg} />
-          <h2 className='capitalize'>
-            <Link to={props.brand.slug}>
-              {props.brand.name}
-            </Link>
-          </h2>
-        </div>
-        <p>{props.brand.tagline}.</p>
-        <hr />
-      </section>
-
-      {/* // * both below might have react key issues */}
-      <Limiter brand={props.brand.retail} />
-      <More
-        retail={props.brand.retail}
-        brand={props.brand.name}
-        slug={props.brand.slug}
-        type='sup'
-      />
-    </>
-  )
-}
-
-// TODO: ? is this a fancier way than the kayak page does this?
-function Limiter(props) {
-  // Im trying to make a set of 4 cards from the props.brand.retail array
-  // using foreach to remove the react key issues
-
-
-  // console.log(props);
-  // console.log(props.brand);
-  // console.log(props.brand.map(retail) => retail.brand);
-
-  // set a couple of empty arrays
-  // all the sups
-  const sups = [];
-
-  // only the first 4
-  const quad = [];
-
-  // I wonder if this should be a map or a forEach
-  /*   props.brand.map((retail => {
-      // console.log(retail);
-      if (retail.type === 'sup') {
-  
-        // create an array and add the things here
-        // then do the card thing
-        // console.log(retail.title);
-        sups.push(retail);
-      }
-    })); */
-
-  props.brand.forEach(retail => {
-    if (retail.type === 'sup') {
-      // console.log(retail.title);
-      sups.push(retail);
-    }
-  });
-
-  // console.log(sups);
-  /*   sups.slice(0, 4).map((retail => {
-      // console.log(retail.title);
-      quad.push(retail);
-    })); */
-
-  sups.slice(0, 4).forEach(retail => {
-    quad.push(retail);
-  });
-
-  // console.log(quad.length);
-  // console.log(quad[0]);
-
-  // get this out enough to return it?
-
-  return (
-    <div className='deck'>
-      {quad.map((retail) => {
-        {/* // * this is weird it needs a nested return */ }
-        return (
-          <div key={retail.id}>
-            <Card retail={retail} />
-          </div>
-        )
-      })}
-
-      {/*       {quad.map((retail) => {
-        <Card retail={retail} />
-      })} */}
-    </div>
-  )
-}
+import Brand from "../../components/brand";
+import OtherBrand from "../../components/other-brand";
 
 const RetailSupPage = () => {
 
   const query = useStaticQuery(graphql`
-
-      # let others = [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pau hana" ];
-
-
     query SupQuery {
       hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
         nodes {
@@ -363,8 +213,6 @@ const RetailSupPage = () => {
         }
       }
 
-      # let others = [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pauhana" ];
-
       other: allStrapiBrand(filter: {name: {nin: [ "hobie", "bote", "tahe", "sic", "hala", "boardworks", "pau hana" ] }}) {
         nodes {
           name
@@ -405,8 +253,6 @@ const RetailSupPage = () => {
   let pauhana = query.pauhana;
   let other = query.other;
 
-  // TODO: needs an unkown brand
-
   let title = "Paddleboard Retail";
 
   return (
@@ -426,7 +272,6 @@ const RetailSupPage = () => {
           </div>
           <div className="location_card">
             <Store />
-
           </div>
         </div>
 
@@ -443,50 +288,49 @@ const RetailSupPage = () => {
         {hobie.nodes.map(brand => (
           <div key={brand.slug} >
             {/* // * wrap this for react keys */}
-            {/* // {brand.slug} testing */}
-            < Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
         {bote.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
         {tahe.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
 
         {sic.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
         {hala.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
 
         {boardworks.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
         {pauhana.nodes.map(brand => (
           <div key={brand.slug}>
-            <Brand brand={brand} />
+            <Brand brand={brand} type="sup" />
           </div>
         ))}
 
-        <Others nodes={other.nodes} />
+        <OtherBrand nodes={other.nodes} type="sup" />
 
       </div >
 

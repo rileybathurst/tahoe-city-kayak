@@ -13,210 +13,43 @@ import More from "../../components/more";
 import Retail from "../../content/retail";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Card from "../../components/card";
-
-function OnlyKayak(retail: { retail: { type: string; id?: React.Key; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; }; }) {
-
-  // console.log(retail);
-  // console.log(retail.retail.type);
-
-  if (retail.retail.type === 'kayak') {
-    return (
-      <Card retail={retail.retail} />
-    )
-  } else {
-    return null;
-  }
-}
+import Brand from "../../components/brand";
+import OtherBrand from "../../components/other-brand";
 
 const RetailKayakPage = (data: any) => {
-
   const query = useStaticQuery(graphql`
-query KayaksQuery {
-  hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-    
-      nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
+    query KayaksQuery {
+      hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
+        nodes {
           id
-          title
+          name
           slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
               }
+              alternativeText
             }
-            alternativeText
-          }
-        }
-    }
-  }
-
-  eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
-    
-      nodes {
-      id
-      name
-      slug
-      tagline
-      svg
-
-      retail {
-        type
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-
-  perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
-    
-      nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-    }
-  }
-
-  wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness-systems"}}) {
-    
-      nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
-      retail {
-        type
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-          }
-        }
-    }
-  }
-
-  delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
-    
-      nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
           }
         }
       }
-  }
 
-  bote: allStrapiBrand(
-  filter: {name: {eq: "bote"}, kayak: {eq: true}}
-  ) {
-    
-      nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
-        retail {
-        type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-  }
-
-  brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
-    
-      nodes {
+      eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
+        nodes {
         id
         name
         slug
@@ -236,17 +69,188 @@ query KayaksQuery {
             localFile {
               childImageSharp {
                 gatsbyImageData
+                }
               }
+              alternativeText
             }
-            alternativeText
           }
         }
       }
-  }
 
+      perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
+        nodes {
+          id
+          name
+          slug
+          tagline
+          svg
 
-}
-`)
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness systems"}}) {
+        nodes {
+          id
+          name
+          slug
+          tagline
+          svg
+
+        retail {
+          type
+          id
+          title
+          slug
+          excerpt
+          capacity
+          length
+          width
+          cutout {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+            }
+          }
+        }
+      }
+
+      delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
+        nodes {
+          id
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
+        nodes {
+          id
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+          type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
+        nodes {
+          id
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+
+      other: allStrapiBrand(filter: {name: {nin: [ "hobie", "eddyline", "perception", "wilderness systems", "delta", "bote", "brusurf" ] }}) {
+        nodes {
+          name
+          slug
+          tagline
+          svg
+
+          retail {
+            type
+            id
+            title
+            slug
+            excerpt
+            capacity
+            length
+            width
+            cutout {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+  `)
 
   let hobie = query.hobie;
   let eddyline = query.eddyline;
@@ -255,6 +259,7 @@ query KayaksQuery {
   let delta = query.delta;
   let bote = query.bote;
   let brusurf = query.brusurf;
+  let other = query.other;
 
   let title = "Kayak Retail";
   let parent = "retail";
@@ -294,222 +299,50 @@ query KayaksQuery {
 
       <div className="brand_blocks">
 
-        {hobie.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {hobie.nodes.map(brand => (
+          <div key={brand.slug} >
+            {/* // * wrap this for react keys */}
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-        {eddyline.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {eddyline.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-        {perception.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {perception.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-        {wildernesssystems.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {wildernesssystems.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-        {delta.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {delta.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-
-        {bote.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {bote.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
 
-        {brusurf.nodes.map((brand: { id: React.Key | null | undefined; svg: string; slug: string; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; tagline: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; retail: any[]; }) => (
-          <div key={brand.id}>
-            <section className="passage">
-              <div className='brand-logo'>
-                <Danger svg={brand.svg} />
-                <h2 className='capitalize'>
-                  <Link to={brand.slug}>
-                    {brand.name}
-                  </Link>
-                </h2>
-              </div>
-              <p>{brand.tagline}.</p>
-              <hr />
-            </section>
-            <div className='deck'>
-              {brand.retail.slice(0, 4).map((retail: any) => (
-                <OnlyKayak
-                  retail={retail}
-                />
-              ))}
-            </div>
-
-            <More
-              retail={brand.retail}
-              brand={brand.name}
-              slug={brand.slug}
-              type="kayak"
-            />
+        {brusurf.nodes.map(brand => (
+          <div key={brand.slug}>
+            <Brand brand={brand} type="kayak" />
           </div>
         ))}
+
+        <OtherBrand nodes={other.nodes} type="kayak" />
 
       </div>
 
