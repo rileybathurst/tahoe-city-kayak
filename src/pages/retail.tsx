@@ -17,8 +17,6 @@ import Composition from "../components/composition";
 import Retail from "../content/retail";
 
 const RetailPage = () => {
-
-
   const query = useStaticQuery(graphql`
     query RetailsQuery {
       kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
@@ -32,6 +30,7 @@ const RetailPage = () => {
           type
           excerpt
           capacity
+          inflatable
 
           cutout {
             localFile {
@@ -54,6 +53,7 @@ const RetailPage = () => {
         type
         excerpt
         capacity
+        inflatable
 
         cutout {
           localFile {
@@ -115,7 +115,9 @@ const RetailPage = () => {
 
       <section className="deck">
         {kayak.nodes.map(kayak => (
-          <Card retail={kayak} />
+          <div key={kayak.id}>
+            <Card retail={kayak} />
+          </div>
         ))}
 
         <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
@@ -139,7 +141,9 @@ const RetailPage = () => {
 
       <section className="deck">
         {sup.nodes.map(sup => (
-          <Card retail={sup} />
+          <div key={sup.id}>
+            <Card retail={sup} />
+          </div>
         ))}
         <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
       </section>

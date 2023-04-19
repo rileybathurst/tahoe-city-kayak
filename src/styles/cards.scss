@@ -134,6 +134,23 @@
         color: var(--kingly-cloud);
       } // .button
     }
+
+    .badge {
+      z-index: var(--floor);
+      background-color: var(--brilliance);
+      place-self: start;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      border-radius: var(--card-radius);
+      box-shadow: var(--penumbra);
+      opacity: 0.9;
+
+      h5 {
+        margin: 0;
+        opacity: 1;
+        font-weight: normal;
+      }
+    }
   } // .card
 } // .deck
 

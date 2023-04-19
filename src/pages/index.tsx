@@ -64,6 +64,7 @@ const IndexPage = () => {
           type
           length
           width
+          inflatable
 
           cutout {
             localFile {

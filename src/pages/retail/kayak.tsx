@@ -36,6 +36,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -65,6 +66,7 @@ const RetailKayakPage = (data: any) => {
           capacity
           length
           width
+          inflatable
           cutout {
             localFile {
               childImageSharp {
@@ -94,6 +96,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -123,6 +126,7 @@ const RetailKayakPage = (data: any) => {
           capacity
           length
           width
+          inflatable
           cutout {
             localFile {
               childImageSharp {
@@ -152,6 +156,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -181,6 +186,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -210,6 +216,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -238,6 +245,7 @@ const RetailKayakPage = (data: any) => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {

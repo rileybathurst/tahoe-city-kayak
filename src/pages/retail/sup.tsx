@@ -33,6 +33,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -61,6 +62,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -89,6 +91,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -117,6 +120,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -145,6 +149,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -173,6 +178,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -201,6 +207,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {
@@ -229,6 +236,7 @@ const RetailSupPage = () => {
             capacity
             length
             width
+            inflatable
             cutout {
               localFile {
                 childImageSharp {

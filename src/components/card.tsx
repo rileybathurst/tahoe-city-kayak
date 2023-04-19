@@ -6,6 +6,18 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
 
+function Badges(props) {
+  if (props.inflatable) {
+    return (
+      <div className="badge">
+        <h5>Inflatable</h5>
+      </div>
+    )
+  } else {
+    return null
+  }
+}
+
 const Card = (retail: {
   retail: {
     id: React.Key;
@@ -24,6 +36,7 @@ const Card = (retail: {
     length: number;
     width: number;
     capacity: number;
+    inflatable?: boolean;
   };
 }) => {
 
@@ -43,6 +56,9 @@ const Card = (retail: {
             objectFit="contain"
           />
         </Link>
+        <Badges
+          inflatable={retail.retail.inflatable}
+        />
       </div>
       {/* // ? does this need a brand */}
       <h4 className="card__title">
