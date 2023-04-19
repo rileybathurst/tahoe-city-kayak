@@ -232,3 +232,7 @@ select {
   margin-block-end: var(--baseline);
   margin-block-end: 0;
 }
+
+.spec h2 {
+  @extend h4;
+}
