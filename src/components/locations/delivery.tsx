@@ -7,11 +7,10 @@ const Parking = () => {
     <section className="location">
       {/* js link these together for css hover */}
       <Link to="/delivery"><ShippingIcon /></Link>
-      {/* // ! needs shortening from Andy try chatGPT first */}
       <p><Link to="/delivery"><strong>Delivery</strong></Link><br />
-        Retail or rental throughout the Tahoe Region and beyond
+        We can deliver retail or rental watercraft to homes or beaches throughout the region.  Call for delivery fees.
       </p>
-      <p>home, vacation property, or to public beaches (where local rules and access allow)</p>
+      <p></p>
     </section >
   )
 }

@@ -1,45 +1,15 @@
 // TODO this can be a template
+// ! images are showing different and wrong here
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
 import { useSiteUrl } from "../../../hooks/use-site-url";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
-import TextureBackgrounds from "../../../components/texturebackgrounds";
-import Remainder from "../../../components/remainder";
 import KayakFeatureList from "../../../components/kayak-feature-list";
-
-function Card(props) {
-  // console.log(props.kayak);
-
-  return (
-    <article key={props.kayak.id} className="card">
-      <div className="card-collage">
-        <TextureBackgrounds />
-        <GatsbyImage
-          image={props.kayak.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props.kayak.cutout?.alternativeText}
-          className="cutout"
-        />
-      </div>
-      <h4 className="card__title">
-        <Link to={`/retail/${props.kayak.type}/${props.kayak.slug}`}>
-          {props.kayak.title}
-        </Link>
-      </h4>
-      <hr />
-      <p>{props.kayak.excerpt}</p>
-      <hr />
-      <div className="card__details">
-        <h4><Remainder inches={props.kayak.length} /> long by {props.kayak.width}" wide</h4>
-        <h5 className="capitalize">Capacity {props.kayak.capacity}lbs</h5>
-      </div>
-    </article>
-  )
-}
+import Card from "../../../components/card";
 
 const TandemPage = () => {
 
@@ -55,6 +25,7 @@ const TandemPage = () => {
           length
           width
           type
+          inflatable
 
           cutout {
             localFile {
@@ -116,9 +87,11 @@ const TandemPage = () => {
 
       <section className="deck">
         {allStrapiRetail.map(retail => (
-          <Card
-            kayak={retail}
-          />
+          <div key={retail.id}>
+            <Card
+              retail={retail}
+            />
+          </div>
         ))}
       </section>
 

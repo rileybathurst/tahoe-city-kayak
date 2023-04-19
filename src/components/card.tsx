@@ -53,7 +53,7 @@ const Card = (retail: {
             image={retail.retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
             alt={retail.retail.cutout?.alternativeText}
             className="cutout"
-            objectFit="contain"
+          // objectFit="contain" // ! this also needs a width 100% on the class
           />
         </Link>
         <Badges
