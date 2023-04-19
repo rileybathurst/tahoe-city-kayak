@@ -105,6 +105,11 @@ main {
   @media (min-width: $stork) {
     flex-flow: row wrap;
   }
+
+  .tour-name {
+    // https://developer.chrome.com/blog/css-text-wrap-balance/
+    text-wrap: balance; // this is experimental
+  }
 }
 
 /*------------------*/
@@ -221,21 +226,6 @@ main {
   }
 }
 
-.spec {
-  display: flex;
-  gap: 1rem;
-  border-bottom: 2px solid var(--kingly-cloud);
-}
-
-// TODO: naming is bad its too close to .spec
-.spec-flex {
-  display: flex;
-}
-
-.unit-place__before {
-  flex-direction: row-reverse;
-}
-
 /*------------------*/
 //  #FOOTER
 /*------------------*/
@@ -349,30 +339,6 @@ footer {
   p {
     max-width: var(--vulture);
   }
-}
-
-.spec {
-  display: flex;
-  gap: 1rem;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  border-bottom: 1px solid var(--tin-soldier);
-  text-transform: uppercase;
-
-  // name
-  h2 {
-    color: grey;
-    font-size: 1.5rem;
-  }
-
-  .spec__unit {
-    color: grey;
-  }
-}
-
-.spec:last-child {
-  border-bottom: none;
 }
 
 .hgroup__retail {
@@ -497,6 +463,7 @@ footer {
     grid-row: 1/1;
     filter: drop-shadow(5px 5px 5px var(--black-out));
     aspect-ratio: 16/9;
+    width: 100%;
   }
 
   .card__placeholder {
@@ -909,4 +876,46 @@ footer {
   margin-inline: auto;
   padding-inline: 0.75rem;
   margin-block-end: calc(2 * var(--baseline));
+}
+
+/*------------------*/
+//  #SPECS
+/*------------------*/
+
+.unit-place__before {
+  flex-direction: row-reverse;
+}
+
+.spec {
+  display: flex;
+  gap: 1rem;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  // addding this border has to flip the margins
+  border-bottom: 1px solid var(--tin-soldier);
+  text-transform: uppercase;
+  margin-block-start: 1.5rem;
+
+  h2 {
+    // starts with an @extend h4 in typography.scss
+    color: grey;
+    margin-block-end: 0.25rem;
+  }
+
+  h3 {
+    margin-block-end: 0.25rem;
+  }
+
+  .spec__unit {
+    color: grey;
+  }
+
+  .spec-flex {
+    display: flex;
+  }
+}
+
+.spec:last-child {
+  border-bottom: none;
 }

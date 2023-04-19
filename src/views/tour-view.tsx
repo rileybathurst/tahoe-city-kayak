@@ -24,6 +24,9 @@ import Supper from "../images/supper";
 
 import Composition from "../components/composition";
 
+import Balancer from 'react-wrap-balancer'
+// import balanceText from "balance-text";
+
 function Paddler(props) {
   if (props.sport === "kayak") {
     return (
@@ -101,6 +104,24 @@ function Minimum(props) {
   }
 }
 
+function TourName(props) {
+  {/* // * this will hopefully get replace with css text-wrap: balance */ }
+  let name = props.tour;
+  console.log(name.length);
+  if (name.length > 20) {
+
+    return (
+      <Balancer>{props.tour}</Balancer>
+    );
+  } else {
+    return (
+      <>
+        {props.tour}
+      </>
+    );
+  }
+}
+
 const TourView = ({ tour, other }) => {
 
   return (
@@ -121,7 +142,8 @@ const TourView = ({ tour, other }) => {
 
       <main className="main__full main__full--tour">
         <div>
-          <h1>{tour.name}</h1>
+          <h1><TourName tour={tour.name} /></h1>
+          {/* <h1 className="tour-name">{tour.name}</h1> */}
           <div className="tour__minimum">
             <a href={tour.peek}
               rel="noopener noreferrer"
