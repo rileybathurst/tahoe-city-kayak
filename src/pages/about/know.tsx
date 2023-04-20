@@ -1,6 +1,6 @@
 // take some inspiration from Modern for Wikipedia https://www.modernwiki.app/
 
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
@@ -29,11 +29,15 @@ const KnowPage = () => {
   let title = "Know Before You Go";
   let parent = "about";
 
+  const [reading, setReading] = useState("");
+  const [dressState, setDressState] = useState("current");
+  const [weatherState, setWeatherState] = useState("current");
 
-  const ref = useRef();
+  const dressRef = useRef();
+  // console.log(dressRef.current);
 
   useEffect(() => {
-    let vid = ref.current;
+    let dress = dressRef.current;
 
     createObserver();
 
@@ -45,20 +49,66 @@ const KnowPage = () => {
       };
 
       observer = new IntersectionObserver(handleIntersect, options);
-      observer.observe(vid);
+      observer.observe(dress);
     }
 
     function handleIntersect(entries) {
       entries.forEach((entry) => {
         if (entry.intersectionRatio > 0.1) {
-          // console.log(entry.intersectionRatio);
-          vid.classList.add("current");
+          setDressState("current")
+          setWeatherState("")
+          // setReading("dress")
         } else {
-          vid.classList.remove("current");
+          setDressState("")
+          // setReading("")
         }
       });
     }
-  }, [])
+  }, [weatherState])
+
+  const weatherRef = useRef();
+
+  useEffect(() => {
+    let weather = weatherRef.current;
+
+    createObserver();
+
+    function createObserver() {
+      let observer;
+
+      let options = {
+        threshold: 0.1
+      };
+
+      observer = new IntersectionObserver(handleIntersect, options);
+      observer.observe(weather);
+    }
+
+    function handleIntersect(entries) {
+      entries.forEach((entry) => {
+        // if (entry.intersectionRatio > 0.1) {
+        if (entry.intersectionRatio > 0.1 && dressState === "") {
+          // console.log("🦄")
+          setWeatherState("current")
+          // setReading("weather")
+        } else {
+          setWeatherState("")
+          // setReading("")
+        }
+      });
+    }
+  }, [dressState])
+
+  console.log("dress " + dressState);
+  console.log("weather " + weatherState);
+
+  /*   
+  too many rerenders
+  if (dressState === "current") {
+      setReading("dress")
+    } */
+
+  // console.log(reading);
 
   return (
     <>
@@ -69,8 +119,8 @@ const KnowPage = () => {
 
         <nav>
           <ul>
-            <li>Dress for Success</li>
-            <li>Weather and Navigation</li>
+            <li id="dress" className={dressState} >Dress for Success</li>
+            <li id="weather" className={weatherState} >Weather and Navigation</li>
             <li>Rental, Retail and Delivery</li>
             <li>Basic Paddling Tips</li>
             <li>Safety on the Water</li>
@@ -81,11 +131,10 @@ const KnowPage = () => {
         <div>
           <h1>{title}</h1>
 
-
-
           <article
             id="Dress for Success"
-            ref={ref}
+            ref={dressRef}
+            aria-current={dressState} // TODO: location
           >
             <h3>Dress for Success</h3>
             <ul>
@@ -137,7 +186,8 @@ const KnowPage = () => {
 
           <article
             id="Weather and Navigation"
-            ref={ref}
+            ref={weatherRef}
+            aria-current={weatherState}
           >
             <h3>Weather and Navigation</h3>
             <ul>

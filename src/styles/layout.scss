@@ -948,10 +948,24 @@ footer {
       margin-inline-start: 0;
       position: sticky;
       top: 0;
-
-      li {
-        line-height: calc(2 * var(--baseline));
-      }
     }
   }
+}
+
+// keep the inception rule
+.wiki > nav > ul {
+  > li {
+    line-height: calc(2 * var(--baseline));
+  }
+
+  > li.current {
+    font-weight: bold;
+    color: var(--mullen);
+  }
+
+  /*   > li.dress,
+  li.weather {
+    font-weight: bold;
+    color: var(--mullen);
+  } */
 }
