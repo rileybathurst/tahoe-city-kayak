@@ -36,11 +36,13 @@ const KnowPage = () => {
   const dressRef = useRef();
   // console.log(dressRef.current);
 
+  const weatherRef = useRef();
+
+
   useEffect(() => {
     let dress = dressRef.current;
 
     createObserver();
-
     function createObserver() {
       let observer;
 
@@ -57,58 +59,49 @@ const KnowPage = () => {
         if (entry.intersectionRatio > 0.1) {
           setDressState("current")
           setWeatherState("")
-          // setReading("dress")
+        } else if (entry.intersectionRatio < 0.1 && weatherState === "ready" || weatherState === "current") {
+          // * this defintley needs the current I know from testing
+          setWeatherState("current")
+          setDressState("")
         } else {
           setDressState("")
-          // setReading("")
         }
       });
     }
-  }, [weatherState])
 
-  const weatherRef = useRef();
+    // ------------------------------------------------------------------------
 
-  useEffect(() => {
     let weather = weatherRef.current;
 
-    createObserver();
+    weatherObserver();
+    function weatherObserver() {
+      let observeWeather;
 
-    function createObserver() {
-      let observer;
-
-      let options = {
+      let weatherOptions = {
         threshold: 0.1
       };
 
-      observer = new IntersectionObserver(handleIntersect, options);
-      observer.observe(weather);
+      observeWeather = new IntersectionObserver(weatherIntersect, weatherOptions);
+      observeWeather.observe(weather);
     }
 
-    function handleIntersect(entries) {
-      entries.forEach((entry) => {
-        // if (entry.intersectionRatio > 0.1) {
+    function weatherIntersect(entriesW) {
+      entriesW.forEach((entry) => {
         if (entry.intersectionRatio > 0.1 && dressState === "") {
-          // console.log("🦄")
+          setDressState("")
           setWeatherState("current")
-          // setReading("weather")
+        } else if (entry.intersectionRatio > 0.1 && dressState === "current") {
+          setWeatherState("ready")
         } else {
           setWeatherState("")
-          // setReading("")
         }
       });
     }
-  }, [dressState])
+  }, [])
 
-  console.log("dress " + dressState);
-  console.log("weather " + weatherState);
 
-  /*   
-  too many rerenders
-  if (dressState === "current") {
-      setReading("dress")
-    } */
-
-  // console.log(reading);
+  console.log("dress is " + dressState);
+  console.log("weather is " + weatherState);
 
   return (
     <>
