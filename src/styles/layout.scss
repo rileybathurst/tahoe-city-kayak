@@ -36,6 +36,7 @@
   display: flex;
   column-gap: 0.75rem;
   max-width: var(--pelican);
+  margin-inline: auto;
   flex-flow: row wrap;
 
   > * {
@@ -918,4 +919,39 @@ footer {
 
 .spec:last-child {
   border-bottom: none;
+}
+
+/*------------------*/
+//  #WIKI
+/*------------------*/
+
+.wiki {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-block-end: calc(2 * var(--baseline));
+
+  > *:first-child {
+    flex: 1;
+  }
+
+  > *:last-child {
+    flex: 1.67;
+  }
+
+  > nav {
+    padding-inline-start: 0; // reset
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+      margin-inline-start: 0;
+      position: sticky;
+      top: 0;
+
+      li {
+        line-height: calc(2 * var(--baseline));
+      }
+    }
+  }
 }
