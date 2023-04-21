@@ -2,7 +2,21 @@
 //  #JOBS
 /*------------------*/
 
-/* .jobs {
-  align-items: flex-start;
+// ! wrong place and not working
+
+.scroller {
+  display: flex;
+  flex-direction: row;
+
+  nav {
+    position: sticky;
+    top: 0;
+  }
+
+  .scroll-container {
+    height: 100vh;
+    // height: auto;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
 }
- */

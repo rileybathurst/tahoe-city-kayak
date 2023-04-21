@@ -1,7 +1,11 @@
 // take some inspiration from Modern for Wikipedia https://www.modernwiki.app/
+// TODO: there has to be an easier way to do this
+// TODO: add a little animation with a color behind the nav which slides with the current section
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql, Script } from 'gatsby';
+import { Link, useStaticQuery, graphql, Script } from 'gatsby';
+// import * as Scroll from 'react-scroll';
+
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
@@ -12,7 +16,17 @@ import Footer from "../../components/footer";
 
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
+/* if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]')
+}
+ */
 const KnowPage = () => {
+
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line global-require
+    require("smooth-scroll")('a[href*="#"]')
+  }
 
   const { allStrapiFaq } = useStaticQuery(graphql`
     query KnowQuery {
@@ -29,17 +43,26 @@ const KnowPage = () => {
   let title = "Know Before You Go";
   let parent = "about";
 
-  const [reading, setReading] = useState("");
   const [dressState, setDressState] = useState("current");
-  const [weatherState, setWeatherState] = useState("current");
+  const [weatherState, setWeatherState] = useState("");
+  const [rentalState, setRentalState] = useState("");
+  const [paddleState, setPaddleState] = useState("");
+  const [safetyState, setSafetyState] = useState('');
+  const [hydrateState, setHydrateState] = useState('');
 
   const dressRef = useRef();
-  // console.log(dressRef.current);
-
   const weatherRef = useRef();
+  const rentalRef = useRef();
+  const paddleRef = useRef();
+  const safetyRef = useRef();
+  const hydrateRef = useRef();
 
+  // Im using a ready state as if something comes in
+  // but the above are there it needs to hold state
+  // for when the one above moves out
 
   useEffect(() => {
+
     let dress = dressRef.current;
 
     createObserver();
@@ -56,14 +79,14 @@ const KnowPage = () => {
 
     function handleIntersect(entries) {
       entries.forEach((entry) => {
+        // if this is in it should always be current
         if (entry.intersectionRatio > 0.1) {
           setDressState("current")
           setWeatherState("")
-        } else if (entry.intersectionRatio < 0.1 && weatherState === "ready" || weatherState === "current") {
-          // * this defintley needs the current I know from testing
+          // if dress goes out but weather is in it should make that the current
+        } else if (entry.intersectionRatio < 0.1 && (weatherState === "ready" || weatherState === "current")) {
+          // * depending which order these fire it hits one or the other
           setWeatherState("current")
-          setDressState("")
-        } else {
           setDressState("")
         }
       });
@@ -87,21 +110,134 @@ const KnowPage = () => {
 
     function weatherIntersect(entriesW) {
       entriesW.forEach((entry) => {
-        if (entry.intersectionRatio > 0.1 && dressState === "") {
+        // if the weather is in and dress is out it should be current
+        if (entry.intersectionRatio > 0.1 && dressState !== "current") {
           setDressState("")
           setWeatherState("current")
+          // if weather is in and dress is in it should be ready
         } else if (entry.intersectionRatio > 0.1 && dressState === "current") {
           setWeatherState("ready")
-        } else {
+          // if weather is out its out and only if dress is out should it be current
+        } else if (entry.intersectionRatio < 0.1 && (rentalState === "ready" || rentalState === "current")) {
           setWeatherState("")
+          setRentalState("current")
         }
       });
     }
-  }, [])
+
+    // ------------------------------------------------------------------------
+
+    let rental = rentalRef.current;
+
+    rentalObserver();
+    function rentalObserver() {
+      let observeRental;
+
+      let rentalOptions = {
+        threshold: 0.1
+      };
+
+      observeRental = new IntersectionObserver(rentalIntersect, rentalOptions);
+      observeRental.observe(rental);
+    }
+
+    function rentalIntersect(entriesR) {
+      entriesR.forEach((entry) => {
+        // if we come and no one above is we go current
+        if (entry.intersectionRatio > 0.1 && (dressState !== "current" && weatherState !== "current")) {
+          setRentalState("current")
+          // if we come and someone above is we go ready
+        } else if (entry.intersectionRatio > 0.1 && (dressState === "current" || weatherState === "current")) {
+          setRentalState("ready")
+          // if we go out we go out and set the next one to current
+        } else if (entry.intersectionRatio < 0.1 && (paddleState === "ready" || paddleState === "current")) {
+          setRentalState("")
+          setPaddleState("current")
+        }
+      });
+    }
+
+    // ------------------------------------------------------------------------
+
+    let paddle = paddleRef.current;
+
+    paddleObserver();
+    function paddleObserver() {
+      let observePaddle;
+
+      let paddleOptions = {
+        threshold: 0.1
+      };
+
+      observePaddle = new IntersectionObserver(paddleIntersect, paddleOptions);
+      observePaddle.observe(paddle);
+    }
+
+    function paddleIntersect(entriesP) {
+      entriesP.forEach((entry) => {
+        // this has to be an and not an or
+        if (entry.intersectionRatio > 0.1 && (dressState !== "current" && weatherState !== "current" && rentalState !== "current")) {
+          setPaddleState("current")
+        } else if (entry.intersectionRatio > 0.1 && (dressState === "current" || weatherState === "current" || rentalState === "current")) {
+          setPaddleState("ready")
+        } else if (entry.intersectionRatio < 0.1 && (safetyState === "ready" || safetyState === "current")) {
+          setPaddleState("")
+          setSafetyState("current")
+        }
+      });
+    }
+
+    // ------------------------------------------------------------------------
+
+    let safety = safetyRef.current;
+
+    safetyObserver();
+    function safetyObserver() {
+      let observeSafety;
+      let safetyOptions = {
+        threshold: 0.1
+      };
+      observeSafety = new IntersectionObserver(safetyIntersect, safetyOptions);
+      observeSafety.observe(safety);
+    }
+    function safetyIntersect(entries) {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0.1 && (dressState !== "current" && weatherState !== "current" && rentalState !== "current" && paddleState !== "current")) {
+          setSafetyState("current")
+        } else if (entry.intersectionRatio > 0.1 && (dressState === "current" || weatherState === "current" || rentalState === "current" || paddleState === "current")) {
+          setSafetyState("ready")
+        } else if (entry.intersectionRatio < 0.1 && (hydrateState === "ready" || hydrateState === "current")) {
+          setSafetyState("")
+          setHydrateState('current')
+        }
+      });
+    }
+
+    let hydrate = hydrateRef.current;
+    hydrateObserver();
+    function hydrateObserver() {
+      let observeHydrate;
+      let hydrateOptions = {
+        threshold: 0.1
+      };
+      observeHydrate = new IntersectionObserver(hydrateIntersect, hydrateOptions);
+      observeHydrate.observe(hydrate);
+    }
+    function hydrateIntersect(entries) {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0.1 && (dressState !== "current" && weatherState !== "current" && rentalState !== "current" && paddleState !== "current" && safetyState !== "current")) {
+          setHydrateState("current")
+        } else if (entry.intersectionRatio > 0.1 && (dressState === "current" || weatherState === "current" || rentalState === "current" || paddleState === "current" || safetyState === "current")) {
+          setHydrateState("ready")
+          // * the last one doesnt need the drop down
+        } else if (entry.intersectionRatio < 0.1) {
+          setHydrateState("")
+        }
+      });
+    }
 
 
-  console.log("dress is " + dressState);
-  console.log("weather is " + weatherState);
+  }, [dressState, weatherState, rentalState, paddleState, safetyState, hydrateState])
 
   return (
     <>
@@ -112,20 +248,20 @@ const KnowPage = () => {
 
         <nav>
           <ul>
-            <li id="dress" className={dressState} >Dress for Success</li>
-            <li id="weather" className={weatherState} >Weather and Navigation</li>
-            <li>Rental, Retail and Delivery</li>
-            <li>Basic Paddling Tips</li>
-            <li>Safety on the Water</li>
-            <li>Stay Hydrated!</li>
-          </ul>
-        </nav>
+            <li className={dressState}><Link to="/about/know/#dress">Dress for Success</Link></li>
+            <li className={weatherState}><Link to="/about/know/#weather">Weather and Navigation</Link></li>
+            <li className={rentalState}><Link to="/about/know/#rental">Rental, Retail and Delivery</Link></li>
+            <li className={paddleState}><Link to="/about/know/#paddle">Basic Paddling Tips</Link></li >
+            <li className={safetyState}><Link to="/about/know/#safety">Safety on the Water</Link></li >
+            <li className={hydrateState}><Link to="/about/know/#hydrate">Stay Hydrated!</Link></li >
+          </ul >
+        </nav >
 
-        <div>
+        <div className="scroll-container">
           <h1>{title}</h1>
 
           <article
-            id="Dress for Success"
+            id="dress"
             ref={dressRef}
             aria-current={dressState} // TODO: location
           >
@@ -178,7 +314,7 @@ const KnowPage = () => {
 
 
           <article
-            id="Weather and Navigation"
+            id="weather"
             ref={weatherRef}
             aria-current={weatherState}
           >
@@ -238,7 +374,10 @@ const KnowPage = () => {
 
 
 
-          <article id="Rental, Retail and Delivery">
+          <article
+            id="rental"
+            ref={rentalRef}
+          >
             <h3>Rental, Retail and Delivery</h3>
             <article>
               Do you offer multi-day rentals and/or delivery?
@@ -261,7 +400,10 @@ const KnowPage = () => {
 
 
 
-          <article id="Basic Paddling Tips">
+          <article
+            id="paddle"
+            ref={paddleRef}
+          >
             <h3>Basic Paddling Tips</h3>
             <h4>Kayak Paddle Strokes</h4>
             <ul>
@@ -298,7 +440,10 @@ const KnowPage = () => {
             <hr />
           </article>
 
-          <article id="Safety on the Water">
+          <article
+            id="safety"
+            ref={safetyRef}
+          >
             <h3>Safety on the Water</h3>
             <ul>
               <li>You Are Harder to See in a Small Boat &ndash; Don&rsquo;t wait for large power boats to see and avoid you. Take evasive maneuvers to be sure you are seen and give power boaters plenty of room. Wear bright clothing.</li>
@@ -312,7 +457,9 @@ const KnowPage = () => {
             <hr />
           </article>
 
-          <article id="Stay Hydrated!">
+          <article id="hydrate"
+            ref={hydrateRef}
+          >
             <h3>Stay Hydrated!</h3>
             <ul>
               <li>Bring along clean drinking water and food, especially if you will be paddling for more than an hour.</li>
@@ -343,7 +490,7 @@ const KnowPage = () => {
             </ul>
           </article>
         </div>
-      </main>
+      </main >
 
       <ParentTitleBreadcrumb
         parent={parent}
