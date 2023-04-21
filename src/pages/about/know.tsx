@@ -16,11 +16,8 @@ import Footer from "../../components/footer";
 
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
-/* if (typeof window !== "undefined") {
-  // eslint-disable-next-line global-require
-  require("smooth-scroll")('a[href*="#"]')
-}
- */
+import scrollTo from 'gatsby-plugin-smoothscroll';
+
 const KnowPage = () => {
 
   if (typeof window !== "undefined") {
@@ -49,6 +46,7 @@ const KnowPage = () => {
   const [paddleState, setPaddleState] = useState("");
   const [safetyState, setSafetyState] = useState('');
   const [hydrateState, setHydrateState] = useState('');
+  const [sliderState, setSliderState] = useState('');
 
   const dressRef = useRef();
   const weatherRef = useRef();
@@ -83,6 +81,7 @@ const KnowPage = () => {
         if (entry.intersectionRatio > 0.1) {
           setDressState("current")
           setWeatherState("")
+          setSliderState("dress")
           // if dress goes out but weather is in it should make that the current
         } else if (entry.intersectionRatio < 0.1 && (weatherState === "ready" || weatherState === "current")) {
           // * depending which order these fire it hits one or the other
@@ -114,6 +113,8 @@ const KnowPage = () => {
         if (entry.intersectionRatio > 0.1 && dressState !== "current") {
           setDressState("")
           setWeatherState("current")
+          setSliderState("weather")
+
           // if weather is in and dress is in it should be ready
         } else if (entry.intersectionRatio > 0.1 && dressState === "current") {
           setWeatherState("ready")
@@ -248,13 +249,15 @@ const KnowPage = () => {
 
         <nav>
           <ul>
-            <li className={dressState}><Link to="/about/know/#dress">Dress for Success</Link></li>
+
+            <li className={dressState}><button onClick={() => scrollTo('#dress')}>Dress for Success</button></li>
             <li className={weatherState}><Link to="/about/know/#weather">Weather and Navigation</Link></li>
             <li className={rentalState}><Link to="/about/know/#rental">Rental, Retail and Delivery</Link></li>
             <li className={paddleState}><Link to="/about/know/#paddle">Basic Paddling Tips</Link></li >
             <li className={safetyState}><Link to="/about/know/#safety">Safety on the Water</Link></li >
             <li className={hydrateState}><Link to="/about/know/#hydrate">Stay Hydrated!</Link></li >
           </ul >
+          <div className={`slider-guy ${sliderState}`}>{/* stay gold */}</div>
         </nav >
 
         <div className="scroll-container">

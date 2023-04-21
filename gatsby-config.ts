@@ -124,5 +124,6 @@ module.exports = {
     {
       resolve: "@sentry/gatsby",
     },
+    `gatsby-plugin-smoothscroll`
   ]
 };

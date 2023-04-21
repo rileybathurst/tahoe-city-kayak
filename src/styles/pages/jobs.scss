@@ -11,12 +11,62 @@
   nav {
     position: sticky;
     top: 0;
-  }
 
+    // this has to be wrapped I dont know why
+    ul {
+      position: sticky;
+      top: 0;
+    }
+  }
+  /*   
   .scroll-container {
     height: 100vh;
-    // height: auto;
     overflow-y: scroll;
     scroll-behavior: smooth;
+  } */
+}
+
+.look-link {
+  border: none;
+  box-shadow: none;
+}
+
+.look-link:hover {
+  box-shadow: none;
+}
+
+// ! fix this its cool but needs a lot
+.wiki {
+  nav {
+    display: grid;
+    > * {
+      grid-row: 1;
+      grid-column: 1;
+      place-self: start;
+
+      button {
+        border: none;
+        box-shadow: none;
+      }
+    }
   }
+}
+
+.slider-guy {
+  background-color: hsla(0, 0%, 50%, 0.5);
+  height: 1.5rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  transition: 1s ease-in-out;
+  z-index: 0;
+  border-radius: var(--card-radius);
+}
+
+.slider-guy.dress {
+  top: 0;
+}
+
+.slider-guy.weather {
+  top: 3.5rem;
 }

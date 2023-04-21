@@ -7,7 +7,7 @@ import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import Complete from './locations/complete';
 
-const Header = () => {
+const Footer = () => {
   return (
     <footer>
       <div>
@@ -52,4 +52,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Footer
