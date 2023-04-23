@@ -88,4 +88,38 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
 
+  // Create features dynamically
+  // * but also with if statements to determine which template to use
+  const FeatureTemplate = path.resolve(`src/templates/feature.tsx`)
+  const OtherTemplate = path.resolve(`src/templates/other.tsx`)
+  const featureResult = await graphql(`
+    query {
+      allStrapiFeature {
+        nodes {
+          name
+        }
+      }
+    }
+  `)
+  
+  featureResult.data.allStrapiFeature.nodes.forEach(feature => {
+    if (feature.name === 'tandem') {
+      createPage({
+        path: `/retail/feature/${feature.name}`,
+        component: FeatureTemplate,
+        context: {
+          name: feature.name
+        },
+      })
+    } else {
+    createPage({
+      path: `/retail/feature/${feature.name}`,
+        component: OtherTemplate,
+        context: {
+          name: feature.name
+        }
+      })
+    }
+  })
+
 }

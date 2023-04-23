@@ -1,43 +1,13 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../../components/seo";
 import { useSiteName } from "../../../hooks/use-site-name";
 import { useSiteUrl } from "../../../hooks/use-site-url";
-
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
-
-import TextureBackgrounds from "../../../components/texturebackgrounds";
-import Remainder from "../../../components/remainder";
 import Ultralight from "../../../components/ultralight";
-
-function Card(props) {
-  return (
-    <article key={props.id} className="card">
-      <div className="card-collage">
-        <TextureBackgrounds />
-        <GatsbyImage
-          image={props.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.cutout?.alternativeText}
-          className="cutout"
-        />
-      </div>
-      <h4 className="card__title">
-        <Link to={`/retail/${props.type}/${props.slug}`}>
-          {props.title}
-        </Link>
-      </h4>
-      <hr />
-      <p>{props.excerpt}</p>
-      <hr />
-      <div className="card__details">
-        <h4><Remainder inches={props.length} /> long by {props.width}" wide</h4>
-        <h5 className="capitalize">Capacity {props.capacity}lbs</h5>
-      </div>
-    </article>
-  )
-}
+import Card from "../../../components/card";
+import KayakFeatureList from "../../../components/kayak-feature-list";
 
 const UltralightTandemPage = () => {
 
@@ -76,6 +46,31 @@ query UltraLightTandemQuery {
     <>
       <Header />
 
+      <main>
+        <h1>{title}</h1>
+
+        <Ultralight />
+      </main>
+      <section className="deck">
+        {
+          allStrapiRetail.nodes.map(retail => (
+            <div key={retail.id}>
+              <Card
+                retail={retail}
+              />
+            </div>
+          ))
+        }
+      </section>
+
+
+      < hr className="passage" />
+
+      <section className="passage" >
+        <h3>Browse More Kayaks by Features</h3>
+        <KayakFeatureList />
+      </section>
+
       <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -90,30 +85,6 @@ query UltraLightTandemQuery {
           <li aria-current="page">{title}</li>
         </ol>
       </nav>
-
-      <main>
-        <h1>{title}</h1>
-
-        <Ultralight />
-      </main>
-      <section className="deck">
-        {
-          allStrapiRetail.nodes.map(retail => (
-            <Card
-              id={retail.id}
-              slug={retail.slug}
-              title={retail.title}
-              capacity={retail.capacity}
-              length={retail.length}
-              width={retail.width}
-              excerpt={retail.excerpt}
-              cutout={retail.cutout}
-              type={retail.type}
-            />
-          ))
-        }
-      </section>
-
       <Footer />
     </>
   )

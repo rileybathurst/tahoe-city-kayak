@@ -46,7 +46,7 @@ const KnowPage = () => {
   const [paddleState, setPaddleState] = useState("");
   const [safetyState, setSafetyState] = useState('');
   const [hydrateState, setHydrateState] = useState('');
-  const [sliderState, setSliderState] = useState('');
+  const [sliderState, setSliderState] = useState('1.5');
 
   const dressRef = useRef();
   const weatherRef = useRef();

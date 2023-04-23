@@ -1,18 +1,15 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 import { useSiteName } from '../../hooks/use-site-name';
 import { useSiteUrl } from "../../hooks/use-site-url";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Danger from "../../components/danger";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
 import Store from "../../components/locations/store";
-import More from "../../components/more";
 import Retail from "../../content/retail";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
-import Card from "../../components/card";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
 

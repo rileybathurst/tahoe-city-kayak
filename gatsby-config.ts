@@ -11,7 +11,8 @@ const strapiConfig = {
     'faq',
     'testimonial',
     'brand',
-    'imagegrab'
+    'imagegrab',
+    'feature'
   ],
   singleTypes: [
     'topbar'
