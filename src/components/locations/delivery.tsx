@@ -5,10 +5,10 @@ import ShippingIcon from "../../images/shipping";
 const Parking = () => {
   return (
     <section className="location">
-      {/* js link these together for css hover */}
+      {/* // TODO: js link these together for css hover */}
       <Link to="/delivery"><ShippingIcon /></Link>
       <p><Link to="/delivery"><strong>Delivery</strong></Link><br />
-        We can deliver retail or rental watercraft to homes or beaches throughout the region.  Call for delivery fees.
+        We can deliver retail or rental watercraft to homes or beaches throughout the region. Call for delivery fees.
       </p>
       <p></p>
     </section >

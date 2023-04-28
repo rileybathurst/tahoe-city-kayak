@@ -48,7 +48,10 @@ const Card = (retail: {
       className="card">
       <div className="card-collage">
         <TextureBackgrounds />
-        <Link to={`/retail/${retail.retail.type}/${retail.retail.slug}`} className="image-link">
+        <Link
+          to={`/retail/${retail.retail.type}/${retail.retail.slug}`}
+          className="image-link"
+        >
           <GatsbyImage
             image={retail.retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
             alt={retail.retail.cutout?.alternativeText}
@@ -70,7 +73,10 @@ const Card = (retail: {
       <p>{retail.retail.excerpt}</p>
       <hr />
       <div className="card__details">
-        <h4><Remainder inches={retail.retail.length} /> long by {retail.retail.width}" wide</h4>
+        <h4>
+          <Remainder inches={retail.retail.length} />
+          long by {retail.retail.width}" wide
+        </h4>
         <h5 className="capitalize">Capacity {retail.retail.capacity}lbs</h5>
       </div>
     </article>

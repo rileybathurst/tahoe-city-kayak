@@ -57,7 +57,9 @@ const FeatureLayout = (props) => {
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>
           <li>
-            <Link to={`/retail/${props.type}`}><Sport sport={props.type} /></Link>&nbsp;/&nbsp;
+            <Link to={`/retail/${props.type}`}>
+              <Sport sport={props.type} />
+            </Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">{props.title}</li>
         </ol>

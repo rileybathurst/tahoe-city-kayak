@@ -63,6 +63,7 @@ const RentalsPage = () => {
 
         <BookNow />
 
+        {/* // TODO move this to the component or document why its not */}
         <div className="here__location here__card">
           <section className="location">
             <MapLink>

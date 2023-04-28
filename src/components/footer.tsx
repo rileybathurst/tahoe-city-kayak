@@ -10,8 +10,11 @@ import Complete from './locations/complete';
 const Footer = () => {
   return (
     <footer>
+      {/* holds together a flex */}
       <div>
-        <h3 className='sr-only'><Link to="/">Tahoe City Kayak and Paddleboard</Link></h3>
+        <h3 className='sr-only'>
+          <Link to="/">Tahoe City Kayak and Paddleboard</Link>
+        </h3>
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
@@ -20,8 +23,20 @@ const Footer = () => {
         </nav>
         <hr />
         <div className="footer__contact">
-          <a href="phone:(530) 581-4336" rel="norel norefferer" className="button">Phone: &#40;530&#41; 581-4336</a>
-          <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer" className="button">tahoecitykayak@gmail.com</a>
+          <a
+            href="phone:(530) 581-4336"
+            rel="norel norefferer"
+            className="button"
+          >
+            Phone: &#40;530&#41; 581-4336
+          </a>
+          <a
+            href="mailto:tahoecitykayak@gmail.com"
+            rel="norel norefferer"
+            className="button"
+          >
+            tahoecitykayak@gmail.com
+          </a>
           <hr />
           <div className="social">
             <a
