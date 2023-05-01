@@ -1,5 +1,3 @@
-import { inflate } from "zlib"
-
 const path = require(`path`)
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -25,7 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  retailResult.data.allStrapiRetail.nodes.forEach(retail => {
+  retailResult.data.allStrapiRetail.nodes.forEach((retail: { type: any; slug: any; brand: { slug: any } }) => {
     createPage({
       path: `/retail/${retail.type}/${retail.slug}`,
       component: retailageTemplate,
@@ -51,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  kayakResult.data.allStrapiBrand.nodes.forEach(brand => {
+  kayakResult.data.allStrapiBrand.nodes.forEach((brand: { slug: any; retail: { series: any } }) => {
     createPage({
       path: `/retail/kayak/${brand.slug}`,
       component: kayakBrandsTemplate,
@@ -77,7 +75,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  supResult.data.allStrapiBrand.nodes.forEach(brand => {
+  supResult.data.allStrapiBrand.nodes.forEach((brand: { slug: any; retail: { series: any } }) => {
     createPage({
       path: `/retail/sup/${brand.slug}`,
       component: supBrandsTemplate,
@@ -91,67 +89,71 @@ exports.createPages = async ({ graphql, actions }) => {
 
 
   // Create Attributes Dynamically
-  // * but also with if statements to determine which template to use
-  // const FeatureTemplate = path.resolve(`src/templates/feature.tsx`)
-  
-  // ? is this just moving all the complexity or is it helpful?
-  // how do we decide that?
-  // deep not wide
-  // gatsby node is super deep so thats fine to put it here this is the place to be the most complex
-
-  // go out to the view but have a lot coming from template
-  // I want the least chance of error or missing data
-  // also this is interesting to show how I can source different data
-
-  // having attritutes is super useful as its a better way to query
-  // so once I have that then we may as well use it here
-
-  // these have to be differnt templates as you cant throw blanks at graphql filters
-  const CrewTemplate = path.resolve(`src/templates/other.tsx`)
-  const InflatableTemplate = path.resolve(`src/templates/other.tsx`)
+  // these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters
+  const CrewTemplate = path.resolve(`src/templates/crew.tsx`)
+  const InflatableTemplate = path.resolve(`src/templates/inflatable.tsx`)
+  const WeightTemplate = path.resolve(`src/templates/weight.tsx`)
+  const PedalTemplate = path.resolve(`src/templates/pedal.tsx`)
 
   const attributeResult = await graphql(`
     query {
       allStrapiAttribute {
         nodes {
+          slug
           name
           type
         }
       }
     }
   `)
-  
-  attributeResult.data.allStrapiAttribute.nodes.forEach(attribute => {
-    if (attribute.name === 'tandem') {
+
+  attributeResult.data.allStrapiAttribute.nodes.forEach((attribute: {
+    slug: string;
+    type: string;
+    name: string;
+  }) => {
+    if (attribute.slug === 'tandem') {
       createPage({
-        path: `/retail/${attribute.type}/${attribute.name}`,
+        path: `/retail/attribute/${attribute.type}/${attribute.slug}`,
         component: CrewTemplate,
         context: {
           name: attribute.name,
           type: attribute.type,
-          crew: 'tandem',
+          slug: attribute.slug,
         },
       })
-    } else if (attribute.name === 'inflatable') {
-    createPage({
-      path: `/retail/${attribute.type}/${attribute.name}`,
+    } else if (attribute.slug === 'inflatable' || attribute.slug === 'rigid') {
+      createPage({
+        path: `/retail/attribute/${attribute.type}/${attribute.slug}`,
         component: InflatableTemplate,
         context: {
           name: attribute.name,
           type: attribute.type,
-          inflatable: true
+          inflatable: attribute.slug === 'inflatable' ? true : false,
         }
       })
-    } else if (attribute.name === 'rigid') {
-    createPage({
-      path: `/retail/feature/${attribute.name}`,
-        component: InflatableTemplate,
+    } else if (attribute.slug === 'ultralight' || attribute.slug === 'ultralight-tandem') {
+      createPage({
+      path: `/retail/attribute/${attribute.type}/${attribute.slug}`,
+        component: WeightTemplate,
         context: {
-          name: attribute.name,
+          slug: attribute.slug,
           type: attribute.type,
-          inflatable: false
+          weight: attribute.slug === 'ultralight' ? 46 : 70,
+          crew: attribute.slug === 'ultralight' ? "single" : "tandem",
         }
       })
+    } else if (attribute.slug === 'pedal') {
+      // * this is grabbing the whole hobie brand
+      createPage({
+      path: `/retail/attribute/${attribute.type}/${attribute.slug}`,
+        component: PedalTemplate,
+        context: {
+          slug: attribute.slug,
+          type: attribute.type,
+        }
+      })
+
     }
   })
 

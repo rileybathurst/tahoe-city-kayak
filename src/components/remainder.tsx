@@ -10,13 +10,13 @@ const Remainder = (props: { inches: number }) => {
     if (leftover === 0) {
       return (
         <>
-          {feet}
+          {feet}'&thinsp;
         </>
       )
     } else {
       return (
         <>
-          {feet}' {leftover}"
+          {feet}'&thinsp;{leftover}"&thinsp;
         </>
       )
     }

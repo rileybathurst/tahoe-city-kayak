@@ -5,7 +5,7 @@ const OtherView = ({ data }) => {
   return (
     <>
       Other
-      {data.strapiFeature.name}
+      {data.strapiAttribute.name}
     </>
   );
 };
@@ -16,7 +16,7 @@ export const query = graphql`
   query (
     $name: String!,
   ) {
-    strapiFeature(name: {eq: $name}) {
+    strapiAttribute(name: {eq: $name}) {
       name
     }
   }

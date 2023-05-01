@@ -1,15 +1,23 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import SportFeatureList from "./sport-feature-list";
 
-// eventually I could do something to not show the page its on but for now I'll leave it like this
+export default function PaddleboardFeatureList() {
 
-const PaddleboardFeatureList = () => {
+  const { allStrapiAttribute } = useStaticQuery(graphql`
+      query allStrapiAttributeSUP {
+        allStrapiAttribute(filter: {type: {eq: "sup"}}) {
+          nodes {
+            id
+            name
+            slug
+            type
+          }
+        }
+      }
+    `)
+
   return (
-    <ul className="feature-list">
-      <li key='inflatable'><Link to="/retail/sup/inflatable">Inflatable</Link></li>
-      <li key='rigid'><Link to="/retail/sup/rigid">Rigid</Link></li>
-    </ul>
+    <SportFeatureList sport={allStrapiAttribute} />
   )
 }
-
-export default PaddleboardFeatureList

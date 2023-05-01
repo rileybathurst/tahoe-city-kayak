@@ -1,13 +1,13 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { SEO } from "../../../components/seo";
-import { useSiteName } from "../../../hooks/use-site-name";
-import { useSiteUrl } from "../../../hooks/use-site-url";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Ultralight from "../../../components/ultralight";
-import Card from "../../../components/card";
-import KayakFeatureList from "../../../components/kayak-feature-list";
+import { SEO } from "../../src/components/seo";
+import { useSiteName } from "../../src/hooks/use-site-name";
+import { useSiteUrl } from "../../src/hooks/use-site-url";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import Ultralight from "../../src/components/ultralight";
+import Card from "../../src/components/card";
+import KayakFeatureList from "../../src/components/kayak-feature-list";
 
 const UltralightTandemPage = () => {
 

@@ -1,3 +1,6 @@
+// ! move this to the css
+// ! test the links as they come through
+
 import * as React from "react"
 import { Link } from 'gatsby';
 

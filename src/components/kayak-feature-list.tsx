@@ -1,21 +1,25 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
+import SportFeatureList from "./sport-feature-list";
 
-// eventually I could do something to not show the page its on but for now I'll leave it like this
+// TODO: eventually I could do something to not show the page its on but for now I'll leave it like this
 
-const KayakFeatureList = (props) => {
+export default function KayakFeatureList() {
+
+  const { allStrapiAttribute } = useStaticQuery(graphql`
+    query allStrapiAttributeKayak {
+      allStrapiAttribute(filter: {type: {eq: "kayak"}}) {
+        nodes {
+          id
+          name
+          slug
+          type
+        }
+      }
+    }
+  `)
+
   return (
-    <ul className="feature-list">
-      <li key='tandem'><Link to="/retail/kayak/tandem">Tandem</Link></li>
-      {/* // * currently these are the same as paddledrive this might have to change */}
-      <li key='paddle'><Link to="/retail/kayak/hobie">Pedal Drive</Link></li>
-      <li key='ultralight'><Link to="/retail/kayak/ultralight">UltraLight</Link></li>
-      <li key='ultralight-tandem'><Link to="/retail/kayak/ultralight-tandem">UltraLight Tandems</Link></li>
-      <li key='inflatable'><Link to="/retail/kayak/inflatable">Inflatable</Link></li>
-      <li key='rigid'><Link to="/retail/kayak/rigid">Rigid</Link></li>
-      {/* <li key="flex-fill"></li> */}
-    </ul>
+    <SportFeatureList sport={allStrapiAttribute} />
   )
 }
-
-export default KayakFeatureList

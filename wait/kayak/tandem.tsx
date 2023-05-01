@@ -1,15 +1,16 @@
-// TODO this can be a template
-// ! images are showing different and wrong here
+// * this is in /wait
+// * im moving to a template
+// * images are showing different and wrong here
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-import { SEO } from "../../../components/seo";
-import { useSiteName } from "../../../hooks/use-site-name";
-import { useSiteUrl } from "../../../hooks/use-site-url";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import KayakFeatureList from "../../../components/kayak-feature-list";
-import Card from "../../../components/card";
+import { SEO } from "../../src/components/seo";
+import { useSiteName } from "../../src/hooks/use-site-name";
+import { useSiteUrl } from "../../src/hooks/use-site-url";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import KayakFeatureList from "../../src/components/kayak-feature-list";
+import Card from "../../src/components/card";
 
 const TandemPage = () => {
 

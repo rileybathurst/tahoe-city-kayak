@@ -3,10 +3,10 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
-import FeatureLayout from "../../../components/feature-layout";
-import { SEO } from "../../../components/seo";
-import { useSiteName } from "../../../hooks/use-site-name";
-import BreadcrumbThree from "../../../components/breadcrumb-three";
+import FeatureLayout from "../../src/components/feature-layout";
+import { SEO } from "../../src/components/seo";
+import { useSiteName } from "../../src/hooks/use-site-name";
+import BreadcrumbThree from "../../src/components/breadcrumb-three";
 
 let title = "Inflatable Kayaks";
 let description = "Inflatable kayaks are great for paddling around Lake Tahoe because they are convenient, maneuverable, and accessible. They are also lightweight and easy to transport.";

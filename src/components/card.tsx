@@ -6,6 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
 
+// TODO: I bet I can use the name of the badge to be the badge itself
 function Badges(props) {
   if (props.inflatable) {
     return (
@@ -56,7 +57,8 @@ const Card = (retail: {
             image={retail.retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
             alt={retail.retail.cutout?.alternativeText}
             className="cutout"
-          // objectFit="contain" // ! this also needs a width 100% on the class
+            objectFit="contain"
+          // TODO: this has been causing some problems but keep an eye on it
           />
         </Link>
         <Badges

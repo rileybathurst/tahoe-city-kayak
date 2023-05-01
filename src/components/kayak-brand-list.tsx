@@ -14,17 +14,17 @@ function Danger(props: { svg: string; }) {
 const KayakBrandList = () => {
 
   const { allStrapiBrand } = useStaticQuery(graphql`
-query KayakBrandQuery {
-  allStrapiBrand(filter: {kayak: {eq: true}}) {
-      nodes {
-        id
-        name
-        slug
-        svg
+    query KayakBrandQuery {
+      allStrapiBrand(filter: {kayak: {eq: true}}) {
+        nodes {
+          id
+          name
+          slug
+          svg
+        }
       }
     }
-  }
-`)
+  `)
 
   return (
     <ul className='brand_list'>

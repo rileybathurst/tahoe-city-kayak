@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
-import { SEO } from "../../../components/seo";
-import { useSiteName } from "../../../hooks/use-site-name";
-import FeatureLayout from "../../../components/feature-layout";
-import BreadcrumbThree from "../../../components/breadcrumb-three";
+import { SEO } from "../../src/components/seo";
+import { useSiteName } from "../../src/hooks/use-site-name";
+import FeatureLayout from "../../src/components/feature-layout";
+import BreadcrumbThree from "../../src/components/breadcrumb-three";
 
 let title = "Rigid Kayaks";
 let description = "Rigid kayaks are more durable and last longer. Generally speaking, rigid kayaks perform better in rough waters for this reason going with rigid kayaks will do well when you are looking at Lake Tahoe's conditions.";
