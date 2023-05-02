@@ -592,7 +592,8 @@ footer {
   }
 }
 
-.locations__complete > . {
+// TODO: fix the delivery location
+// .locations__complete > . {
 
 .locations__complete > *:not(:last-child) {
   border-bottom: 1px solid var(--kingly-cloud); // match the hr
