@@ -260,6 +260,13 @@ ol {
   align-items: baseline;
   // justify-content: space-between;
   justify-content: start;
+
+  li {
+    // h5
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 1.75rem;
+  }
 }
 
 /*------------------*/

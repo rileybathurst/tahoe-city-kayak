@@ -1,94 +1,21 @@
+// ! this page is a mess i have a bunch of this stuff I need to import and not repeat
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import TextureBackgrounds from "../components/texturebackgrounds";
-import Remainder from "../components/remainder";
+import Card from "../components/card";
 import Store from "../components/locations/store";
-import WaterTexture from "../images/watertexture";
-import Danger from "../components/danger";
 import Demos from "../content/demos";
-
-import { useStrapiKayaker } from "../hooks/use-strapi-kayaker";
-import { useStrapiSupper } from "../hooks/use-strapi-supper";
 import Composition from "../components/composition";
-
-function Kayaker(props) {
-
-  const { title, image } = useStrapiKayaker()
-
-  return <GatsbyImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/patrick-fore-UFqV-RqPm8w-unsplash-crop.webp"
-    image={image.localFile.childImageSharp.gatsbyImageData}
-    alt={title}
-    className="paddler img__wrapped"
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
-
-function Supper(props) {
-
-  const { title, image } = useStrapiSupper()
-
-  return <GatsbyImage
-    // src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/ivan-rohovchenko-t6tEzGhQNRs-unsplash.webp"
-    image={image.localFile.childImageSharp.gatsbyImageData}
-    alt={title}
-    className={`${props.className} paddler img__wrapped`}
-    objectFit="contain"
-  // breakpoints={[300, 600, 900]}
-  // width={650}
-  />
-}
-
-function Deck(props) {
-
-  // console.log(props.retail);
-
-  const cards = props.retail.map(card => (
-    <article
-      key={card.id}
-      className="card"
-    >
-      <div className="card-collage">
-        <TextureBackgrounds />
-        <GatsbyImage
-          image={card.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={card.cutout?.alternativeText}
-          className="cutout"
-        />
-      </div>
-      <h4 className="card__title">
-        <Link to={`/retail/${card.type}/${card.slug}`}>
-          {card.title}
-        </Link>
-      </h4>
-      <hr />
-      <p>{card.excerpt}</p>
-      <hr />
-      <div className="card__details">
-        <h4><Remainder inches={card.length} /> long by {card.width}" wide</h4>
-        <h5 className="capitalize">Capacity {card.capacity}lbs</h5>
-      </div>
-    </article>
-  ))
-
-  return (
-    <section className="deck">
-      {cards}
-    </section>
-  )
-}
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
+// * Sets dont think array or objects are unique so we go with the old method
 function getUniqueListBy(arr, key) {
   return [...new Map(arr.map(item => [item[key], item])).values()]
 }
@@ -101,6 +28,7 @@ function KayakDemoBrands(props) {
 
   return (
     <>
+      {/* // TODO: add the logos here how we normally do the brands */}
       {dedupedbrands.map(brand => (
         <li key={brand.slug} className="capitalize">
           <Link to={`/retail/kayak/${brand.slug}`}>{brand.name}</Link>
@@ -138,6 +66,8 @@ const DemosPage = () => {
           length
           width
           type
+          demo
+          inflatable
 
           cutout {
             localFile {
@@ -165,6 +95,8 @@ const DemosPage = () => {
           length
           width
           type
+          demo
+          inflatable
 
           cutout {
             localFile {
@@ -229,9 +161,13 @@ const DemosPage = () => {
           <Composition sport="kayak" />
         </div>
 
-
-        <Deck retail={kayak.nodes} />
-
+        <section className="deck">
+          {kayak.nodes.map(kayak => (
+            <div key={kayak.id}>
+              <Card retail={kayak} />
+            </div>
+          ))}
+        </section>
       </section>
 
       <article className="main__full main__full--tour baseline-spacing">
@@ -248,7 +184,13 @@ const DemosPage = () => {
         <Composition sport="sup" />
       </article>
 
-      <Deck retail={paddleboards.nodes} />
+      <section className="deck">
+        {paddleboards.nodes.map(sup => (
+          <div key={sup.id}>
+            <Card retail={sup} />
+          </div>
+        ))}
+      </section>
 
       <Footer />
     </>

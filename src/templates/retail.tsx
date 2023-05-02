@@ -7,10 +7,10 @@ import { useSiteUrl } from "../hooks/use-site-url";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
-
+import Sport from '../components/sport';
 import Header from '../components/header';
 import Footer from '../components/footer';
-
+import Card from '../components/card';
 import Remainder from "../components/remainder";
 import TextureBackgrounds from "../components/texturebackgrounds";
 
@@ -116,45 +116,14 @@ function ReactMD(props) {
 }
 
 function Other(props) {
-
-  // console.log(props.retail);
   if (props.retail) {
-    const cards = props.retail.edges.map(edge => (
-
-      // console.log(edge.node.title);
-
-      <article
-        key={edge.node.id}
-        className="card"
-      >
-        <div className="card-collage">
-          <TextureBackgrounds />
-          <GatsbyImage
-            image={edge.node?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={edge.node?.cutout?.alternativeText}
-            className="cutout"
-            itemProp="image"
-            objectFit="contain"
-          />
-        </div>
-        <h4 className="card__title">
-          <Link to={`/retail/${edge.node.type}/${edge.node.slug}`}>
-            {edge.node.title}
-          </Link>
-        </h4>
-        <hr />
-        <p>{edge.node.excerpt}</p>
-        <hr />
-        <div className="card__details">
-          <h4 className="capitalize">Capacity {edge.node.capacity}LBS</h4>
-          <h5><Remainder inches={edge.node.length} /> tall by {edge.node.width}" wide</h5>
-        </div>
-      </article>
-    ));
-
     return (
       <section className='deck'>
-        {cards}
+        {props.retail.nodes.map(retail => (
+          <div key={retail.id}>
+            <Card retail={retail} />
+          </div>
+        ))}
       </section>
     )
   } else {
@@ -163,21 +132,21 @@ function Other(props) {
 }
 
 function OtherWrap(props) {
-  if (props.retail.edges.length !== 0) {
+  if (props.retail.nodes.length !== 0) {
     return (
-      <>
+      <article>
         <section className='passage'>
-          <h2>Other {props.type}s by <span className='capitalize'>{props.brand}</span></h2>
+          <h2>Other <Sport sport={props.type} />s by <span className='capitalize'>{props.brand}</span></h2>
         </section>
         {props.children}
         <section className='passage'>
           <h3>
             <Link to={`/retail/${props.type}/${props.slug}`}>
-              More {props.type}s by <span className='capitalize'>{props.brand}</span>
+              More <Sport sport={props.type} />s by <span className='capitalize'>{props.brand}</span>
             </Link>
           </h3>
         </section>
-      </>
+      </article>
     )
   } else {
     return null;
@@ -188,12 +157,12 @@ function OtherWrap(props) {
 function None(props) {
   // console.log(props.retail.edges);
 
-  if (props.retail.edges.length === 0) {
+  if (props.retail.nodes.length === 0) {
     return (
       <section className='none'>
         <h3>
           <Link to={`/retail/${props.type}`}>
-            Browse other {props.type}s
+            Browse other <Sport sport={props.type} />s
           </Link>
         </h3>
       </section>
@@ -229,23 +198,6 @@ const RetailTypeView = ({ data }) => {
   return (
     <>
       <Header />
-
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li>
-            <Link to={`/retail/${data.strapiRetail.type}`}>{data.strapiRetail.type}</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li aria-current="page">{data.strapiRetail.title}</li>
-        </ol>
-      </nav>
 
       <main className="retail">
         <div className='passage specs'>
@@ -307,7 +259,22 @@ const RetailTypeView = ({ data }) => {
       {/* // The map just creates nothing so I cant go that way */}
       {/* // It's a pretty rare case so I dont actually query a set of cards */}
       <None retail={data.allStrapiRetail} type={data.strapiRetail.type} />
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
 
+          <li>
+            <Link to={`/retail/${data.strapiRetail.type}`}><Sport sport={data.strapiRetail.type} /></Link>&nbsp;/&nbsp;
+          </li>
+
+          <li aria-current="page">{data.strapiRetail.title}</li>
+        </ol>
+      </nav>
       <Footer />
     </>
   );
@@ -318,7 +285,8 @@ export default RetailTypeView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} sold at  | ${useSiteName()}`}
+      // can I make the brands capitalize?
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteName()}`}
       description={data.strapiRetail.excerpt}>
 
       <Script type="application/ld+json">
@@ -429,25 +397,24 @@ export const query = graphql`
       }
       limit: 2
     ) {
-      edges {
-        node {
-          id
-          title
-          slug
-          excerpt
-          width
-          length
-          type
-          capacity
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        width
+        length
+        type
+        capacity
+        hullweight
 
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+        cutout {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
             }
-            alternativeText
           }
+          alternativeText
         }
       }
     }

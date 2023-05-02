@@ -6,13 +6,26 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
 
-// TODO: I bet I can use the name of the badge to be the badge itself
+function Name(props) {
+  return (
+    <div className="badge">
+      <h5 className="capitalize">{props.name}</h5>
+    </div>
+  )
+}
+
 function Badges(props) {
+
+  // console.log(props);
+
+  // TODO: deal with multiple
   if (props.inflatable) {
     return (
-      <div className="badge">
-        <h5>Inflatable</h5>
-      </div>
+      <Name name="inflatable" />
+    )
+  } else if (props.demo) {
+    return (
+      <Name name="demo" />
     )
   } else {
     return null
@@ -38,6 +51,7 @@ const Card = (retail: {
     width: number;
     capacity: number;
     inflatable?: boolean;
+    demo?: boolean;
   };
 }) => {
 
@@ -63,6 +77,7 @@ const Card = (retail: {
         </Link>
         <Badges
           inflatable={retail.retail.inflatable}
+          demo={retail.retail.demo}
         />
       </div>
       {/* // ? does this need a brand */}

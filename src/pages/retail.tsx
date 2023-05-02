@@ -31,6 +31,7 @@ const RetailPage = () => {
           excerpt
           capacity
           inflatable
+          demo
 
           cutout {
             localFile {
@@ -54,6 +55,7 @@ const RetailPage = () => {
         excerpt
         capacity
         inflatable
+        demo
 
         cutout {
           localFile {
