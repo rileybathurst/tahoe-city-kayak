@@ -17,11 +17,6 @@ const InformationPage = () => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
-
       {/* this page could use accordions to make it easier to read */}
 
       <main>
@@ -109,6 +104,12 @@ const InformationPage = () => {
           </ul>
         </article>
       </main>
+
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
+
       <Footer />
     </>
   )

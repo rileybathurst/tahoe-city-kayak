@@ -8,7 +8,7 @@ import Footer from "../../components/footer";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
 import Store from "../../components/locations/store";
-import Retail from "../../content/retail";
+import Shop from "../../content/shop";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
@@ -273,16 +273,11 @@ const RetailKayakPage = (data: any) => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
-
       <main>
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <Retail />
+            <Shop />
           </div>
 
           <div className="location_card">
@@ -351,6 +346,10 @@ const RetailKayakPage = (data: any) => {
 
       </div>
 
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
 
       <Footer />
     </>

@@ -31,11 +31,6 @@ const FaqPage = () => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
-
       <main>
         <h1>{title}</h1>
 
@@ -59,6 +54,11 @@ const FaqPage = () => {
           }
         </ul>
       </main>
+
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
 
       <Footer />
     </>

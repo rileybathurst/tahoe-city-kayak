@@ -5,16 +5,14 @@ import { useSiteName } from '../hooks/use-site-name';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import StoreIcon from "../images/store";
 import KayakFeatureList from "../components/kayak-feature-list";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Card from "../components/card";
-
+import Store from "../components/locations/store";
 import Composition from "../components/composition";
-
-import Retail from "../content/retail";
+import Shop from "../content/shop";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -80,22 +78,14 @@ const RetailPage = () => {
       <main className="location_card-wrapper">
         <div>
           <h1>Retail</h1>
-          <Retail />
+          <Shop />
+
+          {/* // TODO: Demos link */}
+          <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
         <div className="here__location here__card">
-          <StoreIcon />
-          <p>
-            <strong>Retail Location</strong><br />
-            <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" >
-              521 North Lake Blvd,<br />
-              Tahoe City 96145</a>
-          </p>
-
-          <p>
-            Open Daily<br />
-            9am &ndash; 6pm<br />
-          </p>
+          <Store />
         </div>
       </main>
 

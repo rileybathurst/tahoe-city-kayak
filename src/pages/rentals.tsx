@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -12,19 +11,6 @@ import MapLink from "../components/map-link";
 import CarIcon from "../images/car";
 import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
-
-function TopOne(props) {
-
-  const { query } = useStrapiTextures()
-  // console.log(query.baseone);
-
-  return <GatsbyImage
-    image={query.topthree.image.localFile.childImageSharp.gatsbyImageData}
-    alt="deepwater texture"
-    className={`texture-slice crops ${props.className}`}
-    objectFit="contain"
-  />
-}
 
 const RentalsPage = () => {
   let title = "Rentals";
@@ -43,11 +29,6 @@ const RentalsPage = () => {
             9:30am &ndash; 5:30pm<br />
             Weather Permitting
           </p>
-
-          {/*           <hgroup className="crest">
-            <h3 className="brow">Brow</h3>
-            <h4 className="supra">Supra</h4>
-          </hgroup> */}
 
           <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
           <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>

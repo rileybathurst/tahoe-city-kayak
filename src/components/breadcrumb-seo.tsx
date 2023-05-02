@@ -1,3 +1,5 @@
+// ! this isnt used am I still working on it or skipping it?
+
 import * as React from "react"
 import { Script } from 'gatsby'
 import { useSiteUrl } from "../../../hooks/use-site-url";;

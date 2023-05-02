@@ -20,11 +20,10 @@ import KayakFeatureList from "../components/kayak-feature-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Complete from '../components/locations/complete';
 import Sport from "../components/sport";
-import Slogan from "../content/slogan";
 import AboutUs from "../content/about-us";
-import ToursLessons from "../content/tours-lessons";
-import Retail from "../content/retail";
+import Shop from "../content/shop";
 import Card from "../components/card";
+import Experience from "../content/experience";
 
 const IndexPage = () => {
 
@@ -65,6 +64,7 @@ const IndexPage = () => {
           length
           width
           inflatable
+          hullweight
 
           cutout {
             localFile {
@@ -150,7 +150,9 @@ const IndexPage = () => {
       <Header />
       <main className="home">
         <section>
-          <h2 className="page-title"><Slogan /></h2>
+          <h2 className="page-title">
+            North Lake Tahoe&apos;s Premier Kayak and Paddleboard Provider, offering Rentals, Sales, Lessons and Tours
+          </h2>
 
           <AboutUs />
 
@@ -183,7 +185,7 @@ const IndexPage = () => {
             {/* think about capitalization here */}
             <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
           </hgroup>
-          <ToursLessons />
+          <Experience />
           <h4>
             <Link to="/tours-lessons/compare">Compare Tours &amp; Lessons</Link>
           </h4>
@@ -253,7 +255,7 @@ const IndexPage = () => {
           <h4 className="supra">Kayaks and Paddleboards</h4>
         </hgroup>
 
-        <Retail />
+        <Shop />
         <hr />
       </section>
 
@@ -280,13 +282,10 @@ const IndexPage = () => {
           ))}
           <div className="deck__more">
             {hasExtra ? (
-              <>
-                <button onClick={handleLoadExtra} className=''>VIEW MORE PRODUCTS</button>
-              </>
+              <button onClick={handleLoadExtra} className=''>VIEW MORE PRODUCTS</button>
             ) : (
               <p>Thats all the products</p>
-            )
-            }
+            )}
           </div>
         </div>
 

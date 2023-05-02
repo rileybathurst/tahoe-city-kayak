@@ -1,3 +1,6 @@
+// ! only used once it can be taken out of the component
+// deep not wide
+
 import * as React from "react"
 
 const BookTour = () => {

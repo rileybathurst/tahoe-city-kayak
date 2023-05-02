@@ -249,7 +249,6 @@ const KnowPage = () => {
 
         <nav>
           <ul>
-
             <li className={dressState}><button onClick={() => scrollTo('#dress')}>Dress for Success</button></li>
             <li className={weatherState}><Link to="/about/know/#weather">Weather and Navigation</Link></li>
             <li className={rentalState}><Link to="/about/know/#rental">Rental, Retail and Delivery</Link></li>

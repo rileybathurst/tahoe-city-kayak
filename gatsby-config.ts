@@ -15,7 +15,10 @@ const strapiConfig = {
     'attribute'
   ],
   singleTypes: [
-    'topbar'
+    'topbar',
+    'about',
+    'experience',
+    'shop', // TODO: update the links
   ],
 };
 
@@ -83,10 +86,10 @@ module.exports = {
 
     "gatsby-transformer-sharp",
     "gatsby-plugin-netlify",
-
-    // Nodes can only be updated by their owner. Node "7dea09dc-1639-5d5d-9dd1-03947e6650bc" is
-    // owned by "gatsby-source-filesystem" and another plugin "gatsby-plugin-image"
-    // tried to update it.
+    {
+      resolve: `gatsby-source-strapi`,
+      options: strapiConfig,
+    },
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -95,10 +98,7 @@ module.exports = {
         path: `${__dirname}/src/pages/`,
       },
     },
-    {
-      resolve: `gatsby-source-strapi`,
-      options: strapiConfig,
-    },
+
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
@@ -128,6 +128,14 @@ module.exports = {
         dsn: process.env.SENTRY_DSN, // this is the default
       }
     },
-    `gatsby-plugin-smoothscroll`
+    `gatsby-plugin-smoothscroll`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
   ]
 };

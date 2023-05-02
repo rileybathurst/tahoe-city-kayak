@@ -233,6 +233,11 @@ query TourCompareQuery {
     <>
       <Header />
 
+      <main className='main__pelican'>
+        <h1>Compare</h1>
+        <Compare tours={allStrapiTour.nodes} />
+      </main>
+
       <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -244,11 +249,6 @@ query TourCompareQuery {
           <li aria-current="page">Compare</li>
         </ol>
       </nav>
-
-      <main className='main__pelican'>
-        <h1>Compare</h1>
-        <Compare tours={allStrapiTour.nodes} />
-      </main>
 
       <Footer />
     </>

@@ -15,11 +15,6 @@ const PoliciesPage = () => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
-
       {/* // TODO composition */}
 
       <main>
@@ -52,6 +47,12 @@ const PoliciesPage = () => {
         </article>
 
       </main>
+
+      <ParentTitleBreadcrumb
+        parent={parent}
+        title={title}
+      />
+
       <Footer />
     </>
   )

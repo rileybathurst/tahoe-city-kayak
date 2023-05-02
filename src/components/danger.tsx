@@ -1,3 +1,5 @@
+// ? this is so simple should it just be inline?
+
 import * as React from "react"
 
 const Danger = (props: { svg: string; }) => {

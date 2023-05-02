@@ -1,7 +1,6 @@
 import React from 'react';
 import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
-import { title } from 'process';
 // this throws an error but is as documented here:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
 

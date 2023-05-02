@@ -1,3 +1,5 @@
+// ! only used once it can be taken out of the component
+
 import * as React from "react"
 
 const BookRental = () => {

@@ -3,11 +3,11 @@ import { useStaticQuery, graphql } from "gatsby"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-const AboutUs = () => {
+const Shop = () => {
 
-  const { strapiAbout } = useStaticQuery(graphql`
-    query AboutQuery {
-      strapiAbout {
+  const { strapiShop } = useStaticQuery(graphql`
+    query ShopQuery {
+      strapiShop {
         text {
           data {
             text
@@ -19,10 +19,10 @@ const AboutUs = () => {
 
   return (
     <ReactMarkdown
-      children={strapiAbout.text.data.text}
+      children={strapiShop.text.data.text}
       remarkPlugins={[remarkGfm]}
     />
   )
 }
 
-export default AboutUs
+export default Shop

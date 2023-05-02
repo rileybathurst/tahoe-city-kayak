@@ -2,16 +2,16 @@
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { SEO } from "../../components/seo";
+import { useSiteName } from '../../hooks/use-site-name';
 
-import Header from "../components/header";
-import Footer from "../components/footer";
-import PricingChart from "../components/pricing-chart";
-import Card from "../components/card";
-import Store from "../components/locations/store";
-import Demos from "../content/demos";
-import Composition from "../components/composition";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import PricingChart from "../../components/pricing-chart";
+import Card from "../../components/card";
+import Store from "../../components/locations/store";
+import Demos from "../../content/demos";
+import Composition from "../../components/composition";
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
@@ -127,7 +127,9 @@ const DemosPage = () => {
         <div className="location_card-wrapper">
           <div>
             <h1>Demos</h1>
-            <Demos />
+            <p>
+              If you&apos;re looking to try out a particular kayak or board that we sell, call the shop and request a demo. We&apos;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. (Up to two full days rental charge) * Pedal drive is an additional $5 per rental.
+            </p>
             <p>Phone:&nbsp;
               <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
                 (530) 581-4336

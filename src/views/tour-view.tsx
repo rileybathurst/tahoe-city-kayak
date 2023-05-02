@@ -12,32 +12,12 @@ import Time from "../components/time";
 import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 import Sport from "../components/sport";
-import WaterTexture from "../images/watertexture";
-import MapSVG from "../images/map";
 import MapIconSVG from "../images/map-icon";
 import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
-import ParentTitleBreadcrumb from "../components/parent-title-breadcrumb";
-
-import Kayaker from "../images/kayaker";
-import Supper from "../images/supper";
-
 import Composition from "../components/composition";
-
 import Balancer from 'react-wrap-balancer'
-// import balanceText from "balance-text";
 
-function Paddler(props) {
-  if (props.sport === "kayak") {
-    return (
-      <Kayaker />
-    );
-  } else {
-    return (
-      <Supper />
-    );
-  }
-}
 
 function ReactMD(props) {
   return (
@@ -127,18 +107,6 @@ const TourView = ({ tour, other }) => {
   return (
     <>
       <Header />
-
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">{tour.name}</li>
-        </ol>
-      </nav>
 
       <main className="main__full main__full--tour">
         <div>
@@ -263,6 +231,18 @@ const TourView = ({ tour, other }) => {
         </section>
 
       </div>
+
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">{tour.name}</li>
+        </ol>
+      </nav>
       <Footer />
     </>
   );

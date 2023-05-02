@@ -8,7 +8,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import SupBrandList from "../../components/sup-brand-list";
 import Store from "../../components/locations/store";
-import Retail from "../../content/retail";
+import Shop from "../../content/shop";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
@@ -267,16 +267,11 @@ const RetailSupPage = () => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent="retail"
-        title={title}
-      />
-
       <main>
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <Retail />
+            <Shop />
           </div>
           <div className="location_card">
             <Store />
@@ -341,6 +336,11 @@ const RetailSupPage = () => {
         <OtherBrand nodes={other.nodes} type="sup" />
 
       </div >
+
+      <ParentTitleBreadcrumb
+        parent="retail"
+        title={title}
+      />
 
       <Footer />
     </>

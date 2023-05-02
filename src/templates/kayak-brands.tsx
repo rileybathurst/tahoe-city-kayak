@@ -97,24 +97,6 @@ const KayakBrandView = ({ data }) => {
     <>
       <Header />
 
-      {/* // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/ */}
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li>
-            <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li aria-current="page">{data.brand.name}</li>
-        </ol>
-      </nav>
-
       <main className="location_card-wrapper">
         <div>
           <div className="brand-logo">
@@ -288,6 +270,25 @@ const KayakBrandView = ({ data }) => {
           </div>
         </section>
       </div>
+
+      {/* // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/ */}
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
+
+          <li>
+            <Link to="/retail/kayak">Kayak</Link>&nbsp;/&nbsp;
+          </li>
+
+          <li aria-current="page">{data.brand.name}</li>
+        </ol>
+      </nav>
+
 
       <Footer />
     </>

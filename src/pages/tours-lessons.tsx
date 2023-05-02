@@ -1,19 +1,15 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql, ScriptStrategy } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo"
 
 import { useSiteName } from '../hooks/use-site-name';
 import Header from "../components/header"
 import Footer from "../components/footer"
-
 import Time from "../components/time";
 import Fitness from "../components/fitness";
-import KayakIcon from "../images/kayak";
-import MapLink from "../components/map-link";
-
 import BookNow from "../components/peek/book-now";
-import ToursLessons from "../content/tours-lessons";
+import Experience from "../content/experience";
 
 const ToursLessonsPage = () => {
 
@@ -88,29 +84,15 @@ const ToursLessonsPage = () => {
         <div className="location_card-wrapper">
           <div>
             <h1>{title}</h1>
-            <ToursLessons />
+            <Experience />
             <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
             <BookNow />
             <hr />
           </div>
 
           <div className="here__location here__card">
-            <KayakIcon />
-            <p>
-              <strong>On Water Rental</strong><br />
-              <MapLink>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </MapLink>
-            </p>
+            <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
 
-            <p>
-              May &ndash; October<br />
-              Open Daily<br />
-              9:30am &ndash; 5:30pm<br />
-              Weather Permitting<br />
-            </p>
           </div>
         </div>
 

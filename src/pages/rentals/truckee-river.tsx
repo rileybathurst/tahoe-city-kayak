@@ -121,11 +121,6 @@ const TruckeeRiverPage = () => {
     <>
       <Header />
 
-      <ParentTitleBreadcrumb
-        parent="rentals"
-        title="Truckee River Rentals"
-      />
-
       {/* // TODO: links */}
 
       <main className="progression">
@@ -197,6 +192,12 @@ const TruckeeRiverPage = () => {
         <h3>Map</h3>
         <Map />
       </section>
+
+
+      <ParentTitleBreadcrumb
+        parent="rentals"
+        title="Truckee River Rentals"
+      />
 
       <Footer />
     </>
