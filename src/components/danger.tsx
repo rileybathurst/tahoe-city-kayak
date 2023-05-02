@@ -1,4 +1,4 @@
-// ? this is so simple should it just be inline?
+// TODO: this is so simple it can be inline?
 
 import * as React from "react"
 

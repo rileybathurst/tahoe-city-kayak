@@ -2,46 +2,21 @@
 
 import React from "react"
 import { Link, graphql, Script } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 import { useSiteUrl } from "../hooks/use-site-url";
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Store from "../components/locations/store";
-
-import TextureBackgrounds from "../components/texturebackgrounds";
-import Remainder from "../components/remainder";
-import Danger from "../components/danger";
+import Card from "../components/card";
 
 function Kayak(props) {
   return (
-    <article className="card">
-      <div className="card-collage">
-        <TextureBackgrounds />
-        <Link to={`/retail/kayak/${props.slug}`} className="image-link">
-          <GatsbyImage
-            image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={props?.cutout?.alternativeText}
-            objectFit="contain"
-            className="cutout"
-          />
-        </Link>
-      </div>
-      <h4 className="card__title">
-        <Link to={`/retail/kayak/${props.slug}`}>
-          {props.title}
-        </Link>
-      </h4>
-      <hr />
-      <p>{props.excerpt}</p>
-      <hr />
-      <div className="card__details">
-        <h5><Remainder inches={props.length} /> long by {props.width}" wide</h5>
-        <h5>Hull weight: {props.hullweight} lbs</h5>
-      </div>
-    </article>
+    <div key={props.id}>
+      <Card retail={props.retail} />
+    </div>
   )
 }
 
@@ -74,9 +49,17 @@ function Next(props) {
         <h2>Series</h2>
         <ul className="series-list feature-list">
           {[...mySet1].map(series => (
-            <li className="capitalize"><Link to={`#${series}`}>{series}</Link></li>
+            <li key={series}>
+              {/* // TODO: why is this a different order than displayed on page */}
+              {/* // TODO: make a set and thats the order maybe and add those as flex numbers? */}
+              <button
+                onClick={() => scrollTo(`#${series}`)}
+                className="capitalize"
+              >
+                {series}</button>
+            </li>
           ))}
-        </ul>
+        </ul >
       </>
     );
   } else {
@@ -97,19 +80,25 @@ const KayakBrandView = ({ data }) => {
     <>
       <Header />
 
-      <main className="location_card-wrapper">
-        <div>
-          <div className="brand-logo">
-
-            <Danger svg={data.brand.svg} />
+      {/* // TODO: needs to be wider but not let the text get too long */}
+      <main className="brand-page">
+        <section>
+          <div className="logo">
+            <div
+              dangerouslySetInnerHTML={{ __html: data.brand.svg }}
+              className="logo-wrapper"
+            />
             {/* // TODO: clean this up with the svg above */}
             <h1 className="capitalize">{data.brand.name}</h1>
           </div>
           <p>{data.brand.tagline}.</p>
           <hr />
+          {/* // TODO: needs slide that I have in other places */}
           <Next series={data.brand.retail} list='true' />
-        </div>
+        </section>
 
+        {/* // * the wrapper is for the background color */}
+        {/* // TODO: hover the whole card and give it a shadow when we do */}
         <div className="location_card">
           <Store />
         </div>
@@ -126,17 +115,12 @@ const KayakBrandView = ({ data }) => {
           {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
           <div className="deck">
             {
-              data.island.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.island.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -147,17 +131,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.mirage.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.mirage.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -168,17 +147,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.inflatable.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.inflatable.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -189,17 +163,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.performance.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.performance.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -210,17 +179,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.recreational.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.recreational.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -231,17 +195,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.sitontop.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.sitontop.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -254,17 +213,12 @@ const KayakBrandView = ({ data }) => {
 
           <div className="deck">
             {
-              data.null.edges.map(kayak => (
-                <Kayak
-                  key={kayak.node.id}
-                  title={kayak.node.title}
-                  slug={kayak.node.slug}
-                  excerpt={kayak.node.excerpt}
-                  length={kayak.node.length}
-                  width={kayak.node.width}
-                  cutout={kayak.node.cutout}
-                  hullweight={kayak.node.hullweight}
-                />
+              data.null.nodes.map(kayak => (
+                <div key={kayak.id}>
+                  <Kayak
+                    retail={kayak}
+                  />
+                </div>
               ))
             }
           </div>
@@ -320,14 +274,15 @@ query (
       series: {eq: "island"}
     }
   ) {
-    edges {
-      node {
+    
+      nodes {
+        id
         title
         slug
         excerpt
         length
         width
-        hullweight
+        capacity
 
         cutout {
           localFile {
@@ -338,7 +293,6 @@ query (
           alternativeText
         }
       }
-    }
   }
 
 mirage: allStrapiRetail(
@@ -348,14 +302,15 @@ filter: {
   series: {eq: "mirage"}
 }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -365,7 +320,6 @@ filter: {
       }
       alternativeText
     }
-}
 }
 }
 
@@ -376,14 +330,15 @@ filter: {
   series: {eq: "inflatable"}
 }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -393,7 +348,7 @@ filter: {
       }
       alternativeText
     }
-}
+
 }
 }
 
@@ -404,14 +359,15 @@ filter: {
   series: {eq: "performance"}
 }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -421,7 +377,7 @@ filter: {
       }
       alternativeText
     }
-}
+
 }
 }
 
@@ -432,14 +388,15 @@ filter: {
   series: {eq: "recreational"}
 }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -449,7 +406,7 @@ filter: {
       }
       alternativeText
     }
-}
+
 }
 }
 
@@ -460,14 +417,15 @@ filter: {
   series: {eq: "sit-on-top"}
 }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -477,7 +435,7 @@ filter: {
       }
       alternativeText
     }
-}
+
 }
 }
 
@@ -495,14 +453,15 @@ null: allStrapiRetail(
       ]}
   }
 ) {
-  edges {
-  node {
+  
+  nodes {
+    id
     title
     slug
     excerpt
     length
     width
-    hullweight
+    capacity
 
     cutout {
       localFile {
@@ -512,7 +471,7 @@ null: allStrapiRetail(
       }
       alternativeText
     }
-}
+
 }
 }
 

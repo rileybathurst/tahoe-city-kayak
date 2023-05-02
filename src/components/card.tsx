@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
 
@@ -94,7 +94,7 @@ const Card = (retail: {
           <Remainder inches={retail.retail.length} />
           long by {retail.retail.width}" wide
         </h4>
-        <h5 className="capitalize">Capacity {retail.retail.capacity}lbs</h5>
+        <h5 className="capitalize">Capacity {retail.retail.capacity}&thinsp;lbs</h5>
       </div>
     </article>
   )

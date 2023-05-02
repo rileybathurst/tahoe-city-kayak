@@ -4,13 +4,18 @@ import ShippingIcon from "../../images/shipping";
 
 const Parking = () => {
   return (
-    <section className="location">
+    <section className="location delivery">
       {/* // TODO: js link these together for css hover */}
       <Link to="/delivery"><ShippingIcon /></Link>
       <p><Link to="/delivery"><strong>Delivery</strong></Link><br />
-        We can deliver retail or rental watercraft to homes or beaches throughout the region. Call for delivery fees.
+        We can deliver retail or rental watercraft to homes or beaches throughout the region.
+        &nbsp;<a
+          href="phone:(530) 581-4336"
+          rel="norel norefferer"
+        >
+          Call: &#40;530&#41; 581-4336
+        </a>.
       </p>
-      <p></p>
     </section >
   )
 }

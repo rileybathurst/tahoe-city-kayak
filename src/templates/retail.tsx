@@ -13,6 +13,7 @@ import Footer from '../components/footer';
 import Card from '../components/card';
 import Remainder from "../components/remainder";
 import TextureBackgrounds from "../components/texturebackgrounds";
+import Danger from "../components/danger";
 
 function Spec(props) {
   if (props.name === 'length' || props.name === 'width') {
@@ -25,23 +26,47 @@ function Spec(props) {
   } else if (props.name === "Weight") {
     // and if
     if (props.name === "Weight") {
-      return (
-        <>
+      // this is has hullweight
+      if (props.spec && props.rigged) {
+        return (
+          <>
+            <div className="spec">
+              <h2>Hull Weight</h2>
+              <h3>
+                {props.spec}
+                <span className="spec__unit">&thinsp;{props.unit}</span>
+              </h3>
+            </div>
+            <div className="spec">
+              <h2>Rigged Weight</h2>
+              <h3>{props.rigged}
+                <span className="spec__unit">&thinsp;{props.unit}</span>
+              </h3>
+            </div>
+          </>
+        );
+      } else if (props.spec) {
+        return (
           <div className="spec">
-            <h2>Hull Weight</h2>
+            <h2>{props.name}</h2>
             <h3>
               {props.spec}
               <span className="spec__unit">&thinsp;{props.unit}</span>
             </h3>
           </div>
+        );
+      } else if (props.rigged) {
+        return (
           <div className="spec">
             <h2>Rigged Weight</h2>
             <h3>{props.rigged}
               <span className="spec__unit">&thinsp;{props.unit}</span>
             </h3>
           </div>
-        </>
-      );
+        )
+      } else {
+        return null;
+      }
     } else {
       return (
         <div className="spec">
@@ -201,10 +226,15 @@ const RetailTypeView = ({ data }) => {
 
       <main className="retail">
         <div className='passage specs'>
+          <Link
+            to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}
+            className='link__subtle-svg'
+          >
+            <Danger svg={data.strapiRetail.brand.svg} />
+          </Link>
           <hgroup className="hgroup__retail">
-            {/* // TODO brand logo */}
             <h1 className="h_title">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand">{data.strapiRetail.brand.name}</h2>
+            <h2 className="h_brand"><Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>{data.strapiRetail.brand.name}</Link></h2>
             <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
           </hgroup>
 
@@ -365,6 +395,7 @@ export const query = graphql`
       brand {
         name
         slug
+        svg
       }
 
       description {

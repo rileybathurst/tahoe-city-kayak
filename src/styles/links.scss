@@ -15,6 +15,14 @@ a:where(:hover, :focus) {
   text-decoration: underline;
 }
 
+.link__subtle-svg svg {
+  fill: var(--black-out);
+}
+
+.link__subtle-svg svg:where(:hover, :focus) {
+  fill: var(--mullen);
+}
+
 .link__backed {
   padding: 0.25rem;
   border-radius: 0.25rem;

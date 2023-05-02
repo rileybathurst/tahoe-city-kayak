@@ -35,7 +35,12 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Create Kayak Brands dynamically
+
+
+
+
+
+  // TODO finish all brands and get rid of the seperate KayakBrands and SupBrands
   const kayakBrandsTemplate = path.resolve(`src/templates/kayak-brands.tsx`)
   const kayakResult = await graphql(`
     query {
@@ -86,6 +91,91 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+
+
+
+
+
+
+  // * working on the dry all brands
+  // show each brand but split by type
+  // I think the hard one is hobie as it cant take both
+
+  const allBrandsTemplate = path.resolve(`src/templates/all-brands.tsx`)
+  const brandsResult = await graphql(`
+    query {
+      allStrapiBrand {
+        nodes {
+          slug
+          retail {
+            series
+            type
+            brand {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const kayakSet = new Set()
+  brandsResult.data.allStrapiBrand.nodes.forEach((brand) => {
+
+    // console.log(brand); // 👍🏻
+    brand.retail.forEach((retail) => {
+      if (retail.type === 'kayak') {
+        kayakSet.add(retail.brand.slug)
+      }
+    })
+  })
+
+  // this creates the kayak brands
+  // console.log(kayakSet);
+
+  kayakSet.forEach((brand) => {
+    createPage({
+      path: `/brands/kayak/${brand}`,
+      component: allBrandsTemplate,
+      context: {
+        slug: brand,
+        type: 'kayak'
+      },
+    })
+  })
+
+  // this creates the sup brands
+  const supSet = new Set()
+  brandsResult.data.allStrapiBrand.nodes.forEach((brand) => {
+    brand.retail.forEach((retail) => {
+      if (retail.type === 'sup') {
+        supSet.add(retail.brand.slug)
+      }
+    })
+  })
+
+  // this creates the kayak brands
+  // console.log(supSet);
+
+  supSet.forEach((brand) => {
+    createPage({
+      path: `/brands/sup/${brand}`,
+      component: allBrandsTemplate,
+      context: {
+        slug: brand,
+        type: 'sup'
+      },
+    })
+  })
+
+
+
+
+
+
+
+
 
 
   // Create Attributes Dynamically

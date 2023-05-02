@@ -278,7 +278,9 @@ const IndexPage = () => {
 
         <div className="deck deck__column">
           {inventory.map((retail) => (
-            <Card retail={retail} />
+            <div key={retail.id}>
+              <Card retail={retail} />
+            </div>
           ))}
           <div className="deck__more">
             {hasExtra ? (

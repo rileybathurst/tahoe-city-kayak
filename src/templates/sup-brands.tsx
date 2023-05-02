@@ -1,8 +1,7 @@
 // TODO add the retail content
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link, graphql, Script } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 import { useSiteUrl } from "../hooks/use-site-url";
@@ -10,46 +9,14 @@ import { useSiteUrl } from "../hooks/use-site-url";
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Store from "../components/locations/store";
-
-import TextureBackgrounds from "../components/texturebackgrounds";
-import Remainder from "../components/remainder";
+import Card from "../components/card";
 import Danger from "../components/danger";
-
-function Brand(children) {
-  return (
-    <section id='island' className="possibly-empty">
-      <Next series={data.brand.retail} list='false' title="island" />
-    </section>
-  )
-}
 
 function Sup(props) {
   return (
-    <article className="card">
-      <div className="card-collage">
-        <TextureBackgrounds />
-        <Link to={`/retail/sup/${props.slug}`} className="image-link">
-          <GatsbyImage
-            image={props?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={props?.cutout?.alternativeText}
-            className="cutout"
-            objectFit="contain"
-          />
-        </Link>
-      </div>
-      <h4 className="card__title">
-        <Link to={`/retail/sup/${props.slug}`}>
-          {props.title}
-        </Link>
-      </h4>
-      <hr />
-      <p>{props.excerpt}</p>
-      <hr />
-      <div className="card__details">
-        <h5><Remainder inches={props.length} /> long by {props.width}" wide</h5>
-        <h5>Hull weight: {props.hullweight} lbs</h5>
-      </div>
-    </article>
+    <div key={props.retail.id}>
+      <Card retail={props.retail} />
+    </div>
   )
 }
 
@@ -108,23 +75,6 @@ const supBrandView = ({ data }) => {
     <>
       <Header />
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li>
-            <Link to="/retail/sup">Standup Paddleboard</Link>&nbsp;/&nbsp;
-          </li>
-
-          <li aria-current="page">{data.brand.name}</li>
-        </ol>
-      </nav>
-
       <main className="location_card-wrapper">
         <div>
           <Danger svg={data.brand.svg} />
@@ -141,8 +91,6 @@ const supBrandView = ({ data }) => {
         </div>
       </main>
 
-
-
       <section id='island' className="possibly-empty">
         <Next series={data.brand.retail} list='false' title="island" />
       </section>
@@ -150,16 +98,9 @@ const supBrandView = ({ data }) => {
       {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
       <div className="deck">
         {
-          data.island.edges.map(sup => (
+          data.island.nodes.map(sup => (
             <Sup
-              key={sup.node.id}
-              title={sup.node.title}
-              slug={sup.node.slug}
-              excerpt={sup.node.excerpt}
-              length={sup.node.length}
-              width={sup.node.width}
-              cutout={sup.node.cutout}
-              hullweight={sup.node.hullweight}
+              retail={sup}
             />
           ))
         }
@@ -171,16 +112,9 @@ const supBrandView = ({ data }) => {
       </section>
       <div className="deck">
         {
-          data.mirage.edges.map(sup => (
+          data.mirage.nodes.map(sup => (
             <Sup
-              key={sup.node.id}
-              title={sup.node.title}
-              slug={sup.node.slug}
-              excerpt={sup.node.excerpt}
-              length={sup.node.length}
-              width={sup.node.width}
-              cutout={sup.node.cutout}
-              hullweight={sup.node.hullweight}
+              retail={sup}
             />
           ))
         }
@@ -191,46 +125,44 @@ const supBrandView = ({ data }) => {
       </section>
       <div className="deck">
         {
-          data.inflatable.edges.map(sup => (
+          data.inflatable.nodes.map(sup => (
             <Sup
-              key={sup.node.id}
-              title={sup.node.title}
-              slug={sup.node.slug}
-              excerpt={sup.node.excerpt}
-              length={sup.node.length}
-              width={sup.node.width}
-              cutout={sup.node.cutout}
-              hullweight={sup.node.hullweight}
+              retail={sup}
             />
           ))
         }
       </div>
 
       {/* //TODO: there needs to be more of a not in a series */}
-
       <section className="possibly-empty">
         <Next series={data.brand.retail} title="null" />
       </section>
       <div className="deck">
         {
-          data.null.edges.map(sup => (
+          data.null.nodes.map(sup => (
             <Sup
-              key={sup.node.id}
-              title={sup.node.title}
-              slug={sup.node.slug}
-              excerpt={sup.node.excerpt}
-              length={sup.node.length}
-              width={sup.node.width}
-              cutout={sup.node.cutout}
-              hullweight={sup.node.hullweight}
+              retail={sup}
             />
           ))
         }
       </div>
 
-      {/*       <hr />
-      <h1>// ! Test</h1>
-      <Brand /> */}
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
+          </li>
+
+          <li>
+            <Link to="/retail/sup">Standup Paddleboard</Link>&nbsp;/&nbsp;
+          </li>
+
+          <li aria-current="page">{data.brand.name}</li>
+        </ol>
+      </nav>
 
       <Footer />
     </>
@@ -258,16 +190,11 @@ export const Head = ({ data }) => {
           },{
             "@type": "ListItem",
             "position": 2,
-            "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
-          },{
-            "@type": "ListItem",
-            "position": 3,
             "name": "Standup Paddleboard",
             "item": "${useSiteUrl()}/retail/sup"
           },{
             "@type": "ListItem",
-            "position": 4,
+            "position": 3,
             "name": "${data.brand.name}"
           }]
         }
@@ -303,14 +230,16 @@ export const query = graphql`
       series: {eq: "island"}
     }
   ) {
-    edges {
-      node {
+      nodes {
+        id
         title
         slug
         excerpt
         length
         width
         hullweight
+        capacity
+        type
 
         cutout {
           localFile {
@@ -321,7 +250,6 @@ export const query = graphql`
           alternativeText
         }
       }
-    }
   }
 
   mirage: allStrapiRetail(
@@ -331,14 +259,17 @@ export const query = graphql`
     series: {eq: "mirage"}
   }
   ) {
-    edges {
-    node {
+    nodes {
+      id
       title
       slug
       excerpt
       length
       width
       hullweight
+      capacity
+      type
+
 
       cutout {
         localFile {
@@ -348,7 +279,6 @@ export const query = graphql`
         }
         alternativeText
       }
-  }
   }
 }
   
@@ -359,14 +289,17 @@ inflatable: allStrapiRetail(
     series: {eq: "inflatable"}
   }
   ) {
-    edges {
-    node {
+    nodes {
+      id
       title
       slug
       excerpt
       length
       width
       hullweight
+      capacity
+      type
+
 
       cutout {
         localFile {
@@ -377,7 +310,6 @@ inflatable: allStrapiRetail(
         alternativeText
       }
   }
-  }
 }
 
   null: allStrapiRetail(
@@ -387,14 +319,16 @@ inflatable: allStrapiRetail(
       series: {nin: ["island", "mirage", "inflatable"]}
     }
   ) {
-    edges {
-      node {
+      nodes {
+        id
         title
         slug
         excerpt
         length
         width
         hullweight
+        capacity
+        type
 
         cutout {
           localFile {
@@ -405,7 +339,6 @@ inflatable: allStrapiRetail(
           alternativeText
         }
       }
-    }
   }
 
 

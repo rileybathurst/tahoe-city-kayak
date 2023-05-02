@@ -593,7 +593,11 @@ footer {
 }
 
 // TODO: fix the delivery location
-// .locations__complete > . {
+.locations__complete > .delivery {
+  > *:nth-child(2) {
+    flex: 7 1; // guess and check to get the parking on one row in the footer
+  }
+}
 
 .locations__complete > *:not(:last-child) {
   border-bottom: 1px solid var(--kingly-cloud); // match the hr
