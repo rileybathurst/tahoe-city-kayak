@@ -102,7 +102,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // show each brand but split by type
   // I think the hard one is hobie as it cant take both
 
-  const allBrandsTemplate = path.resolve(`src/templates/all-brands.tsx`)
+  const BrandsTemplate = path.resolve(`src/templates/brands.tsx`)
   const brandsResult = await graphql(`
     query {
       allStrapiBrand {
@@ -137,7 +137,7 @@ exports.createPages = async ({ graphql, actions }) => {
   kayakSet.forEach((brand) => {
     createPage({
       path: `/brands/kayak/${brand}`,
-      component: allBrandsTemplate,
+      component: BrandsTemplate,
       context: {
         slug: brand,
         type: 'kayak'
@@ -161,7 +161,7 @@ exports.createPages = async ({ graphql, actions }) => {
   supSet.forEach((brand) => {
     createPage({
       path: `/brands/sup/${brand}`,
-      component: allBrandsTemplate,
+      component: BrandsTemplate,
       context: {
         slug: brand,
         type: 'sup'
