@@ -93,8 +93,10 @@ const KayakBrandView = ({ data }) => {
           </div>
           <p>{data.brand.tagline}.</p>
           <hr />
-          {/* // TODO: needs slide that I have in other places */}
-          <Next series={data.brand.retail} list='true' />
+          <Next
+            series={data.brand.retail}
+            list='true'
+          />
         </section>
 
         {/* // * the wrapper is for the background color */}
@@ -264,6 +266,7 @@ query (
   retail {
     series
     title
+    type
   }
 }
 

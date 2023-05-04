@@ -2,6 +2,8 @@ import * as React from "react"
 import { Link } from "gatsby"
 import BookNow from "./peek/book-now"
 
+// TODO: using {location.pathname} we can get the current path and use it to set the active class on the menu item
+
 const MenuList = (props) => {
   return (
     <ul>
