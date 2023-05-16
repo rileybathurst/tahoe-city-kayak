@@ -3,6 +3,11 @@ import { useStaticQuery, graphql } from "gatsby"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
+function Console(props) {
+  console.log(props.log);
+  return null;
+}
+
 const Experience = () => {
 
   const { strapiExperience } = useStaticQuery(graphql`
