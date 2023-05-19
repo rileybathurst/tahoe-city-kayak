@@ -40,7 +40,10 @@ export const query = graphql`
         width
         type
         inflatable
-
+        brand {
+          slug
+        }
+        
         cutout {
           localFile {
             childImageSharp {

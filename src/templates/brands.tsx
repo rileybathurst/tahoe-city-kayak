@@ -430,6 +430,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -458,6 +461,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -486,6 +492,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -514,6 +523,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -542,6 +554,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -570,6 +585,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -598,6 +616,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -626,6 +647,9 @@ export const query = graphql`
         width
         capacity
         type
+        brand {
+          slug
+        }
 
         cutout {
           localFile {
@@ -663,7 +687,10 @@ export const query = graphql`
         width
         capacity
         type
-
+        brand {
+          slug
+        }
+        
         cutout {
           localFile {
             childImageSharp {

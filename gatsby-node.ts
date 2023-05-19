@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
   retailResult.data.allStrapiRetail.nodes.forEach((retail: { type: any; slug: any; brand: { slug: any } }) => {
     createPage({
-      path: `/retail/${retail.type}/${retail.slug}`,
+      path: `/retail/${retail.type}/${retail.brand.slug}/${retail.slug}`,
       component: retailageTemplate,
       context: {
         slug: retail.slug,
@@ -34,73 +34,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-
-
-
-
-
-  // TODO finish all brands and get rid of the seperate KayakBrands and SupBrands
-  const kayakBrandsTemplate = path.resolve(`src/templates/kayak-brands.tsx`)
-  const kayakResult = await graphql(`
-    query {
-      allStrapiBrand(filter: {kayak: {eq: true}}) {
-        nodes {
-          slug
-          retail {
-            series
-          }
-        }
-      }
-    }
-  `)
-  kayakResult.data.allStrapiBrand.nodes.forEach((brand: { slug: any; retail: { series: any } }) => {
-    createPage({
-      path: `/retail/kayak/${brand.slug}`,
-      component: kayakBrandsTemplate,
-      context: {
-        slug: brand.slug,
-        retail: brand.retail.series,
-        type: 'kayak'
-      },
-    })
-  })
-  
-  // Create SUP Brands dynamically
-  const supBrandsTemplate = path.resolve(`src/templates/sup-brands.tsx`)
-  const supResult = await graphql(`
-    query {
-      allStrapiBrand(filter: {sup: {eq: true}}) {
-        nodes {
-          slug
-          retail {
-            series
-          }
-        }
-      }
-    }
-  `)
-  supResult.data.allStrapiBrand.nodes.forEach((brand: { slug: any; retail: { series: any } }) => {
-    createPage({
-      path: `/retail/sup/${brand.slug}`,
-      component: supBrandsTemplate,
-      context: {
-        slug: brand.slug,
-        retail: brand.retail.series,
-        type: 'sup'
-      },
-    })
-  })
-
-
-
-
-
-
-
-  // * working on the dry all brands
-  // show each brand but split by type
-  // I think the hard one is hobie as it cant take both
 
   const BrandsTemplate = path.resolve(`src/templates/brands.tsx`)
   const brandsResult = await graphql(`
@@ -136,7 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   kayakSet.forEach((brand) => {
     createPage({
-      path: `/brands/kayak/${brand}`,
+      path: `retail/kayak/${brand}`,
       component: BrandsTemplate,
       context: {
         slug: brand,
@@ -168,15 +101,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-
-
-
-
-
-
-
-
 
   // Create Attributes Dynamically
   // these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters

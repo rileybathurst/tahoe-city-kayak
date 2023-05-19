@@ -34,6 +34,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+
             cutout {
               localFile {
                 childImageSharp {
@@ -64,6 +68,10 @@ const RetailKayakPage = (data: any) => {
           length
           width
           inflatable
+          brand {
+              slug
+            }
+            
           cutout {
             localFile {
               childImageSharp {
@@ -94,6 +102,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -124,6 +136,10 @@ const RetailKayakPage = (data: any) => {
           length
           width
           inflatable
+          brand {
+              slug
+            }
+            
           cutout {
             localFile {
               childImageSharp {
@@ -154,6 +170,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -184,6 +204,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -214,6 +238,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -243,6 +271,10 @@ const RetailKayakPage = (data: any) => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {

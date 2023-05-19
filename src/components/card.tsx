@@ -37,6 +37,9 @@ const Card = (retail: {
   retail: {
     id: React.Key;
     type: string;
+    brand: {
+      slug: string;
+    };
     slug: string;
     title: string;
     excerpt: string;
@@ -65,7 +68,7 @@ const Card = (retail: {
       <div className="card-collage">
         <TextureBackgrounds />
         <Link
-          to={`/retail/${retail.retail.type}/${retail.retail.slug}`}
+          to={`/retail/${retail.retail.type}/${retail.retail.brand.slug}/${retail.retail.slug}`}
           className="image-link"
         >
           <GatsbyImage
@@ -83,7 +86,7 @@ const Card = (retail: {
       </div>
       {/* // ? does this need a brand */}
       <h4 className="card__title">
-        <Link to={`/retail/${retail.retail.type}/${retail.retail.slug}`}>
+        <Link to={`/retail/${retail.retail.type}/${retail.retail.brand.slug}/${retail.retail.slug}`}>
           {retail.retail.title}
         </Link>
       </h4>

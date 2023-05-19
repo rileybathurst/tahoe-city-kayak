@@ -34,6 +34,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -63,6 +67,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -92,6 +100,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -121,6 +133,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -150,6 +166,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -179,6 +199,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -208,6 +232,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {
@@ -237,6 +265,10 @@ const RetailSupPage = () => {
             length
             width
             inflatable
+            brand {
+              slug
+            }
+            
             cutout {
               localFile {
                 childImageSharp {

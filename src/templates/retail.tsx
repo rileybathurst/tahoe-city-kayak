@@ -440,6 +440,9 @@ export const query = graphql`
         type
         capacity
         hullweight
+        brand {
+          slug
+        }
 
         cutout {
           localFile {

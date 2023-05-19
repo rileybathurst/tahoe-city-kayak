@@ -30,6 +30,9 @@ const RetailPage = () => {
           capacity
           inflatable
           demo
+          brand {
+            slug
+          }
 
           cutout {
             localFile {
@@ -54,6 +57,9 @@ const RetailPage = () => {
         capacity
         inflatable
         demo
+        brand {
+          slug
+        }
 
         cutout {
           localFile {

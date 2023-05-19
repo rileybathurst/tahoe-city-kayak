@@ -66,6 +66,9 @@ const IndexPage = () => {
           width
           inflatable
           hullweight
+          brand {
+            slug
+          }
 
           cutout {
             localFile {
