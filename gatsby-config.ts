@@ -26,11 +26,12 @@ module.exports = {
   graphqlTypegen: true,
   siteMetadata: {
     title: "Tahoe City Kayak and Padddleboard",
-    siteUrl: 'https://tahoe-city-kayak.netlify.app', // TODO DO I need both
-    url: 'https://tahoe-city-kayak.netlify.app', // No trailing slash allowed!
+    siteUrl: 'https://tahoecitykayak.com/', // TODO DO I need both
+    url: 'https://tahoecitykayak.com', // No trailing slash allowed!
     description: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
     defaultDescription: "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
     defaultImage: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
+    defaultImageAlt: 'A collage of images showcasing paddling on Lake Tahoe',
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00',
     telephone: '(530) 581-4336',
     email: 'tahoecitykayak@gmail.com',
@@ -56,7 +57,6 @@ module.exports = {
       'longitude': '-120.14098458679503',
       'geoRadius': '80470',
     },
-    image: "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage.jpg",
     themeColor: '#bf4040',
     numberOfEmployees: '10+',
     slogan: 'North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours',

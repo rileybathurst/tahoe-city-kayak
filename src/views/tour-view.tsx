@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -8,8 +7,6 @@ import remarkGfm from 'remark-gfm'
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-import Time from "../components/time";
-import Fitness from "../components/fitness";
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 import Sport from "../components/sport";
 import MapIconSVG from "../images/map-icon";
@@ -17,9 +14,10 @@ import KayakIcon from "../images/kayak";
 import MapLink from "../components/map-link";
 import Composition from "../components/composition";
 import Balancer from 'react-wrap-balancer'
+import Ticket from "../components/ticket";
 
 
-function ReactMD(props) {
+function ReactMD(props: { raw: string; }) {
   return (
     <ReactMarkdown
       children={props.raw}
@@ -28,7 +26,12 @@ function ReactMD(props) {
   );
 }
 
-function Spec(props) {
+function Spec(props: {
+  name: string;
+  spec: string;
+  unitPlace?: string;
+  unit?: string;
+}) {
   if ((props.name === "Tour Completiion" || props.name === "Tour Start Time") && props.spec === null) {
     return null;
   }
@@ -73,7 +76,7 @@ function Spec(props) {
   }
 }
 
-function Minimum(props) {
+function Minimum(props: { minimum: number; }) {
   if (props.minimum) {
     return (
       <p>* Prices based on a<br />
@@ -84,10 +87,10 @@ function Minimum(props) {
   }
 }
 
-function TourName(props) {
+function TourName(props: { tour: string; }) {
   {/* // * this will hopefully get replace with css text-wrap: balance */ }
   let name = props.tour;
-  console.log(name.length);
+  // console.log(name.length);
   if (name.length > 20) {
 
     return (
@@ -190,44 +193,15 @@ const TourView = ({ tour, other }) => {
         <h3>Other Tours &amp; Lessons</h3>
         <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
 
+        {/* // TODO: other card */}
         <section className="deck">
-          {other.nodes.map(tour => (
-            <article
+          {other.nodes.map((tour) =>
+            <div
               key={tour.id}
-              className="card"
             >
-              <GatsbyImage
-                image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={tour?.ogimage?.alternativeText}
-                className="card__image"
-              />
-              <h4 className="card__title">
-                <Link to={`/tours-lessons/${tour.slug}`}>
-                  {tour.name}
-                </Link>
-              </h4>
-              <div className="card__specs">
-                <Time
-                  start={tour.start}
-                  finish={tour.finish}
-                  duration={tour.duration}
-                />
-                <Fitness fitness={tour.fitness} />
-              </div>
-              <hr />
-              <p>{tour.excerpt}</p>
-              <hr />
-              <div className="card__details">
-                <h5>${tour.price}</h5>
-                <a
-                  href={tour.peek}
-                  className="book-now"
-                >
-                  BOOK NOW
-                </a>
-              </div>
-            </article>
-          ))}
+              <Ticket tour={tour} />
+            </div>
+          )}
         </section>
 
       </div>

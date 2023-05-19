@@ -84,6 +84,7 @@ export const Head = ({ data }) => {
       // TODO image
       // github copilot gave me the extra
       image={data.strapiTour.ogimage.localFile.childImageSharp.gatsbyImageData.images.fallback.src}
+      imageAlt={data.strapiTour.ogimage.alternativeText}
     >
       <Script type="application/ld+json">
         {`

@@ -1,4 +1,5 @@
 // ? Is there a way to get rid of the retail.retail.?
+// * there is also a ticket for tours and lessons similar to a card
 
 import * as React from "react"
 import { Link } from "gatsby"

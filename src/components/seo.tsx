@@ -5,26 +5,23 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
 
 interface SEO {
-  title: string;
-  // id: number;
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  children?: React.ReactNode;
 }
 
 // add types to the SEO const
-export const SEO = ({
-  title,
-  description,
-  image,
-  children
-}) => {
+export const SEO = (SE0: SEO) => {
 
   const {
     url,
-    siteUrl,
     defaultDescription,
     defaultImage,
+    defaultImageAlt,
     telephone,
     openingHours,
-    areaServed,
     paymentAccepted,
     location,
     geo,
@@ -35,90 +32,36 @@ export const SEO = ({
   } = useSiteMetadata()
 
   const seo = {
-    title: title,
-    description: description || defaultDescription,
-    image: image || defaultImage,
-    ogImage: image,
-    testImage: defaultImage,
-    url: `${siteUrl}`,
-    openingHours: `${openingHours} `,
-    telephone: telephone,
-    areaServed: areaServed,
-    paymentAccepted: paymentAccepted,
-    streetAddress: location.address.streetAddress,
-    addressLocality: location.address.addressLocality,
-    addressRegion: location.address.addressRegion,
-    postalCode: location.address.postalCode,
-    themeColor: themeColor,
-    numberOfEmployees: numberOfEmployees,
-    slogan: slogan,
+    title: SE0.title,
+    description: SE0.description || defaultDescription,
+    image: SE0.image || defaultImage,
+    imageAlt: SE0.imageAlt || defaultImageAlt,
   };
-
-  // console.log("seo", seo)
-  console.log('🦄');
-  // console.log(defaultImage);
-  console.log(seo.image);
 
   return (
     <>
-
-      <meta name="image" content={seo.image} />
       <meta property="og:type" content="website" />
-
-      {/* // TODO: I dont think all these doubles help */}
-      {seo.url && <meta property="og:url" content={seo.url} />}
-      {seo.title && <meta property="og:title" content={seo.title} />}
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
-
-      {/* // TODO: needs an alt https://developers.facebook.com/tools/debug/?q=tahoecitykayak.com */}
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta property="og:url" content={url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
+      <meta property="og:image:alt" content={seo.imageAlt} />
 
-      {seo.title && <meta name="twitter:title" content={seo.title} />}
-      {seo.description && (
-        <meta name="twitter:description" content={seo.description} />
-      )}
-
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:card" content="summary_large_image" />
-      {seo.image && <meta name="twitter:image" content={seo.image} />}
+      <meta name="twitter:image" content={seo.image} />
 
-      {seo.openingHours && (
-        <meta name="openingHours" content={seo.openingHours} />
-      )}
-      {seo.telephone && <meta name="telephone" content={seo.telephone} />}
+      <meta name="theme-color" content={themeColor} />
 
-      {seo.paymentAccepted && (
-        <meta name="paymentAccepted" content={seo.paymentAccepted} />
-      )}
-
-      <meta
-        name="location"
-        content={
-          seo.streetAddress +
-          ", " +
-          seo.addressLocality +
-          ", " +
-          seo.addressRegion +
-          ", " +
-          seo.postalCode
-        }
-      />
-
-      <meta name="theme-color" content={seo.themeColor} />
-      <meta name="numberOfEmployees" content={seo.numberOfEmployees} />
-      <meta name="slogan" content={seo.slogan} />
-
-      {/* // TODO: updateable image */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
-            "name": "${title}",
-            "description": "${description}",
-            "image": "${image}",
+            "name": "${seo.title}",
+            "description": "${seo.description}",
+            "image": "${seo.image}",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "${location.address.streetAddress}",
@@ -140,9 +83,12 @@ export const SEO = ({
               },
               "geoRadius": "${geo.geoRadius}"
             },
+            'paymentAccepted': "${paymentAccepted}",
             "openingHours": "${openingHours}",
             "telephone": "${telephone}",
             "url": "${url}",
+            'numberOfEmployees': "${numberOfEmployees}",
+            'slogan': "${slogan}",
 
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
@@ -175,12 +121,11 @@ export const SEO = ({
           }
         `}
       </Script>
-      {children}
+      {SE0.children}
     </>
   );
 };
 
-// TODO: // Later Recommended properties
 // priceRange
 // review
 // url

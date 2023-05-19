@@ -10,6 +10,7 @@ import Time from "../components/time";
 import Fitness from "../components/fitness";
 import BookNow from "../components/peek/book-now";
 import Experience from "../content/experience";
+import Ticket from "../components/ticket";
 
 const ToursLessonsPage = () => {
 
@@ -107,48 +108,14 @@ const ToursLessonsPage = () => {
         </article>
         <div className="deck">
           {kayak.nodes.map(tour => (
-
-            <article key={tour.id} className="card">
-              <Link to={`/tours-lessons/${tour.slug}`}>
-                <GatsbyImage
-                  image={tour.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                  alt={tour.ogimage?.alternativeText}
-                  className="card__image"
-                />
-              </Link>
-
-              <h4 className="card__title">
-                <Link to={`/tours-lessons/${tour.slug}`}>
-                  {tour.name}
-                </Link>
-              </h4>
-              <div className="card__specs">
-                <Time
-                  start={tour.start}
-                  finish={tour.finish}
-                  duration={tour.duration}
-                />
-                <Fitness fitness={tour.fitness} />
-              </div>
-              <hr />
-              <p>{tour.excerpt}</p>
-              <hr />
-              <div className="card__details">
-                <h5>${tour.price}</h5>
-                <a
-                  href={tour.peek}
-                  className="book-now"
-                >
-                  BOOK NOW
-                </a>
-              </div>
-            </article>
+            <div key={tour.id}>
+              <Ticket tour={tour} />
+            </div>
           ))
           }
         </div>
         <article className="passage">
           {/* // TODO: only one h and then p */}
-
           <hgroup>
             <h1>Paddleboard</h1>
             <h2>Tours &amp; Lessons</h2>
@@ -156,38 +123,9 @@ const ToursLessonsPage = () => {
         </article>
         <div className="deck">
           {paddleboards.nodes.map(tour => (
-            <article key={tour.id} className="card">
-              <GatsbyImage
-                image={tour.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={tour.ogimage?.alternativeText}
-                className="card__image"
-              />
-              <h4 className="card__title">
-                <Link to={`/tours-lessons/${tour.slug}`}>
-                  {tour.name}
-                </Link>
-              </h4>
-              <div className="card__specs">
-                <Time
-                  start={tour.start}
-                  finish={tour.finish}
-                  duration={tour.duration}
-                />
-                <Fitness fitness={tour.fitness} />
-              </div>
-              <hr />
-              <p>{tour.excerpt}</p>
-              <hr />
-              <div className="card__details">
-                <h5>${tour.price}</h5>
-                <a
-                  href={tour.peek}
-                  className="book-now"
-                >
-                  BOOK NOW
-                </a>
-              </div>
-            </article>
+            <div key={tour.id}>
+              <Ticket tour={tour} />
+            </div>
           ))
           }
         </div>

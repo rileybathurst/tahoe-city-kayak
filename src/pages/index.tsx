@@ -24,6 +24,7 @@ import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
 import Experience from "../content/experience";
+import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
@@ -196,43 +197,8 @@ const IndexPage = () => {
 
       <div className="deck">
         {list.map((tour) => (
-          <div key={tour.id} className="card">
-            <Link to={`/tours-lessons/${tour.slug}`}>
-              <GatsbyImage
-                image={tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={tour?.ogimage?.alternativeText}
-                className="card__image"
-              />
-            </Link>
-
-            <h4 className="card__title">
-              <Link to={`/tours-lessons/${tour.slug}`}>
-                {tour.name}
-              </Link>
-            </h4>
-
-            <div className="card__specs">
-              <Time
-                start={tour.start}
-                finish={tour.finish}
-                duration={tour.duration}
-              />
-              <h4 className="uppercase"><Sport sport={tour.sport} /></h4>
-            </div>
-
-            <hr />
-            <p>{tour.excerpt}</p>
-            <hr />
-            <div className="card__details">
-              <h5>${tour.price}</h5>
-              <a
-                href={tour.peek}
-                rel="noopener noreferrer"
-                className="book-now"
-              >
-                BOOK NOW
-              </a>
-            </div>
+          <div key={tour.id}>
+            <Ticket tour={tour} />
           </div>
         ))}
       </div>
