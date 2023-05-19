@@ -52,6 +52,7 @@
   }
 }
 
+// TODO: name
 .slider-guy {
   background-color: hsla(0, 0%, 50%, 0.5);
   height: 1.5rem;
@@ -59,14 +60,16 @@
   position: sticky;
   top: 0;
   transition: 1s ease-in-out;
-  z-index: 0;
+  z-index: 0; // TODO: variable
   border-radius: var(--card-radius);
 }
 
+// TODO: name
 .slider-guy.dress {
-  top: 1.5;
+  top: 1.5rem;
 }
 
+// TODO: name
 .slider-guy.weather {
   top: 3.5rem;
 }

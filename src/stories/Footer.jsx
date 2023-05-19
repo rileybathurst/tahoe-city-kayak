@@ -22,7 +22,7 @@ export const Footer = ({ primary }) => {
         </nav>
         <hr />
         <div className="footer__contact">
-          <a href="phone:(530) 581-4336" rel="norel norefferer" className="button">Phone: (530) 581-4336</a>
+          <a href="tel:+15305814336" rel="norel norefferer" className="button">Phone: (530) 581-4336</a>
           <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer" className="button">tahoecitykayak@gmail.com</a>
           <hr />
           <div className="social">

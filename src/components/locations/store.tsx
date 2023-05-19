@@ -5,6 +5,7 @@ import StoreIcon from "../../images/store";
 const Store = () => {
   return (
     <section className="location">
+      {/* // TODO: needs a heading element */}
       <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" aria-label="retail location icon">
         <StoreIcon />
       </a>

@@ -98,6 +98,8 @@ const ToursLessonsPage = () => {
 
 
         <article className="passage">
+          {/* // TODO: only one h and then p */}
+
           <hgroup>
             <h1>KAYAK</h1>
             <h2>Tours &amp; Lessons</h2>
@@ -145,6 +147,8 @@ const ToursLessonsPage = () => {
           }
         </div>
         <article className="passage">
+          {/* // TODO: only one h and then p */}
+
           <hgroup>
             <h1>Paddleboard</h1>
             <h2>Tours &amp; Lessons</h2>

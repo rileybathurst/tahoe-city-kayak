@@ -21,6 +21,8 @@ const JobsPage = () => {
 
         <section>
           <hgroup className="crest">
+            {/* // TODO: only one h and then p */}
+
             <h1 className="brow">{title}</h1>
             <h2 className="supra">Help Wanted</h2>
           </hgroup>

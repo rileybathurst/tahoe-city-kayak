@@ -166,11 +166,11 @@ const IndexPage = () => {
         </section>
 
         <div>
-          <section className="home__photo-grid">
+          <div className="home__photo-grid">
             <TwoKayakers className="kayakers" />
             <WaterTexture className="texture" />
             <AndyPaddling className="andy" />
-          </section>
+          </div>
 
           <hr />
 
@@ -180,6 +180,7 @@ const IndexPage = () => {
 
       <section id="tours-lessons" className="home__tours">
         <div>
+          {/* // TODO: only one h and then p */}
           <hgroup className="crest">
             <h3 className="brow"><Link to="/tours-lessons">Tours &amp; Lessons</Link></h3>
             {/* think about capitalization here */}
@@ -249,7 +250,7 @@ const IndexPage = () => {
 
       <section id="retail" className="passage">
         {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
-
+        {/* // TODO: only one h and then p */}
         <hgroup className="crest">
           <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
           <h4 className="supra">Kayaks and Paddleboards</h4>

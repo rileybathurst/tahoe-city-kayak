@@ -6,13 +6,14 @@ import { useSiteName } from '../hooks/use-site-name';
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ location }) => {
   return (
     <>
       <Header />
 
       <main className="measure">
-        <h2 className="crest">404</h2>
+        {/* // TODO: test this */}
+        <h2 className="crest">404 - {location.pathname}</h2>
 
         <h1 className="mixta">Looks like you’ve paddled into uncharted waters!</h1>
         <p>Don’t worry, we’ll help you navigate <Link to="/">back to our homepage.</Link>
@@ -25,11 +26,11 @@ const NotFoundPage = () => {
 
 export default NotFoundPage
 
-export const Head = () => {
+export const Head = ({ location }) => {
   return (
     <SEO
-      title={`404 | ${useSiteName()}`}
-      description="Looks like you’ve paddled into uncharted waters! Don’t worry, we’ll help you navigate back to our homepage."
+      title={`404 - ${location.pathname} | ${useSiteName()}`}
+      description="Looks like you&apos;ve paddled into uncharted waters! Don&apos;t worry, we&apos;ll help you navigate back to our homepage."
     />
   )
 }

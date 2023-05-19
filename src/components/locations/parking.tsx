@@ -5,6 +5,7 @@ import CarIcon from "../../images/car";
 const Parking = () => {
   return (
     <section className="location">
+      {/* // TODO: needs a heading for a section */}
       <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer" aria-label="free parking lot map icon">
         <CarIcon />
       </a>

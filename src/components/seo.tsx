@@ -61,18 +61,24 @@ export const SEO = ({
 
       {/* <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛶</text></svg>" /> */}
 
-      {seo.image}
+      {/* {seo.image} */}
 
       <meta name="description" content={seo.description} />
-      <meta name="image" itemProp="image" content={seo.image} />
+
+
+      <meta name="image" content={seo.image} />
       <meta property="og:type" content="website" />
-      {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />}
+
+      {/* // TODO: I dont think all these doubles help */}
+      {seo.url && <meta property="og:url" content={seo.url} />}
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />
       )}
 
-      {seo.image && <meta property="og:image" itemProp="image" content={seo.image} />}
+      {/* // TODO: needs an alt https://developers.facebook.com/tools/debug/?q=tahoecitykayak.com */}
+      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta property="og:image" content={seo.image} />
 
       {seo.title && <meta name="twitter:title" content={seo.title} />}
       {seo.description && (
@@ -83,16 +89,16 @@ export const SEO = ({
       {seo.image && <meta name="twitter:image" content={seo.image} />}
 
       {seo.openingHours && (
-        <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
+        <meta name="openingHours" content={seo.openingHours} />
       )}
-      {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
+      {seo.telephone && <meta name="telephone" content={seo.telephone} />}
 
       {seo.paymentAccepted && (
-        <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
+        <meta name="paymentAccepted" content={seo.paymentAccepted} />
       )}
 
       <meta
-        name="location" itemProp="address"
+        name="location"
         content={
           seo.streetAddress +
           ", " +
@@ -105,9 +111,10 @@ export const SEO = ({
       />
 
       <meta name="theme-color" content={seo.themeColor} />
-      <meta itemProp="numberOfEmployees" content={seo.numberOfEmployees} />
-      <meta name="slogan" itemProp="slogan" content={seo.slogan} />
+      <meta name="numberOfEmployees" content={seo.numberOfEmployees} />
+      <meta name="slogan" content={seo.slogan} />
 
+      {/* // TODO: updateable image */}
       <Script type="application/ld+json">
         {`
           {

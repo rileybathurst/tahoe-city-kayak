@@ -132,8 +132,7 @@ footer .book-now {
 
 .buttonGroup {
   display: flex;
-  flex-direction: row;
-  flex-wrap: row wrap;
+  flex-flow: row wrap;
   gap: 1rem;
   margin-block-end: var(--baseline);
 }

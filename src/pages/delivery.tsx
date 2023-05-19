@@ -18,14 +18,16 @@ const DeliveryPage = () => {
         <article
         // className="info"
         >
+          {/* // TODO: move to CMS */}
           <h1>Delivery</h1>
           <p>Whether you need retail kayaks or paddleboards, or our rental watercraft, we can deliver throughout the Tahoe Region and beyond &#40;Sacramento and Reno areas included&#41;. We can deliver to your home, vacation property, or to public beaches &#40;where local rules and access allow&#41;.</p>
 
+          {/* // TODO: add the phone from the metavariable */}
           <p>
-            Since every delivery is different, a <a href="phone:(530) 581-4336" rel="norel norefferer">phone call</a> or <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer">email</a> is the best way to make a plan that meets your needs. Our delivery fees depend on how far we are traveling, how many employees we need to send, and how straightforward the delivery is &#40;ie. if we have to carry watercraft down flights of stairs, over rocks, etc&#41;. We aren't trying to make a profit from delivery fees, but we do need to cover our costs.
+            Since every delivery is different, a <a href="tel:+15305814336" rel="norel norefferer">phone call</a> or <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer">email</a> is the best way to make a plan that meets your needs. Our delivery fees depend on how far we are traveling, how many employees we need to send, and how straightforward the delivery is &#40;ie. if we have to carry watercraft down flights of stairs, over rocks, etc&#41;. We aren't trying to make a profit from delivery fees, but we do need to cover our costs.
           </p>
-
-          <a href="phone:(530) 581-4336" rel="norel norefferer" className="button">Phone: &#40;530&#41; 581-4336</a>
+          {/* // TODO: add the phone from the metavariable */}
+          <a href="tel:+15305814336" rel="norel norefferer" className="button">Phone: &#40;530&#41; 581-4336</a>
           <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer" className="button">tahoecitykayak@gmail.com</a>
         </article>
         <Composition />

@@ -1,3 +1,4 @@
+// TODO: is this now merged into brands.tsx?
 // TODO add the stripes for individual series
 
 import React from "react"

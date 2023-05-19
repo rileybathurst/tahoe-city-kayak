@@ -28,7 +28,7 @@ svg {
   background-color: whitesmoke;
   box-shadow: 0 0 0 100vmax whitesmoke;
   clip-path: inset(0 -100vmax);
-  z-index: 1;
+  z-index: 1; // TODO: variable
   position: relative;
   max-width: calc(100% - 2rem); // guess and check
   padding-block: var(--baseline);

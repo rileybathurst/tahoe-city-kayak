@@ -6,6 +6,7 @@ import MapLink from "../map-link"
 const Rentals = () => {
   return (
     <section className="location">
+      {/* // TODO: needs a heading element */}
       <MapLink><KayakIcon /></MapLink>
       <p>
         <strong>On Water Rental</strong><br />

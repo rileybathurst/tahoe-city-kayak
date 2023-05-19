@@ -407,7 +407,7 @@ footer {
   }
 
   .paddler {
-    // grid-column: 1/3;
+    // this hits validator.w3.org but mdn shows it works
     aspect-ratio: 1;
     border-radius: 50%;
     object-fit: contain;
@@ -460,7 +460,7 @@ footer {
     object-fit: contain;
     place-self: center;
     // box-shadow: var(--umbra);
-    z-index: 2;
+    z-index: 2; // TODO: variable
     grid-row: 1/1;
     filter: drop-shadow(5px 5px 5px var(--black-out));
     aspect-ratio: 16/9;
@@ -472,7 +472,7 @@ footer {
   }
 
   svg {
-    z-index: 1;
+    z-index: 1; // TODO: variable
     max-height: 100%; // overwrite the default
     margin: calc(var(--baseline) / 2);
     width: calc(100% - var(--baseline));
@@ -617,6 +617,8 @@ footer {
     grid-template-columns: auto 1fr 1fr;
   }
 
+  // waiting on baseline
+  //
   @supports not (grid-template-rows: subgrid) {
     grid-template-areas:
       "grid__title--select grid__one--select grid__two--select"
@@ -808,7 +810,6 @@ footer {
   .comparesheet__title1 {
     position: sticky;
     top: -1px;
-    z-index: var(--);
     z-index: var(--understory);
     background-color: var(--brilliance);
     box-shadow: 0 0 0 100vmax var(--brilliance);

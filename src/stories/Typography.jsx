@@ -18,6 +18,8 @@ export const Typography = ({ primary }) => {
       </p>
 
       <hgroup class="crest">
+                  {/* // TODO: only one h and then p */}
+
         <h3 class="brow">Brow</h3>
         <h3 class="supra">Supra</h3>
       </hgroup>

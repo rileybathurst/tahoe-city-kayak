@@ -208,7 +208,7 @@ function Demo(props) {
         {/* // TODO cost may be a single query */}
         <p>* Pedal drive is an additional $5 per rental.</p>
         <p>Phone:&nbsp;
-          <a href="phone:(530) 581-4336" rel="norel norefferer" className="book-now">
+          <a href="tel:+15305814336" rel="norel norefferer" className="book-now">
             (530) 581-4336
           </a>
         </p>
@@ -233,6 +233,8 @@ const RetailTypeView = ({ data }) => {
             <Danger svg={data.strapiRetail.brand.svg} />
           </Link>
           <hgroup className="hgroup__retail">
+            {/* // TODO: only one h and then p */}
+
             <h1 className="h_title">{data.strapiRetail.title}</h1>
             <h2 className="h_brand"><Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>{data.strapiRetail.brand.name}</Link></h2>
             <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
