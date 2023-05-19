@@ -1,0 +1,61 @@
+# Netlify Service for Redirects from what the browser requests to what we serve
+
+## https://docs.netlify.com/routing/redirects/redirect-options/
+
+## /news/*  /blog/:splat
+
+/home         /
+
+### Rentals
+
+/rentals/kayak-rentals/               /rentals/
+/rentals/sup-rentals/                 /rentals/
+/rentals/try-before-you-buy-demo/     /rentals/
+
+### Tours
+
+/kayak-tahoe-sup-lessons-and-tours/kayak-tours-lake-tahoe/                                              /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/kayak-tours-lake-tahoe/sunset-kayak-tour/                            /tours-lessons/sunset/
+/kayak-tahoe-sup-lessons-and-tours/specialty-tours/moonlight-kayak-tour/                                /tours-lessons/moonlight/
+/kayak-tahoe-sup-lessons-and-tours/our-guides/                                                          /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/specialty-tours/                                                     /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/watersport-lessons/                                                  /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/watersport-lessons/kayak-roll-clinic/                                /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/stand-up-paddleboard-tours/                                          /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/watersport-lessons/kayak-lessons/                                    /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/watersport-lessons/get-up-stand-up-intro-to-sup/                     /tours-lessons/stand/
+/kayak-tahoe-sup-lessons-and-tours/watersport-lessons/paddleboard-yoga-lesson/                          /tours-lessons/
+/kayak-tahoe-sup-lessons-and-tours/stand-up-paddleboard-tours/whatssup-west-shore-paddleboard-tour/     /tours-lessons/whatsup/
+/kayak-tahoe-sup-lessons-and-tours/stand-up-paddleboard-tours/paddleboard-yoga/                         /tours-lessons/
+
+### Retail
+
+/retail/shop-kayaks/                      /retail/kayak/
+/retail/shop-kayaks/rio-lime/             /retail/kayak/
+/retail/shop-paddleboards/drift-11/       /retail/kayak/rio/
+/retail/paddleboard-demo-fleet/           /retail/
+/retail/shop-kayaks/img_8349/             /retail/kayak/
+/category/sup/                            /retail/sup/
+/category/kayak/                          /retail/kayak/
+/tag/sup/                                 /retail/sup/
+
+### More
+
+/locations/                               /about/
+/contact-us/                              /about/
+/paddlesports-information-go/             /about/information/
+/zephyr-cove-adventures-our-new-store/    /about/
+/store-policies/                          /about/policies/
+/testimonials/                            /about/testimonials/
+
+### Deprecated
+
+/author/heather/                          /
+/tahoe-activities/                        /
+/blog-news/                               /
+/2275-2/                                  /
+/2275-2/photo-jun-02-6-30-02-pm-1/        /
+/small-business-of-the-year-award/        /
+/amazing-sunset-tours-this-summer/        /
+/check-us-out-on-tahoe-tv/                /
+/quick-guide-staying-water-year-round/    /

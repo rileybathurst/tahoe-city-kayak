@@ -1,3 +1,5 @@
+// TODO: I think this can be removed its all on about now
+
 import * as React from "react";
 
 const MapSVG = (props) => {
