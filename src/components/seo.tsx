@@ -1,7 +1,7 @@
 import React from 'react';
 import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
-// this throws an error but is as documented here:
+// this throws a VS Code error but is as documented here:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
 
 interface SEO {
@@ -39,6 +39,7 @@ export const SEO = ({
     description: description || defaultDescription,
     image: image || defaultImage,
     ogImage: image,
+    testImage: defaultImage,
     url: `${siteUrl}`,
     openingHours: `${openingHours} `,
     telephone: telephone,
@@ -54,17 +55,12 @@ export const SEO = ({
   };
 
   // console.log("seo", seo)
+  console.log('🦄');
+  // console.log(defaultImage);
+  console.log(seo.image);
 
   return (
     <>
-      <title>{seo.title}</title>
-
-      {/* <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛶</text></svg>" /> */}
-
-      {/* {seo.image} */}
-
-      <meta name="description" content={seo.description} />
-
 
       <meta name="image" content={seo.image} />
       <meta property="og:type" content="website" />
@@ -122,6 +118,7 @@ export const SEO = ({
             "@type": "LocalBusiness",
             "name": "${title}",
             "description": "${description}",
+            "image": "${image}",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "${location.address.streetAddress}",

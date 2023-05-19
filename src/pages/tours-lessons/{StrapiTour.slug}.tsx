@@ -81,7 +81,9 @@ export const Head = ({ data }) => {
     <SEO
       title={`${data.strapiTour.name} | ${useSiteName()}`}
       description={data.strapiTour.excerpt}
-    // TODO image
+      // TODO image
+      // github copilot gave me the extra
+      image={data.strapiTour.ogimage.localFile.childImageSharp.gatsbyImageData.images.fallback.src}
     >
       <Script type="application/ld+json">
         {`
