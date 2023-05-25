@@ -40,6 +40,7 @@ export const SEO = (SE0: SEO) => {
 
   return (
     <>
+      <title>{seo.title}</title>
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={seo.title} />

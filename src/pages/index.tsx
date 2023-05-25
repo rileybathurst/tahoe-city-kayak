@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
@@ -8,7 +7,6 @@ import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
-import Time from "../components/time";
 import TwoKayakers from "../images/twokayakers";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
@@ -19,7 +17,6 @@ import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Complete from '../components/locations/complete';
-import Sport from "../components/sport";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
