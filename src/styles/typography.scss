@@ -69,6 +69,7 @@ h3 {
   /* multi lines + 40px each */
 }
 
+// TODO: this should be the font mountains
 .h3 {
   @extend h3;
 }
@@ -180,6 +181,10 @@ hr.no {
   font-family: var(--heading_font);
 }
 
+.mullen {
+  color: var(--mullen);
+}
+
 /*------------------*/
 //  #HEADINGS
 /*------------------*/
@@ -189,6 +194,17 @@ hgroup {
   flex-flow: row wrap;
   column-gap: 1ch;
   align-items: baseline;
+}
+
+/*------------------*/
+//  #DEL
+/*------------------*/
+
+del {
+  color: hsl(var(--sand__base), var(--light));
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--sand__base), var(--dark));
+  }
 }
 
 /*------------------*/

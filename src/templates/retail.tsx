@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql, Script } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
 import { useSiteUrl } from "../hooks/use-site-url";
@@ -11,41 +11,59 @@ import Sport from '../components/sport';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Card from '../components/card';
-import Remainder from "../components/remainder";
+import Spec from '../components/spec';
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Danger from "../components/danger";
 
-function Spec(props) {
-  if (props.name === 'length' || props.name === 'width') {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3><Remainder inches={props.spec} /></h3>
-      </div>
-    );
-  } else if (props.name === "Weight") {
-    // and if
-    if (props.name === "Weight") {
-      // this is has hullweight
-      if (props.spec && props.rigged) {
-        return (
-          <>
+// ! finish this
+function Weight(props) {
+
+  /*   if (props.name === "Weight") {
+      // and if
+      if (props.name === "Weight") {
+        // this is has hullweight
+        if (props.spec && props.rigged) {
+          return (
+            <>
+              <div className="spec">
+                <h2>Hull Weight</h2>
+                <h3>
+                  {props.spec}
+                  <span className="spec__unit">&thinsp;{props.unit}</span>
+                </h3>
+              </div>
+              <div className="spec">
+                <h2>Rigged Weight</h2>
+                <h3>{props.rigged}
+                  <span className="spec__unit">&thinsp;{props.unit}</span>
+                </h3>
+              </div>
+            </>
+          );
+        } else if (props.spec) {
+          return (
             <div className="spec">
-              <h2>Hull Weight</h2>
+              <h2>{props.name}</h2>
               <h3>
                 {props.spec}
                 <span className="spec__unit">&thinsp;{props.unit}</span>
               </h3>
             </div>
+          );
+        } else if (props.rigged) {
+          return (
             <div className="spec">
               <h2>Rigged Weight</h2>
               <h3>{props.rigged}
                 <span className="spec__unit">&thinsp;{props.unit}</span>
               </h3>
             </div>
-          </>
-        );
-      } else if (props.spec) {
+          )
+        } else {
+          return null;
+        }
+  
+      } else {
         return (
           <div className="spec">
             <h2>{props.name}</h2>
@@ -55,62 +73,58 @@ function Spec(props) {
             </h3>
           </div>
         );
-      } else if (props.rigged) {
-        return (
-          <div className="spec">
-            <h2>Rigged Weight</h2>
-            <h3>{props.rigged}
-              <span className="spec__unit">&thinsp;{props.unit}</span>
-            </h3>
-          </div>
-        )
-      } else {
-        return null;
       }
-    } else {
-      return (
+    } */
+
+  /*  return (
+     <Spec
+       name="Weight"
+       spec={props.hullweight}
+       // TODO: this is bad take both to a weight component
+       rigged={props.riggedweight}
+       unit="lbs"
+     />
+   ) */
+
+  return null;
+}
+
+
+
+
+function Price(props: { discount: number; price: number; }) {
+  // * taken from spec but it was getting too complicated
+  if (props.discount) {
+
+    let amount = props.price - (props.discount * (props.price / 100));
+
+    return (
+      <>
+        {/* // TODO: add color */}
         <div className="spec">
-          <h2>{props.name}</h2>
+          <h2><del>Original Price</del></h2>
           <h3>
-            {props.spec}
-            <span className="spec__unit">&thinsp;{props.unit}</span>
+            <del>
+              ${props.price}
+            </del>
           </h3>
         </div>
-      );
-    }
-  } else if ((props.spec) && (props.unitPlace == "before")) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3 className="spec-flex unit-place__before">
-          <span className="specification">{props.spec}</span>&thinsp;
-          <span className="unit">{props.unit}</span>
-        </h3>
-      </div>
-    );
-  } else if (props.spec === true) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3>Yes</h3>
-      </div>
-    );
-  } else if (props.spec) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3>
-          {props.spec}
-          <span className="spec__unit">&thinsp;{props.unit}</span>
-        </h3>
-      </div>
-    );
+        <div className="spec mullen">
+          <h2>Sale Price</h2>
+          {props.discount}% off
+          <h3>${amount}</h3>
+        </div>
+      </>
+    )
   } else {
-    return null;
+    return (
+      <Spec name="price" spec={props.price} unit="$" unitPlace="before" unitSpace='none' />
+    )
   }
 }
 
-function ReactMD(props) {
+
+function ReactMD(props: { raw: string; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; className: string | undefined; }) {
 
   // console.log('markdown');
   // console.log(props.raw);
@@ -140,11 +154,11 @@ function ReactMD(props) {
   }
 }
 
-function Other(props) {
+function Other(props: { retail: { nodes: any[]; }; }) {
   if (props.retail) {
     return (
       <section className='deck'>
-        {props.retail.nodes.map(retail => (
+        {props.retail.nodes.map((retail: { id: any; type?: string; brand?: { slug: string; }; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; demo?: boolean | undefined; }) => (
           <div key={retail.id}>
             <Card retail={retail} />
           </div>
@@ -156,7 +170,7 @@ function Other(props) {
   }
 }
 
-function OtherWrap(props) {
+function OtherWrap(props: { retail: { nodes: string | any[]; }; type: string; brand: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; slug: any; }) {
   if (props.retail.nodes.length !== 0) {
     return (
       <article>
@@ -179,7 +193,7 @@ function OtherWrap(props) {
 }
 
 // references that there are no other by brand
-function None(props) {
+function None(props: { retail: { nodes: string | any[]; }; type: string; }) {
   // console.log(props.retail.edges);
 
   if (props.retail.nodes.length === 0) {
@@ -197,7 +211,7 @@ function None(props) {
   }
 }
 
-function Demo(props) {
+function Demo(props: { demo: any; type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) {
   if (props.demo) {
     return (
       <div className="single__book">
@@ -219,11 +233,39 @@ function Demo(props) {
   }
 }
 
+function Series(props: { series: string; }) {
+  if (props.series) {
+    return (
+      <div className='h_series'>
+        <div className='spec'>
+          <h2>
+            Series
+          </h2>
+          <h3>
+            {props.series}
+          </h3>
+        </div>
+      </div>
+    );
+  }
+  else return null;
+}
+
 const RetailTypeView = ({ data }) => {
+
+  let cutoutFallback = data.strapiRetail.cutout.alternativeText || 'retail image';
+
+  // ! this still needs work
+  if (cutoutFallback.includes('.png')) {
+    let cutoutFallback = 'retail image';
+  }
+  console.log(cutoutFallback);
+
   return (
     <>
       <Header />
 
+      {/* // ! I need to close out the title and specs to get them to line up */}
       <main className="retail">
         <div className='passage specs'>
           <Link
@@ -237,7 +279,8 @@ const RetailTypeView = ({ data }) => {
 
             <h1 className="h_title">{data.strapiRetail.title}</h1>
             <h2 className="h_brand"><Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>{data.strapiRetail.brand.name}</Link></h2>
-            <h3 className="h_series"><Spec name="series" spec={data.strapiRetail.series} /></h3>
+
+            <Series series={data.strapiRetail.series} />
           </hgroup>
 
           <h3>Specs:</h3>
@@ -246,19 +289,19 @@ const RetailTypeView = ({ data }) => {
           <Spec name="length" spec={data.strapiRetail.length} unit="&quot;" />
           <Spec name="width" spec={data.strapiRetail.width} unit="&quot;" />
 
-          <Spec
-            name="Weight"
-            spec={data.strapiRetail.hullweight}
-            rigged={data.strapiRetail.riggedweight}
-            unit="lbs"
+          <Weight
+            hullweight={data.strapiRetail.hullweight}
+            riggedweight={data.strapiRetail.riggedweight}
           />
 
+          {/* // TODO: needs units */}
           <Spec name="thickness" spec={data.strapiRetail.thickness} />
           <Spec name="volume" spec={data.strapiRetail.volume} />
 
           <Spec name="Inflatable" spec={data.strapiRetail.inflatable} />
           {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
-          <Spec name="price" spec={data.strapiRetail.price} unit="$" unitPlace="before" />
+
+          <Price price={data.strapiRetail.price} discount={data.strapiRetail.discount} />
         </div>
 
         <div className="collage card-collage hero">
@@ -266,10 +309,11 @@ const RetailTypeView = ({ data }) => {
 
           <GatsbyImage
             image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={data.strapiRetail?.cutout?.alternativeText}
+            alt={cutoutFallback}
             className="cutout"
             objectFit="contain"
           />
+          {/* {data.strapiRetail?.cutout?.alternativeText} */}
         </div>
 
         <ReactMD
@@ -278,7 +322,7 @@ const RetailTypeView = ({ data }) => {
           title="Features"
         />
 
-      </main>
+      </main >
 
       <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description passage" />
 
@@ -393,6 +437,7 @@ export const query = graphql`
       inflatable
       demo
       price
+      discount
 
       brand {
         name

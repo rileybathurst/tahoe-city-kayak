@@ -267,7 +267,10 @@ ol {
     // h5
     font-size: 1.5rem;
     line-height: 2rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1lh;
+    @supports not (margin-bottom: 1lh) {
+      margin-bottom: 1.25rem;
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+// TODO: combine these together with kayak-brand-list.tsx
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -22,7 +24,7 @@ const SupBrandList = () => {
     <ul className='brand_list'>
       {allStrapiBrand.nodes.map(sup => (
         <li key={sup.id}>
-          <Link to={`/retail/sup/${sup.slug}`}>
+          <Link to={`/brands/sup/${sup.slug}`}>
             <Danger svg={sup.svg} />
             <p>{sup.name}</p>
           </Link>
