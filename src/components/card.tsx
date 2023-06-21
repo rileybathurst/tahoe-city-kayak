@@ -17,10 +17,15 @@ function Name(props) {
 
 function Badges(props) {
 
-  // console.log(props);
-
   // TODO: deal with multiple
-  if (props.inflatable) {
+  // console.log(props);
+  if (props.discount) {
+    return (
+      <div className="badge">
+        <h5 className="capitalize mullen">{props.discount}% off</h5>
+      </div>
+    )
+  } else if (props.inflatable) {
     return (
       <Name name="inflatable" />
     )
@@ -56,6 +61,7 @@ const Card = (retail: {
     capacity: number;
     inflatable?: boolean;
     demo?: boolean;
+    discount?: number;
   };
 }) => {
 
@@ -82,6 +88,7 @@ const Card = (retail: {
         <Badges
           inflatable={retail.retail.inflatable}
           demo={retail.retail.demo}
+          discount={retail.retail.discount}
         />
       </div>
       {/* // ? does this need a brand */}

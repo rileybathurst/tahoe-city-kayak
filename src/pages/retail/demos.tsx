@@ -56,7 +56,7 @@ const DemosPage = () => {
 
   const query = useStaticQuery(graphql`
     query DemosQuery {
-      kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}) {
+      kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
           id
           title
@@ -89,7 +89,7 @@ const DemosPage = () => {
         }
       }
   
-      paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}) {
+      paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}, sort: {featured: ASC}) {
         nodes {
           id
           title

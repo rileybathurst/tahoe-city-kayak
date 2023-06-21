@@ -22,6 +22,7 @@ function Series(props: {
     excerpt?: string;
     cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
     length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; demo?: boolean | undefined;
+    discount?: number;
   };
 }) {
 
@@ -419,7 +420,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "island"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -450,7 +452,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "mirage"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -481,7 +484,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "inflatable"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -512,7 +516,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "performance"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -543,7 +548,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "recreational"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -574,7 +580,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "sit-on-top"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -605,7 +612,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "adventure recreational"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -636,7 +644,8 @@ export const query = graphql`
         brand: {slug: {eq: $slug}},
         type: {eq: $type},
         series: {eq: "light touring"}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -676,7 +685,8 @@ export const query = graphql`
           "adventure recreational",
           "light touring"
           ]}
-      }
+      },
+      sort: {featured: ASC}
     ) {
       nodes {
         id
@@ -687,6 +697,7 @@ export const query = graphql`
         width
         capacity
         type
+        discount
         brand {
           slug
         }

@@ -52,7 +52,7 @@ const IndexPage = () => {
         }
       }
 
-      allStrapiRetail {
+      allStrapiRetail(sort: {featured: ASC}) {
         nodes {
           id
           title

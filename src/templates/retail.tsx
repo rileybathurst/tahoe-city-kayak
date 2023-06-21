@@ -15,82 +15,37 @@ import Spec from '../components/spec';
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Danger from "../components/danger";
 
-// ! finish this
 function Weight(props) {
-
-  /*   if (props.name === "Weight") {
-      // and if
-      if (props.name === "Weight") {
-        // this is has hullweight
-        if (props.spec && props.rigged) {
-          return (
-            <>
-              <div className="spec">
-                <h2>Hull Weight</h2>
-                <h3>
-                  {props.spec}
-                  <span className="spec__unit">&thinsp;{props.unit}</span>
-                </h3>
-              </div>
-              <div className="spec">
-                <h2>Rigged Weight</h2>
-                <h3>{props.rigged}
-                  <span className="spec__unit">&thinsp;{props.unit}</span>
-                </h3>
-              </div>
-            </>
-          );
-        } else if (props.spec) {
-          return (
-            <div className="spec">
-              <h2>{props.name}</h2>
-              <h3>
-                {props.spec}
-                <span className="spec__unit">&thinsp;{props.unit}</span>
-              </h3>
-            </div>
-          );
-        } else if (props.rigged) {
-          return (
-            <div className="spec">
-              <h2>Rigged Weight</h2>
-              <h3>{props.rigged}
-                <span className="spec__unit">&thinsp;{props.unit}</span>
-              </h3>
-            </div>
-          )
-        } else {
-          return null;
-        }
-  
-      } else {
-        return (
-          <div className="spec">
-            <h2>{props.name}</h2>
-            <h3>
-              {props.spec}
-              <span className="spec__unit">&thinsp;{props.unit}</span>
-            </h3>
-          </div>
-        );
-      }
-    } */
-
-  /*  return (
-     <Spec
-       name="Weight"
-       spec={props.hullweight}
-       // TODO: this is bad take both to a weight component
-       rigged={props.riggedweight}
-       unit="lbs"
-     />
-   ) */
-
-  return null;
+  if (props.riggedweight) {
+    return (
+      <>
+        <div className="spec">
+          <h2>Hull Weight</h2>
+          <h3>
+            {props.hullweight}
+            <span className="spec__unit">&thinsp;lbs</span>
+          </h3>
+        </div>
+        <div className="spec">
+          <h2>Rigged Weight</h2>
+          <h3>{props.riggedweight}
+            <span className="spec__unit">&thinsp;lbs</span>
+          </h3>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <div className="spec">
+        <h2>Hull Weight</h2>
+        <h3>
+          {props.hullweight}
+          <span className="spec__unit">&thinsp;lbs</span>
+        </h3>
+      </div>
+    );
+  }
 }
-
-
-
 
 function Price(props: { discount: number; price: number; }) {
   // * taken from spec but it was getting too complicated
@@ -259,7 +214,7 @@ const RetailTypeView = ({ data }) => {
   if (cutoutFallback.includes('.png')) {
     let cutoutFallback = 'retail image';
   }
-  console.log(cutoutFallback);
+  // console.log(cutoutFallback);
 
   return (
     <>
@@ -267,7 +222,7 @@ const RetailTypeView = ({ data }) => {
 
       {/* // ! I need to close out the title and specs to get them to line up */}
       <main className="retail">
-        <div className='passage specs'>
+        <div className='passage title'>
           <Link
             to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}
             className='link__subtle-svg'
@@ -282,8 +237,10 @@ const RetailTypeView = ({ data }) => {
 
             <Series series={data.strapiRetail.series} />
           </hgroup>
+        </div>
 
-          <h3>Specs:</h3>
+        <div className='specs'>
+          <h3>SPECS:</h3>
           <Spec name="crew" spec={data.strapiRetail.crew} />
           <Spec name="capacity" spec={data.strapiRetail.capacity} unit="lbs" />
           <Spec name="length" spec={data.strapiRetail.length} unit="&quot;" />
@@ -473,7 +430,8 @@ export const query = graphql`
         type: {eq: $type},
         brand: {slug: {eq: $brand}}
       }
-      limit: 2
+      limit: 2,
+      sort: {featured: ASC}
     ) {
       nodes {
         id

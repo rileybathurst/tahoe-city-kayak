@@ -106,8 +106,14 @@ ol {
     padding-inline-start: 0;
 
     li {
-      line-height: 3rem;
       border-bottom: 1px solid var(--tin-soldier);
+      height: 2lh;
+      margin-block-end: 1lh;
+
+      @supports not (margin: 1lh) {
+        height: 2.5rem;
+        margin-block-end: 1.25rem;
+      }
     }
 
     li:last-child {

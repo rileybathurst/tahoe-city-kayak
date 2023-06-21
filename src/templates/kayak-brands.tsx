@@ -276,7 +276,8 @@ query (
       brand: {slug: {eq: $slug}},
       type: {eq: "kayak"},
       series: {eq: "island"}
-    }
+    },
+    sort: {featured: ASC}
   ) {
     
       nodes {
@@ -304,7 +305,8 @@ filter: {
   brand: {slug: {eq: $slug}},
   type: {eq: "kayak"},
   series: {eq: "mirage"}
-}
+},
+sort: {featured: ASC}
 ) {
   
   nodes {
@@ -332,7 +334,8 @@ filter: {
   brand: {slug: {eq: $slug}},
   type: {eq: "kayak"},
   series: {eq: "inflatable"}
-}
+},
+sort: {featured: ASC}
 ) {
   
   nodes {
@@ -361,7 +364,8 @@ filter: {
   brand: {slug: {eq: $slug}},
   type: {eq: "kayak"},
   series: {eq: "performance"}
-}
+},
+sort: {featured: ASC}
 ) {
   
   nodes {
@@ -390,7 +394,8 @@ filter: {
   brand: {slug: {eq: $slug}},
   type: {eq: "kayak"},
   series: {eq: "recreational"}
-}
+},
+sort: {featured: ASC}
 ) {
   
   nodes {
@@ -419,7 +424,8 @@ filter: {
   brand: {slug: {eq: $slug}},
   type: {eq: "kayak"},
   series: {eq: "sit-on-top"}
-}
+},
+sort: {featured: ASC}
 ) {
   
   nodes {
@@ -455,7 +461,8 @@ null: allStrapiRetail(
       "recreational",
       "sit-on-top"
       ]}
-  }
+  },
+  sort: {featured: ASC}
 ) {
   
   nodes {

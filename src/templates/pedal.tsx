@@ -21,7 +21,7 @@ export const query = graphql`
     $slug: String!,
     $type: String!,
   ) {
-    allStrapiRetail(filter: {brand: {name: {eq: "hobie"}}}) {
+    allStrapiRetail(filter: {brand: {name: {eq: "hobie"}}}, sort: {featured: ASC}) {
       nodes {
         id
         title

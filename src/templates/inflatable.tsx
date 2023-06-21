@@ -2,11 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import AttributeView from '../views/attribute-view';
 
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
-
 const InflatableView = ({ data }) => {
   return (
     <>
@@ -29,7 +24,7 @@ export const query = graphql`
     $type: String!,
     $inflatable: Boolean!,
   ) {
-    allStrapiRetail(filter: {inflatable: {eq: $inflatable}, type: {eq: $type}}) {
+    allStrapiRetail(filter: {inflatable: {eq: $inflatable}, type: {eq: $type}}, sort: {featured: ASC}) {
       nodes {
         id
         title

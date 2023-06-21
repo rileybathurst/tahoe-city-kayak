@@ -17,7 +17,7 @@ import Shop from "../content/shop";
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
-      kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4) {
+      kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
     
         nodes {
           id
@@ -45,7 +45,7 @@ const RetailPage = () => {
         }
       }
 
-    sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4) {
+    sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
         id
         title

@@ -2,11 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import AttributeView from '../views/attribute-view';
 
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
-
 const WeightView = ({ data }) => {
   return (
     <AttributeView
@@ -32,7 +27,8 @@ export const query = graphql`
       type: {eq: $type}
       hullweight: {lt: $weight},
       crew: {eq: $crew}
-      }) {
+      },
+      sort: {featured: ASC}) {
       nodes {
         id
         title

@@ -228,7 +228,8 @@ export const query = graphql`
       brand: {slug: {eq: $slug}},
       type: {eq: "sup"},
       series: {eq: "island"}
-    }
+    },
+    sort: {featured: ASC}
   ) {
       nodes {
         id
@@ -257,7 +258,8 @@ export const query = graphql`
     brand: {slug: {eq: $slug}},
     type: {eq: "sup"},
     series: {eq: "mirage"}
-  }
+  },
+  sort: {featured: ASC}
   ) {
     nodes {
       id
@@ -287,7 +289,8 @@ inflatable: allStrapiRetail(
     brand: {slug: {eq: $slug}},
     type: {eq: "sup"},
     series: {eq: "inflatable"}
-  }
+  },
+  sort: {featured: ASC}
   ) {
     nodes {
       id
@@ -317,7 +320,8 @@ inflatable: allStrapiRetail(
       brand: {slug: {eq: $slug}},
       type: {eq: "sup"},
       series: {nin: ["island", "mirage", "inflatable"]}
-    }
+    },
+    sort: {featured: ASC}
   ) {
       nodes {
         id

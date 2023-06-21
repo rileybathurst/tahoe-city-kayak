@@ -9,13 +9,14 @@
   row-gap: var(--baseline);
 
   grid-template-areas:
+    "title"
     "hero"
     "specs"
     "features";
 
   @media (min-width: $vulture) {
     grid-template-areas:
-      "specs hero"
+      "title hero"
       "specs features";
     grid-template-columns: 1fr 1fr;
     column-gap: 1.5rem;
@@ -23,6 +24,10 @@
 
   .hero {
     grid-area: hero;
+  }
+
+  .title {
+    width: 100%;
   }
 
   .specs {

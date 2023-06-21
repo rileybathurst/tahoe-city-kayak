@@ -30,7 +30,7 @@ export const query = graphql`
     $slug: String!,
     $type: String!,
   ) {
-    allStrapiRetail(filter: {crew: {eq: $slug}, type: {eq: $type}}) {
+    allStrapiRetail(filter: {crew: {eq: $slug}, type: {eq: $type}}, sort: {featured: ASC}) {
       nodes {
         id
         title
