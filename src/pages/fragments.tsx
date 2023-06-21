@@ -5,15 +5,15 @@ const FragmentsPage = () => {
 
   const { allStrapiBrand } = useStaticQuery(graphql`
 
-    query MyQuery {
+    query FragQuery {
       allStrapiBrand {
         nodes {
-          ...grab
+          ...one
         }
       }
     }
 
-    fragment grab on STRAPI_BRAND {
+    fragment one on STRAPI_BRAND {
       name
       slug
     }

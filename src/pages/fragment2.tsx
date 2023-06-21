@@ -3,28 +3,43 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 const Fragment2Page = () => {
 
-  const { allStrapiBrand } = useStaticQuery(graphql`
+  const query = useStaticQuery(graphql`
 
-    query MyQuery {
-      allStrapiBrand {
+    query Frag2Query {
+      hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
         nodes {
-          ...grab
+          ...twoA
+        }
+      }
+      
+      bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
+        nodes {
+          ...twoA
         }
       }
     }
 
-    fragment grab on STRAPI_BRAND {
+    fragment twoA on STRAPI_BRAND {
       name
       slug
     }
 
   `)
 
+  let hobie = query.hobie;
+  let bote = query.bote;
+
   return (
 
     <main>
 
-      {allStrapiBrand.nodes.map(brand => (
+      {hobie.nodes.map(brand => (
+        <div key={brand.slug} >
+          {brand.name}
+        </div>
+      ))}
+
+      {bote.nodes.map(brand => (
         <div key={brand.slug} >
           {brand.name}
         </div>
