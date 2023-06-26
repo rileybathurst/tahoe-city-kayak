@@ -1,81 +1,69 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo"
 
 import { useSiteName } from '../hooks/use-site-name';
 import Header from "../components/header"
 import Footer from "../components/footer"
-import Time from "../components/time";
-import Fitness from "../components/fitness";
 import BookNow from "../components/peek/book-now";
 import Experience from "../content/experience";
 import Ticket from "../components/ticket";
+import { CardType } from "../types/card";
+import MapIconSVG from "../images/map-icon";
+import MapLink from "../components/map-link";
+import KayakIcon from "../images/kayak";
+import Sport from "../components/sport";
+
+function Console(props: any) {
+  console.log(props.log);
+  return null;
+}
+
+function Nested(props: { sport: string }) {
+  if (props.sport) {
+    // console.log(props.sport);
+
+    return (
+      <h1 className="capitalize">
+        <Sport sport={props.sport} />
+      </h1>
+    )
+  }
+}
+else {
+  return null;
+}
 
 const ToursLessonsPage = () => {
 
   const query = useStaticQuery(graphql`
     query ToursQuery {
       kayak: allStrapiTour
-        (filter: { sport: { eq: "kayak" } })
+        (filter: { sport: { eq: "kayak" } }, sort: {featured: ASC})
       {
-
       nodes {
-        id
-        name
-        slug
-        peek
-        price
-        excerpt
-        start
-        finish
-        duration
-        fitness
+        ...tourCard
 
-        ogimage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
       }
   }
   
   sup: allStrapiTour
-    (filter: { sport: { eq: "sup" } })
+    (filter: { sport: { eq: "sup" } } sort: {featured: ASC})
     {
-
       nodes {
-        id
-        name
-        slug
-        peek
-        price
-        excerpt
-        start
-        finish
-        duration
-        fitness
-
-        ogimage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...tourCard
       }
     }
 }
 `)
 
   let kayak = query.kayak;
-  let paddleboards = query.sup;
+  let paddleboard = query.sup;
 
-  let title = "Tours & Lessons";
+  let sports = [
+    kayak,
+    paddleboard,
+  ]
 
   return (
     <>
@@ -84,7 +72,7 @@ const ToursLessonsPage = () => {
       <main className="passage">
         <div className="location_card-wrapper">
           <div>
-            <h1>{title}</h1>
+            <h1>Tours &amp; Lessons</h1>
             <Experience />
             <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
             <BookNow />
@@ -92,12 +80,28 @@ const ToursLessonsPage = () => {
           </div>
 
           <div className="here__location here__card">
-            <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
-
+            <MapLink>
+              <KayakIcon />
+              <p>
+                <strong>Tour Start Location</strong><br />
+                Commons Beach<br />
+                400 North Lake Blvd,<br />
+                Tahoe City 96145<br />
+              </p>
+            </MapLink>
+            <Link to="/map">
+              <MapIconSVG />
+              <p>
+                View The Map<br />
+                For The Store,<br />
+                Tours, Rentals, Parking<br />
+                and Directions
+              </p>
+            </Link>
           </div>
         </div>
 
-
+        {/* // TODO: from here can be looped */}
         <article className="passage">
           {/* // TODO: only one h and then p */}
 
@@ -107,7 +111,7 @@ const ToursLessonsPage = () => {
           </hgroup>
         </article>
         <div className="deck">
-          {kayak.nodes.map(tour => (
+          {kayak.nodes.map((tour: CardType) => (
             <div key={tour.id}>
               <Ticket tour={tour} />
             </div>
@@ -122,14 +126,36 @@ const ToursLessonsPage = () => {
           </hgroup>
         </article>
         <div className="deck">
-          {paddleboards.nodes.map(tour => (
+          {paddleboard.nodes.map(tour => (
             <div key={tour.id}>
               <Ticket tour={tour} />
             </div>
           ))
           }
         </div>
-      </main>
+
+        {sports.map((sport: any) => (
+          <article className="passage">
+            <hgroup>
+              {/* naming this is weird */}
+              <Nested sport={sport.nodes[0].sport} />
+              <p className="aconcagua">Tours &amp; Lessions</p>
+            </hgroup>
+
+            <div className="deck">
+              {sport.nodes.map((tour: CardType) => (
+                <div key={tour.id}>
+                  <Ticket tour={tour} />
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+
+
+        <Console log={sports} />
+
+      </main >
 
       < Footer />
     </>

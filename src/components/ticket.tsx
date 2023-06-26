@@ -1,4 +1,5 @@
 // * this is the tour lesson version of a card
+// ? should this have a sport always displayed?
 
 import * as React from "react"
 import { Link } from "gatsby"
@@ -22,7 +23,6 @@ const Ticket = (tour: {
   };
 }) => {
 
-  // console.log(retail)
 
   return (
     <article

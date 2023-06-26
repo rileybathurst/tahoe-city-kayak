@@ -37,27 +37,9 @@ export const query = graphql`
       }
     }
 
-    allStrapiTour(filter: {slug: {nin: [$slug] }}) {
+    allStrapiTour(filter: {slug: {nin: [$slug] }}, sort: {featured: ASC},) {
       nodes {
-        id
-        name
-        slug
-        excerpt
-        start
-        finish
-        duration
-        fitness
-        price
-        peek
-
-        ogimage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...tourCard
       }
     }
   }

@@ -1,12 +1,9 @@
 import * as React from "react";
 import { Link } from "gatsby";
-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
-
 import Header from "../components/header"
 import Footer from "../components/footer"
-
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 import Sport from "../components/sport";
 import MapIconSVG from "../images/map-icon";
@@ -15,7 +12,6 @@ import MapLink from "../components/map-link";
 import Composition from "../components/composition";
 import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
-
 
 function ReactMD(props: { raw: string; }) {
   return (

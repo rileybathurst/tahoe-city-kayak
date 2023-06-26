@@ -27,54 +27,15 @@ const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
     query IndexQuery {
-      allStrapiTour {
+      allStrapiTour(sort: {featured: ASC}) {
         nodes {
-          id
-          name
-          slug
-          price
-          peek
-          excerpt
-          start
-          finish
-          duration
-          fitness
-          sport
-
-          ogimage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
+          ...tourCard
         }
       }
 
       allStrapiRetail(sort: {featured: ASC}) {
         nodes {
-          id
-          title
-          slug
-          excerpt
-          type
-          length
-          width
-          inflatable
-          hullweight
-          brand {
-            slug
-          }
-
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
+          ...retailCard
         }
       }
     }

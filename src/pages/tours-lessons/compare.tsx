@@ -207,26 +207,25 @@ function Compare(props) {
 
 const ComparePage = () => {
 
-
   const { allStrapiTour } = useStaticQuery(graphql`
-query TourCompareQuery {
-  allStrapiTour {
-      nodes {
-        id
-        fitness
-        slug
-        start
-        sport
-        peek
-        price
-        name
-        minimum
-        finish
-        excerpt
-        duration
-      }
+    query TourCompareQuery {
+      allStrapiTour(sort: {featured: ASC},) {
+        nodes {
+          id
+          fitness
+          slug
+          start
+          sport
+          peek
+          price
+          name
+          minimum
+          finish
+          excerpt
+          duration
+        }
+    }
   }
-}
 `)
 
   return (
