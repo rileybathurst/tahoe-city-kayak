@@ -29,9 +29,9 @@ function Nested(props: { sport: string }) {
       </h1>
     )
   }
-}
-else {
-  return null;
+  else {
+    return null;
+  }
 }
 
 const ToursLessonsPage = () => {
