@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
 import Menu from "./menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
@@ -158,7 +159,11 @@ const Header = () => {
   const { strapiTopbar } = useStaticQuery(graphql`
     query TopBarQuery {
       strapiTopbar {
-        text
+        markdown {
+          data {
+            markdown
+          }
+        }
       }
     }
   `)
@@ -177,7 +182,11 @@ const Header = () => {
 
       {/* // I renamed this as it was conflicting with the topbar that moves */}
       <div className="cap">
-        <p>{strapiTopbar.text}</p>
+        {/* <p>{strapiTopbar.markdown.data.markdown}</p> */}
+        <ReactMarkdown
+          children={strapiTopbar.markdown.data.markdown}
+          remarkPlugins={[remarkGfm]}
+        />
       </div>
 
       <div className="logo-container" >
