@@ -41,7 +41,7 @@ function Spec(props: {
   } else if (props.name === "Sport") {
     return (
       <div className="spec" >
-        <h2><Sport sport={props.name} /></h2>
+        <h2>Sport</h2>
         <h3 className="spec-flex">
           <span className="specification"><Sport sport={props.spec} /></span>
         </h3>

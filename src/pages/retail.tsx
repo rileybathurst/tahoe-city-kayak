@@ -14,6 +14,8 @@ import Store from "../components/locations/store";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
 
+import SEOShowcase from "seo-showcase"
+
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
@@ -79,6 +81,7 @@ const RetailPage = () => {
 
   return (
     <>
+
       <Header />
 
       <main className="location_card-wrapper">
@@ -147,6 +150,8 @@ const RetailPage = () => {
       </section>
 
       <Footer />
+
+      {/* <SEOShowcase test="this" /> */}
     </>
   )
 }

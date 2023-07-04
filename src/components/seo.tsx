@@ -4,6 +4,8 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 // this throws a VS Code error but is as documented here:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
 
+import SEOShowcase from "seo-showcase"
+
 interface SEO {
   title?: string;
   description?: string;
@@ -40,6 +42,7 @@ export const SEO = (SE0: SEO) => {
 
   return (
     <>
+      {/* <SEOShowcase test="hey" /> */}
       <title>{seo.title}</title>
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
