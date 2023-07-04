@@ -62,3 +62,59 @@
     border-right: none;
   }
 }
+
+/*------------------*/
+//  #RENTAL CHART
+/*------------------*/
+
+.rental-chart {
+  display: grid;
+  text-align: center;
+  margin-block-end: 1.5rem;
+
+  .row {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+
+    /* box */
+    > * {
+      padding: clamp(0.5rem, 1vw, 1rem);
+      border-inline-end: 1px solid var(--tin-soldier);
+      border-block-end: 1px solid var(--tin-soldier);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      > * {
+        border-inline-end: 1px solid var(--black-out);
+        border-block-end: 1px solid var(--black-out);
+      }
+    }
+
+    > *:last-child {
+      border-inline-end: none;
+    }
+  }
+
+  .row:last-child {
+    > * {
+      border-block-end: none;
+    }
+  }
+
+  .row-header {
+    font-weight: bold;
+  }
+
+  h4 {
+    margin: 0.25px;
+    font-size: clamp(0.75rem, 1.25vw, 1.5rem);
+    line-height: clamp(1rem, 1.5vw, 2rem);
+  }
+
+  p {
+    font-size: 0.75rem;
+    margin: 0.25px;
+  }
+}

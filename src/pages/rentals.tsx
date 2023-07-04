@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import { SEO } from "../components/seo";
 import { useSiteName } from '../hooks/use-site-name';
@@ -11,9 +11,26 @@ import MapLink from "../components/map-link";
 import CarIcon from "../images/car";
 import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
+import PricingChart from "../components/pricing-chart";
 
 const RentalsPage = () => {
-  let title = "Rentals";
+
+  const { allStrapiRentalRate } = useStaticQuery(graphql`
+  query RentalRateQuery {
+    allStrapiRentalRate(sort: {order: ASC}) {
+      nodes {
+        id
+        oneHour
+        item
+        threeHour
+        fullDay
+        retail {
+          slug
+        }
+      }
+    }
+  }
+`)
 
   return (
     <>
@@ -22,7 +39,7 @@ const RentalsPage = () => {
       <main className="rentals">
         <article className="info">
           {/* classes relate to grid area */}
-          <h1>{title}</h1>
+          <h1>Rentals</h1>
           <h2>Season: May &ndash; October</h2>
           <p>
             Open Daily<br />
@@ -42,10 +59,34 @@ const RentalsPage = () => {
 
         <Composition />
 
-        <BookNow />
+        <div className="rates">
+          <div className="specialty_rentals rental-chart">
+            <div className="row row-header">
+              <h4><span>Rental</span> <span>Rates</span></h4>
+              <p>1 Hour</p>
+              <p><span>3 Hours</span></p>
+              <p><span>Full Day</span></p>
+            </div>
+            {allStrapiRentalRate.nodes.map((rate: {
+              id: React.Key;
+              item: string;
+              oneHour: number;
+              threeHour: number;
+              fullDay: number;
+            }) => (
+              <div key={rate.id} className="row">
+                <h4>{rate.item}</h4>
+                <p>{rate.oneHour}</p>
+                <p>{rate.threeHour}</p>
+                <p>{rate.fullDay}</p>
+              </div>
+            ))}
+          </div>
+          <BookNow />
+        </div>
 
         {/* // TODO move this to the component or document why its not */}
-        <div className="here__location here__card">
+        <div className="here__location here__card align-self-start">
           <section className="location">
             <MapLink>
               <KayakIcon />
@@ -60,10 +101,12 @@ const RentalsPage = () => {
             </p>
           </section>
           <section className="location">
+            {/* // TODO: make this a variable */}
             <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">
               <CarIcon />
             </a>
             <p><strong>Free Parking Lot</strong><br />
+              {/* // TODO: make this a variable */}
               <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
                 Tahoe City 96145
               </a>
@@ -71,7 +114,7 @@ const RentalsPage = () => {
           </section>
         </div>
 
-      </main>
+      </main >
 
       <Footer />
     </>
