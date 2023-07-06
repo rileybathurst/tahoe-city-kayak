@@ -10,7 +10,6 @@ import Footer from "../../components/footer";
 
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
-
 const FaqPage = () => {
 
   const { allStrapiFaq } = useStaticQuery(graphql`
@@ -68,6 +67,9 @@ const FaqPage = () => {
 export default FaqPage
 
 export const Head = () => {
+
+  console.log("FaqPage Head");
+
   return (
     <SEO
       title={`Frequently Asked Questions | ${useSiteName()}`}

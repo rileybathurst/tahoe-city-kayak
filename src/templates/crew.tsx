@@ -1,5 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { SEO } from '../components/seo';
+import { useSiteName } from '../hooks/use-site-name';
 import AttributeView from '../views/attribute-view';
 
 // * these have to be specific as you cant do null variables
@@ -24,13 +26,25 @@ const CrewView = ({ data }) => {
 
 export default CrewView;
 
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteName()}`}
+      description={data.strapiAttribute.description.data.description}
+    >
+      {/* // TODO: breadcrumbs */}
+    </SEO>
+  );
+}
+
+
 export const query = graphql`
-  query (
+  query(
     $name: String!,
     $slug: String!,
     $type: String!,
   ) {
-    allStrapiRetail(filter: {crew: {eq: $slug}, type: {eq: $type}}, sort: {featured: ASC}) {
+    allStrapiRetail(filter: { crew: { eq: $slug }, type: { eq: $type } }, sort: { featured: ASC }) {
       nodes {
         id
         title
@@ -56,7 +70,7 @@ export const query = graphql`
       }
     }
 
-    strapiAttribute(name: {eq: $name}, type: {eq: $type}) {
+    strapiAttribute(name: { eq: $name }, type: { eq: $type }) {
       name
       type
       description {
@@ -66,4 +80,4 @@ export const query = graphql`
       }
     }
   }
-`;
+  `;

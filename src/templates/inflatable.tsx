@@ -1,6 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import AttributeView from '../views/attribute-view';
+import { SEO } from '../components/seo';
+import { useSiteName } from '../hooks/use-site-name';
+
+// TODO: fix the sport to sup
+import Sport from '../components/sport';
 
 const InflatableView = ({ data }) => {
   return (
@@ -17,6 +22,18 @@ const InflatableView = ({ data }) => {
 };
 
 export default InflatableView;
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteName()}`}
+      description={data.strapiAttribute.description.data.description}
+    >
+      {/* // TODO: breadcrumbs */}
+    </SEO>
+  );
+}
+
 
 export const query = graphql`
   query (

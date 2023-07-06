@@ -1,5 +1,7 @@
 import * as React from "react"
-import { Link } from 'gatsby';
+import { Link, Script } from 'gatsby';
+import { SEO } from "../components/seo";
+import { useSiteName } from '../hooks/use-site-name';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Card from "../components/card"
@@ -7,7 +9,7 @@ import KayakFeatureList from "../components/kayak-feature-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list"
 import Sport from "../components/sport";
 
-// ! SEO
+// ! SEO isnt here its on the templates
 
 function SportFeatureList(props: { sport: string; }) {
   if (props.sport === "kayak") {
