@@ -14,6 +14,7 @@ const strapiConfig = {
     "imagegrab",
     "attribute",
     "rental-rate",
+    "event",
   ],
   singleTypes: [
     "topbar",

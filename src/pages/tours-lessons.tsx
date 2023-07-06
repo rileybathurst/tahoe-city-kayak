@@ -101,39 +101,6 @@ const ToursLessonsPage = () => {
           </div>
         </div>
 
-        {/* // TODO: from here can be looped */}
-        <article className="passage">
-          {/* // TODO: only one h and then p */}
-
-          <hgroup>
-            <h1>KAYAK</h1>
-            <h2>Tours &amp; Lessons</h2>
-          </hgroup>
-        </article>
-        <div className="deck">
-          {kayak.nodes.map((tour: CardType) => (
-            <div key={tour.id}>
-              <Ticket tour={tour} />
-            </div>
-          ))
-          }
-        </div>
-        <article className="passage">
-          {/* // TODO: only one h and then p */}
-          <hgroup>
-            <h1>Paddleboard</h1>
-            <h2>Tours &amp; Lessons</h2>
-          </hgroup>
-        </article>
-        <div className="deck">
-          {paddleboard.nodes.map(tour => (
-            <div key={tour.id}>
-              <Ticket tour={tour} />
-            </div>
-          ))
-          }
-        </div>
-
         {sports.map((sport: any) => (
           <article className="passage">
             <hgroup>
