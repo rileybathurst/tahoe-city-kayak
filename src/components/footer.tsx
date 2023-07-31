@@ -8,6 +8,14 @@ import Logo from "../images/logo";
 import Complete from './locations/complete';
 
 const Footer = () => {
+
+  {
+    process.env.NODE_ENV === "development" ? (
+      console.error("sentry check dev")
+    ) : null
+  }
+
+
   return (
     <footer>
       {/* holds together a flex */}
