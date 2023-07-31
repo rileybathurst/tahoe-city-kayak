@@ -1,11 +1,14 @@
 import * as React from "react"
 import { Link } from "gatsby"
+
 import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";
 import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import Complete from './locations/complete';
+import Phone from "./phone";
+import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 const Footer = () => {
 
@@ -24,30 +27,25 @@ const Footer = () => {
         </nav>
         <hr />
         <div className="footer__contact">
+          <Phone />
           <a
-            href="phone:5305814336"
+            href={`mailto:${useSiteMetadata().email}`}
             rel="norel norefferer"
             className="button"
           >
-            Phone: &#40;530&#41; 581-4336
-          </a>
-          <a
-            href="mailto:tahoecitykayak@gmail.com"
-            rel="norel norefferer"
-            className="button"
-          >
-            tahoecitykayak@gmail.com
+            {useSiteMetadata().email}
           </a>
           <hr />
           <div className="social">
             <a
-              href="https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736"
+              href={useSiteMetadata().social.facebook}
               target='_blank' rel='noopener noreferrer'
               aria-label="tahoe city kayak and paddleboard facebook"
             >
               <FacebookIcon />
             </a>
-            <a href="https://www.instagram.com/tahoecitykayak/"
+            <a
+              href={useSiteMetadata().social.instagram}
               target='_blank' rel='noopener noreferrer'
               aria-label="tahoe city kayak and paddleboard instagram"
             >
@@ -57,7 +55,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <PricingChart book="no" />
+        <PricingChart book={false} />
         <hr />
         <section className="home__here" >
           <Complete />

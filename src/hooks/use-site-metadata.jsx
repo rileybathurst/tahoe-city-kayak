@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 export const useSiteMetadata = () => {
   const data = useStaticQuery(graphql`
@@ -14,6 +14,7 @@ export const useSiteMetadata = () => {
           siteUrl
           openingHours
           telephone
+          email
 
           location {
             address {
@@ -39,10 +40,15 @@ export const useSiteMetadata = () => {
           themeColor
           numberOfEmployees
           slogan
+
+          social {
+            facebook
+            instagram
+          }
         }
       }
     }
-  `)
+  `);
 
-  return data.site.siteMetadata
-}
+  return data.site.siteMetadata;
+};

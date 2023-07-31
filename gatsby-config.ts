@@ -38,7 +38,7 @@ module.exports = {
       "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
     defaultImageAlt: "A collage of images showcasing paddling on Lake Tahoe",
     openingHours: "Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00",
-    telephone: "(530) 581-4336",
+    telephone: "(530)581-4336",
     email: "tahoecitykayak@gmail.com",
     logo: "/images/icon.png",
     areaServed: "Tahoe City",
@@ -72,6 +72,10 @@ module.exports = {
       itemOffered1: "kayak and paddleboard rentals",
       itemOffered2: "kayak and paddleboard sales",
       itemOffered3: "kayak and paddleboard tours and lessons",
+    },
+    social: {
+      facebook: "https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736",
+      instagram: "https://www.instagram.com/tahoecitykayak/",
     },
   },
   plugins: [

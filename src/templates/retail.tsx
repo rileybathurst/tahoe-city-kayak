@@ -14,6 +14,7 @@ import Card from '../components/card';
 import Spec from '../components/spec';
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Danger from "../components/danger";
+import Phone from '../components/phone';
 
 function Weight(props) {
   if (props.riggedweight) {
@@ -176,10 +177,8 @@ function Demo(props: { demo: any; type: string | number | boolean | React.ReactE
           &#x28;Up to two full days rental charge&#x29;</p>
         {/* // TODO cost may be a single query */}
         <p>* Pedal drive is an additional $5 per rental.</p>
-        <p>Phone:&nbsp;
-          <a href="tel:+15305814336" rel="norel norefferer" className="book-now">
-            (530) 581-4336
-          </a>
+        <p>
+          <Phone />
         </p>
       </div>
     );
