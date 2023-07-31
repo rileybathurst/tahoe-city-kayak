@@ -29,9 +29,7 @@
 /*------------------*/
 
 .passage {
-  max-width: var(
-    --pelican
-  ); // !this is way too long I need to fix it but its probably going to break things
+  max-width: var(--vulture);
   margin-inline: auto;
   padding-inline: 0.75rem;
 }

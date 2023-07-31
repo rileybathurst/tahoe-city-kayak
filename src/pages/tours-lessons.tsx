@@ -14,11 +14,6 @@ import MapLink from "../components/map-link";
 import KayakIcon from "../images/kayak";
 import Sport from "../components/sport";
 
-function Console(props: any) {
-  console.log(props.log);
-  return null;
-}
-
 function Nested(props: { sport: string }) {
   if (props.sport) {
     // console.log(props.sport);
@@ -69,8 +64,8 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
-      <main className="passage">
-        <div className="location_card-wrapper">
+      <main>
+        <div className="passage location_card-wrapper">
           <div>
             <h1>Tours &amp; Lessons</h1>
             <Experience />
@@ -100,29 +95,25 @@ const ToursLessonsPage = () => {
             </Link>
           </div>
         </div>
+      </main>
 
-        {sports.map((sport: any) => (
-          <article className="passage">
-            <hgroup>
-              {/* naming this is weird */}
-              <Nested sport={sport.nodes[0].sport} />
-              <p className="aconcagua">Tours &amp; Lessions</p>
-            </hgroup>
+      {sports.map((sport: any) => (
+        <section>
+          <hgroup className="passage">
+            {/* naming this is weird */}
+            <Nested sport={sport.nodes[0].sport} />
+            <p className="aconcagua">Tours &amp; Lessions</p>
+          </hgroup>
 
-            <div className="deck">
-              {sport.nodes.map((tour: CardType) => (
-                <div key={tour.id}>
-                  <Ticket tour={tour} />
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
-
-
-        <Console log={sports} />
-
-      </main >
+          <div className="deck">
+            {sport.nodes.map((tour: CardType) => (
+              <div key={tour.id}>
+                <Ticket tour={tour} />
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
 
       < Footer />
     </>
