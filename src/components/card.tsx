@@ -3,9 +3,10 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
+import { RetailCardType } from "../types/retail"
 
 function Name(props) {
   return (
@@ -38,34 +39,13 @@ function Badges(props) {
   }
 }
 
-const Card = (retail: {
-  retail: {
-    id: React.Key;
-    type: string;
-    brand: {
-      slug: string;
-    };
-    slug: string;
-    title: string;
-    excerpt: string;
-    cutout: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        };
-      };
-      alternativeText: string;
-    };
-    length: number;
-    width: number;
-    capacity: number;
-    inflatable?: boolean;
-    demo?: boolean;
-    discount?: number;
-  };
-}) => {
+// TODO: cardType
+const Card = (retail: RetailCardType) => {
 
   // console.log(retail)
+  if (retail.retail.cutout.alternativeText === null) {
+    console.warn(`${retail.retail.title} by ${retail.retail.brand.slug} doesnt have altText`)
+  }
 
   return (
     <article
@@ -79,7 +59,7 @@ const Card = (retail: {
         >
           <GatsbyImage
             image={retail.retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={retail.retail.cutout?.alternativeText}
+            alt={retail.retail.cutout?.alternativeText || retail.retail.title + ' by ' + retail.retail.brand.slug}
             className="cutout"
             objectFit="contain"
           // TODO: this has been causing some problems but keep an eye on it

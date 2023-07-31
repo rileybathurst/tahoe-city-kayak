@@ -74,9 +74,6 @@ function Next(props) {
 
 const KayakBrandView = ({ data }) => {
 
-  // hobie has a series of inflatable, mirage, performance, island
-  // eddyline has a series of performance, recreational, sit-on-top
-
   return (
     <>
       <Header />

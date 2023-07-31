@@ -25,27 +25,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -58,27 +38,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -91,27 +51,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -124,27 +64,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -157,27 +77,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -190,27 +90,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -223,27 +103,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -256,27 +116,7 @@ const RetailSupPage = () => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -284,14 +124,17 @@ const RetailSupPage = () => {
     }
   `)
 
-  let hobie = query.hobie;
-  let bote = query.bote;
-  let tahe = query.tahe;
-  let sic = query.sic;
-  let hala = query.hala;
-  let boardworks = query.boardworks;
-  let pauhana = query.pauhana;
   let other = query.other;
+
+  let brands = [
+    query.hobie,
+    query.bote,
+    query.tahe,
+    query.sic,
+    query.hala,
+    query.boardworks,
+    query.pauhana
+  ]
 
   let title = "Paddleboard Retail";
 
@@ -320,48 +163,9 @@ const RetailSupPage = () => {
 
       <div className="brand_blocks">
 
-        {hobie.nodes.map(brand => (
-          <div key={brand.slug} >
-            {/* // * wrap this for react keys */}
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-        {bote.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-        {tahe.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-
-        {sic.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-        {hala.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-
-        {boardworks.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
-          </div>
-        ))}
-
-        {pauhana.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="sup" />
+        {brands.map(brand => (
+          <div key={brand.nodes[0].slug}>
+            <Brand brand={brand.nodes[0]} type="sup" />
           </div>
         ))}
 

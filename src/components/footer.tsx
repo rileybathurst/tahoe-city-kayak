@@ -9,18 +9,6 @@ import Complete from './locations/complete';
 
 const Footer = () => {
 
-  {
-    process.env.NODE_ENV === "development" ? (
-      console.error("sentry check dev")
-    ) : null
-  }
-  {
-    process.env.NODE_ENV === "production" ? (
-      console.error("sentry check production")
-    ) : null
-  }
-
-
   return (
     <footer>
       {/* holds together a flex */}

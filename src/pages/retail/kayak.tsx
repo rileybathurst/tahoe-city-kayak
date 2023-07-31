@@ -13,6 +13,11 @@ import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
 
+function Console(log) {
+  console.log(log);
+  return null;
+}
+
 const RetailKayakPage = (data: any) => {
   const query = useStaticQuery(graphql`
     query KayaksQuery {
@@ -25,27 +30,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -59,27 +44,7 @@ const RetailKayakPage = (data: any) => {
         svg
 
         retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          inflatable
-          brand {
-              slug
-            }
-            
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -93,27 +58,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -126,28 +71,8 @@ const RetailKayakPage = (data: any) => {
           tagline
           svg
 
-        retail {
-          type
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          inflatable
-          brand {
-              slug
-            }
-            
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-            }
+          retail {
+            ...retailCard
           }
         }
       }
@@ -161,27 +86,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -195,27 +100,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-          type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -229,27 +114,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -262,27 +127,7 @@ const RetailKayakPage = (data: any) => {
           svg
 
           retail {
-            type
-            id
-            title
-            slug
-            excerpt
-            capacity
-            length
-            width
-            inflatable
-            brand {
-              slug
-            }
-            
-            cutout {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-              alternativeText
-            }
+            ...retailCard
           }
         }
       }
@@ -297,6 +142,16 @@ const RetailKayakPage = (data: any) => {
   let bote = query.bote;
   let brusurf = query.brusurf;
   let other = query.other;
+
+  let brands = [
+    hobie,
+    eddyline,
+    perception,
+    wildernesssystems,
+    delta,
+    bote,
+    brusurf
+  ]
 
   let title = "Kayak Retail";
   let parent = "retail";
@@ -331,46 +186,9 @@ const RetailKayakPage = (data: any) => {
 
       <div className="brand_blocks">
 
-        {hobie.nodes.map(brand => (
-          <div key={brand.slug} >
-            {/* // * wrap this for react keys */}
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {eddyline.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {perception.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {wildernesssystems.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {delta.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {bote.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
-          </div>
-        ))}
-
-        {brusurf.nodes.map(brand => (
-          <div key={brand.slug}>
-            <Brand brand={brand} type="kayak" />
+        {brands.map(brand => (
+          <div key={brand.nodes[0].slug}>
+            <Brand brand={brand.nodes[0]} type="kayak" />
           </div>
         ))}
 

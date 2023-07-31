@@ -4,18 +4,28 @@ import { Link } from "gatsby"
 import Danger from "./danger"
 import More from "./more";
 import Card from "./card";
+import { CardType } from "../types/card";
 
-function Limiter(props) {
+function Limiter(props: {
+  brand: {
+    svg: string;
+    slug: string;
+    name: string;
+    tagline: string;
+    retail: CardType;
+  };
+  type: "kayak" | "sup";
+}) {
   // Im trying to make a set of 4 cards from the props.brand.retail array
   // using foreach to remove the react key issues
 
   // all the kayaks or sups
-  const type = [];
+  const type: any[] = [];
 
   // only the first 4
-  const quad = [];
+  const quad: any[] = [];
 
-  props.brand.forEach(retail => {
+  props.brand.forEach((retail: { type: any; }) => {
     if (retail.type === props.type) {
       // console.log(retail.title);
       type.push(retail);
@@ -40,14 +50,25 @@ function Limiter(props) {
   )
 }
 
-const Brand = (props) => {
+const Brand = (props:
+  {
+    brand: {
+      svg: string;
+      slug: string;
+      name: string;
+      tagline: string;
+      retail: CardType;
+    };
+    type: "kayak" | "sup";
+  }) => {
+
   return (
     <>
       <section className="passage">
         <div className='brand-logo'>
           <Danger svg={props.brand.svg} />
           <h2 className='capitalize'>
-            <Link to={props.brand.slug}>
+            <Link to={`/brands/${props.type}/${props.brand.slug}`}>
               {props.brand.name}
             </Link>
           </h2>

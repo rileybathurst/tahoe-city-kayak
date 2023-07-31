@@ -15,62 +15,20 @@ import Composition from "../components/composition";
 import Shop from "../content/shop";
 
 import SEOShowcase from "seo-showcase"
+import { CardType } from "../types/card";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
       kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
-    
         nodes {
-          id
-          title
-          slug
-          length
-          width
-          type
-          excerpt
-          capacity
-          inflatable
-          demo
-          brand {
-            slug
-          }
-
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
+          ...retailCard
         }
       }
 
     sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
-        id
-        title
-        slug
-        length
-        width
-        type
-        excerpt
-        capacity
-        inflatable
-        demo
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+      ...retailCard
       }
     }
   }
@@ -88,8 +46,6 @@ const RetailPage = () => {
         <div>
           <h1>Retail</h1>
           <Shop />
-
-          {/* // TODO: Demos link */}
           <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
@@ -115,7 +71,7 @@ const RetailPage = () => {
       <KayakBrandList />
 
       <section className="deck">
-        {kayak.nodes.map(kayak => (
+        {kayak.nodes.map((kayak: CardType) => (
           <div key={kayak.id}>
             <Card retail={kayak} />
           </div>
@@ -141,7 +97,7 @@ const RetailPage = () => {
       <SupBrandList />
 
       <section className="deck">
-        {sup.nodes.map(sup => (
+        {sup.nodes.map((sup: CardType) => (
           <div key={sup.id}>
             <Card retail={sup} />
           </div>

@@ -10,7 +10,6 @@ import Footer from "../../components/footer";
 import PricingChart from "../../components/pricing-chart";
 import Card from "../../components/card";
 import Store from "../../components/locations/store";
-import Demos from "../../content/demos";
 import Composition from "../../components/composition";
 
 // I dont understand this but it works
