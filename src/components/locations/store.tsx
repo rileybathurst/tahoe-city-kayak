@@ -7,6 +7,7 @@ const Store = () => {
     <section className="location">
       {/* // TODO: needs a heading element */}
       <a href="https://goo.gl/maps/qVFPpSrFGwrECb4n8" rel="norel nofollow" aria-label="retail location icon">
+        <span className='sr-only'>Google Maps Link</span>
         <StoreIcon />
       </a>
       <p>

@@ -98,7 +98,7 @@ const ToursLessonsPage = () => {
       </main>
 
       {sports.map((sport: any) => (
-        <section>
+        <section key={sport.nodes[0].id}>
           <hgroup className="passage">
             {/* naming this is weird */}
             <Nested sport={sport.nodes[0].sport} />

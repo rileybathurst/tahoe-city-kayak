@@ -10,6 +10,7 @@ const MapLink = (props) => {
       rel="noopener noreferrer"
       className={props.className}
     >
+      <span className='sr-only'>Google Maps Link</span>
       {props.children}
     </a>
   )
