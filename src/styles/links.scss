@@ -50,6 +50,22 @@ a:where(:hover, :focus) {
   }
 }
 
+/*------------------*/
+//  #MENU LIST
+/*------------------*/
+
+.menu-list .active {
+  background-color: var(--sand);
+  box-shadow: var(--penumbra);
+  border: 1px solid whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--mullen__base), var(--light));
+    background-color: hsl(var(--mullen__base), var(--dark));
+    border: 1px solid hsl(var(--mullen__base), var(--dull));
+  }
+}
+
 a svg {
   fill: var(--mullen);
   transition: 0.2s ease;

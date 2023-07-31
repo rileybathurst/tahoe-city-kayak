@@ -4,14 +4,13 @@ import BookNow from "./peek/book-now"
 
 // TODO: using {location.pathname} we can get the current path and use it to set the active class on the menu item
 
-const MenuList = (props) => {
+const MenuList = () => {
   return (
-    <ul>
-      <li><Link to="/rentals" className='link__backed'>Rentals</Link></li>
-      <li><Link to="/tours-lessons" className='link__backed'>Tours &amp; Lessons</Link></li>
-      <li><Link to="/retail" className='link__backed'>Retail</Link></li>
-      {/* // ! This is moving inside of retail <li><Link to="/demos" className='link__backed'>Demos</Link></li> */}
-      <li><Link to="/about" className='link__backed'>More Info</Link></li>
+    <ul className="menu-list">
+      <li><Link to="/rentals" className='link__backed' activeClassName="active">Rentals</Link></li>
+      <li><Link to="/tours-lessons" className='link__backed' activeClassName="active">Tours &amp; Lessons</Link></li>
+      <li><Link to="/retail" className='link__backed' activeClassName="active">Retail</Link></li>
+      <li><Link to="/about" className='link__backed' activeClassName="active">More Info</Link></li>
       <li><BookNow /></li>
     </ul>
   )

@@ -25,7 +25,7 @@ const Footer = () => {
         <hr />
         <div className="footer__contact">
           <a
-            href="phone:(530) 581-4336"
+            href="phone:5305814336"
             rel="norel norefferer"
             className="button"
           >

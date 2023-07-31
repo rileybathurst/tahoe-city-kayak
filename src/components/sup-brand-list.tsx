@@ -24,7 +24,7 @@ const SupBrandList = () => {
     <ul className='brand_list'>
       {allStrapiBrand.nodes.map(sup => (
         <li key={sup.id}>
-          <Link to={`/brands/sup/${sup.slug}`}>
+          <Link to={`/retail/sup/${sup.slug}`}>
             <Danger svg={sup.svg} />
             <p>{sup.name}</p>
           </Link>

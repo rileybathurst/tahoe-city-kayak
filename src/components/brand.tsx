@@ -68,7 +68,7 @@ const Brand = (props:
         <div className='brand-logo'>
           <Danger svg={props.brand.svg} />
           <h2 className='capitalize'>
-            <Link to={`/brands/${props.type}/${props.brand.slug}`}>
+            <Link to={`/retail/${props.type}/${props.brand.slug}`}>
               {props.brand.name}
             </Link>
           </h2>

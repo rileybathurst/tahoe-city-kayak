@@ -150,7 +150,7 @@ const DemosPage = () => {
           </div>
         </div>
 
-        <PricingChart />
+        <PricingChart book={false} />
         <hr />
       </main>
 
