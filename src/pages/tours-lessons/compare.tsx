@@ -132,7 +132,8 @@ function Compare(props) {
 
         {/* Tour 1 */}
         <div className='subgrid-passthrough'>
-          <select name="tour3" id="tour3" onChange={first} className="grid__one--select comparesheet_select">
+          {/* // ? why tour3? */}
+          <select name="tour3" id="tour1" onChange={first} className="grid__one--select comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.id} name={tour.name} current={tour1} other={tour2} />
             ))}
@@ -170,7 +171,7 @@ function Compare(props) {
 
         {/* Tour 2 */}
         <div className='subgrid-passthrough'>
-          <select name="tour3" id="tour3" onChange={second} className="grid__two--select comparesheet_select">
+          <select name="tour3" id="tour2" onChange={second} className="grid__two--select comparesheet_select">
             {props.tours.map((tour) => (
               <Option key={tour.id} name={tour.name} current={tour2} other={tour1} />
             ))}

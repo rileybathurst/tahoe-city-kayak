@@ -12,8 +12,6 @@ const Parking = () => {
       <Link to="/delivery"><ShippingIcon /></Link>
       <p><Link to="/delivery"><strong>Delivery</strong></Link><br />
         We can deliver retail or rental watercraft to homes or beaches throughout the region.
-        {/* // TODO: bring this in from the gatsby config file */}
-        &nbsp;<Phone />.
       </p>
     </section >
   )
