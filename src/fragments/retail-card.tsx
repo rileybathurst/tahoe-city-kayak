@@ -11,6 +11,7 @@ export const query = graphql`
     width
     inflatable
     hullweight
+    capacity
     brand {
       slug
     }

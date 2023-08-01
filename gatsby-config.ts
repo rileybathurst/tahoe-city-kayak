@@ -56,6 +56,17 @@ module.exports = {
         postalCode: "96145",
       },
     },
+    rentalLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        name: "Commons Beach",
+        streetAddress: "400 North Lake Blvd",
+        addressLocality: "Tahoe City",
+        addressRegion: "CA",
+        postalCode: "96145",
+      },
+    },
     geo: {
       "@type": "GeoCoordinates",
       latitude: "39.17138171971435",
@@ -77,6 +88,7 @@ module.exports = {
       facebook: "https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736",
       instagram: "https://www.instagram.com/tahoecitykayak/",
     },
+    jobEmail: "tckjobs@gmail.com",
   },
   plugins: [
     "gatsby-plugin-sass",

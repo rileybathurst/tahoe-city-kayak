@@ -8,6 +8,7 @@ import { useSiteUrl } from "../../hooks/use-site-url";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 const JobsPage = () => {
   let title = "Jobs";
@@ -39,7 +40,7 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href="mailto:tckjobs@gmail.com" className="button">tckjobs@gmail.com</a>
+          <a href={useSiteMetadata().jobEmail} className="button">{useSiteMetadata().jobEmail}</a>
         </section>
 
         <section>

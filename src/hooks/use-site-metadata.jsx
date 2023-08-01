@@ -45,6 +45,7 @@ export const useSiteMetadata = () => {
             facebook
             instagram
           }
+          jobEmail
         }
       }
     }

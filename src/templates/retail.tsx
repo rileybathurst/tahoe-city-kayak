@@ -317,7 +317,7 @@ export default RetailTypeView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      // can I make the brands capitalize?
+      // TODO: can I make the brands capitalize?
       title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteName()}`}
       description={data.strapiRetail.excerpt}>
 

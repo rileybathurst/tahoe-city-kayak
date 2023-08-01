@@ -8,6 +8,7 @@ import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import Complete from './locations/complete';
 import Phone from "./phone";
+import Mail from "./mail";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 const Footer = () => {
@@ -28,13 +29,7 @@ const Footer = () => {
         <hr />
         <div className="footer__contact">
           <Phone />
-          <a
-            href={`mailto:${useSiteMetadata().email}`}
-            rel="norel norefferer"
-            className="button"
-          >
-            {useSiteMetadata().email}
-          </a>
+          <Mail />
           <hr />
           <div className="social">
             <a

@@ -13,6 +13,7 @@ import Store from "../components/locations/store";
 import Card from "../components/card";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
+// ! pretty sure this can be inlined
 function Series(props: {
   retail: {
     id: any;
@@ -35,91 +36,38 @@ function Series(props: {
   )
 }
 
-function Title(props: {
-  title: string;
-  set: { has: (arg0: any) => any; };
-}) {
-  if (props.set.has(props.title)) {
 
-    // add a regex to replace dahes with spaces
-    let Spacedtitle = props.title.replace(/-/g, ' ');
 
+// ! remove this when im done
+function Capacity({ series, title }
+) {
+  if (series.nodes?.length > 0) {
     return (
       <>
         <hr />
-        <h2 className="capitalize">{Spacedtitle}&nbsp;
+        <h2 className="capitalize">{title.replace(/-/g, ' ')}&nbsp;
           <span className='typography__secondary'>Series</span>
         </h2>
       </>
-    )
+    );
+  } else {
+    return null;
   }
-  return null
 }
 
-// Check is there are any products in a series
-function Capacity(props: {
-  series: any[];
-  list: string;
-  title: string;
-  type: string;
-}) {
-
-  let typed = props.type.includes('kayak') ? 'kayak' : 'sup';
-  const seriesSet = new Set();
-
-  props.series.forEach((series: {
-    // series: unknown;
-  }) => {
-    if (series.type === typed && series.series !== null) {
-      // this doesnt work with spaces in the name as its 2 ids not one
-      // seriesSet.add(series.series);
-      let dashed = series.series.replace(/ /g, '-');
-      seriesSet.add(dashed);
-    }
-  });
-
-  // console.log(seriesSet);
-
-  const spaced = (series: string) => {
-    let spaced = series.replace(/-/g, ' ');
-    return spaced;
-  }
-
-  const dashed = (series: string) => {
-    let dashed = series.replace(/ /g, '-');
-    return dashed;
-  }
-
-  if (props.list === 'true') {
+function NullCheck({ series, title }
+) {
+  if (series.nodes?.length > 0 || title === 'null') {
     return (
       <>
-        <h2>Series</h2>
-        {/* // TODO: why both names */}
-        <ul className="series-list feature-list">
-          {[...seriesSet].map(series => (
-
-            <li key={series} >
-              {/* // TODO: why is this a different order than displayed on page */}
-              {/* // TODO: make a set and thats the order maybe and add those as flex numbers? */}
-              <button
-                // TODO: 
-
-                onClick={() => scrollTo(`#${dashed(series)}`)}
-                className="capitalize"
-              >
-                {spaced(series)}
-              </button>
-            </li >
-          ))
-          }
-        </ul >
+        <hr />
+        <h2 className="capitalize">{title.replace(/-/g, ' ')}&nbsp;
+          <span className='typography__secondary'>Series</span>
+        </h2>
       </>
     );
-
   } else {
-    return (
-      <Title title={props.title} set={seriesSet} />
-    );
+    return null;
   }
 }
 
@@ -171,6 +119,18 @@ function Toast(props: {
 
 const BrandsView = ({ location, data }) => {
 
+  let series = [
+    data.island,
+    data.mirage,
+    data.inflatable,
+    data.performance,
+    data.recreational,
+    data.sitontop,
+    data.adventurerecreational,
+    data.lighttouring,
+    data.null
+  ]
+
   return (
     <>
       <Header />
@@ -205,142 +165,30 @@ const BrandsView = ({ location, data }) => {
 
       </main>
 
-      <section id='island' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="island" />
-      </section>
-      {/* this has to be here */}
-      {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has */}
-      <div className="deck">
-        {
-          data.island.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='mirage' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="mirage" />
-      </section>
-      <div className="deck">
-        {
-          data.mirage.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='inflatable' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="inflatable" />
-      </section>
-      <div className="deck">
-        {
-          data.inflatable.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='performance' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="performance" />
-      </section>
-      <div className="deck">
-        {
-          data.performance.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='recreational' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="recreational" />
-      </section>
-      <div className="deck">
-        {
-          data.recreational.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='sit-on-top' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="sit-on-top" />
-      </section>
-      <div className="deck">
-        {
-          data.sitontop.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='adventure-recreational' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="adventure-recreational" />
-      </section>
-      <div className="deck">
-        {
-          data.adventurerecreational.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section id='light-touring' className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="light-touring" />
-      </section>
-      <div className="deck">
-        {
-          data.lighttouring.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <section className="passage possibly-empty">
-        <Capacity series={data.brand.retail} type={location.pathname} title="null" />
-      </section>
-      <div className="deck">
-        {
-          data.null.nodes.map((retail: { id: React.Key | null | undefined; }) => (
-            <div key={retail.id}>
-              <Series
-                retail={retail}
-              />
-            </div>
-          ))
-        }
-      </div>
+      {series.map(series => (
+        <>
+          <section
+            id={series.nodes[0]?.series}
+            key={series.nodes[0]?.series}
+            className="passage possibly-empty"
+          >
+            <NullCheck
+              series={series}
+              title={series.nodes[0]?.series || ''}
+            />
+          </section>
+          <div className="deck">
+            {series.nodes.map((retail: { id: React.Key; }) => (
+              <div key={retail.id}>
+                <Series
+                  retail={retail}
+                />
+              </div>
+            ))
+            }
+          </div>
+        </>
+      ))}
 
       <Toast
         butter={location.pathname}
@@ -354,17 +202,18 @@ const BrandsView = ({ location, data }) => {
 
 export default BrandsView;
 
-export const Head = ({ data }) => {
-  return (
-    <SEO
-      // TODO: capitalize brand name
-      // TODO: add type in here which Im not 100% on as I might be able to use location but its head?
-      // TODO: double check searches for kayak and sup
-      title={`${data.brand.name} Kayaks sold at ${useSiteName()}`}
-      description={`${data.brand.name} kayaks ${data.brand.tagline}`}
-    >
-      <Script type="application/ld+json">
-        {`
+export const Head = ({ data }) => (
+  <SEO
+    // TODO: https://schema.org/brand
+    // TODO: capitalize brand name
+    // TODO: add type in here which Im not 100% on as I might be able to use location but its head?
+    // TODO: double check searches for kayak and sup
+    title={`${data.brand.name} Kayaks sold at ${useSiteName()}`}
+    description={`${data.brand.name} kayaks ${data.brand.tagline}`}
+  >
+    {/* // ! this has a couple the same its definitely not right */}
+    <Script type="application/ld+json">
+      {`
         {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -390,11 +239,10 @@ export const Head = ({ data }) => {
           }]
         }
       `}
-      </Script>
+    </Script>
 
-    </SEO>
-  )
-}
+  </SEO>
+)
 
 
 export const query = graphql`
@@ -424,26 +272,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -456,26 +286,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -488,26 +300,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -520,26 +314,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -552,26 +328,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -584,26 +342,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -616,26 +356,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -648,26 +370,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 
@@ -689,27 +393,8 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        length
-        width
-        capacity
-        type
-        discount
-        brand {
-          slug
-        }
-        
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
+        series
       }
     }
 

@@ -66,6 +66,7 @@ const Card = (retail: RetailCardType) => {
           />
         </Link>
         <Badges
+          // ? i could just pass everything and deal with it then?
           inflatable={retail.retail.inflatable}
           demo={retail.retail.demo}
           discount={retail.retail.discount}

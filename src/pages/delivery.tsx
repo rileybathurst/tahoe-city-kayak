@@ -7,6 +7,7 @@ import Phone from "../components/phone";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Composition from "../components/composition";
+import Mail from "../components/mail";
 
 const DeliveryPage = () => {
 
@@ -26,7 +27,7 @@ const DeliveryPage = () => {
             Since every delivery is different, a <a href={`tel:${useSiteMetadata().telephone}`} rel="norel norefferer">phone call</a> or <a href={`mailto:${useSiteMetadata().email}`} rel="norel norefferer">email</a> is the best way to make a plan that meets your needs. Our delivery fees depend on how far we are traveling, how many employees we need to send, and how straightforward the delivery is &#40;ie. if we have to carry watercraft down flights of stairs, over rocks, etc&#41;. We aren't trying to make a profit from delivery fees, but we do need to cover our costs.
           </p>
           <Phone />
-          <a href="mailto:tahoecitykayak@gmail.com" rel="norel norefferer" className="button">tahoecitykayak@gmail.com</a>
+          <Mail />
         </article>
         <Composition />
       </main >
