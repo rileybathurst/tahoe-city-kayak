@@ -169,7 +169,7 @@ const TruckeeRiverPage = () => {
           </ol>
 
           <p>
-            You are responsible for your watercraft, whether you've rented it or purchased it. Please do not leave deflated tubes, rafts, or trash along the side of the road or riverbank!  You will be financially responsible for replacing lost or broken rental equipment.
+            You are responsible for your watercraft, whether you&apos;ve rented it or purchased it. Please do not leave deflated tubes, rafts, or trash along the side of the road or riverbank!  You will be financially responsible for replacing lost or broken rental equipment.
           </p>
 
           <p>

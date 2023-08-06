@@ -12,11 +12,11 @@ const NotFoundPage = ({ location }) => {
       <Header />
 
       <main className="measure">
-        {/* // TODO: test this */}
+        {/* // TODO: add an eyebrow to this */}
         <h2 className="crest">404 - {location.pathname}</h2>
 
-        <h1 className="mixta">Looks like you’ve paddled into uncharted waters!</h1>
-        <p>Don’t worry, we’ll help you navigate <Link to="/">back to our homepage.</Link>
+        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
+        <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link>
         </p>
       </main>
       <Footer />

@@ -48,6 +48,7 @@
 /zephyr-cove-adventures-our-new-store/    /about/
 /store-policies/                          /about/policies/
 /testimonials/                            /about/testimonials/
+/about-us/                                /about/
 
 ### Deprecated
 
@@ -59,3 +60,8 @@
 /small-business-of-the-year-award/        /
 /check-us-out-on-tahoe-tv/                /
 /quick-guide-staying-water-year-round/    /
+
+## Brands
+# I built stuff that wasn't heiratical
+
+/brands/sup/hala/                        /retail/sup/hala/
