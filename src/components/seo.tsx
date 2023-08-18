@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 // this throws a VS Code error but is as documented here:
@@ -88,11 +88,11 @@ export const SEO = (SE0: SEO) => {
               "geoRadius": "${geo.geoRadius}"
             },
             "openingHours": "${openingHours}",
-            'paymentAccepted': "${paymentAccepted}",
+            "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}",
             "url": "${url}",
-            'numberOfEmployees': "${numberOfEmployees}",
-            'slogan': "${slogan}",
+            "numberOfEmployees": "${numberOfEmployees}",
+            "slogan": "${slogan}",
 
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
