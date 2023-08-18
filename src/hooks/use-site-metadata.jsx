@@ -15,6 +15,7 @@ export const useSiteMetadata = () => {
           openingHours
           telephone
           email
+          paymentAccepted
 
           location {
             address {
