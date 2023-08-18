@@ -87,8 +87,8 @@ export const SEO = (SE0: SEO) => {
               },
               "geoRadius": "${geo.geoRadius}"
             },
-            'paymentAccepted': "${paymentAccepted}",
             "openingHours": "${openingHours}",
+            'paymentAccepted': "${paymentAccepted}",
             "telephone": "${telephone}",
             "url": "${url}",
             'numberOfEmployees': "${numberOfEmployees}",
