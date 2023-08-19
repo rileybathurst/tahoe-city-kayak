@@ -70,21 +70,35 @@ export const Head = ({ data }) => {
     >
       <Script type="application/ld+json">
         {`
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Retail",
-            "item": "${useSiteUrl()}/tours-lessons"
-          },{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "${data.strapiTour.name}",
-          }]
-        }
-      `}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            
+            "itemListElement":
+            [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Retail",
+                "item":
+                {
+                  "@id": "${useSiteUrl()}/tours-lessons",
+                  "name": "Tours Lessons"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item":
+                {
+                  "@id": "${useSiteUrl()}/tours-lessons/${data.strapiTour.slug}",
+                  "name": "${data.strapiTour.name}"
+                }
+              }
+            ]
+
+          }
+        `}
       </Script>
 
     </SEO>

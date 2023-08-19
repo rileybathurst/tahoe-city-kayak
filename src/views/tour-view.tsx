@@ -151,6 +151,8 @@ const TourView = ({ tour, other }) => {
           <Composition sport={tour.sport} />
 
           <hr />
+
+          {/* // TODO: why are these not variables? */}
           <div className="here__location here__card card--split">
             <MapLink>
               <KayakIcon />
