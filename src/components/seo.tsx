@@ -92,7 +92,6 @@ export const SEO = (SE0: SEO) => {
             "telephone": "${telephone}",
             "url": "${url}",
             "numberOfEmployees": "${numberOfEmployees}",
-            "slogan": "${slogan}",
 
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
@@ -120,7 +119,9 @@ export const SEO = (SE0: SEO) => {
                   }
                 }
               ]
-            }
+            },
+            
+            "slogan": "${slogan}"
 
           }
         `}
