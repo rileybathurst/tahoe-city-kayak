@@ -44,6 +44,8 @@ export const SEO = (SE0: SEO) => {
     <>
       {/* <SEOShowcase test="hey" /> */}
       <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={seo.title} />

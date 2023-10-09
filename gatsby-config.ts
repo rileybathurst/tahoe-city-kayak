@@ -47,6 +47,7 @@ module.exports = {
     itemType: "LocalBusiness",
     priceRange: "$50-2500",
     location: {
+      // TODO: I dont think this needs the @type here
       "@type": "Place",
       address: {
         "@type": "PostalAddress",
@@ -133,7 +134,7 @@ module.exports = {
         name: `Tahoe City Kayak`,
         short_name: `TCK`,
         start_url: `/`,
-        icon: "src/images/favicon.svg", // TODO something new // theres not quite the right emoji for this
+        icon: "src/images/favicon.svg", // TODO: something new // theres not quite the right emoji for this
       },
     },
     {
