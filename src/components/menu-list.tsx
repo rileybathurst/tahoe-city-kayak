@@ -10,7 +10,7 @@ const MenuList = () => {
       <li><Link to="/rentals" className='link__backed' activeClassName="active">Rentals</Link></li>
       <li><Link to="/tours-lessons" className='link__backed' activeClassName="active">Tours &amp; Lessons</Link></li>
       <li><Link to="/retail" className='link__backed' activeClassName="active">Retail</Link></li>
-      <li><Link to="/about" className='link__backed' activeClassName="active">More Info</Link></li>
+      <li><Link to="/about" className='link__backed' activeClassName="active">About Us</Link></li>
       <li><BookNow /></li>
     </ul>
   )
