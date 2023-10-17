@@ -95,7 +95,6 @@ module.exports = {
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -104,9 +103,7 @@ module.exports = {
         },
       },
     },
-
     "gatsby-transformer-sharp",
-    "gatsby-plugin-netlify",
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,

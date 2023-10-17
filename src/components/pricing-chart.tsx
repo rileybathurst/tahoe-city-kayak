@@ -36,7 +36,7 @@ const PricingChart = (props: { book: boolean; }) => {
     <>
       <div className="pricing-chart">
         <div className="row row-header">
-          <h4><Link to="/rentals"><span>Rental</span> <span>Rates</span></Link></h4>
+          <h2 className="kilimanjaro"><Link to="/rentals"><span>Rental</span> <span>Rates</span></Link></h2>
           <p>1 Hour</p>
           <p><span>3 Hours</span></p>
           <p><span>Full Day</span></p>

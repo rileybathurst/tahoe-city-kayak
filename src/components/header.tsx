@@ -154,6 +154,24 @@ function Button() {
   }
 }
 
+function TopBar(props: { markdown: string | null | undefined; }) {
+  if (!props.markdown) {
+    return null;
+  } else {
+    return (
+      <div className="cap" >
+        {/* // TODO: needs a date to remove after */}
+        {/* // I renamed this as it was conflicting with the topbar that moves */}
+        {/* <p>{strapiTopbar.markdown.data.markdown}</p> */}
+        < ReactMarkdown
+          children={props.markdown}
+          remarkPlugins={[remarkGfm]}
+        />
+      </div>
+    )
+  }
+}
+
 const Header = () => {
 
   const { strapiTopbar } = useStaticQuery(graphql`
@@ -180,14 +198,8 @@ const Header = () => {
         )}
       /> */}
 
-      {/* // I renamed this as it was conflicting with the topbar that moves */}
-      <div className="cap">
-        {/* <p>{strapiTopbar.markdown.data.markdown}</p> */}
-        <ReactMarkdown
-          children={strapiTopbar.markdown.data.markdown}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
+
+      <TopBar markdown={strapiTopbar.markdown.data.markdown} />
 
       <div className="logo-container" >
         {/* <PaddleIcon className="paddle--left" /> */}
