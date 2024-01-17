@@ -194,6 +194,6 @@ module.exports = {
   ],
   adapter: adapter({
     excludeDatastoreFromEngineFunction: false,
-    imageCDN: true,
+    imageCDN: false,
   }),
 };
