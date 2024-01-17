@@ -2,8 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const adapter = require("gatsby-adapter-netlify");
-
 const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
@@ -192,8 +190,4 @@ module.exports = {
       },
     },
   ],
-  adapter: adapter({
-    excludeDatastoreFromEngineFunction: false,
-    imageCDN: false,
-  }),
 };
