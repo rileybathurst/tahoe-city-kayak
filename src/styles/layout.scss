@@ -903,6 +903,7 @@ footer {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: baseline;
+  align-items: flex-start;
   // addding this border has to flip the margins
   border-bottom: 1px solid var(--tin-soldier);
   text-transform: uppercase;
@@ -912,6 +913,11 @@ footer {
   @supports not (margin: 1lh) {
     height: 2.5rem;
     margin-block-start: 1.25rem;
+  }
+
+  h2,
+  h3 {
+    line-height: 2rem;
   }
 
   h2 {
@@ -931,6 +937,11 @@ footer {
   .spec-flex {
     display: flex;
   }
+}
+
+// bug fix that maybe could be done with .sr-only being different but this works
+.spec:has(.sr-only) {
+  align-items: center;
 }
 
 .spec:last-child {

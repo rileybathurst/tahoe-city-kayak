@@ -16,6 +16,8 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Danger from "../components/danger";
 import Phone from '../components/phone';
 
+import SEOcase from "../components/seocase"
+
 function Weight(props) {
   if (props.riggedweight) {
     return (
@@ -308,6 +310,12 @@ const RetailTypeView = ({ data }) => {
         </ol>
       </nav>
       <Footer />
+
+      <SEOcase
+        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteName()}`}
+        description={data.strapiRetail.excerpt}
+
+      />
     </>
   );
 };

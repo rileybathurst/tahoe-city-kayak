@@ -1,6 +1,9 @@
 import React from "react";
 import Remainder from "./remainder";
 
+// I looked at adapting this to remove the names and think it gets over complicated
+// https://gist.github.com/rileybathurst/2c3191a7714e1204b07c725104d4ab93
+
 function Spec(props: {
   name: string;
   spec: string | number | boolean;

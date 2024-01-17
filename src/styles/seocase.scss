@@ -1,0 +1,18 @@
+.SEOcase {
+  position: absolute;
+  top: 1rem;
+  z-index: 1;
+  background-color: white;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: black;
+  }
+
+  width: calc(100% - 4rem);
+  margin-inline: 1rem;
+  padding: 1rem;
+  opacity: 0.95;
+  backdrop-filter: blur(1rem); // TODO not working?
+  border-radius: 0.25rem;
+  border: 1px solid lightgrey;
+}

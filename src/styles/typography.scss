@@ -203,7 +203,7 @@ hgroup {
 /*------------------*/
 
 del {
-  color: hsl(var(--sand__base), var(--light));
+  color: hsl(var(--sand__base), var(--dim));
   @media (prefers-color-scheme: dark) {
     color: hsl(var(--sand__base), var(--dark));
   }

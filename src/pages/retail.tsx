@@ -15,6 +15,7 @@ import Composition from "../components/composition";
 import Shop from "../content/shop";
 
 import SEOShowcase from "seo-showcase"
+import SEOcase from "../components/seocase"
 import { CardType } from "../types/card";
 
 const RetailPage = () => {
@@ -108,6 +109,11 @@ const RetailPage = () => {
       <Footer />
 
       {/* <SEOShowcase test="this" /> */}
+      <SEOcase
+        title={`Retail | ${useSiteName()}`}
+        description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
+
+      />
     </>
   )
 }

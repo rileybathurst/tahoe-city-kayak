@@ -48,6 +48,11 @@ ol {
   box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
   clip-path: inset(0 -100vmax);
 
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--ink__h), 100%, var(--dark));
+    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, var(--dark));
+  }
+
   ol {
     list-style: none;
     display: flex;
@@ -64,6 +69,11 @@ ol {
 
     a {
       display: inline;
+      color: hsl(var(--mullen__base), var(--dim)); // needed for contrast
+
+      @media (prefers-color-scheme: dark) {
+        color: hsl(var(--mullen__base), var(--glow)); // needed for contrast
+      }
     }
   }
 }
@@ -212,6 +222,10 @@ ol {
       // I know it breaks the inception rule its very short
       > p {
         align-self: end;
+      }
+
+      > svg > * {
+        fill: hotpink;
       }
     }
 

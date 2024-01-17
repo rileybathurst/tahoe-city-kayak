@@ -121,6 +121,7 @@ const TourView = ({ tour, other }) => {
             <Minimum minimum={tour.minimum} />
           </div>
 
+          {/* // TODO: update to this https://gist.github.com/rileybathurst/2c3191a7714e1204b07c725104d4ab93 */}
           <Spec name="Sport" spec={tour.sport} />
 
           <Spec name="Tour Start Time" spec={tour.start} />
