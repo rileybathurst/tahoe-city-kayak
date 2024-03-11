@@ -7,6 +7,7 @@ const Rentals = () => {
   return (
     <section className="location">
       {/* // TODO: needs a heading element */}
+      {/* // TODO: these are html addresses */}
       <MapLink><KayakIcon /></MapLink>
       <p>
         <strong>On Water Rental</strong><br />

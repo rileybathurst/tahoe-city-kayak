@@ -6,12 +6,12 @@ export const useSiteMetadata = () => {
       site {
         siteMetadata {
           title
+          siteUrl
+          url
           description
           defaultDescription
           defaultImage
           defaultImageAlt
-          url
-          siteUrl
           openingHours
           telephone
           email

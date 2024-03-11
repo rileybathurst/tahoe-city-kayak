@@ -1,15 +1,19 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 export const useStrapiTopBar = () => {
   const data = useStaticQuery(graphql`
     query {
       strapiTopbar {
-        text
+        markdown {
+          data {
+            markdown
+          }
+        }
       }
     }
-  `)
+  `);
 
-  return data.strapiTopbar.text
+  return data.strapiTopbar.markdown.data.markdown;
   // return `${data.strapiTopbar.text}`
   // return `test`
-}
+};
