@@ -3,39 +3,53 @@ const path = require(`path`);
 exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`);
 };
+
+console.log("🦄");
+
 // Create blog pages dynamically
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   // Create retail pages dynamically
   const retailPageTemplate = path.resolve(`src/templates/retail.tsx`);
-  const retailResult = await graphql(`
-    query {
-      allStrapiRetail {
-        nodes {
-          slug
-          type
 
-          brand {
+  console.log("Creating Retail Pages");
+
+  try {
+    const retailResult = await graphql(`
+      query {
+        allStrapiRetail {
+          nodes {
             slug
+            type
+
+            brand {
+              slug
+            }
           }
         }
       }
-    }
-  `);
-  retailResult.data.allStrapiRetail.nodes.forEach(
-    (retail: { type: any; slug: any; brand: { slug: any } }) => {
-      createPage({
-        path: `/retail/${retail.type}/${retail.brand.slug}/${retail.slug}`,
-        component: retailPageTemplate,
-        context: {
-          slug: retail.slug,
-          type: retail.type,
-          brand: retail.brand.slug,
-        },
-      });
-    }
-  );
+    `);
+
+    retailResult.data.allStrapiRetail.nodes.forEach(
+      (retail: { type: any; slug: any; brand: { slug: any } }) => {
+        createPage({
+          path: `/retail/${retail.type}/${retail.brand.slug}/${retail.slug}`,
+          component: retailPageTemplate,
+          context: {
+            slug: retail.slug,
+            type: retail.type,
+            brand: retail.brand.slug,
+          },
+        });
+      }
+    );
+
+    console.log("🦊");
+  } catch (error) {
+    console.log("🦖");
+    console.error("Error in gatsby-node.ts", error);
+  }
 
   const BrandsTemplate = path.resolve(`src/templates/brands.tsx`);
   const brandsResult = await graphql(`
@@ -57,7 +71,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const kayakSet = new Set();
   brandsResult.data.allStrapiBrand.nodes.forEach((brand) => {
-    // console.log(brand); // 👍🏻
     brand.retail.forEach((retail) => {
       if (retail.type === "kayak") {
         kayakSet.add(retail.brand.slug);

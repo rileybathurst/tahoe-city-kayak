@@ -22,6 +22,9 @@ const strapiConfig = {
     "experience",
     "shop", // TODO: update the links
   ],
+  remoteFileHeaders: {
+    Referer: process.env.STRAPI_API_URL,
+  },
 };
 
 module.exports = {
