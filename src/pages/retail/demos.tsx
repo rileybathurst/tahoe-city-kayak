@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
-
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
