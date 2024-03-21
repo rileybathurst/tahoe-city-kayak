@@ -1,8 +1,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import KayakBrandList from "../../components/kayak-brand-list"
@@ -211,7 +211,7 @@ export default RetailKayakPage
 export const Head = () => {
   return (
     <SEO
-      title={`Kayak | ${useSiteName()}`}
+      title={`Kayak | ${useSiteMetadata().title}`}
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     >
       <Script type="application/ld+json">
@@ -223,7 +223,7 @@ export const Head = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
+            "item": "${useSiteMetadata().url}/retail"
           },{
             "@type": "ListItem",
             "position": 2,

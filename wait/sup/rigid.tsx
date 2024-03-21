@@ -2,7 +2,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
 import FeatureLayout from "../../../components/feature-layout";
 import { SEO } from "../../../components/seo";
-import { useSiteName } from "../../../hooks/use-site-name";
+import { useSiteMetadata } from "../../../hooks/use-site-metadata";
 import BreadcrumbThree from "../../../components/breadcrumb-three";
 
 let title = "Rigid Standup Paddleboards";
@@ -52,7 +52,7 @@ export default RigidPage
 export const Head = () => {
   return (
     <SEO
-      title={`${title} | ${useSiteName()}`}
+      title={`${title} | ${useSiteMetadata().title}`}
       description={description}
     >
       <BreadcrumbThree

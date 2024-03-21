@@ -3,7 +3,7 @@
 import React from "react"
 import { Link, graphql, Script } from 'gatsby'
 import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useSiteUrl } from "../hooks/use-site-url";
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
@@ -208,7 +208,7 @@ export const Head = ({ data }) => (
     // TODO: capitalize brand name
     // TODO: add type in here which Im not 100% on as I might be able to use location but its head?
     // TODO: double check searches for kayak and sup
-    title={`${data.brand.name} Kayaks sold at ${useSiteName()}`}
+    title={`${data.brand.name} Kayaks sold at ${useSiteMetadata().title}`}
     description={`${data.brand.name} kayaks ${data.brand.tagline}`}
   >
     {/* // ! this has a couple the same its definitely not right */}
@@ -221,17 +221,17 @@ export const Head = ({ data }) => (
             "@type": "ListItem",
             "position": 1,
             "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
+            "item": "${useSiteMetadata().url}/retail"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
+            "item": "${useSiteMetadata().url}/retail"
           },{
             "@type": "ListItem",
             "position": 3,
             "name": "Kayak",
-            "item": "${useSiteUrl()}/retail/kayak"
+            "item": "${useSiteMetadata().url}/retail/kayak"
           },{
             "@type": "ListItem",
             "position": 4,

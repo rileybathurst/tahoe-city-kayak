@@ -1,8 +1,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -188,7 +188,7 @@ export default RetailSupPage
 export const Head = () => {
   return (
     <SEO
-      title={`Standup Paddleboard | ${useSiteName()}`}
+      title={`Standup Paddleboard | ${useSiteMetadata().title}`}
       description="Shop Tahoe City Kayak and Paddleboards’s selection of stand up paddleboards for sale! Our paddleboards are perfect for those looking for a fun and exciting way to explore Lake Tahoe’s crystal clear waters. Our selection includes leading brands of standup paddleboards for sale. The beach is just outside our back door, so you can walk your purchase right out to the sand and launch into the lake for a day’s journey."
     >
       <Script type="application/ld+json">
@@ -200,7 +200,7 @@ export const Head = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
+            "item": "${useSiteMetadata().url}/retail"
           },{
             "@type": "ListItem",
             "position": 2,

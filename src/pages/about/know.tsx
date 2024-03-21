@@ -7,9 +7,9 @@ import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 // import * as Scroll from 'react-scroll';
 
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
-import { StrapiMap } from "../../components/map";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
+// import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -509,10 +509,10 @@ export default KnowPage
 export const Head = () => {
   return (
     <SEO
-      title={`Frequently Asked Questions | ${useSiteName()}`}
+      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards’ frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options. Contact us at (530) 581-4336 for current hours and availability."
     >
-      <StrapiMap />
+      {/* <StrapiMap /> */}
       <Script type="application/ld+json">
         {`
           {
@@ -522,7 +522,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "${useSiteUrl()}/about"
+              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,

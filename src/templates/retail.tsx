@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, graphql, Script } from 'gatsby';
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useSiteUrl } from "../hooks/use-site-url";
 
 import ReactMarkdown from "react-markdown";
@@ -312,7 +312,7 @@ const RetailTypeView = ({ data }) => {
       <Footer />
 
       <SEOcase
-        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteName()}`}
+        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteMetadata().title}`}
         description={data.strapiRetail.excerpt}
 
       />
@@ -326,7 +326,7 @@ export const Head = ({ data }) => {
   return (
     <SEO
       // TODO: can I make the brands capitalize?
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteName()}`}
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteMetadata().title}`}
       description={data.strapiRetail.excerpt}>
 
       <Script type="application/ld+json">
@@ -359,12 +359,12 @@ export const Head = ({ data }) => {
               "@type": "ListItem",
               "position": 1,
               "name": "Retail",
-              "item": "${useSiteUrl()}/retail"
+              "item": "${useSiteMetadata().url}/retail"
             },{
               "@type": "ListItem",
               "position": 2,
               "name": "Retail",
-              "item": "${useSiteUrl()}/retail/${data.strapiRetail.type}"
+              "item": "${useSiteMetadata().url}/retail/${data.strapiRetail.type}"
             },{
               "@type": "ListItem",
               "position": 3,

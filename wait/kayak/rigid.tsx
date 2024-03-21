@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../src/components/seo";
-import { useSiteName } from "../../src/hooks/use-site-name";
+import { useSiteMetadata } from "../../src/hooks/use-site-metadata";
 import FeatureLayout from "../../src/components/feature-layout";
 import BreadcrumbThree from "../../src/components/breadcrumb-three";
 
@@ -53,7 +53,7 @@ export default RigidKayakPage
 export const Head = () => {
   return (
     <SEO
-      title={`${title} | ${useSiteName()}`}
+      title={`${title} | ${useSiteMetadata().title}`}
       description={description}
     >
       <BreadcrumbThree

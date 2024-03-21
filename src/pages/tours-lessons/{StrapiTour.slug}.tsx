@@ -1,8 +1,8 @@
 import * as React from "react"
 import { graphql, Script } from "gatsby"
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 import TourView from "../../views/tour-view"
 
@@ -61,7 +61,7 @@ export default TourPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiTour.name} | ${useSiteName()}`}
+      title={`${data.strapiTour.name} | ${useSiteMetadata().title}`}
       description={data.strapiTour.excerpt}
       // TODO image
       // github copilot gave me the extra
@@ -82,7 +82,7 @@ export const Head = ({ data }) => {
                 "name": "Retail",
                 "item":
                 {
-                  "@id": "${useSiteUrl()}/tours-lessons",
+                  "@id": "${useSiteMetadata().url}/tours-lessons",
                   "name": "Tours Lessons"
                 }
               },
@@ -91,7 +91,7 @@ export const Head = ({ data }) => {
                 "position": 2,
                 "item":
                 {
-                  "@id": "${useSiteUrl()}/tours-lessons/${data.strapiTour.slug}",
+                  "@id": "${useSiteMetadata().url}/tours-lessons/${data.strapiTour.slug}",
                   "name": "${data.strapiTour.name}"
                 }
               }

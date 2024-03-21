@@ -47,10 +47,7 @@ module.exports = {
     itemType: "LocalBusiness",
     priceRange: "$50-2500",
     location: {
-      // TODO: I dont think this needs the @type here
-      "@type": "Place",
       address: {
-        "@type": "PostalAddress",
         streetAddress: "521 North Lake Blvd",
         addressLocality: "Tahoe City",
         addressRegion: "CA",
@@ -58,9 +55,7 @@ module.exports = {
       },
     },
     rentalLocation: {
-      "@type": "Place",
       address: {
-        "@type": "PostalAddress",
         name: "Commons Beach",
         streetAddress: "400 North Lake Blvd",
         addressLocality: "Tahoe City",
@@ -69,7 +64,6 @@ module.exports = {
       },
     },
     geo: {
-      "@type": "GeoCoordinates",
       latitude: "39.17138171971435",
       longitude: "-120.14098458679503",
       geoRadius: "80470",
@@ -80,7 +74,6 @@ module.exports = {
       "North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours",
 
     offerCatalog: {
-      "@type": "OfferCatalog",
       itemOffered1: "kayak and paddleboard rentals",
       itemOffered2: "kayak and paddleboard sales",
       itemOffered3: "kayak and paddleboard tours and lessons",

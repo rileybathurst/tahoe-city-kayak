@@ -1,28 +1,18 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
-import { StrapiMap } from "../../components/map";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
+import { useStrapiFaq } from "../../hooks/use-strapi-faq";
+// import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
-const FaqPage = () => {
 
-  const { allStrapiFaq } = useStaticQuery(graphql`
-    query FaqQuery {
-      allStrapiFaq {
-        nodes {
-          id
-          question
-          answer
-        }
-      }
-    }
-  `)
+const FaqPage = () => {
 
   let title = "Frequently Asked Questions";
   let parent = "about";
@@ -37,7 +27,8 @@ const FaqPage = () => {
         {/* // TODO links to delivery and demos */}
 
         <ul className="faq">
-          {allStrapiFaq.nodes.map((faq:
+
+          {useStrapiFaq().nodes.map((faq:
             {
               id: string;
               question: string;
@@ -68,14 +59,35 @@ export default FaqPage
 
 export const Head = () => {
 
-  console.log("FaqPage Head");
+  // console.log(useStrapiFaq);
 
   return (
     <SEO
-      title={`Frequently Asked Questions | ${useSiteName()}`}
-      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards’ frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options. Contact us at (530) 581-4336 for current hours and availability."
+      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
+      description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options."
     >
-      <StrapiMap />
+
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ${useStrapiFaq().nodes.map((faq: { question: string; answer: string; }) => (
+          `{
+                  "@type": "Question",
+                  "name": "${faq.question}",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "${faq.answer}"
+                  }
+                }`
+        )).join(',')}
+            ]
+          }
+        `}
+      </Script>
+
       <Script type="application/ld+json">
         {`
           {
@@ -85,7 +97,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "${useSiteUrl()}/about"
+              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,

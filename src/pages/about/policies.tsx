@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -63,7 +63,7 @@ export default PoliciesPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us | ${useSiteName()}`}
+      title={`About Us | ${useSiteMetadata().title}`}
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
     >
       <Script type="application/ld+json">
@@ -75,7 +75,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "${useSiteUrl()}/about"
+              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,

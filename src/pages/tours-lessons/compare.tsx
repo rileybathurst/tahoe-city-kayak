@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -260,7 +260,7 @@ export default ComparePage
 export const Head = () => {
   return (
     <SEO
-      title={`Compare Tours | ${useSiteName()}`}
+      title={`Compare Tours | ${useSiteMetadata().title}`}
     // TODO description and image
     >
       <Script type="application/ld+json">
@@ -272,7 +272,7 @@ export const Head = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Tours & Lessons",
-            "item": "${useSiteUrl()}/tours-lessons"
+            "item": "${useSiteMetadata().url}/tours-lessons"
           },{
             "@type": "ListItem",
             "position": 2,

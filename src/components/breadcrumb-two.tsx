@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Script } from 'gatsby'
-import { useSiteUrl } from "../../../hooks/use-site-url";;
+import { useSiteMetadata } from "../../../hooks/use-site-metadata";;
 
 const BreadcrumbTwo = (props) => {
   return (
@@ -13,7 +13,7 @@ const BreadcrumbTwo = (props) => {
             "@type": "ListItem",
             "position": 1,
             "name": "${props.one}",
-            "item": "${useSiteUrl()}/${props.one}"
+            "item": "${useSiteMetadata().url}/${props.one}"
           },{
             "@type": "ListItem",
             "position": 2,

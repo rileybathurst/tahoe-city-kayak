@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link, Script } from "gatsby"
+import { Link } from "gatsby"
 import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -54,7 +54,7 @@ export default AboutPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us | ${useSiteName()}`}
+      title={`About Us | ${useSiteMetadata().title}`}
       description="Our mission at Tahoe City Kayak is to provide you with unparalleled customer service. We strive to give you the best in kayak and padddleboard sales, rentals and tours."
     />
   )

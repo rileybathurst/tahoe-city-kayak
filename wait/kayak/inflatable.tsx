@@ -5,7 +5,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
 import FeatureLayout from "../../src/components/feature-layout";
 import { SEO } from "../../src/components/seo";
-import { useSiteName } from "../../src/hooks/use-site-name";
+import { useSiteMetadata } from "../../src/hooks/use-site-metadata";
 import BreadcrumbThree from "../../src/components/breadcrumb-three";
 
 let title = "Inflatable Kayaks";
@@ -58,7 +58,7 @@ export default InflatableKayakPage
 export const Head = () => {
   return (
     <SEO
-      title={`${title} | ${useSiteName()}`}
+      title={`${title} | ${useSiteMetadata().title}`}
       description={description}
     >
       <BreadcrumbThree

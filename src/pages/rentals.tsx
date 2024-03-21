@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -126,7 +126,7 @@ export default RentalsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Rentals | ${useSiteName()}`}
+      title={`Rentals | ${useSiteMetadata().title}`}
       description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
     />
   )

@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Link, Script } from "gatsby"
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -120,7 +120,7 @@ export default InformationPage
 export const Head = () => {
   return (
     <SEO
-      title={`Information | ${useSiteName()}`}
+      title={`Information | ${useSiteMetadata().title}`}
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
     >
 
@@ -133,7 +133,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "${useSiteUrl()}/about"
+              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,

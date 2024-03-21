@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
+
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -211,7 +211,7 @@ export default DemosPage
 export const Head = () => {
   return (
     <SEO
-      title={`Demos | ${useSiteName()}`}
+      title={`Demos | ${useSiteMetadata().title}`}
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
     />
   )

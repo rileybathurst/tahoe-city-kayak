@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react"
 import { Script } from "gatsby";
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useMapEvents } from 'react-leaflet/hooks'
 
@@ -209,7 +209,7 @@ export default TruckeeRiverPage
 export const Head = () => {
   return (
     <SEO
-      title={`Truckee River Rentals | ${useSiteName()}`}
+      title={`Truckee River Rentals | ${useSiteMetadata().title}`}
       description="We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase"
     >
       <Script type="application/ld+json">
@@ -221,7 +221,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "Rentals",
-              "item": "${useSiteUrl()}/rentals"
+              "item": "${useSiteMetadata().url}/rentals"
             },
             {
               "@type": "ListItem",

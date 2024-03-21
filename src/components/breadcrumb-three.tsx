@@ -21,12 +21,12 @@ const BreadcrumbThree = (props) => {
             "@type": "ListItem",
             "position": 1,
             "name": "${OneCap}",
-            "item": "${useSiteUrl()}/${props.one}"
+            "item": "${useSiteMetadata().url}/${props.one}"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "${TwoCap}",
-            "item": "${useSiteUrl()}/${props.one}/${props.two}/"
+            "item": "${useSiteMetadata().url}/${props.one}/${props.two}/"
           },{
             "@type": "ListItem",
             "position": 3,

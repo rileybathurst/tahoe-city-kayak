@@ -14,6 +14,4 @@ export const useStrapiTopBar = () => {
   `);
 
   return data.strapiTopbar.markdown.data.markdown;
-  // return `${data.strapiTopbar.text}`
-  // return `test`
 };

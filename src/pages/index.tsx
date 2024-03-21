@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 
 import Header from "../components/header"
@@ -231,7 +231,7 @@ export default IndexPage
 export const Head = () => {
   return (
     <SEO
-      title={`${useSiteName()} - ${useStrapiTopBar()}`}
+      title={`${useSiteMetadata().title} - ${useStrapiTopBar()}`}
     />
   )
 }

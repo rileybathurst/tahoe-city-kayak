@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { SEO } from '../components/seo';
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 import AttributeView from '../views/attribute-view';
 
 const WeightView = ({ data }) => {
@@ -20,7 +20,7 @@ export default WeightView;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteName()}`}
+      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteMetadata().title}`}
       description={data.strapiAttribute.description.data.description}
     >
       {/* // TODO: breadcrumbs */}

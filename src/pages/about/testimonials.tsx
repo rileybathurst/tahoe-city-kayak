@@ -1,11 +1,11 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteName } from '../../hooks/use-site-name';
-import { useSiteUrl } from "../../hooks/use-site-url";
+
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { TestimoialSEO } from "../../seo/testimonial";
+// import { TestimoialSEO } from "../../seo/testimonial";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 
 const FaqPage = () => {
@@ -70,10 +70,10 @@ export default FaqPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials | ${useSiteName()}`}
+      title={`Testimonials | ${useSiteMetadata().title}`}
       description="Testimonials from our customers."
     >
-      <TestimoialSEO />
+      {/* <TestimoialSEO /> */}
       <Script type="application/ld+json">
         {`
           {
@@ -83,7 +83,7 @@ export const Head = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "About",
-              "item": "${useSiteUrl()}/about"
+              "item": "${useSiteMetadata().url}/about"
             },{
               "@type": "ListItem",
               "position": 2,

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../src/components/seo";
-import { useSiteName } from "../../src/hooks/use-site-name";
+import { useSiteMetadata } from "../../src/hooks/use-site-metadata";
 import { useSiteUrl } from "../../src/hooks/use-site-url";
 import Header from "../../src/components/header";
 import Footer from "../../src/components/footer";
@@ -98,7 +98,7 @@ export default UltralightPage
 export const Head = () => {
   return (
     <SEO
-      title={`Ultralight Kayaks | ${useSiteName()}`}
+      title={`Ultralight Kayaks | ${useSiteMetadata().title}`}
       description="Our ultralight kayaks are Single kayaks under 46 pounds"
     >
       <Script type="application/ld+json">
@@ -110,12 +110,12 @@ export const Head = () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Retail",
-            "item": "${useSiteUrl()}/retail"
+            "item": "${useSiteMetadata().url}/retail"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "Kayak",
-            "item": "${useSiteUrl()}/retail/kayak"
+            "item": "${useSiteMetadata().url}/retail/kayak"
           },{
             "@type": "ListItem",
             "position": 3,

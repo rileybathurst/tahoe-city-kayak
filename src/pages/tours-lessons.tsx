@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo"
 
-import { useSiteName } from '../hooks/use-site-name';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
@@ -125,7 +125,7 @@ export default ToursLessonsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tours and Lessons | ${useSiteName()}`}
+      title={`Tours and Lessons | ${useSiteMetadata().title}`}
       description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )
