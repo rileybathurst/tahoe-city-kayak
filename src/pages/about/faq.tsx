@@ -1,10 +1,9 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Script } from 'gatsby';
+import { Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import { useStrapiFaq } from "../../hooks/use-strapi-faq";
-// import { StrapiMap } from "../../components/map";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";

@@ -51,7 +51,7 @@ a:where(:hover, :focus) {
 }
 
 /*------------------*/
-//  #MENU LIST
+/* #MENU LIST */
 /*------------------*/
 
 .menu-list .active {
@@ -80,7 +80,7 @@ a:hover svg:not(.instagram) {
 }
 
 /*------------------*/
-//  #FOOTER
+/* #FOOTER */
 /*------------------*/
 
 footer {

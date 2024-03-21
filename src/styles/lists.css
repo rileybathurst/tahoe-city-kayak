@@ -1,9 +1,9 @@
 /*------------------*/
-//  #LISTS
+/* #LISTS */
 /*------------------*/
 
 /*------------------*/
-//  #DEFAULTS
+/* #DEFAULTS */
 /*------------------*/
 
 // previous kept here as it may break things
@@ -36,7 +36,7 @@ ol {
 }
 
 /*------------------*/
-//  #BREADCRUMBS
+/* #BREADCRUMBS */
 /*------------------*/
 
 // https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/
@@ -90,7 +90,7 @@ ol {
 }
 
 /*------------------*/
-//  #PARAGRAPH LIST
+/* #PARAGRAPH LIST */
 /*------------------*/
 
 .paragraph-list {
@@ -104,7 +104,7 @@ ol {
 }
 
 /*------------------*/
-//  #FEATURES
+/* #FEATURES */
 /*------------------*/
 
 .features {
@@ -162,7 +162,7 @@ ol {
 }
 
 /*------------------*/
-//  #BRANDS
+/* #BRANDS */
 /*------------------*/
 
 .brand_list {
@@ -261,7 +261,7 @@ ol {
 }
 
 /*------------------*/
-//  #SERIES LIST
+/* #SERIES LIST */
 /*------------------*/
 
 .series-list {
@@ -270,7 +270,7 @@ ol {
 }
 
 /*------------------*/
-//  #Feature list
+/* #Feature list */
 /*------------------*/
 
 .feature-list {
@@ -295,7 +295,7 @@ ol {
 }
 
 /*------------------*/
-//  #TESTIMONIALS
+/* #TESTIMONIALS */
 /*------------------*/
 
 .testimonials {

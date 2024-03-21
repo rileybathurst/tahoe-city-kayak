@@ -1,5 +1,5 @@
 /*------------------*/
-//  #CARD
+/* #CARD */
 /*------------------*/
 
 .deck {
@@ -193,7 +193,7 @@
 }
 
 /*------------------*/
-//  #RETAIL LOGO
+/* #RETAIL LOGO */
 /*------------------*/
 
 .brand-logo {
@@ -229,7 +229,7 @@
 }
 
 /*------------------*/
-//  #LOCATION DECK AND CARDS
+/* #LOCATION DECK AND CARDS */
 /*------------------*/
 
 .home__here, // TODO rename this to .location__multiple everywhere

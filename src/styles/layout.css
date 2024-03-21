@@ -1,9 +1,9 @@
 /*------------------*/
-//  #LAYOUT
+/* #LAYOUT */
 /*------------------*/
 
 /*------------------*/
-//  #SINGLES
+/* #SINGLES */
 /*------------------*/
 
 .baseline-spacing {
@@ -25,7 +25,7 @@
 }
 
 /*------------------*/
-//  #DEFAULTS
+/* #DEFAULTS */
 /*------------------*/
 
 .passage {
@@ -47,7 +47,7 @@
 }
 
 /*------------------*/
-//  #HEADER
+/* #HEADER */
 /*------------------*/
 
 header {
@@ -72,7 +72,7 @@ header {
 }
 
 /*------------------*/
-//  #MAIN
+/* #MAIN */
 /*------------------*/
 
 main {
@@ -116,7 +116,7 @@ main {
 }
 
 /*------------------*/
-//  #SINGLES
+/* #SINGLES */
 /*------------------*/
 
 .single__description {
@@ -230,7 +230,7 @@ main {
 }
 
 /*------------------*/
-//  #FOOTER
+/* #FOOTER */
 /*------------------*/
 
 footer {
@@ -332,7 +332,7 @@ footer {
 }
 
 /*------------------*/
-//  #RETAIL
+/* #RETAIL */
 /*------------------*/
 
 #retail {
@@ -373,7 +373,7 @@ footer {
 }
 
 /*------------------*/
-//  #COLLAGE
+/* #COLLAGE */
 /*------------------*/
 
 // collages are used on the right of pages to detail the sport indicated
@@ -431,7 +431,7 @@ footer {
 }
 
 /*------------------*/
-//  #CARD COLLAGE
+/* #CARD COLLAGE */
 /*------------------*/
 
 // This is the top of the cards
@@ -498,7 +498,7 @@ footer {
 }
 
 /*------------------*/
-//  #MOVE THESE IF THEY WORK
+/* #MOVE THESE IF THEY WORK */
 /*------------------*/
 
 // this is the right name
@@ -523,7 +523,7 @@ footer {
 }
 
 /*------------------*/
-//  #COMPOSITION
+/* #COMPOSITION */
 /*------------------*/
 
 .composition {
@@ -572,7 +572,7 @@ footer {
 }
 
 /*------------------*/
-//  #LOCATION
+/* #LOCATION */
 /*------------------*/
 
 // this is to not use the .location class
@@ -606,7 +606,7 @@ footer {
 }
 
 /*------------------*/
-//  #COMPARE TABLE
+/* #COMPARE TABLE */
 /*------------------*/
 
 // * test this in chrome, it doesnt have subgrid yet
@@ -841,7 +841,7 @@ footer {
 }
 
 /*------------------*/
-//  #EXTRAS
+/* #EXTRAS */
 /*------------------*/
 
 .button-drop {
@@ -854,7 +854,7 @@ footer {
 }
 
 /*------------------*/
-//  #CAP
+/* #CAP */
 /*------------------*/
 
 .cap {
@@ -879,7 +879,7 @@ footer {
 }
 
 /*------------------*/
-//  #MAP
+/* #MAP */
 /*------------------*/
 
 .map {
@@ -890,7 +890,7 @@ footer {
 }
 
 /*------------------*/
-//  #SPECS
+/* #SPECS */
 /*------------------*/
 
 .unit-place__before {
@@ -949,7 +949,7 @@ footer {
 }
 
 /*------------------*/
-//  #WIKI
+/* #WIKI */
 /*------------------*/
 
 .wiki {

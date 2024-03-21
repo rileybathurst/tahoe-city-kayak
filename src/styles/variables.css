@@ -1,30 +1,34 @@
 :root {
   /*------------------*/
-  //  #TAHOE CITY KAYAK
+  /* #TAHOE CITY KAYAK */
   /*------------------*/
 
-  --mullen: hsl(0, 50%, 50%); //#bf4040
+  --mullen: hsl(0, 50%, 50%); /* #bf4040 */
   --mullen__base: 0, 50%;
 
-  --sand: hsl(25, 37%, 95%); // not a louie color because I dont want to hit 100
+  --sand: hsl(
+    25,
+    37%,
+    95%
+  ); /* not a louie color because I dont want to hit 100 */
   --sand__base: 25, 37%;
 
-  // sand gets ugly in dark colors so Im going to a darker blue
-  --ink: hsl(210, 50%, 7.5%); // #0a131d
+  /* sand gets ugly in dark colors so Im going to a darker blue */
+  --ink: hsl(210, 50%, 7.5%); /* #0a131d */
   --ink__h: 210;
 
   --body_font: "Barlow", Arial, sans-serif;
   --heading_font: "Barlow Condensed", Arial, sans-serif;
 
-  --baseline: 1.25rem; // 20px
+  --baseline: 1.25rem; /* 20px */
 
   --card-radius: 0.25rem;
 
   /*------------------*/
-  //  #DEFAULTS
+  /* #DEFAULTS */
   /*------------------*/
 
-  // louie variables
+  /* louie variables */
   --pitch: 2.5%;
   --dark: 12.5%;
   --dull: 25%;
@@ -35,19 +39,19 @@
   --bright: 87.5%;
   --brilliant: 97.5%;
 
-  // louie neutrals
+  /* louie neutrals */
   --black-metal: hsl(0, 0%, 2.5%);
   --black-out: hsl(0, 0%, 12.5%);
   --raven-black: hsl(0, 0%, 25%);
   --industrial-revolution: hsl(0, 0%, 37.5%);
-  // --grey: grey; // this doesnt need to be a variable
+  /* grey */
   --cold-grey: hsl(0, 0%, 62.5%);
   --tin-soldier: hsl(0, 0%, 75%);
   --kingly-cloud: hsl(0, 0%, 87.5%);
   --brilliance: hsl(0, 0%, 97.5%);
 
   /*------------------*/
-  //  #TYPOGRAPHY
+  /* #TYPOGRAPHY */
   /*------------------*/
   /* 🏔 Mountain Names as Font Sizing Defaults */
   /* (Highest by Continent) */
@@ -60,12 +64,12 @@
   --kosciuszko: 0.75rem; /* 7,310ft Australia */
 
   /*------------------*/
-  //  #SHADOWS
+  /* #SHADOWS */
   /*------------------*/
 
-  // Umbra is direct light - dark - for active down clicks
-  // Antumbra is eclipsed - medium - for hover
-  // Penumbra is obscured - light - for layering but waiting
+  /* Umbra is direct light - dark - for active down clicks */
+  /* Antumbra is eclipsed - medium - for hover */
+  /* Penumbra is obscured - light - for layering but waiting */
 
   --penumbra: 0 3px 6px hsla(0, 0%, 0%, 0.12), 0 2px 4px hsla(0, 0%, 0%, 0.1);
   --antumbra: 0 14px 24px hsla(0, 0%, 0%, 0.16),
@@ -73,13 +77,13 @@
   --umbra: 0 5px 12px hsla(0, 0%, 0%, 0.4) /* Ambient light shadow */,
     0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
 
-  // shadows on dark backgrounds
+  /* shadows on dark backgrounds */
   --penumbra--dark: 0 3px 6px hsla(0, 0%, 100%, 0.12),
     0 2px 4px hsla(0, 0%, 100%, 0.1);
 
   /*------------------*/
-  //  #WIDTHS
-  // https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan
+  /* #WIDTHS */
+  /* https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan */
   /*------------------*/
   --swan: 20rem;
   --vulture: 30rem;
@@ -89,8 +93,8 @@
   --albatross: 80rem;
 
   /*------------------*/
-  //  #Z INDEX
-  // https://en.wikipedia.org/wiki/Forest
+  /* #Z INDEX */
+  /* https://en.wikipedia.org/wiki/Forest */
   /*------------------*/
 
   --floor: 1;
@@ -99,17 +103,18 @@
   --emergent: 4;
 
   /*------------------*/
-  //  #TRANSITIONS
+  /* #TRANSITIONS */
   /*------------------*/
   --easing: cubic-bezier(0.5, 0, 0.5, 1);
   --fade: 0.2s var(--easing);
 }
 
-//  #WIDTHS FOR MEDIA QUERIES
-$measure: 40rem;
+/* #WIDTHS FOR MEDIA QUERIES */
+/* $measure: 40rem;
 $swan: 20rem;
 $vulture: 30rem;
 $stork: 40rem;
 $condor: 50rem;
 $pelican: 60rem;
 $albatross: 80rem;
+ */

@@ -1,5 +1,5 @@
 /*------------------*/
-//  #TAHOE CITY KAYAK
+/*  #TAHOE CITY KAYAK */
 /*------------------*/
 
 @import "variables";
@@ -15,9 +15,9 @@
 @import "media";
 @import "cards";
 @import "visibility";
-// @import "topbar"; // currently out of use
+/* // @import "topbar"; // currently out of use */
 
-// pages
+/* pages */
 @import "pages/home";
 @import "pages/rentals";
 @import "pages/tours";
