@@ -32,7 +32,7 @@
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
       border-color: hsl(var(--ink__h), 50%, var(--dull)); /* 1.75 contrast */
-      /* border-color: hsl(var(--ink__h), 50%, var(--dark)); // 1.13 contrast too slim */
+      /* border-color: hsl(var(--ink__h), 50%, var(--dark)); 1.13 contrast too slim */
     }
 
     .card__placeholder {
@@ -83,7 +83,7 @@
     }
 
     .card__span {
-      /* color: var(hsl(var(--sand__base), var(--dim))); // I dont think its quite there */
+      /* color: var(hsl(var(--sand__base), var(--dim))); I dont think its quite there */
       color: var(--industrial-revolution);
       font-size: 1rem;
       text-transform: uppercase;
@@ -201,7 +201,7 @@
   flex-flow: row wrap;
   gap: var(--baseline);
   max-width: max-content;
-  /* border: 1px solid var(--tin-soldier); // im not sure yet */
+  /* border: 1px solid var(--tin-soldier); im not sure yet */
   margin-block-end: 1.5rem;
   padding-block: 1.5rem;
   padding-inline: 0.75rem;

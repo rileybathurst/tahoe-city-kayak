@@ -16,12 +16,6 @@
 
   @media (min-width: 30rem) {
     grid-template-columns: repeat(auto-fit, minmax(29rem, 1fr));
-
-    /*     grid-template-areas:
-      ".info .composition"
-      ".rates .here__location"
-      ".specialty_rentals .specialty_rentals";
- */
     grid-template-areas:
       "info composition"
       "rates here__location"

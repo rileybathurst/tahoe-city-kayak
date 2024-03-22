@@ -6,17 +6,6 @@
 /* #DEFAULTS */
 /*------------------*/
 
-/* previous kept here as it may break things */
-/* ul,
-ol {
-  li {
-    a {
-      display: block;
-      margin-block-end: 0.5rem;
-    }
-  }
-} */
-
 /* updated */
 ul {
   padding-inline-start: 0.75rem;
@@ -63,7 +52,7 @@ ol {
     padding-block-start: 1.5rem;
     margin-block-end: 0;
     /* padding-block-end: 1.5rem; */
-    /* padding-inline: calc(var(--baseline) / 2); // deprecated but still checking */
+    /* padding-inline: calc(var(--baseline) / 2); deprecated but still checking */
     padding-inline: 0;
     text-transform: capitalize;
 
@@ -174,7 +163,7 @@ ol {
 
   /* grid-template-columns: 1fr 1fr; */
   /* this doesnt work on the home page as its wider so it can fill its won space */
-  /* grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); // guess and check */
+  /* grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); guess and check */
   grid-template-columns: repeat(
     auto-fill,
     minmax(8rem, 1fr)
@@ -222,10 +211,6 @@ ol {
       /* I know it breaks the inception rule its very short */
       > p {
         align-self: end;
-      }
-
-      > svg > * {
-        /* fill: hotpink; */
       }
     }
 

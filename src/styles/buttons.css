@@ -28,11 +28,6 @@ button:hover,
 .button__mullen--hover,
 /* this is a weird thing you maybe need */
 .button__mullen--hover:hover {
-  /* background-color: hsl(var(--sand__base), var(--bright)); /* custom louie color */
-  /* TODO this going sand doesnt make too much sense the button isnt sand */
-  /* background-color: hsl(0, 12.5%, 87.5%); /* custom louie color */
-  /* background-color: hsl(0, 12.5%, 75%); /* custom louie color */
-
   color: hsl(var(--mullen__base), var(--dim));
   border-color: hsl(var(--mullen__base), var(--dim));
   box-shadow: var(--penumbra); /* maybe we got the other way */
@@ -41,7 +36,6 @@ button:hover,
   /* TODO this doesnt do enough in dark to see the change */
 
   @media (prefers-color-scheme: dark) {
-    /* background-color: hsl(var(--sand__base), 7.5%); //custom */
     color: var(--mullen);
   }
 }
@@ -90,8 +84,7 @@ menu button {
 }
 
 /*------------------*/
-/* #BOOK NOW /* primary call to action */
-*/
+/* #BOOK NOW primary call to action */
 /*------------------*/
 
 .book-now {

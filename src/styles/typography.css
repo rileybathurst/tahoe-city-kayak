@@ -1,20 +1,6 @@
 /*------------------------------------*\
     #Type Rythym
-\*------------------------------------*/
-
-/* This is trying to have a nice starter */
-
-/* html {
-  font-family: ;
-} */
-
-/* singlines */
-
-/* baseline
-0.625rem
-1.25rem
-2.5rem
-3.75rem */
+/*------------------------------------*/
 
 body {
   font-family: var(--body_font); /* Google font */

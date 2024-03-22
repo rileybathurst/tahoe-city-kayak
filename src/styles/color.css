@@ -108,7 +108,7 @@ footer {
   max-width: var(--pelican);
 }
 
-/* /* this isnt right as if a section is empty it still counts */
+/* this isnt right as if a section is empty it still counts */
 .series section:nth-child(odd, :has(p)) {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
@@ -129,7 +129,6 @@ footer {
 .series section:not(:has(p)) {
   margin-block-start: -1.25rem;
 }
-*/
 
 /*------------------*/
 /* #BACKGROUNDS */

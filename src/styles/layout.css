@@ -790,7 +790,7 @@ footer {
     }
 
     > *:first-child {
-      /* background-color: transparent; // you cant do this due to dark mode */
+      /* background-color: transparent; you cant do this due to dark mode */
     }
   }
 

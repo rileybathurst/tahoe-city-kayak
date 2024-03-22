@@ -82,7 +82,7 @@ nav {
     background-color: hsl(25, 37%, 87.5%); /* ? why is this custom */
     box-shadow: 0 0 0 100vmax hsl(25, 37%, 87.5%); /* ? why is this custom */
     clip-path: inset(0 -100vmax);
-    /* border-block-end: 2px solid var(--industrial-revolution); // this isnt full width */
+    /* border-block-end: 2px solid var(--industrial-revolution); this isnt full width */
 
     /* ! dark */
 
