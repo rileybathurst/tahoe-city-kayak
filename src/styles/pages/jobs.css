@@ -2,7 +2,7 @@
 /* #JOBS */
 /*------------------*/
 
-// ! wrong place and not working
+/* ! wrong place and not working */
 
 .scroller {
   display: flex;
@@ -12,7 +12,7 @@
     position: sticky;
     top: 0;
 
-    // this has to be wrapped I dont know why
+    /* this has to be wrapped I dont know why */
     ul {
       position: sticky;
       top: 0;
@@ -35,7 +35,7 @@
   box-shadow: none;
 }
 
-// ! fix this its cool but needs a lot
+/* ! fix this its cool but needs a lot */
 .wiki {
   nav {
     display: grid;
@@ -52,7 +52,7 @@
   }
 }
 
-// TODO: name
+/* TODO: name */
 .slider-guy {
   background-color: hsla(0, 0%, 50%, 0.5);
   height: 1.5rem;
@@ -60,16 +60,16 @@
   position: sticky;
   top: 0;
   transition: 1s ease-in-out;
-  z-index: 0; // TODO: variable
+  z-index: 0; /* TODO: variable */
   border-radius: var(--card-radius);
 }
 
-// TODO: name
+/* TODO: name */
 .slider-guy.dress {
   top: 1.5rem;
 }
 
-// TODO: name
+/* TODO: name */
 .slider-guy.weather {
   top: 3.5rem;
 }

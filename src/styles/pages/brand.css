@@ -4,7 +4,7 @@
 
 .brand-page {
   margin-block-start: calc(var(--baseline) * 2);
-  max-width: var(--pelican); // 40rem
+  max-width: var(--pelican); /* 40rem */
   margin-inline: auto;
   display: flex;
   flex-direction: row;
@@ -21,7 +21,7 @@
     align-self: flex-start;
   }
 
-  // TODO: these names are all wrong
+  /* TODO: these names are all wrong */
   .logo {
     width: fit-content;
 
@@ -44,7 +44,7 @@
       color: gray;
       text-transform: uppercase;
 
-      // h4
+      /* h4 */
       font-size: 1.5rem; /* 24px */
       line-height: 2rem; /* 32px */
       margin-bottom: 1.75rem; /* 28px */

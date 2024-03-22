@@ -5,7 +5,7 @@
 .deck {
   max-width: var(--pelican);
   margin-inline: auto;
-  // margin-block: 3rem;
+  /* margin-block: 3rem; */
   margin-block-end: calc(var(--baseline) * 2);
 
   display: grid;
@@ -14,11 +14,11 @@
 
   padding-inline: 0.75rem;
 
-  @media (min-width: $stork) {
+  @media (min-width: 40rem) {
     grid-template-columns: 1fr 1fr;
   }
 
-  // TODO: needs sub-grid
+  /* TODO: needs sub-grid */
   .card {
     padding: 0;
     display: flex;
@@ -31,8 +31,8 @@
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
-      border-color: hsl(var(--ink__h), 50%, var(--dull)); // 1.75 contrast
-      // border-color: hsl(var(--ink__h), 50%, var(--dark)); // 1.13 contrast too slim
+      border-color: hsl(var(--ink__h), 50%, var(--dull)); /* 1.75 contrast */
+      /* border-color: hsl(var(--ink__h), 50%, var(--dark)); // 1.13 contrast too slim */
     }
 
     .card__placeholder {
@@ -58,12 +58,12 @@
     }
 
     .card__image:where(:hover, :focus) {
-      // opacity: 0.8;
+      /* opacity: 0.8; */
       filter: brightness(80%);
     }
 
     .card__title {
-      font-size: 2rem; // h3
+      font-size: 2rem; /* h3 */
       margin-inline: 0.75rem;
       line-height: calc(var(--baseline) * 2.5);
     }
@@ -78,12 +78,12 @@
       margin-block-end: var(--baseline);
 
       > * {
-        margin: 0; // reset
+        margin: 0; /* reset */
       }
     }
 
     .card__span {
-      // color: var(hsl(var(--sand__base), var(--dim))); // I dont think its quite there
+      /* color: var(hsl(var(--sand__base), var(--dim))); // I dont think its quite there */
       color: var(--industrial-revolution);
       font-size: 1rem;
       text-transform: uppercase;
@@ -133,7 +133,7 @@
       button:where(:hover, :focus) {
         background-color: hsl(var(--mullen__base), var(--dim));
         color: var(--kingly-cloud);
-      } // .button
+      } /* .button */
     }
 
     .badge {
@@ -152,8 +152,8 @@
         font-weight: normal;
       }
     }
-  } // .card
-} // .deck
+  } /* .card */
+} /* .deck */
 
 .deck:empty {
   display: none;
@@ -178,7 +178,7 @@
   .card {
     background-color: whitesmoke;
 
-    // TODO: I dont like this its too subtle
+    /* TODO: I dont like this its too subtle */
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--ink__h), 50%, 5%);
     }
@@ -186,7 +186,7 @@
 }
 
 .card--split {
-  flex-direction: row !important; // TODO can I increase the specificity
+  flex-direction: row !important; /* TODO can I increase the specificity */
   > * {
     flex: 1 1 50%;
   }
@@ -201,19 +201,19 @@
   flex-flow: row wrap;
   gap: var(--baseline);
   max-width: max-content;
-  // border: 1px solid var(--tin-soldier); // im not sure yet
+  /* border: 1px solid var(--tin-soldier); // im not sure yet */
   margin-block-end: 1.5rem;
   padding-block: 1.5rem;
   padding-inline: 0.75rem;
   align-items: center;
-  font-size: 2rem; // grabs any h level
+  font-size: 2rem; /* grabs any h level */
 
   > * {
     margin-block-end: 0;
   }
 
   svg {
-    width: 10rem; // guess and check
+    width: 10rem; /* guess and check */
     margin-block-end: 0.75rem;
   }
 }
@@ -232,7 +232,7 @@
 /* #LOCATION DECK AND CARDS */
 /*------------------*/
 
-.home__here, // TODO rename this to .location__multiple everywhere
+.home__here, /* TODO rename this to .location__multiple everywhere */
 .location__deck {
   max-width: var(--pelican);
   margin-inline: auto;
@@ -244,7 +244,7 @@
   }
 }
 
-.here__location, // TODO rename this to .location everywhere
+.here__location, /* TODO rename this to .location everywhere */
 .location_card {
   display: flex;
   flex-flow: column;
@@ -258,9 +258,9 @@
     border-block-end: 1px solid var(--black-out);
   }
 
-  // TODO this is a bad name
+  /* TODO this is a bad name */
   background-color: var(--mullen);
-  // border: 1px solid var(--tin-soldier);
+  /* border: 1px solid var(--tin-soldier); */
   padding: 0.5rem;
   color: whitesmoke;
   border-radius: 0.5rem;
@@ -279,4 +279,4 @@
   }
 }
 
-// can location cards be laid out horizontally but I think they never have a background if they are so maybe they are a seperate thing thing thats not a card?
+/* can location cards be laid out horizontally but I think they never have a background if they are so maybe they are a seperate thing thing thats not a card? */

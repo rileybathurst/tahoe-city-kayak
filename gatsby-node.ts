@@ -15,41 +15,34 @@ exports.createPages = async ({ graphql, actions }) => {
 
   console.log("Creating Retail Pages");
 
-  try {
-    const retailResult = await graphql(`
-      query {
-        allStrapiRetail {
-          nodes {
-            slug
-            type
+  const retailResult = await graphql(`
+    query {
+      allStrapiRetail {
+        nodes {
+          slug
+          type
 
-            brand {
-              slug
-            }
+          brand {
+            slug
           }
         }
       }
-    `);
+    }
+  `);
 
-    retailResult.data.allStrapiRetail.nodes.forEach(
-      (retail: { type: any; slug: any; brand: { slug: any } }) => {
-        createPage({
-          path: `/retail/${retail.type}/${retail.brand.slug}/${retail.slug}`,
-          component: retailPageTemplate,
-          context: {
-            slug: retail.slug,
-            type: retail.type,
-            brand: retail.brand.slug,
-          },
-        });
-      }
-    );
-
-    console.log("🦊");
-  } catch (error) {
-    console.log("🦖");
-    console.error("Error in gatsby-node.ts", error);
-  }
+  retailResult.data.allStrapiRetail.nodes.forEach(
+    (retail: { type: any; slug: any; brand: { slug: any } }) => {
+      createPage({
+        path: `/retail/${retail.type}/${retail.brand.slug}/${retail.slug}`,
+        component: retailPageTemplate,
+        context: {
+          slug: retail.slug,
+          type: retail.type,
+          brand: retail.brand.slug,
+        },
+      });
+    }
+  );
 
   const BrandsTemplate = path.resolve(`src/templates/brands.tsx`);
   const brandsResult = await graphql(`

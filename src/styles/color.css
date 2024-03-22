@@ -2,6 +2,7 @@
 /* #COLOR */
 /*------------------*/
 
+footer,
 .sand_backed--wide {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
@@ -21,9 +22,9 @@
   }
 }
 
-// no longer a button so no longer mullen background
+/* no longer a button so no longer mullen background */
 .top-wrapper {
-  // background: var(--mullen);
+  /* background: var(--mullen); */
   background: whitesmoke;
   clip-path: inset(0 -100vmax);
   border-end-end-radius: var(--border-radius);
@@ -43,8 +44,6 @@
 }
 
 footer {
-  @extend .sand_backed--wide;
-
   .locations__complete > * {
     border-color: var(--tin-soldier);
 
@@ -109,7 +108,7 @@ footer {
   max-width: var(--pelican);
 }
 
-/* // this isnt right as if a section is empty it still counts
+/* /* this isnt right as if a section is empty it still counts */
 .series section:nth-child(odd, :has(p)) {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
@@ -129,7 +128,8 @@ footer {
 
 .series section:not(:has(p)) {
   margin-block-start: -1.25rem;
-} */
+}
+*/
 
 /*------------------*/
 /* #BACKGROUNDS */

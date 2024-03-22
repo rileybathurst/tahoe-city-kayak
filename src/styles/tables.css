@@ -7,18 +7,18 @@
   text-align: center;
   margin-block-end: 1.5rem;
 
-  // columns
+  /* columns */
   > * {
     display: flex;
     flex: 1 1 10rem;
     flex-direction: column;
 
-    // rows
+    /* rows */
     > * {
       border-bottom: 0.5px solid var(--industrial-revolution);
       border-right: 0.5px solid var(--industrial-revolution);
-      // border-left: none;
-      // padding: var(--baseline);
+      /* border-left: none; */
+      /* padding: var(--baseline); */
       padding: clamp(0.5rem, 1vw, 1rem);
 
       > * {
@@ -26,7 +26,7 @@
       }
     }
 
-    // first row
+    /* first row */
     > *:first-child {
       margin: 0;
       border-top: none;

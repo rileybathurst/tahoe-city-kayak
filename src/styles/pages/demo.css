@@ -33,7 +33,7 @@
       flex: 1;
     }
 
-    @media (min-width: $stork) {
+    @media (min-width: 40rem) {
       flex-flow: row wrap;
     }
   }

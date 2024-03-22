@@ -14,7 +14,7 @@
     "specs"
     "features";
 
-  @media (min-width: $vulture) {
+  @media (min-width: 30rem) {
     grid-template-areas:
       "title hero"
       "specs features";
@@ -33,7 +33,7 @@
   .specs {
     grid-area: specs;
 
-    @media (min-width: $vulture) {
+    @media (min-width: 30rem) {
       width: calc(100% - 0.75rem);
     }
   }

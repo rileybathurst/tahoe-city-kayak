@@ -108,13 +108,3 @@
   --easing: cubic-bezier(0.5, 0, 0.5, 1);
   --fade: 0.2s var(--easing);
 }
-
-/* #WIDTHS FOR MEDIA QUERIES */
-/* $measure: 40rem;
-$swan: 20rem;
-$vulture: 30rem;
-$stork: 40rem;
-$condor: 50rem;
-$pelican: 60rem;
-$albatross: 80rem;
- */

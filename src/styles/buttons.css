@@ -1,5 +1,7 @@
 button,
-.button {
+.button,
+.button__mullen,
+.book-now {
   background: none;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
@@ -20,29 +22,35 @@ button,
 
 button:hover,
 .button:hover,
-// below is for the storyboard showcase
-.button__hover {
-  // background-color: hsl(var(--sand__base), var(--bright)); // custom louie color
-  // TODO this going sand doesnt make too much sense the button isnt sand
-  // background-color: hsl(0, 12.5%, 87.5%); // custom louie color
-  // background-color: hsl(0, 12.5%, 75%); // custom louie color
+/* below is for the storyboard showcase */
+.button__hover,
+.button__mullen:hover,
+.button__mullen--hover,
+/* this is a weird thing you maybe need */
+.button__mullen--hover:hover {
+  /* background-color: hsl(var(--sand__base), var(--bright)); /* custom louie color */
+  /* TODO this going sand doesnt make too much sense the button isnt sand */
+  /* background-color: hsl(0, 12.5%, 87.5%); /* custom louie color */
+  /* background-color: hsl(0, 12.5%, 75%); /* custom louie color */
 
   color: hsl(var(--mullen__base), var(--dim));
   border-color: hsl(var(--mullen__base), var(--dim));
-  box-shadow: var(--penumbra); // maybe we got the other way
+  box-shadow: var(--penumbra); /* maybe we got the other way */
   box-shadow: var(--antumbra);
 
-  // TODO this doesnt do enough in dark to see the change
+  /* TODO this doesnt do enough in dark to see the change */
 
   @media (prefers-color-scheme: dark) {
-    // background-color: hsl(var(--sand__base), 7.5%); //custom
+    /* background-color: hsl(var(--sand__base), 7.5%); //custom */
     color: var(--mullen);
   }
 }
 
 .button__active,
-button:active {
-  // background-color: hsl(var(--sand__base), var(--glow));
+button:active,
+.button__mullen:active,
+.button__mullen--active {
+  /* background-color: hsl(var(--sand__base), var(--glow)); */
   border-color: hsl(var(--mullen__base), var(--dull));
   color: hsl(var(--mullen__base), var(--dull));
   box-shadow: var(--antumbra);
@@ -55,23 +63,20 @@ button:active {
 }
 
 .button__mullen {
-  @extend button;
   background-color: var(--mullen);
   color: var(--brilliance);
 }
 
 .button__mullen:hover,
 .button__mullen--hover,
-// this is a weird thing you maybe need
+/* this is a weird thing you maybe need */
 .button__mullen--hover:hover {
-  @extend .button__hover; // you cant use the :hover
   background-color: hsl(var(--mullen__base), var(--dull));
   color: var(--tin-soldier);
 }
 
 .button__mullen:active,
 .button__mullen--active {
-  @extend .button__active;
   background-color: hsl(var(--mullen__base), var(--dark));
   color: var(--industrial-revolution);
 }
@@ -85,15 +90,15 @@ menu button {
 }
 
 /*------------------*/
-/* #BOOK NOW // primary call to action */
+/* #BOOK NOW /* primary call to action */
+*/
 /*------------------*/
 
 .book-now {
-  @extend button;
   margin-block-start: 0.75rem;
   text-decoration: none;
   text-align: center;
-  display: inline-block; // same as a button
+  display: inline-block; /* same as a button */
   background-color: var(--mullen);
   color: var(--brilliance);
 
@@ -121,7 +126,7 @@ footer .book-now {
 
 .button__double {
   display: flex;
-  // justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   gap: 2rem;
 }

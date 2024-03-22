@@ -31,13 +31,13 @@ a:where(:hover, :focus) {
   transition: 0.5s ease;
   text-decoration: none;
 
-  @media (min-width: $measure) {
+  @media (min-width: 40rem) {
     padding: 0.5rem;
     border-radius: 0.5rem;
   }
 }
 
-.link__backed--hover, // testing
+.link__backed--hover, /* testing */
 .link__backed:hover {
   background-color: var(--sand);
   box-shadow: var(--penumbra);
@@ -88,7 +88,7 @@ footer {
     border: 1px solid transparent;
   }
 
-  // TODO: dark
+  /* TODO: dark */
   .link__backed:hover {
     background-color: whitesmoke;
     box-shadow: var(--antumbra);

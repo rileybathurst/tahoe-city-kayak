@@ -15,7 +15,6 @@
 @import "media";
 @import "cards";
 @import "visibility";
-/* // @import "topbar"; // currently out of use */
 
 /* pages */
 @import "pages/home";
@@ -26,5 +25,4 @@
 @import "pages/about";
 @import "pages/jobs";
 @import "pages/brand";
-
 @import "seocase";

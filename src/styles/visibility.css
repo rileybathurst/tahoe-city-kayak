@@ -21,7 +21,7 @@
   }
 }
 
-@media (min-width: $stork) {
+@media (min-width: 40rem) {
   .menu__small {
     display: none;
   }
@@ -31,21 +31,21 @@
   display: none;
 }
 
-// used in the compare tables
+/* used in the compare tables */
 .show-below__vulture {
-  @media (min-width: $vulture) {
+  @media (min-width: 30rem) {
     display: none;
   }
 }
 
 .no-below-vulture {
-  @media (max-width: $vulture) {
+  @media (max-width: 30rem) {
     display: none;
   }
 }
 
 .only-below-vulture {
-  @media (min-width: $vulture) {
+  @media (min-width: 30rem) {
     display: none;
   }
 }

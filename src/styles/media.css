@@ -7,7 +7,7 @@
 /*------------------*/
 
 svg {
-  min-width: 2rem; // safari needs default mins
+  min-width: 2rem; /* safari needs default mins */
   max-height: 5rem;
   fill: var(--black-metal);
 
@@ -28,17 +28,17 @@ svg {
   background-color: whitesmoke;
   box-shadow: 0 0 0 100vmax whitesmoke;
   clip-path: inset(0 -100vmax);
-  z-index: 1; // TODO: variable
+  z-index: 1; /* TODO: variable */
   position: relative;
-  max-width: calc(100% - 2rem); // guess and check
+  max-width: calc(100% - 2rem); /* guess and check */
   padding-block: var(--baseline);
 
   @supports not (margin-inline: auto) {
     margin-inline: auto;
   }
 
-  @media (min-width: $vulture) {
-    max-width: 32rem; // guess and check
+  @media (min-width: 30rem) {
+    max-width: 32rem; /* guess and check */
   }
 
   @media (prefers-color-scheme: dark) {
@@ -47,7 +47,7 @@ svg {
   }
 
   h1 {
-    margin-block-end: 0.5rem; // needed for the drop on the "y"
+    margin-block-end: 0.5rem; /* needed for the drop on the "y" */
   }
 
   .gatsby-image-wrapper {
@@ -105,7 +105,7 @@ footer {
 /* #SOCIAL */
 /*------------------*/
 
-// ! this still isnt right
+/* ! this still isnt right */
 
 .facebook {
   transition: 0.5s ease;
@@ -165,7 +165,7 @@ a:hover .instagram {
 
 .montage {
   display: grid;
-  // grid-template-columns: 1fr auto 1fr;
+  /* grid-template-columns: 1fr auto 1fr; */
   grid-template-columns: 1rem auto 1rem;
 
   > * {
@@ -178,7 +178,7 @@ a:hover .instagram {
     grid-column: 2/4;
     max-height: 20rem;
     width: 80%;
-    aspect-ratio: 120/63; // based on the image itself
+    aspect-ratio: 120/63; /* based on the image itself */
     place-self: end;
     border: 2px solid whitesmoke;
     @media (prefers-color-scheme: dark) {
@@ -195,7 +195,7 @@ a:hover .instagram {
     grid-row: 1/3;
     grid-column: 1/3;
     max-height: 20rem;
-    // margin-block-start: 4rem;
+    /* margin-block-start: 4rem; */
     width: 80%;
     aspect-ratio: 120/63;
     border: 2px solid whitesmoke;
