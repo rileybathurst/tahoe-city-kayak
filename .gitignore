@@ -5,3 +5,5 @@ public
 
 .storybook/preview-head.html
 storybook-static/
+
+*storybook.log

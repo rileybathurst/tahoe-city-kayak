@@ -921,7 +921,7 @@ footer {
   }
 
   h2 {
-    /* starts with an @extend h4 in typography.scss */
+    /* starts with an @extend h4 in typography.css */
     color: grey;
     margin-block-end: 0.25rem;
   }
