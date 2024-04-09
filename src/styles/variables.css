@@ -17,10 +17,14 @@
   --ink: hsl(210, 50%, 7.5%); /* #0a131d */
   --ink__h: 210;
 
-  --body_font: "Barlow", Arial, sans-serif;
-  --heading_font: "Barlow Condensed", Arial, sans-serif;
+  /*------------------------------------*/
+  /* #SOUTH TAHOE KAYAK */
+  /*------------------------------------*/
 
-  --baseline: 1.25rem; /* 20px */
+  --navy: oklch(55% 0.14 230);
+  --sunshine: oklch(88% 0.2 95);
+
+  /*------------------------------------*/
 
   --card-radius: 0.25rem;
 
@@ -53,6 +57,12 @@
   /*------------------*/
   /* #TYPOGRAPHY */
   /*------------------*/
+
+  --body_font: "Barlow", Arial, sans-serif;
+  --heading_font: "Barlow Condensed", Arial, sans-serif;
+
+  --baseline: 1.25rem; /* 20px */
+
   /* 🏔 Mountain Names as Font Sizing Defaults */
   /* (Highest by Continent) */
   --everest: 3rem; /* 29,035ft Asia */
