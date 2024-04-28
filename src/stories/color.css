@@ -1,0 +1,15 @@
+.story-color {
+  aspect-ratio: 1;
+  background-color: white;
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+}
+
+.navy {
+  background-color: var(--navy);
+}
+
+.sunshine {
+  background-color: var(--sunshine);
+}
