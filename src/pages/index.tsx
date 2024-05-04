@@ -25,6 +25,8 @@ import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
+  console.log(useStrapiTopBar());
+
   const data = useStaticQuery(graphql`
     query IndexQuery {
       allStrapiTour(
@@ -33,6 +35,12 @@ const IndexPage = () => {
         ) {
         nodes {
           ...tourCard
+        }
+      }
+
+      allStrapiRetail(sort: {featured: ASC}) {
+        nodes {
+          ...retailCard
         }
       }
     }

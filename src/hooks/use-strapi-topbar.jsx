@@ -1,17 +1,16 @@
+// I should probably use this as an event when opening dates
 import { graphql, useStaticQuery } from "gatsby";
 
 export const useStrapiTopBar = () => {
-  const data = useStaticQuery(graphql`
+  const { strapiLocale } = useStaticQuery(graphql`
     query {
-      strapiTopbar {
-        markdown {
-          data {
-            markdown
-          }
+      strapiLocale(slug: { eq: "tahoe-city" }) {
+        topbar {
+          data
         }
       }
     }
   `);
 
-  return data.strapiTopbar.markdown.data.markdown;
+  return strapiLocale.topbar.data;
 };

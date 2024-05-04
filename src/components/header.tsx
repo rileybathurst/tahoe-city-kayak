@@ -174,13 +174,11 @@ function TopBar(props: { markdown: string | null | undefined; }) {
 
 const Header = () => {
 
-  const { strapiTopbar } = useStaticQuery(graphql`
+  const { strapiLocale } = useStaticQuery(graphql`
     query TopBarQuery {
-      strapiTopbar {
-        markdown {
-          data {
-            markdown
-          }
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        topbar {
+          data
         }
       }
     }
@@ -194,12 +192,16 @@ const Header = () => {
       <StaticQuery
         query={query}
         render={data => (
-          <OpenSeason topbar={data.strapiTopbar.text} />
+          <OpenSeason topbar={strapiLocale.topbar} />
         )}
       /> */}
 
-
-      <TopBar markdown={strapiTopbar.markdown.data.markdown} />
+      <div className="cap" >
+        <ReactMarkdown
+          children={strapiLocale.topbar.data}
+          remarkPlugins={[remarkGfm]}
+        />
+      </div>
 
       <div className="logo-container" >
         {/* <PaddleIcon className="paddle--left" /> */}

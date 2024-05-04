@@ -33,8 +33,13 @@ const ToursLessonsPage = () => {
 
   const query = useStaticQuery(graphql`
     query ToursQuery {
-      kayak: allStrapiTour
-        (filter: { sport: { eq: "kayak" } }, sort: {featured: ASC})
+      kayak: allStrapiTour(
+        filter: {
+          sport: {eq: "kayak"},
+          locale: {slug: {eq: "tahoe-city"}}
+        }
+        sort: {featured: ASC}
+      )
       {
       nodes {
         ...tourCard
@@ -43,7 +48,10 @@ const ToursLessonsPage = () => {
   }
   
   sup: allStrapiTour
-    (filter: { sport: { eq: "sup" } } sort: {featured: ASC})
+    (filter: { 
+      sport: { eq: "sup" },
+      locale: { slug: {eq: "tahoe-city"}}
+      } sort: {featured: ASC})
     {
       nodes {
         ...tourCard
