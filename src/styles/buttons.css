@@ -44,7 +44,6 @@ button:hover,
 button:active,
 .button__mullen:active,
 .button__mullen--active {
-  /* background-color: hsl(var(--sand__base), var(--glow)); */
   border-color: hsl(var(--mullen__base), var(--dull));
   color: hsl(var(--mullen__base), var(--dull));
   box-shadow: var(--antumbra);

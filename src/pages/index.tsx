@@ -27,15 +27,12 @@ const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
     query IndexQuery {
-      allStrapiTour(sort: {featured: ASC}) {
+      allStrapiTour(
+        sort: {featured: ASC},
+        filter: {location: {eq: "tahoe city"}}
+        ) {
         nodes {
           ...tourCard
-        }
-      }
-
-      allStrapiRetail(sort: {featured: ASC}) {
-        nodes {
-          ...retailCard
         }
       }
     }

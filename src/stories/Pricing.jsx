@@ -9,43 +9,63 @@ export const Pricing = ({ primary }) => {
     : "storybook-Pricing--secondary";
   return (
     <>
-      <div className="pricing-chart">
-        <div>
-          <h4>
-            <span>Rental</span> <span>Rates</span>
-          </h4>
-          <p>1 Hour</p>
-          <p>
-            <span>3 Hours</span>
-          </p>
-          <p>
-            <span>Full Day</span>
-          </p>
+      <section className="charts">
+        <div className="pricing-chart">
+          <div className="column">
+            <h4>
+              Rental
+              <br />
+              Rates
+            </h4>
+            <p>1 Hour</p>
+            <p>3 Hours</p>
+            <p>Full Day</p>
+          </div>
+          <div className="column">
+            <h4>
+              Single
+              <br />
+              Kayak
+            </h4>
+            <p>$30</p>
+            <p>$60</p>
+            <p>$90</p>
+          </div>
+          <div className="column">
+            <h4>
+              Tandem
+              <br />
+              Kayak
+            </h4>
+            <p>$45</p>
+            <p>$90</p>
+            <p>$110</p>
+          </div>
+          <div className="column">
+            <h4>
+              Paddle
+              <br />
+              Board
+            </h4>
+            <p>$30</p>
+            <p>$60</p>
+            <p>$90</p>
+          </div>
         </div>
-        <div>
-          <h4>
-            <span>Single Kayak</span>
-            <span> / Paddleboard</span>
-          </h4>
-          <p>$30</p>
-          <p>$60</p>
-          <p>$90</p>
+
+        <div className="pricing-chart">
+          <>
+            <p className="test">Pedal Drive</p>
+            <p className="test">+10</p>
+            <p className="test">+20</p>
+            <p className="">+10</p>
+          </>
         </div>
-        <div>
-          <h4>
-            <span>Tandem</span> <span>Kayak</span>
-          </h4>
-          <p>$45</p>
-          <p>$90</p>
-          <p>$110</p>
-        </div>
-      </div>
+      </section>
+
       <div
       // className={`pricing-chart__${props.book}`}
       >
-        {/* // ? this might need a props if it comes in */}
-        <p>Rentals can be booked in advance with the button below!</p>
-
         <button>Book Now</button>
       </div>
     </>

@@ -6,6 +6,26 @@
   --mullen: hsl(0, 50%, 50%); /* #bf4040 */
   --mullen__base: 0, 50%;
 
+  /* whats used */
+  /* --mullen */
+  /* hsl(var(--mullen__base), var(--glow)) */
+  /* hsl(var(--mullen__base), var(--dim)) */
+  /* hsl(var(--mullen__base), var(--dull)) */
+  /* hsl(var(--mullen__base), var(--dark)) */
+
+  /* --sand */
+  /* hsl(var(--sand__base), var(--bright)) */
+  /* hsl(var(--sand__base), var(--dark)) */
+  /* hsl(var(--sand__base), var(--dim)) */
+  /* hsl(var(--sand__base), 5%) */
+
+  /* --ink */
+  /* hsl(var(--ink__h), 50%, 5%) */
+  /* hsl(var(--ink__h), 100%, var(--dark)) */
+  /* hsl(var(--ink__h), 100%, 7.5%) */
+
+  /* hsl(25, 37%, 87.5%) */
+
   --sand: hsl(
     25,
     37%,
@@ -20,9 +40,44 @@
   /*------------------------------------*/
   /* #SOUTH TAHOE KAYAK */
   /*------------------------------------*/
+  /* needed for storybook */
 
   --navy: oklch(55% 0.14 230);
+
+  --navy-bright: oklch(87.5% 0.09 230);
+  --navy-light: oklch(75% 0.12 230);
+  --navy-glow: oklch(62.5% 0.14 230);
+
+  --navy-dim: oklch(37.5% 0.14 230);
+  --navy-dull: oklch(25% 0.12 230);
+  /* --navy-dark: oklch(12.5% 0.14 230); */
+
+  /* TODO: probably get rid of these */
+  --navy-c: 0.14;
+  --navy-h: 230;
+
+  /* oklch(75% var(--navy-c) var(--navy-h)) */
+  /* oklch(62.5% var(--navy-c) var(--navy-h)) */
+  /* oklch(12.5% var(--navy-c) var(--navy-h)) */
+  /* oklch(2.5% var(--navy-c) var(--navy-h)) */
+
+  /* oklch(97.5% 0.025 95) */
+
+  /*------------------------------------*/
+
   --sunshine: oklch(88% 0.2 95);
+  --sunshine-brilliant: oklch(97.5% 0.2 95);
+  --sunshine-bright: oklch(88% 0.2 95);
+  --sunshine-light: oklch(75% 0.2 95);
+  --sunshine-glow: oklch(62.5% 0.2 95);
+
+  /*------------------------------------*/
+
+  --sunshine-100: oklch(97.5% 0.025 95);
+  --sunshine-200: oklch(95% 0.05 95);
+  --sunshine-300: oklch(92.5% 0.1 95);
+  --sunshine-400: oklch(90% 0.15 95);
+  --sunshine: oklch(87.5% 0.2 95);
 
   /*------------------------------------*/
 

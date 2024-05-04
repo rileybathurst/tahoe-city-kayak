@@ -1,4 +1,5 @@
 // TODO: combine these together with sup-brand-list.tsx
+// This is easier now Im using sports
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';

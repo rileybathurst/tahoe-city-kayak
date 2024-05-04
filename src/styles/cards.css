@@ -87,7 +87,6 @@
     }
 
     .card__span {
-      /* color: var(hsl(var(--sand__base), var(--dim))); I dont think its quite there */
       color: var(--industrial-revolution);
       font-size: 1rem;
       text-transform: uppercase;
