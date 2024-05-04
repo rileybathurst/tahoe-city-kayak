@@ -1,24 +1,26 @@
+// ! leaflet isnt working with react 18
+
 import React, { useState, useRef } from "react"
 import { Script } from "gatsby";
 import { SEO } from "../../components/seo";
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { useMapEvents } from 'react-leaflet/hooks'
+// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+// import { useMapEvents } from 'react-leaflet/hooks'
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Composition from "../../components/composition";
 
-const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
+/* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
 const AlpineMeadows = { name: 'Alpine Meadows', lat: 39.18528, lng: -120.19494 }
 const RetailLocation = { name: 'Retail Location', lat: 39.17123, lng: -120.14093 }
 const OnWaterRental = { name: 'On Water Rental', lat: 39.16879, lng: -120.14199 }
 const SixtyFourAcres = { name: '64 Acres', lat: 39.16418, lng: -120.14717 }
-const zoom = 14
+const zoom = 14 */
 
-function DisplayPosition({ map }): JSX.Element {
+/* function DisplayPosition({ map }): JSX.Element {
   const toTahoeCity = () => {
     map.setView([TahoeCity.lat, TahoeCity.lng], zoom)
   }
@@ -32,9 +34,9 @@ function DisplayPosition({ map }): JSX.Element {
       <button onClick={toAlpineMeadows}>Alpine Meadows</button>
     </div>
   )
-}
+} */
 
-function Markers() {
+/* function Markers() {
   const [marks, setMarks] = useState([
     TahoeCity,
     AlpineMeadows
@@ -76,9 +78,9 @@ function Markers() {
       ))}
     </>
   )
-}
+} */
 
-function Map() {
+/* function Map() {
   const [mapped, setMapped] = useState(null)
   const ref = useRef(null);
 
@@ -112,7 +114,7 @@ function Map() {
       </MapContainer>
     </>
   )
-}
+} */
 
 
 const TruckeeRiverPage = () => {
@@ -190,7 +192,7 @@ const TruckeeRiverPage = () => {
 
       <section className="map">
         <h3>Map</h3>
-        <Map />
+        {/* <Map /> */}
       </section>
 
 
