@@ -9,9 +9,9 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import PricingChart from "../../components/pricing-chart";
 import Card from "../../components/card";
-import Store from "../../components/locations/store";
 import Composition from "../../components/composition";
 import Phone from "../../components/phone";
+import LocationCard from "../../components/location-card";
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
@@ -58,29 +58,7 @@ const DemosPage = () => {
     query DemosQuery {
       kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          type
-          demo
-          inflatable
-          brand {
-              slug
-            }
-            
-
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
+          ...retailCard
 
           brand {
             name
@@ -91,29 +69,7 @@ const DemosPage = () => {
   
       paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}, sort: {featured: ASC}) {
         nodes {
-          id
-          title
-          slug
-          excerpt
-          capacity
-          length
-          width
-          type
-          demo
-          inflatable
-          brand {
-              slug
-            }
-            
-
-          cutout {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
+          ...retailCard
 
           brand {
             name
@@ -121,11 +77,16 @@ const DemosPage = () => {
           }
         }
       }
+
+      strapiLocation: strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "Retail Location"}
+      ) {
+        ...locationCard
+      }
+
     }
   `)
-
-  let kayak = query.kayak;
-  let paddleboards = query.paddleboards;
 
   return (
     <>
@@ -144,9 +105,7 @@ const DemosPage = () => {
             </p>
           </div>
 
-          <div className="location_card">
-            <Store />
-          </div>
+          <LocationCard location={query.strapiLocation} />
         </div>
 
         <PricingChart book={false} />
@@ -162,7 +121,7 @@ const DemosPage = () => {
             <h4>Kayaks from these brands</h4>
             <ul>
               <KayakDemoBrands
-                brand={kayak.nodes.map(brand => (brand.brand))}
+                brand={query.kayak.nodes.map(brand => (brand.brand))}
               />
             </ul>
           </div>
@@ -171,7 +130,7 @@ const DemosPage = () => {
         </div>
 
         <section className="deck">
-          {kayak.nodes.map(kayak => (
+          {query.kayak.nodes.map(kayak => (
             <div key={kayak.id}>
               <Card retail={kayak} />
             </div>
@@ -185,7 +144,7 @@ const DemosPage = () => {
 
           <ul>
             <SupDemoBrands
-              brand={paddleboards.nodes.map(brand => (brand.brand))}
+              brand={query.paddleboards.nodes.map(brand => (brand.brand))}
             />
           </ul>
         </div>
@@ -194,7 +153,7 @@ const DemosPage = () => {
       </article>
 
       <section className="deck">
-        {paddleboards.nodes.map(sup => (
+        {query.paddleboards.nodes.map(sup => (
           <div key={sup.id}>
             <Card retail={sup} />
           </div>

@@ -1,17 +1,18 @@
 // ! leaflet isnt working with react 18
+// less of a problem as we are holding back this page for now anyway
 
 import React, { useState, useRef } from "react"
 import { Script } from "gatsby";
-import { SEO } from "../../components/seo";
+import { SEO } from "../../src/components/seo";
 
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
+import { useSiteMetadata } from "../../src/hooks/use-site-metadata";
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 // import { useMapEvents } from 'react-leaflet/hooks'
 
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
-import Composition from "../../components/composition";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import ParentTitleBreadcrumb from "../../src/components/parent-title-breadcrumb";
+import Composition from "../../src/components/composition";
 
 /* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
 const AlpineMeadows = { name: 'Alpine Meadows', lat: 39.18528, lng: -120.19494 }

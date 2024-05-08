@@ -10,9 +10,10 @@ const HourMin = (props: {
 
     if (hours < 10) {
       hours = hours.replace('0', '');
-    } else if
-      (hours > 12) {
+    } else if (hours > 12) {
       hours = hours - 12;
+    } else {
+      hours = hours;
     }
 
     return (

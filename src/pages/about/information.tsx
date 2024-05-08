@@ -57,7 +57,7 @@ const InformationPage = () => {
 
           <hr />
 
-          <h4>Tandem Kayaking &ndash; Its about communication!</h4>
+          <h4>Double Kayaking &ndash; Its about communication!</h4>
           <ul>
             <li>Try to paddle at the same time, and on the same side!</li>
             <li>

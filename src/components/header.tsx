@@ -154,31 +154,17 @@ function Button() {
   }
 }
 
-function TopBar(props: { markdown: string | null | undefined; }) {
-  if (!props.markdown) {
-    return null;
-  } else {
-    return (
-      <div className="cap" >
-        {/* // TODO: needs a date to remove after */}
-        {/* // I renamed this as it was conflicting with the topbar that moves */}
-        {/* <p>{strapiTopbar.markdown.data.markdown}</p> */}
-        < ReactMarkdown
-          children={props.markdown}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
-    )
-  }
-}
-
 const Header = () => {
 
   const { strapiLocale } = useStaticQuery(graphql`
-    query TopBarQuery {
+    query HeaderQuery {
       strapiLocale(slug: {eq: "tahoe-city"}) {
+        name
+
         topbar {
-          data
+          data {
+            topbar
+          }
         }
       }
     }
@@ -187,30 +173,21 @@ const Header = () => {
   return (
     <header>
 
-      {/*
-      // TODO this would be nice to be able to close but I dont have it right yet
-      <StaticQuery
-        query={query}
-        render={data => (
-          <OpenSeason topbar={strapiLocale.topbar} />
-        )}
-      /> */}
-
-      <div className="cap" >
-        <ReactMarkdown
-          children={strapiLocale.topbar.data}
+      {/* // TODO this would be nice to be able to close but I dont have it right yet */}
+      <div className="top-bar" >
+        {/*         <ReactMarkdown
+          children={strapiLocale.topbar.data.topbar}
           remarkPlugins={[remarkGfm]}
-        />
+        /> */}
       </div>
 
+      <p className='sr-only'>
+        {strapiLocale.name}
+      </p>
       <div className="logo-container" >
-        {/* <PaddleIcon className="paddle--left" /> */}
-        <h1 className='logo'>
-          <Link to="/" className="link__subtle">
-            {/* Tahoe City Kayak */}
-            <Logo />
-          </Link>
-        </h1>
+        <Link to="/" className="">
+          <Logo />
+        </Link>
       </div>
       <Menu />
       <Button />

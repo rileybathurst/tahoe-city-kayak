@@ -12,6 +12,9 @@ export const query = graphql`
     inflatable
     hullweight
     capacity
+
+    demo
+
     brand {
       slug
     }
@@ -26,6 +29,8 @@ export const query = graphql`
     }
   }
 `
+
+// ? does this need demo for badges?
 
 /* (
   breakpoints: [111, 165, 222, 444, 880]

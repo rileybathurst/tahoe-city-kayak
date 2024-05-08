@@ -24,24 +24,20 @@
       margin: 0;
       border-top: none;
     }
-
-    /* ! this would be interesting under a .deck idea */
-    /*     > *:last-child {
-      border-bottom: none;
-    } */
   }
 
+  h2,
   h4,
   p {
-    border-bottom: 0.5px solid var(--industrial-revolution);
-    border-right: 0.5px solid var(--industrial-revolution);
+    font-size: clamp(0.75rem, 1.25vw, 1.5rem);
+    line-height: clamp(1rem, 1.5vw, 2rem);
+    border-bottom: 0.5px solid var(--tin-soldier);
+    border-right: 0.5px solid var(--tin-soldier);
     padding: clamp(0.5rem, 1vw, 1rem);
   }
 
   h4 {
     margin: 0.25px;
-    font-size: clamp(0.75rem, 1.25vw, 1.5rem);
-    line-height: clamp(1rem, 1.5vw, 2rem);
   }
 
   p {

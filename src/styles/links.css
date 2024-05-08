@@ -7,7 +7,7 @@ a {
 }
 
 a:where(:hover, :focus) {
-  color: hsl(var(--mullen__base), var(--dim));
+  color: var(--mullen-200);
   text-decoration: none;
 }
 
@@ -48,9 +48,9 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--mullen__base), var(--light));
-    background-color: hsl(var(--mullen__base), var(--dark));
-    border: 1px solid hsl(var(--mullen__base), var(--dull));
+    color: var(--mullen);
+    background-color: var(--mullen-300);
+    border: 1px solid var(--mullen-300);
   }
 }
 
@@ -64,9 +64,9 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--mullen__base), var(--light));
-    background-color: hsl(var(--mullen__base), var(--dark));
-    border: 1px solid hsl(var(--mullen__base), var(--dull));
+    color: var(--mullen);
+    background-color: var(--mullen);
+    border: 1px solid var(--mullen-300);
   }
 }
 
@@ -76,11 +76,11 @@ a svg {
 }
 
 a svg:where(:hover, :focus) {
-  fill: hsl(var(--mullen__base), var(--dull));
+  fill: var(--mullen-300);
 }
 
 a:hover svg:not(.instagram) {
-  fill: hsl(var(--mullen__base), var(--dull));
+  fill: var(--mullen-300);
 }
 
 /*------------------*/
@@ -99,7 +99,7 @@ footer {
     border-color: var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--ink__h), 50%, 5%);
+      background-color: var(--ink-300);
       border-color: black;
     }
   }
@@ -109,7 +109,7 @@ footer {
     box-shadow: var(--umbra);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--ink__h), 50%, 5%);
+      background-color: var(--ink-300);
       border-color: black;
     }
   }

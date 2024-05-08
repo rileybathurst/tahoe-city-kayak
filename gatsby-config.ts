@@ -6,19 +6,24 @@ const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
-    "tour",
-    "retail",
-    "faq",
-    "testimonial",
-    "brand",
-    "imagegrab",
     "attribute",
-    "rental-rate",
+    "brand",
     "event",
+    "faq",
+    "imagegrab",
+    "job",
+    "locale",
+    "location",
+    "rental-addon",
+    "rental-rate",
+    "retail",
+    "testimonial",
+    "tour",
   ],
   singleTypes: [
     "topbar",
     "about",
+    "rental",
     "experience",
     "shop", // TODO: update the links
   ],
@@ -33,6 +38,8 @@ module.exports = {
     title: "Tahoe City Kayak and Padddleboard",
     siteUrl: "https://tahoecitykayak.com/", // TODO DO I need both
     url: "https://tahoecitykayak.com", // No trailing slash allowed!
+
+    // TODO: a bunch of this should be in the strapi
     description:
       "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
     defaultDescription:

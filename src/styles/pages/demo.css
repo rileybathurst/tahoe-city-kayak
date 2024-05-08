@@ -13,11 +13,12 @@
     box-shadow: 0 0 0 100vmax var(--ink);
   }
 
+  /* ? color and varaible? */
   .card {
     background-color: whitesmoke;
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--ink__h), 50%, 5%);
+      background-color: var(--ink-300);
     }
   }
 

@@ -87,7 +87,7 @@
 }
 
 .reseason:where(:hover, :focus) {
-  background-color: hsl(var(--mullen__base), var(--dim));
+  background-color: var(--mullen-200);
 }
 
 /* closer arrow */

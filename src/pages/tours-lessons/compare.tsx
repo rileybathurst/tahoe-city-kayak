@@ -47,7 +47,7 @@ function Compare(props) {
         setStart1(element.start);
         setFinish1(element.finish);
         setFitness1(element.fitness);
-        setLocation1(element.location);
+        setLocation1(element.locale.name);
         setExcerpt1(element.excerpt);
         setMinimum1(element.minimum);
         setPrice1(element.price);
@@ -66,7 +66,7 @@ function Compare(props) {
         setStart2(element.start);
         setFinish2(element.finish);
         setFitness2(element.fitness);
-        setLocation2(element.location);
+        setLocation2(element.locale.name);
         setExcerpt2(element.excerpt);
         setMinimum2(element.minimum);
         setPrice2(element.price);
@@ -115,92 +115,110 @@ function Compare(props) {
   return (
     <>
       <div className='comparesheet'>
-        <div className='comparesheet_titles subgrid-passthrough'>
+        <div className='comparesheet_titles'>
 
-          <div className='grid__title--select comparesheet__transparent'>{/* stay gold */}</div>
-          <h3 className='grid__title--name h4 comparesheet_freeze'>Tour or<br />
-            Lesson</h3>
-          <p className='grid__title--sport'>Sport</p>
-          <p className='grid__title--time'>Time</p>
-          <p className='grid__title--fitness'>Fitness</p>
-          <p className='grid__title--location'>Location</p>
-          <p className='grid__title--about'>About</p>
-          <p className='grid__title--minimum'>Minimum People</p>
-          <p className='grid__title--price'>Price</p>
-          <p className='grid__title--book button-drop'>Book Now</p>
+          <div className='comparesheet__transparent'>Compare</div>
+          <h3 className='kilimanjaro comparesheet_freeze'>
+            Tour or<br />Lesson
+          </h3>
+          <p>Sport</p>
+          <p>Time</p>
+          <p>Fitness</p>
+          <p>Location</p>
+          <p>About</p>
+          <p>Minimum People</p>
+          <p>Price</p>
+          <p className='button-drop'>Book Now</p>
         </div>
 
         {/* Tour 1 */}
-        <div className='subgrid-passthrough'>
-          {/* // ? why tour3? */}
-          <select name="tour3" id="tour1" onChange={first} className="grid__one--select comparesheet_select">
+        <section>
+          <select
+            name="tour1"
+            id="tour1"
+            onChange={first}
+            className="comparesheet_select"
+          >
             {props.tours.map((tour) => (
-              <Option key={tour.id} name={tour.name} current={tour1} other={tour2} />
+              <Option
+                key={tour.id}
+                name={tour.name}
+                current={tour1}
+                other={tour2} />
             ))}
           </select>
-          <h2 className='grid__one--name h3 comparesheet__title1'>
-
+          <h2 className='kilimanjaro'>
             <Link to={`/tours-lessons/${link1}`}>
               {tour1}
             </Link>
           </h2>
           <Details1 show={tour1} set={props.tours} />
-          <h4 className='grid__one--sport capitalize'>{sport1}</h4>
-          <div className='grid__one--time'>
-            <Time
-              duration={duration1}
-              start={start1}
-              finish={finish1}
-            />
-          </div>
-          <p className='grid__one--fitness capitalize'>{fitness1}
+          <h4 className='capitalize'>{sport1}</h4>
+          <Time
+            duration={duration1}
+            start={start1}
+            finish={finish1}
+          />
+          <p className='capitalize'>{fitness1}
             <span className='show-below__vulture'>&nbsp;fitness</span>
           </p>
-          <p className='grid__one--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
-          <p className='grid__one--about'>{excerpt1}</p>
-          <p className='grid__one--minimum'>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
-          <p className='grid__one--price'>${price1}</p>
-          <p className='grid__one--book'><a href={peeks1}
-            rel="noopener noreferrer"
-            className="book-now"
-          >
-            BOOK NOW
-          </a></p>
-
-        </div>
+          <p><span className='show-below__vulture'>Starts at&nbsp;</span>{location1}</p>
+          <p>{excerpt1}</p>
+          <p>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
+          <p>${price1}</p>
+          <p>
+            <a href={peeks1}
+              rel="noopener noreferrer"
+              className="book-now"
+            >
+              BOOK NOW
+            </a>
+          </p>
+        </section>
 
         {/* Tour 2 */}
-        <div className='subgrid-passthrough'>
-          <select name="tour3" id="tour2" onChange={second} className="grid__two--select comparesheet_select">
+        <section>
+          <select
+            name="tour2"
+            id="tour2"
+            onChange={second}
+            className="comparesheet_select"
+          >
             {props.tours.map((tour) => (
-              <Option key={tour.id} name={tour.name} current={tour2} other={tour1} />
+              <Option
+                key={tour.id}
+                name={tour.name}
+                current={tour2}
+                other={tour1}
+              />
             ))}
           </select>
-          <h2 className='grid__two--name h3 comparesheet__title2'>
+          <h2 className='kilimanjaro'>
             <Link to={`/tours-lessons/${link2}`}>
               {tour2}
-            </Link></h2>
+            </Link>
+          </h2>
           <Details2 show={tour2} set={props.tours} />
-          <h4 className='grid__two--sport capitalize'>{sport2}</h4>
-          <div className='grid__two--time'>
-            <Time
-              duration={duration2}
-              start={start2}
-              finish={finish2}
-            />
-          </div>
-          <p className='grid__two--fitness capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
-          <p className='grid__two--location'><span className='show-below__vulture'>Starts at&nbsp;</span>Tahoe City</p>
-          <p className='grid__two--about'>{excerpt2}</p>
-          <p className='grid__two--minimum'>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
-          <p className='grid__two--price'>${price2}</p>
-          <p className='grid__two--book'><a href={peeks2}
-            rel="noopener noreferrer"
-            className="book-now"
-          >
-            BOOK NOW
-          </a></p>
-        </div>
+          <h4 className='capitalize'>{sport2}</h4>
+          <Time
+            duration={duration2}
+            start={start2}
+            finish={finish2}
+          />
+          <p className='capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
+          <p><span className='show-below__vulture'>Starts at&nbsp;</span>{location2}</p>
+          <p>{excerpt2}</p>
+          <p>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
+          <p>${price2}</p>
+          <p>
+            <a href={peeks2}
+              rel="noopener noreferrer"
+              className="book-now"
+            >
+              BOOK NOW
+            </a>
+          </p>
+        </section>
       </div >
     </>
   )
@@ -210,7 +228,10 @@ const ComparePage = () => {
 
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
-      allStrapiTour(sort: {featured: ASC},) {
+      allStrapiTour(
+        filter: {locale: {slug: {eq: "tahoe-city"}}}
+        sort: {featured: ASC}
+      ) {
         nodes {
           id
           fitness
@@ -224,6 +245,10 @@ const ComparePage = () => {
           finish
           excerpt
           duration
+
+          locale {
+            name
+          }
         }
     }
   }

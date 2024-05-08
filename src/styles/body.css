@@ -5,7 +5,7 @@ body {
   color: var(--black-metal);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 50%, 5%);
+    background-color: var(--ink-300);
     color: var(--kingly-cloud);
   }
 }

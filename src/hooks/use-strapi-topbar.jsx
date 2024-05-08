@@ -6,7 +6,9 @@ export const useStrapiTopBar = () => {
     query {
       strapiLocale(slug: { eq: "tahoe-city" }) {
         topbar {
-          data
+          data {
+            topbar
+          }
         }
       }
     }

@@ -1,17 +1,15 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import Header from "../components/header"
 import Footer from "../components/footer"
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
 import Sport from "../components/sport";
-import MapIconSVG from "../images/map-icon";
-import KayakIcon from "../images/kayak";
-import MapLink from "../components/map-link";
 import Composition from "../components/composition";
 import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
+import LocationCard from "../components/location-card";
 
 function ReactMD(props: { raw: string; }) {
   return (
@@ -22,6 +20,7 @@ function ReactMD(props: { raw: string; }) {
   );
 }
 
+// TODO: fix the props
 function Spec(props: {
   name: string;
   spec: string;
@@ -84,7 +83,7 @@ function Minimum(props: { minimum: number; }) {
 }
 
 function TourName(props: { tour: string; }) {
-  {/* // * this will hopefully get replace with css text-wrap: balance */ }
+  {/* // * waiting on safari for css text-wrap: balance */ }
   let name = props.tour;
   // console.log(name.length);
   if (name.length > 20) {
@@ -103,10 +102,26 @@ function TourName(props: { tour: string; }) {
 
 const TourView = ({ tour, other }) => {
 
+  const { strapiLocation } = useStaticQuery(graphql`
+    query TourViewQuery {
+      strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "On Water Rental"}
+      ) {
+        ...locationCard
+
+        locale {
+          name
+        }
+      }
+    }
+  `);
+
   return (
     <>
       <Header />
 
+      {/* // TODO: names */}
       <main className="main__full main__full--tour">
         <div>
           <h1><TourName tour={tour.name} /></h1>
@@ -134,8 +149,12 @@ const TourView = ({ tour, other }) => {
 
           <div className="spec">
             <h2>Starts At</h2>
-            {/* // TODO I dont have this querying its just hard coded and is like this multiple places */}
-            <MapLink><h3>Tahoe City</h3></MapLink>
+            <a
+              href={strapiLocation.link}
+              target='_blank' rel='noopener noreferrer'
+            >
+              <h3>{strapiLocation.locale.name}</h3>
+            </a>
           </div>
 
           <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
@@ -153,27 +172,7 @@ const TourView = ({ tour, other }) => {
 
           <hr />
 
-          {/* // TODO: why are these not variables? */}
-          <div className="here__location here__card card--split">
-            <MapLink>
-              <KayakIcon />
-              <p>
-                <strong>Tour Start Location</strong><br />
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </p>
-            </MapLink>
-            <Link to="/map">
-              <MapIconSVG />
-              <p>
-                View The Map<br />
-                For The Store,<br />
-                Tours, Rentals, Parking<br />
-                and Directions
-              </p>
-            </Link>
-          </div>
+          <LocationCard location={strapiLocation} />
         </section>
 
       </main>
@@ -190,7 +189,7 @@ const TourView = ({ tour, other }) => {
 
       <div className="single__other">
         <h3>Other Tours &amp; Lessons</h3>
-        <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
+        <h4><Link to={`/ tours - lessons / compare /? ${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
 
         {/* // TODO: other card */}
         <section className="deck">
@@ -211,7 +210,7 @@ const TourView = ({ tour, other }) => {
       >
         <ol>
           <li>
-            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+            <Link to={`/ tours - lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">{tour.name}</li>
         </ol>

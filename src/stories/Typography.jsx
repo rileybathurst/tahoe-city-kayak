@@ -1,29 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export const Typography = ({ primary }) => {
-  const mode = primary ? 'storybook-Typography--primary' : 'storybook-Typography--secondary';
+  const mode = primary
+    ? "storybook-Typography--primary"
+    : "storybook-Typography--secondary";
   return (
     <>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
-      <p>Paragraph</p>
+      <h1>everest</h1>
+      <h2>aconcagua</h2>
+      <h3>denali</h3>
+      <h4>kilimanjaro</h4>
+      <h5>elbrus</h5>
+      <h6>vinson</h6>
+      <p>kosciuszko</p>
 
-      <p className='typography__secondary'>
-      typography__secondary
-      </p>
+      <hr />
+
+      {/* // TODO: fix this naming */}
+      <p className="typography__secondary">typography__secondary</p>
+
+      <hr />
 
       <hgroup class="crest">
-                  {/* // TODO: only one h and then p */}
+        {/* // TODO: only one h and then p */}
 
-        <h3 class="brow">Brow</h3>
+        <p class="brow">Brow</p>
         <h3 class="supra">Supra</h3>
       </hgroup>
-      <p>These can be any version of h to be a well styled html doc as long as they have the hgroup wrapper with a class of crest</p>
+      <p>
+        These can be any version of h to be a well styled html doc as long as
+        they have the hgroup wrapper with a class of crest
+      </p>
     </>
   );
 };

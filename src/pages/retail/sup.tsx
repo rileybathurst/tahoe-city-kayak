@@ -7,7 +7,7 @@ import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import SupBrandList from "../../components/sup-brand-list";
-import Store from "../../components/locations/store";
+import LocationCard from "../../components/location-card";
 import Shop from "../../content/shop";
 import PaddleboardFeatureList from "../../components/paddleboard-feature-list";
 import Brand from "../../components/brand";
@@ -148,9 +148,7 @@ const RetailSupPage = () => {
             <h1>{title}</h1>
             <Shop />
           </div>
-          <div className="location_card">
-            <Store />
-          </div>
+          <LocationCard location={query.strapiLocation} />
         </div>
 
         <h2>Browse By Feature</h2>

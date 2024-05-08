@@ -20,11 +20,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--heading_font); /* Google font */
   margin-block-start: 0; /* reset */
 }
 
-h1 {
+h1,
+.everest {
+  font-family: var(--heading_font); /* Google font */
   margin-top: 0; /* browser reset */
   font-size: 3rem; /* 48px */
   line-height: 3.75rem; /* 60px */
@@ -37,6 +38,7 @@ h1 {
 h2,
 .aconcagua,
 .supra {
+  font-family: var(--heading_font); /* Google font */
   font-size: 2.5rem; /* 40px */
   line-height: 3rem; /* 48px */
   margin-block-end: 2rem; /* 32px */
@@ -50,7 +52,9 @@ h2,
 
 h3,
 /* TODO: this should be the font mountains */
-.h3 {
+.h3,
+.elbrus {
+  font-family: var(--body_font);
   font-size: 2rem; /* 32px */
   line-height: 2.5rem; /* 40px */
   margin-bottom: 1.875rem; /* 30px */
@@ -65,6 +69,7 @@ h4,
 .brow,
 .page-title,
 .spec h2 {
+  font-family: var(--body_font);
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
   margin-bottom: 1.75rem; /* 28px */
@@ -74,6 +79,7 @@ h4,
 }
 
 h5 {
+  font-family: var(--body_font);
   font-size: 1.25rem; /* 20px */
   line-height: 1.875rem; /* 30px */
   margin-bottom: 0.625rem; /* 10px */
@@ -83,6 +89,7 @@ h5 {
 }
 
 h6 {
+  font-family: var(--body_font);
   font-size: 1rem; /* 16px */
   line-height: 1.25rem; /* 20px this becomes the vertical rythym */
   margin-bottom: 0.625rem; /* 10px skips some of the lines */
@@ -122,9 +129,8 @@ hr {
   border: none; /* reset */
   border-bottom: 1px solid var(--kingly-cloud);
 
-  /* default useage on hsl(var(--ink__h), 50%, 5%); */
   @media (prefers-color-scheme: dark) {
-    border-bottom: 1px solid var(--black-out);
+    border-color: var(--black-out);
   }
 }
 
@@ -181,12 +187,13 @@ hgroup {
 
 /*------------------*/
 /* #DEL */
+/* this wont show up on search its from markdown */
 /*------------------*/
 
 del {
-  color: hsl(var(--sand__base), var(--dim));
+  color: var(--sand-300);
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--sand__base), var(--dark));
+    color: var(--sand-300);
   }
 }
 

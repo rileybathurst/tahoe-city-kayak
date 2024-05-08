@@ -6,7 +6,7 @@
   max-width: var(--pelican);
   margin-inline: auto;
   /* margin-block: 3rem; */
-  margin-block-end: calc(var(--baseline) * 2);
+  margin-block-end: var(--aconcagua);
 
   display: grid;
   grid-template-columns: 1fr;
@@ -35,8 +35,7 @@
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--ink);
-      border-color: hsl(var(--ink__h), 50%, var(--dull)); /* 1.75 contrast */
-      /* border-color: hsl(var(--ink__h), 50%, var(--dark)); 1.13 contrast too slim */
+      border-color: var(--ink-100); /* 1.75 contrast */
     }
 
     .card__placeholder {
@@ -135,7 +134,7 @@
       }
 
       button:where(:hover, :focus) {
-        background-color: hsl(var(--mullen__base), var(--dim));
+        background-color: var(--mullen-200);
         color: var(--kingly-cloud);
       } /* .button */
     }
@@ -190,7 +189,7 @@
 
     /* TODO: I dont like this its too subtle */
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--ink__h), 50%, 5%);
+      background-color: var(--ink-300);
     }
   }
 }
@@ -277,7 +276,7 @@
   font-weight: 600;
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--mullen__base), var(--dim));
+    background-color: var(--mullen-200);
   }
 
   a {

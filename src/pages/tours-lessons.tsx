@@ -13,6 +13,7 @@ import MapIconSVG from "../images/map-icon";
 import MapLink from "../components/map-link";
 import KayakIcon from "../images/kayak";
 import Sport from "../components/sport";
+import LocationDeck from "../components/location-deck";
 
 function Nested(props: { sport: string }) {
   if (props.sport) {
@@ -41,24 +42,38 @@ const ToursLessonsPage = () => {
         sort: {featured: ASC}
       )
       {
-      nodes {
-        ...tourCard
+        nodes {
+          ...tourCard
+        }
+      }
+  
+      sup: allStrapiTour
+        (
+          filter: { 
+            sport: { eq: "sup" },
+            locale: { slug: {eq: "tahoe-city"}}
+          }
+          sort: {featured: ASC})
+        {
+          nodes {
+            ...tourCard
+          }
+        }
+
+        allStrapiLocation: allStrapiLocation(
+          filter: {
+            name: {in: ["On Water Rental", "Free Parking Lot"]}
+            locale: {slug: {eq: "tahoe-city"}}
+          }
+        ) {
+          nodes {
+            ...locationCard
+          }
+        }
+
 
       }
-  }
-  
-  sup: allStrapiTour
-    (filter: { 
-      sport: { eq: "sup" },
-      locale: { slug: {eq: "tahoe-city"}}
-      } sort: {featured: ASC})
-    {
-      nodes {
-        ...tourCard
-      }
-    }
-}
-`)
+    `)
 
   let kayak = query.kayak;
   let paddleboard = query.sup;
@@ -82,26 +97,11 @@ const ToursLessonsPage = () => {
             <hr />
           </div>
 
-          <div className="here__location here__card">
-            <MapLink>
-              <KayakIcon />
-              <p>
-                <strong>Tour Start Location</strong><br />
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </p>
-            </MapLink>
-            <Link to="/map">
-              <MapIconSVG />
-              <p>
-                View The Map<br />
-                For The Store,<br />
-                Tours, Rentals, Parking<br />
-                and Directions
-              </p>
-            </Link>
-          </div>
+          <LocationDeck
+            locations={query.allStrapiLocation}
+            background={false}
+          />
+
         </div>
       </main>
 

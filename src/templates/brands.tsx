@@ -9,11 +9,10 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Store from "../components/locations/store";
+import LocationCard from "../components/location-card";
 import Card from "../components/card";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
-// ! pretty sure this can be inlined
 function Series(props: {
   retail: {
     id: any;
@@ -94,6 +93,7 @@ function Breadcrumbs(props: {
 }
 
 // 🍞 breadcrumbs are a little different
+// TODO: Toast is a specific thing rename this
 function Toast(props: {
   butter: string;
   brand: string;
@@ -118,6 +118,19 @@ function Toast(props: {
 }
 
 const BrandsView = ({ location, data }) => {
+
+  const { strapiLocation } = useStaticQuery(graphql`
+    query BrandsQuery {
+      strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "Retail Location"}
+      ) {
+        ...locationCard
+      }
+
+    }
+  `)
+
 
   let series = [
     data.island,
@@ -159,9 +172,7 @@ const BrandsView = ({ location, data }) => {
 
         {/* // * the wrapper is for the background color */}
         {/* // TODO: hover the whole card and give it a shadow when we do */}
-        <div className="location_card">
-          <Store />
-        </div>
+        <LocationCard location={strapiLocation} />
 
       </main>
 

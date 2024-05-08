@@ -24,6 +24,10 @@
   align-self: start;
 }
 
+.margin-block-end-aconcagua {
+  margin-block-end: var(--aconcagua);
+}
+
 /*------------------*/
 /* #DEFAULTS */
 /*------------------*/
@@ -150,9 +154,10 @@ main {
   background-color: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
 
+  /* ! nope */
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--sand__base), 5%);
-    box-shadow: 0 0 0 100vmax hsl(var(--sand__base), 5%);
+    background-color: var(--sand-300);
+    box-shadow: 0 0 0 100vmax var(--sand-300);
   }
 }
 
@@ -168,15 +173,15 @@ main {
 .single__book {
   max-width: var(--stork);
   margin-inline: auto;
-  margin-block-end: calc(var(--baseline) * 2);
+  margin-block-end: var(--aconcagua);
   padding-block: 1.5rem;
   clip-path: inset(0 -100vmax);
-  background-color: hsl(var(--sand__base), var(--bright));
-  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
+  background-color: var(--sand-200);
+  box-shadow: 0 0 0 100vmax var(--sand-200);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 100%, 7.5%);
-    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, 7.5%);
+    background-color: var(--ink-200);
+    box-shadow: 0 0 0 100vmax var(--ink-200);
   }
 
   > * {
@@ -190,13 +195,10 @@ main {
 
   /* needs specificity */
   a:where(:hover, :focus) {
-    background-color: hsl(
-      var(--mullen__base),
-      var(--dim)
-    ) !important; /* TODO: document why this needs important */
-    color: var(
-      --kingly-cloud
-    ) !important; /* TODO: document why this needs important */
+    background-color: var(mullen-200) !important;
+    /* TODO: document why this needs important */
+    color: var(--kingly-cloud) !important;
+    /* TODO: document why this needs important */
   }
 }
 
@@ -498,27 +500,27 @@ footer {
 }
 
 /*------------------*/
-/* #MOVE THESE IF THEY WORK */
+/* #LOCATION */
 /*------------------*/
 
-/* this is the right name */
-.location_card-wrapper {
-  max-width: var(--stork); /* 40rem */
-  margin-inline: auto;
-  /* padding-inline: 1rem; */
+.location-stack {
+  margin-block-end: 1.5rem;
+}
+
+.location {
   display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  align-items: flex-start;
+  flex-flow: row;
+  gap: var(--elbrus);
+  padding: var(--elbrus);
+  border-radius: var(--card-radius);
 
   > * {
-    flex: 2 1 20rem;
+    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
   }
 
-  .here__card,
-  > .location_card {
-    /* TODO this is a bad name */
-    flex: 1 1 10rem;
+  > svg,
+  .svg {
+    flex: 1 1;
   }
 }
 
@@ -619,147 +621,14 @@ footer {
     grid-template-columns: auto 1fr 1fr;
   }
 
-  /* waiting on baseline */
-
-  @supports not (grid-template-rows: subgrid) {
-    grid-template-areas:
-      "grid__title--select grid__one--select grid__two--select"
-      "grid__title--name grid__one--name grid__two--name"
-      "grid__title--sport grid__one--sport grid__two--sport"
-      "grid__title--time grid__one--time grid__two--time"
-      "grid__title--fitness grid__one--fitness grid__two--fitness"
-      "grid__title--location grid__one--location grid__two--location"
-      "grid__title--about grid__one--about grid__two--about"
-      "grid__title--minimum grid__one--minimum grid__two--minimum"
-      "grid__title--price grid__one--price grid__two--price"
-      "grid__title--book grid__one--book grid__two--book";
-
-    .grid__title--select {
-      grid-area: grid__title--select;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--name {
-      grid-area: grid__title--name;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--sport {
-      grid-area: grid__title--sport;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--time {
-      grid-area: grid__title--time;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--fitness {
-      grid-area: grid__title--fitness;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--location {
-      grid-area: grid__title--location;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--about {
-      grid-area: grid__title--about;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--minimum {
-      grid-area: grid__title--minimum;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--price {
-      grid-area: grid__title--price;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-    .grid__title--book {
-      grid-area: grid__title--book;
-      @media (max-width: 30rem) {
-        display: none;
-      }
-    }
-
-    .grid__one--select {
-      grid-area: grid__one--select;
-    }
-    .grid__one--name {
-      grid-area: grid__one--name;
-    }
-    .grid__one--sport {
-      grid-area: grid__one--sport;
-    }
-    .grid__one--time {
-      grid-area: grid__one--time;
-    }
-    .grid__one--fitness {
-      grid-area: grid__one--fitness;
-    }
-    .grid__one--location {
-      grid-area: grid__one--location;
-    }
-    .grid__one--about {
-      grid-area: grid__one--about;
-    }
-    .grid__one--minimum {
-      grid-area: grid__one--minimum;
-    }
-    .grid__one--price {
-      grid-area: grid__one--price;
-    }
-    .grid__one--book {
-      grid-area: grid__one--book;
-    }
-
-    .grid__two--select {
-      grid-area: grid__two--select;
-    }
-    .grid__two--name {
-      grid-area: grid__two--name;
-    }
-    .grid__two--sport {
-      grid-area: grid__two--sport;
-    }
-    .grid__two--time {
-      grid-area: grid__two--time;
-    }
-    .grid__two--fitness {
-      grid-area: grid__two--fitness;
-    }
-    .grid__two--location {
-      grid-area: grid__two--location;
-    }
-    .grid__two--about {
-      grid-area: grid__two--about;
-    }
-    .grid__two--minimum {
-      grid-area: grid__two--minimum;
-    }
-    .grid__two--price {
-      grid-area: grid__two--price;
-    }
-    .grid__two--book {
-      grid-area: grid__two--book;
-    }
-
-    .subgrid-passthrough {
-      display: contents !important; /* overrides things that are needed when I have subgrid */
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-block-end: 0;
   }
 
   > * {
@@ -869,8 +738,7 @@ footer {
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
-    background-color: hsl(var(--ink__h), 50%, var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 50%, var(--dark));
+    box-shadow: 0 0 0 100vmax var(--ink);
   }
 
   p {

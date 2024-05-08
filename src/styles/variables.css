@@ -3,80 +3,46 @@
   /* #TAHOE CITY KAYAK */
   /*------------------*/
 
-  --mullen: hsl(0, 50%, 50%); /* #bf4040 */
-  --mullen__base: 0, 50%;
+  /*------------------------------------*/
+  /* #COLOR */
+  /*------------------------------------*/
 
-  /* whats used */
   /* --mullen */
-  /* hsl(var(--mullen__base), var(--glow)) */
-  /* hsl(var(--mullen__base), var(--dim)) */
-  /* hsl(var(--mullen__base), var(--dull)) */
-  /* hsl(var(--mullen__base), var(--dark)) */
+  --mullen: hsl(0, 50%, 50%); /* #bf4040 */
+  --mullen-100: hsl(0, 50%, 50%); /* base */
+  --mullen-200: hsl(0, 50%, 37.5%);
+  --mullen-300: hsl(0, 50%, 25%);
 
-  /* --sand */
-  /* hsl(var(--sand__base), var(--bright)) */
-  /* hsl(var(--sand__base), var(--dark)) */
-  /* hsl(var(--sand__base), var(--dim)) */
-  /* hsl(var(--sand__base), 5%) */
+  /* sand */
+  --sand: hsl(25, 37%, 95%);
+  --sand-100: hsl(25, 37%, 95%); /* base */
+  --sand-150: hsl(25, 37%, 92.5%);
+  --sand-200: hsl(25, 37%, 87.5%);
+  --sand-300: hsl(25, 37%, 75%);
 
-  /* --ink */
-  /* hsl(var(--ink__h), 50%, 5%) */
-  /* hsl(var(--ink__h), 100%, var(--dark)) */
-  /* hsl(var(--ink__h), 100%, 7.5%) */
-
-  /* hsl(25, 37%, 87.5%) */
-
-  --sand: hsl(
-    25,
-    37%,
-    95%
-  ); /* not a louie color because I dont want to hit 100 */
-  --sand__base: 25, 37%;
-
-  /* sand gets ugly in dark colors so Im going to a darker blue */
-  --ink: hsl(210, 50%, 7.5%); /* #0a131d */
-  --ink__h: 210;
+  /* ink */
+  --ink: hsl(210, 50%, 12.5%); /* base */
+  --ink-100: hsl(210, 50%, 12.5%);
+  --ink-200: hsl(210, 50%, 7.5%);
+  --ink-300: hsl(210, 50%, 5%);
 
   /*------------------------------------*/
   /* #SOUTH TAHOE KAYAK */
   /*------------------------------------*/
   /* needed for storybook */
 
-  --navy: oklch(55% 0.14 230);
-
-  --navy-bright: oklch(87.5% 0.09 230);
-  --navy-light: oklch(75% 0.12 230);
-  --navy-glow: oklch(62.5% 0.14 230);
-
-  --navy-dim: oklch(37.5% 0.14 230);
-  --navy-dull: oklch(25% 0.12 230);
-  /* --navy-dark: oklch(12.5% 0.14 230); */
-
-  /* TODO: probably get rid of these */
-  --navy-c: 0.14;
-  --navy-h: 230;
-
-  /* oklch(75% var(--navy-c) var(--navy-h)) */
-  /* oklch(62.5% var(--navy-c) var(--navy-h)) */
-  /* oklch(12.5% var(--navy-c) var(--navy-h)) */
-  /* oklch(2.5% var(--navy-c) var(--navy-h)) */
-
-  /* oklch(97.5% 0.025 95) */
-
-  /*------------------------------------*/
-
-  --sunshine: oklch(88% 0.2 95);
-  --sunshine-brilliant: oklch(97.5% 0.2 95);
-  --sunshine-bright: oklch(88% 0.2 95);
-  --sunshine-light: oklch(75% 0.2 95);
-  --sunshine-glow: oklch(62.5% 0.2 95);
-
-  /*------------------------------------*/
+  --navy-200: oklch(75% 0.12 230);
+  --navy-300: oklch(62.5% 0.14 230);
+  --navy-400: oklch(50% 0.14 230); /* base */
+  --navy: oklch(50% 0.14 230);
+  --navy-500: oklch(37.5% 0.14 230);
+  --navy-600: oklch(25% 0.12 230);
 
   --sunshine-100: oklch(97.5% 0.025 95);
   --sunshine-200: oklch(95% 0.05 95);
   --sunshine-300: oklch(92.5% 0.1 95);
   --sunshine-400: oklch(90% 0.15 95);
+  --sunshine-500: oklch(87.5% 0.2 95); /* base */
   --sunshine: oklch(87.5% 0.2 95);
 
   /*------------------------------------*/
@@ -84,7 +50,7 @@
   --card-radius: 0.25rem;
 
   /*------------------*/
-  /* #DEFAULTS */
+  /* #NEUTRALS */
   /*------------------*/
 
   /* louie variables */
@@ -99,15 +65,15 @@
   --brilliant: 97.5%;
 
   /* louie neutrals */
-  --black-metal: hsl(0, 0%, 2.5%);
-  --black-out: hsl(0, 0%, 12.5%);
-  --raven-black: hsl(0, 0%, 25%);
-  --industrial-revolution: hsl(0, 0%, 37.5%);
-  /* grey */
-  --cold-grey: hsl(0, 0%, 62.5%);
-  --tin-soldier: hsl(0, 0%, 75%);
-  --kingly-cloud: hsl(0, 0%, 87.5%);
-  --brilliance: hsl(0, 0%, 97.5%);
+  --black-metal: hsl(210, 25%, 2.5%);
+  --black-out: hsl(210, 25%, 12.5%);
+  --raven-black: hsl(210, 12.5%, 25%);
+  --industrial-revolution: hsl(210, 7.5%, 37.5%);
+  --grey: hsl(210, 7.5%, 50%);
+  --cold-grey: hsl(210, 7.5%, 62.5%);
+  --tin-soldier: hsl(210, 12.5%, 75%);
+  --kingly-cloud: hsl(210, 18.75%, 87.5%);
+  --brilliance: hsl(210, 25%, 97.5%);
 
   /*------------------*/
   /* #TYPOGRAPHY */
@@ -118,14 +84,13 @@
 
   --baseline: 1.25rem; /* 20px */
 
-  /* 🏔 Mountain Names as Font Sizing Defaults */
-  /* (Highest by Continent) */
+  /* 🏔 7 Summits */
   --everest: 3rem; /* 29,035ft Asia */
   --aconcagua: 2.5rem; /* 22,840ft South America */
   --denali: 2rem; /* 20,320ft North America */
   --kilimanjaro: 1.5rem; /* 19,340ft Africa */
-  --elbrus: 1.25rem; /* 18,510ft Europe / Russia */
-  --vinson_massif: 1rem; /* 16,050ft Antartica */
+  --elbrus: 1.25rem; /* 18,510ft Europe / Russia */ /* * baseline */
+  --vinson: 1rem; /* 16,050ft Antartica */
   --kosciuszko: 0.75rem; /* 7,310ft Australia */
 
   /*------------------*/

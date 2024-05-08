@@ -4,19 +4,19 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-import KayakIcon from "../images/kayak";
-import MapLink from "../components/map-link";
-import CarIcon from "../images/car";
 import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
-import PricingChart from "../components/pricing-chart";
+import LocationDeck from "../components/location-deck";
 
 const RentalsPage = () => {
 
-  const { allStrapiRentalRate } = useStaticQuery(graphql`
-  query RentalRateQuery {
+  const data = useStaticQuery(graphql`
+  query RentalsQuery {
     allStrapiRentalRate(sort: {order: ASC}) {
       nodes {
         id
@@ -24,11 +24,37 @@ const RentalsPage = () => {
         item
         threeHour
         fullDay
-        retail {
-          slug
-        }
       }
     }
+
+    allStrapiRentalAddon {
+      nodes {
+        name
+        single
+        double
+        sup
+      }
+    }
+
+    allStrapiLocation(
+      filter: {
+        name: {in: ["On Water Rental", "Free Parking Lot"]}
+        locale: {slug: {eq: "tahoe-city"}}
+      }
+  ) {
+    nodes {
+      ...locationCard
+    }
+  }
+
+  strapiRental {
+    text {
+      data {
+        text
+      }
+    }
+  }
+
   }
 `)
 
@@ -38,19 +64,20 @@ const RentalsPage = () => {
       {/* // TODO check if this is just progression now */}
       <main className="rentals">
         <article className="info">
-          {/* classes relate to grid area */}
+
           <h1>Rentals</h1>
-          <h2>Season: May &ndash; October</h2>
-          <p>
-            Open Daily<br />
-            9:30am &ndash; 5:30pm<br />
-            Weather Permitting
-          </p>
 
-          <p>Enjoy the majesty of Lake Tahoe while kayaking in one of our kayak and standup paddleboard rentals.</p>
-          <p>You could also have your rental kayak or paddleboard delivered to a Tahoe destination of your choosing</p>
+          <LocationDeck
+            locations={data.allStrapiLocation}
+            background={false}
+          />
 
-          <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p>
+          <ReactMarkdown
+            children={data.strapiRental.text.data.text}
+            remarkPlugins={[remarkGfm]}
+          />
+
+          {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
 
           {/* // TODO should this be a dropdown? */}
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
@@ -59,59 +86,48 @@ const RentalsPage = () => {
 
         <Composition />
 
-        <div className="rates">
-          <div className="specialty_rentals rental-chart">
-            <div className="row row-header">
-              <h4><span>Rental</span> <span>Rates</span></h4>
-              <p>1 Hour</p>
-              <p><span>3 Hours</span></p>
-              <p><span>Full Day</span></p>
-            </div>
-            {allStrapiRentalRate.nodes.map((rate: {
-              id: React.Key;
-              item: string;
-              oneHour: number;
-              threeHour: number;
-              fullDay: number;
-            }) => (
-              <div key={rate.id} className="row">
-                <h4>{rate.item}</h4>
-                <p>{rate.oneHour}</p>
-                <p>{rate.threeHour}</p>
-                <p>{rate.fullDay}</p>
+        <div className="charts">
+          <div className="rates">
+            <div className="specialty_rentals rental-chart">
+              <div className="row row-header">
+                <h4><span>Rental</span> <span>Rates</span></h4>
+                <p>1 Hour</p>
+                <p><span>3 Hours</span></p>
+                <p><span>Full Day</span></p>
               </div>
-            ))}
-          </div>
-          <BookNow />
-        </div>
+              {data.allStrapiRentalRate.nodes.map((rate: {
+                id: React.Key;
+                item: string;
+                oneHour: number;
+                threeHour: number;
+                fullDay: number;
+              }) => (
+                <div key={rate.id} className="row">
+                  <h4>{rate.item}</h4>
+                  <p>{rate.oneHour}</p>
+                  <p>{rate.threeHour}</p>
+                  <p>{rate.fullDay}</p>
+                </div>
+              ))}
+            </div>
 
-        {/* // TODO move this to the component or document why its not */}
-        <div className="here__location here__card align-self-start">
-          <section className="location">
-            <MapLink>
-              <KayakIcon />
-            </MapLink>
-            <p>
-              <strong>On Water Rental</strong><br />
-              <MapLink>
-                Commons Beach<br />
-                400 North Lake Blvd,<br />
-                Tahoe City 96145<br />
-              </MapLink>
-            </p>
-          </section>
-          <section className="location">
-            {/* // TODO: make this a variable */}
-            <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">
-              <CarIcon />
-            </a>
-            <p><strong>Free Parking Lot</strong><br />
-              {/* // TODO: make this a variable */}
-              <a href="https://goo.gl/maps/KKnWemDFuiYUHsrn7" rel="noopener noreferrer">Commons Beach Rd<br />
-                Tahoe City 96145
-              </a>
-            </p>
-          </section>
+            <hr />
+
+            <h3>Additional Rates</h3>
+            {data.allStrapiRentalAddon.nodes.map((addon) => (
+              <>
+                <hr />
+                <h4>{addon.name}</h4>
+                <p><strong>Single</strong> +${addon.single}</p>
+                <p><strong>Double</strong> +${addon.double}</p>
+                <p><strong>Paddle Board</strong> +{addon.sup}</p>
+                <hr />
+              </>
+            ))}
+
+          </div>
+
+          <BookNow />
         </div>
 
       </main >

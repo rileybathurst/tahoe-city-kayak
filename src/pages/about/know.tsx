@@ -416,7 +416,7 @@ const KnowPage = () => {
 
             <hr />
 
-            <h4>Tandem Kayaking &ndash; Its about communication!</h4>
+            <h4>Double Kayaking &ndash; Its about communication!</h4>
             <ul>
               <li>Try to paddle at the same time, and on the same side!</li>
               <li>
@@ -471,8 +471,8 @@ const KnowPage = () => {
           </article>
 
 
-          <article id="tandem">
-            <h3>Is it best to go in a two-person (tandem) kayak?</h3>
+          <article id="double">
+            <h3>Is it best to go in a double kayak?</h3>
             <p>There are pros and cons.</p>
             <ul>
               <li>The advantage of tandem kayaking is having two motors (people) on board. If there is a significantly weaker paddler, then this can be the way to go.</li>

@@ -16,7 +16,7 @@ import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
-import Complete from '../components/locations/complete';
+import LocationDeck from "../components/location-deck";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
@@ -25,10 +25,18 @@ import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
-  console.log(useStrapiTopBar());
-
   const data = useStaticQuery(graphql`
     query IndexQuery {
+      allStrapiLocation(
+        filter: {
+          locale: {slug: {eq: "tahoe-city"}}
+        }
+      ) {
+        nodes {
+          ...locationCard
+        }
+      }
+
       allStrapiTour(
         sort: {featured: ASC},
         filter: {location: {eq: "tahoe city"}}
@@ -121,9 +129,14 @@ const IndexPage = () => {
             North Lake Tahoe&apos;s Premier Kayak and Paddleboard Provider, offering Rentals, Sales, Lessons and Tours
           </h2>
 
-          <AboutUs />
+          <div className="margin-block-end-aconcagua">
+            <AboutUs />
+          </div>
 
-          <Complete />
+          <LocationDeck
+            locations={data.allStrapiLocation}
+            background={false}
+          />
 
           <div className="button__double">
             <BookRental />

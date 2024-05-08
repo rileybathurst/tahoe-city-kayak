@@ -1,3 +1,5 @@
+// TODO: I can be smart enough to combine this with sup
+
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 import { SEO } from "../../components/seo";
@@ -7,16 +9,11 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
-import Store from "../../components/locations/store";
+import LocationCard from "../../components/location-card";
 import Shop from "../../content/shop";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
-
-function Console(log) {
-  console.log(log);
-  return null;
-}
 
 const RetailKayakPage = (data: any) => {
   const query = useStaticQuery(graphql`
@@ -131,6 +128,14 @@ const RetailKayakPage = (data: any) => {
           }
         }
       }
+
+      strapiLocation: strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "Retail Location"}
+      ) {
+        ...locationCard
+      }
+
     }
   `)
 
@@ -167,9 +172,7 @@ const RetailKayakPage = (data: any) => {
             <Shop />
           </div>
 
-          <div className="location_card">
-            <Store />
-          </div>
+          <LocationCard location={query.strapiLocation} />
         </div>
 
         <h2>Browse By Feature</h2>

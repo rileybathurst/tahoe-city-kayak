@@ -9,35 +9,23 @@ import TourView from "../../views/tour-view"
 export const query = graphql`
   query TourQuery($slug: String!) {
     strapiTour(slug: { eq: $slug }) {
-      id
-      name
+      ...tourCard
+      
+      minimum
       information {
         data {
           information
         }
       }
-      start
-      finish
-      duration
-      minimum
-      fitness
-      peek
-      sport
-      excerpt
-      price
-      slug
-
-      ogimage {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
     }
 
-    allStrapiTour(filter: {slug: {nin: [$slug] }}, sort: {featured: ASC},) {
+    allStrapiTour(
+      filter: {
+        slug: {ne: $slug },
+        locale: {slug: {eq: "tahoe-city"}}
+      },
+      sort: {featured: ASC}
+      ) {
       nodes {
         ...tourCard
       }

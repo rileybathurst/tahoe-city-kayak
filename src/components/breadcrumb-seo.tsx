@@ -1,4 +1,5 @@
 // ! this isnt used am I still working on it or skipping it?
+// ! atleast combine them all into one file
 
 import * as React from "react"
 import { Script } from 'gatsby'

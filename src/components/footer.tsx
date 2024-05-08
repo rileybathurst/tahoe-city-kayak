@@ -1,17 +1,35 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import PricingChart from "./pricing-chart";
 import InstagramIcon from "../images/instagram";
 import FacebookIcon from "../images/facebook";
 import MenuList from "./menu-list";
 import Logo from "../images/logo";
-import Complete from './locations/complete';
+import LocationDeck from "./location-deck";
 import Phone from "./phone";
 import Mail from "./mail";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 const Footer = () => {
+
+  const { allStrapiLocation } = useStaticQuery(graphql`
+    query FooterQuery {
+      allStrapiLocation(
+        filter: {
+          locale: {slug: {eq: "tahoe-city"}}
+        },
+        sort: {
+          fields: order
+          order: ASC
+        }
+      ) {
+        nodes {
+          ...locationCard
+        }
+      }
+    }
+  `)
 
   return (
     <footer>
@@ -52,9 +70,13 @@ const Footer = () => {
       <div>
         <PricingChart book={false} />
         <hr />
-        <section className="home__here" >
-          <Complete />
-        </section>
+
+
+        <LocationDeck
+          locations={allStrapiLocation}
+          background={false}
+        />
+
       </div>
 
     </footer >

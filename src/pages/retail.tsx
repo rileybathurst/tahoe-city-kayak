@@ -10,13 +10,14 @@ import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Card from "../components/card";
-import Store from "../components/locations/store";
+// import Store from "../components/locations/store";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
 
 import SEOShowcase from "seo-showcase"
 import SEOcase from "../components/seocase"
 import { CardType } from "../types/card";
+import LocationCard from "../components/location-card";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -32,11 +33,16 @@ const RetailPage = () => {
       ...retailCard
       }
     }
+
+    strapiLocation: strapiLocation(
+      locale: {slug: {eq: "tahoe-city"}}
+      name: {eq: "Retail Location"}
+    ) {
+      ...locationCard
+    }
+
   }
 `)
-
-  let kayak = query.kayak;
-  let sup = query.sup;
 
   return (
     <>
@@ -50,9 +56,7 @@ const RetailPage = () => {
           <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
-        <div className="here__location here__card">
-          <Store />
-        </div>
+        <LocationCard location={query.strapiLocation} />
       </main>
 
       <article className="main__full main__full--tour">
@@ -72,7 +76,7 @@ const RetailPage = () => {
       <KayakBrandList />
 
       <section className="deck">
-        {kayak.nodes.map((kayak: CardType) => (
+        {query.kayak.nodes.map((kayak: CardType) => (
           <div key={kayak.id}>
             <Card retail={kayak} />
           </div>
@@ -98,7 +102,7 @@ const RetailPage = () => {
       <SupBrandList />
 
       <section className="deck">
-        {sup.nodes.map((sup: CardType) => (
+        {query.sup.nodes.map((sup: CardType) => (
           <div key={sup.id}>
             <Card retail={sup} />
           </div>

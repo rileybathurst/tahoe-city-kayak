@@ -28,13 +28,11 @@ button:hover,
 .button__mullen--hover,
 /* this is a weird thing you maybe need */
 .button__mullen--hover:hover {
-  color: hsl(var(--mullen__base), var(--dim));
-  border-color: hsl(var(--mullen__base), var(--dim));
-  box-shadow: var(--penumbra); /* maybe we got the other way */
+  color: var(--mullen-200);
+  border-color: var(--mullen-200);
   box-shadow: var(--antumbra);
 
   /* TODO this doesnt do enough in dark to see the change */
-
   @media (prefers-color-scheme: dark) {
     color: var(--mullen);
   }
@@ -44,13 +42,13 @@ button:hover,
 button:active,
 .button__mullen:active,
 .button__mullen--active {
-  border-color: hsl(var(--mullen__base), var(--dull));
-  color: hsl(var(--mullen__base), var(--dull));
+  border-color: var(--mullen-300);
+  color: var(--mullen-300);
   box-shadow: var(--antumbra);
   box-shadow: var(--umbra);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--mullen__base), var(--dull));
+    background-color: var(--mullen-300);
     color: var(--black-metal);
   }
 }
@@ -64,13 +62,13 @@ button:active,
 .button__mullen--hover,
 /* this is a weird thing you maybe need */
 .button__mullen--hover:hover {
-  background-color: hsl(var(--mullen__base), var(--dull));
+  background-color: var(--mullen-300);
   color: var(--tin-soldier);
 }
 
 .button__mullen:active,
 .button__mullen--active {
-  background-color: hsl(var(--mullen__base), var(--dark));
+  background-color: var(----black-out);
   color: var(--industrial-revolution);
 }
 
@@ -95,14 +93,14 @@ menu button {
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--mullen__base), var(--dim));
+    background-color: var(--mullen-200);
     color: var(--kingly-cloud);
   }
 }
 
 .book-now:hover,
 .book-now:active {
-  background-color: hsl(var(--mullen__base), var(--dim));
+  background-color: var(--mullen-200);
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {

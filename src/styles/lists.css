@@ -33,13 +33,13 @@ ol {
   margin-inline: auto; /* overwrite nav */
   padding-inline: 0.75rem; /* overwrite nav */
 
-  background-color: hsl(var(--sand__base), var(--bright));
-  box-shadow: 0 0 0 100vmax hsl(var(--sand__base), var(--bright));
+  background-color: var(--sand-200);
+  box-shadow: 0 0 0 100vmax var(--sand-200);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--ink__h), 100%, var(--dark));
-    box-shadow: 0 0 0 100vmax hsl(var(--ink__h), 100%, var(--dark));
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
   }
 
   ol {
@@ -58,10 +58,10 @@ ol {
 
     a {
       display: inline;
-      color: hsl(var(--mullen__base), var(--dim)); /* needed for contrast */
+      color: var(--mullen-200); /* needed for contrast */
 
       @media (prefers-color-scheme: dark) {
-        color: hsl(var(--mullen__base), var(--glow)); /* needed for contrast */
+        color: var(--mullen); /* TODO: contrast */
       }
     }
   }
@@ -230,7 +230,7 @@ ol {
     }
 
     > a:where(:hover, :focus) {
-      background-color: hsl(var(--mullen__base), var(--dim));
+      background-color: var(--mullen-200);
       box-shadow: var(--penumbra);
       color: var(--kingly-cloud);
       box-shadow: var(--penumbra);
