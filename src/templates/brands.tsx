@@ -1,7 +1,7 @@
 // TODO: still finishing this
 
 import React from "react"
-import { Link, graphql, Script } from 'gatsby'
+import { Link, graphql, Script, useStaticQuery } from 'gatsby'
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useSiteUrl } from "../hooks/use-site-url";
@@ -119,19 +119,6 @@ function Toast(props: {
 
 const BrandsView = ({ location, data }) => {
 
-  const { strapiLocation } = useStaticQuery(graphql`
-    query BrandsQuery {
-      strapiLocation(
-        locale: {slug: {eq: "tahoe-city"}}
-        name: {eq: "Retail Location"}
-      ) {
-        ...locationCard
-      }
-
-    }
-  `)
-
-
   let series = [
     data.island,
     data.mirage,
@@ -172,7 +159,7 @@ const BrandsView = ({ location, data }) => {
 
         {/* // * the wrapper is for the background color */}
         {/* // TODO: hover the whole card and give it a shadow when we do */}
-        <LocationCard location={strapiLocation} />
+        <LocationCard location={data.strapiLocation} background={false} />
 
       </main>
 
@@ -407,6 +394,13 @@ export const query = graphql`
         ...retailCard
         series
       }
+    }
+
+    strapiLocation: strapiLocation(
+      locale: {slug: {eq: "tahoe-city"}}
+      name: {eq: "Retail Location"}
+    ) {
+      ...locationCard
     }
 
   }

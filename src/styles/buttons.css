@@ -9,7 +9,6 @@ button,
   cursor: pointer;
   margin-block-end: var(--baseline);
   transition: 0.5s ease;
-  font-family: var(--heading_font);
   display: block;
   line-height: 1.5rem;
   text-decoration: none;

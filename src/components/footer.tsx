@@ -19,10 +19,7 @@ const Footer = () => {
         filter: {
           locale: {slug: {eq: "tahoe-city"}}
         },
-        sort: {
-          fields: order
-          order: ASC
-        }
+        sort: {order: ASC}
       ) {
         nodes {
           ...locationCard
