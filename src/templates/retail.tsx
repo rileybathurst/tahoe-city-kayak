@@ -5,7 +5,7 @@ import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useSiteUrl } from "../hooks/use-site-url";
 
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import Sport from '../components/sport';
 import Header from '../components/header';
@@ -92,17 +92,17 @@ function ReactMD(props: { raw: string; title: string | number | boolean | React.
       return (
         <article className={props.className} itemProp="description" >
           <h3>{props.title}</h3>
-          <ReactMarkdown
+          <Markdown
             children={props.raw}
-            remarkPlugins={[remarkGfm]}
+            className="react-markdown"
           />
         </article>
       );
     } else {
       return <article className={props.className} >
-        <ReactMarkdown
+        <Markdown
           children={props.raw}
-          remarkPlugins={[remarkGfm]}
+          className="react-markdown"
         />
       </article>
     }

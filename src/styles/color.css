@@ -63,8 +63,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--ink-200);
+    box-shadow: 0 0 0 100vmax var(--ink-200);
   }
 }
 
@@ -154,6 +154,8 @@ footer {
 
 .location.false {
   background-color: transparent;
+  border-block-end: 1px solid var(--tin-soldier);
+
   color: var(--mullen);
   svg {
     fill: var(--mullen);

@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 import Menu from "./menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
+import Markdown from 'react-markdown';
 
 {/* function OpenSeason(props) {
   const [banner, setBanner] = useState('shown');
@@ -175,10 +174,10 @@ const Header = () => {
 
       {/* // TODO this would be nice to be able to close but I dont have it right yet */}
       <div className="top-bar" >
-        {/*         <ReactMarkdown
+        <Markdown
           children={strapiLocale.topbar.data.topbar}
-          remarkPlugins={[remarkGfm]}
-        /> */}
+          className="react-markdown"
+        />
       </div>
 
       <p className='sr-only'>

@@ -121,6 +121,13 @@ const RetailSupPage = () => {
         }
       }
 
+      strapiLocation: strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "Retail Location"}
+      ) {
+        ...locationCard
+      }
+
     }
   `)
 
@@ -148,7 +155,10 @@ const RetailSupPage = () => {
             <h1>{title}</h1>
             <Shop />
           </div>
-          <LocationCard location={query.strapiLocation} />
+          <LocationCard
+            location={query.strapiLocation}
+            background={false}
+          />
         </div>
 
         <h2>Browse By Feature</h2>

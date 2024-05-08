@@ -56,7 +56,10 @@ const RetailPage = () => {
           <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
-        <LocationCard location={query.strapiLocation} />
+        <LocationCard
+          location={query.strapiLocation}
+          background={false}
+        />
       </main>
 
       <article className="main__full main__full--tour">

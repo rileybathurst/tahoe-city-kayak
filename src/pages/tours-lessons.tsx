@@ -97,12 +97,12 @@ const ToursLessonsPage = () => {
             <hr />
           </div>
 
-          <LocationDeck
-            locations={query.allStrapiLocation}
-            background={false}
-          />
 
         </div>
+        <LocationDeck
+          locations={query.allStrapiLocation}
+          background={false}
+        />
       </main>
 
       {sports.map((sport: any) => (

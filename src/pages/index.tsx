@@ -30,7 +30,8 @@ const IndexPage = () => {
       allStrapiLocation(
         filter: {
           locale: {slug: {eq: "tahoe-city"}}
-        }
+        },
+        sort: {order: ASC}
       ) {
         nodes {
           ...locationCard

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -13,9 +13,9 @@ import LocationCard from "../components/location-card";
 
 function ReactMD(props: { raw: string; }) {
   return (
-    <ReactMarkdown
+    <Markdown
       children={props.raw}
-      remarkPlugins={[remarkGfm]}
+      className="react-markdown"
     />
   );
 }
@@ -210,7 +210,7 @@ const TourView = ({ tour, other }) => {
       >
         <ol>
           <li>
-            <Link to={`/ tours - lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
+            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">{tour.name}</li>
         </ol>

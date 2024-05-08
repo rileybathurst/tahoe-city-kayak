@@ -4,7 +4,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
 import Header from "../components/header";
@@ -72,15 +72,19 @@ const RentalsPage = () => {
             background={false}
           />
 
-          <ReactMarkdown
+
+          <Markdown
             children={data.strapiRental.text.data.text}
-            remarkPlugins={[remarkGfm]}
+            className="react-markdown"
           />
+
 
           {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
 
           {/* // TODO should this be a dropdown? */}
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+
+          <BookNow />
 
         </article>
 

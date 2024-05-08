@@ -19,5 +19,11 @@ export const query = graphql`
         description
       }
     }
+    
+    locale {
+      season_start(formatString: "MMMM DD")
+      season_end(formatString: "MMMM")
+    }
+
   }
 `

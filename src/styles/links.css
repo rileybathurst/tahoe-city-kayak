@@ -114,3 +114,17 @@ footer {
     }
   }
 }
+
+.location {
+  text-decoration: none;
+  transition: var(--fade);
+
+  a {
+    text-decoration: none;
+    color: var(--brilliance);
+  }
+}
+
+.location:hover {
+  color: var(--mullen-200);
+}

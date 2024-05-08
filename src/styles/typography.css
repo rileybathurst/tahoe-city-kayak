@@ -78,7 +78,8 @@ h4,
   /* multi lines + 32px🚨 each */
 }
 
-h5 {
+h5,
+.elbrus {
   font-family: var(--body_font);
   font-size: 1.25rem; /* 20px */
   line-height: 1.875rem; /* 30px */
@@ -88,8 +89,10 @@ h5 {
   /* multi lines + 30px each */
 }
 
-h6 {
+h6,
+.vinson {
   font-family: var(--body_font);
+  font-weight: normal;
   font-size: 1rem; /* 16px */
   line-height: 1.25rem; /* 20px this becomes the vertical rythym */
   margin-bottom: 0.625rem; /* 10px skips some of the lines */
@@ -100,6 +103,7 @@ h6 {
 
 /* start the multi line problem here as itll be worst */
 small,
+.kosciuszko,
 .two-small-lines,
 .multiple-small-lines {
   font-size: 0.75rem; /* 12px */
@@ -231,4 +235,11 @@ select {
   font-family: var(--body_font);
   margin-block-end: var(--baseline);
   margin-block-end: 0;
+}
+
+/*------------------*/
+
+/* fixes a bug with new lines */
+.react-markdown {
+  white-space: pre-wrap;
 }

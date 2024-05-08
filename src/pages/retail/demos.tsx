@@ -7,11 +7,25 @@ import { useSiteMetadata } from "../../hooks/use-site-metadata";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import PricingChart from "../../components/pricing-chart";
 import Card from "../../components/card";
 import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import LocationCard from "../../components/location-card";
+import Markdown from "react-markdown";
+
+function LineBreaker(props: { text: string; }) {
+  const regex = /[- ]/g;
+  const newStr = props.text.replace(regex, "<br />$&");
+  // console.log(newStr);
+
+  return (
+    <h4>
+      <span
+        dangerouslySetInnerHTML={{ __html: newStr }}
+      />
+    </h4>
+  );
+}
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
@@ -20,73 +34,143 @@ function getUniqueListBy(arr, key) {
   return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 
-function KayakDemoBrands(props) {
-  // console.log(props.brand);// brand={kayak.nodes.map(brand => (brand.brand))}
+function Dedupedbrands(props) {
   const dedupedbrands = getUniqueListBy(props.brand, 'name')
-
-  // console.log(dedupedbrands)
 
   return (
     <>
-      {/* // TODO: add the logos here how we normally do the brands */}
       {dedupedbrands.map(brand => (
         <li key={brand.slug} className="capitalize">
-          <Link to={`/retail/kayak/${brand.slug}`}>{brand.name}</Link>
+          <Link to={`/retail/${props.sport}/${brand.slug}`}>{brand.name}</Link>
         </li>
       ))}
     </>
   )
 }
 
-function SupDemoBrands(props) {
-  const dedupedbrands = getUniqueListBy(props.brand, 'name')
+interface RetailRatesTypes {
+  id: string;
+  item: string;
+  oneHour: number;
+  threeHour: number;
+  fullDay: number;
+  customOrder: number;
+}
+interface CustomOrderTypes {
+  RentalRates: {
+    nodes: {
+      RetailRatesTypes;
+    }
+  }
+}
+function CustomOrder({ RentalRates }: CustomOrderTypes) {
+
+  let CustomOrder = {
+    demoSingle: 1,
+    demoDouble: 2,
+    paddleBoard: 3,
+  }
+
+  RentalRates.nodes.map((rate: RetailRatesTypes) => {
+    if (rate.item === "Demo Single") {
+      rate.customOrder = CustomOrder.demoSingle;
+    }
+    if (rate.item === "Demo Double") {
+      rate.customOrder = CustomOrder.demoDouble;
+    }
+    if (rate.item === "Paddle board") {
+      rate.customOrder = CustomOrder.paddleBoard;
+    }
+  })
 
   return (
-    <>
-      {dedupedbrands.map(brand => (
-        <li key={brand.slug} className="capitalize">
-          <Link to={`/retail/sup/${brand.slug}`}>{brand.name}</Link>
-        </li>
+
+    <div className="pricing-chart">
+      <div className="row row-header">
+        <h2 className="kilimanjaro">Rental<br />Rates</h2>
+        <p>1 Hour</p>
+        <p><span>3 Hours</span></p>
+        <p><span>Full Day</span></p>
+      </div>
+
+      {RentalRates.nodes.sort((a: RetailRatesTypes, b: RetailRatesTypes) => a.customOrder - b.customOrder).map((rate: RetailRatesTypes) => (
+        <div key={rate.id} className="row">
+          <LineBreaker text={rate.item} />
+          <p>{rate.oneHour}</p>
+          <p>{rate.threeHour}</p>
+          <p>{rate.fullDay}</p>
+        </div>
       ))}
-    </>
+
+    </div>
   )
 }
 
 const DemosPage = () => {
 
   const query = useStaticQuery(graphql`
-    query DemosQuery {
-      kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
+      query DemosQuery {
+        kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
-          ...retailCard
+        ...retailCard
 
           brand {
-            name
+        name
             slug
           }
         }
       }
-  
+
       paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}, sort: {featured: ASC}) {
         nodes {
-          ...retailCard
+        ...retailCard
 
           brand {
-            name
+        name
             slug
           }
         }
       }
 
       strapiLocation: strapiLocation(
-        locale: {slug: {eq: "tahoe-city"}}
-        name: {eq: "Retail Location"}
+      locale: {slug: {eq: "tahoe-city"}}
+      name: {eq: "Retail Location"}
       ) {
         ...locationCard
       }
 
+      strapiDemo: strapiDemo {
+        text {
+        data {
+        text
+      }
+        }
+      }
+
+      allStrapiRentalRate: allStrapiRentalRate(
+      filter: {item: {in: ["Demo Single", "Demo Double", "Paddle board"]}}
+      sort: {item: ASC}
+      ) {
+        nodes {
+        id
+          item
+      oneHour
+      threeHour
+      fullDay
+        }
+      }
+
+      allStrapiRentalAddon: allStrapiRentalAddon {
+        nodes {
+        name
+          single
+      double
+      sup
+        }
+      }
+
     }
-  `)
+      `)
 
   return (
     <>
@@ -96,21 +180,36 @@ const DemosPage = () => {
         <div className="location_card-wrapper">
           <div>
             <h1>Demos</h1>
-            {/* // TODO: move to CMS */}
-            <p>
-              If you&apos;re looking to try out a particular kayak or board that we sell, call the shop and request a demo. We&apos;ll charge you our rental fee, but we will credit that fee if you decide to purchase a boat or board from us in the same season. (Up to two full days rental charge) * Pedal drive is an additional $5 per rental.
-            </p>
-            <p>
-              <Phone />
-            </p>
+            <Markdown
+              children={query.strapiDemo.text.data.text}
+              className="react-markdown"
+            />
+            <Phone />
           </div>
 
-          <LocationCard location={query.strapiLocation} />
-        </div>
+          <div className="charts">
+            <CustomOrder RentalRates={query.allStrapiRentalRate} />
 
-        <PricingChart book={false} />
-        <hr />
-      </main>
+
+            <div className="pricing-chart">
+              {query.allStrapiRentalAddon.nodes.map((addon: { name: string; single: number; double: number; sup: number; }) => (
+                <>
+                  <p>{addon.name}</p>
+                  <p>+{addon.single}</p>
+                  <p>+{addon.double}</p>
+                  <p>+{addon.sup}</p>
+                </>
+              ))}
+            </div>
+          </div>
+
+          <LocationCard
+            location={query.strapiLocation}
+            background={false}
+          />
+
+        </div>
+      </main >
 
 
       <section className="demo__kayak">
@@ -120,8 +219,9 @@ const DemosPage = () => {
             <hr />
             <h4>Kayaks from these brands</h4>
             <ul>
-              <KayakDemoBrands
+              <Dedupedbrands
                 brand={query.kayak.nodes.map(brand => (brand.brand))}
+                sport="kayak"
               />
             </ul>
           </div>
@@ -130,10 +230,8 @@ const DemosPage = () => {
         </div>
 
         <section className="deck">
-          {query.kayak.nodes.map(kayak => (
-            <div key={kayak.id}>
-              <Card retail={kayak} />
-            </div>
+          {query.kayak.nodes.map((kayak: { brand: { name: string; slug: string; }; }) => (
+            <Card retail={kayak} />
           ))}
         </section>
       </section>
@@ -143,8 +241,9 @@ const DemosPage = () => {
           <h4>Paddleboards from these brands</h4>
 
           <ul>
-            <SupDemoBrands
+            <Dedupedbrands
               brand={query.paddleboards.nodes.map(brand => (brand.brand))}
+              sport="sup"
             />
           </ul>
         </div>
@@ -153,12 +252,22 @@ const DemosPage = () => {
       </article>
 
       <section className="deck">
-        {query.paddleboards.nodes.map(sup => (
-          <div key={sup.id}>
-            <Card retail={sup} />
-          </div>
+        {query.paddleboards.nodes.map((sup: { brand: { name: string; slug: string; }; }) => (
+          <Card retail={sup} />
         ))}
       </section>
+
+      <nav
+        aria-label="Breadcrumb"
+        className="breadcrumbs"
+      >
+        <ol>
+          <li>
+            <Link to={`/retail`}>Retail</Link>&nbsp;/&nbsp;
+          </li>
+          <li aria-current="page">Demos</li>
+        </ol>
+      </nav>
 
       <Footer />
     </>

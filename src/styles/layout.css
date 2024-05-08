@@ -503,13 +503,14 @@ footer {
 /* #LOCATION */
 /*------------------*/
 
-.location-stack {
+.location-deck {
   margin-block-end: 1.5rem;
 }
 
 .location {
   display: flex;
   flex-flow: row;
+  align-items: center;
   gap: var(--elbrus);
   padding: var(--elbrus);
   border-radius: var(--card-radius);
@@ -522,6 +523,10 @@ footer {
   .svg {
     flex: 1 1;
   }
+}
+
+.location.false {
+  border-radius: 0;
 }
 
 /*------------------*/
@@ -726,7 +731,7 @@ footer {
 /* #CAP */
 /*------------------*/
 
-.cap {
+.top-bar {
   background: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);

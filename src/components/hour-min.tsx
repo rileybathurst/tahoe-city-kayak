@@ -1,11 +1,13 @@
 import * as React from "react"
 
-const HourMin = (props: {
-  time: any; // Theres probably a really fancy way to do this
-}) => {
-  if (props.time) {
-    let hours = props.time.split(':')[0];
-    let mins = props.time.split(':')[1];
+interface HourMinTypes {
+  time: Number | String;
+}
+
+const HourMin = ({ time }: HourMinTypes) => {
+  if (time) {
+    let hours = time.split(':')[0];
+    let mins = time.split(':')[1];
     let ampm = hours >= 12 ? 'pm' : 'am';
 
     if (hours < 10) {

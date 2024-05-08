@@ -42,8 +42,8 @@ svg {
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--ink-300);
+    box-shadow: 0 0 0 100vmax var(--ink-300);
   }
 
   h1 {
