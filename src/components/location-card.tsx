@@ -24,6 +24,8 @@ interface SeasonTypes {
 }
 function Season({ season_start, season_end, opening_time, closing_time, name }: SeasonTypes) {
 
+  console.log(season_start, season_end, opening_time, closing_time, name);
+
   if (name === "Free Parking Lot") {
     return null;
   } else if (new Date(season_start) < new Date()) {
