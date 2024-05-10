@@ -1,5 +1,72 @@
+/*     // TODO: a bunch of this should be in the strapi
+    description:
+      "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
+    defaultDescription:
+      "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
+    defaultImage:
+      "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
+    defaultImageAlt: "A collage of images showcasing paddling on Lake Tahoe",
+    openingHours: "Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00",
+    telephone: "(530)581-4336",
+    email: "tahoecitykayak@gmail.com",
+    logo: "/images/icon.png",
+    areaServed: "Tahoe City",
+    author: "Tahoe City Kayak",
+    paymentAccepted: "Cash credit card",
+    itemType: "LocalBusiness",
+    priceRange: "$50-2500",
+    location: {
+      address: {
+        streetAddress: "521 North Lake Blvd",
+        addressLocality: "Tahoe City",
+        addressRegion: "CA",
+        postalCode: "96145",
+      },
+    },
+    rentalLocation: {
+      address: {
+        name: "Commons Beach",
+        streetAddress: "400 North Lake Blvd",
+        addressLocality: "Tahoe City",
+        addressRegion: "CA",
+        postalCode: "96145",
+      },
+    },
+    geo: {
+      latitude: "39.17138171971435",
+      longitude: "-120.14098458679503",
+      geoRadius: "80470",
+    },
+    themeColor: "#bf4040",
+    numberOfEmployees: "10+",
+    slogan:
+      "North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours",
+
+    offerCatalog: {
+      itemOffered1: "kayak and paddleboard rentals",
+      itemOffered2: "kayak and paddleboard sales",
+      itemOffered3: "kayak and paddleboard tours and lessons",
+    },
+    social: {
+      facebook: "https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736",
+      instagram: "https://www.instagram.com/tahoecitykayak/",
+    },
+    jobEmail: "tckjobs@gmail.com", */
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React from "react";
-import { Script } from "gatsby";
+import { Script, graphql, useStaticQuery } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 // this throws a VS Code error but is as documented here:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#create-a-usesitemetadata-hook
@@ -40,6 +107,17 @@ export const SEO = (SE0: SEO) => {
     imageAlt: SE0.imageAlt || defaultImageAlt,
   };
 
+  const { strapiLocale } = useStaticQuery(graphql`
+    query SEOQuery {
+      strapiLocale(
+        slug: { eq: "tahoe-city" }
+      ) {
+        name
+        phone
+      }
+    }
+  `)
+
   return (
     <>
       {/* <SEOShowcase test="hey" /> */}
@@ -65,8 +143,8 @@ export const SEO = (SE0: SEO) => {
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
-            "name": "${seo.title}",
-            "description": "${seo.description}",
+            "name": "${strapiLocale.name} Kayak and Paddleboard",
+            "description": "${defaultDescription}",
             "image": "${seo.image}",
             "address": {
               "@type": "PostalAddress",
@@ -91,7 +169,7 @@ export const SEO = (SE0: SEO) => {
             },
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
-            "telephone": "${telephone}",
+            "telephone": "${strapiLocale.phone}",
             "url": "${url}",
             "numberOfEmployees": "${numberOfEmployees}",
 

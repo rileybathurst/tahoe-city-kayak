@@ -83,6 +83,9 @@ const TourPage = ({ data }) => {
 export default TourPage;
 
 export const Head = ({ data }) => {
+
+  console.log(data.strapiAnnouncement.title)
+
   return (
     <SEO
       title={`${data.strapiAnnouncement.title} | ${useSiteMetadata().title}`}
@@ -111,7 +114,7 @@ export const Head = ({ data }) => {
                 "item":
                 {
                   "@id": "${useSiteMetadata().url}/announcement/${data.strapiAnnouncement.slug}",
-                  "name": "${data.strapiAnnouncement.name} - Announcement"
+                  "name": "${data.strapiAnnouncement.title} - Announcement"
                 }
               }
             ]
