@@ -24,11 +24,17 @@ interface SeasonTypes {
 }
 function Season({ season_start, season_end, opening_time, closing_time, name }: SeasonTypes) {
 
-  console.log(season_start, season_end, opening_time, closing_time, name);
+  // console.log(season_start, season_end, opening_time, closing_time, name);
+  // console.log(new Date(season_start), new Date());
+  // console.log(new Date());
+  console.log(season_start < new Date());
+
+  // console.log(season_start);
 
   if (name === "Free Parking Lot") {
     return null;
-  } else if (new Date(season_start) < new Date()) {
+
+  } else if (season_start < new Date()) {
     return (
       <p>
         {opening_time ? "Open Daily: " : null}
