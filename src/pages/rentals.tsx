@@ -3,9 +3,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-
 import Markdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -41,19 +39,19 @@ const RentalsPage = () => {
         name: {in: ["On Water Rental", "Free Parking Lot"]}
         locale: {slug: {eq: "tahoe-city"}}
       }
-  ) {
-    nodes {
-      ...locationCard
-    }
-  }
-
-  strapiRental {
-    text {
-      data {
-        text
+    ) {
+      nodes {
+        ...locationCard
       }
     }
-  }
+
+    strapiRental {
+      text {
+        data {
+          text
+        }
+      }
+    }
 
   }
 `)
@@ -77,7 +75,6 @@ const RentalsPage = () => {
             children={data.strapiRental.text.data.text}
             className="react-markdown"
           />
-
 
           {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
 

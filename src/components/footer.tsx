@@ -39,7 +39,9 @@ const Footer = () => {
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
         <nav>
-          <MenuList />
+          <MenuList
+            children='announcement'
+          />
         </nav>
         <hr />
         <div className="footer__contact">

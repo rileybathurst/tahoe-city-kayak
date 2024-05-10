@@ -155,7 +155,7 @@ const IndexPage = () => {
 
           <hr />
 
-          <PricingChart book="no" />
+          <PricingChart book={true} />
         </div>
       </main>
 

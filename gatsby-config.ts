@@ -6,6 +6,7 @@ const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
+    "announcement",
     "attribute",
     "brand",
     "event",
@@ -21,7 +22,6 @@ const strapiConfig = {
     "tour",
   ],
   singleTypes: [
-    "topbar",
     "about",
     "rental",
     "experience",

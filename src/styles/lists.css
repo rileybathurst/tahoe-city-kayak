@@ -30,6 +30,7 @@ ol {
 
 /* https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/examples/breadcrumb/ */
 .breadcrumbs {
+  max-width: var(--stork);
   margin-inline: auto; /* overwrite nav */
   padding-inline: 0.75rem; /* overwrite nav */
 
@@ -64,6 +65,47 @@ ol {
         color: var(--mullen); /* TODO: contrast */
       }
     }
+  }
+}
+
+.react-aria-Breadcrumbs {
+  max-width: var(--pelican);
+  margin-inline: auto; /* overwrite nav */
+  padding-inline: 0.75rem; /* overwrite nav */
+
+  background-color: var(--sand-200);
+  box-shadow: 0 0 0 100vmax var(--sand-200);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+  }
+
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  margin-inline: auto;
+  padding-block-start: 1.5rem;
+  margin-block-end: 0;
+  padding-inline: 0;
+  text-transform: capitalize;
+
+  li {
+    display: inline;
+
+    a {
+      color: var(--mullen-200); /* needed for contrast */
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--mullen); /* TODO: contrast */
+      }
+    }
+  }
+
+  li:not(:last-child)::after {
+    margin-inline: var(--vinson);
+    content: ">";
   }
 }
 

@@ -4,6 +4,8 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 const Mail = () => {
 
+
+
   return (
     <a
       href={`mailto:${useSiteMetadata().email}`}

@@ -3,8 +3,6 @@ import LocationCard from "./location-card"
 
 function LocationDeck({ locations, background }) {
 
-
-
   return (
     <section className="location-deck">
       {locations.nodes.map((location) => (
