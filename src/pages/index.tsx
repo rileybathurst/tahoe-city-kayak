@@ -248,9 +248,23 @@ const IndexPage = () => {
 export default IndexPage
 
 export const Head = () => {
+
+  // ! can I query here?
+  /*   const { strapiLocale } = useStaticQuery(graphql`
+      query IndexHeadQuery {
+        strapiLocale {
+          topbar {
+            data {
+              topbar
+            }
+          }
+        }
+      }
+    `) */
+
   return (
     <SEO
-      title={`${useSiteMetadata().title} - ${useStrapiTopBar()}`}
+      title={`${useSiteMetadata().title} - Welcome to the 2024 Season`}
     />
   )
 }
