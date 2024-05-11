@@ -24,34 +24,46 @@ interface SeasonTypes {
 }
 function Season({ season_start, season_end, opening_time, closing_time, name }: SeasonTypes) {
 
+  // TODO: test faking the date
+
   // console.log(season_start, season_end, opening_time, closing_time, name);
   // console.log(new Date(season_start), new Date());
   // console.log(new Date());
-  console.log(season_start < new Date());
+  console.log(season_start <= new Date());
 
   // console.log(season_start);
 
   if (name === "Free Parking Lot") {
     return null;
 
-  } else if (season_start < new Date()) {
-    return (
-      <p>
-        {opening_time ? "Open Daily: " : null}
-        <HourMin time={opening_time} />
-        {opening_time ? " - : " : null}
-        <HourMin time={closing_time} />
-      </p>
-    )
+    /*   } else if (season_start <= new Date()) {
+        return (
+          <p>
+            {opening_time ? "Open Daily: " : null}
+            <HourMin time={opening_time} />
+            {opening_time ? " - : " : null}
+            <HourMin time={closing_time} />
+          </p>
+        )
+      } else {
+        return (
+          <p>
+            We&apos;re closed for the season:<br />
+            We will reopen<br />
+            {season_start} - {season_end}<br />
+            Weather Permitting
+          </p>
+        )
+      } */
+
+    // ! hard coded for right now
   } else {
-    return (
-      <p>
-        We&apos;re closed for the season:<br />
-        We will reopen<br />
-        {season_start} - {season_end}<br />
-        Weather Permitting
-      </p>
-    )
+    <p>
+      {opening_time ? "Open Daily: " : null}
+      <HourMin time={opening_time} />
+      {opening_time ? " - : " : null}
+      <HourMin time={closing_time} />
+    </p>
   }
 }
 
