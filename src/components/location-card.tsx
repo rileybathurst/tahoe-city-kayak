@@ -35,18 +35,18 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
 
   // console.log(season_start);
 
-  if (name === "Free Parking Lot") {
-    return null;
-  } else {
-    return (
-      <p>
-        {opening_time ? "Open Daily: " : null}<br />
-        <HourMin time={opening_time} />
-        {opening_time ? " - : " : null}
-        <HourMin time={closing_time} />
-      </p>
-    )
-  }
+  /*   if (name === "Free Parking Lot") {
+      return null;
+    } else {
+      return (
+        <p>
+          {opening_time ? "Open Daily: " : null}<br />
+          <HourMin time={opening_time} />
+          {opening_time ? " - : " : null}
+          <HourMin time={closing_time} />
+        </p>
+      )
+    } */
 
   /*   } else if (season_start <= new Date()) {
     return (
@@ -67,6 +67,13 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
       </p>
     )
   } */
+
+  return (
+    <p>
+      Opening 17th May Saturday - Sunday<br />
+      - Daily from 24th May
+    </p>
+  )
 
 }
 
