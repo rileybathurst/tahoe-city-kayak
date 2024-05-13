@@ -70,8 +70,8 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
 
   return (
     <p>
-      Opening 17th May Saturday - Sunday<br />
-      - Daily from 24th May
+      Open Friday May 17 thru Sunday May 19<br />
+      - Daily from Wednesday May 22
     </p>
   )
 
