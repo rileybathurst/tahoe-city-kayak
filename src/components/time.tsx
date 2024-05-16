@@ -2,9 +2,9 @@ import * as React from "react"
 import HourMin from "./hour-min";
 
 const Time = (props: {
-  start?: Date;
-  finish?: Date;
-  duration?: Date;
+  start?: string;
+  finish?: string;
+  duration?: string;
 }) => {
   if (props.start) {
     return (
@@ -15,16 +15,12 @@ const Time = (props: {
         </time>
       </h4>
     )
-  } else {
-    return (
-      <h4>
-        {/* This JSX tag's children prop expects single child of type Element, but multiple children were provided */}
-        <>
-          {props.duration} mins
-        </>
-      </h4>
-    )
   }
+  return (
+    <h4>
+      {props.duration} mins
+    </h4>
+  )
 }
 
 export default Time

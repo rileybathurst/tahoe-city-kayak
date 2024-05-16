@@ -1,6 +1,3 @@
-// this is the Name.tsx file
-// TODO: Yes I know I should do this programatically
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
