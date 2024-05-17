@@ -63,6 +63,11 @@
     transition: var(--fade);
   }
 
+  /* storybook */
+  .stories-ticket-image {
+    width: 100%;
+  }
+
   .card__image:where(:hover, :focus) {
     /* opacity: 0.8; */
     filter: brightness(80%);

@@ -2,6 +2,58 @@
 /* #LAYOUT */
 /*------------------*/
 
+.swan {
+  max-width: var(--swan);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--swan);
+}
+
+.vulture {
+  max-width: var(--vulture);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--vulture);
+}
+
+.stork {
+  max-width: var(--stork);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--stork);
+}
+
+.condor {
+  max-width: var(--condor);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--condor);
+}
+
+.pelican {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--pelican);
+}
+
+.albatross {
+  max-width: var(--albatross);
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+  flex-basis: var(--albatross);
+}
+
+.split {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--vinson);
+
+  > * {
+    flex: 1 1;
+  }
+}
+
 /*------------------*/
 /* #SINGLES */
 /*------------------*/

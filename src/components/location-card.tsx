@@ -27,6 +27,7 @@ interface SeasonTypes {
 function Season({ season_start, season_end, opening_time, closing_time, name }: SeasonTypes) {
 
   // TODO: test faking the date
+  // use faker upcoming and past dates
 
   // console.log(season_start, season_end, opening_time, closing_time, name);
   // console.log(new Date(season_start), new Date());
@@ -68,10 +69,16 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
     )
   } */
 
+  if (name === "Free Parking Lot") {
+    return null;
+  }
+
   return (
     <p>
       Open Friday May 17 thru Sunday May 19<br />
-      - Daily from Wednesday May 22
+      <HourMin time={opening_time} /> - <HourMin time={closing_time} /><br />
+      &nbsp;<br />
+      Daily from Wednesday May 22
     </p>
   )
 
@@ -167,21 +174,23 @@ function LocationCard({ location, background }: LocationCardTypes) {
       <a href={location.link}
         key={location.id}
         className={`location ${background}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={location.name}
       >
         <Content location={location} />
       </a>
     )
-  } else {
-    return (
-      <Link
-        key={location.id}
-        to={`/${location.link}`}
-        className={`location ${background}`}
-      >
-        <Content location={location} />
-      </Link>
-    )
   }
+  return (
+    <Link
+      key={location.id}
+      to={`/${location.link}`}
+      className={`location ${background}`}
+    >
+      <Content location={location} />
+    </Link>
+  )
 }
 
 export default LocationCard

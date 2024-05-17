@@ -60,8 +60,8 @@ const RentalsPage = () => {
     <>
       <Header />
       {/* // TODO check if this is just progression now */}
-      <main className="rentals">
-        <article className="info">
+      <main className="pelican split">
+        <article className="info stork">
 
           <h1>Rentals</h1>
 
@@ -85,7 +85,9 @@ const RentalsPage = () => {
 
         </article>
 
-        <Composition />
+        <div className="stork">
+          <Composition />
+        </div>
 
         <div className="charts">
           <div className="rates">

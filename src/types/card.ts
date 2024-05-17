@@ -1,10 +1,10 @@
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 // ! this is tours and not retail
 export interface CardType {
   id: React.Key;
   name: string;
-  slug: any;
+  slug: string;
   price: number;
   excerpt: string;
   start?: Date;

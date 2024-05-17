@@ -4,7 +4,7 @@ import HourMin from "./hour-min";
 const Time = (props: {
   start?: string;
   finish?: string;
-  duration?: string;
+  duration?: string & { includesColon: true };
 }) => {
   if (props.start) {
     return (

@@ -1,8 +1,7 @@
 // this is the Name.tsx file
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Faker, faker } from '@faker-js/faker';
-// import { Time } from './Time';
+import { faker } from '@faker-js/faker';
 
 interface TimeProps {
   start: Date;
@@ -13,7 +12,7 @@ function Time({ start, finish }: TimeProps) {
     <h4>
       {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */}
       <time dateTime={start}>
-        {start.getHours()}:{start.getMinutes()} - {finish.getHours()}:{finish.getMinutes()}
+        {start.getHours()}:{start.getMinutes()}{faker.helpers.arrayElement(['am', 'pm'])} - {finish.getHours()}:{finish.getMinutes()}{faker.helpers.arrayElement(['am', 'pm'])}
         {/* <HourMin time={start} /> - <HourMin time={finish} /> */}
       </time>
     </h4>
@@ -28,6 +27,7 @@ export const Ticket = ({ primary }) => {
         <img
           src={faker.image.urlLoremFlickr()}
           alt={faker.lorem.sentence()}
+          className='gatsby-image-wrapper stories-ticket-image'
         />
       </a>
       <h4 className="card__title">

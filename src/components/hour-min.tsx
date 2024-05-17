@@ -1,14 +1,14 @@
 import * as React from "react"
 
 interface HourMinTypes {
-  time: Number | String;
+  time: string & { includesColon: true };
 }
 
 const HourMin = ({ time }: HourMinTypes) => {
   if (time) {
     let hours = time.split(':')[0];
-    let mins = time.split(':')[1];
-    let ampm = hours >= 12 ? 'pm' : 'am';
+    const mins = time.split(':')[1];
+    const ampm = hours >= 12 ? 'pm' : 'am';
 
     if (hours < 10) {
       hours = hours.replace('0', '');

@@ -40,7 +40,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {location: {eq: "tahoe city"}}
+        filter: {locale: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
           ...tourCard
