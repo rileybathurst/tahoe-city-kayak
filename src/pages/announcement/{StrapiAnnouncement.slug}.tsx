@@ -52,11 +52,13 @@ const TourPage = ({ data }) => {
     <>
       <Header />
       <main className="measure">
-        <GatsbyImage
-          image={data.strapiAnnouncement.hero.localFile.childImageSharp.gatsbyImageData}
-          alt={data.strapiAnnouncement.title}
-          className="img__wrapped"
-        />
+
+        {data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData ?
+          <GatsbyImage
+            image={data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={data.strapiAnnouncement.title}
+            className="img__wrapped"
+          /> : null}
         <div className="crest">
           <h1 className="supra">{data.strapiAnnouncement.title}</h1>
           <p className="brow">Announcement</p>
