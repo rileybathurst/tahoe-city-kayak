@@ -59,25 +59,18 @@ const RentalsPage = () => {
   return (
     <>
       <Header />
-      {/* // TODO check if this is just progression now */}
-      <main className="pelican split">
-        <article className="info stork">
-
+      <main className="pelican hydra">
+        <article>
           <h1>Rentals</h1>
-
           <LocationDeck
             locations={data.allStrapiLocation}
             background={false}
           />
-
-
           <Markdown
             children={data.strapiRental.text.data.text}
             className="react-markdown"
           />
-
           {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
-
           {/* // TODO should this be a dropdown? */}
           <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
 

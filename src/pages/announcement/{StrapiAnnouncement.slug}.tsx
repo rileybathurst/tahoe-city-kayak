@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, Script } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -16,9 +17,8 @@ function Calendar({ calendar }) {
 
       </>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 export const query = graphql`
@@ -35,6 +35,14 @@ export const query = graphql`
         }
       }
 
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+
     }
   }
 `
@@ -44,6 +52,11 @@ const TourPage = ({ data }) => {
     <>
       <Header />
       <main className="measure">
+        <GatsbyImage
+          image={data.strapiAnnouncement.hero.localFile.childImageSharp.gatsbyImageData}
+          alt={data.strapiAnnouncement.title}
+          className="img__wrapped"
+        />
         <div className="crest">
           <h1 className="supra">{data.strapiAnnouncement.title}</h1>
           <p className="brow">Announcement</p>
@@ -63,12 +76,6 @@ const TourPage = ({ data }) => {
         />
 
       </main>
-      {/*       <ParentTitleBreadcrumb
-        parentPage="Announcement"
-        parentPageURL="/announcement"
-        currentPage={data.strapiAnnouncement.title}
-      /> */}
-
 
       <Breadcrumbs>
         <Breadcrumb><Link href="/announcement/">Announcement</Link></Breadcrumb>

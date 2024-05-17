@@ -30,14 +30,17 @@ function Spec(props: {
   if ((props.name === "Tour Completiion" || props.name === "Tour Start Time") && props.spec === null) {
     return null;
   }
-  else if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
+
+  if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
     return (
       <div className="spec" >
         <h2>{props.name}</h2>
         <h3><HourMin time={props.spec} /></h3>
       </div>
     );
-  } else if (props.name === "Sport") {
+  }
+
+  if (props.name === "Sport") {
     return (
       <div className="spec" >
         <h2>Sport</h2>
@@ -46,7 +49,9 @@ function Spec(props: {
         </h3>
       </div>
     );
-  } else if ((props.spec) && (props.unitPlace == "before")) {
+  }
+
+  if ((props.spec) && (props.unitPlace == "before")) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
@@ -56,7 +61,9 @@ function Spec(props: {
         </h3>
       </div>
     );
-  } else if (props.spec) {
+  }
+
+  if (props.spec) {
     return (
       <div className="spec">
         <h2>{props.name}</h2>
@@ -66,9 +73,9 @@ function Spec(props: {
         </h3>
       </div>
     );
-  } else {
-    return null;
   }
+
+  return null;
 }
 
 function Minimum(props: { minimum: number; }) {
@@ -77,9 +84,8 @@ function Minimum(props: { minimum: number; }) {
       <p>* Prices based on a<br />
         {props.minimum} person minimum</p>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function TourName(props: { tour: string; }) {
@@ -189,7 +195,8 @@ const TourView = ({ tour, other }) => {
 
       <div className="single__other">
         <h3>Other Tours &amp; Lessons</h3>
-        <h4><Link to={`/ tours - lessons / compare /? ${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
+        {/* TODO: Im not usiong the query */}
+        <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
 
         {/* // TODO: other card */}
         <section className="deck">

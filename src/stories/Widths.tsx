@@ -31,30 +31,26 @@ export const Widths = ({ primary }) => {
       <WidthCard widths={['swan', 'vulture', 'stork', 'condor', 'pelican', 'albatross']} />
       <hr />
       <h2>split</h2>
+      <p>pelican hydra</p>
       <div
+        className='pelican hydra'
+
         style={{
           height: '100px',
-          width: 'var(--pelican)',
-          marginInline: 'auto',
           marginBlockEnd: '1rem',
           color: 'white',
-          display: 'flex',
-          flexFlow: 'row wrap',
-          gap: '1rem',
         }}
       >
         <div
           style={{
             backgroundColor: 'var(--mullen-300)',
-            flex: '1 1 29rem',
           }}
-        >vulture-split?</div>
+        >hydra?</div>
         <div
           style={{
             backgroundColor: 'var(--mullen-300)',
-            flex: '1 1 29rem',
           }}
-        >vulture-split?</div>
+        >hydra?</div>
 
       </div>
 

@@ -161,3 +161,11 @@ footer {
     fill: var(--mullen);
   }
 }
+
+.location.false:hover {
+  background-color: var(--sand-100);
+}
+
+.home .location.false:hover {
+  background-color: var(--sand-200);
+}

@@ -73,6 +73,8 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
     return null;
   }
 
+  // console.log(opening_time, closing_time);
+
   return (
     <p>
       Open Friday May 17 thru Sunday May 19<br />

@@ -44,7 +44,11 @@
   flex-basis: var(--albatross);
 }
 
-.split {
+/*------------------------------------*/
+/* * I'm NOT 100% sure of the syntax below here */
+
+/* interesting metaphor but only a maybe so far */
+.hydra {
   display: flex;
   flex-flow: row wrap;
   gap: var(--vinson);
@@ -52,6 +56,20 @@
   > * {
     flex: 1 1;
   }
+}
+
+.pelican.hydra > * {
+  flex: 1 1 calc(var(--pelican) / 2 - 1rem);
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.albatross.hydra > * {
+  flex: 1 1 calc(var(--albatross) / 2 - 1rem);
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
 }
 
 /*------------------*/

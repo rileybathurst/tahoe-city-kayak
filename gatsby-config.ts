@@ -163,12 +163,12 @@ module.exports = {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true, // defaults to false
-        jsxPragma: `jsx`, // defaults to "React"
+        jsxPragma: "jsx", // defaults to "React"
         allExtensions: true, // defaults to false
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: "gatsby-plugin-google-gtag",
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
