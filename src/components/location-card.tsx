@@ -77,10 +77,8 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
 
   return (
     <p>
-      Open Friday May 17 thru Sunday May 19<br />
+      Open Daily<br />
       <HourMin time={opening_time} /> - <HourMin time={closing_time} /><br />
-      &nbsp;<br />
-      Daily from Wednesday May 22
     </p>
   )
 
