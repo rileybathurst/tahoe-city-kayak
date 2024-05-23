@@ -79,6 +79,7 @@ function Season({ season_start, season_end, opening_time, closing_time, name }: 
     <p>
       Open Daily<br />
       <HourMin time={opening_time} /> - <HourMin time={closing_time} /><br />
+      Weather Permitting
     </p>
   )
 
