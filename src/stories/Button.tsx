@@ -6,14 +6,14 @@ export const Button = ({ primary }) => {
   const mode = primary ? 'storybook-Button--primary' : 'storybook-Button--secondary';
   return (
     <>
-      <button>Button</button>
-      <button className='button__hover'>Hover</button>
-      <button className='button__active'>Active</button>
+      <button type='button'>Button</button>
+      <button className='button__hover' type='button'>Hover</button>
+      <button className='button__active' type='button'>Active</button>
       <hr />
-      <button className='button__mullen'>Button Mullen</button>
-      <button className='button__mullen--hover'>Mullen Hover</button>
-      <button className='button__mullen--active'>Mullen Active</button>
-      <p>I have some problems with this I dont like the pink</p>
+      <button className='button__mullen' type='button'>Button Mullen</button>
+      <button className='button__mullen--hover' type='button'>Mullen Hover</button>
+      <button className='button__mullen--active' type='button'>Mullen Active</button>
+      <p>// TODO: I have some problems with this I dont like the pink</p>
     </>
   );
 };

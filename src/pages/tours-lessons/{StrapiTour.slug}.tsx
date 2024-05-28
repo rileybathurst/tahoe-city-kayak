@@ -1,9 +1,10 @@
 import * as React from "react"
-import { graphql, Script } from "gatsby"
+import { Link, graphql, Script } from "gatsby"
 import { SEO } from "../../components/seo";
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
-
+import Header from "../../components/header"
+import Footer from "../../components/footer"
 import TourView from "../../views/tour-view"
 
 export const query = graphql`
@@ -34,15 +35,33 @@ export const query = graphql`
 `
 
 const TourPage = ({ data }) => {
-  const tour = data.strapiTour;
-  const other = data.allStrapiTour;
+  if (data.strapiTour) {
+    return (
+      <TourView
+        tour={data.strapiTour}
+        other={data.allStrapiTour}
+      />
+    );
+  }
+  // ! having one inline and one on a template is a mess
   return (
-    <TourView
-      tour={tour}
-      other={other}
-    />
+    <>
+      <Header />
+      <main className="condor">
+        {/*         <h2 className="crest">
+          <Link to="/tours">Tours</Link> / {params.name}
+          </h2> */}
+
+        {/* // TODO: this should be a component */}
+        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
+        <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link></p>
+
+        {/* // TODO: this is a broken tour page add a set of tours it should be with cards */}
+      </main>
+      <Footer />
+    </>
   );
-};
+}
 
 export default TourPage;
 

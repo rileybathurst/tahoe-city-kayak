@@ -7,7 +7,15 @@ export default {
   component: Color,
 };
 
-const Template = (args) => <Color
+interface TemplateTypes {
+  primary: boolean;
+  label: string;
+  args: {
+    primary: boolean;
+    label: string;
+  }
+}
+const Template = (args: TemplateTypes): JSX.Element => <Color
 // {...args}
 />;
 
@@ -15,4 +23,4 @@ export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
   label: 'Color',
-};
+} as TemplateTypes['args']; // Add 'as TemplateTypes['args']' to fix the problem.

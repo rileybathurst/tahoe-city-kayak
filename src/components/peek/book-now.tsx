@@ -1,14 +1,23 @@
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import { PaddleBookNow } from "@rileybathurst/paddle"
 
 const BookNow = () => {
+
+  const { strapiLocale } = useStaticQuery(graphql`
+    query BookNowQuery {
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        name
+        peek_base
+      }
+    }
+  `);
+
   return (
-    <a
-      href="https://book.peek.com/s/6477fc17-231d-4d85-9a8e-a46e835d5e3b/aE2XR"
-      rel="noopener noreferrer"
-      className="book-now"
-    >
-      BOOK NOW
-    </a>
+    <PaddleBookNow
+      peek_base={strapiLocale.peek_base}
+      strapiLocaleName={strapiLocale.name}
+    />
   )
 }
 
