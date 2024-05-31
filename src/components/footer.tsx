@@ -13,7 +13,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 const Footer = () => {
 
-  const { allStrapiLocation } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query FooterQuery {
       allStrapiLocation(
         filter: {
@@ -25,8 +25,20 @@ const Footer = () => {
           ...locationCard
         }
       }
+
+      allStrapiLocale(filter: {slug: {ne: "tahoe-city"}}) {
+        nodes {
+          name
+          url
+        }
+      }
     }
   `)
+
+  interface LocaleTypes {
+    name: string,
+    url: string
+  }
 
   return (
     <footer>
@@ -65,6 +77,22 @@ const Footer = () => {
             </a>
           </div>
         </div>
+        <hr />
+        <div className="footer__locations">
+          <h3>Our Partner Locations</h3>
+          <ul>
+            {data.allStrapiLocale.nodes.map((locale: LocaleTypes) => (
+              <li key={locale.name}>
+                <a href={locale.url}
+                  target="_blank"
+                  rel='noopener noreferrer'
+                >
+                  {locale.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div>
         <PricingChart book={false} />
@@ -72,7 +100,7 @@ const Footer = () => {
 
 
         <LocationDeck
-          locations={allStrapiLocation}
+          locations={data.allStrapiLocation}
           background={false}
         />
 

@@ -54,9 +54,9 @@ module.exports = {
     logo: "/images/icon.png",
     areaServed: "Tahoe City",
     author: "Tahoe City Kayak",
-    paymentAccepted: "Cash credit card",
+    paymentAccepted: "Cash, credit card",
     itemType: "LocalBusiness",
-    priceRange: "$50-2500",
+    priceRange: "$30-$2500",
     location: {
       address: {
         streetAddress: "521 North Lake Blvd",
