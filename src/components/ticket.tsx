@@ -16,7 +16,7 @@ const Ticket = (tour: {
     name: string;
     start?: string | null;
     finish?: string | null;
-    duration?: string | null;
+    duration?: number | null;
     timeframe?: string | null;
     fitness: string;
     excerpt: string;
