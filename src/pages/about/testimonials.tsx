@@ -5,14 +5,14 @@ import { SEO } from "../../components/seo";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-// import { TestimoialSEO } from "../../seo/testimonial";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
+import { PaddleTestimonials } from "@rileybathurst/paddle";
 
-const FaqPage = () => {
+const TestimonialsPage = () => {
 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
-    query TestimonialQuery {
-      allStrapiTestimonial {
+    query TestimonialsQuery {
+      allStrapiTestimonial(filter: {locale: {slug: {eq: "tahoe-city"}}}) {
       nodes {
         id
         testimonial
@@ -24,37 +24,22 @@ const FaqPage = () => {
     }
   `)
 
-  let title = "Testimonials";
-  let parent = "about";
+  /* // TODO: */
+  const title = "Testimonials";
+  const parent = "about";
 
   return (
     <>
       <Header />
 
       <main>
-        <h1>{title}</h1>
+        <h1>Testimonials</h1>
+        <hr />
 
-        <ul className="testimonials">
-          {
-            allStrapiTestimonial.nodes.map((testimonial: {
-              id: string;
-              customer: string;
-              testimonial: string;
-              sign: string;
-              location: string;
-            }) => (
-              <li key={testimonial.id} >
-                <h2>{testimonial.customer}</h2>
-                <p>{testimonial.testimonial}</p>
-                <p>{testimonial.sign}</p>
-                <p>{testimonial.location}</p>
-                <hr />
-              </li>
-            ))
-          }
-        </ul>
+        <PaddleTestimonials {...allStrapiTestimonial} />
       </main>
 
+      {/* // TODO: */}
       <ParentTitleBreadcrumb
         parent={parent}
         title={title}
@@ -65,7 +50,7 @@ const FaqPage = () => {
   );
 }
 
-export default FaqPage
+export default TestimonialsPage
 
 export const Head = () => {
   return (
@@ -74,6 +59,7 @@ export const Head = () => {
       description="Testimonials from our customers."
     >
       {/* <TestimoialSEO /> */}
+      {/* // TODO: */}
       <Script type="application/ld+json">
         {`
           {

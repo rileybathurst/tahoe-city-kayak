@@ -35,7 +35,9 @@ const Ticket = (tour: {
   });
 
   return (
-    <Link to={`/tours-lessons/${tour.tour.slug}`}
+    <Link
+      // * there are going to be challenges like even the link is different
+      to={`/tours-lessons/${tour.tour.slug}`}
       className="card"
     >
       <GatsbyImage

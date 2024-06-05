@@ -1,3 +1,5 @@
+import "@rileybathurst/paddle/src/styles/app.css";
+
 import "./src/styles/app.css";
 
 // import "@fontsource/barlow";  // Defaults to weight 400
