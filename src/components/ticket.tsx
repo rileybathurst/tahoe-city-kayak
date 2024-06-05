@@ -3,9 +3,10 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
 import Time from "./time"
 import Fitness from "./fitness"
+import { PaddleTime } from "@rileybathurst/paddle";
 
 const Ticket = (tour: {
   tour: {
@@ -13,9 +14,10 @@ const Ticket = (tour: {
     ogimage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
     slug: string;
     name: string;
-    start: Date;
-    finish: Date;
-    duration: Date;
+    start?: string | null;
+    finish?: string | null;
+    duration?: string | null;
+    timeframe?: string | null;
     fitness: string;
     excerpt: string;
     price: string;
@@ -23,6 +25,14 @@ const Ticket = (tour: {
   };
 }) => {
 
+  console.log(tour);
+
+  const time = PaddleTime({
+    start: tour.tour.start,
+    finish: tour.tour.finish,
+    duration: tour.tour.duration,
+    timeframe: tour.tour.timeframe,
+  });
 
   return (
     <Link to={`/tours-lessons/${tour.tour.slug}`}
@@ -37,11 +47,7 @@ const Ticket = (tour: {
         {tour.tour.name}
       </h4>
       <div className="card__specs">
-        <Time
-          start={tour.tour.start}
-          finish={tour.tour.finish}
-          duration={tour.tour.duration}
-        />
+        <h4>{time.entry}</h4>
         <Fitness fitness={tour.tour.fitness} />
       </div>
       <hr />

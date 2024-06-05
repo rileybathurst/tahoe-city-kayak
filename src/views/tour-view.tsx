@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Markdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 import Header from "../components/header"
 import Footer from "../components/footer"
 import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
