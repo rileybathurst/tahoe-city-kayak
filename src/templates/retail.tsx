@@ -14,7 +14,6 @@ import TextureBackgrounds from "../components/texturebackgrounds";
 import Phone from '../components/phone';
 
 import SEOcase from "../components/seocase"
-import { types } from 'util';
 import Remainder from '../components/remainder';
 
 // ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
@@ -60,6 +59,9 @@ interface Spec3Types {
   };
 }
 function Spec3({ crew, capacity, test, length }: Spec3Types) {
+
+  console.log(crew, capacity);
+
   return (
     Object.entries({ crew, capacity, test, length }).map(([key, value]) => {
 
@@ -267,7 +269,7 @@ const RetailTypeView = ({ data }) => {
 
       {/* // ! I need to close out the title and specs to get them to line up */}
       <main className="retail">
-        <div className='passage title'>
+        <div className='title'>
           <Link
             to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}
             className='link__subtle-svg'
@@ -294,13 +296,13 @@ const RetailTypeView = ({ data }) => {
             capacity={data.strapiRetail.capacity}
           /> */}
           {/* // ! take this into production */}
-          <Spec3
-            crew={data.strapiRetail.crew}
-            capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
-            // testing a string insted of a number
-            test={{ data: "🦖", unit: "lbs" }}
-            length={{ data: data.strapiRetail.length, unit: `"` }}
-          />
+
+          {data.strapiRetail.crew && data.strapiRetail.capacity ?
+            <Spec3
+              crew={data.strapiRetail.crew}
+              capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
+            />
+            : null}
 
           {/* // ! testing ideas */}
           {/* // * this one went too far I couldnt get there */}
