@@ -4,7 +4,7 @@
 
 .deck,
 .ticket-roll {
-  max-width: var(--pelican);
+  max-width: var(--albatross);
   margin-inline: auto;
   /* margin-block: 3rem; */
   margin-block-end: var(--aconcagua);

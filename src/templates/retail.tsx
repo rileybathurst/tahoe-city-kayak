@@ -1,60 +1,146 @@
 import React from 'react';
 import { Link, graphql, Script } from 'gatsby';
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-import { useSiteUrl } from "../hooks/use-site-url";
 
 import Markdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 import Sport from '../components/sport';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Card from '../components/card';
 import Spec from '../components/spec';
 import TextureBackgrounds from "../components/texturebackgrounds";
-import Danger from "../components/danger";
 import Phone from '../components/phone';
 
 import SEOcase from "../components/seocase"
+import { types } from 'util';
+import Remainder from '../components/remainder';
 
-function Weight(props) {
-  if (props.riggedweight) {
-    return (
-      <>
-        <div className="spec">
-          <h2>Hull Weight</h2>
-          <h3>
-            {props.hullweight}
-            <span className="spec__unit">&thinsp;lbs</span>
-          </h3>
-        </div>
-        <div className="spec">
-          <h2>Rigged Weight</h2>
-          <h3>{props.riggedweight}
-            <span className="spec__unit">&thinsp;lbs</span>
-          </h3>
-        </div>
-      </>
-    );
-  } else {
-    return (
+// ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
+//  might be more of a package problem
+interface Spec2Types {
+  crew: string;
+  capacity: number;
+}
+function Spec2({ crew, capacity }: Spec2Types) {
+  return (
+    Object.entries({ crew, capacity }).map(([key, value]) => {
+      return (
+        <section key={key}>
+          <h3>{key} - {value}</h3>
+        </section>
+      )
+    })
+  )
+}
+
+// ! this is where it gets interesting
+// ? maybe needs to be a generic here
+// I might get passes a string or an object
+// if I dont know what I'm getting I can't do the capacity test
+// then I need
+
+// * this list is going to get long hence generics
+// it also has tour types or almost everything is not used each time
+
+interface Spec3Types {
+  crew: string;
+  capacity: {
+    data: number;
+    unit: string;
+  };
+  test: {
+    data: string;
+    unit: string;
+  };
+  length: {
+    data: number;
+    unit: string;
+  };
+}
+function Spec3({ crew, capacity, test, length }: Spec3Types) {
+  return (
+    Object.entries({ crew, capacity, test, length }).map(([key, value]) => {
+
+      // console.log(value);
+      // this is maybe where you can use generics to get around this check
+
+      // or if the next capacity data is a string
+      // so you create a string here from the object
+
+      if (typeof value !== 'string') {
+
+        // * works but cant be type safe
+        // ? i guess you could wrap it in a typeof check
+        // so this is getting kinda ugly
+        if (key === 'length' && typeof value.data === 'number') {
+          return (
+            <section key={key}>
+              <h3>{key} - <Remainder inches={value.data} /></h3>
+            </section>
+          )
+        }
+
+        const combinedDataUnit = `${value.data} ${value.unit}`;
+        return (
+          <section key={key}>
+            <h3>{key} - {combinedDataUnit}</h3>
+          </section>
+        )
+      }
+
+      return (
+        <section key={key}>
+          <h3>{key} - {value}</h3>
+        </section>
+      )
+    })
+  )
+}
+
+// ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
+//  might be more of a package problem
+/* function Spec4<ElementType>({ crew, capacity }: ElementType) {
+  const values = Object.values({ crew, capacity });
+} */
+
+
+type WeightTypes = {
+  riggedweight: number;
+  hullweight: number;
+}
+function Weight({ riggedweight, hullweight }: WeightTypes) {
+  return (
+    <>
       <div className="spec">
         <h2>Hull Weight</h2>
         <h3>
-          {props.hullweight}
+          {hullweight}
           <span className="spec__unit">&thinsp;lbs</span>
         </h3>
       </div>
-    );
-  }
+      {riggedweight ?
+        <div className="spec">
+          <h2>Rigged Weight</h2>
+          <h3>{riggedweight}
+            <span className="spec__unit">&thinsp;lbs</span>
+          </h3>
+        </div>
+        : null
+      }
+    </>
+  );
 }
 
-function Price(props: { discount: number; price: number; }) {
-  // * taken from spec but it was getting too complicated
-  if (props.discount) {
+interface PriceTypes {
+  price: number;
+  discount: number;
+}
+function Price({ price, discount }: PriceTypes) {
+  if (discount) {
 
-    let amount = props.price - (props.discount * (props.price / 100));
+    const amount = price - (discount * (price / 100));
 
     return (
       <>
@@ -63,53 +149,21 @@ function Price(props: { discount: number; price: number; }) {
           <h2><del>Original Price</del></h2>
           <h3>
             <del>
-              ${props.price}
+              ${price}
             </del>
           </h3>
         </div>
         <div className="spec mullen">
           <h2>Sale Price</h2>
-          {props.discount}% off
+          {discount}% off
           <h3>${amount}</h3>
         </div>
       </>
     )
-  } else {
-    return (
-      <Spec name="price" spec={props.price} unit="$" unitPlace="before" unitSpace='none' />
-    )
   }
-}
-
-
-function ReactMD(props: { raw: string; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; className: string | undefined; }) {
-
-  // console.log('markdown');
-  // console.log(props.raw);
-
-  if (props.raw) {
-    if (props.title) {
-      return (
-        <article className={props.className} itemProp="description" >
-          <h3>{props.title}</h3>
-          <Markdown
-            children={props.raw}
-            className="react-markdown"
-          />
-        </article>
-      );
-    } else {
-      return <article className={props.className} >
-        <Markdown
-          children={props.raw}
-          className="react-markdown"
-        />
-      </article>
-    }
-  }
-  else {
-    return null;
-  }
+  return (
+    <Spec name="price" spec={price} unit="$" unitPlace="before" unitSpace='none' />
+  )
 }
 
 function Other(props: { retail: { nodes: any[]; }; }) {
@@ -123,9 +177,8 @@ function Other(props: { retail: { nodes: any[]; }; }) {
         ))}
       </section>
     )
-  } else {
-    return null;
   }
+  return null;
 }
 
 function OtherWrap(props: { retail: { nodes: string | any[]; }; type: string; brand: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; slug: any; }) {
@@ -145,9 +198,8 @@ function OtherWrap(props: { retail: { nodes: string | any[]; }; type: string; br
         </section>
       </article>
     )
-  } else {
-    return null;
   }
+  return null;
 }
 
 // references that there are no other by brand
@@ -164,11 +216,13 @@ function None(props: { retail: { nodes: string | any[]; }; type: string; }) {
         </h3>
       </section>
     )
-  } else {
-    return null;
   }
+
+  return null;
 }
 
+// TODO: description to strapi
+// TODO: pedal drive should be a query
 function Demo(props: { demo: any; type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) {
   if (props.demo) {
     return (
@@ -184,9 +238,8 @@ function Demo(props: { demo: any; type: string | number | boolean | React.ReactE
         </p>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function Series(props: { series: string; }) {
@@ -204,19 +257,10 @@ function Series(props: { series: string; }) {
       </div>
     );
   }
-  else return null;
+  return null;
 }
 
 const RetailTypeView = ({ data }) => {
-
-  let cutoutFallback = data.strapiRetail.cutout.alternativeText || 'retail image';
-
-  // ! this still needs work
-  if (cutoutFallback.includes('.png')) {
-    let cutoutFallback = 'retail image';
-  }
-  // console.log(cutoutFallback);
-
   return (
     <>
       <Header />
@@ -228,7 +272,9 @@ const RetailTypeView = ({ data }) => {
             to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}
             className='link__subtle-svg'
           >
-            <Danger svg={data.strapiRetail.brand.svg} />
+            <div
+              dangerouslySetInnerHTML={{ __html: data.strapiRetail.brand.svg }}
+            />
           </Link>
           <hgroup className="hgroup__retail">
             {/* // TODO: only one h and then p */}
@@ -241,6 +287,28 @@ const RetailTypeView = ({ data }) => {
         </div>
 
         <div className='specs'>
+
+          {/* // ! testing ideas */}
+          {/*           <Spec2
+            crew={data.strapiRetail.crew}
+            capacity={data.strapiRetail.capacity}
+          /> */}
+          {/* // ! take this into production */}
+          <Spec3
+            crew={data.strapiRetail.crew}
+            capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
+            // testing a string insted of a number
+            test={{ data: "🦖", unit: "lbs" }}
+            length={{ data: data.strapiRetail.length, unit: `"` }}
+          />
+
+          {/* // ! testing ideas */}
+          {/* // * this one went too far I couldnt get there */}
+          {/*           <Spec4
+            crew={data.strapiRetail.crew}
+            capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
+          /> */}
+
           <h3>SPECS:</h3>
           <Spec name="crew" spec={data.strapiRetail.crew} />
           <Spec name="capacity" spec={data.strapiRetail.capacity} unit="lbs" />
@@ -267,22 +335,27 @@ const RetailTypeView = ({ data }) => {
 
           <GatsbyImage
             image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={cutoutFallback}
+            alt={data.strapiRetail.cutout.alternativeText || 'retail image'}
             className="cutout"
             objectFit="contain"
           />
           {/* {data.strapiRetail?.cutout?.alternativeText} */}
         </div>
 
-        <ReactMD
-          raw={data.strapiRetail?.features?.data?.features}
-          className="features"
-          title="Features"
-        />
+        {data.strapiRetail.features?.data?.features ?
+          <>
+            <h3>Features</h3>
+            <Markdown className='react-markdown features'>
+              {data.strapiRetail.features?.data?.features}
+            </Markdown>
+          </>
+          : null}
 
       </main >
 
-      <ReactMD raw={data.strapiRetail.description?.data?.description} className="single__description passage" />
+      <Markdown className='react-markdown single__description passage'>
+        {data.strapiRetail.description?.data?.description}
+      </Markdown>
 
       <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
 
@@ -314,7 +387,6 @@ const RetailTypeView = ({ data }) => {
       <SEOcase
         title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteMetadata().title}`}
         description={data.strapiRetail.excerpt}
-
       />
     </>
   );

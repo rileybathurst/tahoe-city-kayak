@@ -25,9 +25,8 @@ function Nested(props: { sport: string }) {
       </h1>
     )
   }
-  else {
-    return null;
-  }
+
+  return null;
 }
 
 const ToursLessonsPage = () => {
@@ -47,7 +46,7 @@ const ToursLessonsPage = () => {
         }
       }
   
-      sup: allStrapiTour
+      paddleBoard: allStrapiTour
         (
           filter: { 
             sport: { eq: "sup" },
@@ -71,31 +70,25 @@ const ToursLessonsPage = () => {
           }
         }
 
-
       }
     `)
 
-  let kayak = query.kayak;
-  let paddleboard = query.sup;
-
-  let sports = [
-    kayak,
-    paddleboard,
+  const sports = [
+    query.kayak,
+    query.paddleBoard,
   ]
 
   return (
     <>
       <Header />
 
-      <main>
-        <div className="passage location_card-wrapper">
-          <div>
-            <h1>Tours &amp; Lessons</h1>
-            <Experience />
-            <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
-            <BookNow />
-            <hr />
-          </div>
+      <main className="pelican">
+        <div>
+          <h1>Tours &amp; Lessons</h1>
+          <Experience />
+          <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
+          <BookNow />
+          <hr />
 
 
         </div>
@@ -105,13 +98,14 @@ const ToursLessonsPage = () => {
         />
       </main>
 
-      {sports.map((sport: any) => (
+      {sports.map((sport) => (
         <section key={sport.nodes[0].id}>
-          <hgroup className="passage">
-            {/* naming this is weird */}
-            <Nested sport={sport.nodes[0].sport} />
+          <hgroup className="pelican">
+            <h1 className="capitalize">
+              <Sport sport={sport.nodes[0].sport} />
+            </h1>
             <p className="aconcagua">Tours &amp; Lessions</p>
-          </hgroup>
+          </hgroup >
 
           <div className="deck">
             {sport.nodes.map((tour: CardType) => (
@@ -120,7 +114,7 @@ const ToursLessonsPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section >
       ))}
 
       < Footer />

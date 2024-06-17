@@ -177,7 +177,7 @@ const DemosPage = () => {
       <Header />
 
       <main>
-        <div className="location_card-wrapper">
+        <div className="albatross wrap">
           <div>
             <h1>Demos</h1>
             <Markdown

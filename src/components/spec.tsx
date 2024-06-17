@@ -1,3 +1,6 @@
+// ! Spec3 is the latest version of this component but hasnt been brought into production yet
+// it may need generic types to be added
+
 import React from "react";
 import Remainder from "./remainder";
 

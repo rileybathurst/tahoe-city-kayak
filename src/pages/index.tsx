@@ -58,7 +58,7 @@ const IndexPage = () => {
   // const more = { data }
   // console.log(more);
 
-  let allTours = data.allStrapiTour.nodes
+  const allTours = data.allStrapiTour.nodes
   // console.log(allTours);
 
   // State for the list
@@ -194,21 +194,25 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="passage">
-        {/* <h3><Link to="/retail" className="">Retail</Link></h3> */}
-        {/* // TODO: only one h and then p */}
-        <hgroup className="crest">
-          <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
-          <h4 className="supra">Kayaks and Paddleboards</h4>
-        </hgroup>
+      <section id="retail" className="pelican wrap">
+        <div>
+          {/* // TODO: only one h and then p */}
+          <hgroup className="crest">
+            <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
+            <h4 className="supra">Kayaks and Paddleboards</h4>
+          </hgroup>
 
-        <Shop />
-        <hr />
+          <Shop />
+        </div>
       </section>
 
-      <section className="home__retail">
-        <div className="passage">
-          <h4><Link to="/retail/kayak">Shop All Kayaks</Link></h4>
+      <hr className="pelican" />
+
+      <section className="albatross wrap">
+        <div>
+          <h4>
+            <Link to="/retail/kayak">Shop All Kayaks</Link>
+          </h4>
           <h5>Shop By Feature</h5>
           <KayakFeatureList />
           <h5>Shop By Brand</h5>
@@ -216,26 +220,26 @@ const IndexPage = () => {
 
           <hr />
 
-          <h4><Link to="/retail/sup">Shop All Paddleboards</Link></h4>
+          <h4>
+            <Link to="/retail/sup">Shop All Paddleboards</Link>
+          </h4>
           <h5>Shop By Feature</h5>
           <PaddleboardFeatureList />
           <h5>Shop By Brand</h5>
           <SupBrandList />
         </div>
 
-        <div className="deck deck__column">
+        <div className="deck">
           {inventory.map((retail) => (
-            <div key={retail.id}>
-              <Card retail={retail} />
-            </div>
+            <Card
+              key={retail.id}
+              retail={retail} />
           ))}
-          <div className="deck__more">
-            {hasExtra ? (
-              <button onClick={handleLoadExtra} className=''>VIEW MORE PRODUCTS</button>
-            ) : (
-              <p>Thats all the products</p>
-            )}
-          </div>
+          {hasExtra ? (
+            <button onClick={handleLoadExtra}>VIEW MORE PRODUCTS</button>
+          ) : (
+            <p>Thats all the products</p>
+          )}
         </div>
 
       </section>

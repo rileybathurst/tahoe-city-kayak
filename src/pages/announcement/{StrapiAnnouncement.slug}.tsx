@@ -8,7 +8,6 @@ import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Markdown from "react-markdown";
-import BreadcrumbTwo from "../../components/breadcrumb-two";
 
 function Calendar({ calendar }) {
   if (calendar) {

@@ -7,21 +7,17 @@ import { useStrapiFaq } from "../../hooks/use-strapi-faq";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
+import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 
 
 const FaqPage = () => {
-
-  let title = "Frequently Asked Questions";
-  let parent = "about";
 
   return (
     <>
       <Header />
 
-      <main>
-        <h1>{title}</h1>
+      <main className="pelican">
+        <h1>Frequently Asked Questions</h1>
 
         {/* // TODO links to delivery and demos */}
 
@@ -44,10 +40,10 @@ const FaqPage = () => {
         </ul>
       </main>
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link href="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Frequently Asked Questions</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

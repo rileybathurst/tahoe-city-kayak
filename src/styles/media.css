@@ -105,57 +105,12 @@ footer {
 /* #SOCIAL */
 /*------------------*/
 
-/* ! this still isnt right */
-.facebook {
-  transition: 0.5s ease;
-
-  .facebook__blue {
-    fill: grey;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .facebook__blue {
-      fill: grey;
-    }
-
-    .facebook__white {
-      fill: var(--sand-300);
-    }
-  }
+.facebook .circle {
+  fill: var(--black-metal);
 }
 
-.facebook__white {
-  fill: var(--sand);
-}
-
-.facebook:hover {
-  .facebook__blue {
-    fill: #1877f2;
-  }
-}
-
-.instagram {
-  filter: grayscale(100%);
-  mix-blend-mode: multiply;
-  transition: 0.5s ease;
-
-  @media (prefers-color-scheme: dark) {
-    mix-blend-mode: screen;
-  }
-}
-
-.instagram:hover {
-  filter: grayscale(0%);
-  mix-blend-mode: normal;
-
-  @media (prefers-color-scheme: dark) {
-    fill: currentColor;
-  }
-}
-
-a:hover .instagram {
-  filter: grayscale(0%);
-  mix-blend-mode: normal;
+.tripadvisor path {
+  fill: var(--black-metal);
 }
 
 /*------------------*/

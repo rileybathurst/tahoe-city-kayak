@@ -10,6 +10,7 @@ import LocationDeck from "./location-deck";
 import Phone from "./phone";
 import Mail from "./mail";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
+import { PaddleSocials } from "@rileybathurst/paddle";
 
 const Footer = () => {
 
@@ -24,6 +25,12 @@ const Footer = () => {
         nodes {
           ...locationCard
         }
+      }
+
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        instagram
+          facebook
+          tripadvisor
       }
 
       allStrapiLocale(filter: {slug: {ne: "tahoe-city"}}) {
@@ -60,22 +67,11 @@ const Footer = () => {
           <Phone />
           <Mail />
           <hr />
-          <div className="social">
-            <a
-              href={useSiteMetadata().social.facebook}
-              target='_blank' rel='noopener noreferrer'
-              aria-label={`${useSiteMetadata().title} facebook`}
-            >
-              <FacebookIcon />
-            </a>
-            <a
-              href={useSiteMetadata().social.instagram}
-              target='_blank' rel='noopener noreferrer'
-              aria-label={`${useSiteMetadata().title} instagram`}
-            >
-              <InstagramIcon />
-            </a>
-          </div>
+          <PaddleSocials
+            instagram={data.strapiLocale.instagram}
+            facebook={data.strapiLocale.facebook}
+            tripadvisor={data.strapiLocale.tripadvisor}
+          />
         </div>
         <hr />
         <div className="footer__locations">

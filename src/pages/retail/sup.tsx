@@ -150,7 +150,7 @@ const RetailSupPage = () => {
       <Header />
 
       <main>
-        <div className="location_card-wrapper">
+        <div className="albatross wrap">
           <div>
             <h1>{title}</h1>
             <Shop />

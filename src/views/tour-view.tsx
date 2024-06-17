@@ -9,6 +9,7 @@ import Composition from "../components/composition";
 import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
 import LocationCard from "../components/location-card";
+import Remainder from "../components/remainder";
 
 function ReactMD(props: { raw: string; }) {
   return (
@@ -88,22 +89,22 @@ function Minimum(props: { minimum: number; }) {
 }
 
 function TourName(props: { tour: string; }) {
-  {/* // * waiting on safari for css text-wrap: balance */ }
-  let name = props.tour;
+  // waiting on safari for css text-wrap: balance
+  const name = props.tour;
   // console.log(name.length);
   if (name.length > 20) {
 
     return (
       <Balancer>{props.tour}</Balancer>
     );
-  } else {
-    return (
-      <>
-        {props.tour}
-      </>
-    );
   }
+  return (
+    <>
+      {props.tour}
+    </>
+  );
 }
+
 
 const TourView = ({ tour, other }) => {
 

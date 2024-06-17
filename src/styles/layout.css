@@ -2,74 +2,8 @@
 /* #LAYOUT */
 /*------------------*/
 
-.swan {
-  max-width: var(--swan);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--swan);
-}
-
-.vulture {
-  max-width: var(--vulture);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--vulture);
-}
-
-.stork {
-  max-width: var(--stork);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--stork);
-}
-
-.condor {
-  max-width: var(--condor);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--condor);
-}
-
-.pelican {
+header {
   max-width: var(--pelican);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--pelican);
-}
-
-.albatross {
-  max-width: var(--albatross);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  flex-basis: var(--albatross);
-}
-
-/*------------------------------------*/
-/* * I'm NOT 100% sure of the syntax below here */
-
-/* interesting metaphor but only a maybe so far */
-.hydra {
-  display: flex;
-  flex-flow: row wrap;
-  gap: var(--vinson);
-
-  > * {
-    flex: 1 1;
-  }
-}
-
-.pelican.hydra > * {
-  flex: 1 1 calc(var(--pelican) / 2 - 1rem);
-  max-width: none;
-  margin-inline: 0;
-  padding-inline: 0;
-}
-
-.albatross.hydra > * {
-  flex: 1 1 calc(var(--albatross) / 2 - 1rem);
-  max-width: none;
-  margin-inline: 0;
-  padding-inline: 0;
 }
 
 /*------------------*/
@@ -306,7 +240,7 @@ main {
 /*------------------*/
 
 footer {
-  max-width: var(--pelican);
+  max-width: var(--albatross);
   margin-inline: auto;
 
   display: flex;
@@ -412,7 +346,7 @@ footer {
 
   hgroup,
   p {
-    max-width: var(--vulture);
+    max-width: var(--stork);
   }
 }
 
@@ -810,6 +744,10 @@ footer {
   padding-block-start: 0.25rem;
   z-index: var(--emergent); /* over the small menu when it slides up */
   position: relative;
+  width: 100%;
+  max-width: var(--condor);
+  margin-inline: auto;
+  place-content: center;
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
@@ -817,7 +755,10 @@ footer {
   }
 
   p {
+    width: 100%;
+    /* * smaller than a variable */
     margin-block-end: 0.25rem;
+    white-space: nowrap;
   }
 }
 

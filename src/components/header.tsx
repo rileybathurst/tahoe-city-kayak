@@ -174,10 +174,9 @@ const Header = () => {
 
       {/* // TODO this would be nice to be able to close but I dont have it right yet */}
       <div className="top-bar" >
-        <Markdown
-          children={strapiLocale.topbar.data.topbar}
-          className="react-markdown"
-        />
+        <Markdown>
+          {strapiLocale.topbar.data.topbar}
+        </Markdown>
       </div>
 
       <p className='sr-only'>

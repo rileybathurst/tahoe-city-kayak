@@ -1,8 +1,8 @@
 /*------------------*/
 /*  #TAHOE CITY KAYAK */
+/* A lot of the css is coming from @rileybathurst/paddle */
 /*------------------*/
 
-@import "variables";
 @import "body";
 @import "typography";
 @import "nav";

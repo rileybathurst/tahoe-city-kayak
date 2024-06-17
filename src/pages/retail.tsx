@@ -1,3 +1,5 @@
+// TODO: loop this
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
@@ -14,9 +16,9 @@ import Card from "../components/card";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
 
-import SEOShowcase from "seo-showcase"
+// import SEOShowcase from "seo-showcase"
 import SEOcase from "../components/seocase"
-import { CardType } from "../types/card";
+import type { CardType } from "../types/card";
 import LocationCard from "../components/location-card";
 
 const RetailPage = () => {
@@ -28,7 +30,7 @@ const RetailPage = () => {
         }
       }
 
-    sup: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
+    paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
       ...retailCard
       }
@@ -49,7 +51,7 @@ const RetailPage = () => {
 
       <Header />
 
-      <main className="location_card-wrapper">
+      <main className="albatross wrap">
         <div>
           <h1>Retail</h1>
           <Shop />
@@ -62,7 +64,7 @@ const RetailPage = () => {
         />
       </main>
 
-      <article className="main__full main__full--tour">
+      <article className="pelican wrap">
         <section className="blocked">
           <h2><Link to="/retail/kayak">Kayaks</Link></h2>
           <h3 className="condensed">Browse By Feature</h3>
@@ -73,7 +75,7 @@ const RetailPage = () => {
 
       </article>
 
-      <section className="brand_list">
+      <section className="pelican">
         <h3>Browse By Brand</h3>
       </section>
       <KayakBrandList />
@@ -105,7 +107,7 @@ const RetailPage = () => {
       <SupBrandList />
 
       <section className="deck">
-        {query.sup.nodes.map((sup: CardType) => (
+        {query.paddleBoard.nodes.map((sup: CardType) => (
           <div key={sup.id}>
             <Card retail={sup} />
           </div>

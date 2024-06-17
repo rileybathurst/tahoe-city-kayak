@@ -8,15 +8,6 @@ a {
 
 a:where(:hover, :focus) {
   color: var(--mullen-200);
-  text-decoration: none;
-}
-
-.link__subtle {
-  text-decoration: none;
-}
-
-.link__subtle:where(:hover, :focus) {
-  text-decoration: underline;
 }
 
 .link__subtle-svg svg {
@@ -26,6 +17,8 @@ a:where(:hover, :focus) {
 .link__subtle-svg svg:where(:hover, :focus) {
   fill: var(--mullen);
 }
+
+/*------------------------------------*/
 
 .link__backed {
   padding: 0.25rem;
@@ -72,7 +65,6 @@ a:where(:hover, :focus) {
 
 a svg {
   fill: var(--mullen);
-  transition: 0.2s ease;
 }
 
 a svg:where(:hover, :focus) {
@@ -88,10 +80,6 @@ a:hover svg:not(.instagram) {
 /*------------------*/
 
 footer {
-  .link__backed {
-    border: 1px solid transparent;
-  }
-
   /* TODO: dark */
   .link__backed:hover {
     background-color: whitesmoke;
