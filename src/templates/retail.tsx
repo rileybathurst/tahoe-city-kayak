@@ -233,27 +233,6 @@ function None(props: { retail: { nodes: string | any[]; }; type: string; }) {
   return null;
 }
 
-// TODO: description to strapi
-// TODO: pedal drive should be a query
-function Demo(props: { demo: any; type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) {
-  if (props.demo) {
-    return (
-      <div className="single__book">
-        <h3>Demo</h3>
-        <p>If you&rsquo;re looking to try this particular {props.type}, call the shop and request a demo.
-          We&rsquo;ll charge you our rental fee*, but we will credit that fee if you decide to purchase a boat or board from us in the same season.
-          &#x28;Up to two full days rental charge&#x29;</p>
-        {/* // TODO cost may be a single query */}
-        <p>* Pedal drive is an additional $5 per rental.</p>
-        <p>
-          <Phone />
-        </p>
-      </div>
-    );
-  }
-  return null;
-}
-
 function Series(props: { series: string; }) {
   if (props.series) {
     return (
@@ -354,26 +333,57 @@ const RetailTypeView = ({ data }) => {
           {/* {data.strapiRetail?.cutout?.alternativeText} */}
         </div>
 
-        {data.strapiRetail.features?.data?.features ?
+        {/* // TODO: if no features move the description up */}
+        {data.strapiRetail.features ?
           <>
             <h3>Features</h3>
             <Markdown className='react-markdown features'>
-              {data.strapiRetail.features?.data?.features}
+              {data.strapiRetail.features.data.features}
             </Markdown>
           </>
-          : null}
+          : null
+        }
 
       </main >
 
-      <Markdown className='react-markdown single__description passage'>
+      {/* // TODO: ifthe description moved up dont run it here */}
+      <Markdown className='react-markdown condor'>
         {data.strapiRetail.description?.data?.description}
       </Markdown>
 
-      <Demo demo={data.strapiRetail.demo} type={data.strapiRetail.type} />
+      {/* // TODO: description to strapi */}
+      {/* // TODO: pedal drive should be a query */}
+      {data.strapiRetail.demo ?
+        <div className="single__book">
+          <h3>Demo</h3>
+          <p>If you&rsquo;re looking to try this particular {data.strapiRetail.type}, call the shop and request a demo.
+            We&rsquo;ll charge you our rental fee*, but we will credit that fee if you decide to purchase a boat or board from us in the same season.
+            &#x28;Up to two full days rental charge&#x29;</p>
+          {/* // TODO cost may be a single query */}
+          <p>* Pedal drive is an additional $5 per rental.</p>
+          <p>
+            <Phone />
+          </p>
+        </div>
+        : null
+      }
 
-      <OtherWrap retail={data.allStrapiRetail} brand={data.strapiRetail.brand.name} slug={data.strapiRetail.brand.slug} type={data.strapiRetail.type}>
-        <Other retail={data.allStrapiRetail} />
-      </OtherWrap>
+      {data.allStrapiRetail ?
+        <article>
+          <section className='condor'>
+            <h2>Other <Sport sport={data.strapiRetail.type} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span></h2>
+          </section>
+          <Other retail={data.allStrapiRetail} />
+          <section className='condor'>
+            <h3>
+              <Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>
+                More <Sport sport={data.strapiRetail.type} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span>
+              </Link>
+            </h3>
+          </section>
+        </article>
+        : null
+      }
 
       {/* // The map just creates nothing so I cant go that way */}
       {/* // It's a pretty rare case so I dont actually query a set of cards */}

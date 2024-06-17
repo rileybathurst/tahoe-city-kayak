@@ -17,94 +17,53 @@ const RetailSupPage = () => {
 
   const query = useStaticQuery(graphql`
     query SupQuery {
-      hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      hobie: strapiBrand(name: {eq: "hobie"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
-      bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
+      bote: strapiBrand(name: {eq: "bote"}) {
+        ...retailBrand
           retail {
             ...retailCard
           }
+      }
+  
+      tahe: strapiBrand(name: {eq: "tahe"}) {
+        ...retailBrand
+          retail {
+            ...retailCard
+          }
+
+      }
+
+      sic: strapiBrand(name: {eq: "sic"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
   
-      tahe: allStrapiBrand(filter: {name: {eq: "tahe"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
-        }
-      }
-
-      sic: allStrapiBrand(filter: {name: {eq: "sic"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      hala: strapiBrand(name: {eq: "hala"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
   
-      hala: allStrapiBrand(filter: {name: {eq: "hala"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      boardworks: strapiBrand(name: {eq: "boardworks"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
   
-      boardworks: allStrapiBrand(filter: {name: {eq: "boardworks"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
-        }
-      }
-  
-      pauhana: allStrapiBrand(filter: {name: {eq: "pau hana"}}) {
-        nodes {
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      pauhana: strapiBrand(name: {eq: "pau hana"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
@@ -121,7 +80,7 @@ const RetailSupPage = () => {
         }
       }
 
-      strapiLocation: strapiLocation(
+      strapiLocation(
         locale: {slug: {eq: "tahoe-city"}}
         name: {eq: "Retail Location"}
       ) {
@@ -131,9 +90,9 @@ const RetailSupPage = () => {
     }
   `)
 
-  let other = query.other;
+  const other = query.other;
 
-  let brands = [
+  const brands = [
     query.hobie,
     query.bote,
     query.tahe,
@@ -143,23 +102,19 @@ const RetailSupPage = () => {
     query.pauhana
   ]
 
-  let title = "Paddleboard Retail";
+  const title = "Paddleboard Retail";
 
   return (
     <>
       <Header />
 
-      <main>
-        <div className="albatross wrap">
-          <div>
-            <h1>{title}</h1>
-            <Shop />
-          </div>
-          <LocationCard
-            location={query.strapiLocation}
-            background={false}
-          />
-        </div>
+      <main className="condor">
+        <h1>Paddleboard Retail</h1>
+        <Shop />
+        <LocationCard
+          location={query.strapiLocation}
+          background={false}
+        />
 
         <h2>Browse By Feature</h2>
         <PaddleboardFeatureList />
@@ -172,9 +127,15 @@ const RetailSupPage = () => {
       <div className="brand_blocks">
 
         {brands.map(brand => (
-          <div key={brand.nodes[0].slug}>
-            <Brand brand={brand.nodes[0]} type="sup" />
-          </div>
+          <Brand
+            key={brand.id}
+            type="sup"
+            svg={brand.svg}
+            slug={brand.slug}
+            name={brand.name}
+            tagline={brand.tagline}
+            retail={brand.retail}
+          />
         ))}
 
         <OtherBrand nodes={other.nodes} type="sup" />

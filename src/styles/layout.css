@@ -175,7 +175,7 @@ main {
 }
 
 .single__book {
-  max-width: var(--stork);
+  max-width: var(--condor);
   margin-inline: auto;
   margin-block-end: var(--aconcagua);
   padding-block: 1.5rem;

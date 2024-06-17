@@ -1,18 +1,20 @@
+// TODO: cardtype in here seems kinda a mess
+
 import * as React from "react"
 import { Link } from "gatsby"
-
-import Danger from "./danger"
-import More from "./more";
 import Card from "./card";
-import { CardType } from "../types/card";
+import type { CardType } from "../types/card";
+import Sport from "./sport";
 
+// TODO: just dont query for these on kayak.tsx and sup.tsx
+// needs a second graphql with a filter but better than querying too much and then cutting down
 function Limiter(props: {
   brand: {
     svg: string;
     slug: string;
     name: string;
     tagline: string;
-    retail: CardType;
+    retail: CardType[];
   };
   type: "kayak" | "sup";
 }) {
@@ -20,7 +22,7 @@ function Limiter(props: {
   // using foreach to remove the react key issues
 
   // all the kayaks or sups
-  const type: any[] = [];
+  const type = [];
 
   // only the first 4
   const quad: any[] = [];
@@ -50,44 +52,52 @@ function Limiter(props: {
   )
 }
 
-const Brand = (props:
-  {
-    brand: {
-      svg: string;
-      slug: string;
-      name: string;
-      tagline: string;
-      retail: CardType;
-    };
-    type: "kayak" | "sup";
-  }) => {
+interface BrandTypes {
+  svg: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  retail: CardType[];
+  type: "kayak" | "sup";
+}
+const Brand = ({ svg, slug, name, tagline, retail, type }: BrandTypes) => {
+
+  console.log(retail);
 
   return (
     <>
-      <section className="passage">
+      <section className="condor">
         <div className='brand-logo'>
-          <Danger svg={props.brand.svg} />
+          <div
+            dangerouslySetInnerHTML={{ __html: svg }}
+          />
           <h2 className='capitalize'>
-            <Link to={`/retail/${props.type}/${props.brand.slug}`}>
-              {props.brand.name}
+            <Link to={`/retail/${type}/${slug}`}>
+              {name}
             </Link>
           </h2>
         </div>
-        <p>{props.brand.tagline}.</p>
+        <p>{tagline}</p>
         <hr />
       </section>
 
-      {/* // * both below might have react key issues */}
+      {/* // TODO: fix this */}
       <Limiter
-        brand={props.brand.retail}
-        type={props.type}
+        brand={retail}
+        type={type}
       />
-      <More
-        retail={props.brand.retail}
-        brand={props.brand.name}
-        slug={props.brand.slug}
-        type={props.type}
-      />
+
+      {retail.length > 4 ?
+        <section className="condor">
+          <h3 className='capitalize'>
+            <Link to={slug}>
+              All {retail.length} {name} <Sport sport={`${type}s`} />
+            </Link>
+          </h3>
+          <hr />
+        </section>
+        : null}
+
     </>
   )
 }

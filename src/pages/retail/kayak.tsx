@@ -15,113 +15,62 @@ import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
 
-const RetailKayakPage = (data: any) => {
+const RetailKayakPage = (data) => {
+
   const query = useStaticQuery(graphql`
     query KayaksQuery {
-      hobie: allStrapiBrand(filter: {name: {eq: "hobie"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
-        }
-      }
-
-      eddyline: allStrapiBrand(filter: {name: {eq: "eddyline"}}) {
-        nodes {
-        id
-        name
-        slug
-        tagline
-        svg
-
+      hobie: strapiBrand(name: {eq: "hobie"}) {
+        ...retailBrand
         retail {
-            ...retailCard
-          }
+          ...retailCard
         }
       }
 
-      perception: allStrapiBrand(filter: {name: {eq: "perception"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      eddyline: strapiBrand(name: {eq: "eddyline"}) {
+        ...retailBrand
+      retail {
+          ...retailCard
         }
       }
 
-      wildernesssystems: allStrapiBrand(filter: {name: {eq: "wilderness systems"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      perception: strapiBrand(name: {eq: "perception"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
-      delta: allStrapiBrand(filter: {name: {eq: "delta"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      wildernesssystems: strapiBrand(name: {eq: "wilderness systems"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
-      bote: allStrapiBrand(filter: {name: {eq: "bote"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
-
-          retail {
-            ...retailCard
-          }
+      delta: strapiBrand(name: {eq: "delta"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
-      brusurf: allStrapiBrand(filter: {name: {eq: "brusurf"}}) {
-        nodes {
-          id
-          name
-          slug
-          tagline
-          svg
+      bote: strapiBrand(name: {eq: "bote"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
+        }
+      }
 
-          retail {
-            ...retailCard
-          }
+      brusurf: strapiBrand(name: {eq: "brusurf"}) {
+        ...retailBrand
+        retail {
+          ...retailCard
         }
       }
 
       other: allStrapiBrand(filter: {name: {nin: [ "hobie", "eddyline", "perception", "wilderness systems", "delta", "bote", "brusurf" ] }}) {
         nodes {
-          name
-          slug
-          tagline
-          svg
+          ...retailBrand
 
           retail {
             ...retailCard
@@ -129,7 +78,7 @@ const RetailKayakPage = (data: any) => {
         }
       }
 
-      strapiLocation: strapiLocation(
+      strapiLocation(
         locale: {slug: {eq: "tahoe-city"}}
         name: {eq: "Retail Location"}
       ) {
@@ -139,47 +88,41 @@ const RetailKayakPage = (data: any) => {
     }
   `)
 
-  let hobie = query.hobie;
-  let eddyline = query.eddyline;
-  let perception = query.perception;
-  let wildernesssystems = query.wildernesssystems;
-  let delta = query.delta;
-  let bote = query.bote;
-  let brusurf = query.brusurf;
-  let other = query.other;
+  const other = query.other;
 
-  let brands = [
-    hobie,
-    eddyline,
-    perception,
-    wildernesssystems,
-    delta,
-    bote,
-    brusurf
+  const brands = [
+    query.hobie,
+    query.eddyline,
+    query.perception,
+    query.wildernesssystems,
+    query.delta,
+    query.bote,
+    query.brusurf
   ]
 
-  let title = "Kayak Retail";
-  let parent = "retail";
+  const title = "Kayak Retail";
+  const parent = "retail";
 
   return (
     <>
       <Header />
 
-      <main>
-        <div className="albatross wrap">
-          <div>
-            <h1>{title}</h1>
-            <Shop />
-          </div>
+      <main className="condor">
+        <h1>Kayak Retail</h1>
 
-          <LocationCard location={query.strapiLocation} />
-        </div>
+        <Shop />
+
+        <LocationCard location={query.strapiLocation} />
+
+        <hr />
 
         <h2>Browse By Feature</h2>
+
+        {/* // ? should we if by the sport on the location like a 404? or be passing down the query? */}
         <KayakFeatureList />
 
         <hr />
-      </main>
+      </main >
 
       <section className="passage">
         <h2>Browse By Brand</h2>
@@ -190,9 +133,15 @@ const RetailKayakPage = (data: any) => {
       <div className="brand_blocks">
 
         {brands.map(brand => (
-          <div key={brand.nodes[0].slug}>
-            <Brand brand={brand.nodes[0]} type="kayak" />
-          </div>
+          <Brand
+            key={brand.id}
+            type="kayak"
+            svg={brand.svg}
+            slug={brand.slug}
+            name={brand.name}
+            tagline={brand.tagline}
+            retail={brand.retail}
+          />
         ))}
 
         <OtherBrand nodes={other.nodes} type="kayak" />
@@ -215,6 +164,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Kayak | ${useSiteMetadata().title}`}
+      // TODO: query the description
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     >
       <Script type="application/ld+json">
