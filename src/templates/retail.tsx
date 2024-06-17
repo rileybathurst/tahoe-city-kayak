@@ -60,7 +60,8 @@ interface Spec3Types {
 }
 function Spec3({ crew, capacity, test, length }: Spec3Types) {
 
-  console.log(crew, capacity);
+  console.log(crew);
+  console.log(capacity);
 
   return (
     Object.entries({ crew, capacity, test, length }).map(([key, value]) => {
@@ -71,7 +72,7 @@ function Spec3({ crew, capacity, test, length }: Spec3Types) {
       // or if the next capacity data is a string
       // so you create a string here from the object
 
-      if (typeof value !== 'string') {
+      if (typeof value !== 'string' && key && value) {
 
         // * works but cant be type safe
         // ? i guess you could wrap it in a typeof check
@@ -92,11 +93,20 @@ function Spec3({ crew, capacity, test, length }: Spec3Types) {
         )
       }
 
+      if (key && value) {
+        return (
+          <section key={key}>
+            <h3>{key} - {value}</h3>
+          </section>
+        )
+      }
+
       return (
         <section key={key}>
-          <h3>{key} - {value}</h3>
+          <h3>{key}</h3>
         </section>
-      )
+      );
+
     })
   )
 }
