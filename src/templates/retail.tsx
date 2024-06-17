@@ -307,12 +307,12 @@ const RetailTypeView = ({ data }) => {
           /> */}
           {/* // ! take this into production */}
 
-          {data.strapiRetail.crew && data.strapiRetail.capacity ?
+          {/*           {data.strapiRetail.crew && data.strapiRetail.capacity ?
             <Spec3
               crew={data.strapiRetail.crew}
               capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
             />
-            : null}
+            : null} */}
 
           {/* // ! testing ideas */}
           {/* // * this one went too far I couldnt get there */}
