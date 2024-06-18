@@ -9,7 +9,7 @@ import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Markdown from "react-markdown";
 
-function Calendar({ calendar }) {
+/* function Calendar({ calendar }) {
   if (calendar) {
     return (
       <>
@@ -18,7 +18,7 @@ function Calendar({ calendar }) {
     )
   }
   return null
-}
+} */
 
 export const query = graphql`
   query AnnouncementQuery($slug: String!) {
@@ -46,11 +46,11 @@ export const query = graphql`
   }
 `
 
-const TourPage = ({ data }) => {
+const AnnouncmentPostPage = ({ data }) => {
   return (
     <>
       <Header />
-      <main className="measure">
+      <main className="condor">
 
         {data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData ?
           <GatsbyImage
@@ -64,17 +64,15 @@ const TourPage = ({ data }) => {
         </div>
         {/* TODO: test this */}
         <time dateTime={data.strapiAnnouncement.publishedAt}>{data.strapiAnnouncement.publishedAt}</time>
-
+        {/* //TODO: do more with it */}
+        {/* <Calendar {...data.strapiAnnouncement.calendar} /> */}
         <hr />
 
-        <Markdown
-          children={data.strapiAnnouncement.post.data.post}
-          className="react-markdown"
-        />
+        <Markdown className="react-markdown">
+          {data.strapiAnnouncement.post.data.post}
+        </Markdown>
 
-        <Calendar calendar=
-          {data.strapiAnnouncement.calendar}
-        />
+
 
       </main>
 
@@ -88,11 +86,9 @@ const TourPage = ({ data }) => {
   );
 };
 
-export default TourPage;
+export default AnnouncmentPostPage;
 
 export const Head = ({ data }) => {
-
-  console.log(data.strapiAnnouncement.title)
 
   return (
     <SEO

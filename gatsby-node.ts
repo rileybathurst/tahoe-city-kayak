@@ -71,6 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // this creates the kayak brands
   // console.log(kayakSet);
+  console.log(kayakSet);
 
   kayakSet.forEach((brand) => {
     createPage({

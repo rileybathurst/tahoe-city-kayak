@@ -1,5 +1,7 @@
 // TODO: combine these together with sup-brand-list.tsx
 // This is easier now Im using sports
+// TODO: do this with a query length check instead of a filter
+// I have this on gatsby-node.ts with kayakSet
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';

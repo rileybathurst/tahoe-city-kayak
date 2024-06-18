@@ -119,7 +119,7 @@ function Toast(props: {
 
 const BrandsView = ({ location, data }) => {
 
-  let series = [
+  const series = [
     data.island,
     data.mirage,
     data.inflatable,
