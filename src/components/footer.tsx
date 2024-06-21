@@ -1,16 +1,16 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
+// Paddle
+import { PaddleSocials } from "@rileybathurst/paddle";
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
 import PricingChart from "./pricing-chart";
-import InstagramIcon from "../images/instagram";
-import FacebookIcon from "../images/facebook";
 import MenuList from "./menu-list";
 import Logo from "../images/logo";
-import LocationDeck from "./location-deck";
 import Phone from "./phone";
 import Mail from "./mail";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
-import { PaddleSocials } from "@rileybathurst/paddle";
 
 const Footer = () => {
 
@@ -83,7 +83,7 @@ const Footer = () => {
                   target="_blank"
                   rel='noopener noreferrer'
                 >
-                  {locale.name}
+                  {locale.name} Kayak & Paddleboard
                 </a>
               </li>
             ))}
@@ -94,9 +94,8 @@ const Footer = () => {
         <PricingChart book={false} />
         <hr />
 
-
-        <LocationDeck
-          locations={data.allStrapiLocation}
+        <PaddleLocationDeck
+          {...data.allStrapiLocation}
           background={false}
         />
 

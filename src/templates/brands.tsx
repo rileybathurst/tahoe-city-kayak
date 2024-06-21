@@ -2,6 +2,10 @@
 
 import React from "react"
 import { Link, graphql, Script, useStaticQuery } from 'gatsby'
+
+// Paddle
+import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import { useSiteUrl } from "../hooks/use-site-url";
@@ -106,15 +110,14 @@ function Toast(props: {
         </Link>&nbsp;/&nbsp;
       </Breadcrumbs >
     );
-  } else {
-    return (
-      <Breadcrumbs brand={props.brand}>
-        <Link to={`/retail/kayak`}>
-          Kayaks
-        </Link>&nbsp;/&nbsp;
-      </Breadcrumbs >
-    );
   }
+  return (
+    <Breadcrumbs brand={props.brand}>
+      <Link to={`/retail/kayak`}>
+        Kayaks
+      </Link>&nbsp;/&nbsp;
+    </Breadcrumbs >
+  );
 }
 
 const BrandsView = ({ location, data }) => {
@@ -157,9 +160,11 @@ const BrandsView = ({ location, data }) => {
           />
         </section>
 
-        {/* // * the wrapper is for the background color */}
         {/* // TODO: hover the whole card and give it a shadow when we do */}
-        <LocationCard location={data.strapiLocation} background={false} />
+        <PaddleLocationCard
+          {...data.strapiLocation}
+          background={false}
+        />
 
       </main>
 

@@ -1,15 +1,18 @@
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from 'gatsby';
-
-import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Markdown from "react-markdown";
 
+// Paddle
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
+import { useSiteMetadata } from '../hooks/use-site-metadata';
+
+import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
-import LocationDeck from "../components/location-deck";
+
 
 const RentalsPage = () => {
 
@@ -62,8 +65,8 @@ const RentalsPage = () => {
       <main className="albatross wrap">
         <article>
           <h1>Rentals</h1>
-          <LocationDeck
-            locations={data.allStrapiLocation}
+          <PaddleLocationDeck
+            {...data.allStrapiLocation}
             background={false}
           />
           <Markdown className="react-markdown">

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+
+// ! test
+import fetch from 'node-fetch'
+
+// Paddle
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
-import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
-
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
@@ -15,13 +20,12 @@ import BookRental from "../components/peek/book-rental";
 import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import KayakFeatureList from "../components/kayak-feature-list";
-import PaddleboardFeatureList from "../components/paddleboard-feature-list";
-import LocationDeck from "../components/location-deck";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
 import Experience from "../content/experience";
 import Ticket from "../components/ticket";
+import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 
 const IndexPage = () => {
 
@@ -121,6 +125,8 @@ const IndexPage = () => {
     setHasExtra(isExtra)
   }, [inventory])
 
+  console.log(data.allStrapiLocation);
+
   return (
     <>
       <Header />
@@ -134,8 +140,8 @@ const IndexPage = () => {
             <AboutUs />
           </div>
 
-          <LocationDeck
-            locations={data.allStrapiLocation}
+          <PaddleLocationDeck
+            {...data.allStrapiLocation}
             background={false}
           />
 

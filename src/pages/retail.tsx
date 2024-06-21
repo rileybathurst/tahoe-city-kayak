@@ -5,6 +5,9 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
+// Paddle
+import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import KayakFeatureList from "../components/kayak-feature-list";
@@ -12,14 +15,11 @@ import KayakBrandList from "../components/kayak-brand-list";
 import SupBrandList from "../components/sup-brand-list";
 import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 import Card from "../components/card";
-// import Store from "../components/locations/store";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
-
-// import SEOShowcase from "seo-showcase"
-import SEOcase from "../components/seocase"
 import type { CardType } from "../types/card";
-import LocationCard from "../components/location-card";
+
+import SEOcase from "../components/seocase"
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -36,7 +36,7 @@ const RetailPage = () => {
       }
     }
 
-    strapiLocation: strapiLocation(
+    strapiLocation(
       locale: {slug: {eq: "tahoe-city"}}
       name: {eq: "Retail Location"}
     ) {
@@ -58,8 +58,8 @@ const RetailPage = () => {
           <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
-        <LocationCard
-          location={query.strapiLocation}
+        <PaddleLocationCard
+          {...query.strapiLocation}
           background={false}
         />
       </main>

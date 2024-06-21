@@ -9,11 +9,11 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import KayakBrandList from "../../components/kayak-brand-list"
 import KayakFeatureList from "../../components/kayak-feature-list";
-import LocationCard from "../../components/location-card";
 import Shop from "../../content/shop";
 import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Brand from "../../components/brand";
 import OtherBrand from "../../components/other-brand";
+import { PaddleLocationCard } from "@rileybathurst/paddle";
 
 const RetailKayakPage = (data) => {
 
@@ -112,7 +112,10 @@ const RetailKayakPage = (data) => {
 
         <Shop />
 
-        <LocationCard location={query.strapiLocation} />
+        <PaddleLocationCard
+          {...query.strapiLocation}
+          background={false}
+        />
 
         <hr />
 

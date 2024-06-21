@@ -24,17 +24,16 @@ const MenuList = ({ children }) => {
         <li key='book-now'><BookNow /></li>
       </ul>
     )
-  } else {
-    return (
-      <ul className="menu-list">
-        <li key='rentals'><Link to="/rentals" className='link__backed' activeClassName="active">Rentals</Link></li>
-        <li key='tours-lessons'><Link to="/tours-lessons" className='link__backed' activeClassName="active">Tours &amp; Lessons</Link></li>
-        <li key='retail'><Link to="/retail" className='link__backed' activeClassName="active">Retail</Link></li>
-        <li key='about'><Link to="/about" className='link__backed' activeClassName="active">About Us</Link></li>
-        <li key='book-now'><BookNow /></li>
-      </ul>
-    )
   }
+  return (
+    <ul className="menu-list">
+      <li key='rentals'><Link to="/rentals" className='link__backed' activeClassName="active">Rentals</Link></li>
+      <li key='tours-lessons'><Link to="/tours-lessons" className='link__backed' activeClassName="active">Tours &amp; Lessons</Link></li>
+      <li key='retail'><Link to="/retail" className='link__backed' activeClassName="active">Retail</Link></li>
+      <li key='about'><Link to="/about" className='link__backed' activeClassName="active">About Us</Link></li>
+      <li key='book-now'><BookNow /></li>
+    </ul>
+  )
 }
 
 export default MenuList

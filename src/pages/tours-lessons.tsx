@@ -1,7 +1,10 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { SEO } from "../components/seo"
 
+// Paddle
+import { PaddleLocationDeck } from "@rileybathurst/paddle";
+
+import { SEO } from "../components/seo"
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -9,11 +12,7 @@ import BookNow from "../components/peek/book-now";
 import Experience from "../content/experience";
 import Ticket from "../components/ticket";
 import { CardType } from "../types/card";
-import MapIconSVG from "../images/map-icon";
-import MapLink from "../components/map-link";
-import KayakIcon from "../images/kayak";
 import Sport from "../components/sport";
-import LocationDeck from "../components/location-deck";
 
 function Nested(props: { sport: string }) {
   if (props.sport) {
@@ -92,8 +91,8 @@ const ToursLessonsPage = () => {
 
 
         </div>
-        <LocationDeck
-          locations={query.allStrapiLocation}
+        <PaddleLocationDeck
+          {...query.allStrapiLocation}
           background={false}
         />
       </main>

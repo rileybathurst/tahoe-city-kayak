@@ -7,9 +7,8 @@ const Fitness = (props: { fitness: string; }) => {
         {props.fitness} <span className="">Fitness</span>
       </h4>
     )
-  } else {
-    return null;
   }
+  return null;
 }
 
 export default Fitness

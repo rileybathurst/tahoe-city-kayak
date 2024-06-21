@@ -2,15 +2,17 @@
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+
+// Paddle
+import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import { SEO } from "../../components/seo";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 import Composition from "../../components/composition";
 import Phone from "../../components/phone";
-import LocationCard from "../../components/location-card";
 import Markdown from "react-markdown";
 
 function LineBreaker(props: { text: string; }) {
@@ -203,8 +205,8 @@ const DemosPage = () => {
             </div>
           </div>
 
-          <LocationCard
-            location={query.strapiLocation}
+          <PaddleLocationCard
+            {...query.strapiLocation}
             background={false}
           />
 

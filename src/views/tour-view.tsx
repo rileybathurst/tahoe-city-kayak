@@ -1,230 +1,320 @@
 import * as React from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, graphql } from "gatsby";
+
+// Paddle
+import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
-import HourMin from "../components/hour-min"; // TODO check if this should be the time compoonent
-import Sport from "../components/sport";
+import Time from "../components/time";
 import Composition from "../components/composition";
-import Balancer from 'react-wrap-balancer'
 import Ticket from "../components/ticket";
-import LocationCard from "../components/location-card";
-import Remainder from "../components/remainder";
+import type { TicketTypes } from "../types/ticket-types";
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { CardType } from "../types/card";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import BookNow from "../components/peek/book-now";
+import { PaddleTime } from "@rileybathurst/paddle";
 
-function ReactMD(props: { raw: string; }) {
+interface AttributesProps {
+  sport?: string;
+  fitness?: string;
+  price?: number;
+  minimum?: number;
+  start?: string;
+  finish?: string;
+  duration?: number;
+  timeEntry?: string;
+  timeValue?: string;
+}
+function Attributes(attributes: AttributesProps) {
+  const sections = Object.entries(attributes).map(([key, value]) => {
+    if (value) {
+      if (key === "timeValue") {
+        return null;
+      }
+
+      if (key === "timeEntry") {
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{attributes.timeValue}</h3>
+            <h4>{value}</h4>
+          </section>
+        )
+      }
+
+      if (key === "duration") {
+        const unit = "mins";
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            <h4 className="range">{value} {unit}</h4>
+          </section >
+        )
+      }
+
+      if (key === "price") {
+        const unit = "$";
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            <h4 className="range">{unit}{value}</h4>
+          </section >
+        )
+      }
+
+      if (key === "start" || key === "finish") {
+        return (
+          <section
+            key={key}
+            className="spec attribute"
+          >
+            <h3 className="crest">{key}</h3>
+            {/* <h4 className="range"><HourMin time={value} /></h4> */}
+            <Time start={attributes.start} finish={attributes.finish} />
+          </section >
+        )
+      }
+
+      return (
+        <section
+          key={key}
+          className="spec attribute"
+        >
+          <h3 className="crest">{key}</h3>
+          <h4 className="range">{value}</h4>
+        </section >
+      )
+    }
+  })
+
   return (
-    <Markdown
-      children={props.raw}
-      className="react-markdown"
-    />
-  );
+    <div className="attributes">
+      {sections}
+    </div>
+  )
 }
-
-// TODO: fix the props
-function Spec(props: {
-  name: string;
-  spec: string;
-  unitPlace?: string;
-  unit?: string;
-}) {
-  if ((props.name === "Tour Completiion" || props.name === "Tour Start Time") && props.spec === null) {
-    return null;
-  }
-
-  if (props.name === "Tour Completiion" || props.name === "Tour Start Time") {
-    return (
-      <div className="spec" >
-        <h2>{props.name}</h2>
-        <h3><HourMin time={props.spec} /></h3>
-      </div>
-    );
-  }
-
-  if (props.name === "Sport") {
-    return (
-      <div className="spec" >
-        <h2>Sport</h2>
-        <h3 className="spec-flex">
-          <span className="specification"><Sport sport={props.spec} /></span>
-        </h3>
-      </div>
-    );
-  }
-
-  if ((props.spec) && (props.unitPlace == "before")) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3 className="spec-flex unit-place__before">
-          <span className="specification">{props.spec}</span>
-          <span className="unit">{props.unit}</span>
-        </h3>
-      </div>
-    );
-  }
-
-  if (props.spec) {
-    return (
-      <div className="spec">
-        <h2>{props.name}</h2>
-        <h3 className="spec-flex">
-          <span className="specification">{props.spec}</span>
-          <span className="unit">{props.unit}</span>
-        </h3>
-      </div>
-    );
-  }
-
-  return null;
+interface MinimumTypes {
+  minimum: number;
 }
-
-function Minimum(props: { minimum: number; }) {
-  if (props.minimum) {
+function Minimum({ minimum }: MinimumTypes) {
+  if (minimum) {
     return (
       <p>* Prices based on a<br />
-        {props.minimum} person minimum</p>
+        {minimum} person minimum</p>
     );
   }
+
   return null;
 }
 
-function TourName(props: { tour: string; }) {
-  // waiting on safari for css text-wrap: balance
-  const name = props.tour;
-  // console.log(name.length);
-  if (name.length > 20) {
 
-    return (
-      <Balancer>{props.tour}</Balancer>
-    );
+interface TourViewTypes {
+  data: {
+    strapiTour: {
+      id: React.Key;
+      name: string;
+      information: {
+        data: {
+          information: string;
+        }
+      };
+      start: string;
+      finish: string;
+      duration: number;
+      timeframe: string;
+      minimum: number;
+      fitness: string;
+      peek: string;
+      sport: string;
+      excerpt: string;
+      price: number;
+      slug: string;
+      ogimage: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+        alternativeText: string;
+      };
+    }
+    locale: {
+      name: string;
+    }
+    allStrapiTour: {
+      nodes: TicketTypes;
+    }
+
+    strapiLocation: CardType;
   }
-  return (
-    <>
-      {props.tour}
-    </>
-  );
 }
 
-
-const TourView = ({ tour, other }) => {
-
-  const { strapiLocation } = useStaticQuery(graphql`
-    query TourViewQuery {
-      strapiLocation(
-        locale: {slug: {eq: "tahoe-city"}}
-        name: {eq: "On Water Rental"}
+export const data = graphql`
+  query TourQuery($slug: String!) {
+    strapiTour(
+      slug: { eq: $slug },
+      locale: {slug: {eq: "tahoe-city"}}
       ) {
-        ...locationCard
-
-        locale {
-          name
+      id
+      name
+      information {
+        data {
+          information
         }
       }
+      start
+      finish
+      duration
+      timeframe
+      minimum
+      fitness
+      peek
+      sport
+      excerpt
+      price
+      slug
+
+      ogimage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+
+      locale {
+        name
+      }
     }
-  `);
+
+    allStrapiTour(
+        filter: {
+          slug: {nin: [$slug] },
+          locale: {slug: {eq: "south-lake"}}
+          },
+        sort: {featured: ASC},
+      ) {
+      nodes {
+        ...tourCardFragment
+      }
+    }
+
+    strapiLocation(
+      locale: {slug: {eq: "south-lake"}}
+      name: {eq: "On Water Rental"}
+    ) {
+      ...locationCardFragment
+
+      locale {
+        name
+      }
+    }
+  }
+`
+
+const TourView = ({ data }: TourViewTypes) => {
+
+  console.log(data);
+
+  const time = PaddleTime({
+    start: data.strapiTour.start,
+    finish: data.strapiTour.finish,
+    duration: data.strapiTour.duration,
+    timeframe: data.strapiTour.timeframe,
+  });
 
   return (
     <>
       <Header />
 
-      {/* // TODO: names */}
-      <main className="main__full main__full--tour">
+      <main className="tour">
         <div>
-          <h1><TourName tour={tour.name} /></h1>
-          {/* <h1 className="tour-name">{tour.name}</h1> */}
+          <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
-            <a href={tour.peek}
-              rel="noopener noreferrer"
-              className="book-now"
-            >
-              BOOK NOW
-            </a>
-            <Minimum minimum={tour.minimum} />
+            {data.strapiTour.peek ?
+              <a href={data.strapiTour.peek}
+                rel="noopener noreferrer"
+                className="book-now"
+              >
+                BOOK NOW
+              </a>
+              :
+              <BookNow />
+            }
+            <Minimum minimum={data.strapiTour.minimum} />
           </div>
 
-          {/* // TODO: update to this https://gist.github.com/rileybathurst/2c3191a7714e1204b07c725104d4ab93 */}
-          <Spec name="Sport" spec={tour.sport} />
+          <Attributes
+            sport={data.strapiTour.sport}
+            fitness={data.strapiTour.fitness}
+            price={data.strapiTour.price}
+            timeEntry={time.entry}
+            timeValue={time.value}
+          />
 
-          <Spec name="Tour Start Time" spec={tour.start} />
-
-          <Spec name="Tour Completiion" spec={tour.finish} />
-
-          <Spec name="Duration" spec={tour.duration} unit="mins" />
-
-          <Spec name="Fitness Level" spec={tour.fitness} />
-
-          <div className="spec">
-            <h2>Starts At</h2>
-            <a
-              href={strapiLocation.link}
-              target='_blank' rel='noopener noreferrer'
-            >
-              <h3>{strapiLocation.locale.name}</h3>
-            </a>
-          </div>
-
-          <Spec name="Price" spec={tour.price} unit="$" unitPlace="before" />
-
-          <article className="single__description">
-            <ReactMD
-              raw={tour.information?.data?.information}
-            />
-          </article>
+          <Markdown className="react-markdown single__description">
+            {data.strapiTour.information?.data?.information}
+          </Markdown>
 
         </div>
 
-        <section>
-          <Composition sport={tour.sport} />
+        <aside>
+          <Composition
+            sport={data.strapiTour.ogimage || data.strapiTour.sport}
+          // TODO: change the image on tours
+          />
 
-          <hr />
-
-          <LocationCard location={strapiLocation} />
-        </section>
+          <PaddleLocationCard
+            key={data.strapiLocation.id}
+            {...data.strapiLocation}
+          />
+        </aside>
 
       </main>
 
-      <div className="single__book single__book--tour">
-        <a
-          href={tour.peek}
-          rel="noopener noreferrer"
-          className="book-now"
-        >
-          BOOK NOW
-        </a>
+      <hr className="albatross" />
+
+      <div className="albatross">
+        <h3>Other Tours</h3>
+        <h4>
+          <Link to={`/tours/compare/?${data.strapiTour.slug}`}>
+            Compare the {data.strapiTour.name} to another tour.
+          </Link>
+        </h4>
+        <hr />
       </div>
 
-      <div className="single__other">
-        <h3>Other Tours &amp; Lessons</h3>
-        {/* TODO: Im not usiong the query */}
-        <h4><Link to={`/tours-lessons/compare/?${tour.slug}`}>Compare the {tour.name} to another tour or lesson.</Link></h4>
+      <section className="deck">
+        {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
+          <Ticket
+            key={tour.id}
+            {...tour}
+          />
+        )}
+      </section>
 
-        {/* // TODO: other card */}
-        <section className="deck">
-          {other.nodes.map((tour) =>
-            <div
-              key={tour.id}
-            >
-              <Ticket tour={tour} />
-            </div>
-          )}
-        </section>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/tours">Tours</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiTour.name}</Breadcrumb>
+      </Breadcrumbs>
 
-      </div>
-
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to={`/tours-lessons`}>Tours &amp; Lessons</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">{tour.name}</li>
-        </ol>
-      </nav>
       <Footer />
     </>
   );
 };
 
 export default TourView;
+
+// ! SEO breadcrumbs is now removed
