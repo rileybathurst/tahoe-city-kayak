@@ -239,7 +239,7 @@ const TourView = ({ data }: TourViewTypes) => {
     <>
       <Header />
 
-      <main className="tour">
+      <main className="albatross wrap">
         <div>
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">

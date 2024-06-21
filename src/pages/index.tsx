@@ -183,9 +183,10 @@ const IndexPage = () => {
 
       <div className="deck">
         {list.map((tour) => (
-          <div key={tour.id}>
-            <Ticket tour={tour} />
-          </div>
+          <Ticket
+            key={tour.id}
+            {...tour}
+          />
         ))}
       </div>
       <div className="deck__more">

@@ -4,61 +4,57 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
-import Time from "./time"
 import Fitness from "./fitness"
 import { PaddleTime } from "@rileybathurst/paddle";
 
-const Ticket = (tour: {
-  tour: {
-    id: React.Key;
-    ogimage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
-    slug: string;
-    name: string;
-    start?: string | null;
-    finish?: string | null;
-    duration?: number | null;
-    timeframe?: string | null;
-    fitness: string;
-    excerpt: string;
-    price: string;
-    peek: string;
-  };
-}) => {
+interface TicketTypes {
+  id: React.Key;
+  ogimage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
+  slug: string;
+  name: string;
+  start?: string | null;
+  finish?: string | null;
+  duration?: number | null;
+  timeframe?: string | null;
+  fitness: string;
+  excerpt: string;
+  price: string;
+  peek: string;
+}
 
-  console.log(tour);
-
+const Ticket = ({ id, ogimage, slug, name, start, finish, duration, timeframe, fitness, excerpt, price, peek }: TicketTypes) => {
   const time = PaddleTime({
-    start: tour.tour.start,
-    finish: tour.tour.finish,
-    duration: tour.tour.duration,
-    timeframe: tour.tour.timeframe,
+    start: start,
+    finish: finish,
+    duration: duration,
+    timeframe: timeframe,
   });
 
   return (
     <Link
       // * there are going to be challenges like even the link is different
-      to={`/tours-lessons/${tour.tour.slug}`}
+      to={`/tours-lessons/${slug}`}
       className="card"
     >
       <GatsbyImage
-        image={tour.tour?.ogimage?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={tour.tour?.ogimage?.alternativeText}
+        image={ogimage?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={ogimage?.alternativeText}
         className="card__image"
       />
       <h4 className="card__title">
-        {tour.tour.name}
+        {name}
       </h4>
       <div className="card__specs">
         <h4>{time.entry}</h4>
-        <Fitness fitness={tour.tour.fitness} />
+        <Fitness fitness={fitness} />
       </div>
       <hr />
-      <p>{tour.tour.excerpt}</p>
+      <p>{excerpt}</p>
       <hr />
       <div className="card__details">
-        <h5>${tour.tour.price}</h5>
+        <h5>${price}</h5>
         <a
-          href={tour.tour.peek}
+          href={peek}
           className="book-now"
         >
           BOOK NOW

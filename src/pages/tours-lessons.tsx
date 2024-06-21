@@ -108,9 +108,10 @@ const ToursLessonsPage = () => {
 
           <div className="deck">
             {sport.nodes.map((tour: CardType) => (
-              <div key={tour.id}>
-                <Ticket tour={tour} />
-              </div>
+              <Ticket
+                key={tour.id}
+                {...tour}
+              />
             ))}
           </div>
         </section >
