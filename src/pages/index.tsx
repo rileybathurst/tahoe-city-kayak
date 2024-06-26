@@ -133,7 +133,8 @@ const IndexPage = () => {
       <main className="home">
         <section>
           <h2 className="page-title">
-            North Lake Tahoe&apos;s Premier Kayak and Paddleboard Provider, offering Rentals, Sales, Lessons and Tours
+            {/* // TODO: strapi this */}
+            Tahoe's Premier Kayak and Paddleboard Provider, offering <Link to="/rentals">Rentals</Link>, <Link to="/retail">Sales</Link>, <Link to="/tours-lessons/">Lessons and Tours</Link> in both North and <a href="https://southtahoekayak.com" target="_blank" rel="noopener noreferrer">South Lake Tahoe</a>.
           </h2>
 
           <div className="margin-block-end-aconcagua">
@@ -191,7 +192,12 @@ const IndexPage = () => {
       </div>
       <div className="deck__more">
         {hasMore ? (
-          <button onClick={handleLoadMore} className=''>VIEW MORE TOURS &amp; LESSONS</button>
+          <button
+            onClick={handleLoadMore}
+            type="button"
+          >
+            VIEW MORE TOURS &amp; LESSONS
+          </button>
         ) : (
           <p>Thats all the tours</p>
         )}
