@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby";
 // Paddle
 import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime } from "@rileybathurst/paddle";
 
+import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -325,4 +326,15 @@ const TourView = ({ data }: TourViewTypes) => {
 
 export default TourView;
 
-// ! SEO breadcrumbs is now removed
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={data.strapiTour.name}
+      description={data.strapiTour.excerpt}
+    /*       breadcrumbs={[
+            { name: "Tours & Lessons", path: "/tours-lessons" },
+            { name: data.strapiTour.name, path: `/tours-lessons/${data.strapiTour.slug}` }
+          ]} */
+    />
+  );
+}

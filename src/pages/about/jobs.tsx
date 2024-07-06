@@ -38,7 +38,7 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href={useSiteMetadata().jobEmail} className="button">{useSiteMetadata().jobEmail}</a>
+          <a href={`mailto:${useSiteMetadata().jobEmail}`} className="button">{useSiteMetadata().jobEmail}</a>
         </section>
 
         <section>
