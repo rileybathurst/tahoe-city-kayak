@@ -2,20 +2,17 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 
 // Paddle
-import { PaddleLocationCard } from "@rileybathurst/paddle";
+import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime } from "@rileybathurst/paddle";
 
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Time from "../components/time";
 import Composition from "../components/composition";
-import Ticket from "../components/ticket";
-import type { TicketTypes } from "../types/ticket-types";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
-import { PaddleTime } from "@rileybathurst/paddle";
 
 interface AttributesProps {
   sport?: string;
@@ -153,10 +150,14 @@ interface TourViewTypes {
       name: string;
     }
     allStrapiTour: {
-      nodes: TicketTypes;
+      nodes: PaddleTicketTypes[];
     }
 
     strapiLocation: CardType;
+
+    strapiLocale: {
+      peek_tours: string;
+    }
   }
 }
 
@@ -202,7 +203,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          locale: {slug: {eq: "south-lake"}}
+          locale: {slug: {eq: "tahoe-city"}}
           },
         sort: {featured: ASC},
       ) {
@@ -212,7 +213,7 @@ export const data = graphql`
     }
 
     strapiLocation(
-      locale: {slug: {eq: "south-lake"}}
+      locale: {slug: {eq: "tahoe-city"}}
       name: {eq: "On Water Rental"}
     ) {
       ...locationCardFragment
@@ -221,12 +222,17 @@ export const data = graphql`
         name
       }
     }
+
+    strapiLocale(slug: {eq: "tahoe-city"}) {
+      peek_tours
+    }
+
   }
 `
 
 const TourView = ({ data }: TourViewTypes) => {
 
-  console.log(data);
+  // console.log(data);
 
   const time = PaddleTime({
     start: data.strapiTour.start,
@@ -297,16 +303,18 @@ const TourView = ({ data }: TourViewTypes) => {
       </div>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: TicketTypes) =>
-          <Ticket
+        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) =>
+          <PaddleTicket
             key={tour.id}
             {...tour}
+            tour_page='tours-lessons'
+            peek_tours_fall_back={data.strapiLocale.peek_tours}
           />
         )}
       </section>
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/tours">Tours</Link></Breadcrumb>
+        <Breadcrumb><Link to="/tours-lessons">Tours & Lessons</Link></Breadcrumb>
         <Breadcrumb>{data.strapiTour.name}</Breadcrumb>
       </Breadcrumbs>
 

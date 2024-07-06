@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
-// ! test
-import fetch from 'node-fetch'
-
 // Paddle
-import { PaddleLocationDeck } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from '../hooks/use-site-metadata';
@@ -55,6 +52,10 @@ const IndexPage = () => {
         nodes {
           ...retailCard
         }
+      }
+
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        peek_tours
       }
     }
   `)
@@ -183,10 +184,12 @@ const IndexPage = () => {
       </section>
 
       <div className="deck">
-        {list.map((tour) => (
-          <Ticket
+        {list.map((tour: PaddleTicketTypes) => (
+          <PaddleTicket
             key={tour.id}
             {...tour}
+            tour_page='tours-lessons'
+            peek_tours_fall_back={data.strapiLocale.peek_tours}
           />
         ))}
       </div>

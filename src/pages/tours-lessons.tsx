@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 // Paddle
-import { PaddleLocationDeck } from "@rileybathurst/paddle";
+import { PaddleLocationDeck, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
 import { useSiteMetadata } from '../hooks/use-site-metadata';
@@ -10,23 +10,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
 import Experience from "../content/experience";
-import Ticket from "../components/ticket";
-import { CardType } from "../types/card";
 import Sport from "../components/sport";
-
-function Nested(props: { sport: string }) {
-  if (props.sport) {
-    // console.log(props.sport);
-
-    return (
-      <h1 className="capitalize">
-        <Sport sport={props.sport} />
-      </h1>
-    )
-  }
-
-  return null;
-}
 
 const ToursLessonsPage = () => {
 
@@ -69,6 +53,10 @@ const ToursLessonsPage = () => {
           }
         }
 
+        strapiLocale(slug: {eq: "tahoe-city"}) {
+          peek_tours
+        }
+
       }
     `)
 
@@ -107,10 +95,12 @@ const ToursLessonsPage = () => {
           </hgroup >
 
           <div className="deck">
-            {sport.nodes.map((tour: CardType[]) => (
-              <Ticket
+            {sport.nodes.map((tour: PaddleTicketTypes) => (
+              <PaddleTicket
                 key={tour.id}
                 {...tour}
+                tour_page='tours-lessons'
+                peek_tours_fall_back={query.strapiLocale.peek_tours}
               />
             ))}
           </div>
