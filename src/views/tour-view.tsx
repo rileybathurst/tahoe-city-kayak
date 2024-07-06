@@ -295,7 +295,7 @@ const TourView = ({ data }: TourViewTypes) => {
       <div className="albatross">
         <h3>Other Tours</h3>
         <h4>
-          <Link to={`/tours/compare/?${data.strapiTour.slug}`}>
+          <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
             Compare the {data.strapiTour.name} to another tour.
           </Link>
         </h4>

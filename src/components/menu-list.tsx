@@ -19,7 +19,7 @@ const MenuList = ({ children }) => {
         <li key='retail'><Link to="/retail" className='link__backed' activeClassName="active">Retail</Link></li>
         <li key='about'><Link to="/about" className='link__backed' activeClassName="active">About Us</Link></li>
 
-        <li key={children}><Link to={children} className='link__backed capitalize' activeClassName="active">{children}s</Link></li>
+        <li key={children}><Link to={`/${children}`} className='link__backed capitalize' activeClassName="active">{children}s</Link></li>
 
         <li key='book-now'><BookNow /></li>
       </ul>
