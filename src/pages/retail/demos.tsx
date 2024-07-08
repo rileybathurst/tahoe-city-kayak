@@ -154,20 +154,20 @@ const DemosPage = () => {
       sort: {item: ASC}
       ) {
         nodes {
-        id
+          id
           item
-      oneHour
-      threeHour
-      fullDay
+          oneHour
+          threeHour
+          fullDay
         }
       }
 
       allStrapiRentalAddon: allStrapiRentalAddon {
         nodes {
-        name
+          name
           single
-      double
-      sup
+          double
+          sup
         }
       }
 
@@ -233,7 +233,10 @@ const DemosPage = () => {
 
         <section className="deck">
           {query.kayak.nodes.map((kayak: { brand: { name: string; slug: string; }; }) => (
-            <Card retail={kayak} />
+            <Card
+              key={kayak.id}
+              {...kayak}
+            />
           ))}
         </section>
       </section>
@@ -255,7 +258,10 @@ const DemosPage = () => {
 
       <section className="deck">
         {query.paddleboards.nodes.map((sup: { brand: { name: string; slug: string; }; }) => (
-          <Card retail={sup} />
+          <Card
+            key={sup.id}
+            {...sup}
+          />
         ))}
       </section>
 
@@ -265,7 +271,7 @@ const DemosPage = () => {
       >
         <ol>
           <li>
-            <Link to={`/retail`}>Retail</Link>&nbsp;/&nbsp;
+            <Link to='/retail'>Retail</Link>&nbsp;/&nbsp;
           </li>
           <li aria-current="page">Demos</li>
         </ol>

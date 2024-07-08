@@ -82,9 +82,10 @@ const RetailPage = () => {
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: CardType) => (
-          <div key={kayak.id}>
-            <Card retail={kayak} />
-          </div>
+          <Card
+            key={kayak.id}
+            {...kayak}
+          />
         ))}
 
         <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
@@ -108,9 +109,10 @@ const RetailPage = () => {
 
       <section className="deck">
         {query.paddleBoard.nodes.map((sup: CardType) => (
-          <div key={sup.id}>
-            <Card retail={sup} />
-          </div>
+          <Card
+            key={sup.id}
+            retail={sup}
+          />
         ))}
         <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
       </section>

@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
-import { RetailCardType } from "../types/retail"
+import type { RetailCardType } from "../types/retail"
 
 function Name(props) {
   return (
@@ -40,7 +40,7 @@ function Badges(props) {
 }
 
 // TODO: cardType
-const Card = (retail: RetailCardType) => {
+const Card = ({ id, title, type, brand, slug, cutout, inflatable, demo, discount, excerpt, length, width, capacity }: RetailCardType) => {
 
   // console.log(retail)
   if (retail.retail.cutout.alternativeText === null) {
@@ -49,17 +49,17 @@ const Card = (retail: RetailCardType) => {
 
   return (
     <article
-      key={retail.retail.id}
+      key={id}
       className="card">
       <div className="card-collage">
         <TextureBackgrounds />
         <Link
-          to={`/retail/${retail.retail.type}/${retail.retail.brand.slug}/${retail.retail.slug}`}
+          to={`/retail/${type}/${brand.slug}/${slug}`}
           className="image-link"
         >
           <GatsbyImage
-            image={retail.retail.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={retail.retail.cutout?.alternativeText || retail.retail.title + ' by ' + retail.retail.brand.slug}
+            image={cutout?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={cutout?.alternativeText || `${title} by ${brand.slug}`}
             className="cutout"
             objectFit="contain"
           // TODO: this has been causing some problems but keep an eye on it
@@ -67,26 +67,26 @@ const Card = (retail: RetailCardType) => {
         </Link>
         <Badges
           // ? i could just pass everything and deal with it then?
-          inflatable={retail.retail.inflatable}
-          demo={retail.retail.demo}
-          discount={retail.retail.discount}
+          inflatable={inflatable}
+          demo={demo}
+          discount={discount}
         />
       </div>
       {/* // ? does this need a brand */}
       <h4 className="card__title">
-        <Link to={`/retail/${retail.retail.type}/${retail.retail.brand.slug}/${retail.retail.slug}`}>
-          {retail.retail.title}
+        <Link to={`/retail/${type}/${brand.slug}/${slug}`}>
+          {title}
         </Link>
       </h4>
       <hr />
-      <p>{retail.retail.excerpt}</p>
+      <p>{excerpt}</p>
       <hr />
       <div className="card__details">
         <h4>
-          <Remainder inches={retail.retail.length} />
-          long by {retail.retail.width}" wide
+          <Remainder inches={length} />
+          long by {width}" wide
         </h4>
-        <h5 className="capitalize">Capacity {retail.retail.capacity}&thinsp;lbs</h5>
+        <h5 className="capitalize">Capacity {capacity}&thinsp;lbs</h5>
       </div>
     </article>
   )

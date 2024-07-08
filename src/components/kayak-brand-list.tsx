@@ -20,29 +20,38 @@ const KayakBrandList = () => {
 
   const { allStrapiBrand } = useStaticQuery(graphql`
     query KayakBrandQuery {
-      allStrapiBrand(filter: {kayak: {eq: true}}) {
+      allStrapiBrand {
         nodes {
           id
           name
           slug
           svg
+          retail {
+            title
+            slug
+          }
         }
       }
     }
   `)
 
+
+  // TODO: retail is the check im working on
+
+  interface KayakBrandListTypes {
+    id: React.Key;
+    slug: string;
+    svg: string;
+    name: string;
+  }
+
   return (
     <ul className='brand_list'>
-      {allStrapiBrand.nodes.map((kayak: {
-        id: React.Key;
-        slug: string;
-        svg: string;
-        name: string;
-      }) => (
+      {allStrapiBrand.nodes.map((kayak: KayakBrandListTypes) => (
         <li key={kayak.id}>
           <Link to={`/retail/kayak/${kayak.slug}`}>
             <Danger svg={kayak.svg} />
-            <p>{kayak.name}</p>
+            {kayak.name}
             {/* Doubt?! https://caninclude.glitch.me/caninclude?child=p&parent=a */}
           </Link>
         </li>

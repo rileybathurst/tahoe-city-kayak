@@ -25,9 +25,10 @@ const OtherBrand = (props) => {
         <div className='deck'>
           {any.map((retail) => {
             return (
-              <div key={retail.id}>
-                <Card retail={retail} />
-              </div>
+              <Card
+                key={retail.id}
+                {...retail}
+              />
             )
           })}
         </div>

@@ -1,3 +1,5 @@
+// TODO: rename this witha redirect to paddleboard
+
 import * as React from "react"
 import { useStaticQuery, graphql, Script } from 'gatsby';
 

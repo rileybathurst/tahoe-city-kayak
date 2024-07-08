@@ -17,6 +17,7 @@ import LocationCard from "../components/location-card";
 import Card from "../components/card";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
+// TODO: get rid of props
 function Series(props: {
   retail: {
     id: any;
@@ -33,9 +34,10 @@ function Series(props: {
   // console.log(props.retail);
 
   return (
-    <div key={props.retail.id}>
-      <Card retail={props.retail} />
-    </div>
+    <Card
+      key={props.retail.id}
+      {props.retail}
+    />
   )
 }
 

@@ -43,9 +43,10 @@ function Limiter(props: {
       {quad.map((retail) => {
         {/* // * this is weird it needs a nested return */ }
         return (
-          <div key={retail.id}>
-            <Card retail={retail} />
-          </div>
+          <Card
+            key={retail.id}
+            {...retail}
+          />
         )
       })}
     </div>

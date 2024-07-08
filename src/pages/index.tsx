@@ -249,7 +249,7 @@ const IndexPage = () => {
           {inventory.map((retail) => (
             <Card
               key={retail.id}
-              retail={retail} />
+              {...retail} />
           ))}
           {hasExtra ? (
             <button onClick={handleLoadExtra}>VIEW MORE PRODUCTS</button>

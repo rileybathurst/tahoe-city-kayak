@@ -2,8 +2,3 @@ node_modules/
 .cache/
 public
 .env*
-
-.storybook/preview-head.html
-storybook-static/
-
-*storybook.log

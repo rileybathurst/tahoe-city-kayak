@@ -11,6 +11,7 @@ import Sport from "../components/sport";
 
 // ! SEO isnt here its on the templates
 
+// TODO: nline this
 function SportFeatureList(props: { sport: string; }) {
   if (props.sport === "kayak") {
     return (
@@ -42,11 +43,10 @@ const AttributeView = (props: {
 
       <section className="deck">
         {props.query.nodes.map((retail: { id: any; type?: string; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; }) => (
-          <div key={retail.id}>
-            <Card
-              retail={retail}
-            />
-          </div>
+          <Card
+            key={retail.id}
+            {...retail}
+          />
         ))
         }
       </section>

@@ -183,9 +183,10 @@ function Other(props: { retail: { nodes: any[]; }; }) {
     return (
       <section className='deck'>
         {props.retail.nodes.map((retail: { id: any; type?: string; brand?: { slug: string; }; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; demo?: boolean | undefined; }) => (
-          <div key={retail.id}>
-            <Card retail={retail} />
-          </div>
+          <Card
+            key={retail.id}
+            {...retail}
+          />
         ))}
       </section>
     )
