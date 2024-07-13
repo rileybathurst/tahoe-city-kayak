@@ -10,10 +10,8 @@ import { PaddleLocationCard } from "@rileybathurst/paddle";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import KayakFeatureList from "../components/kayak-feature-list";
-import KayakBrandList from "../components/kayak-brand-list";
-import SupBrandList from "../components/sup-brand-list";
-import PaddleboardFeatureList from "../components/paddleboard-feature-list";
+import FeatureList from "../components/feature-list";
+import BrandList from "../components/brand-list";
 import Card from "../components/card";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
@@ -32,7 +30,7 @@ const RetailPage = () => {
 
     paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
-      ...retailCard
+        ...retailCard
       }
     }
 
@@ -68,7 +66,7 @@ const RetailPage = () => {
         <section className="blocked">
           <h2><Link to="/retail/kayak">Kayaks</Link></h2>
           <h3 className="condensed">Browse By Feature</h3>
-          <KayakFeatureList />
+          <FeatureList sport='kayak' />
         </section>
 
         <Composition sport="kayak" />
@@ -78,7 +76,7 @@ const RetailPage = () => {
       <section className="pelican">
         <h3>Browse By Brand</h3>
       </section>
-      <KayakBrandList />
+      <BrandList sport='kayak' />
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: CardType) => (
@@ -96,7 +94,7 @@ const RetailPage = () => {
           {/* <hr /> */}
           <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
           <h3 className="condensed">Browse By Feature</h3>
-          <PaddleboardFeatureList />
+          <FeatureList sport="paddleboard" />
         </section>
 
         <Composition sport="sup" />
@@ -105,13 +103,13 @@ const RetailPage = () => {
       <section className="brand_list">
         <h3>Browse By Brand</h3>
       </section>
-      <SupBrandList />
+      <BrandList sport='paddleboard' />
 
       <section className="deck">
         {query.paddleBoard.nodes.map((sup: CardType) => (
           <Card
             key={sup.id}
-            retail={sup}
+            {...sup}
           />
         ))}
         <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
@@ -119,12 +117,11 @@ const RetailPage = () => {
 
       <Footer />
 
-      {/* <SEOShowcase test="this" /> */}
-      <SEOcase
+
+      {/*  <SEOcase
         title={`Retail | ${useSiteMetadata().title}`}
         description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
-
-      />
+      /> */}
     </>
   )
 }

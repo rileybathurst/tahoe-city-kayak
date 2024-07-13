@@ -1,3 +1,4 @@
+import { tr } from "@faker-js/faker";
 import { Brand, Retail } from "./types"; // Import the Brand and Retail types
 
 const path = require("path");
@@ -10,17 +11,16 @@ exports.onPostBuild = ({ reporter }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // Create retail pages dynamically
+  // Retail Pages
   const retailPageTemplate = path.resolve("src/templates/retail.tsx");
-
-  // console.log("Creating Retail Pages");
-
   const retailResult = await graphql(`
     query {
       allStrapiRetail {
         nodes {
           slug
-          type
+          sport {
+            slug
+          }
 
           brand {
             slug
@@ -31,18 +31,19 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   for (const retail of retailResult.data.allStrapiRetail.nodes) {
-    const { type, slug, brand } = retail;
+    const { sport, slug, brand } = retail;
     createPage({
-      path: `/retail/${type}/${brand.slug}/${slug}`,
+      path: `/retail/${sport.slug}/${brand.slug}/${slug}`,
       component: retailPageTemplate,
       context: {
         slug,
-        type,
+        sport: sport.slug,
         brand: brand.slug,
       },
     });
   }
 
+  // Brands
   const BrandsTemplate = path.resolve("src/templates/brands.tsx");
   const brandsResult = await graphql(`
     query {
@@ -51,129 +52,122 @@ exports.createPages = async ({ graphql, actions }) => {
           slug
           retail {
             series
-            type
+
+            sport {
+              slug
+            }
+
             brand {
               slug
             }
           }
         }
       }
+
+      allStrapiSport {
+        nodes {
+          slug
+        }
+      }
     }
   `);
 
-  const kayakSet = new Set();
+for (const sport of brandsResult.data.allStrapiSport.nodes) {
+
+  const sportSet = new Set();
   for (const brand of brandsResult.data.allStrapiBrand.nodes) {
     for (const retail of brand.retail) {
-      if (retail.type === "kayak") {
-        kayakSet.add(retail.brand.slug);
+      if (retail.sport.slug === sport.slug) {
+        sportSet.add(retail.brand.slug);
       }
     }
   }
 
-  // this creates the kayak brands
-  for (const brand of kayakSet) {
+  console.log(sportSet);
+
+  for (const brand of sportSet) {
     createPage({
-      path: `retail/kayak/${brand}`,
+      path: `retail/${sport.slug}/${brand}`,
       component: BrandsTemplate,
       context: {
         slug: brand,
-        type: "kayak",
-      },
-    });
-  }
-
-  // this creates the sup brands
-  const supSet = new Set();
-  for (const brand of brandsResult.data.allStrapiBrand.nodes) {
-    for (const retail of brand.retail) {
-      if (retail.type === "sup") {
-        supSet.add(retail.brand.slug);
-      }
-    }
-  }
-
-  // this creates the kayak brands
-  // console.log(supSet);
-
-  for (const brand of supSet) {
-    createPage({
-      path: `/retail/sup/${brand}`,
-      component: BrandsTemplate,
-      context: {
-        slug: brand,
-        type: "sup",
+        sport: sport.slug,
       },
     });
   }
 
   // Create Attributes Dynamically
-  // these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters
-  const CrewTemplate = path.resolve("src/templates/crew.tsx");
-  const InflatableTemplate = path.resolve("src/templates/inflatable.tsx");
-  const WeightTemplate = path.resolve("src/templates/weight.tsx");
-  const PedalTemplate = path.resolve("src/templates/pedal.tsx");
-
+  // * these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters
   const attributeResult = await graphql(`
     query {
       allStrapiAttribute {
         nodes {
           slug
           name
-          type
+        }
+      }
+
+      allStrapiSport {
+        nodes {
+          slug
         }
       }
     }
   `);
 
-  for (const attribute of attributeResult.data.allStrapiAttribute.nodes) {
-    const { slug, type, name } = attribute;
-    if (slug === "tandem") {
-      createPage({
-        path: `/retail/attribute/${type}/${slug}`,
-        component: CrewTemplate,
-        context: {
-          name,
-          type,
-          slug,
-        },
-      });
-    }
+  for (const sport of attributeResult.data.allStrapiSport.nodes) {
+    for (const attribute of attributeResult.data.allStrapiAttribute.nodes) {
+      const { slug, name } = attribute;
 
-    if (slug === "inflatable" || slug === "rigid") {
-      createPage({
-        path: `/retail/attribute/${type}/${slug}`,
-        component: InflatableTemplate,
-        context: {
-          name,
-          type,
-          inflatable: slug === "inflatable",
-        },
-      });
-    }
+      if (slug === "tandem") {
+        createPage({
+          path: `/retail/attribute/${sport.slug}/${slug}`,
+          component: path.resolve("src/templates/crew.tsx"),
+          context: {
+            name,
+            crew: slug,
+            sport: sport.slug,
+          },
+        });
+      }
 
-    if (slug === "ultralight" || slug === "ultralight-tandem") {
-      createPage({
-        path: `/retail/attribute/${type}/${slug}`,
-        component: WeightTemplate,
-        context: {
-          slug,
-          type,
-          weight: slug === "ultralight" ? 46 : 70,
-          crew: slug === "ultralight" ? "single" : "tandem",
-        },
-      });
-    }
+      if (slug === "inflatable" || slug === "rigid") {
+        createPage({
+          path: `/retail/attribute/${sport.slug}/${slug}`,
+          component: path.resolve("src/templates/inflatable.tsx"),
+          context: {
+            name,
+            sport: sport.slug,
+            // this is a comparison not a set
+            inflatable: slug === "inflatable",
+          },
+        });
+      }
 
-    if (slug === "pedal") {
-      // * this is grabbing the whole hobie brand
-      createPage({
-        path: `/retail/attribute/${type}/${slug}`,
-        component: PedalTemplate,
-        context: {
-          slug,
-          type,
-        },
-      });
+      if (slug === "ultralight" || slug === "ultralight-tandem") {
+        createPage({
+          path: `/retail/attribute/${sport.slug}/${slug}`,
+          component: path.resolve("src/templates/weight.tsx"),
+          context: {
+            slug,
+            weight: slug === "ultralight" ? 46 : 70,
+            crew: slug === "ultralight" ? "single" : "tandem",
+            sport: sport.slug,
+          },
+        });
+      }
+
+      if (slug === "pedal") {
+        // * this is grabbing the whole hobie brand
+        createPage({
+          path: `/retail/attribute/${sport.slug}/${slug}`,
+          component: path.resolve("src/templates/pedal.tsx"),
+          context: {
+            slug,
+            sport: sport.slug,
+          },
+        });
+      }
     }
   }
 

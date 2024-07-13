@@ -4,71 +4,43 @@ import AttributeView from '../views/attribute-view';
 import { SEO } from '../components/seo';
 import { useSiteMetadata } from '../hooks/use-site-metadata';
 
-const WeightView = ({ data }) => {
+const PedalTemplate = ({ data }) => {
   return (
     <AttributeView
-      title={data.strapiAttribute.name}
-      description={data.strapiAttribute.description.data.description}
-      query={data.allStrapiRetail}
-      type={data.strapiAttribute.type}
+      {...data}
     />
   );
 };
 
-export default WeightView;
+export default PedalTemplate;
 
 export const Head = ({ data }) => {
   return (
     <SEO
       title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteMetadata().title}`}
       description={data.strapiAttribute.description.data.description}
-    >
-      {/* // TODO: breadcrumbs */}
-    </SEO>
+    />
   );
 }
 
 
-// * this is grabbing the whole hobie brand
+// TODO: this is grabbing the whole hobie brand
 export const query = graphql`
   query (
-    $slug: String!,
-    $type: String!,
+    $slug: String!
   ) {
-    allStrapiRetail(filter: {brand: {name: {eq: "hobie"}}}, sort: {featured: ASC}) {
+    allStrapiRetail(
+      filter: {brand: {name: {eq: "hobie"}}},
+      sort: {featured: ASC}) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        capacity
-        length
-        width
-        type
-        inflatable
-        brand {
-          slug
-        }
-        
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...attributeRetailFragment
       }
     }
 
-    strapiAttribute(slug: {eq: $slug}, type: {eq: $type}) {
-      name
-      type
-      description {
-        data {
-          description
-        }
-      }
+    strapiAttribute(
+      slug: {eq: $slug}
+      ) {
+      ...attributeFragment
     }
   }
 `;

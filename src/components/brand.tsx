@@ -63,7 +63,7 @@ interface BrandTypes {
 }
 const Brand = ({ svg, slug, name, tagline, retail, type }: BrandTypes) => {
 
-  console.log(retail);
+  // console.log(retail);
 
   return (
     <>

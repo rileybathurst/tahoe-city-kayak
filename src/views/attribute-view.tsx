@@ -1,64 +1,60 @@
 import * as React from "react"
-import { Link, Script } from 'gatsby';
-import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
+import { Link } from 'gatsby';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Card from "../components/card"
-import KayakFeatureList from "../components/kayak-feature-list";
-import PaddleboardFeatureList from "../components/paddleboard-feature-list"
+import FeatureList from "../components/feature-list";
 import Sport from "../components/sport";
+import type { CardType } from "../types/card";
+import ReactMarkdown from 'react-markdown';
 
-// ! SEO isnt here its on the templates
-
-// TODO: nline this
-function SportFeatureList(props: { sport: string; }) {
-  if (props.sport === "kayak") {
-    return (
-      <KayakFeatureList />
-    )
-  } else {
-    return (
-      <PaddleboardFeatureList />
-    )
-  }
+// * SEO isnt here its on the templates
+interface AttributeViewTypes {
+  allStrapiRetail: {
+    title: string;
+    description: string;
+    nodes: any[];
+  };
+  strapiAttribute: {
+    name: string;
+    description: {
+      data: {
+        description: string;
+      };
+    };
+  };
 }
+const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes) => {
 
-const AttributeView = (props: {
-  title: string;
-  description: string;
-  query: { nodes: any[]; };
-  type: string;
-}) => {
   return (
     <>
       <Header />
 
       <main>
-        <h1 className="capitalize">{props.title} <Sport sport={props.type} />s</h1>
+        <h1 className="capitalize">{strapiAttribute.name} - <Sport sport={allStrapiRetail.nodes[0].sport.slug} />s
+        </h1>
 
-        {/* // TODO: I need to work on a version of this that uses some markdown - ultralight kayaks do this */}
-        <p>{props.description}</p>
+        <ReactMarkdown className='react-markdown'>
+          {strapiAttribute.description.data.description}
+        </ReactMarkdown>
       </main>
 
       <section className="deck">
-        {props.query.nodes.map((retail: { id: any; type?: string; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; }) => (
+        {allStrapiRetail.nodes.map((retail) => (
           <Card
             key={retail.id}
             {...retail}
           />
-        ))
-        }
+        ))}
       </section>
 
-      <hr className="passage" />
-
-      <section className="passage" >
-        <h2>Browse By Feature</h2>
-        <SportFeatureList sport={props.type} />
+      <section className="pelican" >
+        <hr />
+        <h2>Browse {allStrapiRetail.nodes[0].sport.slug}s By Feature</h2>
+        <FeatureList sport={allStrapiRetail.nodes[0].sport.slug} />
       </section>
 
-      <nav
+      {/* <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
       >
@@ -67,13 +63,13 @@ const AttributeView = (props: {
             <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
           </li>
           <li>
-            <Link to={`/retail/${props.type}`}>
-              <Sport sport={props.type} />
+            <Link to={`/retail/${sport.slug}`}>
+              <Sport sport={sport.slug} />
             </Link>&nbsp;/&nbsp;
           </li>
-          <li aria-current="page">{props.title}</li>
+          <li aria-current="page">{title}</li>
         </ol>
-      </nav>
+      </nav> */}
 
       <Footer />
     </>

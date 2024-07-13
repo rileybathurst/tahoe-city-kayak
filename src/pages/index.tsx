@@ -14,15 +14,13 @@ import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 import BookTour from "../components/peek/book-tour";
 import BookRental from "../components/peek/book-rental";
-import KayakBrandList from "../components/kayak-brand-list";
-import SupBrandList from "../components/sup-brand-list";
-import KayakFeatureList from "../components/kayak-feature-list";
+import BrandList from "../components/brand-list";
+import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
 import Experience from "../content/experience";
 import Ticket from "../components/ticket";
-import PaddleboardFeatureList from "../components/paddleboard-feature-list";
 
 const IndexPage = () => {
 
@@ -230,9 +228,9 @@ const IndexPage = () => {
             <Link to="/retail/kayak">Shop All Kayaks</Link>
           </h4>
           <h5>Shop By Feature</h5>
-          <KayakFeatureList />
+          <FeatureList sport='kayak' />
           <h5>Shop By Brand</h5>
-          <KayakBrandList />
+          <BrandList sport='kayak' />
 
           <hr />
 
@@ -240,9 +238,9 @@ const IndexPage = () => {
             <Link to="/retail/sup">Shop All Paddleboards</Link>
           </h4>
           <h5>Shop By Feature</h5>
-          <PaddleboardFeatureList />
+          <FeatureList sport='paddleboard' />
           <h5>Shop By Brand</h5>
-          <SupBrandList />
+          <BrandList sport='paddleboard' />
         </div>
 
         <div className="deck">

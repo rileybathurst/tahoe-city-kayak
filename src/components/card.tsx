@@ -1,50 +1,62 @@
 // ? Is there a way to get rid of the retail.retail.?
 // * there is also a ticket for tours and lessons similar to a card
+// TODO: ranme this to purchase to go with ticket instead of card
 
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
 import TextureBackgrounds from "./texturebackgrounds"
 import Remainder from "./remainder"
-import type { RetailCardType } from "../types/retail"
+import type { RetailType } from "../types/retail"
 
-function Name(props) {
+interface NameTypes {
+  name: string;
+}
+function Name({ name }: NameTypes) {
   return (
     <div className="badge">
-      <h5 className="capitalize">{props.name}</h5>
+      <h5 className="capitalize">{name}</h5>
     </div>
   )
 }
 
-function Badges(props) {
+interface BadgeTypes {
+  inflatable: boolean;
+  demo: boolean;
+  discount: number;
+}
+function Badges({ inflatable, demo, discount }: BadgeTypes) {
 
   // TODO: deal with multiple
-  // console.log(props);
-  if (props.discount) {
+  if (discount) {
     return (
       <div className="badge">
-        <h5 className="capitalize mullen">{props.discount}% off</h5>
+        <h5 className="capitalize mullen">{discount}% off</h5>
       </div>
     )
-  } else if (props.inflatable) {
+  }
+
+  if (inflatable) {
     return (
       <Name name="inflatable" />
     )
-  } else if (props.demo) {
+  }
+
+  if (demo) {
     return (
       <Name name="demo" />
     )
-  } else {
-    return null
   }
+
+  return null
 }
 
-// TODO: cardType
-const Card = ({ id, title, type, brand, slug, cutout, inflatable, demo, discount, excerpt, length, width, capacity }: RetailCardType) => {
+const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, discount, excerpt, length, width, capacity }: RetailType) => {
 
-  // console.log(retail)
-  if (retail.retail.cutout.alternativeText === null) {
-    console.warn(`${retail.retail.title} by ${retail.retail.brand.slug} doesnt have altText`)
+  if (cutout && process.env.NODE_ENV === "development") {
+    if (!cutout.alternativeText) {
+      console.warn(`${title} by ${brand.slug} doesnt have altText`)
+    }
   }
 
   return (
@@ -54,7 +66,7 @@ const Card = ({ id, title, type, brand, slug, cutout, inflatable, demo, discount
       <div className="card-collage">
         <TextureBackgrounds />
         <Link
-          to={`/retail/${type}/${brand.slug}/${slug}`}
+          to={`/retail/${sport.slug}/${brand.slug}/${slug}`}
           className="image-link"
         >
           <GatsbyImage
@@ -66,15 +78,13 @@ const Card = ({ id, title, type, brand, slug, cutout, inflatable, demo, discount
           />
         </Link>
         <Badges
-          // ? i could just pass everything and deal with it then?
           inflatable={inflatable}
           demo={demo}
           discount={discount}
         />
       </div>
-      {/* // ? does this need a brand */}
       <h4 className="card__title">
-        <Link to={`/retail/${type}/${brand.slug}/${slug}`}>
+        <Link to={`/retail/${sport.slug}/${brand.slug}/${slug}`}>
           {title}
         </Link>
       </h4>
@@ -88,7 +98,7 @@ const Card = ({ id, title, type, brand, slug, cutout, inflatable, demo, discount
         </h4>
         <h5 className="capitalize">Capacity {capacity}&thinsp;lbs</h5>
       </div>
-    </article>
+    </article >
   )
 }
 

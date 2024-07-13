@@ -15,6 +15,7 @@ import Phone from '../components/phone';
 
 import SEOcase from "../components/seocase"
 import Remainder from '../components/remainder';
+import { RetailType } from '../types/retail';
 
 // ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
 //  might be more of a package problem
@@ -178,62 +179,6 @@ function Price({ price, discount }: PriceTypes) {
   )
 }
 
-function Other(props: { retail: { nodes: any[]; }; }) {
-  if (props.retail) {
-    return (
-      <section className='deck'>
-        {props.retail.nodes.map((retail: { id: any; type?: string; brand?: { slug: string; }; slug?: string; title?: string; excerpt?: string; cutout?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; length?: number; width?: number; capacity?: number; inflatable?: boolean | undefined; demo?: boolean | undefined; }) => (
-          <Card
-            key={retail.id}
-            {...retail}
-          />
-        ))}
-      </section>
-    )
-  }
-  return null;
-}
-
-function OtherWrap(props: { retail: { nodes: string | any[]; }; type: string; brand: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; slug: any; }) {
-  if (props.retail.nodes.length !== 0) {
-    return (
-      <article>
-        <section className='passage'>
-          <h2>Other <Sport sport={props.type} />s by <span className='capitalize'>{props.brand}</span></h2>
-        </section>
-        {props.children}
-        <section className='passage'>
-          <h3>
-            <Link to={`/retail/${props.type}/${props.slug}`}>
-              More <Sport sport={props.type} />s by <span className='capitalize'>{props.brand}</span>
-            </Link>
-          </h3>
-        </section>
-      </article>
-    )
-  }
-  return null;
-}
-
-// references that there are no other by brand
-function None(props: { retail: { nodes: string | any[]; }; type: string; }) {
-  // console.log(props.retail.edges);
-
-  if (props.retail.nodes.length === 0) {
-    return (
-      <section className='none'>
-        <h3>
-          <Link to={`/retail/${props.type}`}>
-            Browse other <Sport sport={props.type} />s
-          </Link>
-        </h3>
-      </section>
-    )
-  }
-
-  return null;
-}
-
 function Series(props: { series: string; }) {
   if (props.series) {
     return (
@@ -272,7 +217,7 @@ const RetailTypeView = ({ data }) => {
             {/* // TODO: only one h and then p */}
 
             <h1 className="h_title">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand"><Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>{data.strapiRetail.brand.name}</Link></h2>
+            <h2 className="h_brand"><Link to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}>{data.strapiRetail.brand.name}</Link></h2>
 
             <Series series={data.strapiRetail.series} />
           </hgroup>
@@ -327,7 +272,7 @@ const RetailTypeView = ({ data }) => {
 
           <GatsbyImage
             image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={data.strapiRetail.cutout.alternativeText || 'retail image'}
+            alt={data.strapiRetail?.cutout?.alternativeText || 'retail image'}
             className="cutout"
             objectFit="contain"
           />
@@ -357,7 +302,7 @@ const RetailTypeView = ({ data }) => {
       {data.strapiRetail.demo ?
         <div className="single__book">
           <h3>Demo</h3>
-          <p>If you&rsquo;re looking to try this particular {data.strapiRetail.type}, call the shop and request a demo.
+          <p>If you&rsquo;re looking to try this particular {data.strapiRetail.sport.slug}, call the shop and request a demo.
             We&rsquo;ll charge you our rental fee*, but we will credit that fee if you decide to purchase a boat or board from us in the same season.
             &#x28;Up to two full days rental charge&#x29;</p>
           {/* // TODO cost may be a single query */}
@@ -372,23 +317,34 @@ const RetailTypeView = ({ data }) => {
       {data.allStrapiRetail ?
         <article>
           <section className='condor'>
-            <h2>Other <Sport sport={data.strapiRetail.type} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span></h2>
+            <h2>Other <Sport sport={data.strapiRetail.sport.slug} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span></h2>
           </section>
-          <Other retail={data.allStrapiRetail} />
+          <section className='deck'>
+            {data.allStrapiRetail.nodes.map((retail: RetailType) => (
+              <Card
+                key={retail.id}
+                {...retail}
+              />
+            ))}
+          </section>
           <section className='condor'>
             <h3>
-              <Link to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}>
-                More <Sport sport={data.strapiRetail.type} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span>
+              <Link to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}>
+                More <Sport sport={data.strapiRetail.sport.slug} />s by <span className='capitalize'>{data.strapiRetail.brand.name}</span>
               </Link>
             </h3>
           </section>
         </article>
-        : null
+        :
+        <section className='none'>
+          <h3>
+            <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
+              Browse other <Sport sport={data.strapiRetail.sport.slug} />s
+            </Link>
+          </h3>
+        </section>
       }
 
-      {/* // The map just creates nothing so I cant go that way */}
-      {/* // It's a pretty rare case so I dont actually query a set of cards */}
-      <None retail={data.allStrapiRetail} type={data.strapiRetail.type} />
       <nav
         aria-label="Breadcrumb"
         className="breadcrumbs"
@@ -399,7 +355,7 @@ const RetailTypeView = ({ data }) => {
           </li>
 
           <li>
-            <Link to={`/retail/${data.strapiRetail.type}`}><Sport sport={data.strapiRetail.type} /></Link>&nbsp;/&nbsp;
+            <Link to={`/retail/${data.strapiRetail.sport.slug}`}><Sport sport={data.strapiRetail.sport.slug} /></Link>&nbsp;/&nbsp;
           </li>
 
           <li aria-current="page">{data.strapiRetail.title}</li>
@@ -476,13 +432,11 @@ export const Head = ({ data }) => {
 export const query = graphql`
   query (
     $slug: String!,
-    $type: String!,
     $brand: String!
   ) {
     strapiRetail(slug: {eq: $slug}) {
       id
       title
-      type
       excerpt
       series
       crew
@@ -497,6 +451,9 @@ export const query = graphql`
       demo
       price
       discount
+      sport {
+        slug
+      }
 
       brand {
         name
@@ -529,34 +486,13 @@ export const query = graphql`
     allStrapiRetail(filter:
       {
         slug: {ne: $slug},
-        type: {eq: $type},
         brand: {slug: {eq: $brand}}
       }
       limit: 2,
       sort: {featured: ASC}
     ) {
       nodes {
-        id
-        title
-        slug
-        excerpt
-        width
-        length
-        type
-        capacity
-        hullweight
-        brand {
-          slug
-        }
-
-        cutout {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...retailCard
       }
     }
   }

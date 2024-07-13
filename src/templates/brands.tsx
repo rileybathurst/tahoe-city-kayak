@@ -1,4 +1,6 @@
 // TODO: still finishing this
+// ? Object.groupBy(array, ({ series }) => series);
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
 
 import React from "react"
 import { Link, graphql, Script, useStaticQuery } from 'gatsby'
@@ -13,12 +15,11 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import LocationCard from "../components/location-card";
 import Card from "../components/card";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import type { RetailType } from "../types/retail";
 
 // TODO: get rid of props
-function Series(props: {
+/* function Series(props: {
   retail: {
     id: any;
     type?: string;
@@ -39,11 +40,11 @@ function Series(props: {
       {props.retail}
     />
   )
-}
+} */
 
 
 
-// ! remove this when im done
+// TODO: remove this when im done
 function Capacity({ series, title }
 ) {
   if (series.nodes?.length > 0) {
@@ -55,86 +56,19 @@ function Capacity({ series, title }
         </h2>
       </>
     );
-  } else {
-    return null;
   }
+
+  return null;
 }
 
-function NullCheck({ series, title }
-) {
-  if (series.nodes?.length > 0 || title === 'null') {
-    return (
-      <>
-        <hr />
-        <h2 className="capitalize">{title.replace(/-/g, ' ')}&nbsp;
-          <span className='typography__secondary'>Series</span>
-        </h2>
-      </>
-    );
-  } else {
-    return null;
+const BrandsView = ({ data }) => {
+
+  const seriesSet = new Set();
+  for (const retail of data.allStrapiRetail.nodes) {
+    retail.series ? seriesSet.add(retail.series) : null;
   }
-}
-
-function Breadcrumbs(props: {
-  children: React.ReactFragment;
-  brand: string;
-}) {
-  return (
-    <nav
-      aria-label="Breadcrumb"
-      className="breadcrumbs"
-    >
-      <ol>
-        <li>
-          <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-        </li>
-        <li>
-          {props.children}
-        </li>
-        <li aria-current="page">{props.brand}</li>
-      </ol>
-    </nav >
-  )
-}
-
-// 🍞 breadcrumbs are a little different
-// TODO: Toast is a specific thing rename this
-function Toast(props: {
-  butter: string;
-  brand: string;
-}) {
-  if (props.butter.includes('sup')) {
-    return (
-      <Breadcrumbs brand={props.brand}>
-        <Link to={`/retail/sup`}>
-          Standup Paddleboards
-        </Link>&nbsp;/&nbsp;
-      </Breadcrumbs >
-    );
-  }
-  return (
-    <Breadcrumbs brand={props.brand}>
-      <Link to={`/retail/kayak`}>
-        Kayaks
-      </Link>&nbsp;/&nbsp;
-    </Breadcrumbs >
-  );
-}
-
-const BrandsView = ({ location, data }) => {
-
-  const series = [
-    data.island,
-    data.mirage,
-    data.inflatable,
-    data.performance,
-    data.recreational,
-    data.sitontop,
-    data.adventurerecreational,
-    data.lighttouring,
-    data.null
-  ]
+  const seriesArray = Array.from(seriesSet);
+  console.log(seriesArray);
 
   return (
     <>
@@ -143,8 +77,8 @@ const BrandsView = ({ location, data }) => {
       {/* // TODO: needs to be wider but not let the text get too long */}
       <main className="brand-page">
         <section>
+          {/* // TODO: logo size */}
           <div className="logo">
-            {/* // TODO: logo size */}
             <div
               dangerouslySetInnerHTML={{ __html: data.brand.svg }}
               className="logo-wrapper"
@@ -157,8 +91,8 @@ const BrandsView = ({ location, data }) => {
           {/* // TODO: needs slide that I have in other places */}
           <Capacity
             series={data.brand.retail}
-            type={location.pathname}
-            list='true'
+          // type={location.pathname}
+          // list='true'
           />
         </section>
 
@@ -170,35 +104,53 @@ const BrandsView = ({ location, data }) => {
 
       </main>
 
-      {series.map(series => (
-        <>
-          <section
-            id={series.nodes[0]?.series}
-            key={series.nodes[0]?.series}
-            className="passage possibly-empty"
-          >
-            <NullCheck
-              series={series}
-              title={series.nodes[0]?.series || ''}
-            />
-          </section>
-          <div className="deck">
-            {series.nodes.map((retail: { id: React.Key; }) => (
-              <div key={retail.id}>
-                <Series
-                  retail={retail}
-                />
-              </div>
-            ))
-            }
-          </div>
-        </>
-      ))}
+      {seriesArray.length > 0 ?
+        seriesArray.map(series => (
+          <>
+            <section
+              key={series.nodes[0].series}
+              // TODO: can I do a css query for empty instead
+              className="passage possibly-empty"
+            >
+              {series.nodes?.length > 0 ?
+                <>
+                  <hr />
+                  <h2 className="capitalize">{series.nodes[0]?.series.replace(/-/g, ' ')}&nbsp;
+                    <span className='typography__secondary'>Series</span>
+                  </h2>
+                </> : null
+              }
+            </section >
 
-      <Toast
-        butter={location.pathname}
-        brand={data.brand.name}
-      />
+            <div
+              className="deck"
+              key={series.nodes[0].series}
+            >
+              {series.nodes.map((retail: RetailType) => (
+                <Card
+                  key={retail.id}
+                  {...retail}
+                />
+              ))}
+            </div>
+          </>
+
+        ))
+        : null}
+
+      <section
+        className="deck">
+        {data.allStrapiRetail.nodes
+          .filter((retail: RetailType) => retail.series === null)
+          .map((retail: RetailType) => (
+            <Card
+              key={retail.id}
+              {...retail}
+            />
+          ))}
+      </section>
+
+      {/* // TODO: breadcrumbs */}
 
       <Footer />
     </>
@@ -249,166 +201,43 @@ export const Head = ({ data }) => (
   </SEO>
 )
 
-
+// TODO: loop the series
 export const query = graphql`
-  query (
-    $slug: String!,
-    $type: String!,
-  ) {
-    brand: strapiBrand(slug: {eq: $slug}) {
-      name
+        query (
+        $slug: String!,
+        $sport: String!,
+        ) {
+          brand: strapiBrand(slug: {eq: $slug}) {
+          name
       id
-      name
-      tagline
-      svg
-      retail {
-        title
+        name
+        tagline
+        svg
+        retail {
+          title
         series
-        type
       }
     }
 
-    island: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "island"}
+        allStrapiRetail(
+        filter: {
+          brand: {slug: {eq: $slug}},
+        sport: {slug: {eq: $sport}}
       },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
+        sort: {featured: ASC}
+        ) {
+          nodes {
+          ...retailCard
         series
       }
     }
 
-    mirage: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "mirage"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    inflatable: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "inflatable"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    performance: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "performance"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    recreational: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "recreational"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    sitontop: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "sit-on-top"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    adventurerecreational: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "adventure recreational"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    lighttouring: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {eq: "light touring"}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    null: allStrapiRetail(
-      filter: {
-        brand: {slug: {eq: $slug}},
-        type: {eq: $type},
-        series: {nin: [
-          "island",
-          "mirage",
-          "inflatable",
-          "performance",
-          "recreational",
-          "sit-on-top",
-          "adventure recreational",
-          "light touring"
-          ]}
-      },
-      sort: {featured: ASC}
-    ) {
-      nodes {
-        ...retailCard
-        series
-      }
-    }
-
-    strapiLocation: strapiLocation(
-      locale: {slug: {eq: "tahoe-city"}}
-      name: {eq: "Retail Location"}
-    ) {
-      ...locationCard
-    }
+        strapiLocation: strapiLocation(
+        locale: {slug: {eq: "tahoe-city"}}
+        name: {eq: "Retail Location"}
+        ) {
+          ...locationCard
+        }
 
   }
-`
+        `
