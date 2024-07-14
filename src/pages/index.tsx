@@ -235,7 +235,7 @@ const IndexPage = () => {
           <hr />
 
           <h4>
-            <Link to="/retail/sup">Shop All Paddleboards</Link>
+            <Link to="/retail/paddleboard">Shop All Paddleboards</Link>
           </h4>
           <h5>Shop By Feature</h5>
           <FeatureList sport='paddleboard' />

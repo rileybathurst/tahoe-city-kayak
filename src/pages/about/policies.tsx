@@ -1,4 +1,6 @@
-import * as React from "react"
+// TODO: move to strapi
+
+import React from "react";
 import { Script } from 'gatsby';
 import { SEO } from "../../components/seo";
 
@@ -8,8 +10,8 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const PoliciesPage = () => {
-  let title = "Store Policies";
-  let parent = "about";
+  const title = "Store Policies";
+  const parent = "about";
 
   return (
     <>
@@ -17,7 +19,7 @@ const PoliciesPage = () => {
 
       {/* // TODO composition */}
 
-      <main>
+      <main className="condor">
         <h1>{title}</h1>
 
         <article>
@@ -39,9 +41,11 @@ const PoliciesPage = () => {
 
           <h2>Cancellation Policy</h2>
           <ul>
-            <li>Cancelling more than 24 before your reservation is completely fine, we will provide a full refund.</li>
-            <li>Cancelling within 24 hours of your reservation means you will be financially held to your reservation.</li>
+            {/* <li>Cancelling more than 24 before your reservation is completely fine, we will provide a full refund.</li> */}
+            {/* <li>Cancelling within 24 hours of your reservation means you will be financially held to your reservation.</li> */}
             {/* <li>Please note: The Sand Harbor State Park is limited on its parking capacity due to Covid-19. Getting there by the time the gates open at 8AM will help ensure your entry.</li> */}
+
+            <li>If you make a reservation and would like to cancel the same day, you can reschedule for another day as long as there is availability for the time slot and time duration of your request. You will not be issued a refund under any circumstances.</li>
           </ul>
 
         </article>

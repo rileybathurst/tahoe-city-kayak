@@ -748,6 +748,7 @@ footer {
   max-width: var(--condor);
   margin-inline: auto;
   place-content: center;
+  text-align: center;
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
