@@ -54,7 +54,7 @@ const BrandList = ({ sport }) => {
     <ul className='brand_list'>
       {BrandArray.map((brand) => (
         <li key={brand.id}>
-          <Link to={`/retail/kayak/${brand.slug}`}>
+          <Link to={`/retail/${sport}/${brand.slug}`}>
             {brand.svg ?
               <div
                 dangerouslySetInnerHTML={{ __html: brand.svg }}

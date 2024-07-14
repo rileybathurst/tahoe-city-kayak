@@ -202,7 +202,7 @@ const RetailTypeView = ({ data }) => {
       <main className="retail">
         <div className='title'>
           <Link
-            to={`/retail/${data.strapiRetail.type}/${data.strapiRetail.brand.slug}`}
+            to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
             className='link__subtle-svg'
           >
             <div

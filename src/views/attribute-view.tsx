@@ -74,6 +74,7 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
 
         <Footer />
       </>
+      // TODO: move this inside a bit with a 404 but you shouldnt be able to get here
       : null
   )
 }
