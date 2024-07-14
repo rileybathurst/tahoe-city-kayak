@@ -57,8 +57,6 @@ export const strapiSport = graphql`
 
 const RetailSportPage = ({ data }) => {
 
-  console.log(data.allStrapiBrand.nodes)
-
   const brandSet = new Set();
   for (const brand of data.allStrapiBrand.nodes) {
     brand.retail.map((retail) => {

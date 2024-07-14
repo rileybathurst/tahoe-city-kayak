@@ -124,7 +124,7 @@ const IndexPage = () => {
     setHasExtra(isExtra)
   }, [inventory])
 
-  console.log(data.allStrapiLocation);
+  // console.log(data.allStrapiLocation);
 
   return (
     <>

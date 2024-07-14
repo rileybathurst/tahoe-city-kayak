@@ -42,25 +42,6 @@ import type { RetailType } from "../types/retail";
   )
 } */
 
-
-
-// TODO: remove this when im done
-function Capacity({ series, title }
-) {
-  if (series.nodes?.length > 0) {
-    return (
-      <>
-        <hr />
-        <h2 className="capitalize">{title.replace(/-/g, ' ')}&nbsp;
-          <span className='typography__secondary'>Series</span>
-        </h2>
-      </>
-    );
-  }
-
-  return null;
-}
-
 const BrandsView = ({ data }) => {
 
   const seriesSet = new Set();
@@ -68,7 +49,7 @@ const BrandsView = ({ data }) => {
     retail.series ? seriesSet.add(retail.series) : null;
   }
   const seriesArray = Array.from(seriesSet);
-  console.log(seriesArray);
+  // console.log(seriesArray);
 
   return (
     <>
@@ -89,11 +70,17 @@ const BrandsView = ({ data }) => {
           <p>{data.brand.tagline}.</p>
           <hr />
           {/* // TODO: needs slide that I have in other places */}
-          <Capacity
-            series={data.brand.retail}
-          // type={location.pathname}
-          // list='true'
-          />
+          {seriesArray.length > 0 ?
+            seriesArray.map(series => (
+              <Link
+                key={series}
+                to={`#${series}`}
+                onClick={e => scrollTo(`#${series}`)}
+              >
+                <span className="typography__secondary">{series.replace(/-/g, ' ')} Series</span>
+              </Link>
+            ))
+            : null}
         </section>
 
         {/* // TODO: hover the whole card and give it a shadow when we do */}
@@ -106,16 +93,21 @@ const BrandsView = ({ data }) => {
 
       {seriesArray.length > 0 ?
         seriesArray.map(series => (
+
+
+          console.log(series),
           <>
             <section
-              key={series.nodes[0].series}
+              // key={retail.[0].series}
               // TODO: can I do a css query for empty instead
               className="passage possibly-empty"
+            // id={retail.[0].series}
             >
-              {series.nodes?.length > 0 ?
+              {series ?
                 <>
                   <hr />
-                  <h2 className="capitalize">{series.nodes[0]?.series.replace(/-/g, ' ')}&nbsp;
+                  <h2 className="capitalize">
+                    {series.replace(/-/g, ' ')}&nbsp;
                     <span className='typography__secondary'>Series</span>
                   </h2>
                 </> : null
@@ -124,19 +116,23 @@ const BrandsView = ({ data }) => {
 
             <div
               className="deck"
-              key={series.nodes[0].series}
+              key={series}
             >
-              {series.nodes.map((retail: RetailType) => (
-                <Card
-                  key={retail.id}
-                  {...retail}
-                />
-              ))}
+
+              {data.allStrapiRetail.nodes
+                .filter((retail) => retail.series === series)
+                .map((retail) => (
+                  <Card
+                    key={retail.id}
+                    {...retail}
+                  />
+                ))}
             </div>
           </>
-
         ))
         : null}
+
+      <hr className="pelican" />
 
       <section
         className="deck">

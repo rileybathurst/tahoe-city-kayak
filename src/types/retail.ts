@@ -26,4 +26,5 @@ export interface RetailType {
     localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
     alternativeText: string;
   };
+  series: string;
 }

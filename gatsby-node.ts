@@ -83,8 +83,6 @@ for (const sport of brandsResult.data.allStrapiSport.nodes) {
     }
   }
 
-  console.log(sportSet);
-
   for (const brand of sportSet) {
     createPage({
       path: `retail/${sport.slug}/${brand}`,
