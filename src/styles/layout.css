@@ -341,15 +341,6 @@ footer {
 /* #RETAIL */
 /*------------------*/
 
-#retail {
-  max-width: var(--pelican);
-
-  hgroup,
-  p {
-    max-width: var(--stork);
-  }
-}
-
 .hgroup__retail {
   display: flex;
   flex-direction: column;

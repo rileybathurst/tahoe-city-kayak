@@ -4,14 +4,6 @@
 
 .brand-page {
   margin-block-start: var(--aconcagua);
-  max-width: var(--pelican); /* 40rem */
-  margin-inline: auto;
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
-  gap: var(--baseline);
-  justify-content: space-between;
-  width: 100%;
 
   > * {
     max-width: var(--vulture);

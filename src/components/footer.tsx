@@ -23,7 +23,7 @@ const Footer = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCard
+          ...locationCardFragment
         }
       }
 

@@ -34,7 +34,7 @@ export const strapiSport = graphql`
     locale: {slug: {eq: "tahoe-city"}}
     name: {eq: "Retail Location"}
   ) {
-    ...locationCard
+    ...locationCardFragment
   }
 
   allStrapiBrand {
@@ -71,8 +71,7 @@ const RetailSportPage = ({ data }) => {
   return (
     <>
       <Header />
-
-      <main className="condor">
+      <main className="pelican">
         <h1>{data.strapiSport.title} Retail</h1>
         <Markdown className="react-markdown">
           {data.strapiShop.text.data.text}
@@ -82,11 +81,13 @@ const RetailSportPage = ({ data }) => {
           {...data.strapiLocation}
           background={false}
         />
-
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 
-      <BrandList sport={data.strapiSport.slug} />
+      <div className="albatross">
+        {/* // TODO: seems like I could ... this */}
+        <BrandList sport={data.strapiSport.slug} />
+      </div>
 
       {brandArray.map((brandSlug) => (
         data.allStrapiBrand.nodes

@@ -49,7 +49,7 @@ const ToursLessonsPage = () => {
           }
         ) {
           nodes {
-            ...locationCard
+            ...locationCardFragment
           }
         }
 

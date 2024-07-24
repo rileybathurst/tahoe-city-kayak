@@ -56,7 +56,7 @@ const BrandsView = ({ data }) => {
       <Header />
 
       {/* // TODO: needs to be wider but not let the text get too long */}
-      <main className="brand-page">
+      <main className="pelican wrap">
         <section>
           {/* // TODO: logo size */}
           <div className="logo">
@@ -199,25 +199,25 @@ export const Head = ({ data }) => (
 
 // TODO: loop the series
 export const query = graphql`
-        query (
-        $slug: String!,
-        $sport: String!,
-        ) {
-          brand: strapiBrand(slug: {eq: $slug}) {
-          name
+  query (
+  $slug: String!,
+  $sport: String!,
+  ) {
+    brand: strapiBrand(slug: {eq: $slug}) {
+      name
       id
-        name
-        tagline
-        svg
-        retail {
-          title
+      name
+      tagline
+      svg
+      retail {
+        title
         series
       }
     }
 
-        allStrapiRetail(
-        filter: {
-          brand: {slug: {eq: $slug}},
+    allStrapiRetail(
+      filter: {
+        brand: {slug: {eq: $slug}},
         sport: {slug: {eq: $sport}}
       },
         sort: {featured: ASC}
@@ -228,12 +228,12 @@ export const query = graphql`
       }
     }
 
-        strapiLocation: strapiLocation(
-        locale: {slug: {eq: "tahoe-city"}}
-        name: {eq: "Retail Location"}
-        ) {
-          ...locationCard
-        }
+    strapiLocation: strapiLocation(
+      locale: {slug: {eq: "tahoe-city"}}
+      name: {eq: "Retail Location"}
+    ) {
+      ...locationCardFragment
+    }
 
   }
-        `
+`

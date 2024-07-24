@@ -44,7 +44,7 @@ const RentalsPage = () => {
       }
     ) {
       nodes {
-        ...locationCard
+        ...locationCardFragment
       }
     }
 

@@ -33,7 +33,7 @@ const IndexPage = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          ...locationCard
+          ...locationCardFragment
         }
       }
 
@@ -208,52 +208,55 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="pelican wrap">
+      <section id="retail" className="albatross wrap">
         <div>
-          {/* // TODO: only one h and then p */}
-          <hgroup className="crest">
-            <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
-            <h4 className="supra">Kayaks and Paddleboards</h4>
-          </hgroup>
 
-          <Shop />
+          <div className="pelican">
+            {/* // TODO: only one h and then p */}
+            <hgroup className="crest">
+              <h3 className="brow"><Link to="/retail">Retail Store</Link></h3>
+              <h4 className="supra">Kayaks and Paddleboards</h4>
+            </hgroup>
+
+            <Shop />
+
+            <hr className="" />
+
+            {/* // TODO: this should be a sport loop */}
+            <h4>
+              <Link to="/retail/kayak">Shop All Kayaks</Link>
+            </h4>
+            <h5>Shop By Feature</h5>
+            <FeatureList sport='kayak' />
+            <h5>Shop By Brand</h5>
+            <BrandList sport='kayak' />
+
+            <hr />
+
+            <h4>
+              <Link to="/retail/paddleboard">Shop All Paddleboards</Link>
+            </h4>
+            <h5>Shop By Feature</h5>
+            <FeatureList sport='paddleboard' />
+            <h5>Shop By Brand</h5>
+            <BrandList sport='paddleboard' />
+          </div>
         </div>
-      </section>
 
-      <hr className="pelican" />
-
-      <section className="albatross wrap">
-        <div>
-          <h4>
-            <Link to="/retail/kayak">Shop All Kayaks</Link>
-          </h4>
-          <h5>Shop By Feature</h5>
-          <FeatureList sport='kayak' />
-          <h5>Shop By Brand</h5>
-          <BrandList sport='kayak' />
-
-          <hr />
-
-          <h4>
-            <Link to="/retail/paddleboard">Shop All Paddleboards</Link>
-          </h4>
-          <h5>Shop By Feature</h5>
-          <FeatureList sport='paddleboard' />
-          <h5>Shop By Brand</h5>
-          <BrandList sport='paddleboard' />
-        </div>
-
-        <div className="deck">
-          {inventory.map((retail) => (
-            <Card
-              key={retail.id}
-              {...retail} />
-          ))}
-          {hasExtra ? (
-            <button onClick={handleLoadExtra}>VIEW MORE PRODUCTS</button>
-          ) : (
-            <p>Thats all the products</p>
-          )}
+        <div className="">
+          <div className="pelican">
+            {/* TODOL these are cards that due to the layout cant be in a deck so need better margin-block-end */}
+            {inventory.map((retail) => (
+              <Card
+                key={retail.id}
+                {...retail} />
+            ))}
+            {hasExtra ? (
+              <button onClick={handleLoadExtra}>VIEW MORE PRODUCTS</button>
+            ) : (
+              <p>Thats all the products</p>
+            )}
+          </div>
         </div>
 
       </section>

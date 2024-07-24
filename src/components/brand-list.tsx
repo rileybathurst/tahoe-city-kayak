@@ -1,5 +1,3 @@
-// TODO: combine these together with sup-brand-list.tsx
-
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 

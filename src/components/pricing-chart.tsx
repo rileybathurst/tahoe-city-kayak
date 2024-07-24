@@ -32,6 +32,7 @@ const PricingChart = (props: { book: boolean; }) => {
 
       allStrapiRentalAddon {
         nodes {
+          id
           name
           single
           double
@@ -40,6 +41,14 @@ const PricingChart = (props: { book: boolean; }) => {
       }
     }
   `)
+
+  interface addonTypes {
+    id: React.Key;
+    name: string;
+    single: number;
+    double: number;
+    sup: number;
+  }
 
   return (
     <>
@@ -70,12 +79,12 @@ const PricingChart = (props: { book: boolean; }) => {
         </div>
 
         <div className="pricing-chart">
-          {data.allStrapiRentalAddon.nodes.map((addon: { name: string; }) => (
+          {data.allStrapiRentalAddon.nodes.map((addon: addonTypes) => (
             <>
-              <p>{addon.name}</p>
-              <p>+{addon.single}</p>
-              <p>+{addon.double}</p>
-              <p>+{addon.sup}</p>
+              <p key={addon.id}>{addon.name}</p>
+              <p key={addon.id}>+{addon.single}</p>
+              <p key={addon.id}>+{addon.double}</p>
+              <p key={addon.id}>+{addon.sup}</p>
             </>
           ))}
         </div>

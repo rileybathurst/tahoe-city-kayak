@@ -38,7 +38,7 @@ const RetailPage = () => {
       locale: {slug: {eq: "tahoe-city"}}
       name: {eq: "Retail Location"}
     ) {
-      ...locationCard
+      ...locationCardFragment
     }
 
   }
@@ -73,10 +73,10 @@ const RetailPage = () => {
 
       </article>
 
-      <section className="pelican">
+      <section className="albatross">
         <h3>Browse By Brand</h3>
+        <BrandList sport='kayak' />
       </section>
-      <BrandList sport='kayak' />
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: CardType) => (
@@ -100,10 +100,10 @@ const RetailPage = () => {
         <Composition sport="sup" />
       </article>
 
-      <section className="brand_list">
+      <section className="albatross">
         <h3>Browse By Brand</h3>
+        <BrandList sport='paddleboard' />
       </section>
-      <BrandList sport='paddleboard' />
 
       <section className="deck">
         {query.paddleBoard.nodes.map((sup: CardType) => (
@@ -112,7 +112,7 @@ const RetailPage = () => {
             {...sup}
           />
         ))}
-        <h2><Link to="/retail/sup">All Paddleboards</Link></h2>
+        <h2><Link to="/retail/paddleboard">All Paddleboards</Link></h2>
       </section>
 
       <Footer />

@@ -138,7 +138,7 @@ const DemosPage = () => {
       locale: {slug: {eq: "tahoe-city"}}
       name: {eq: "Retail Location"}
       ) {
-        ...locationCard
+        ...locationCardFragment
       }
 
       strapiDemo: strapiDemo {
