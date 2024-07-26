@@ -1325,7 +1325,6 @@ type Query = {
   readonly allStrapiAttribute: STRAPI_ATTRIBUTEConnection;
   readonly allStrapiAttributeDescriptionTextnode: STRAPI_ATTRIBUTE_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiBrand: STRAPI_BRANDConnection;
-  readonly allStrapiBrandSvglogoTextnode: STRAPI_BRAND_SVGLOGO_TEXTNODEConnection;
   readonly allStrapiDemo: STRAPI_DEMOConnection;
   readonly allStrapiDemoTextTextnode: STRAPI_DEMO_TEXT_TEXTNODEConnection;
   readonly allStrapiEvent: STRAPI_EVENTConnection;
@@ -1371,7 +1370,6 @@ type Query = {
   readonly strapiAttribute: Maybe<STRAPI_ATTRIBUTE>;
   readonly strapiAttributeDescriptionTextnode: Maybe<STRAPI_ATTRIBUTE_DESCRIPTION_TEXTNODE>;
   readonly strapiBrand: Maybe<STRAPI_BRAND>;
-  readonly strapiBrandSvglogoTextnode: Maybe<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
   readonly strapiDemo: Maybe<STRAPI_DEMO>;
   readonly strapiDemoTextTextnode: Maybe<STRAPI_DEMO_TEXT_TEXTNODE>;
   readonly strapiEvent: Maybe<STRAPI_EVENT>;
@@ -1522,14 +1520,6 @@ type Query_allStrapiBrandArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_BRANDSortInput>>>;
-};
-
-
-type Query_allStrapiBrandSvglogoTextnodeArgs = {
-  filter: InputMaybe<STRAPI_BRAND_SVGLOGO_TEXTNODEFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_BRAND_SVGLOGO_TEXTNODESortInput>>>;
 };
 
 
@@ -2023,27 +2013,15 @@ type Query_strapiBrandArgs = {
   createdAt: InputMaybe<DateQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
-  kayak: InputMaybe<BooleanQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   retail: InputMaybe<STRAPI_RETAILFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
-  sup: InputMaybe<BooleanQueryOperatorInput>;
   svg: InputMaybe<StringQueryOperatorInput>;
-  svglogo: InputMaybe<STRAPI_BRANDSvglogoFilterInput>;
   tagline: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
-};
-
-
-type Query_strapiBrandSvglogoTextnodeArgs = {
-  children: InputMaybe<NodeFilterListInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  parent: InputMaybe<NodeFilterInput>;
-  svglogo: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -2444,9 +2422,11 @@ type Query_strapiTeamArgs = {
   createdAt: InputMaybe<DateQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
+  locales: InputMaybe<STRAPI_LOCALEFilterListInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   position: InputMaybe<StringQueryOperatorInput>;
+  profile: InputMaybe<STRAPI__MEDIAFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -3442,16 +3422,13 @@ type STRAPI_BRAND = Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
-  readonly kayak: Maybe<Scalars['Boolean']>;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly retail: Maybe<ReadonlyArray<Maybe<STRAPI_RETAIL>>>;
   readonly slug: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
-  readonly sup: Maybe<Scalars['Boolean']>;
   readonly svg: Maybe<Scalars['String']>;
-  readonly svglogo: Maybe<STRAPI_BRANDSvglogo>;
   readonly tagline: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -3530,16 +3507,13 @@ type STRAPI_BRANDFieldSelector = {
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly kayak: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly retail: InputMaybe<STRAPI_RETAILFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
-  readonly sup: InputMaybe<FieldSelectorEnum>;
   readonly svg: InputMaybe<FieldSelectorEnum>;
-  readonly svglogo: InputMaybe<STRAPI_BRANDSvglogoFieldSelector>;
   readonly tagline: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -3549,16 +3523,13 @@ type STRAPI_BRANDFilterInput = {
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
-  readonly kayak: InputMaybe<BooleanQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly retail: InputMaybe<STRAPI_RETAILFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
-  readonly sup: InputMaybe<BooleanQueryOperatorInput>;
   readonly svg: InputMaybe<StringQueryOperatorInput>;
-  readonly svglogo: InputMaybe<STRAPI_BRANDSvglogoFilterInput>;
   readonly tagline: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -3609,152 +3580,15 @@ type STRAPI_BRANDSortInput = {
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
-  readonly kayak: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly retail: InputMaybe<STRAPI_RETAILSortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
-  readonly sup: InputMaybe<SortOrderEnum>;
   readonly svg: InputMaybe<SortOrderEnum>;
-  readonly svglogo: InputMaybe<STRAPI_BRANDSvglogoSortInput>;
   readonly tagline: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
-};
-
-type STRAPI_BRANDSvglogo = {
-  readonly data: Maybe<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
-};
-
-type STRAPI_BRANDSvglogoFieldSelector = {
-  readonly data: InputMaybe<STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector>;
-};
-
-type STRAPI_BRANDSvglogoFilterInput = {
-  readonly data: InputMaybe<STRAPI_BRAND_SVGLOGO_TEXTNODEFilterInput>;
-};
-
-type STRAPI_BRANDSvglogoSortInput = {
-  readonly data: InputMaybe<STRAPI_BRAND_SVGLOGO_TEXTNODESortInput>;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODE = Node & {
-  readonly children: ReadonlyArray<Node>;
-  readonly id: Scalars['ID'];
-  readonly internal: Internal;
-  readonly parent: Maybe<Node>;
-  readonly svglogo: Maybe<Scalars['String']>;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODEEdge>;
-  readonly group: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection_distinctArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection_groupArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection_maxArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection_minArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEConnection_sumArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEEdge = {
-  readonly next: Maybe<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
-  readonly node: STRAPI_BRAND_SVGLOGO_TEXTNODE;
-  readonly previous: Maybe<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector = {
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly svglogo: InputMaybe<FieldSelectorEnum>;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEFilterInput = {
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly svglogo: InputMaybe<StringQueryOperatorInput>;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODEEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_BRAND_SVGLOGO_TEXTNODE>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection_distinctArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection_groupArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection_maxArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection_minArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODEGroupConnection_sumArgs = {
-  field: STRAPI_BRAND_SVGLOGO_TEXTNODEFieldSelector;
-};
-
-type STRAPI_BRAND_SVGLOGO_TEXTNODESortInput = {
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly svglogo: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_DEMO = Node & {
@@ -7866,9 +7700,11 @@ type STRAPI_TEAM = Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
+  readonly locales: Maybe<ReadonlyArray<Maybe<STRAPI_LOCALE>>>;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly position: Maybe<Scalars['String']>;
+  readonly profile: Maybe<STRAPI__MEDIA>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -7997,9 +7833,11 @@ type STRAPI_TEAMFieldSelector = {
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly locales: InputMaybe<STRAPI_LOCALEFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly position: InputMaybe<FieldSelectorEnum>;
+  readonly profile: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -8011,9 +7849,11 @@ type STRAPI_TEAMFilterInput = {
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
+  readonly locales: InputMaybe<STRAPI_LOCALEFilterListInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly position: InputMaybe<StringQueryOperatorInput>;
+  readonly profile: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -8070,9 +7910,11 @@ type STRAPI_TEAMSortInput = {
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
+  readonly locales: InputMaybe<STRAPI_LOCALESortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly position: InputMaybe<SortOrderEnum>;
+  readonly profile: InputMaybe<STRAPI__MEDIASortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -10198,6 +10040,11 @@ type SportBrandQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SportBrandQueryQuery = { readonly allStrapiBrand: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly svg: string | null, readonly retail: ReadonlyArray<{ readonly title: string | null, readonly slug: string | null, readonly sport: { readonly slug: string | null } | null } | null> | null }> } };
+
+type TeamQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type TeamQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null }> } };
 
 type TestimonialsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

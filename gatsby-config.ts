@@ -18,6 +18,7 @@ const strapiConfig = {
     "rental-addon",
     "rental-rate",
     "retail",
+    "team",
     "testimonial",
     "tour",
   ],
