@@ -66,7 +66,6 @@ const TeamPage = () => {
 
       <main className="pelican">
         <h1>Team</h1>
-        {/* // ? query the location */}
         <p>Meet the team at {data.strapiLocale.name} Kayak & Paddleboard</p>
         <hr />
 

@@ -204,8 +204,6 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  console.log(getStrapiTeam.data.allStrapiTeam.edges);
-
   for (const { node } of getStrapiTeam.data.allStrapiTeam.edges) {
     createPage({
       path: `/about/team/${node.slug}`,
