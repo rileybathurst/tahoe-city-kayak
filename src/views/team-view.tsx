@@ -1,5 +1,10 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import ReactMarkdown from "react-markdown";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 export const { strapiTeam } = graphql`
   query TeamViewQuery($slug: String!) {
@@ -9,26 +14,51 @@ export const { strapiTeam } = graphql`
       ) {
       id
       name
+      bio {
+        data {
+          bio
+        }
+      }
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 `
 
-const TourView = ({ data }) => {
+const TeamView = ({ data }) => {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
 
-      <main className="albatross wrap">
+      <main className="condor">
+        {data.strapiTeam.profile ? <GatsbyImage
+          image={data.strapiTeam.profile.localFile.childImageSharp.gatsbyImageData}
+          alt={data.strapiTeam.profile.alternativeText}
+          className="img__wrapped"
+        /> : null}
+
         <h1>{data.strapiTeam.name}</h1>
-
+        {data.strapiTeam.bio ? <ReactMarkdown className='react-markdown'>{data.strapiTeam.bio.data.bio}</ReactMarkdown> : null}
       </main>
-      {/* <Footer /> */}
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb><Link to="/about/team/">Team</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
+      </Breadcrumbs>
+      <Footer />
     </>
   );
 };
 
-export default TourView;
+export default TeamView;
 
 /* export const Head = ({ data }) => {
   return (

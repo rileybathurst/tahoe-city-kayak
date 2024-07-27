@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Script } from 'gatsby';
+import { Script, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
 
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
@@ -7,7 +7,7 @@ import { useStrapiFaq } from "../../hooks/use-strapi-faq";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 
 const FaqPage = () => {

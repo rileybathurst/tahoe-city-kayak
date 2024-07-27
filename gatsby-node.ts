@@ -190,7 +190,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   }
 
-  /*   const getStrapiTeam = await graphql(`
+  const getStrapiTeam = await graphql(`
     query {
       allStrapiTeam(
         filter: { locales: { elemMatch: { slug: { eq: "tahoe-city" } } } }
@@ -204,7 +204,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  console.log(getStrapiTeam);
+  console.log(getStrapiTeam.data.allStrapiTeam.edges);
 
   for (const { node } of getStrapiTeam.data.allStrapiTeam.edges) {
     createPage({
@@ -214,5 +214,5 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: node.slug,
       },
     });
-  } */
+  }
 };
