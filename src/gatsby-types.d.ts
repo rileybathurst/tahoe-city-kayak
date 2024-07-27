@@ -1352,6 +1352,7 @@ type Query = {
   readonly allStrapiShopTextTextnode: STRAPI_SHOP_TEXT_TEXTNODEConnection;
   readonly allStrapiSport: STRAPI_SPORTConnection;
   readonly allStrapiTeam: STRAPI_TEAMConnection;
+  readonly allStrapiTeamBioTextnode: STRAPI_TEAM_BIO_TEXTNODEConnection;
   readonly allStrapiTestimonial: STRAPI_TESTIMONIALConnection;
   readonly allStrapiTour: STRAPI_TOURConnection;
   readonly allStrapiTourInformationTextnode: STRAPI_TOUR_INFORMATION_TEXTNODEConnection;
@@ -1397,6 +1398,7 @@ type Query = {
   readonly strapiShopTextTextnode: Maybe<STRAPI_SHOP_TEXT_TEXTNODE>;
   readonly strapiSport: Maybe<STRAPI_SPORT>;
   readonly strapiTeam: Maybe<STRAPI_TEAM>;
+  readonly strapiTeamBioTextnode: Maybe<STRAPI_TEAM_BIO_TEXTNODE>;
   readonly strapiTestimonial: Maybe<STRAPI_TESTIMONIAL>;
   readonly strapiTour: Maybe<STRAPI_TOUR>;
   readonly strapiTourInformationTextnode: Maybe<STRAPI_TOUR_INFORMATION_TEXTNODE>;
@@ -1736,6 +1738,14 @@ type Query_allStrapiTeamArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_TEAMSortInput>>>;
+};
+
+
+type Query_allStrapiTeamBioTextnodeArgs = {
+  filter: InputMaybe<STRAPI_TEAM_BIO_TEXTNODEFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_TEAM_BIO_TEXTNODESortInput>>>;
 };
 
 
@@ -2417,7 +2427,7 @@ type Query_strapiSportArgs = {
 
 
 type Query_strapiTeamArgs = {
-  about: InputMaybe<STRAPI_TEAMAboutFilterListInput>;
+  bio: InputMaybe<STRAPI_TEAMBioFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2430,6 +2440,15 @@ type Query_strapiTeamArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+
+type Query_strapiTeamBioTextnodeArgs = {
+  bio: InputMaybe<StringQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
 };
 
 
@@ -7695,7 +7714,7 @@ type STRAPI_SPORTSortInput = {
 };
 
 type STRAPI_TEAM = Node & {
-  readonly about: Maybe<ReadonlyArray<Maybe<STRAPI_TEAMAbout>>>;
+  readonly bio: Maybe<STRAPI_TEAMBio>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly id: Scalars['ID'];
@@ -7734,52 +7753,20 @@ type STRAPI_TEAM_updatedAtArgs = {
   locale: InputMaybe<Scalars['String']>;
 };
 
-type STRAPI_TEAMAbout = {
-  readonly children: Maybe<ReadonlyArray<Maybe<STRAPI_TEAMAboutChildren>>>;
-  readonly type: Maybe<Scalars['String']>;
+type STRAPI_TEAMBio = {
+  readonly data: Maybe<STRAPI_TEAM_BIO_TEXTNODE>;
 };
 
-type STRAPI_TEAMAboutChildren = {
-  readonly text: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
+type STRAPI_TEAMBioFieldSelector = {
+  readonly data: InputMaybe<STRAPI_TEAM_BIO_TEXTNODEFieldSelector>;
 };
 
-type STRAPI_TEAMAboutChildrenFieldSelector = {
-  readonly text: InputMaybe<FieldSelectorEnum>;
-  readonly type: InputMaybe<FieldSelectorEnum>;
+type STRAPI_TEAMBioFilterInput = {
+  readonly data: InputMaybe<STRAPI_TEAM_BIO_TEXTNODEFilterInput>;
 };
 
-type STRAPI_TEAMAboutChildrenFilterInput = {
-  readonly text: InputMaybe<StringQueryOperatorInput>;
-  readonly type: InputMaybe<StringQueryOperatorInput>;
-};
-
-type STRAPI_TEAMAboutChildrenFilterListInput = {
-  readonly elemMatch: InputMaybe<STRAPI_TEAMAboutChildrenFilterInput>;
-};
-
-type STRAPI_TEAMAboutChildrenSortInput = {
-  readonly text: InputMaybe<SortOrderEnum>;
-  readonly type: InputMaybe<SortOrderEnum>;
-};
-
-type STRAPI_TEAMAboutFieldSelector = {
-  readonly children: InputMaybe<STRAPI_TEAMAboutChildrenFieldSelector>;
-  readonly type: InputMaybe<FieldSelectorEnum>;
-};
-
-type STRAPI_TEAMAboutFilterInput = {
-  readonly children: InputMaybe<STRAPI_TEAMAboutChildrenFilterListInput>;
-  readonly type: InputMaybe<StringQueryOperatorInput>;
-};
-
-type STRAPI_TEAMAboutFilterListInput = {
-  readonly elemMatch: InputMaybe<STRAPI_TEAMAboutFilterInput>;
-};
-
-type STRAPI_TEAMAboutSortInput = {
-  readonly children: InputMaybe<STRAPI_TEAMAboutChildrenSortInput>;
-  readonly type: InputMaybe<SortOrderEnum>;
+type STRAPI_TEAMBioSortInput = {
+  readonly data: InputMaybe<STRAPI_TEAM_BIO_TEXTNODESortInput>;
 };
 
 type STRAPI_TEAMConnection = {
@@ -7828,7 +7815,7 @@ type STRAPI_TEAMEdge = {
 };
 
 type STRAPI_TEAMFieldSelector = {
-  readonly about: InputMaybe<STRAPI_TEAMAboutFieldSelector>;
+  readonly bio: InputMaybe<STRAPI_TEAMBioFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -7844,7 +7831,7 @@ type STRAPI_TEAMFieldSelector = {
 };
 
 type STRAPI_TEAMFilterInput = {
-  readonly about: InputMaybe<STRAPI_TEAMAboutFilterListInput>;
+  readonly bio: InputMaybe<STRAPI_TEAMBioFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -7905,7 +7892,7 @@ type STRAPI_TEAMGroupConnection_sumArgs = {
 };
 
 type STRAPI_TEAMSortInput = {
-  readonly about: InputMaybe<STRAPI_TEAMAboutSortInput>;
+  readonly bio: InputMaybe<STRAPI_TEAMBioSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -7918,6 +7905,124 @@ type STRAPI_TEAMSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODE = Node & {
+  readonly bio: Maybe<Scalars['String']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODEEdge>;
+  readonly group: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection_distinctArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection_groupArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection_maxArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection_minArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEConnection_sumArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODEEdge = {
+  readonly next: Maybe<STRAPI_TEAM_BIO_TEXTNODE>;
+  readonly node: STRAPI_TEAM_BIO_TEXTNODE;
+  readonly previous: Maybe<STRAPI_TEAM_BIO_TEXTNODE>;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODEFieldSelector = {
+  readonly bio: InputMaybe<FieldSelectorEnum>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODEFilterInput = {
+  readonly bio: InputMaybe<StringQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODEEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_TEAM_BIO_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection_distinctArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection_groupArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection_maxArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection_minArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_TEAM_BIO_TEXTNODEGroupConnection_sumArgs = {
+  field: STRAPI_TEAM_BIO_TEXTNODEFieldSelector;
+};
+
+type STRAPI_TEAM_BIO_TEXTNODESortInput = {
+  readonly bio: InputMaybe<SortOrderEnum>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
 };
 
 type STRAPI_TESTIMONIAL = Node & {
@@ -10044,7 +10149,7 @@ type SportBrandQueryQuery = { readonly allStrapiBrand: { readonly nodes: Readonl
 type TeamQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TeamQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null }> } };
+type TeamQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly bio: { readonly data: { readonly bio: string | null } | null } | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiLocale: { readonly name: string | null } | null };
 
 type TestimonialsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

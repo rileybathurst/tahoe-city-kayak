@@ -1,5 +1,4 @@
-import { tr } from "@faker-js/faker";
-import { Brand, Retail } from "./types"; // Import the Brand and Retail types
+// import { Brand, Retail } from "./types"; // Import the Brand and Retail types
 
 const path = require("path");
 // Log out information after a build is done
@@ -72,99 +71,99 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-for (const sport of brandsResult.data.allStrapiSport.nodes) {
-
-  const sportSet = new Set();
-  for (const brand of brandsResult.data.allStrapiBrand.nodes) {
-    for (const retail of brand.retail) {
-      if (retail.sport.slug === sport.slug) {
-        sportSet.add(retail.brand.slug);
-      }
-    }
-  }
-
-  for (const brand of sportSet) {
-    createPage({
-      path: `retail/${sport.slug}/${brand}`,
-      component: BrandsTemplate,
-      context: {
-        slug: brand,
-        sport: sport.slug,
-      },
-    });
-  }
-
-  // Create Attributes Dynamically
-  // * these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters
-  const attributeResult = await graphql(`
-    query {
-      allStrapiAttribute {
-        nodes {
-          slug
-          name
-        }
-      }
-
-      allStrapiSport {
-        nodes {
-          slug
+  for (const sport of brandsResult.data.allStrapiSport.nodes) {
+    const sportSet = new Set();
+    for (const brand of brandsResult.data.allStrapiBrand.nodes) {
+      for (const retail of brand.retail) {
+        if (retail.sport.slug === sport.slug) {
+          sportSet.add(retail.brand.slug);
         }
       }
     }
-  `);
 
-  for (const sport of attributeResult.data.allStrapiSport.nodes) {
-    for (const attribute of attributeResult.data.allStrapiAttribute.nodes) {
-      const { slug, name } = attribute;
+    for (const brand of sportSet) {
+      createPage({
+        path: `retail/${sport.slug}/${brand}`,
+        component: BrandsTemplate,
+        context: {
+          slug: brand,
+          sport: sport.slug,
+        },
+      });
+    }
 
-      if (slug === "tandem") {
-        createPage({
-          path: `/retail/attribute/${sport.slug}/${slug}`,
-          component: path.resolve("src/templates/crew.tsx"),
-          context: {
-            name,
-            crew: slug,
-            sport: sport.slug,
-          },
-        });
+    // Create Attributes Dynamically
+    // * these have to be differnt templates as you can't throw blanks or boths at graphql boolean filters
+    const attributeResult = await graphql(`
+      query {
+        allStrapiAttribute {
+          nodes {
+            slug
+            name
+          }
+        }
+
+        allStrapiSport {
+          nodes {
+            slug
+          }
+        }
       }
+    `);
 
-      if (slug === "inflatable" || slug === "rigid") {
-        createPage({
-          path: `/retail/attribute/${sport.slug}/${slug}`,
-          component: path.resolve("src/templates/inflatable.tsx"),
-          context: {
-            name,
-            sport: sport.slug,
-            // this is a comparison not a set
-            inflatable: slug === "inflatable",
-          },
-        });
-      }
+    for (const sport of attributeResult.data.allStrapiSport.nodes) {
+      for (const attribute of attributeResult.data.allStrapiAttribute.nodes) {
+        const { slug, name } = attribute;
 
-      if (slug === "ultralight" || slug === "ultralight-tandem") {
-        createPage({
-          path: `/retail/attribute/${sport.slug}/${slug}`,
-          component: path.resolve("src/templates/weight.tsx"),
-          context: {
-            slug,
-            weight: slug === "ultralight" ? 46 : 70,
-            crew: slug === "ultralight" ? "single" : "tandem",
-            sport: sport.slug,
-          },
-        });
-      }
+        if (slug === "tandem") {
+          createPage({
+            path: `/retail/attribute/${sport.slug}/${slug}`,
+            component: path.resolve("src/templates/crew.tsx"),
+            context: {
+              name,
+              crew: slug,
+              sport: sport.slug,
+            },
+          });
+        }
 
-      if (slug === "pedal") {
-        // * this is grabbing the whole hobie brand
-        createPage({
-          path: `/retail/attribute/${sport.slug}/${slug}`,
-          component: path.resolve("src/templates/pedal.tsx"),
-          context: {
-            slug,
-            sport: sport.slug,
-          },
-        });
+        if (slug === "inflatable" || slug === "rigid") {
+          createPage({
+            path: `/retail/attribute/${sport.slug}/${slug}`,
+            component: path.resolve("src/templates/inflatable.tsx"),
+            context: {
+              name,
+              sport: sport.slug,
+              // this is a comparison not a set
+              inflatable: slug === "inflatable",
+            },
+          });
+        }
+
+        if (slug === "ultralight" || slug === "ultralight-tandem") {
+          createPage({
+            path: `/retail/attribute/${sport.slug}/${slug}`,
+            component: path.resolve("src/templates/weight.tsx"),
+            context: {
+              slug,
+              weight: slug === "ultralight" ? 46 : 70,
+              crew: slug === "ultralight" ? "single" : "tandem",
+              sport: sport.slug,
+            },
+          });
+        }
+
+        if (slug === "pedal") {
+          // * this is grabbing the whole hobie brand
+          createPage({
+            path: `/retail/attribute/${sport.slug}/${slug}`,
+            component: path.resolve("src/templates/pedal.tsx"),
+            context: {
+              slug,
+              sport: sport.slug,
+            },
+          });
+        }
       }
     }
   }
@@ -190,4 +189,30 @@ for (const sport of brandsResult.data.allStrapiSport.nodes) {
       },
     });
   }
+
+  /*   const getStrapiTeam = await graphql(`
+    query {
+      allStrapiTeam(
+        filter: { locales: { elemMatch: { slug: { eq: "tahoe-city" } } } }
+      ) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(getStrapiTeam);
+
+  for (const { node } of getStrapiTeam.data.allStrapiTeam.edges) {
+    createPage({
+      path: `/about/team/${node.slug}`,
+      component: path.resolve("src/views/team-view.tsx"),
+      context: {
+        slug: node.slug,
+      },
+    });
+  } */
 };

@@ -1,7 +1,7 @@
-// TODO: rename this witha redirect to paddleboard
+// TODO: rename this with a redirect to paddleboard
 
 import * as React from "react"
-import { useStaticQuery, graphql, Script, Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Markdown from "react-markdown";
 
 // Paddle
