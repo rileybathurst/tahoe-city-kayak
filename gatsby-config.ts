@@ -15,6 +15,7 @@ const strapiConfig = {
     "job",
     "locale",
     "location",
+    "policy",
     "rental-addon",
     "rental-rate",
     "retail",
