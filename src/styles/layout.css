@@ -261,10 +261,6 @@ footer {
     filter: brightness(0.5);
   }
 
-  svg {
-    flex: 0.5;
-  }
-
   h3 {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -315,7 +311,7 @@ footer {
 .social {
   display: flex;
   gap: 1rem;
-  margin-block-end: var(--baseline);
+  margin-block: var(--baseline);
 
   @media (min-width: 40rem) {
     margin-block-end: 2.5rem;
@@ -488,36 +484,6 @@ footer {
 }
 
 /*------------------*/
-/* #LOCATION */
-/*------------------*/
-
-.location-deck {
-  margin-block-end: 1.5rem;
-}
-
-.location {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  gap: var(--elbrus);
-  padding: var(--elbrus);
-  border-radius: var(--card-radius);
-
-  > * {
-    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
-  }
-
-  > svg,
-  .svg {
-    flex: 1 1;
-  }
-}
-
-.location.false {
-  border-radius: 0;
-}
-
-/*------------------*/
 /* #COMPOSITION */
 /*------------------*/
 
@@ -526,7 +492,8 @@ footer {
   display: grid;
   grid-template-columns: 5% 10% 70% 10% 5%;
   grid-template-rows: 5% 90% 5%;
-  max-height: 23rem;
+  max-height: 23rem; /* TODO: guess and check can I use a variable */
+  margin-block-end: var(--vinson);
 
   .paddler {
     grid-column: 3;

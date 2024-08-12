@@ -80,12 +80,12 @@ const PricingChart = (props: { book: boolean; }) => {
 
         <div className="pricing-chart">
           {data.allStrapiRentalAddon.nodes.map((addon: addonTypes) => (
-            <>
-              <p key={addon.id}>{addon.name}</p>
-              <p key={addon.id}>+{addon.single}</p>
-              <p key={addon.id}>+{addon.double}</p>
-              <p key={addon.id}>+{addon.sup}</p>
-            </>
+            <React.Fragment key={addon.id}>
+              <p>{addon.name}</p>
+              <p>+{addon.single}</p>
+              <p>+{addon.double}</p>
+              <p>+{addon.sup}</p>
+            </React.Fragment>
           ))}
         </div>
       </div>

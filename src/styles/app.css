@@ -19,12 +19,10 @@
 
 /* pages */
 @import "pages/home";
-@import "pages/rentals";
 @import "pages/tours";
 @import "pages/retail";
 @import "pages/demo";
-@import "pages/about";
 @import "pages/jobs";
-@import "pages/brand";
 
+/* TODO: move this to NPM package */
 @import "seocase";

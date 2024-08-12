@@ -1,35 +1,19 @@
+/*------------------------------------*/
+/* #BUTTONS */
+/*------------------------------------*/
+
 button,
 .button,
-.button__mullen,
 .book-now {
-  background: none;
-  border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-block-end: var(--baseline);
-  transition: 0.5s ease;
-  display: block;
-  line-height: 1.5rem;
-  text-decoration: none;
-  width: max-content;
-
   color: var(--mullen);
   border: 1px solid var(--mullen);
   box-shadow: var(--penumbra);
 }
 
 button:hover,
-.button:hover,
-/* below is for the storyboard showcase */
-.button__hover,
-.button__mullen:hover,
-.button__mullen--hover,
-/* this is a weird thing you maybe need */
-.button__mullen--hover:hover {
+.button:hover {
   color: var(--mullen-200);
   border-color: var(--mullen-200);
-  box-shadow: var(--antumbra);
 
   /* TODO this doesnt do enough in dark to see the change */
   @media (prefers-color-scheme: dark) {
@@ -43,7 +27,6 @@ button:active,
 .button__mullen--active {
   border-color: var(--mullen-300);
   color: var(--mullen-300);
-  box-shadow: var(--antumbra);
   box-shadow: var(--umbra);
 
   @media (prefers-color-scheme: dark) {
@@ -52,42 +35,11 @@ button:active,
   }
 }
 
-.button__mullen {
-  background-color: var(--mullen);
-  color: var(--brilliance);
-}
-
-.button__mullen:hover,
-.button__mullen--hover,
-/* this is a weird thing you maybe need */
-.button__mullen--hover:hover {
-  background-color: var(--mullen-300);
-  color: var(--tin-soldier);
-}
-
-.button__mullen:active,
-.button__mullen--active {
-  background-color: var(----black-out);
-  color: var(--industrial-revolution);
-}
-
-/*------------------*/
-/* #MENU */
-/*------------------*/
-
-menu button {
-  margin: 0;
-}
-
 /*------------------*/
 /* #BOOK NOW primary call to action */
 /*------------------*/
 
 .book-now {
-  margin-block-start: 0.75rem;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block; /* same as a button */
   background-color: var(--mullen);
   color: var(--brilliance);
 
@@ -106,27 +58,4 @@ menu button {
     background-color: var(--mullen);
     color: var(--brilliance);
   }
-}
-
-footer .book-now {
-  margin-block-start: 0;
-  margin-block-end: var(--baseline);
-}
-
-.button__double {
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  gap: 2rem;
-}
-
-/*------------------*/
-/* #BUTTON GROUP */
-/*------------------*/
-
-.buttonGroup {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  margin-block-end: var(--baseline);
 }

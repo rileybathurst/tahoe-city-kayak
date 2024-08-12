@@ -1,3 +1,8 @@
+/*------------------------------------*/
+/* #NAV */
+/* TODO: This whole thing needs to move to paddle but also be tested */
+/*------------------------------------*/
+
 header {
   z-index: 1; /* TODO: variable */
   position: relative;
@@ -5,13 +10,12 @@ header {
 
 .button-styles {
   margin-block-end: 0;
-  transform: translate3D(0, 0, 0); /* I need this to hide things */
+  transform: translate3D(0, 0, 0); /* * Needed to hide things */
   line-height: 1.5;
   height: 2rem;
   overflow: hidden;
   z-index: 1; /* TODO: variable */
   position: relative;
-  /* width: calc(100% - 1rem); */
   width: 100%;
   margin-inline: auto;
   background-color: var(--mullen);

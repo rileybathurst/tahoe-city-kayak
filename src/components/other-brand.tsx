@@ -1,3 +1,4 @@
+// TODO: this shouldnt be needed with a better query
 import * as React from "react"
 
 import Card from "./card";

@@ -20,21 +20,6 @@ a:where(:hover, :focus) {
 
 /*------------------------------------*/
 
-.link__backed {
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  display: inline-block;
-  border: 1px solid transparent;
-  transition: 0.5s ease;
-  text-decoration: none;
-
-  @media (min-width: 40rem) {
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-  }
-}
-
-.link__backed--hover, /* testing */
 .link__backed:hover {
   background-color: var(--sand);
   box-shadow: var(--penumbra);

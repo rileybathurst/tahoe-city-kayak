@@ -24,25 +24,6 @@
   }
 }
 
-.home--season {
-  display: flex;
-  flex-flow: column;
-  padding-inline: 0;
-  flex-flow: row wrap;
-  gap: 0.75rem;
-  justify-content: space-between;
-
-  @media (min-width: 40rem) {
-    justify-content: start;
-    gap: var(--aconcagua);
-  }
-
-  > *:first-child {
-    margin-right: 0;
-    gap: var(--baseline);
-  }
-}
-
 .home__photo-grid {
   display: grid;
   grid-template-rows: 4rem 1rem auto;
@@ -88,17 +69,7 @@
   }
 }
 
-/* TODO: this can be nested in .home */
-.home__rentals {
-  max-width: var(--albatross);
-  margin-inline: auto;
-  display: flex;
-  flex-flow: row wrap;
-
-  > * {
-    flex: 1 1 20rem;
-  }
-}
+/*------------------------------------*/
 
 .home__tours {
   max-width: var(--pelican);

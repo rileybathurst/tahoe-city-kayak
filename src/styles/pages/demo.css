@@ -1,3 +1,4 @@
+/* ! this page is a mess i have a bunch of this stuff I need to import and not repeat */
 /*------------------*/
 /* #DEMOS */
 /*------------------*/
@@ -13,7 +14,6 @@
     box-shadow: 0 0 0 100vmax var(--ink);
   }
 
-  /* ? color and varaible? */
   .card {
     background-color: whitesmoke;
 

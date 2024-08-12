@@ -1,6 +1,4 @@
 body {
-  margin: 0; /* reset */
-  font-size: 16px;
   background-color: whitesmoke;
   color: var(--black-metal);
 
