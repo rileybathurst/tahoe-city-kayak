@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 export const { strapiTeam } = graphql`
@@ -31,7 +31,27 @@ export const { strapiTeam } = graphql`
   }
 `
 
-const TeamView = ({ data }) => {
+type TeamViewTypes = {
+  data: {
+    strapiTeam: {
+      name: string,
+      bio: {
+        data: {
+          bio: string
+        }
+      },
+      profile: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
+        },
+        alternativeText: string
+      }
+    }
+  }
+}
+const TeamView = ({ data }: TeamViewTypes) => {
 
   return (
     <>
