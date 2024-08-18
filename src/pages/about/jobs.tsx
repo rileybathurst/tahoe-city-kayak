@@ -2,13 +2,24 @@
 // TODO: I think I already have this in strapi
 
 import * as React from "react"
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const JobsPage = () => {
+
+  const { strapiLocale } = useStaticQuery(graphql`
+    query jobsQuery {
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        jobEmail
+      }
+    }
+  `)
+
+  console.log(strapiLocale);
+
   return (
     <>
       <Header />
@@ -35,7 +46,7 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href={`mailto:${useSiteMetadata().jobEmail}`} className="button">{useSiteMetadata().jobEmail}</a>
+          <a href={`mailto:${strapiLocale.jobEmail}`} className="button">{strapiLocale.jobEmail}</a>
         </section>
 
         <section>

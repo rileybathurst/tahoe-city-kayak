@@ -40,7 +40,34 @@ import type { RetailType } from "../types/retail";
   )
 } */
 
-const BrandsView = ({ data }) => {
+
+type BrandsViewTypes = {
+  data: {
+    brand: {
+      name: string;
+      tagline: string;
+      svg: string;
+      slug: string;
+      retail: {
+        title: string;
+        series: string;
+      };
+    };
+    allStrapiRetail: {
+      nodes: RetailType[];
+    };
+    strapiLocation: {
+      opening_time: string;
+      closing_time: string;
+      streetAddress: string;
+      addressLocality: string;
+      addressRegion: string;
+      postalCode: string;
+      paymentAccepted: string;
+    };
+  };
+};
+const BrandsView = ({ data }: BrandsViewTypes) => {
 
   const seriesSet = new Set();
   for (const retail of data.allStrapiRetail.nodes) {
@@ -153,18 +180,18 @@ const BrandsView = ({ data }) => {
 
 export default BrandsView;
 
-export const Head = ({ data }) => (
+export const Head = ({ data }: BrandsViewTypes) => (
   <SEO
     // TODO: https://schema.org/brand
     // TODO: capitalize brand name
     // TODO: add type in here which Im not 100% on as I might be able to use location but its head?
     // TODO: double check searches for kayak and sup
-    title={`${data.brand.name} Kayaks sold at ${useSiteMetadata().title}`}
+    title={`${data.brand.name} Kayaks sold at`}
     description={`${data.brand.name} kayaks ${data.brand.tagline}`}
     breadcrumbs={[
       { name: "Retail", item: "retail" },
       { name: "Kayak", item: "retail/kayak" },
-      { name: data.brand.name }
+      { name: data.brand.name, item: `retail/kayak/${data.brand.slug}` },
     ]}
   />
 )

@@ -8,6 +8,7 @@ import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import scrollTo from 'gatsby-plugin-smoothscroll';
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const KnowPage = () => {
 

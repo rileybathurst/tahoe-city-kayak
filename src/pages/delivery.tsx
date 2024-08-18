@@ -11,7 +11,7 @@ const DeliveryPage = () => {
 
   const { strapiLocale } = useStaticQuery(graphql`
     query DeliveryQuery {
-      strapiLocale(slug: {eq: "south-lake"}) {
+      strapiLocale(slug: {eq: "tahoe-city"}) {
         email
         phone
       }
