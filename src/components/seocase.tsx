@@ -1,3 +1,4 @@
+// TODO: move this all to NPM
 import * as React from "react"
 
 function Breadcrumbs(props) {
@@ -7,9 +8,8 @@ function Breadcrumbs(props) {
         <p>breadcrumbs</p>
       </div>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 const SEOcase = (props) => {

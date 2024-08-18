@@ -5,8 +5,6 @@ import Markdown from "react-markdown";
 // Paddle
 import { PaddleLocationDeck } from "@rileybathurst/paddle";
 
-import { useSiteMetadata } from '../hooks/use-site-metadata';
-
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -64,25 +62,32 @@ const RentalsPage = () => {
       <Header />
       <main className="albatross wrap">
         <article>
-          <h1>Rentals</h1>
-          <PaddleLocationDeck
-            {...data.allStrapiLocation}
-            background={false}
-          />
-          <Markdown className="react-markdown">
-            {data.strapiRental.text.data.text}
-          </Markdown>
-          {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
-          {/* // TODO should this be a dropdown? */}
-          <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
-          <hr />
+          <div className="condor">
+            <h1>Rentals</h1>
+            <PaddleLocationDeck
+              {...data.allStrapiLocation}
+              background={false}
+            />
+            <Markdown className="react-markdown">
+              {data.strapiRental.text.data.text}
+            </Markdown>
+            {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
+            {/* // TODO should this be a dropdown? */}
+            <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+            <hr />
 
-          <BookNow />
+            <BookNow />
+          </div>
 
         </article>
 
-        <Composition />
+        <div>
+          <div className="condor">
+            <Composition />
+          </div>
+        </div>
 
+        {/* // TODO: widths on ipad is weird */}
         <div className="charts">
           <div className="rates">
             <div className="specialty_rentals rental-chart">
@@ -139,7 +144,7 @@ export default RentalsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Rentals | ${useSiteMetadata().title}`}
+      title='Rentals'
       description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
     />
   )

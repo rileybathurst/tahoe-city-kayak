@@ -1,10 +1,7 @@
 import * as React from "react"
 import { Script, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
-
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import { useStrapiFaq } from "../../hooks/use-strapi-faq";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
@@ -41,7 +38,7 @@ const FaqPage = () => {
       </main>
 
       <Breadcrumbs>
-        <Breadcrumb><Link href="/about/">About</Link></Breadcrumb>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
         <Breadcrumb>Frequently Asked Questions</Breadcrumb>
       </Breadcrumbs>
 
@@ -58,8 +55,19 @@ export const Head = () => {
 
   return (
     <SEO
-      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
+      title='Frequently Asked Questions'
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options."
+      // * 2024 version of breadcrumbs
+      breadcrumbs={[
+        {
+          name: "About",
+          item: "about"
+        },
+        {
+          name: 'Frequently Asked Questions',
+          item: 'faq'
+        }
+      ]}
     >
 
       <Script type="application/ld+json">
@@ -79,25 +87,6 @@ export const Head = () => {
                 }`
         )).join(',')}
             ]
-          }
-        `}
-      </Script>
-
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-              "item": "${useSiteMetadata().url}/about"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Frequently Asked Questions"
-            }]
           }
         `}
       </Script>

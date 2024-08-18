@@ -52,7 +52,7 @@ footer {
     transition: var(--fade);
 
     .gatsby-image-wrapper {
-      margin-block-end: var(--baseline);
+      margin-block-end: var(--elbrus);
     }
   }
 

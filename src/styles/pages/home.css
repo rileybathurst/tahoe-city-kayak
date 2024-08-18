@@ -6,7 +6,7 @@
   display: flex;
   max-width: var(--pelican);
   flex-flow: row wrap;
-  row-gap: var(--baseline);
+  row-gap: var(--elbrus);
   column-gap: clamp(var(--elbrus), 10vw, var(--everest));
 
   > * {

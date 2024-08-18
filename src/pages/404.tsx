@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -29,7 +28,7 @@ export default NotFoundPage
 export const Head = ({ location }) => {
   return (
     <SEO
-      title={`404 - ${location.pathname} | ${useSiteMetadata().title}`}
+      title={`404 - ${location.pathname}`}
       description="Looks like you&apos;ve paddled into uncharted waters! Don&apos;t worry, we&apos;ll help you navigate back to our homepage."
     />
   )

@@ -4,15 +4,11 @@ import * as React from "react"
 import { Link, Script } from "gatsby"
 import { SEO } from "../../components/seo";
 
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const InformationPage = () => {
-  let title = "Paddlesports Information";
-  let parent = "about";
-
   return (
     <>
       <Header />
@@ -20,7 +16,7 @@ const InformationPage = () => {
       {/* this page could use accordions to make it easier to read */}
 
       <main>
-        <h1>{title}</h1>
+        <h1>Paddlesports Information</h1>
         <h2>Before you go!</h2>
 
         <article>
@@ -105,10 +101,10 @@ const InformationPage = () => {
         </article>
       </main>
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Paddlesports Information</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -120,29 +116,18 @@ export default InformationPage
 export const Head = () => {
   return (
     <SEO
-      title={`Information | ${useSiteMetadata().title}`}
+      title='Information'
       description="Before you go. Dress for Success. Weather and Navigation. Basic Paddling Tips. Kayak Paddle Strokes. Tandem Kayaking – Its about communication. Safety on the Water. Stay Hydrated"
-    >
-
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-              "item": "${useSiteMetadata().url}/about"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Information",
-            }]
-          }
-        `}
-      </Script>
-
-    </SEO>
+      breadcrumbs={[
+        {
+          name: "About",
+          item: "about"
+        },
+        {
+          name: 'Information',
+          item: "information"
+        }
+      ]}
+    />
   )
 }

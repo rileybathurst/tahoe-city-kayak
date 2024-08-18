@@ -2,16 +2,15 @@
 // less of a problem as we are holding back this page for now anyway
 
 import React, { useState, useRef } from "react"
-import { Script } from "gatsby";
+import { Link } from "gatsby";
 import { SEO } from "../../src/components/seo";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
-import { useSiteMetadata } from "../../src/hooks/use-site-metadata";
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 // import { useMapEvents } from 'react-leaflet/hooks'
 
 import Header from "../../src/components/header";
 import Footer from "../../src/components/footer";
-import ParentTitleBreadcrumb from "../../src/components/parent-title-breadcrumb";
 import Composition from "../../src/components/composition";
 
 /* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
@@ -126,7 +125,7 @@ const TruckeeRiverPage = () => {
 
       {/* // TODO: links */}
 
-      <main className="progression">
+      <main>
         <article>
           <h1>Truckee River Rentals</h1>
           <p>
@@ -191,16 +190,16 @@ const TruckeeRiverPage = () => {
 
       <hr className="passage" />
 
-      <section className="map">
+      {/*       <section className="map">
         <h3>Map</h3>
-        {/* <Map /> */}
-      </section>
+        <Map />
+      </section> */}
 
 
-      <ParentTitleBreadcrumb
-        parent="rentals"
-        title="Truckee River Rentals"
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>
+        <Breadcrumb>Truckee River Rentals</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -212,28 +211,18 @@ export default TruckeeRiverPage
 export const Head = () => {
   return (
     <SEO
-      title={`Truckee River Rentals | ${useSiteMetadata().title}`}
+      title='Truckee River Rentals'
       description="We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase"
-    >
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Rentals",
-              "item": "${useSiteMetadata().url}/rentals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Truckee River Rentals"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+      breadcrumbs={[
+        {
+          name: "Rentals",
+          item: "rentals"
+        },
+        {
+          name: 'Truckee River Rentals',
+          item: 'truckee-river'
+        }
+      ]}
+    />
   )
 }

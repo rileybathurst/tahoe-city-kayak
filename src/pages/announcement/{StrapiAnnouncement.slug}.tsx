@@ -5,8 +5,6 @@ import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
-
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Markdown from "react-markdown";
 
 /* function Calendar({ calendar }) {
@@ -77,7 +75,7 @@ const AnnouncmentPostPage = ({ data }) => {
       </main>
 
       <Breadcrumbs>
-        <Breadcrumb><Link href="/announcement/">Announcement</Link></Breadcrumb>
+        <Breadcrumb><Link to="/announcement/">Announcement</Link></Breadcrumb>
         <Breadcrumb><Link>{data.strapiAnnouncement.title}</Link></Breadcrumb>
       </Breadcrumbs>
 
@@ -92,41 +90,11 @@ export const Head = ({ data }) => {
 
   return (
     <SEO
-      title={`${data.strapiAnnouncement.title} | ${useSiteMetadata().title}`}
-    >
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            
-            "itemListElement":
-            [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Announcement",
-                "item":
-                {
-                  "@id": "${useSiteMetadata().url}/announcement",
-                  "name": "Announcement"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "item":
-                {
-                  "@id": "${useSiteMetadata().url}/announcement/${data.strapiAnnouncement.slug}",
-                  "name": "${data.strapiAnnouncement.title} - Announcement"
-                }
-              }
-            ]
-
-          }
-        `}
-      </Script>
-
-    </SEO>
+      title={data.strapiAnnouncement.title}
+      breadcrumbs={[
+        { name: "Announcement", item: "announcement" },
+        { name: data.strapiAnnouncement.title }
+      ]}
+    />
   )
 }

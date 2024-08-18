@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, graphql, Script } from 'gatsby';
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 import Markdown from "react-markdown";
 import Sport from '../components/sport';
@@ -15,7 +14,7 @@ import Phone from '../components/phone';
 
 import SEOcase from "../components/seocase"
 import Remainder from '../components/remainder';
-import { RetailType } from '../types/retail';
+import type { RetailType } from '../types/retail';
 
 // ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
 //  might be more of a package problem
@@ -360,7 +359,7 @@ const RetailTypeView = ({ data }) => {
       <Footer />
 
       <SEOcase
-        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteMetadata().title}`}
+        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
         description={data.strapiRetail.excerpt}
       />
     </>
@@ -373,9 +372,14 @@ export const Head = ({ data }) => {
   return (
     <SEO
       // TODO: can I make the brands capitalize?
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name} | ${useSiteMetadata().title}`}
-      description={data.strapiRetail.excerpt}>
-
+      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
+      description={data.strapiRetail.excerpt}
+      breadcrumbs={[
+        { name: "Retail", item: "retail" },
+        { name: data.strapiRetail.sport.slug, item: `retail/${data.strapiRetail.sport.slug}` },
+        { name: data.strapiRetail.title }
+      ]}
+    >
       <Script type="application/ld+json">
         {`
           {
@@ -397,41 +401,17 @@ export const Head = ({ data }) => {
           }
         `}
       </Script>
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org/",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Retail",
-              "item": "${useSiteMetadata().url}/retail"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Retail",
-              "item": "${useSiteMetadata().url}/retail/${data.strapiRetail.type}"
-            },{
-              "@type": "ListItem",
-              "position": 3,
-              "name": "${data.strapiRetail.title}"
-            }]
-          }
-      `}
-      </Script>
-
     </SEO>
   )
 }
 
 export const query = graphql`
-  query (
-    $slug: String!,
-    $brand: String!
-  ) {
-    strapiRetail(slug: {eq: $slug}) {
-      id
+      query (
+      $slug: String!,
+      $brand: String!
+      ) {
+        strapiRetail(slug: {eq: $slug}) {
+        id
       title
       excerpt
       series
@@ -454,42 +434,42 @@ export const query = graphql`
       brand {
         name
         slug
-        svg
+      svg
       }
 
       description {
         data {
-          description
-        }
+        description
+      }
       }
 
       features {
         data {
-          features
-        }
+        features
+      }
       }
 
       cutout {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
         }
-        alternativeText
+      alternativeText
       }
     }
 
-    allStrapiRetail(filter:
+      allStrapiRetail(filter:
       {
         slug: {ne: $slug},
-        brand: {slug: {eq: $brand}}
+      brand: {slug: {eq: $brand}}
       }
       limit: 2,
       sort: {featured: ASC}
-    ) {
-      nodes {
+      ) {
+        nodes {
         ...retailCard
       }
     }
   }
-`;
+      `;

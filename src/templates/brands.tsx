@@ -9,8 +9,6 @@ import { Link, graphql, Script, useStaticQuery } from 'gatsby'
 import { PaddleLocationCard } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
-import { useSiteUrl } from "../hooks/use-site-url";
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import Header from '../components/header';
@@ -163,38 +161,12 @@ export const Head = ({ data }) => (
     // TODO: double check searches for kayak and sup
     title={`${data.brand.name} Kayaks sold at ${useSiteMetadata().title}`}
     description={`${data.brand.name} kayaks ${data.brand.tagline}`}
-  >
-    {/* // ! this has a couple the same its definitely not right */}
-    <Script type="application/ld+json">
-      {`
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Retail",
-            "item": "${useSiteMetadata().url}/retail"
-          },{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Retail",
-            "item": "${useSiteMetadata().url}/retail"
-          },{
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Kayak",
-            "item": "${useSiteMetadata().url}/retail/kayak"
-          },{
-            "@type": "ListItem",
-            "position": 4,
-            "name": "${data.brand.name}"
-          }]
-        }
-      `}
-    </Script>
-
-  </SEO>
+    breadcrumbs={[
+      { name: "Retail", item: "retail" },
+      { name: "Kayak", item: "retail/kayak" },
+      { name: data.brand.name }
+    ]}
+  />
 )
 
 // TODO: loop the series

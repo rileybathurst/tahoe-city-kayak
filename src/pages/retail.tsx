@@ -3,7 +3,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 // Paddle
 import { PaddleLocationCard } from "@rileybathurst/paddle";
@@ -116,12 +115,6 @@ const RetailPage = () => {
       </section>
 
       <Footer />
-
-
-      {/*  <SEOcase
-        title={`Retail | ${useSiteMetadata().title}`}
-        description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
-      /> */}
     </>
   )
 }
@@ -131,7 +124,7 @@ export default RetailPage
 export const Head = () => {
   return (
     <SEO
-      title={`Retail | ${useSiteMetadata().title}`}
+      title='Retail'
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     />
   )

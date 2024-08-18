@@ -1,28 +1,25 @@
 // TODO: some of the typographic sizing is really out
+// TODO: I think I already have this in strapi
 
 import * as React from "react"
-import { Script } from 'gatsby';
+import { Link } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const JobsPage = () => {
-  let title = "Jobs";
-  let parent = "about";
-
   return (
     <>
       <Header />
 
-      <main className="jobs progression">
+      <main className="jobs">
 
         <section>
           <hgroup className="crest">
             {/* // TODO: only one h and then p */}
 
-            <h1 className="brow">{title}</h1>
+            <h1 className="brow">Jobs</h1>
             <h2 className="supra">Help Wanted</h2>
           </hgroup>
           <hr />
@@ -57,14 +54,12 @@ const JobsPage = () => {
           <h3>Shuttle Van Driver</h3>
           <p>Must have a clean driving record and the ability to pass a drug test and physical <strong>state requirements</strong>.</p>
         </section>
-
-
       </main >
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Jobs</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -75,27 +70,18 @@ export default JobsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Jobs | ${useSiteMetadata().title}`}
+      title='Jobs'
       description="“Are you looking for a job in kayaking or paddleboarding? Look no further than Tahoe City Kayak & Paddleboard! We’re currently hiring for several positions, including kayak rental staff, paddleboard instructors, and more. Apply today and join our team!"
-    >
-      <Script type="application/ld+json">
-        {`
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-              "name": "About",
-              "item": "${useSiteMetadata().url}/about"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Jobs"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+      breadcrumbs={[
+        {
+          name: "About",
+          item: "about"
+        },
+        {
+          name: 'Jobs',
+          item: "jobs"
+        }
+      ]}
+    />
   )
 }

@@ -1,10 +1,9 @@
 // TODO: move to strapi
 
 import React from "react";
-import { Script, Link, graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../../components/seo";
 
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
@@ -76,12 +75,12 @@ export default PoliciesPage
 export const Head = () => {
   return (
     <SEO
-      title={`About Us | ${useSiteMetadata().title}`}
+      title='About Us'
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
-      breadcrumbs={{
-        one: { name: "About", path: "about" },
-        two: { name: "Policies", path: "policies" }
-      }}
+      breadcrumbs={[
+        { name: "About", path: "about" },
+        { name: "Policies", path: "policies" }
+      ]}
     />
   )
 }

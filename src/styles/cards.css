@@ -40,7 +40,7 @@
     }
 
     button {
-      background-color: var(--mullen);
+      background-color: var(--mullen-100);
       color: var(--brilliance);
     }
 

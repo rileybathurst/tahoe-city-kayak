@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { useStaticQuery, graphql, Link, Script } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
-
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -17,15 +14,14 @@ function Compare(props) {
         <option selected key={props.key}>{props.name}</option>
       )
     }
-    else if (props.name === props.other) {
+    if (props.name === props.other) {
       return (
         <option disabled key={props.key}>{props.name}</option>
       )
-    } else {
-      return (
-        <option key={props.key}>{props.name}</option>
-      )
     }
+    return (
+      <option key={props.key}>{props.name}</option>
+    )
   }
 
   function first(e) {
@@ -285,28 +281,12 @@ export default ComparePage
 export const Head = () => {
   return (
     <SEO
-      title={`Compare Tours | ${useSiteMetadata().title}`}
-    // TODO description and image
-    >
-      <Script type="application/ld+json">
-        {`
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Tours & Lessons",
-            "item": "${useSiteMetadata().url}/tours-lessons"
-          },{
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Compare",
-          }]
-        }
-      `}
-      </Script>
-
-    </SEO>
+      title='Compare Tours'
+      // TODO description and image
+      breadcrumbs={[
+        { name: "Tours & Lessons", item: "tours-lessons" },
+        { name: "Compare" }
+      ]}
+    />
   )
 }

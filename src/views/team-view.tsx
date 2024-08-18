@@ -57,18 +57,23 @@ const TeamView = ({ data }: TeamViewTypes) => {
     <>
       <Header />
 
-      <main className="condor">
+      <div className="pelican aconcagua-block-end">
         {data.strapiTeam.profile ? <GatsbyImage
           image={data.strapiTeam.profile.localFile.childImageSharp.gatsbyImageData}
           alt={data.strapiTeam.profile.alternativeText}
           className="img__wrapped"
         /> : null}
+      </div>
+
+      <main className="condor">
 
         <h1>{data.strapiTeam.name}</h1>
         {data.strapiTeam.bio ? <ReactMarkdown className='react-markdown'>{data.strapiTeam.bio.data.bio}</ReactMarkdown> : null}
       </main>
 
-      <Breadcrumbs>
+      <Breadcrumbs
+        className="react-aria-Breadcrumbs condor"
+      >
         <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
         <Breadcrumb><Link to="/about/team/">Team</Link></Breadcrumb>
         <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>

@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import AttributeView from '../views/attribute-view';
 import { SEO } from '../components/seo';
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 const PedalTemplate = ({ data }) => {
   return (
@@ -17,7 +16,7 @@ export default PedalTemplate;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s | ${useSiteMetadata().title}`}
+      title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s`}
       description={data.strapiAttribute.description.data.description}
     />
   );
@@ -30,16 +29,17 @@ export const query = graphql`
     $slug: String!
   ) {
     allStrapiRetail(
-      filter: {brand: {name: {eq: "hobie"}}},
-      sort: {featured: ASC}) {
+      filter: { brand: { name: { eq: "hobie" } } },
+      sort: { featured: ASC }
+    ) {
       nodes {
         ...attributeRetailFragment
       }
     }
 
     strapiAttribute(
-      slug: {eq: $slug}
-      ) {
+      slug: { eq: $slug }
+    ) {
       ...attributeFragment
     }
   }

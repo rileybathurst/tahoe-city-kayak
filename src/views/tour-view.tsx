@@ -116,7 +116,6 @@ function Minimum({ minimum }: MinimumTypes) {
   return null;
 }
 
-
 interface TourViewTypes {
   data: {
     strapiTour: {
@@ -331,10 +330,16 @@ export const Head = ({ data }) => {
     <SEO
       title={data.strapiTour.name}
       description={data.strapiTour.excerpt}
-    /*       breadcrumbs={[
-            { name: "Tours & Lessons", path: "/tours-lessons" },
-            { name: data.strapiTour.name, path: `/tours-lessons/${data.strapiTour.slug}` }
-          ]} */
+      breadcrumbs={[
+        {
+          name: "Tours & Lessons",
+          item: "tours-lessons"
+        },
+        {
+          name: data.strapiTour.name,
+          item: `tours-lessons/${data.strapiTour.slug}`
+        }
+      ]}
     />
   );
 }

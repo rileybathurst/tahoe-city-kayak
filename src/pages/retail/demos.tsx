@@ -2,18 +2,15 @@
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-
-// Paddle
 import { PaddleLocationCard } from "@rileybathurst/paddle";
-
 import { SEO } from "../../components/seo";
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import Markdown from "react-markdown";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 function LineBreaker(props: { text: string; }) {
   const regex = /[- ]/g;
@@ -178,16 +175,17 @@ const DemosPage = () => {
     <>
       <Header />
 
-      <main>
-        <div className="albatross wrap">
-          <div>
-            <h1>Demos</h1>
-            <Markdown
-              children={query.strapiDemo.text.data.text}
-              className="react-markdown"
-            />
-            <Phone />
-          </div>
+      <div className="albatross wrap">
+
+        <main>
+
+          <h1>Demos</h1>
+          <Markdown
+            className="react-markdown"
+          >
+            {query.strapiDemo.text.data.text}
+          </Markdown>
+          <Phone />
 
           <div className="charts">
             <CustomOrder RentalRates={query.allStrapiRentalRate} />
@@ -195,27 +193,29 @@ const DemosPage = () => {
 
             <div className="pricing-chart">
               {query.allStrapiRentalAddon.nodes.map((addon: { name: string; single: number; double: number; sup: number; }) => (
-                <>
+                <React.Fragment key={addon.name}>
                   <p>{addon.name}</p>
                   <p>+{addon.single}</p>
                   <p>+{addon.double}</p>
                   <p>+{addon.sup}</p>
-                </>
+                </React.Fragment>
               ))}
             </div>
+
           </div>
 
-          <PaddleLocationCard
-            {...query.strapiLocation}
-            background={false}
-          />
+        </main >
 
-        </div>
-      </main >
+        <PaddleLocationCard
+          {...query.strapiLocation}
+          background={false}
+        />
+
+      </div >
 
 
       <section className="demo__kayak">
-        <div className="demo__kayak--header passage">
+        <div className="demo__kayak--header">
           <div>
             <h3>Demos</h3>
             <hr />
@@ -265,17 +265,10 @@ const DemosPage = () => {
         ))}
       </section>
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to='/retail'>Retail</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">Demos</li>
-        </ol>
-      </nav>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/retail/">Retail</Link></Breadcrumb>
+        <Breadcrumb>Demos</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -287,8 +280,18 @@ export default DemosPage
 export const Head = () => {
   return (
     <SEO
-      title={`Demos | ${useSiteMetadata().title}`}
+      title='Demos'
       description="Enjoy the majesty of Lake Tahoe while kayaking in one of our high-end demo rentals."
+      breadcrumbs={[
+        {
+          name: "Retail",
+          item: "retail"
+        },
+        {
+          name: 'Demos',
+          item: 'demos'
+        }
+      ]}
     />
   )
 }

@@ -50,82 +50,38 @@ module.exports = {
     defaultImage:
       "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
     defaultImageAlt: "A collage of images showcasing paddling on Lake Tahoe",
-    openingHours: "Mo, Tu, We, Th, Fr, Sa, Su 09:00-18:00",
-    telephone: "(530)581-4336",
-    email: "tahoecitykayak@gmail.com",
     logo: "/images/icon.png",
-    areaServed: "Tahoe City",
-    author: "Tahoe City Kayak",
-    paymentAccepted: "Cash, credit card",
     itemType: "LocalBusiness",
-    priceRange: "$30-$2500",
-    location: {
-      address: {
-        streetAddress: "521 North Lake Blvd",
-        addressLocality: "Tahoe City",
-        addressRegion: "CA",
-        postalCode: "96145",
-      },
-    },
-    rentalLocation: {
-      address: {
-        name: "Commons Beach",
-        streetAddress: "400 North Lake Blvd",
-        addressLocality: "Tahoe City",
-        addressRegion: "CA",
-        postalCode: "96145",
-      },
-    },
-    geo: {
-      latitude: "39.17138171971435",
-      longitude: "-120.14098458679503",
-      geoRadius: "80470",
-    },
-    themeColor: "#bf4040",
-    numberOfEmployees: "10+",
-    slogan:
-      "North Tahoes Premier Kayak and Paddleboard Provider of Rentals Sales Lessons and Tours",
-
-    offerCatalog: {
-      itemOffered1: "kayak and paddleboard rentals",
-      itemOffered2: "kayak and paddleboard sales",
-      itemOffered3: "kayak and paddleboard tours and lessons",
-    },
-    social: {
-      facebook: "https://www.facebook.com/pages/Tahoe-City-Kayak/125337723736",
-      instagram: "https://www.instagram.com/tahoecitykayak/",
-    },
-    jobEmail: "tckjobs@gmail.com",
   },
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
-      resolve: `gatsby-plugin-sharp`,
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
-          formats: [`auto`, `webp`, `jpg`], // adds jpg even if starts as webp
+          formats: ["auto", "webp", "jpg"], // adds jpg even if starts as webp
         },
       },
     },
     "gatsby-transformer-sharp",
     {
-      resolve: `gatsby-source-strapi`,
+      resolve: "gatsby-source-strapi",
       options: strapiConfig,
     },
 
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `pages`,
+        name: "pages",
         path: `${__dirname}/src/pages/`,
       },
     },
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: "gatsby-plugin-postcss",
       options: {
         postCssPlugins: [
-          require(`postcss-import`),
+          require("postcss-import"),
           require("autoprefixer"),
           require("postcss-nested"),
         ],
@@ -142,10 +98,11 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Tahoe City Kayak`,
-        short_name: `TCK`,
-        start_url: `/`,
-        icon: "src/images/favicon.svg", // TODO: something new // theres not quite the right emoji for this
+        name: "Tahoe City Kayak",
+        short_name: "TCK",
+        start_url: "/",
+        // TODO: something new // theres not quite the right emoji for this
+        icon: "src/images/favicon.svg",
       },
     },
     /*     {
@@ -160,9 +117,9 @@ module.exports = {
         dsn: process.env.SENTRY_DSN, // this is the default
       },
     },
-    `gatsby-plugin-smoothscroll`,
+    "gatsby-plugin-smoothscroll",
     {
-      resolve: `gatsby-plugin-typescript`,
+      resolve: "gatsby-plugin-typescript",
       options: {
         isTSX: true, // defaults to false
         jsxPragma: "jsx", // defaults to "React"

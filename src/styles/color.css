@@ -24,13 +24,13 @@ footer,
 
 /* no longer a button so no longer mullen background */
 .top-wrapper {
-  /* background: var(--mullen); */
+  /* background: var(--mullen-100); */
   background: whitesmoke;
   clip-path: inset(0 -100vmax);
   border-end-end-radius: var(--border-radius);
 
   .top-bar {
-    background: var(--mullen);
+    background: var(--mullen-100);
     color: whitesmoke;
   }
 
@@ -89,7 +89,7 @@ footer {
 }
 
 .blocked {
-  padding-block-start: var(--baseline);
+  padding-block-start: var(--elbrus);
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
@@ -113,8 +113,8 @@ footer {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
-  padding-block: var(--baseline);
-  margin-block-end: var(--baseline);
+  padding-block: var(--elbrus);
+  margin-block-end: var(--elbrus);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--ink);
@@ -134,7 +134,7 @@ footer {
 
 .location {
   /* css funtions are goning to help with this near a button */
-  background-color: var(--mullen);
+  background-color: var(--mullen-100);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
@@ -156,9 +156,9 @@ footer {
   background-color: transparent;
   border-block-end: 1px solid var(--tin-soldier);
 
-  color: var(--mullen);
+  color: var(--mullen-100);
   svg {
-    fill: var(--mullen);
+    fill: var(--mullen-100);
   }
 }
 

@@ -5,7 +5,6 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { PaddleLocationDeck, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import PricingChart from "../components/pricing-chart"
@@ -269,23 +268,7 @@ const IndexPage = () => {
 export default IndexPage
 
 export const Head = () => {
-
-  // ! can I query here?
-  /*   const { strapiLocale } = useStaticQuery(graphql`
-      query IndexHeadQuery {
-        strapiLocale {
-          topbar {
-            data {
-              topbar
-            }
-          }
-        }
-      }
-    `) */
-
   return (
-    <SEO
-      title={`${useSiteMetadata().title} - Welcome to the 2024 Season`}
-    />
+    <SEO />
   )
 }

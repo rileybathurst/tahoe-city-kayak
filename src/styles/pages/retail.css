@@ -6,7 +6,7 @@
   max-width: var(--pelican);
   display: grid;
   column-gap: 0.75rem;
-  row-gap: var(--baseline);
+  row-gap: var(--elbrus);
 
   grid-template-areas:
     "title"

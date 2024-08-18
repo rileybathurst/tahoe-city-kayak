@@ -3,19 +3,10 @@
 // TODO: add a little animation with a color behind the nav which slides with the current section
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useStaticQuery, graphql, Script } from 'gatsby';
-// import * as Scroll from 'react-scroll';
-
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
-
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
-// import { StrapiMap } from "../../components/map";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
-
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
 const KnowPage = () => {
@@ -36,9 +27,6 @@ const KnowPage = () => {
       }
     }
   `)
-
-  let title = "Know Before You Go";
-  let parent = "about";
 
   const [dressState, setDressState] = useState("current");
   const [weatherState, setWeatherState] = useState("");
@@ -260,7 +248,7 @@ const KnowPage = () => {
         </nav >
 
         <div className="scroll-container">
-          <h1>{title}</h1>
+          <h1>Know Before You Go</h1>
 
           <article
             id="dress"
@@ -494,10 +482,10 @@ const KnowPage = () => {
         </div>
       </main >
 
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Know Before You Go</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -509,28 +497,18 @@ export default KnowPage
 export const Head = () => {
   return (
     <SEO
-      title={`Frequently Asked Questions | ${useSiteMetadata().title}`}
+      title='Frequently Asked Questions'
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards’ frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options. Contact us at (530) 581-4336 for current hours and availability."
-    >
-      {/* <StrapiMap /> */}
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-              "item": "${useSiteMetadata().url}/about"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Frequently Asked Questions"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+      breadcrumbs={[
+        {
+          name: "About",
+          item: "about"
+        },
+        {
+          name: 'Know Before You Go',
+          item: "know"
+        }
+      ]}
+    />
   )
 }

@@ -1,12 +1,11 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Script } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
 
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import ParentTitleBreadcrumb from "../../components/parent-title-breadcrumb";
 import { PaddleTestimonials } from "@rileybathurst/paddle";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const TestimonialsPage = () => {
 
@@ -24,26 +23,21 @@ const TestimonialsPage = () => {
     }
   `)
 
-  /* // TODO: */
-  const title = "Testimonials";
-  const parent = "about";
-
   return (
     <>
       <Header />
 
-      <main>
+      <main className="condor">
         <h1>Testimonials</h1>
         <hr />
 
         <PaddleTestimonials {...allStrapiTestimonial} />
       </main>
 
-      {/* // TODO: */}
-      <ParentTitleBreadcrumb
-        parent={parent}
-        title={title}
-      />
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Testimonials</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -55,29 +49,12 @@ export default TestimonialsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials | ${useSiteMetadata().title}`}
+      title='Testimonials'
       description="Testimonials from our customers."
-    >
-      {/* <TestimoialSEO /> */}
-      {/* // TODO: */}
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-              "item": "${useSiteMetadata().url}/about"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Testimonials"
-            }]
-          }
-        `}
-      </Script>
-    </SEO>
+      breadcrumbs={[
+        { name: "About", item: "about" },
+        { name: "Testimonials" }
+      ]}
+    />
   )
 }

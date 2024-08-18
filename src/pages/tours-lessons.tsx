@@ -5,7 +5,6 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { PaddleLocationDeck, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo"
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 import Header from "../components/header"
 import Footer from "../components/footer"
 import BookNow from "../components/peek/book-now";
@@ -69,13 +68,15 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
-      <main className="pelican">
+      <main className="albatross wrap">
         <div>
-          <h1>Tours &amp; Lessons</h1>
-          <Experience />
-          <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
-          <BookNow />
-          <hr />
+          <div className="condor">
+            <h1>Tours &amp; Lessons</h1>
+            <Experience />
+            <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
+            <BookNow />
+            <hr />
+          </div>
 
 
         </div>
@@ -117,7 +118,7 @@ export default ToursLessonsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Tours and Lessons | ${useSiteMetadata().title}`}
+      title='Tours and Lessons'
       description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )

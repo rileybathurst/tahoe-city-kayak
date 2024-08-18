@@ -156,7 +156,6 @@ export default RetailSportPage
 
 export const Head = () => {
   return (
-    <SEO
-    />
+    <SEO />
   )
 }
