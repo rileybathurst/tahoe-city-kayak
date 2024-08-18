@@ -17,14 +17,19 @@ function AnnouncementPage() {
     }
   `)
 
+  type AnnouncementType = {
+    title: string,
+    slug: string
+  }
+
   return (
     <>
       <Header />
       <main className="measure">
-        <h1>Announcement</h1>
+        <h1>Announcements</h1>
 
         <ul>
-          {allStrapiAnnouncement.nodes.map((announcement) => (
+          {allStrapiAnnouncement.nodes.map((announcement: AnnouncementType) => (
             <li key={announcement.slug}>
               <Link to={`/announcement/${announcement.slug}`}>{announcement.title}</Link>
             </li>

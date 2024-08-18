@@ -25,8 +25,9 @@ const Footer = () => {
 
       strapiLocale(slug: {eq: "tahoe-city"}) {
         instagram
-          facebook
-          tripadvisor
+        facebook
+        tripadvisor
+        email
       }
 
       allStrapiLocale(filter: {slug: {ne: "tahoe-city"}}) {
@@ -54,10 +55,17 @@ const Footer = () => {
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
         <nav>
-          {/* // TODO not children */}
-          <MenuList
-            children='announcement'
-          />
+          <MenuList>
+            <li key='announcement'>
+              <Link
+                to="/announcement"
+                className='link__backed'
+                activeClassName="active">
+                Announcements
+              </Link>
+            </li>
+          </MenuList>
+
         </nav>
         <hr />
         <div className="footer__contact">

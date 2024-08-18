@@ -53,6 +53,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
           opening_time
           closing_time
 
+          schemaType
           streetAddress
           addressLocality
           addressRegion

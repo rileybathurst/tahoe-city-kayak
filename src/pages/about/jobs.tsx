@@ -18,8 +18,6 @@ const JobsPage = () => {
     }
   `)
 
-  console.log(strapiLocale);
-
   return (
     <>
       <Header />
@@ -90,7 +88,7 @@ export const Head = () => {
         },
         {
           name: 'Jobs',
-          item: "jobs"
+          item: "about/jobs"
         }
       ]}
     />
