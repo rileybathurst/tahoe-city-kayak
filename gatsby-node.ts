@@ -1,13 +1,29 @@
+// TODO: https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/#gatsby-nodets
+
 // import { Brand, Retail } from "./types"; // Import the Brand and Retail types
 
-const path = require("path");
+import * as path from "node:path";
 // Log out information after a build is done
-exports.onPostBuild = ({ reporter }) => {
+type reporterType = {
+  reporter: {
+    info: (msg: string) => void;
+  };
+};
+
+exports.onPostBuild = ({ reporter }: reporterType) => {
   reporter.info("Your Gatsby site has been built!");
 };
 
 // Create blog pages dynamically
-exports.createPages = async ({ graphql, actions }) => {
+import type { GatsbyGraphQLQueryFn } from "gatsby";
+import type { Actions } from "gatsby";
+
+type createPagesType = {
+  // graphql: GraphqlQueryFn;
+  graphql: any;
+  actions: Actions;
+};
+exports.createPages = async ({ graphql, actions }: createPagesType) => {
   const { createPage } = actions;
 
   // Retail Pages

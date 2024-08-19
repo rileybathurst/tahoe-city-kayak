@@ -53,7 +53,7 @@ export const Head = () => {
       description="Testimonials from our customers."
       breadcrumbs={[
         { name: "About", item: "about" },
-        { name: "Testimonials" }
+        { name: "Testimonials", item: "testimonials" }
       ]}
     />
   )

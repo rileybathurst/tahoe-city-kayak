@@ -70,6 +70,14 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
   // console.log(data);
   // I also need to pass through seo from the function
 
+  /*   if (breadcrumbs === null) {
+      console.log('🦄');
+    }
+  
+    if (!breadcrumbs) {
+      console.log('🦖');
+    } */
+
 
   return (
     <PaddleSEO
