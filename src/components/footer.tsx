@@ -24,6 +24,7 @@ const Footer = () => {
       }
 
       strapiLocale(slug: {eq: "tahoe-city"}) {
+        name
         instagram
         facebook
         tripadvisor
