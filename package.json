@@ -61,5 +61,8 @@
     "seo-showcase": "^1.0.3",
     "style-loader": "^4.0.0",
     "typescript": "^5.5.4"
+  },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "^2.4.2-alpha.0"
   }
 }
