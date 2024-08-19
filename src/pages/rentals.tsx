@@ -71,7 +71,7 @@ const RentalsPage = () => {
             <Markdown className="react-markdown">
               {data.strapiRental.text.data.text}
             </Markdown>
-            {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
+            <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p>
             {/* // TODO should this be a dropdown? */}
             <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
             <hr />
@@ -117,14 +117,14 @@ const RentalsPage = () => {
 
             <h3>Additional Rates</h3>
             {data.allStrapiRentalAddon.nodes.map((addon) => (
-              <>
+              <React.Fragment key={addon.name}>
                 <hr />
                 <h4>{addon.name}</h4>
                 <p><strong>Single</strong> +${addon.single}</p>
                 <p><strong>Double</strong> +${addon.double}</p>
                 <p><strong>Paddle Board</strong> +{addon.sup}</p>
                 <hr />
-              </>
+              </React.Fragment>
             ))}
 
           </div>

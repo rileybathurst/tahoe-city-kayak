@@ -25,10 +25,11 @@ const strapiConfig = {
   ],
   singleTypes: [
     "about",
-    "rental",
     "experience",
-    "shop", // TODO: update the links
     "demo",
+    "rental",
+    "river",
+    "shop", // TODO: update the links
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,

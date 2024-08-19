@@ -2,16 +2,17 @@
 // less of a problem as we are holding back this page for now anyway
 
 import React, { useState, useRef } from "react"
-import { Link } from "gatsby";
-import { SEO } from "../../src/components/seo";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import { SEO } from "../../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import ReactMarkdown from "react-markdown";
 
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 // import { useMapEvents } from 'react-leaflet/hooks'
 
-import Header from "../../src/components/header";
-import Footer from "../../src/components/footer";
-import Composition from "../../src/components/composition";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+// import Composition from "../../components/composition";
 
 /* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
 const AlpineMeadows = { name: 'Alpine Meadows', lat: 39.18528, lng: -120.19494 }
@@ -119,15 +120,76 @@ const zoom = 14 */
 
 const TruckeeRiverPage = () => {
 
+  const { strapiRiver } = useStaticQuery(graphql`
+    query TruckeeRiverQuery {
+      strapiRiver {
+        title
+        description {
+          data {
+            description
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <>
       <Header />
 
-      {/* // TODO: links */}
-
       <main>
-        <article>
-          <h1>Truckee River Rentals</h1>
+        <h1>{strapiRiver.title}</h1>
+        <ReactMarkdown
+          className="react-markdown"
+        >
+          {strapiRiver.description.data.description}
+        </ReactMarkdown>
+      </main>
+
+      <hr />
+
+
+
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>
+        <Breadcrumb>Truckee River Rentals</Breadcrumb>
+      </Breadcrumbs>
+
+      <Footer />
+    </>
+  )
+}
+
+export default TruckeeRiverPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title='Truckee River Rentals'
+      description="We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase"
+      breadcrumbs={[
+        {
+          name: "Rentals",
+          item: "rentals"
+        },
+        {
+          name: 'Truckee River Rentals',
+          item: 'truckee-river'
+        }
+      ]}
+    />
+  )
+}
+
+/* <section className="map">
+  <h3>Map</h3>
+  <Map />
+</section> */
+
+
+/* <article>
+<h1>Truckee River Rentals</h1>
           <p>
             We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase. That said, we are not a livery service with shuttle transportation for the river. You can easily transport our lightweight &#40;inflatable&#41; river-oriented watercraft yourself, or &#40;if you can't self transport&#41; you can choose to rent one of our lake-oriented watercraft and paddle directly from our rental location at the waters&apos; edge on Commons Beach in Tahoe City.
           </p>
@@ -184,45 +246,4 @@ const TruckeeRiverPage = () => {
             <li><a href="https://www.nrs.com/star-viper-xl-inflatable-kayak/p1w8" target='_blank' rel='noopener noreferrer'>STAR Viper XL Inflatable Kayak | NRS</a></li>
             <li><a href="https://www.nrs.com/nrs-outlaw-legend-ii-inflatable-kayak/p8bn" target='_blank' rel='noopener noreferrer'>NRS Outlaw Legend II Inflatable Kayak</a></li>
           </ul>
-        </article>
-        <Composition />
-      </main>
-
-      <hr className="passage" />
-
-      {/*       <section className="map">
-        <h3>Map</h3>
-        <Map />
-      </section> */}
-
-
-      <Breadcrumbs>
-        <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>
-        <Breadcrumb>Truckee River Rentals</Breadcrumb>
-      </Breadcrumbs>
-
-      <Footer />
-    </>
-  )
-}
-
-export default TruckeeRiverPage
-
-export const Head = () => {
-  return (
-    <SEO
-      title='Truckee River Rentals'
-      description="We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase"
-      breadcrumbs={[
-        {
-          name: "Rentals",
-          item: "rentals"
-        },
-        {
-          name: 'Truckee River Rentals',
-          item: 'truckee-river'
-        }
-      ]}
-    />
-  )
-}
+        </article> */
