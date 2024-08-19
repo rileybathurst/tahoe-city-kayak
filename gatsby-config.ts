@@ -58,6 +58,25 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
+      resolve: "gatsby-plugin-csp",
+      options: {
+        mergeSecurityHeaders: true, // ? testing may 2024 csp issue
+        mergeScriptHashes: false,
+        mergeStyleHashes: false,
+        directives: {
+          "script-src":
+            "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net",
+          "frame-src": "'self' book.peek.com",
+          "style-src":
+            "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
+          "font-src": "'self' data: 'unsafe-inline'",
+          "img-src": "'self' https://www.google-analytics.com data: about:", // ? I think  is a tracking pixel
+          "connect-src": "'self' data:  https://www.google-analytics.com/",
+          "media-src": "'self' data:",
+        },
+      },
+    },
+    {
       resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
