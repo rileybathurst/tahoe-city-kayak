@@ -16,8 +16,6 @@ import Composition from "../components/composition";
 import Shop from "../content/shop";
 import type { CardType } from "../types/card";
 
-import SEOcase from "../components/seocase"
-
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {

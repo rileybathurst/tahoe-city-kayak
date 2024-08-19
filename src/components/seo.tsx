@@ -43,9 +43,21 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
         }
       }
 
+      # location
+      strapiLocation(
+          name: {eq: "Retail Location"},
+          locale: {slug: {eq: "tahoe-city"}}
+        ) {
+          streetAddress
+          addressLocality
+          addressRegion
+          postalCode
+        }
+
+      # departments
       allStrapiLocation(
         filter: {
-          name: {in: ["Retail Location", "On Water Rental"]},
+          name: {in: ["On Water Rental"]},
           locale: {slug: {eq: "tahoe-city"}}
         }
       ) {
@@ -66,18 +78,6 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
 
     }
   `);
-
-  // console.log(data);
-  // I also need to pass through seo from the function
-
-  /*   if (breadcrumbs === null) {
-      console.log('🦄');
-    }
-  
-    if (!breadcrumbs) {
-      console.log('🦖');
-    } */
-
 
   return (
     <PaddleSEO
