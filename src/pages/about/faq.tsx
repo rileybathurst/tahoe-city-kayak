@@ -69,7 +69,6 @@ export const Head = () => {
         }
       ]}
     >
-      test
       <Script type="application/ld+json">
         {`
           {
