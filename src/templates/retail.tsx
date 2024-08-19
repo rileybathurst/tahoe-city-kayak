@@ -377,7 +377,7 @@ export const Head = ({ data }) => {
       breadcrumbs={[
         { name: "Retail", item: "retail" },
         { name: data.strapiRetail.sport.slug, item: `retail/${data.strapiRetail.sport.slug}` },
-        { name: data.strapiRetail.title }
+        { name: data.strapiRetail.title, item: `retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}` }
       ]}
     >
       <Script type="application/ld+json">

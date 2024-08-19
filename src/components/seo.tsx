@@ -15,7 +15,7 @@ type SEOtypes = {
   }[],
   children?: React.ReactNode,
 };
-export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrumbs }: SEOtypes) => {
+export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrumbs, children }: SEOtypes) => {
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
@@ -77,12 +77,9 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
       breadcrumbs={breadcrumbs || null}
       // ogImage={ogImage || null}
       // ogimagedescription={ogImagedescription || null}
-
-      // ? how do i pass the children
-      // faq has this unless I pass it as a prop
-      // retail 
-
       {...data}
-    />
+    >
+      {children}
+    </PaddleSEO>
   );
 };
