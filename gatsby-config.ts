@@ -65,13 +65,13 @@ module.exports = {
         mergeStyleHashes: false,
         directives: {
           "script-src":
-            "'self' 'unsafe-inline'  www.google-analytics.com book.peek.com book12.freetls.fastly.net",
+            "'self' 'unsafe-inline' www.google-analytics.com googletagmanager.com book.peek.com book12.freetls.fastly.net use.typekit.net",
           "frame-src": "'self' book.peek.com",
           "style-src":
             "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
           "font-src": "'self' data: 'unsafe-inline'",
-          "img-src": "'self' https://www.google-analytics.com data: about:", // ? I think  is a tracking pixel
-          "connect-src": "'self' data:  https://www.google-analytics.com/",
+          "img-src": "'self' google-analytics.com data: about:", // ? I think  is a tracking pixel
+          "connect-src": "'self' data: google-analytics.com sentry.io",
           "media-src": "'self' data:",
         },
       },
