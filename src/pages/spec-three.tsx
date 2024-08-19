@@ -8,7 +8,7 @@ interface SpecsTypes {
 }
 function Specs(specs: SpecsTypes): React.ReactNode {
 
-  console.log(specs);
+  // console.log(specs);
 
   return (
     Object.entries(specs).map(([key, value]) => {
