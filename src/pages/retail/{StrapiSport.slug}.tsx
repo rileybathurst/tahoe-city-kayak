@@ -143,10 +143,6 @@ const RetailSportPage = ({ data }) => {
           ))
       ))}
 
-
-
-
-
       <Footer />
     </>
   )

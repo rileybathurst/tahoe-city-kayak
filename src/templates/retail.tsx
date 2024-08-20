@@ -15,6 +15,7 @@ import Phone from '../components/phone';
 import SEOcase from "../components/seocase"
 import Remainder from '../components/remainder';
 import type { RetailType } from '../types/retail';
+import { Breadcrumb, Breadcrumbs } from 'react-aria-components';
 
 // ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
 //  might be more of a package problem
@@ -340,28 +341,23 @@ const RetailTypeView = ({ data }) => {
         </section>
       }
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-          </li>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/retail/">Retail</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
+            <Sport sport={data.strapiRetail.sport.slug} />
+          </Link>
+        </Breadcrumb>
+        <Breadcrumb>{data.strapiRetail.title}</Breadcrumb>
+      </Breadcrumbs>
 
-          <li>
-            <Link to={`/retail/${data.strapiRetail.sport.slug}`}><Sport sport={data.strapiRetail.sport.slug} /></Link>&nbsp;/&nbsp;
-          </li>
 
-          <li aria-current="page">{data.strapiRetail.title}</li>
-        </ol>
-      </nav>
       <Footer />
 
-      <SEOcase
+      {/* <SEOcase
         title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
         description={data.strapiRetail.excerpt}
-      />
+      /> */}
     </>
   );
 };
