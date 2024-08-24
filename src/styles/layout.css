@@ -626,14 +626,14 @@ footer {
 /* #CAP */
 /*------------------*/
 
-.top-bar {
+/* .top-bar {
   background: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);
   display: flex;
   justify-content: center;
   padding-block-start: 0.25rem;
-  z-index: var(--emergent); /* over the small menu when it slides up */
+  z-index: var(--emergent); * over the small menu when it slides up
   position: relative;
   width: 100%;
   max-width: var(--condor);
@@ -648,11 +648,11 @@ footer {
 
   p {
     width: 100%;
-    /* * smaller than a variable */
+    * smaller than a variable
     margin-block-end: 0.25rem;
     white-space: nowrap;
   }
-}
+} */
 
 /*------------------*/
 /* #MAP */

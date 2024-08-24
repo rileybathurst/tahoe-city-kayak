@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 
 // Paddle
-import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime } from "@rileybathurst/paddle";
+import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime, PaddleSunsetTourTimes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
@@ -146,6 +146,17 @@ interface TourViewTypes {
         alternativeText: string;
       };
     }
+
+    allStrapiSunsetTourTime: {
+      nodes: {
+        id: string;
+        startDate: string;
+        endDate: string;
+        startTime: string;
+        endTime: string;
+      }[];
+    }
+
     locale: {
       name: string;
     }
@@ -169,6 +180,7 @@ export const data = graphql`
       ) {
       id
       name
+      slug
       information {
         data {
           information
@@ -184,7 +196,7 @@ export const data = graphql`
       sport
       excerpt
       price
-      slug
+
 
       ogimage {
         localFile {
@@ -197,6 +209,25 @@ export const data = graphql`
 
       locale {
         name
+      }
+    }
+
+    allStrapiSunsetTourTime(sort: {startDate: ASC}) {
+      nodes {
+        id
+        endDate
+        endTime
+        startDate
+        startTime
+      }
+    }
+
+    allStrapiMoonlightTourDateTime(sort: {date: ASC}) {
+      nodes {
+        id
+        date
+        start
+        finish
       }
     }
 
@@ -232,14 +263,39 @@ export const data = graphql`
 
 const TourView = ({ data }: TourViewTypes) => {
 
-  // console.log(data);
-
   const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
     duration: data.strapiTour.duration,
     timeframe: data.strapiTour.timeframe,
+    slug: data.strapiTour.slug,
+    allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
+    allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime
   });
+
+  // TODO: add the moonlight tour times to paddle just quick working here
+  type MoonlightTourDateTime = {
+    nodes: {
+      id: string;
+      date: string;
+      start: string;
+      finish: string;
+    }[];
+  }
+  function MoonlightTourDatesTimes({ nodes }: MoonlightTourDateTime) {
+    return (
+      <div className="">
+        <h3>Moonlight Tour Dates</h3>
+        <ul>
+          {nodes.map((tour) =>
+            <li key={tour.id}>
+              <h4>{tour.date}<Time start={tour.start} finish={tour.finish} /></h4>
+            </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -259,6 +315,7 @@ const TourView = ({ data }: TourViewTypes) => {
               :
               <BookNow />
             }
+            {/* // TODO: do some work on the vertical center align */}
             <Minimum minimum={data.strapiTour.minimum} />
           </div>
 
@@ -270,9 +327,19 @@ const TourView = ({ data }: TourViewTypes) => {
             timeValue={time.value}
           />
 
-          <Markdown className="react-markdown single__description">
-            {data.strapiTour.information?.data?.information}
-          </Markdown>
+          {data.strapiTour.slug === "sunset" ?
+            <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
+            : null}
+
+          <section className="single__description">
+            <Markdown className="react-markdown ">
+              {data.strapiTour.information?.data?.information}
+            </Markdown>
+
+            {data.strapiTour.slug === "moonlight" ?
+              <MoonlightTourDatesTimes {...data.allStrapiMoonlightTourDateTime} />
+              : null}
+          </section>
 
         </div>
 
@@ -325,7 +392,16 @@ const TourView = ({ data }: TourViewTypes) => {
 
 export default TourView;
 
-export const Head = ({ data }) => {
+type TourViewHeadTypes = {
+  data: {
+    strapiTour: {
+      name: string;
+      excerpt: string;
+      slug: string;
+    }
+  }
+}
+export const Head = ({ data }: TourViewHeadTypes) => {
   return (
     <SEO
       title={data.strapiTour.name}

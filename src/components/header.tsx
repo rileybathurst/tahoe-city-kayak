@@ -3,8 +3,9 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Menu from "./menu"
 import MenuList from './menu-list';
 import Logo from '../images/logo';
-import Markdown from 'react-markdown';
+import { PaddleTopBar } from '@rileybathurst/paddle';
 
+// TODO this needs more work
 {/* function OpenSeason(props) {
   const [banner, setBanner] = useState('shown');
 
@@ -43,7 +44,6 @@ import Markdown from 'react-markdown';
         <button onClick={openBanner} className="reseason">stay gold</button >
   {/* <div className="top-wrapper__staygold">test</div>
       </div >
-// TODO this needs more work
 {
   process.env.NODE_ENV === "development" ? (
     <button onClick={openBanner}>Put the banner back</button>
@@ -74,6 +74,7 @@ function Button() {
         <button
           className="button-styles"
           onClick={() => setSlide('close')}
+          type='button'
         >
           <span
             style={{ transform: 'translateY(-2rem)' }}
@@ -84,8 +85,8 @@ function Button() {
         <nav
           className='menu__small'
           style={{
-            transform: 'translateY(-' + amount + 'px)',
-            marginBottom: '-' + amount + 'px',
+            transform: `translateY(-${amount}px)`,
+            marginBottom: `-${amount}px`,
             visibility: "hidden",
           }}
           ref={ref}
@@ -94,13 +95,14 @@ function Button() {
         </nav>
       </div>
     );
-  } else if (slide === "menu") {
+  } if (slide === "menu") {
     // console.log('menu');
     return (
       <div className='menu__small'>
         <button
           className="button-styles"
           onClick={() => setSlide('close')}
+          type='button'
         >
           <span
             style={{ transform: 'translateY(-2rem)' }}
@@ -111,38 +113,9 @@ function Button() {
         <nav
           className='menu__small'
           style={{
-            transform: 'translateY(-' + amount + 'px)',
-            marginBottom: '-' + amount + 'px',
+            transform: `translateY(-${amount}px)`,
+            marginBottom: `-${amount}px`,
             visibility: "hidden",
-          }}
-          ref={ref}
-        >
-          <MenuList />
-        </nav>
-      </div>
-    );
-  } else {
-    // console.log('else');
-    return (
-      <div className='menu__small'
-        style={{
-          height: '2rem',
-        }}
-      >
-        <button
-          className="button-styles"
-          onClick={() => setSlide('menu')}
-        >
-          <span
-            style={{ transform: 'translateY(0)' }}
-            className="span-styles"
-          >CLOSE<br />MENU
-          </span>
-        </button>
-        <nav
-          style={{
-            transform: 'translateY(0)',
-            marginBottom: '-' + amount + 'px',
           }}
           ref={ref}
         >
@@ -151,11 +124,40 @@ function Button() {
       </div>
     );
   }
+  // console.log('else');
+  return (
+    <div className='menu__small'
+      style={{
+        height: '2rem',
+      }}
+    >
+      <button
+        className="button-styles"
+        onClick={() => setSlide('menu')}
+        type='button'
+      >
+        <span
+          style={{ transform: 'translateY(0)' }}
+          className="span-styles"
+        >CLOSE<br />MENU
+        </span>
+      </button>
+      <nav
+        style={{
+          transform: 'translateY(0)',
+          marginBottom: `-${amount}px`,
+        }}
+        ref={ref}
+      >
+        <MenuList />
+      </nav>
+    </div>
+  );
 }
 
 const Header = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query HeaderQuery {
       strapiLocale(slug: {eq: "tahoe-city"}) {
         name
@@ -166,21 +168,34 @@ const Header = () => {
           }
         }
       }
+
+      allStrapiWeatherDay {
+        nodes {
+          name
+          startDate
+          startTime
+          endDate
+          endTime
+          closed
+
+          condition {
+            excerpt
+          }
+        }
+      }
     }
   `)
+
+
 
   return (
     <header>
 
-      {/* // TODO this would be nice to be able to close but I dont have it right yet */}
-      <div className="top-bar" >
-        <Markdown>
-          {strapiLocale.topbar.data.topbar}
-        </Markdown>
-      </div>
+      {/* // TODO: weather day in other places as well */}
+      <PaddleTopBar {...data} />
 
       <p className='sr-only'>
-        {strapiLocale.name}
+        {data.strapiLocale.name}
       </p>
       <div className="logo-container" >
         <Link to="/" className="">
@@ -194,3 +209,25 @@ const Header = () => {
 }
 
 export default Header
+
+// TODO: think about having this live update
+// ? does this mean I have to keep the server running?
+/* export async function getServerData() {
+  try {
+    const res = await fetch("https://dog.ceo/api/breeds/image/random")
+
+    if (!res.ok) {
+      throw new Error("Response failed")
+    }
+
+    return {
+      props: await res.json(),
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {}
+    }
+  }
+} */

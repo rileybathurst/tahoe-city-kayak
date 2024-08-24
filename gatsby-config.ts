@@ -9,24 +9,29 @@ const strapiConfig = {
     "announcement",
     "attribute",
     "brand",
+    "condition",
     "event",
     "faq",
     "imagegrab",
     "job",
     "locale",
     "location",
+    "moonlight-tour-date-time",
     "policy",
     "rental-addon",
     "rental-rate",
     "retail",
+    "sunset-tour-time",
     "team",
     "testimonial",
     "tour",
+    "weather-day",
   ],
   singleTypes: [
     "about",
     "experience",
     "demo",
+    "protect",
     "rental",
     "river",
     "shop", // TODO: update the links
@@ -42,17 +47,6 @@ module.exports = {
     title: "Tahoe City Kayak and Padddleboard",
     siteUrl: "https://tahoecitykayak.com/", // TODO DO I need both
     url: "https://tahoecitykayak.com", // No trailing slash allowed!
-
-    // TODO: a bunch of this should be in the strapi
-    description:
-      "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
-    defaultDescription:
-      "North Lake Tahoe's Premier Kayak and Paddleboard Provider offering Rentals, Sales, Lessons and Tours",
-    defaultImage:
-      "https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/tahoe_city_kayak-og_image-collage-2.jpg",
-    defaultImageAlt: "A collage of images showcasing paddling on Lake Tahoe",
-    logo: "/images/icon.png",
-    itemType: "LocalBusiness",
   },
   plugins: [
     "gatsby-plugin-image",

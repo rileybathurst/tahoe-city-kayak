@@ -22,21 +22,15 @@ footer,
   }
 }
 
-/* no longer a button so no longer mullen background */
-.top-wrapper {
-  /* background: var(--mullen-100); */
-  background: whitesmoke;
-  clip-path: inset(0 -100vmax);
-  border-end-end-radius: var(--border-radius);
+.top-bar {
+  background: var(--brilliance);
+  box-shadow: 0 0 0 100vmax var(--brilliance);
+}
 
-  .top-bar {
-    background: var(--mullen-100);
-    color: whitesmoke;
-  }
-
-  svg {
-    fill: var(--brilliance);
-  }
+.top-bar.closed {
+  background: var(--mullen-100);
+  box-shadow: 0 0 0 100vmax var(--mullen-100);
+  color: var(--brilliance);
 }
 
 .logo a {
