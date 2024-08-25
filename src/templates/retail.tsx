@@ -8,172 +8,13 @@ import Sport from '../components/sport';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Card from '../components/card';
-import Spec from '../components/spec';
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Phone from '../components/phone';
-
-import SEOcase from "../components/seocase"
-import Remainder from '../components/remainder';
+// import SEOcase from "../components/seocase"
 import type { RetailType } from '../types/retail';
+
 import { Breadcrumb, Breadcrumbs } from 'react-aria-components';
-
-// ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
-//  might be more of a package problem
-interface Spec2Types {
-  crew: string;
-  capacity: number;
-}
-function Spec2({ crew, capacity }: Spec2Types) {
-  return (
-    Object.entries({ crew, capacity }).map(([key, value]) => {
-      return (
-        <section key={key}>
-          <h3>{key} - {value}</h3>
-        </section>
-      )
-    })
-  )
-}
-
-// ! this is where it gets interesting
-// ? maybe needs to be a generic here
-// I might get passes a string or an object
-// if I dont know what I'm getting I can't do the capacity test
-// then I need
-
-// * this list is going to get long hence generics
-// it also has tour types or almost everything is not used each time
-
-interface Spec3Types {
-  crew: string;
-  capacity: {
-    data: number;
-    unit: string;
-  };
-  test: {
-    data: string;
-    unit: string;
-  };
-  length: {
-    data: number;
-    unit: string;
-  };
-}
-function Spec3({ crew, capacity, test, length }: Spec3Types) {
-  return (
-    Object.entries({ crew, capacity, test, length }).map(([key, value]) => {
-
-      // console.log(value);
-      // this is maybe where you can use generics to get around this check
-
-      // or if the next capacity data is a string
-      // so you create a string here from the object
-
-      if (typeof value !== 'string' && key && value) {
-
-        // * works but cant be type safe
-        // ? i guess you could wrap it in a typeof check
-        // so this is getting kinda ugly
-        if (key === 'length' && typeof value.data === 'number') {
-          return (
-            <section key={key}>
-              <h3>{key} - <Remainder inches={value.data} /></h3>
-            </section>
-          )
-        }
-
-        const combinedDataUnit = `${value.data} ${value.unit}`;
-        return (
-          <section key={key}>
-            <h3>{key} - {combinedDataUnit}</h3>
-          </section>
-        )
-      }
-
-      if (key && value) {
-        return (
-          <section key={key}>
-            <h3>{key} - {value}</h3>
-          </section>
-        )
-      }
-
-      return (
-        <section key={key}>
-          <h3>{key}</h3>
-        </section>
-      );
-
-    })
-  )
-}
-
-// ? I dont need generic but maybe I do if I dont know what Im getting from a spread?
-//  might be more of a package problem
-/* function Spec4<ElementType>({ crew, capacity }: ElementType) {
-  const values = Object.values({ crew, capacity });
-} */
-
-
-type WeightTypes = {
-  riggedweight: number;
-  hullweight: number;
-}
-function Weight({ riggedweight, hullweight }: WeightTypes) {
-  return (
-    <>
-      <div className="spec">
-        <h2>Hull Weight</h2>
-        <h3>
-          {hullweight}
-          <span className="spec__unit">&thinsp;lbs</span>
-        </h3>
-      </div>
-      {riggedweight ?
-        <div className="spec">
-          <h2>Rigged Weight</h2>
-          <h3>{riggedweight}
-            <span className="spec__unit">&thinsp;lbs</span>
-          </h3>
-        </div>
-        : null
-      }
-    </>
-  );
-}
-
-interface PriceTypes {
-  price: number;
-  discount: number;
-}
-function Price({ price, discount }: PriceTypes) {
-  if (discount) {
-
-    const amount = price - (discount * (price / 100));
-
-    return (
-      <>
-        {/* // TODO: add color */}
-        <div className="spec">
-          <h2><del>Original Price</del></h2>
-          <h3>
-            <del>
-              ${price}
-            </del>
-          </h3>
-        </div>
-        <div className="spec mullen">
-          <h2>Sale Price</h2>
-          {discount}% off
-          <h3>${amount}</h3>
-        </div>
-      </>
-    )
-  }
-  return (
-    <Spec name="price" spec={price} unit="$" unitPlace="before" unitSpace='none' />
-  )
-}
+import { PaddleSpecs } from '@rileybathurst/paddle';
 
 function Series(props: { series: string; }) {
   if (props.series) {
@@ -193,7 +34,15 @@ function Series(props: { series: string; }) {
   return null;
 }
 
-const RetailTypeView = ({ data }) => {
+type RetailTypeViewProps = {
+  data: {
+    strapiRetail: RetailType;
+    allStrapiRetail: {
+      nodes: RetailType[];
+    };
+  };
+};
+const RetailTypeView = ({ data }: RetailTypeViewProps) => {
   return (
     <>
       <Header />
@@ -219,56 +68,38 @@ const RetailTypeView = ({ data }) => {
           </hgroup>
         </div>
 
-        <div className='specs'>
-
-          {/* // ! testing ideas */}
-          {/*           <Spec2
+        <section className='specs'>
+          <h3>SPECS:</h3>
+          {/* TODO: pull the type through */}
+          <PaddleSpecs
             crew={data.strapiRetail.crew}
             capacity={data.strapiRetail.capacity}
-          /> */}
-          {/* // ! take this into production */}
+            length={data.strapiRetail.length}
+            width={data.strapiRetail.width}
 
-          {/*           {data.strapiRetail.crew && data.strapiRetail.capacity ?
-            <Spec3
-              crew={data.strapiRetail.crew}
-              capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
-            />
-            : null} */}
+            weight={{
+              hullweight: data.strapiRetail.hullweight,
+              riggedweight: data.strapiRetail.riggedweight
+            }}
 
-          {/* // ! testing ideas */}
-          {/* // * this one went too far I couldnt get there */}
-          {/*           <Spec4
-            crew={data.strapiRetail.crew}
-            capacity={{ data: data.strapiRetail.capacity, unit: "lbs" }}
-          /> */}
+            thickness={data.strapiRetail.thickness}
+            volume={data.strapiRetail.volume}
+            inflatable={data.strapiRetail.inflatable}
+            demo={data.strapiRetail.demo}
 
-          <h3>SPECS:</h3>
-          <Spec name="crew" spec={data.strapiRetail.crew} />
-          <Spec name="capacity" spec={data.strapiRetail.capacity} unit="lbs" />
-          <Spec name="length" spec={data.strapiRetail.length} unit="&quot;" />
-          <Spec name="width" spec={data.strapiRetail.width} unit="&quot;" />
-
-          <Weight
-            hullweight={data.strapiRetail.hullweight}
-            riggedweight={data.strapiRetail.riggedweight}
+            cost={{
+              price: data.strapiRetail.price,
+              discount: data.strapiRetail.discount
+            }}
           />
-
-          {/* // TODO: needs units */}
-          <Spec name="thickness" spec={data.strapiRetail.thickness} />
-          <Spec name="volume" spec={data.strapiRetail.volume} />
-
-          <Spec name="Inflatable" spec={data.strapiRetail.inflatable} />
-          {/* <Spec name="demo" spec={data.strapiRetail.demo} /> */}
-
-          <Price price={data.strapiRetail.price} discount={data.strapiRetail.discount} />
-        </div>
+        </section>
 
         <div className="collage card-collage hero">
           <TextureBackgrounds />
 
           <GatsbyImage
             image={data.strapiRetail?.cutout?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={data.strapiRetail?.cutout?.alternativeText || 'retail image'}
+            alt={data.strapiRetail?.cutout?.alternativeText || `${data.strapiRetail.title} image`}
             className="cutout"
             objectFit="contain"
           />
@@ -310,6 +141,7 @@ const RetailTypeView = ({ data }) => {
         : null
       }
 
+      {/* kayak/kokopelli has only one needs a better */}
       {data.allStrapiRetail ?
         <article>
           <section className='condor'>
@@ -348,6 +180,12 @@ const RetailTypeView = ({ data }) => {
             <Sport sport={data.strapiRetail.sport.slug} />
           </Link>
         </Breadcrumb>
+
+        <Breadcrumb>
+          <Link to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}>
+            {data.strapiRetail.brand.name}
+          </Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiRetail.title}</Breadcrumb>
       </Breadcrumbs>
 
@@ -364,7 +202,12 @@ const RetailTypeView = ({ data }) => {
 
 export default RetailTypeView;
 
-export const Head = ({ data }) => {
+type RetailTypeViewHeadProps = {
+  data: {
+    strapiRetail: RetailType;
+  };
+};
+export const Head = ({ data }: RetailTypeViewHeadProps) => {
   return (
     <SEO
       // TODO: can I make the brands capitalize?
@@ -373,6 +216,7 @@ export const Head = ({ data }) => {
       breadcrumbs={[
         { name: "Retail", item: "retail" },
         { name: data.strapiRetail.sport.slug, item: `retail/${data.strapiRetail.sport.slug}` },
+        { name: data.strapiRetail.brand.slug, item: `retail/${data.strapiRetail.brand.slug}` },
         { name: data.strapiRetail.title, item: `retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}` }
       ]}
     >
@@ -408,64 +252,64 @@ export const query = graphql`
       ) {
         strapiRetail(slug: {eq: $slug}) {
         id
-      title
-      excerpt
-      series
-      crew
-      capacity
-      length
-      hullweight
-      riggedweight
-      width
-      thickness
-      volume
-      inflatable
-      demo
-      price
-      discount
-      sport {
-        slug
-      }
+        title
+        excerpt
+        series
+        crew
+        capacity
+        length
+        hullweight
+        riggedweight
+        width
+        thickness
+        volume
+        inflatable
+        demo
+        price
+        discount
+        sport {
+          slug
+        }
 
-      brand {
-        name
-        slug
-      svg
-      }
+        brand {
+          name
+          slug
+          svg
+        }
 
-      description {
-        data {
-        description
-      }
+        description {
+          data {
+          description
+        }
       }
 
       features {
         data {
-        features
-      }
+          features
+        }
       }
 
       cutout {
         localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
+          childImageSharp {
+            gatsbyImageData
+          }
         }
-      alternativeText
+        alternativeText
       }
     }
 
       allStrapiRetail(filter:
-      {
-        slug: {ne: $slug},
-      brand: {slug: {eq: $brand}}
-      }
-      limit: 2,
-      sort: {featured: ASC}
+        {
+          slug: {ne: $slug},
+          brand: {slug: {eq: $brand}}
+        }
+        limit: 2,
+        sort: {featured: ASC}
       ) {
         nodes {
         ...retailCard
       }
     }
   }
-      `;
+`;

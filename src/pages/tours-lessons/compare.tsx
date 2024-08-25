@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Time from "../../components/time";
 
@@ -35,7 +36,7 @@ function Compare(props) {
   }
 
   function Details1(props) {
-    props.set.forEach(element => {
+    for (const element of props.set) {
       if (element.name === props.show) {
         setLink1(element.slug);
         setSport1(element.sport);
@@ -49,12 +50,12 @@ function Compare(props) {
         setPrice1(element.price);
         setPeeks1(element.peek);
       }
-    });
+    }
     return null;
   }
 
   function Details2(props) {
-    props.set.forEach(element => {
+    for (const element of props.set) {
       if (element.name === props.show) {
         setLink2(element.slug);
         setSport2(element.sport);
@@ -68,7 +69,7 @@ function Compare(props) {
         setPrice2(element.price);
         setPeeks2(element.peek);
       }
-    });
+    }
     return null;
   }
 
@@ -150,6 +151,8 @@ function Compare(props) {
           </h2>
           <Details1 show={tour1} set={props.tours} />
           <h4 className='capitalize'>{sport1}</h4>
+
+          {/* TODO: paddletime */}
           <Time
             duration={duration1}
             start={start1}
@@ -259,17 +262,10 @@ const ComparePage = () => {
         <Compare tours={allStrapiTour.nodes} />
       </main>
 
-      <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to={`/tours-lessons`}>Tours and Lessons</Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">Compare</li>
-        </ol>
-      </nav>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/tours-lessons/">Tours &amp; Lessons</Link></Breadcrumb>
+        <Breadcrumb>Compare</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -285,7 +281,7 @@ export const Head = () => {
       // TODO description and image
       breadcrumbs={[
         { name: "Tours & Lessons", item: "tours-lessons" },
-        { name: "Compare" }
+        { name: "Compare", item: "tours-lessons/compare" },
       ]}
     />
   )

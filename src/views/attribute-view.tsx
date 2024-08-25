@@ -55,23 +55,6 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
           <FeatureList sport={allStrapiRetail.nodes[0].sport.slug} />
         </section>
 
-        {/* <nav
-        aria-label="Breadcrumb"
-        className="breadcrumbs"
-      >
-        <ol>
-          <li>
-            <Link to="/retail">Retail</Link>&nbsp;/&nbsp;
-          </li>
-          <li>
-            <Link to={`/retail/${sport.slug}`}>
-              <Sport sport={sport.slug} />
-            </Link>&nbsp;/&nbsp;
-          </li>
-          <li aria-current="page">{title}</li>
-        </ol>
-      </nav> */}
-
         <Footer />
       </>
       // TODO: move this inside a bit with a 404 but you shouldnt be able to get here

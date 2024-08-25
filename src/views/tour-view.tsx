@@ -1,120 +1,19 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-
-// Paddle
-import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime, PaddleSunsetTourTimes } from "@rileybathurst/paddle";
+import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime, PaddleSunsetTourTimes, PaddleSpecs } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
 import Header from "../components/header"
 import Footer from "../components/footer"
+
 import Time from "../components/time";
+
 import Composition from "../components/composition";
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import BookNow from "../components/peek/book-now";
-
-interface AttributesProps {
-  sport?: string;
-  fitness?: string;
-  price?: number;
-  minimum?: number;
-  start?: string;
-  finish?: string;
-  duration?: number;
-  timeEntry?: string;
-  timeValue?: string;
-}
-function Attributes(attributes: AttributesProps) {
-  const sections = Object.entries(attributes).map(([key, value]) => {
-    if (value) {
-      if (key === "timeValue") {
-        return null;
-      }
-
-      if (key === "timeEntry") {
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{attributes.timeValue}</h3>
-            <h4>{value}</h4>
-          </section>
-        )
-      }
-
-      if (key === "duration") {
-        const unit = "mins";
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            <h4 className="range">{value} {unit}</h4>
-          </section >
-        )
-      }
-
-      if (key === "price") {
-        const unit = "$";
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            <h4 className="range">{unit}{value}</h4>
-          </section >
-        )
-      }
-
-      if (key === "start" || key === "finish") {
-        return (
-          <section
-            key={key}
-            className="spec attribute"
-          >
-            <h3 className="crest">{key}</h3>
-            {/* <h4 className="range"><HourMin time={value} /></h4> */}
-            <Time start={attributes.start} finish={attributes.finish} />
-          </section >
-        )
-      }
-
-      return (
-        <section
-          key={key}
-          className="spec attribute"
-        >
-          <h3 className="crest">{key}</h3>
-          <h4 className="range">{value}</h4>
-        </section >
-      )
-    }
-  })
-
-  return (
-    <div className="attributes">
-      {sections}
-    </div>
-  )
-}
-interface MinimumTypes {
-  minimum: number;
-}
-function Minimum({ minimum }: MinimumTypes) {
-  if (minimum) {
-    return (
-      <p>* Prices based on a<br />
-        {minimum} person minimum</p>
-    );
-  }
-
-  return null;
-}
 
 interface TourViewTypes {
   data: {
@@ -273,6 +172,9 @@ const TourView = ({ data }: TourViewTypes) => {
     allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime
   });
 
+  console.log(time);
+
+
   // TODO: add the moonlight tour times to paddle just quick working here
   type MoonlightTourDateTime = {
     nodes: {
@@ -284,7 +186,7 @@ const TourView = ({ data }: TourViewTypes) => {
   }
   function MoonlightTourDatesTimes({ nodes }: MoonlightTourDateTime) {
     return (
-      <div className="">
+      <div>
         <h3>Moonlight Tour Dates</h3>
         <ul>
           {nodes.map((tour) =>
@@ -316,15 +218,14 @@ const TourView = ({ data }: TourViewTypes) => {
               <BookNow />
             }
             {/* // TODO: do some work on the vertical center align */}
-            <Minimum minimum={data.strapiTour.minimum} />
+            {data.strapiTour.minimum ? <p>* Prices based on a<br /> {data.strapiTour.minimum} person minimum</p> : null}
           </div>
 
-          <Attributes
+          <PaddleSpecs
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
             price={data.strapiTour.price}
-            timeEntry={time.entry}
-            timeValue={time.value}
+            time={time}
           />
 
           {data.strapiTour.slug === "sunset" ?

@@ -8,6 +8,7 @@ const HourMin = ({ time }: HourMinTypes) => {
   if (time) {
     let hours = time.split(':')[0];
     const mins = time.split(':')[1];
+    // theres a way to make it a number but it's not necessary
     const ampm = hours >= 12 ? 'pm' : 'am';
 
     if (hours < 10) {
@@ -21,9 +22,8 @@ const HourMin = ({ time }: HourMinTypes) => {
     return (
       <>{hours}:{mins}<span className="unit">{ampm}</span></>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 export default HourMin

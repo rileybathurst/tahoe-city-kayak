@@ -4,6 +4,7 @@ export interface RetailType {
   id: React.Key;
   title: string;
   brand: {
+    name: string;
     slug: string;
   };
   slug: string;
@@ -16,6 +17,12 @@ export interface RetailType {
   sport: {
     slug: string;
   };
+  crew: number;
+  hullweight: number;
+  riggedweight: number;
+  thickness: number;
+  volume: number;
+
   inflatable: boolean;
   demo: boolean;
   discount: number;
@@ -25,6 +32,16 @@ export interface RetailType {
   cutout: {
     localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
     alternativeText: string;
+  };
+  features: {
+    data: {
+      features: string;
+    };
+  };
+  description: {
+    data: {
+      description: string;
+    };
   };
   series: string;
 }

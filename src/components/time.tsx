@@ -1,6 +1,8 @@
 import * as React from "react"
 import HourMin from "./hour-min";
 
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+
 const Time = (props: {
   start?: string;
   finish?: string;
@@ -8,18 +10,15 @@ const Time = (props: {
 }) => {
   if (props.start) {
     return (
-      <h4>
-        {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */}
-        <time dateTime={props.start}>
-          <HourMin time={props.start} /> - <HourMin time={props.finish} />
-        </time>
-      </h4>
+      <time dateTime={props.start} >
+        <HourMin time={props.start} /> - <HourMin time={props.finish} />
+      </time>
     )
   }
   return (
-    <h4>
+    <>
       {props.duration} mins
-    </h4>
+    </>
   )
 }
 
