@@ -224,6 +224,7 @@ const TourView = ({ data }: TourViewTypes) => {
           <PaddleSpecs
             sport={data.strapiTour.sport}
             fitness={data.strapiTour.fitness}
+            // ? experience={data.strapiTour.experience}
             price={data.strapiTour.price}
             time={time}
           />

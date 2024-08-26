@@ -10,6 +10,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
+import { StaticImage } from "gatsby-plugin-image";
 
 
 const RentalsPage = () => {
@@ -54,6 +55,15 @@ const RentalsPage = () => {
       }
     }
 
+    strapiRiver {
+      title
+      description {
+        data {
+          description
+        }
+      }
+    }
+
   }
 `)
 
@@ -71,9 +81,22 @@ const RentalsPage = () => {
             <Markdown className="react-markdown">
               {data.strapiRental.text.data.text}
             </Markdown>
-            <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p>
-            {/* // TODO should this be a dropdown? */}
             <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
+            {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
+            {/* // TODO should this be a dropdown? */}
+
+            <hr />
+
+            <h2>{data.strapiRiver.title}</h2>
+
+            <Markdown
+              className="react-markdown"
+            >
+              {data.strapiRiver.description.data.description}
+            </Markdown>
+
+
+
             <hr />
 
             <BookNow />
@@ -84,6 +107,21 @@ const RentalsPage = () => {
         <div>
           <div className="condor">
             <Composition />
+            <hr />
+            <StaticImage
+              src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/rentals/river/451012595_18446794813053197_8261143790293663408_n.jpg"
+              alt="Truckee River inflatable kayak"
+            />
+            <hr />
+            <StaticImage
+              src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/rentals/river/451083622_18446794804053197_5941224684421744224_n.jpg"
+              alt="Truckee River inflatable kayak"
+            />
+            <hr />
+            <StaticImage
+              src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/rentals/river/86286_02_Orange_na_Left_060923_1000x1000.jpg"
+              alt="Truckee River inflatable tube"
+            />
           </div>
         </div>
 
