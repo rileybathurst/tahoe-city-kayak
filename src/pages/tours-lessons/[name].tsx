@@ -1,12 +1,40 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
 function TourCatchAll({ params }) {
 
   // console.log(params);
+  const data = useStaticQuery(graphql`
+    query TourCatchAllQuery {
+      allStrapiTour(filter: {
+    locale: {slug: {eq: "tahoe-city"}}
+  },
+  sort: {featured: ASC},
+  ){
+        nodes {
+          ...tourCardFragment
+        }
+      }
+
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        peek_tours
+      }
+
+      allStrapiSunsetTourTime(sort: {startDate: ASC}) {
+        nodes {
+          id
+          endDate
+          endTime
+          startDate
+          startTime
+        }
+      }
+    }
+  `)
 
   return (
     <>
@@ -18,12 +46,25 @@ function TourCatchAll({ params }) {
         {/* // TODO: this should be a component */}
         <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
         <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link></p>
-
-        {/* // TODO: this is a broken tour page add a set of tours it should be with cards */}
       </main>
+
+      <section className="deck">
+        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) =>
+          <PaddleTicket
+            key={tour.id}
+            {...tour}
+            tour_page='tours-lessons'
+            peek_tours_fall_back={data.strapiLocale.peek_tours}
+            allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
+          />
+        )}
+      </section>
+
       <Footer />
     </>
   )
 }
 
 export default TourCatchAll
+
+// TODO: SEO

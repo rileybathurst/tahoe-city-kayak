@@ -169,11 +169,11 @@ const TourView = ({ data }: TourViewTypes) => {
     timeframe: data.strapiTour.timeframe,
     slug: data.strapiTour.slug,
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
-    allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime
   });
 
-  console.log(time);
-
+  // console.log(time);
+  console.log('🐮');
+  console.log(data.allStrapiSunsetTourTime);
 
   // TODO: add the moonlight tour times to paddle just quick working here
   type MoonlightTourDateTime = {
@@ -278,6 +278,7 @@ const TourView = ({ data }: TourViewTypes) => {
             {...tour}
             tour_page='tours-lessons'
             peek_tours_fall_back={data.strapiLocale.peek_tours}
+            allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         )}
       </section>

@@ -5,6 +5,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
+// TODO: move to paddletime
 import Time from "../../components/time";
 
 function Compare(props) {

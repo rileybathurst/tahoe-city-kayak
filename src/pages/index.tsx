@@ -19,7 +19,6 @@ import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 import Card from "../components/card";
 import Experience from "../content/experience";
-import Ticket from "../components/ticket";
 
 const IndexPage = () => {
 
@@ -42,6 +41,16 @@ const IndexPage = () => {
         ) {
         nodes {
           ...tourCard
+        }
+      }
+
+      allStrapiSunsetTourTime(sort: {startDate: ASC}) {
+        nodes {
+          id
+          endDate
+          endTime
+          startDate
+          startTime
         }
       }
 
@@ -187,6 +196,7 @@ const IndexPage = () => {
             {...tour}
             tour_page='tours-lessons'
             peek_tours_fall_back={data.strapiLocale.peek_tours}
+            allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         ))}
       </div>

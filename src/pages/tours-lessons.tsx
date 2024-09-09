@@ -56,6 +56,16 @@ const ToursLessonsPage = () => {
           peek_tours
         }
 
+        allStrapiSunsetTourTime(sort: {startDate: ASC}) {
+          nodes {
+            id
+            endDate
+            endTime
+            startDate
+            startTime
+          }
+        }
+
       }
     `)
 
@@ -63,6 +73,9 @@ const ToursLessonsPage = () => {
     query.kayak,
     query.paddleBoard,
   ]
+
+  console.log(`check its here ${query.allStrapiSunsetTourTime}`)
+  console.log(query.allStrapiSunsetTourTime)
 
   return (
     <>
@@ -102,6 +115,7 @@ const ToursLessonsPage = () => {
                 {...tour}
                 tour_page='tours-lessons'
                 peek_tours_fall_back={query.strapiLocale.peek_tours}
+                allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
               />
             ))}
           </div>

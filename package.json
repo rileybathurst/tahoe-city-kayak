@@ -20,7 +20,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.0.14",
     "@fontsource/barlow-condensed": "^5.0.14",
-    "@rileybathurst/paddle": "^0.0.89",
+    "@rileybathurst/paddle": "^0.0.95",
     "@sentry/cli": "^2.33.1",
     "@sentry/gatsby": "^8.26.0",
     "gatsby": "^5.13.7",
