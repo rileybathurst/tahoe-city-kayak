@@ -5,7 +5,7 @@
 /* this is always a Link */
 .card,
 .ticket {
-  background-color: var(--sand);
+  background-color: var(--sand-100);
   box-shadow: var(--penumbra);
 
   @media (prefers-color-scheme: dark) {

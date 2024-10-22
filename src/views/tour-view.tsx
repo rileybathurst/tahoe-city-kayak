@@ -17,6 +17,7 @@ import BookNow from "../components/peek/book-now";
 
 interface TourViewTypes {
   data: {
+    allStrapiMoonlightTourDateTime: { nodes: { id: Key; date: string; start: string; finish: string; }[]; };
     strapiTour: {
       id: React.Key;
       name: string;
@@ -169,11 +170,11 @@ const TourView = ({ data }: TourViewTypes) => {
     timeframe: data.strapiTour.timeframe,
     slug: data.strapiTour.slug,
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
+    allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime,
   });
 
   // console.log(time);
-  console.log('🐮');
-  console.log(data.allStrapiSunsetTourTime);
+  // console.log(data.allStrapiSunsetTourTime);
 
   // TODO: add the moonlight tour times to paddle just quick working here
   type MoonlightTourDateTime = {

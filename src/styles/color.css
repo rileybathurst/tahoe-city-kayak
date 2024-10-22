@@ -4,8 +4,8 @@
 
 footer,
 .sand_backed--wide {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
+  background-color: var(--sand-100);
+  box-shadow: 0 0 0 100vmax var(--sand-100);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -58,8 +58,8 @@ footer {
 
 /* TODO: rename this is only part of home */
 .home {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
+  background-color: var(--sand-100);
+  box-shadow: 0 0 0 100vmax var(--sand-100);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -82,8 +82,8 @@ footer {
 
 .blocked {
   padding-block-start: var(--elbrus);
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
+  background-color: var(--sand-100);
+  box-shadow: 0 0 0 100vmax var(--sand-100);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -102,8 +102,8 @@ footer {
 
 /* this isnt right as if a section is empty it still counts */
 .series section:nth-child(odd, :has(p)) {
-  background-color: var(--sand);
-  box-shadow: 0 0 0 100vmax var(--sand);
+  background-color: var(--sand-100);
+  box-shadow: 0 0 0 100vmax var(--sand-100);
   clip-path: inset(0 -100vmax);
   padding-block: var(--elbrus);
   margin-block-end: var(--elbrus);
