@@ -64,6 +64,13 @@ const RentalsPage = () => {
       }
     }
 
+    strapiLocale(slug: {eq: "tahoe-city"}) {
+      peek_tours
+      season_start
+      season_end
+      phone
+    }
+
   }
 `)
 
@@ -75,8 +82,11 @@ const RentalsPage = () => {
           <div className="condor">
             <h1>Rentals</h1>
             <PaddleLocationDeck
-              {...data.allStrapiLocation}
               background={false}
+              season_start={data.strapiLocale.season_start}
+              season_end={data.strapiLocale.season_end}
+              phone={data.strapiLocale.phone}
+              {...data.allStrapiLocation}
             />
             <Markdown className="react-markdown">
               {data.strapiRental.text.data.text}

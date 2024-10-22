@@ -31,7 +31,7 @@ function Badges({ inflatable, demo, discount }: BadgeTypes) {
   if (discount) {
     return (
       <div className="badge">
-        <h5 className="capitalize mullen">{discount}% off</h5>
+        <h5 className="capitalize ruby">{discount}% off</h5>
       </div>
     )
   }

@@ -3,11 +3,11 @@
 /*------------------------------------*/
 
 a {
-  color: var(--mullen-100);
+  color: var(--brilliance);
 }
 
 a:where(:hover, :focus) {
-  color: var(--mullen-200);
+  /* color: var(--ruby-200); */
 }
 
 .link__subtle-svg svg {
@@ -15,7 +15,7 @@ a:where(:hover, :focus) {
 }
 
 .link__subtle-svg svg:where(:hover, :focus) {
-  fill: var(--mullen-100);
+  fill: var(--ruby-100);
 }
 
 /*------------------------------------*/
@@ -26,9 +26,9 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--mullen-100);
-    background-color: var(--mullen-300);
-    border: 1px solid var(--mullen-300);
+    color: var(--ruby-100);
+    background-color: var(--ruby-300);
+    border: 1px solid var(--ruby-300);
   }
 }
 
@@ -42,14 +42,14 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--mullen-100);
-    background-color: var(--mullen-100);
-    border: 1px solid var(--mullen-300);
+    color: var(--ruby-100);
+    background-color: var(--ruby-100);
+    border: 1px solid var(--ruby-300);
   }
 }
 
 a svg {
-  fill: var(--mullen-100);
+  fill: var(--ruby-100);
 }
 
 /* * resets the paddle color */
@@ -58,7 +58,7 @@ a svg.instagram {
 }
 
 a svg:where(:hover, :focus) {
-  fill: var(--mullen-300);
+  fill: var(--ruby-300);
 }
 
 /*------------------*/
@@ -73,7 +73,7 @@ footer {
     border-color: var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--ink-300);
+      background-color: var(--navy-300);
       border-color: black;
     }
   }
@@ -83,7 +83,7 @@ footer {
     box-shadow: var(--umbra);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--ink-300);
+      background-color: var(--navy-300);
       border-color: black;
     }
   }
@@ -99,6 +99,11 @@ footer {
   }
 }
 
+/* TODO: this should be moved to the wrapper */
 .location:hover {
-  color: var(--mullen-200);
+  color: var(--ruby-200);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--brilliance);
+  }
 }

@@ -10,15 +10,15 @@
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 
   .card {
     background-color: whitesmoke;
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--ink-300);
+      background-color: var(--navy-300);
     }
   }
 

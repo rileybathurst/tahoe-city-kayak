@@ -5,32 +5,38 @@
 button,
 .button,
 .book-now {
-  color: var(--mullen-100);
-  border: 1px solid var(--mullen-100);
+  color: var(--ruby-100);
+  border: 1px solid var(--ruby-100);
   box-shadow: var(--penumbra);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ruby-100);
+    border-color: var(--ruby-200);
+    color: var(--brilliance);
+  }
 }
 
 button:hover,
 .button:hover {
-  color: var(--mullen-200);
-  border-color: var(--mullen-200);
+  color: var(--ruby-200);
+  border-color: var(--ruby-200);
 
   /* TODO this doesnt do enough in dark to see the change */
   @media (prefers-color-scheme: dark) {
-    color: var(--mullen-100);
+    color: var(--ruby-200);
   }
 }
 
 .button__active,
 button:active,
-.button__mullen:active,
-.button__mullen--active {
-  border-color: var(--mullen-300);
-  color: var(--mullen-300);
+.button__ruby:active,
+.button__ruby--active {
+  border-color: var(--ruby-300);
+  color: var(--ruby-300);
   box-shadow: var(--umbra);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen-300);
+    background-color: var(--ruby-300);
     color: var(--black-metal);
   }
 }
@@ -40,22 +46,22 @@ button:active,
 /*------------------*/
 
 .book-now {
-  background-color: var(--mullen-100);
+  background-color: var(--ruby-100);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen-200);
+    background-color: var(--ruby-200);
     color: var(--kingly-cloud);
   }
 }
 
 .book-now:hover,
 .book-now:active {
-  background-color: var(--mullen-200);
+  background-color: var(--ruby-200);
   color: var(--kingly-cloud);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen-100);
+    background-color: var(--ruby-100);
     color: var(--brilliance);
   }
 }

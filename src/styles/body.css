@@ -1,9 +1,9 @@
 body {
-  background-color: whitesmoke;
-  color: var(--black-metal);
+  background-color: var(--brilliance);
+  color: var(--navy-300);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink-300);
-    color: var(--kingly-cloud);
+    background-color: var(--navy-300);
+    color: var(--brilliance);
   }
 }

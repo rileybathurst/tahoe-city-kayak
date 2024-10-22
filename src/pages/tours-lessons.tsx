@@ -66,6 +66,13 @@ const ToursLessonsPage = () => {
           }
         }
 
+        strapiLocale(slug: {eq: "tahoe-city"}) {
+          peek_tours
+          season_start
+          season_end
+          phone
+        }
+
       }
     `)
 
@@ -74,8 +81,8 @@ const ToursLessonsPage = () => {
     query.paddleBoard,
   ]
 
-  console.log(`check its here ${query.allStrapiSunsetTourTime}`)
-  console.log(query.allStrapiSunsetTourTime)
+  // console.log(`check its here ${query.allStrapiSunsetTourTime}`)
+  // console.log(query.allStrapiSunsetTourTime)
 
   return (
     <>
@@ -94,8 +101,11 @@ const ToursLessonsPage = () => {
 
         </div>
         <PaddleLocationDeck
-          {...query.allStrapiLocation}
           background={false}
+          season_start={query.strapiLocale.season_start}
+          season_end={query.strapiLocale.season_end}
+          phone={query.strapiLocale.phone}
+          {...query.allStrapiLocation}
         />
       </main>
 

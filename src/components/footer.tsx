@@ -29,6 +29,9 @@ const Footer = () => {
         facebook
         tripadvisor
         email
+        season_start
+        season_end
+        phone
       }
 
       allStrapiLocale(filter: {slug: {ne: "tahoe-city"}}) {
@@ -107,8 +110,11 @@ const Footer = () => {
         <hr />
 
         <PaddleLocationDeck
-          {...data.allStrapiLocation}
           background={false}
+          season_start={data.strapiLocale.season_start}
+          season_end={data.strapiLocale.season_end}
+          phone={data.strapiLocale.phone}
+          {...data.allStrapiLocation}
         />
 
       </div>

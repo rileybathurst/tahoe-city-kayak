@@ -62,6 +62,9 @@ const IndexPage = () => {
 
       strapiLocale(slug: {eq: "tahoe-city"}) {
         peek_tours
+        season_start
+        season_end
+        phone
       }
     }
   `)
@@ -97,16 +100,16 @@ const IndexPage = () => {
       setList([...list, ...nextResults])
       setLoadMore(false)
     }
-  }, [loadMore, hasMore])
+  }, [loadMore, hasMore, list, allTours.length, allTours.slice])
 
   //Check if there is more
   useEffect(() => {
     const isMore = list.length < allTours.length
     setHasMore(isMore)
-  }, [list])
+  }, [list, allTours.length])
 
   // Retail
-  let allRetail = data.allStrapiRetail.nodes
+  const allRetail = data.allStrapiRetail.nodes
   const [inventory, setInventory] = useState([...allRetail.slice(0, 2)])
   const [loadExtra, setLoadExtra] = useState(false)
   const [hasExtra, setHasExtra] = useState(allRetail.length > 2)
@@ -124,13 +127,13 @@ const IndexPage = () => {
       setInventory([...inventory, ...nextOutcome])
       setLoadExtra(false)
     }
-  }, [loadExtra, hasExtra])
+  }, [loadExtra, hasExtra, inventory, allRetail.length, allRetail.slice])
 
   //Check if there is more
   useEffect(() => {
     const isExtra = inventory.length < allRetail.length
     setHasExtra(isExtra)
-  }, [inventory])
+  }, [inventory, allRetail.length])
 
   // console.log(data.allStrapiLocation);
 
@@ -149,8 +152,11 @@ const IndexPage = () => {
           </div>
 
           <PaddleLocationDeck
-            {...data.allStrapiLocation}
             background={false}
+            season_start={data.strapiLocale.season_start}
+            season_end={data.strapiLocale.season_end}
+            phone={data.strapiLocale.phone}
+            {...data.allStrapiLocation}
           />
 
           <div className="button__double">
@@ -217,7 +223,10 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="albatross wrap">
+      <section
+        id="retail"
+        className="albatross wrap kilimanjaro-block-end"
+      >
         <div>
 
           <div className="pelican">
@@ -261,7 +270,12 @@ const IndexPage = () => {
                 {...retail} />
             ))}
             {hasExtra ? (
-              <button onClick={handleLoadExtra}>VIEW MORE PRODUCTS</button>
+              <button
+                onClick={handleLoadExtra}
+                type="button"
+              >
+                VIEW MORE PRODUCTS
+              </button>
             ) : (
               <p>Thats all the products</p>
             )}

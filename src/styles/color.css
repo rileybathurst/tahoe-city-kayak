@@ -9,8 +9,8 @@ footer,
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 
   hr {
@@ -23,13 +23,18 @@ footer,
 }
 
 .top-bar {
-  background: var(--brilliance);
+  background-color: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
+  }
 }
 
 .top-bar.closed {
-  background: var(--mullen-100);
-  box-shadow: 0 0 0 100vmax var(--mullen-100);
+  background-color: var(--ruby-100);
+  box-shadow: 0 0 0 100vmax var(--ruby-100);
   color: var(--brilliance);
 }
 
@@ -51,24 +56,17 @@ footer {
 /* #SINGLE PAGES */
 /*------------------*/
 
+/* TODO: rename this is only part of home */
 .home {
   background-color: var(--sand);
   box-shadow: 0 0 0 100vmax var(--sand);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink-200);
-    box-shadow: 0 0 0 100vmax var(--ink-200);
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 }
-
-/* .unit {
-  color: var(--industrial-revolution);
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--cold-grey);
-  }
-} */
 
 /*------------------*/
 /* #TYPOGRAPHY */
@@ -89,8 +87,8 @@ footer {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 }
 
@@ -111,8 +109,8 @@ footer {
   margin-block-end: var(--elbrus);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 }
 
@@ -129,11 +127,11 @@ footer {
 
 .location {
   /* css funtions are goning to help with this near a button */
-  background-color: var(--mullen-100);
+  background-color: var(--ruby-100);
   color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--mullen-300);
+    background-color: var(--ruby-300);
   }
 
   svg {
@@ -149,18 +147,33 @@ footer {
 
 .location.false {
   background-color: transparent;
-  border-block-end: 1px solid var(--tin-soldier);
+  color: var(--ruby-100);
 
-  color: var(--mullen-100);
+  @media (prefers-color-scheme: dark) {
+    color: var(--brilliance);
+  }
+
   svg {
-    fill: var(--mullen-100);
+    fill: var(--ruby-100);
   }
 }
 
-.location.false:hover {
-  background-color: var(--sand-100);
+.location-wrapper:has(.location.false) {
+  border-block-end: 1px solid var(--tin-soldier);
 }
 
-.home .location.false:hover {
+.location-wrapper:has(.location.false):hover {
+  background-color: var(--sand-100);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-200);
+  }
+}
+
+.home .location-wrapper:has(.location.false):hover {
   background-color: var(--sand-200);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--navy-100);
+  }
 }

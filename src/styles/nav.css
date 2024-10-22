@@ -18,7 +18,7 @@ header {
   position: relative;
   width: 100%;
   margin-inline: auto;
-  background-color: var(--mullen-100);
+  background-color: var(--ruby-100);
   color: whitesmoke;
   box-shadow: var(--penumbra);
 }

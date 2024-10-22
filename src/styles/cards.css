@@ -9,8 +9,8 @@
   box-shadow: var(--penumbra);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink-200);
-    border-color: var(--ink-100);
+    background-color: var(--navy-200);
+    border-color: var(--navy-300);
   }
 
   .card__span {
@@ -40,12 +40,12 @@
     }
 
     button {
-      background-color: var(--mullen-100);
+      background-color: var(--ruby-100);
       color: var(--brilliance);
     }
 
     button:where(:hover, :focus) {
-      background-color: var(--mullen-200);
+      background-color: var(--ruby-200);
       color: var(--kingly-cloud);
     }
   }
@@ -53,5 +53,10 @@
   .badge {
     background-color: var(--brilliance);
     box-shadow: var(--penumbra);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--black-metal);
+      color: var(--brilliance);
+    }
   }
 }

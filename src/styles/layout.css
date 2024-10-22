@@ -108,8 +108,8 @@ header {
   margin-inline: auto;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 }
 
@@ -155,8 +155,8 @@ header {
   box-shadow: 0 0 0 100vmax var(--sand-200);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink-200);
-    box-shadow: 0 0 0 100vmax var(--ink-200);
+    background-color: var(--navy-200);
+    box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 
   > * {
@@ -170,7 +170,7 @@ header {
 
   /* needs specificity */
   a:where(:hover, :focus) {
-    background-color: var(mullen-200) !important;
+    background-color: var(ruby-200) !important;
     /* TODO: document why this needs important */
     color: var(--kingly-cloud) !important;
     /* TODO: document why this needs important */
@@ -224,6 +224,10 @@ footer {
   > * {
     flex: 1 1 5rem;
     border-block-end: 1px solid var(--kingly-cloud);
+
+    @media (prefers-color-scheme: dark) {
+      border-block-end-color: var(--navy-300);
+    }
   }
 
   .logo-link {
@@ -276,7 +280,7 @@ footer {
   }
 
   .book-now {
-    border-block-end: 1px solid var(--mullen-100);
+    border-block-end: 1px solid var(--ruby-100);
   }
 
   .footer__contact {
@@ -553,7 +557,7 @@ footer {
       background-color: var(--brilliance);
 
       @media (prefers-color-scheme: dark) {
-        background-color: var(--ink);
+        background-color: var(--navy-300);
         color: whitesmoke;
       }
     }
@@ -587,8 +591,8 @@ footer {
     clip-path: inset(0 -100vmax);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--ink);
-      box-shadow: 0 0 0 100vmax var(--ink);
+      background-color: var(--navy-300);
+      box-shadow: 0 0 0 100vmax var(--navy-300);
     }
   }
 
@@ -627,7 +631,7 @@ footer {
 /*------------------*/
 
 /* .top-bar {
-  background: var(--brilliance);
+  background-color: var(--brilliance);
   box-shadow: 0 0 0 100vmax var(--brilliance);
   clip-path: inset(0 -100vmax);
   display: flex;
@@ -642,8 +646,8 @@ footer {
   text-align: center;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background-color: var(--navy-300);
+    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 
   p {
@@ -763,7 +767,7 @@ footer {
 
   > li.current {
     font-weight: bold;
-    color: var(--mullen-100);
+    color: var(--ruby-100);
   }
 }
 
