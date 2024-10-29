@@ -20,6 +20,8 @@ export const query = graphql`
         description
       }
     }
+
+    offSeasonDetails
     
     locale {
       season_start(formatString: "MMMM DD")

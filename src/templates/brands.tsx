@@ -118,9 +118,6 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
 
       {seriesArray.length > 0 ?
         seriesArray.map(series => (
-
-
-          console.log(series),
           <>
             <section
               // key={retail.[0].series}
