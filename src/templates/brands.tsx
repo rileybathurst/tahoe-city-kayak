@@ -121,7 +121,6 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           <>
             <section
               // key={retail.[0].series}
-              // TODO: can I do a css query for empty instead
               className="passage possibly-empty"
             // id={retail.[0].series}
             >
