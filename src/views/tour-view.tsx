@@ -17,7 +17,7 @@ import BookNow from "../components/peek/book-now";
 
 interface TourViewTypes {
   data: {
-    allStrapiMoonlightTourDateTime: { nodes: { id: Key; date: string; start: string; finish: string; }[]; };
+    allStrapiMoonlightTourDateTime: { nodes: { id: React.Key; date: string; start: string; finish: string; }[]; };
     strapiTour: {
       id: React.Key;
       name: string;
@@ -97,7 +97,6 @@ export const data = graphql`
       excerpt
       price
 
-
       ogimage {
         localFile {
           childImageSharp {
@@ -109,6 +108,9 @@ export const data = graphql`
 
       locale {
         name
+        peek_tours
+        season_start
+        season_end
       }
     }
 
@@ -149,17 +151,15 @@ export const data = graphql`
     ) {
       ...locationCardFragment
 
+
       locale {
         name
       }
     }
-
-    strapiLocale(slug: {eq: "tahoe-city"}) {
-      peek_tours
-    }
-
   }
 `
+
+// TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
 
 const TourView = ({ data }: TourViewTypes) => {
 
@@ -178,6 +178,8 @@ const TourView = ({ data }: TourViewTypes) => {
 
   // TODO: add the moonlight tour times to paddle just quick working here
   type MoonlightTourDateTime = {
+    seasonStart: string;
+    seasonEnd: string;
     nodes: {
       id: string;
       date: string;
@@ -185,19 +187,57 @@ const TourView = ({ data }: TourViewTypes) => {
       finish: string;
     }[];
   }
-  function MoonlightTourDatesTimes({ nodes }: MoonlightTourDateTime) {
+  function MoonlightTourDatesTimes({ seasonStart, seasonEnd, nodes }: MoonlightTourDateTime) {
+
+    const currentDate = new Date();
+    if (currentDate > new Date(seasonEnd)) {
+
+      // console.log('its past the end of the season');
+
+      const futureTours = nodes.filter(tour => new Date(tour.date) >= currentDate);
+
+      // console.log(futureTours);
+
+      if (futureTours.length > 0) {
+        return (
+          <>
+            <h3>Next season tours</h3>
+            {futureTours.map((tour) => (
+              <p key={tour.id}>
+                {new Date(tour.date).toLocaleDateString(undefined, {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}&nbsp;-&nbsp;
+                <Time start={tour.start} finish={tour.finish} />
+              </p>
+            ))}
+          </>
+        )
+      }
+    }
+
     return (
       <div>
         <h3>Moonlight Tour Dates</h3>
         <ul>
           {nodes.map((tour) =>
             <li key={tour.id}>
-              <h4>{tour.date}<Time start={tour.start} finish={tour.finish} /></h4>
+              <h4>
+                {new Date(tour.date).toLocaleDateString(undefined, {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}&nbsp;-&nbsp;
+                <Time start={tour.start} finish={tour.finish} /></h4>
             </li>
           )}
         </ul>
       </div>
     )
+
   }
 
   return (
@@ -240,7 +280,10 @@ const TourView = ({ data }: TourViewTypes) => {
             </Markdown>
 
             {data.strapiTour.slug === "moonlight" ?
-              <MoonlightTourDatesTimes {...data.allStrapiMoonlightTourDateTime} />
+              <MoonlightTourDatesTimes
+                seasonStart={data.strapiTour.locale.season_start}
+                seasonEnd={data.strapiTour.locale.season_end}
+                {...data.allStrapiMoonlightTourDateTime} />
               : null}
           </section>
 
@@ -278,7 +321,7 @@ const TourView = ({ data }: TourViewTypes) => {
             key={tour.id}
             {...tour}
             tour_page='tours-lessons'
-            peek_tours_fall_back={data.strapiLocale.peek_tours}
+            peek_tours_fall_back={data.strapiTour.locale.peek_tours}
             allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         )}
