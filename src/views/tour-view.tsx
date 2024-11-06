@@ -204,7 +204,8 @@ const TourView = ({ data }: TourViewTypes) => {
             <h3>Next season tours</h3>
             {futureTours.map((tour) => (
               <p key={tour.id}>
-                {new Date(tour.date).toLocaleDateString(undefined, {
+                {new Date(tour.date).toLocaleDateString('en-US', {
+                  timeZone: 'UTC',
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
@@ -225,7 +226,7 @@ const TourView = ({ data }: TourViewTypes) => {
           {nodes.map((tour) =>
             <li key={tour.id}>
               <h4>
-                {new Date(tour.date).toLocaleDateString(undefined, {
+                {new Date(tour.date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
