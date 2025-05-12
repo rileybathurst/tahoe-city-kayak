@@ -167,21 +167,8 @@ const Header = () => {
             topbar
           }
         }
-      }
-
-      allStrapiWeatherDay {
-        nodes {
-          name
-          startDate
-          startTime
-          endDate
-          endTime
-          closed
-
-          condition {
-            excerpt
-          }
-        }
+        RainCheck
+        RainCheckReason
       }
     }
   `)
