@@ -4,12 +4,12 @@ import Markdown from "react-markdown";
 
 const AboutUs = () => {
 
-  const { strapiAbout } = useStaticQuery(graphql`
+  const { strapiLocale } = useStaticQuery(graphql`
     query AboutQuery {
-      strapiAbout {
-        text {
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        about {
           data {
-            text
+            about
           }
         }
       }
@@ -18,7 +18,7 @@ const AboutUs = () => {
 
   return (
     <Markdown
-      children={strapiAbout.text.data.text}
+      children={strapiLocale.about.data.about}
       className="react-markdown"
     />
   )
