@@ -49,7 +49,7 @@ a:where(:hover, :focus) {
   border: 1px solid whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--ruby-100);
+    color: var(--sand-100);
     background-color: var(--ruby-100);
     border: 1px solid var(--ruby-300);
   }
