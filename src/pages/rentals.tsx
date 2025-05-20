@@ -39,7 +39,7 @@ const RentalsPage = () => {
     allStrapiLocation(
       filter: {
         name: {in: ["On Water Rental", "Free Parking Lot"]}
-        locale: {slug: {eq: "tahoe-city"}}
+        local: {slug: {eq: "tahoe-city"}}
       }
     ) {
       nodes {
@@ -104,8 +104,6 @@ const RentalsPage = () => {
             >
               {data.strapiRiver.description.data.description}
             </Markdown>
-
-
 
             <hr />
 

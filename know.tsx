@@ -12,10 +12,11 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const KnowPage = () => {
 
-  if (typeof window !== "undefined") {
+  // ! testing off
+  /* if (typeof window !== "undefined") {
     // eslint-disable-next-line global-require
     require("smooth-scroll")('a[href*="#"]')
-  }
+  } */
 
   const { allStrapiFaq } = useStaticQuery(graphql`
     query KnowQuery {

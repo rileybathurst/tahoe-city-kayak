@@ -11,7 +11,7 @@ const TestimonialsPage = () => {
 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
     query TestimonialsQuery {
-      allStrapiTestimonial(filter: {locale: {slug: {eq: "tahoe-city"}}}) {
+      allStrapiTestimonial(filter: {local: {slug: {eq: "tahoe-city"}}}) {
       nodes {
         id
         testimonial

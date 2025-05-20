@@ -3,6 +3,7 @@ require("dotenv").config({
 });
 
 const strapiConfig = {
+  // version: 5,
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
@@ -50,6 +51,10 @@ module.exports = {
     url: "https://tahoecitykayak.com", // No trailing slash allowed!
   },
   plugins: [
+    {
+      resolve: "gatsby-source-strapi",
+      options: strapiConfig,
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
@@ -74,9 +79,19 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sharp",
       options: {
-        defaults: {
+        // what I had
+        /* defaults: {
           formats: ["auto", "webp", "jpg"], // adds jpg even if starts as webp
-        },
+        }, */
+        // npm default
+        defaults: {},
+        failOn: "warning",
+        // gatsby page defaults
+        /* options: {
+          useMozJpeg: false,
+          stripMetadata: true,
+          defaultQuality: 75,
+        }, */
       },
     },
     "gatsby-transformer-sharp",

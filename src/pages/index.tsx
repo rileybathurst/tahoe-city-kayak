@@ -26,7 +26,7 @@ const IndexPage = () => {
     query IndexQuery {
       allStrapiLocation(
         filter: {
-          locale: {slug: {eq: "tahoe-city"}}
+          local: {slug: {eq: "tahoe-city"}}
         },
         sort: {order: ASC}
       ) {
@@ -37,7 +37,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {locale: {slug: {eq: "tahoe-city"}}}
+        filter: {local: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
           ...tourCard

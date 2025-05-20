@@ -23,7 +23,7 @@ export const query = graphql`
 
     offSeasonDetails
     
-    locale {
+    local {
       season_start(formatString: "MMMM DD")
       season_end(formatString: "MMMM")
     }

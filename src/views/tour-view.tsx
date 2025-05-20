@@ -57,7 +57,7 @@ interface TourViewTypes {
       }[];
     }
 
-    locale: {
+    local: {
       name: string;
     }
     allStrapiTour: {
@@ -76,7 +76,7 @@ export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
-      locale: {slug: {eq: "tahoe-city"}}
+      local: {slug: {eq: "tahoe-city"}}
       ) {
       id
       name
@@ -106,7 +106,7 @@ export const data = graphql`
         alternativeText
       }
 
-      locale {
+      local {
         name
         peek_tours
         season_start
@@ -136,7 +136,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          locale: {slug: {eq: "tahoe-city"}}
+          local: {slug: {eq: "tahoe-city"}}
           },
         sort: {featured: ASC},
       ) {
@@ -146,13 +146,13 @@ export const data = graphql`
     }
 
     strapiLocation(
-      locale: {slug: {eq: "tahoe-city"}}
+      local: {slug: {eq: "tahoe-city"}}
       name: {eq: "On Water Rental"}
     ) {
       ...locationCardFragment
 
 
-      locale {
+      local {
         name
       }
     }
@@ -282,8 +282,8 @@ const TourView = ({ data }: TourViewTypes) => {
 
             {data.strapiTour.slug === "moonlight" ?
               <MoonlightTourDatesTimes
-                seasonStart={data.strapiTour.locale.season_start}
-                seasonEnd={data.strapiTour.locale.season_end}
+                seasonStart={data.strapiTour.local.season_start}
+                seasonEnd={data.strapiTour.local.season_end}
                 {...data.allStrapiMoonlightTourDateTime} />
               : null}
           </section>
@@ -322,7 +322,7 @@ const TourView = ({ data }: TourViewTypes) => {
             key={tour.id}
             {...tour}
             tour_page='tours-lessons'
-            peek_tours_fall_back={data.strapiTour.locale.peek_tours}
+            peek_tours_fall_back={data.strapiTour.local.peek_tours}
             allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         )}

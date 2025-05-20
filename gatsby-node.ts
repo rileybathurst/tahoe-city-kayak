@@ -186,7 +186,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
 
   const getStrapiTour = await graphql(`
     query {
-      allStrapiTour(filter: { locale: { slug: { eq: "tahoe-city" } } }) {
+      allStrapiTour(filter: { local: { slug: { eq: "tahoe-city" } } }) {
         edges {
           node {
             slug

@@ -2,7 +2,7 @@
 // ? Object.groupBy(array, ({ series }) => series);
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
 
-import React from "react"
+import * as React from "react"
 import { Link, graphql, Script, useStaticQuery } from 'gatsby'
 
 // Paddle
@@ -224,7 +224,7 @@ export const query = graphql`
     }
 
     strapiLocation: strapiLocation(
-      locale: {slug: {eq: "tahoe-city"}}
+      local: {slug: {eq: "tahoe-city"}}
       name: {eq: "Retail Location"}
     ) {
       ...locationCardFragment

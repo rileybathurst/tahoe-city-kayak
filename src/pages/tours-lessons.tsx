@@ -18,7 +18,7 @@ const ToursLessonsPage = () => {
       kayak: allStrapiTour(
         filter: {
           sport: {eq: "kayak"},
-          locale: {slug: {eq: "tahoe-city"}}
+          local: {slug: {eq: "tahoe-city"}}
         }
         sort: {featured: ASC}
       )
@@ -32,7 +32,7 @@ const ToursLessonsPage = () => {
         (
           filter: { 
             sport: { eq: "sup" },
-            locale: { slug: {eq: "tahoe-city"}}
+            local: { slug: {eq: "tahoe-city"}}
           }
           sort: {featured: ASC})
         {
@@ -44,7 +44,7 @@ const ToursLessonsPage = () => {
         allStrapiLocation: allStrapiLocation(
           filter: {
             name: {in: ["On Water Rental", "Free Parking Lot"]}
-            locale: {slug: {eq: "tahoe-city"}}
+            local: {slug: {eq: "tahoe-city"}}
           }
         ) {
           nodes {

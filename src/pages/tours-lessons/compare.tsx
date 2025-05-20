@@ -45,7 +45,7 @@ function Compare(props) {
         setStart1(element.start);
         setFinish1(element.finish);
         setFitness1(element.fitness);
-        setLocation1(element.locale.name);
+        setLocation1(element.local.name);
         setExcerpt1(element.excerpt);
         setMinimum1(element.minimum);
         setPrice1(element.price);
@@ -64,7 +64,7 @@ function Compare(props) {
         setStart2(element.start);
         setFinish2(element.finish);
         setFitness2(element.fitness);
-        setLocation2(element.locale.name);
+        setLocation2(element.local.name);
         setExcerpt2(element.excerpt);
         setMinimum2(element.minimum);
         setPrice2(element.price);
@@ -229,7 +229,7 @@ const ComparePage = () => {
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
-        filter: {locale: {slug: {eq: "tahoe-city"}}}
+        filter: {local: {slug: {eq: "tahoe-city"}}}
         sort: {featured: ASC}
       ) {
         nodes {
@@ -246,7 +246,7 @@ const ComparePage = () => {
           excerpt
           duration
 
-          locale {
+          local {
             name
           }
         }

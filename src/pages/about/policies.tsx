@@ -1,6 +1,6 @@
 // TODO: move to strapi
 
-import React from "react";
+import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../../components/seo";
 
@@ -63,7 +63,6 @@ const PoliciesPage = () => {
         <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
         <Breadcrumb>Store Policies</Breadcrumb>
       </Breadcrumbs>
-
 
       <Footer />
     </>

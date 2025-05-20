@@ -11,7 +11,7 @@ function TourCatchAll({ params }) {
   const data = useStaticQuery(graphql`
     query TourCatchAllQuery {
       allStrapiTour(filter: {
-    locale: {slug: {eq: "tahoe-city"}}
+    local: {slug: {eq: "tahoe-city"}}
   },
   sort: {featured: ASC},
   ){

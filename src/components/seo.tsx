@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
 import { PaddleSEO } from "@rileybathurst/paddle";
@@ -46,7 +46,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
       # location
       strapiLocation(
           name: {eq: "Retail Location"},
-          locale: {slug: {eq: "tahoe-city"}}
+          local: {slug: {eq: "tahoe-city"}}
         ) {
           streetAddress
           addressLocality
@@ -58,7 +58,7 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
       allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental"]},
-          locale: {slug: {eq: "tahoe-city"}}
+          local: {slug: {eq: "tahoe-city"}}
         }
       ) {
         nodes {

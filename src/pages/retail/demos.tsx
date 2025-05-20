@@ -132,7 +132,7 @@ const DemosPage = () => {
       }
 
       strapiLocation: strapiLocation(
-      locale: {slug: {eq: "tahoe-city"}}
+      local: {slug: {eq: "tahoe-city"}}
       name: {eq: "Retail Location"}
       ) {
         ...locationCardFragment
@@ -180,9 +180,7 @@ const DemosPage = () => {
         <main>
 
           <h1>Demos</h1>
-          <Markdown
-            className="react-markdown"
-          >
+          <Markdown className="react-markdown">
             {query.strapiDemo.text.data.text}
           </Markdown>
           <Phone />

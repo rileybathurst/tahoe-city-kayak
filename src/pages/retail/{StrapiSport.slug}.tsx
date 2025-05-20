@@ -31,7 +31,7 @@ export const strapiSport = graphql`
   }
 
   strapiLocation(
-    locale: {slug: {eq: "tahoe-city"}}
+    local: {slug: {eq: "tahoe-city"}}
     name: {eq: "Retail Location"}
   ) {
     ...locationCardFragment
