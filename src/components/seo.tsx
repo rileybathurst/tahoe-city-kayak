@@ -79,10 +79,10 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
     }
   `);
 
-  console.log('tck-seo.tsx');
-  console.log(data.strapiLocale.topbar.data.topbar);
+  // console.log('tck-seo.tsx');
+  // console.log(data.strapiLocale.topbar.data.topbar);
 
-  console.log(title)
+  // console.log(title)
 
   return (
     <PaddleSEO

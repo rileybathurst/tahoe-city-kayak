@@ -53,10 +53,10 @@ const RetailPage = () => {
           <h3><Link to="/retail/demos">Demos</Link></h3>
         </div>
 
-        <PaddleLocationCard
+        {/* // ! testing off <PaddleLocationCard
           {...query.strapiLocation}
           background={false}
-        />
+        /> */}
       </main>
 
       <article className="pelican wrap">

@@ -100,7 +100,7 @@ const RentalsPage = () => {
             <h2>{data.strapiRiver.title}</h2>
 
             <Markdown
-              className="react-markdown"
+            // className="react-markdown"
             >
               {data.strapiRiver.description.data.description}
             </Markdown>

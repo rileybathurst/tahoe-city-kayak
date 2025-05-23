@@ -77,10 +77,10 @@ const RetailSportPage = ({ data }) => {
           {data.strapiShop.text.data.text}
         </Markdown>
 
-        <PaddleLocationCard
+        {/* // ! testing off <PaddleLocationCard
           {...data.strapiLocation}
           background={false}
-        />
+        /> */}
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 

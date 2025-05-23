@@ -59,7 +59,7 @@ type BrandsViewTypes = {
     strapiLocation: {
       opening_time: string;
       closing_time: string;
-      streetAddress: string;
+      streetAddress?: string;
       addressLocality: string;
       addressRegion: string;
       postalCode: string;
@@ -109,10 +109,10 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
         </section>
 
         {/* // TODO: hover the whole card and give it a shadow when we do */}
-        <PaddleLocationCard
+        {/* // ! testing off <PaddleLocationCard
           {...data.strapiLocation}
           background={false}
-        />
+        /> */}
 
       </main>
 

@@ -140,7 +140,7 @@ const TruckeeRiverPage = () => {
       <main>
         <h1>{strapiRiver.title}</h1>
         <ReactMarkdown
-          className="react-markdown"
+        // className="react-markdown"
         >
           {strapiRiver.description.data.description}
         </ReactMarkdown>

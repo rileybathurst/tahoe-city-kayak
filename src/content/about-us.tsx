@@ -19,7 +19,7 @@ const AboutUs = () => {
   return (
     <Markdown
       children={strapiLocale.about.data.about}
-      className="react-markdown"
+    // className="react-markdown"
     />
   )
 }

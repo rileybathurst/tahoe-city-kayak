@@ -20,7 +20,7 @@ const Experience = () => {
   return (
     <Markdown
       children={strapiExperience.text.data.text}
-      className="react-markdown"
+    // className="react-markdown"
     />
   )
 }

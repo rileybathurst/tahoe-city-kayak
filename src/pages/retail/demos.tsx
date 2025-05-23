@@ -204,10 +204,10 @@ const DemosPage = () => {
 
         </main >
 
-        <PaddleLocationCard
+        {/* // ! testing off <PaddleLocationCard
           {...query.strapiLocation}
           background={false}
-        />
+        /> */}
 
       </div >
 

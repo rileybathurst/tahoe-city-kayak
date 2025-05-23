@@ -20,7 +20,7 @@ const Shop = () => {
   return (
     <Markdown
       children={strapiShop.text.data.text}
-      className="react-markdown"
+    // className="react-markdown"
     />
   )
 }

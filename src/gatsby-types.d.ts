@@ -1345,9 +1345,9 @@ type Query = {
   readonly allStrapiRentalAddon: STRAPI_RENTAL_ADDONConnection;
   readonly allStrapiRentalRate: STRAPI_RENTAL_RATEConnection;
   readonly allStrapiRentalTextTextnode: STRAPI_RENTAL_TEXT_TEXTNODEConnection;
-  readonly allStrapiRetail: STRAPI_RETAILConnection;
-  readonly allStrapiRetailDescriptionTextnode: STRAPI_RETAIL_DESCRIPTION_TEXTNODEConnection;
-  readonly allStrapiRetailFeaturesTextnode: STRAPI_RETAIL_FEATURES_TEXTNODEConnection;
+  readonly allStrapiRetails: STRAPI_RETAILConnection;
+  readonly allStrapiRetailsDescriptionTextnode: STRAPI_RETAIL_DESCRIPTION_TEXTNODEConnection;
+  readonly allStrapiRetailsFeaturesTextnode: STRAPI_RETAIL_FEATURES_TEXTNODEConnection;
   readonly allStrapiShop: STRAPI_SHOPConnection;
   readonly allStrapiShopTextTextnode: STRAPI_SHOP_TEXT_TEXTNODEConnection;
   readonly allStrapiSport: STRAPI_SPORTConnection;
@@ -1685,7 +1685,7 @@ type Query_allStrapiRentalTextTextnodeArgs = {
 };
 
 
-type Query_allStrapiRetailArgs = {
+type Query_allStrapiRetailsArgs = {
   filter: InputMaybe<STRAPI_RETAILFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
@@ -1693,7 +1693,7 @@ type Query_allStrapiRetailArgs = {
 };
 
 
-type Query_allStrapiRetailDescriptionTextnodeArgs = {
+type Query_allStrapiRetailsDescriptionTextnodeArgs = {
   filter: InputMaybe<STRAPI_RETAIL_DESCRIPTION_TEXTNODEFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
@@ -1701,7 +1701,7 @@ type Query_allStrapiRetailDescriptionTextnodeArgs = {
 };
 
 
-type Query_allStrapiRetailFeaturesTextnodeArgs = {
+type Query_allStrapiRetailsFeaturesTextnodeArgs = {
   filter: InputMaybe<STRAPI_RETAIL_FEATURES_TEXTNODEFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
@@ -10045,7 +10045,7 @@ type ExperienceQueryQuery = { readonly strapiExperience: { readonly text: { read
 type FeatureLIstQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type FeatureLIstQueryQuery = { readonly allStrapiAttribute: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly id: string }> }, readonly allStrapiRetail: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly inflatable: boolean | null, readonly crew: string | null, readonly hullweight: number | null, readonly sport: { readonly slug: string | null } | null }> } };
+type FeatureLIstQueryQuery = { readonly allStrapiAttribute: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly id: string }> }, readonly allStrapiRetails: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly inflatable: boolean | null, readonly crew: string | null, readonly hullweight: number | null, readonly sport: { readonly slug: string | null } | null }> } };
 
 type FooterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10086,7 +10086,7 @@ type HeaderQueryQuery = { readonly strapiLocale: { readonly name: string | null,
 type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexQueryQuery = { readonly allStrapiLocation: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly link: string | null, readonly svg: string | null, readonly opening_time: string | null, readonly closing_time: string | null, readonly address: { readonly data: { readonly address: string | null } | null } | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly locale: { readonly season_start: string | null, readonly season_end: string | null } | null }> }, readonly allStrapiTour: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly price: number | null, readonly peek: string | null, readonly excerpt: string | null, readonly start: string | null, readonly finish: string | null, readonly duration: number | null, readonly timeframe: string | null, readonly fitness: string | null, readonly sport: string | null, readonly ogimage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiRetail: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly length: number | null, readonly width: number | null, readonly inflatable: boolean | null, readonly hullweight: number | null, readonly capacity: number | null, readonly demo: boolean | null, readonly sport: { readonly slug: string | null } | null, readonly brand: { readonly slug: string | null } | null, readonly cutout: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiLocale: { readonly peek_tours: string | null } | null };
+type IndexQueryQuery = { readonly allStrapiLocation: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly link: string | null, readonly svg: string | null, readonly opening_time: string | null, readonly closing_time: string | null, readonly address: { readonly data: { readonly address: string | null } | null } | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly locale: { readonly season_start: string | null, readonly season_end: string | null } | null }> }, readonly allStrapiTour: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly price: number | null, readonly peek: string | null, readonly excerpt: string | null, readonly start: string | null, readonly finish: string | null, readonly duration: number | null, readonly timeframe: string | null, readonly fitness: string | null, readonly sport: string | null, readonly ogimage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiRetails: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly length: number | null, readonly width: number | null, readonly inflatable: boolean | null, readonly hullweight: number | null, readonly capacity: number | null, readonly demo: boolean | null, readonly sport: { readonly slug: string | null } | null, readonly brand: { readonly slug: string | null } | null, readonly cutout: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiLocale: { readonly peek_tours: string | null } | null };
 
 type KnowQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

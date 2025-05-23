@@ -296,10 +296,10 @@ const TourView = ({ data }: TourViewTypes) => {
           // TODO: change the image on tours
           />
 
-          <PaddleLocationCard
+          {/* // ! testing off <PaddleLocationCard
             key={data.strapiLocation.id}
             {...data.strapiLocation}
-          />
+          /> */}
         </aside>
 
       </main>
