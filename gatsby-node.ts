@@ -156,7 +156,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
           });
         }
 
-        if (slug === "ultralight" || slug === "ultralight-tandem") {
+        /* if (slug === "ultralight" || slug === "ultralight-tandem") {
           createPage({
             path: `/retail/attribute/${sport.slug}/${slug}`,
             component: path.resolve("src/templates/weight.tsx"),
@@ -167,7 +167,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
               sport: sport.slug,
             },
           });
-        }
+        } */
 
         if (slug === "pedal") {
           // * this is grabbing the whole hobie brand

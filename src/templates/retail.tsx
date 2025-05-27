@@ -83,13 +83,13 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             }}
 
             thickness={data.strapiRetail.thickness}
-            volume={data.strapiRetail.volume}
+            // volume={data.strapiRetail.volume}
             inflatable={data.strapiRetail.inflatable}
             demo={data.strapiRetail.demo}
 
             cost={{
               price: data.strapiRetail.price,
-              discount: data.strapiRetail.discount
+              // discount: data.strapiRetail.discount
             }}
           />
         </section>
@@ -262,11 +262,10 @@ export const query = graphql`
         riggedweight
         width
         thickness
-        volume
         inflatable
         demo
         price
-        discount
+
         sport {
           slug
         }
@@ -313,3 +312,6 @@ export const query = graphql`
     }
   }
 `;
+
+// discount was removed as currently we dont have it in use so its breaking the build
+// volume was removed as currently we dont have it in use so its breaking the build

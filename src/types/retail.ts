@@ -21,11 +21,11 @@ export interface RetailType {
   hullweight: number;
   riggedweight: number;
   thickness: number;
-  volume: number;
+  // volume?: number;
 
   inflatable: boolean;
   demo: boolean;
-  discount: number;
+  // discount?: number;
   length: number;
   width: number;
   capacity: number;

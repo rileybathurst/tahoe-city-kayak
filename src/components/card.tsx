@@ -23,7 +23,7 @@ function Name({ name }: NameTypes) {
 interface BadgeTypes {
   inflatable: boolean;
   demo: boolean;
-  discount: number;
+  // discount?: number;
 }
 function Badges({ inflatable, demo, discount }: BadgeTypes) {
 
@@ -51,7 +51,8 @@ function Badges({ inflatable, demo, discount }: BadgeTypes) {
   return null
 }
 
-const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, discount, excerpt, length, width, capacity }: RetailType) => {
+const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, excerpt, length, width, capacity }: RetailType) => {
+  // discount, was removed as currently we dont have it so it breaks the build
 
   if (cutout && process.env.NODE_ENV === "development") {
     if (!cutout.alternativeText) {
@@ -80,7 +81,7 @@ const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, discoun
         <Badges
           inflatable={inflatable}
           demo={demo}
-          discount={discount}
+        // discount={discount}
         />
       </div>
       <h4 className="card__title">
