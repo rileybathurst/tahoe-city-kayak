@@ -52,7 +52,7 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
     // add the variables to strapi
     // 46 is ultralight
     // 70 is ultralight tandem
-    if (retail.hullweight > 70 && retail.crew === 'tandem' && retail.sport.slug === sport) {
+    /* if (retail.hullweight > 70 && retail.crew === 'tandem' && retail.sport.slug === sport) {
       ultralightTandemSet.add({
         id: retail.id,
       });
@@ -60,7 +60,7 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
       ultralightSet.add({
         id: retail.id,
       });
-    } else if (retail.crew === 'tandem' && retail.sport.slug === sport) {
+    } else  */ if (retail.crew === 'tandem' && retail.sport.slug === sport) {
       tandemSet.add({
         id: retail.id,
       });
@@ -96,13 +96,13 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
     FeatureArray.push('tandem');
   }
 
-  if (ultralightSet.size > 0) {
-    FeatureArray.push('ultralight');
-  }
-
-  if (ultralightTandemSet.size > 0) {
-    FeatureArray.push('ultralight-tandem');
-  }
+  /*   if (ultralightSet.size > 0) {
+      FeatureArray.push('ultralight');
+    }
+  
+    if (ultralightTandemSet.size > 0) {
+      FeatureArray.push('ultralight-tandem');
+    } */
 
   return (
     <ul className='features'>
