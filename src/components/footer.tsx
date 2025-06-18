@@ -9,6 +9,7 @@ import Logo from "../images/logo";
 import Phone from "./phone";
 
 const Footer = () => {
+  // TODO: allStrapiLocale is pulling an additional result from somewhere I dont understand
 
   const data = useStaticQuery(graphql`
     query FooterQuery {
@@ -34,7 +35,7 @@ const Footer = () => {
         phone
       }
 
-      allStrapiLocale(filter: {slug: {ne: "tahoe-city"}}) {
+      allStrapiLocale(filter: {slug: {nin: ["south-lake", null]}}) {
         nodes {
           name
           url
