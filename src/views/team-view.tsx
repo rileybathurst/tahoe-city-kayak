@@ -68,7 +68,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
       <main className="condor">
 
         <h1>{data.strapiTeam.name}</h1>
-        {data.strapiTeam.bio ? <ReactMarkdown className='react-markdown'>{data.strapiTeam.bio.data.bio}</ReactMarkdown> : null}
+        {data.strapiTeam.bio ? <div className='react-markdown'><ReactMarkdown >{data.strapiTeam.bio.data.bio}</ReactMarkdown></div> : null}
       </main>
 
       <Breadcrumbs

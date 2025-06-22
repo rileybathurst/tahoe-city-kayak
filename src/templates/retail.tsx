@@ -110,9 +110,11 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         {data.strapiRetail.features ?
           <>
             <h3>Features</h3>
-            <Markdown className='react-markdown features'>
-              {data.strapiRetail.features.data.features}
-            </Markdown>
+            <div className='react-markdown features'>
+              <Markdown>
+                {data.strapiRetail.features.data.features}
+              </Markdown>
+            </div>
           </>
           : null
         }

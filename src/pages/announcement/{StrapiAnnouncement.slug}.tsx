@@ -1,10 +1,10 @@
 import * as React from "react"
-import { graphql, Script } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Markdown from "react-markdown";
 
 /* function Calendar({ calendar }) {
@@ -66,17 +66,17 @@ const AnnouncmentPostPage = ({ data }) => {
         {/* <Calendar {...data.strapiAnnouncement.calendar} /> */}
         <hr />
 
-        <Markdown className="react-markdown">
-          {data.strapiAnnouncement.post.data.post}
-        </Markdown>
-
-
+        <div className="react-markdown">
+          <Markdown>
+            {data.strapiAnnouncement.post.data.post}
+          </Markdown>
+        </div>
 
       </main>
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/announcement/">Announcement</Link></Breadcrumb>
-        <Breadcrumb><Link>{data.strapiAnnouncement.title}</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiAnnouncement.title}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />

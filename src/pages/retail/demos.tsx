@@ -180,9 +180,11 @@ const DemosPage = () => {
         <main>
 
           <h1>Demos</h1>
-          <Markdown className="react-markdown">
-            {query.strapiDemo.text.data.text}
-          </Markdown>
+          <div className="react-markdown">
+            <Markdown>
+              {query.strapiDemo.text.data.text}
+            </Markdown>
+          </div>
           <Phone />
 
           <div className="charts">

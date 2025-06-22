@@ -5,7 +5,6 @@ import { graphql, Link } from 'gatsby';
 import Markdown from "react-markdown";
 
 // Paddle
-import { PaddleLocationCard } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
 
 import Header from "../../components/header";
@@ -73,9 +72,11 @@ const RetailSportPage = ({ data }) => {
       <Header />
       <main className="pelican">
         <h1>{data.strapiSport.title} Retail</h1>
-        <Markdown className="react-markdown">
-          {data.strapiShop.text.data.text}
-        </Markdown>
+        <div className="react-markdown">
+          <Markdown>
+            {data.strapiShop.text.data.text}
+          </Markdown>
+        </div>
 
         {/* // ! testing off <PaddleLocationCard
           {...data.strapiLocation}

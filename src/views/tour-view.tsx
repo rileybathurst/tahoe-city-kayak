@@ -219,6 +219,8 @@ const TourView = ({ data }: TourViewTypes) => {
       }
     }
 
+    // TODO: strike through after the date has passed
+
     return (
       <div>
         <h3>Moonlight Tour Dates</h3>
@@ -276,9 +278,11 @@ const TourView = ({ data }: TourViewTypes) => {
             : null}
 
           <section className="single__description">
-            <Markdown className="react-markdown ">
-              {data.strapiTour.information?.data?.information}
-            </Markdown>
+            <div className="react-markdown ">
+              <Markdown>
+                {data.strapiTour.information?.data?.information}
+              </Markdown>
+            </div>
 
             {data.strapiTour.slug === "moonlight" ?
               <MoonlightTourDatesTimes

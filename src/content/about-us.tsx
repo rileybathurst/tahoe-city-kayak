@@ -17,10 +17,9 @@ const AboutUs = () => {
   `)
 
   return (
-    <Markdown
-      children={strapiLocale.about.data.about}
-    // className="react-markdown"
-    />
+    <Markdown>
+      {strapiLocale.about.data.about}
+    </Markdown>
   )
 }
 

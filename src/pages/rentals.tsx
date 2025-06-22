@@ -12,6 +12,7 @@ import BookNow from "../components/peek/book-now";
 import Composition from "../components/composition";
 import { StaticImage } from "gatsby-plugin-image";
 
+import { useStrapiRental } from "../hooks/use-strapi-rental";
 
 const RentalsPage = () => {
 
@@ -44,14 +45,6 @@ const RentalsPage = () => {
     ) {
       nodes {
         ...locationCardFragment
-      }
-    }
-
-    strapiRental {
-      text {
-        data {
-          text
-        }
       }
     }
 
@@ -88,9 +81,11 @@ const RentalsPage = () => {
               phone={data.strapiLocale.phone}
               {...data.allStrapiLocation}
             />
-            <Markdown className="react-markdown">
-              {data.strapiRental.text.data.text}
-            </Markdown>
+            <div className="react-markdown">
+              <Markdown>
+                {useStrapiRental().text.data.text}
+              </Markdown>
+            </div>
             <Link to="/about/faq">Frequently Asked Questions about getting out on the water</Link>
             {/* <p><Link to="/rentals/truckee-river">Learn about our Truckee River rentals</Link></p> */}
             {/* // TODO should this be a dropdown? */}
@@ -118,11 +113,6 @@ const RentalsPage = () => {
             <hr />
             <StaticImage
               src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/rentals/river/451012595_18446794813053197_8261143790293663408_n.jpg"
-              alt="Truckee River inflatable kayak"
-            />
-            <hr />
-            <StaticImage
-              src="https://tahoe-city-kayak.s3.us-west-1.amazonaws.com/rentals/river/451083622_18446794804053197_5941224684421744224_n.jpg"
               alt="Truckee River inflatable kayak"
             />
             <hr />
@@ -191,7 +181,7 @@ export const Head = () => {
   return (
     <SEO
       title='Rentals'
-      description="Enjoy the majesty of paddling across the crystal clear waters of Lake Tahoe while kayaking in one of our demos."
+      description={useStrapiRental().excerpt}
     />
   )
 }

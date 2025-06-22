@@ -139,17 +139,12 @@ const TruckeeRiverPage = () => {
 
       <main>
         <h1>{strapiRiver.title}</h1>
-        <ReactMarkdown
-        // className="react-markdown"
-        >
+        <ReactMarkdown>
           {strapiRiver.description.data.description}
         </ReactMarkdown>
       </main>
 
       <hr />
-
-
-
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>

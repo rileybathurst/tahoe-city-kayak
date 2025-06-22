@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Markdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 
 const Shop = () => {
 
@@ -18,10 +17,9 @@ const Shop = () => {
   `)
 
   return (
-    <Markdown
-      children={strapiShop.text.data.text}
-    // className="react-markdown"
-    />
+    <Markdown>
+      {strapiShop.text.data.text}
+    </Markdown>
   )
 }
 
