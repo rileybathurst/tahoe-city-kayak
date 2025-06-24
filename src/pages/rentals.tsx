@@ -81,6 +81,7 @@ const RentalsPage = () => {
               phone={data.strapiLocale.phone}
               {...data.allStrapiLocation}
             />
+            <h2>Commons Beach Rentals</h2>
             <div className="react-markdown">
               <Markdown>
                 {useStrapiRental().text.data.text}
@@ -123,6 +124,7 @@ const RentalsPage = () => {
           </div>
         </div>
 
+        {/* // ? why is this not the regular one? */}
         {/* // TODO: widths on ipad is weird */}
         <div className="charts">
           <div className="rates">
