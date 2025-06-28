@@ -1,30 +1,39 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import { PaddleLocationCard, PaddleTicket, type PaddleTicketTypes, PaddleTime, PaddleSunsetTourTimes, PaddleSpecs } from "@rileybathurst/paddle";
+import {
+  PaddleLocationCard,
+  PaddleTicket,
+  type PaddleTicketTypes,
+  PaddleTime,
+  PaddleSunsetTourTimes,
+  PaddleSpecs,
+} from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Markdown from "react-markdown";
-import Header from "../components/header"
-import Footer from "../components/footer"
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 import Time from "../components/time";
 
 import Composition from "../components/composition";
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import type { CardType } from "../types/card";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/peek/book-now";
 
 interface TourViewTypes {
   data: {
-    allStrapiMoonlightTourDateTime: { nodes: { id: React.Key; date: string; start: string; finish: string; }[]; };
+    allStrapiMoonlightTourDateTime: {
+      nodes: { id: React.Key; date: string; start: string; finish: string }[];
+    };
     strapiTour: {
       id: React.Key;
       name: string;
       information: {
         data: {
           information: string;
-        }
+        };
       };
       start: string;
       finish: string;
@@ -45,7 +54,7 @@ interface TourViewTypes {
         };
         alternativeText: string;
       };
-    }
+    };
 
     allStrapiSunsetTourTime: {
       nodes: {
@@ -55,21 +64,21 @@ interface TourViewTypes {
         startTime: string;
         endTime: string;
       }[];
-    }
+    };
 
     local: {
       name: string;
-    }
+    };
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
-    }
+    };
 
     strapiLocation: CardType;
 
     strapiLocale: {
       peek_tours: string;
-    }
-  }
+    };
+  };
 }
 
 export const data = graphql`
@@ -157,12 +166,11 @@ export const data = graphql`
       }
     }
   }
-`
+`;
 
 // TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
 
 const TourView = ({ data }: TourViewTypes) => {
-
   const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
@@ -186,15 +194,19 @@ const TourView = ({ data }: TourViewTypes) => {
       start: string;
       finish: string;
     }[];
-  }
-  function MoonlightTourDatesTimes({ seasonStart, seasonEnd, nodes }: MoonlightTourDateTime) {
-
+  };
+  function MoonlightTourDatesTimes({
+    seasonStart,
+    seasonEnd,
+    nodes,
+  }: MoonlightTourDateTime) {
     const currentDate = new Date();
     if (currentDate > new Date(seasonEnd)) {
-
       // console.log('its past the end of the season');
 
-      const futureTours = nodes.filter(tour => new Date(tour.date) >= currentDate);
+      const futureTours = nodes.filter(
+        (tour) => new Date(tour.date) >= currentDate,
+      );
 
       // console.log(futureTours);
 
@@ -204,18 +216,19 @@ const TourView = ({ data }: TourViewTypes) => {
             <h3>Next season tours</h3>
             {futureTours.map((tour) => (
               <p key={tour.id}>
-                {new Date(tour.date).toLocaleDateString('en-US', {
-                  timeZone: 'UTC',
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}&nbsp;-&nbsp;
+                {new Date(tour.date).toLocaleDateString("en-US", {
+                  timeZone: "UTC",
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                &nbsp;-&nbsp;
                 <Time start={tour.start} finish={tour.finish} />
               </p>
             ))}
           </>
-        )
+        );
       }
     }
 
@@ -225,22 +238,23 @@ const TourView = ({ data }: TourViewTypes) => {
       <div>
         <h3>Moonlight Tour Dates</h3>
         <ul>
-          {nodes.map((tour) =>
+          {nodes.map((tour) => (
             <li key={tour.id}>
               <h4>
-                {new Date(tour.date).toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}&nbsp;-&nbsp;
-                <Time start={tour.start} finish={tour.finish} /></h4>
+                {new Date(tour.date).toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                &nbsp;-&nbsp;
+                <Time start={tour.start} finish={tour.finish} />
+              </h4>
             </li>
-          )}
+          ))}
         </ul>
       </div>
-    )
-
+    );
   }
 
   return (
@@ -251,18 +265,24 @@ const TourView = ({ data }: TourViewTypes) => {
         <div>
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
-            {data.strapiTour.peek ?
-              <a href={data.strapiTour.peek}
+            {data.strapiTour.peek ? (
+              <a
+                href={data.strapiTour.peek}
                 rel="noopener noreferrer"
                 className="book-now"
               >
                 BOOK NOW
               </a>
-              :
+            ) : (
               <BookNow />
-            }
+            )}
             {/* // TODO: do some work on the vertical center align */}
-            {data.strapiTour.minimum ? <p>* Prices based on a<br /> {data.strapiTour.minimum} person minimum</p> : null}
+            {data.strapiTour.minimum ? (
+              <p>
+                * Prices based on a<br /> {data.strapiTour.minimum} person
+                minimum
+              </p>
+            ) : null}
           </div>
 
           <PaddleSpecs
@@ -273,9 +293,9 @@ const TourView = ({ data }: TourViewTypes) => {
             time={time}
           />
 
-          {data.strapiTour.slug === "sunset" ?
+          {data.strapiTour.slug === "sunset" ? (
             <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
-            : null}
+          ) : null}
 
           <section className="single__description">
             <div className="react-markdown ">
@@ -284,20 +304,20 @@ const TourView = ({ data }: TourViewTypes) => {
               </Markdown>
             </div>
 
-            {data.strapiTour.slug === "moonlight" ?
+            {data.strapiTour.slug === "moonlight" ? (
               <MoonlightTourDatesTimes
                 seasonStart={data.strapiTour.local.season_start}
                 seasonEnd={data.strapiTour.local.season_end}
-                {...data.allStrapiMoonlightTourDateTime} />
-              : null}
+                {...data.allStrapiMoonlightTourDateTime}
+              />
+            ) : null}
           </section>
-
         </div>
 
         <aside>
           <Composition
             sport={data.strapiTour.ogimage || data.strapiTour.sport}
-          // TODO: change the image on tours
+            // TODO: change the image on tours
           />
 
           {/* // ! testing off <PaddleLocationCard
@@ -305,7 +325,6 @@ const TourView = ({ data }: TourViewTypes) => {
             {...data.strapiLocation}
           /> */}
         </aside>
-
       </main>
 
       <hr className="albatross" />
@@ -321,19 +340,21 @@ const TourView = ({ data }: TourViewTypes) => {
       </div>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) =>
+        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
           <PaddleTicket
             key={tour.id}
             {...tour}
-            tour_page='tours-lessons'
+            tour_page="tours-lessons"
             peek_tours_fall_back={data.strapiTour.local.peek_tours}
             allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
-        )}
+        ))}
       </section>
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/tours-lessons">Tours & Lessons</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/tours-lessons">Tours & Lessons</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiTour.name}</Breadcrumb>
       </Breadcrumbs>
 
@@ -350,9 +371,9 @@ type TourViewHeadTypes = {
       name: string;
       excerpt: string;
       slug: string;
-    }
-  }
-}
+    };
+  };
+};
 export const Head = ({ data }: TourViewHeadTypes) => {
   return (
     <SEO
@@ -361,13 +382,13 @@ export const Head = ({ data }: TourViewHeadTypes) => {
       breadcrumbs={[
         {
           name: "Tours & Lessons",
-          item: "tours-lessons"
+          item: "tours-lessons",
         },
         {
           name: data.strapiTour.name,
-          item: `tours-lessons/${data.strapiTour.slug}`
-        }
+          item: `tours-lessons/${data.strapiTour.slug}`,
+        },
       ]}
     />
   );
-}
+};

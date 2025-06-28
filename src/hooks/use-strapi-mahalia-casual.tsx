@@ -1,14 +1,14 @@
 import { graphql, useStaticQuery } from "gatsby"
 
-export const useStrapiKayaker = () => {
+export const useStrapiMahaliaCasual = () => {
   const { strapiImagegrab } = useStaticQuery(graphql`
     query {
-      strapiImagegrab(title: {eq: "casualKayak"}) {
+      strapiImagegrab(title: {eq: "MahaliaCasual"}) {
         title
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(aspectRatio: 1)
+              gatsbyImageData
             }
           }
         }

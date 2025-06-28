@@ -1,4 +1,4 @@
-require("dotenv").config({
+ require("dotenv").config({
   path: ".env",
 });
 
@@ -51,10 +51,6 @@ module.exports = {
     url: "https://tahoecitykayak.com", // No trailing slash allowed!
   },
   plugins: [
-    {
-      resolve: "gatsby-source-strapi",
-      options: strapiConfig,
-    },
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {

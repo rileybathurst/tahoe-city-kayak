@@ -1,7 +1,7 @@
 // TODO: loop this
 
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
 // Paddle
@@ -39,18 +39,19 @@ const RetailPage = () => {
     }
 
   }
-`)
+`);
 
   return (
     <>
-
       <Header />
 
       <main className="albatross wrap">
         <div>
           <h1>Retail</h1>
           <Shop />
-          <h3><Link to="/retail/demos">Demos</Link></h3>
+          <h3>
+            <Link to="/retail/demos">Demos</Link>
+          </h3>
         </div>
 
         {/* // ! testing off <PaddleLocationCard
@@ -61,35 +62,37 @@ const RetailPage = () => {
 
       <article className="pelican wrap">
         <section className="blocked">
-          <h2><Link to="/retail/kayak">Kayaks</Link></h2>
+          <h2>
+            <Link to="/retail/kayak">Kayaks</Link>
+          </h2>
           <h3 className="condensed">Browse By Feature</h3>
-          <FeatureList sport='kayak' />
+          <FeatureList sport="kayak" />
         </section>
 
         <Composition sport="kayak" />
-
       </article>
 
       <section className="albatross">
         <h3>Browse By Brand</h3>
-        <BrandList sport='kayak' />
+        <BrandList sport="kayak" />
       </section>
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: CardType) => (
-          <Card
-            key={kayak.id}
-            {...kayak}
-          />
+          <Card key={kayak.id} {...kayak} />
         ))}
 
-        <h2><Link to="/retail/kayak">All Kayaks</Link></h2>
+        <h2>
+          <Link to="/retail/kayak">All Kayaks</Link>
+        </h2>
       </section>
 
       <article className="main__full main__full--tour">
         <section className="blocked">
           {/* <hr /> */}
-          <h2><Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link></h2>
+          <h2>
+            <Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link>
+          </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />
         </section>
@@ -99,32 +102,30 @@ const RetailPage = () => {
 
       <section className="albatross">
         <h3>Browse By Brand</h3>
-        <BrandList sport='paddleboard' />
+        <BrandList sport="paddleboard" />
       </section>
 
       <section className="deck">
         {query.paddleBoard.nodes.map((sup: CardType) => (
-          <Card
-            key={sup.id}
-            {...sup}
-          />
+          <Card key={sup.id} {...sup} />
         ))}
-        <h2><Link to="/retail/paddleboard">All Paddleboards</Link></h2>
+        <h2>
+          <Link to="/retail/paddleboard">All Paddleboards</Link>
+        </h2>
       </section>
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default RetailPage
+export default RetailPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Retail'
+      title="Retail"
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     />
-  )
-}
-
+  );
+};

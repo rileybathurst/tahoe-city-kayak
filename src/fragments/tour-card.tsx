@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment tourCard on STRAPI_TOUR {
@@ -14,6 +14,7 @@ export const query = graphql`
     timeframe
     fitness
     sport
+    featured
 
     ogimage {
       localFile {
@@ -24,7 +25,7 @@ export const query = graphql`
       alternativeText
     }
   }
-`
+`;
 
 /* (
   breakpoints: [111, 165, 222, 444, 880]

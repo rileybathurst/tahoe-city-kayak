@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import React, { useState } from "react";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 
 // TODO: move to paddletime
 import Time from "../../components/time";
 
 function Compare(props) {
-
   function Option(props) {
     if (props.name === props.current) {
       return (
-        <option selected key={props.key}>{props.name}</option>
-      )
+        <option selected key={props.key}>
+          {props.name}
+        </option>
+      );
     }
     if (props.name === props.other) {
       return (
-        <option disabled key={props.key}>{props.name}</option>
-      )
+        <option disabled key={props.key}>
+          {props.name}
+        </option>
+      );
     }
-    return (
-      <option key={props.key}>{props.name}</option>
-    )
+    return <option key={props.key}>{props.name}</option>;
   }
 
   function first(e) {
@@ -74,29 +75,29 @@ function Compare(props) {
     return null;
   }
 
-  const [tour1, setTour1] = useState('Sunset Kayak Tour on Lake Tahoe');
-  const [tour2, setTour2] = useState('Historic West Shore Tour');
+  const [tour1, setTour1] = useState("Sunset Kayak Tour on Lake Tahoe");
+  const [tour2, setTour2] = useState("Historic West Shore Tour");
 
-  const [link1, setLink1] = useState('not set');
-  const [link2, setLink2] = useState('not set');
+  const [link1, setLink1] = useState("not set");
+  const [link2, setLink2] = useState("not set");
 
-  const [sport1, setSport1] = useState('not set');
-  const [sport2, setSport2] = useState('not set');
+  const [sport1, setSport1] = useState("not set");
+  const [sport2, setSport2] = useState("not set");
 
-  const [duration1, setDuration1] = useState('not set');
-  const [duration2, setDuration2] = useState('not set');
+  const [duration1, setDuration1] = useState("not set");
+  const [duration2, setDuration2] = useState("not set");
 
-  const [start1, setStart1] = useState('not set');
-  const [start2, setStart2] = useState('not set');
+  const [start1, setStart1] = useState("not set");
+  const [start2, setStart2] = useState("not set");
 
-  const [finish1, setFinish1] = useState('not set');
-  const [finish2, setFinish2] = useState('not set');
+  const [finish1, setFinish1] = useState("not set");
+  const [finish2, setFinish2] = useState("not set");
 
-  const [location1, setLocation1] = useState('not set');
-  const [location2, setLocation2] = useState('not set');
+  const [location1, setLocation1] = useState("not set");
+  const [location2, setLocation2] = useState("not set");
 
-  const [excerpt1, setExcerpt1] = useState('not set');
-  const [excerpt2, setExcerpt2] = useState('not set');
+  const [excerpt1, setExcerpt1] = useState("not set");
+  const [excerpt2, setExcerpt2] = useState("not set");
 
   const [minimum1, setMinimum1] = useState(0);
   const [minimum2, setMinimum2] = useState(0);
@@ -104,20 +105,21 @@ function Compare(props) {
   const [price1, setPrice1] = useState(0);
   const [price2, setPrice2] = useState(0);
 
-  const [peeks1, setPeeks1] = useState('not set');
-  const [peeks2, setPeeks2] = useState('not set');
+  const [peeks1, setPeeks1] = useState("not set");
+  const [peeks2, setPeeks2] = useState("not set");
 
-  const [fitness1, setFitness1] = useState('fitness');
-  const [fitness2, setFitness2] = useState('fitness');
+  const [fitness1, setFitness1] = useState("fitness");
+  const [fitness2, setFitness2] = useState("fitness");
 
   return (
     <>
-      <div className='comparesheet'>
-        <div className='comparesheet_titles'>
-
-          <div className='comparesheet__transparent'>Compare</div>
-          <h3 className='kilimanjaro comparesheet_freeze'>
-            Tour or<br />Lesson
+      <div className="comparesheet">
+        <div className="comparesheet_titles">
+          <div className="comparesheet__transparent">Compare</div>
+          <h3 className="kilimanjaro comparesheet_freeze">
+            Tour or
+            <br />
+            Lesson
           </h3>
           <p>Sport</p>
           <p>Time</p>
@@ -126,7 +128,7 @@ function Compare(props) {
           <p>About</p>
           <p>Minimum People</p>
           <p>Price</p>
-          <p className='button-drop'>Book Now</p>
+          <p className="button-drop">Book Now</p>
         </div>
 
         {/* Tour 1 */}
@@ -142,35 +144,34 @@ function Compare(props) {
                 key={tour.id}
                 name={tour.name}
                 current={tour1}
-                other={tour2} />
+                other={tour2}
+              />
             ))}
           </select>
-          <h2 className='kilimanjaro'>
-            <Link to={`/tours-lessons/${link1}`}>
-              {tour1}
-            </Link>
+          <h2 className="kilimanjaro">
+            <Link to={`/tours-lessons/${link1}`}>{tour1}</Link>
           </h2>
           <Details1 show={tour1} set={props.tours} />
-          <h4 className='capitalize'>{sport1}</h4>
+          <h4 className="capitalize">{sport1}</h4>
 
           {/* TODO: paddletime */}
-          <Time
-            duration={duration1}
-            start={start1}
-            finish={finish1}
-          />
-          <p className='capitalize'>{fitness1}
-            <span className='show-below__vulture'>&nbsp;fitness</span>
+          <Time duration={duration1} start={start1} finish={finish1} />
+          <p className="capitalize">
+            {fitness1}
+            <span className="show-below__vulture">&nbsp;fitness</span>
           </p>
-          <p><span className='show-below__vulture'>Starts at&nbsp;</span>{location1}</p>
+          <p>
+            <span className="show-below__vulture">Starts at&nbsp;</span>
+            {location1}
+          </p>
           <p>{excerpt1}</p>
-          <p>{minimum1}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
+          <p>
+            {minimum1}
+            <span className="show-below__vulture">&nbsp;people minimum</span>
+          </p>
           <p>${price1}</p>
           <p>
-            <a href={peeks1}
-              rel="noopener noreferrer"
-              className="book-now"
-            >
+            <a href={peeks1} rel="noopener noreferrer" className="book-now">
               BOOK NOW
             </a>
           </p>
@@ -193,39 +194,38 @@ function Compare(props) {
               />
             ))}
           </select>
-          <h2 className='kilimanjaro'>
-            <Link to={`/tours-lessons/${link2}`}>
-              {tour2}
-            </Link>
+          <h2 className="kilimanjaro">
+            <Link to={`/tours-lessons/${link2}`}>{tour2}</Link>
           </h2>
           <Details2 show={tour2} set={props.tours} />
-          <h4 className='capitalize'>{sport2}</h4>
-          <Time
-            duration={duration2}
-            start={start2}
-            finish={finish2}
-          />
-          <p className='capitalize'>{fitness2}<span className='show-below__vulture'>&nbsp;fitness</span></p>
-          <p><span className='show-below__vulture'>Starts at&nbsp;</span>{location2}</p>
+          <h4 className="capitalize">{sport2}</h4>
+          <Time duration={duration2} start={start2} finish={finish2} />
+          <p className="capitalize">
+            {fitness2}
+            <span className="show-below__vulture">&nbsp;fitness</span>
+          </p>
+          <p>
+            <span className="show-below__vulture">Starts at&nbsp;</span>
+            {location2}
+          </p>
           <p>{excerpt2}</p>
-          <p>{minimum2}<span className='show-below__vulture'>&nbsp;people minimum</span></p>
+          <p>
+            {minimum2}
+            <span className="show-below__vulture">&nbsp;people minimum</span>
+          </p>
           <p>${price2}</p>
           <p>
-            <a href={peeks2}
-              rel="noopener noreferrer"
-              className="book-now"
-            >
+            <a href={peeks2} rel="noopener noreferrer" className="book-now">
               BOOK NOW
             </a>
           </p>
         </section>
-      </div >
+      </div>
     </>
-  )
+  );
 }
 
 const ComparePage = () => {
-
   const { allStrapiTour } = useStaticQuery(graphql`
     query TourCompareQuery {
       allStrapiTour(
@@ -252,38 +252,40 @@ const ComparePage = () => {
         }
     }
   }
-`)
+`);
 
   return (
     <>
       <Header />
 
-      <main className='main__pelican'>
+      <main className="pelican">
         <h1>Compare</h1>
         <Compare tours={allStrapiTour.nodes} />
       </main>
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/tours-lessons/">Tours &amp; Lessons</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/tours-lessons/">Tours &amp; Lessons</Link>
+        </Breadcrumb>
         <Breadcrumb>Compare</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default ComparePage
+export default ComparePage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Compare Tours'
+      title="Compare Tours"
       // TODO description and image
       breadcrumbs={[
         { name: "Tours & Lessons", item: "tours-lessons" },
         { name: "Compare", item: "tours-lessons/compare" },
       ]}
     />
-  )
-}
+  );
+};

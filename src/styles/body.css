@@ -1,9 +1,0 @@
-body {
-  background-color: var(--brilliance);
-  color: var(--navy-300);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-300);
-    color: var(--brilliance);
-  }
-}

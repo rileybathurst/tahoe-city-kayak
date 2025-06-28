@@ -1,20 +1,12 @@
 /*------------------*/
-/*  #TAHOE CITY KAYAK */
+/* #TAHOE CITY KAYAK */
 /* A lot of the css is coming from @rileybathurst/paddle */
 /*------------------*/
 
-@import "body";
-@import "typography";
 @import "nav";
 @import "layout";
-@import "color";
-@import "links";
-@import "buttons";
 @import "tables";
-@import "forms";
-@import "lists";
 @import "media";
-@import "cards";
 @import "visibility";
 
 /* pages */

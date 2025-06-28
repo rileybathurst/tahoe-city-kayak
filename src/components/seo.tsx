@@ -4,19 +4,25 @@ import { useStaticQuery, graphql } from "gatsby";
 import { PaddleSEO } from "@rileybathurst/paddle";
 
 type SEOtypes = {
-  title?: string,
-  description?: string,
-  url?: string,
-  ogImage?: string,
-  ogImageDescription?: string,
+  title?: string;
+  description?: string;
+  url?: string;
+  ogImage?: string;
+  ogImageDescription?: string;
   breadcrumbs?: {
     name: string;
     item: string;
-  }[],
-  children?: React.ReactNode,
+  }[];
+  children?: React.ReactNode;
 };
-export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrumbs, children }: SEOtypes) => {
-
+export const SEO = ({
+  title,
+  description,
+  ogImage,
+  ogImageDescription,
+  breadcrumbs,
+  children,
+}: SEOtypes) => {
   const data = useStaticQuery(graphql`
     query SEOQuery {
       strapiLocale(slug: {eq: "tahoe-city"}) {
@@ -85,15 +91,19 @@ export const SEO = ({ title, description, ogImage, ogImageDescription, breadcrum
   // console.log(title)
 
   return (
-    <PaddleSEO
-      title={title || null}
-      description={description || null}
-      breadcrumbs={breadcrumbs || null}
-      // ogImage={ogImage || null}
-      // ogimagedescription={ogImagedescription || null}
-      {...data}
-    >
-      {children}
-    </PaddleSEO>
+    <>
+      <html lang="en" />
+      <body className="tahoe-city" />
+      <PaddleSEO
+        title={title || null}
+        description={description || null}
+        breadcrumbs={breadcrumbs || null}
+        // ogImage={ogImage || null}
+        // ogimagedescription={ogImagedescription || null}
+        {...data}
+      >
+        {children}
+      </PaddleSEO>
+    </>
   );
 };

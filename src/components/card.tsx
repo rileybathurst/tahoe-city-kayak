@@ -1,12 +1,12 @@
 // ? Is there a way to get rid of the retail.retail.?
 // TODO: rename this to purchase to go with ticket instead of card
 
-import * as React from "react"
-import { Link } from "gatsby"
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
-import TextureBackgrounds from "./texturebackgrounds"
-import Remainder from "./remainder"
-import type { RetailType } from "../types/retail"
+import * as React from "react";
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import TextureBackgrounds from "./texturebackgrounds";
+import Remainder from "./remainder";
+import type { RetailType } from "../types/retail";
 
 interface NameTypes {
   name: string;
@@ -16,53 +16,59 @@ function Name({ name }: NameTypes) {
     <div className="badge">
       <h5 className="capitalize">{name}</h5>
     </div>
-  )
+  );
 }
 
 interface BadgeTypes {
   inflatable: boolean;
   demo: boolean;
-  // discount?: number;
+  discount?: number;
 }
 function Badges({ inflatable, demo, discount }: BadgeTypes) {
-
   // TODO: deal with multiple
   if (discount) {
     return (
       <div className="badge">
-        <h5 className="capitalize ruby">{discount}% off</h5>
+        <h5 className="capitalize">{discount}% off</h5>
       </div>
-    )
+    );
   }
 
   if (inflatable) {
-    return (
-      <Name name="inflatable" />
-    )
+    return <Name name="inflatable" />;
   }
 
   if (demo) {
-    return (
-      <Name name="demo" />
-    )
+    return <Name name="demo" />;
   }
 
-  return null
+  return null;
 }
 
-const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, excerpt, length, width, capacity }: RetailType) => {
+const Card = ({
+  id,
+  title,
+  sport,
+  brand,
+  slug,
+  cutout,
+  inflatable,
+  demo,
+  excerpt,
+  length,
+  width,
+  capacity,
+}: RetailType) => {
   // discount, was removed as currently we dont have it so it breaks the build
 
   if (cutout && process.env.NODE_ENV === "development") {
     if (!cutout.alternativeText) {
-      console.warn(`${title} by ${brand.slug} doesnt have altText`)
+      console.warn(`${title} by ${brand.slug} doesnt have altText`);
     }
   }
 
   return (
-    <article
-      key={id}
-      className="card">
+    <article key={id} className="card">
       <div className="card-collage">
         <TextureBackgrounds />
         <Link
@@ -74,19 +80,17 @@ const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, excerpt
             alt={cutout?.alternativeText || `${title} by ${brand.slug}`}
             className="cutout"
             objectFit="contain"
-          // TODO: this has been causing some problems but keep an eye on it
+            // TODO: this has been causing some problems but keep an eye on it
           />
         </Link>
         <Badges
           inflatable={inflatable}
           demo={demo}
-        // discount={discount}
+          // discount={discount}
         />
       </div>
       <h4 className="card__title">
-        <Link to={`/retail/${sport.slug}/${brand.slug}/${slug}`}>
-          {title}
-        </Link>
+        <Link to={`/retail/${sport.slug}/${brand.slug}/${slug}`}>{title}</Link>
       </h4>
       <hr />
       <p>{excerpt}</p>
@@ -98,8 +102,8 @@ const Card = ({ id, title, sport, brand, slug, cutout, inflatable, demo, excerpt
         </h4>
         <h5 className="capitalize">Capacity {capacity}&thinsp;lbs</h5>
       </div>
-    </article >
-  )
-}
+    </article>
+  );
+};
 
-export default Card
+export default Card;

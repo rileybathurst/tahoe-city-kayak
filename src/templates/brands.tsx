@@ -2,17 +2,17 @@
 // ? Object.groupBy(array, ({ series }) => series);
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
 
-import * as React from "react"
-import { Link, graphql, Script, useStaticQuery } from 'gatsby'
+import * as React from "react";
+import { Link, graphql, Script, useStaticQuery } from "gatsby";
 
 // Paddle
 import { PaddleLocationCard } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
-import scrollTo from 'gatsby-plugin-smoothscroll';
+import scrollTo from "gatsby-plugin-smoothscroll";
 
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from "../components/header";
+import Footer from "../components/footer";
 import Card from "../components/card";
 import type { RetailType } from "../types/retail";
 
@@ -39,7 +39,6 @@ import type { RetailType } from "../types/retail";
     />
   )
 } */
-
 
 type BrandsViewTypes = {
   data: {
@@ -68,7 +67,6 @@ type BrandsViewTypes = {
   };
 };
 const BrandsView = ({ data }: BrandsViewTypes) => {
-
   const seriesSet = new Set();
   for (const retail of data.allStrapiRetail.nodes) {
     retail.series ? seriesSet.add(retail.series) : null;
@@ -95,16 +93,18 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           <p>{data.brand.tagline}.</p>
           <hr />
           {/* // TODO: needs slide that I have in other places */}
-          {seriesArray.length > 0 ?
-            seriesArray.map(series => (
-              <Link
-                key={series}
-                to={`#${series}`}
-                onClick={e => scrollTo(`#${series}`)}
-              >
-                <span className="typography__secondary">{series.replace(/-/g, ' ')} Series</span>
-              </Link>
-            ))
+          {seriesArray.length > 0
+            ? seriesArray.map((series) => (
+                <Link
+                  key={series}
+                  to={`#${series}`}
+                  onClick={(e) => scrollTo(`#${series}`)}
+                >
+                  <span className="typography__secondary">
+                    {series.replace(/-/g, " ")} Series
+                  </span>
+                </Link>
+              ))
             : null}
         </section>
 
@@ -113,57 +113,45 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           {...data.strapiLocation}
           background={false}
         /> */}
-
       </main>
 
-      {seriesArray.length > 0 ?
-        seriesArray.map(series => (
-          <>
-            <section
-              // key={retail.[0].series}
-              className="passage possibly-empty"
-            // id={retail.[0].series}
-            >
-              {series ?
-                <>
-                  <hr />
-                  <h2 className="capitalize">
-                    {series.replace(/-/g, ' ')}&nbsp;
-                    <span className='typography__secondary'>Series</span>
-                  </h2>
-                </> : null
-              }
-            </section >
+      {seriesArray.length > 0
+        ? seriesArray.map((series) => (
+            <>
+              <section
+                // key={retail.[0].series}
+                className="passage possibly-empty"
+                // id={retail.[0].series}
+              >
+                {series ? (
+                  <>
+                    <hr />
+                    <h2 className="capitalize">
+                      {series.replace(/-/g, " ")}&nbsp;
+                      <span className="typography__secondary">Series</span>
+                    </h2>
+                  </>
+                ) : null}
+              </section>
 
-            <div
-              className="deck"
-              key={series}
-            >
-
-              {data.allStrapiRetail.nodes
-                .filter((retail) => retail.series === series)
-                .map((retail) => (
-                  <Card
-                    key={retail.id}
-                    {...retail}
-                  />
-                ))}
-            </div>
-          </>
-        ))
+              <div className="deck" key={series}>
+                {data.allStrapiRetail.nodes
+                  .filter((retail) => retail.series === series)
+                  .map((retail) => (
+                    <Card key={retail.id} {...retail} />
+                  ))}
+              </div>
+            </>
+          ))
         : null}
 
       <hr className="pelican" />
 
-      <section
-        className="deck">
+      <section className="deck">
         {data.allStrapiRetail.nodes
           .filter((retail: RetailType) => retail.series === null)
           .map((retail: RetailType) => (
-            <Card
-              key={retail.id}
-              {...retail}
-            />
+            <Card key={retail.id} {...retail} />
           ))}
       </section>
 
@@ -190,7 +178,7 @@ export const Head = ({ data }: BrandsViewTypes) => (
       { name: data.brand.name, item: `retail/kayak/${data.brand.slug}` },
     ]}
   />
-)
+);
 
 // TODO: loop the series
 export const query = graphql`
@@ -231,4 +219,4 @@ export const query = graphql`
     }
 
   }
-`
+`;

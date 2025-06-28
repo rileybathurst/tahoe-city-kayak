@@ -1,15 +1,11 @@
 // TODO: needs rigid can be done with an attribute boolean
-import React from 'react';
-import { graphql } from 'gatsby';
-import AttributeView from '../views/attribute-view';
-import { SEO } from '../components/seo';
+import React from "react";
+import { graphql } from "gatsby";
+import AttributeView from "../views/attribute-view";
+import { SEO } from "../components/seo";
 
 const InflatableView = ({ data }) => {
-  return (
-    <AttributeView
-      {...data}
-    />
-  );
+  return <AttributeView {...data} />;
 };
 
 export default InflatableView;
@@ -21,8 +17,7 @@ export const Head = ({ data }) => {
       description={data.strapiAttribute.description.data.description}
     />
   );
-}
-
+};
 
 export const query = graphql`
   query (

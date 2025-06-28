@@ -1,18 +1,21 @@
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 // Paddle
-import { PaddleLocationDeck, PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import {
+  PaddleLocationDeck,
+  PaddleTicket,
+  type PaddleTicketTypes,
+} from "@rileybathurst/paddle";
 
-import { SEO } from "../components/seo"
-import Header from "../components/header"
-import Footer from "../components/footer"
+import { SEO } from "../components/seo";
+import Header from "../components/header";
+import Footer from "../components/footer";
 import BookNow from "../components/peek/book-now";
 import Experience from "../content/experience";
 import Sport from "../components/sport";
 
 const ToursLessonsPage = () => {
-
   const query = useStaticQuery(graphql`
     query ToursQuery {
       kayak: allStrapiTour(
@@ -74,15 +77,14 @@ const ToursLessonsPage = () => {
         }
 
       }
-    `)
+    `);
 
-  const sports = [
-    query.kayak,
-    query.paddleBoard,
-  ]
+  const sports = [query.kayak, query.paddleBoard];
 
   // console.log(`check its here ${query.allStrapiSunsetTourTime}`)
   // console.log(query.allStrapiSunsetTourTime)
+
+  // console.log(sports);
 
   return (
     <>
@@ -93,12 +95,12 @@ const ToursLessonsPage = () => {
           <div className="condor">
             <h1>Tours &amp; Lessons</h1>
             <Experience />
-            <h2><Link to="/tours-lessons/compare">Compare Tours</Link></h2>
+            <h2>
+              <Link to="/tours-lessons/compare">Compare Tours</Link>
+            </h2>
             <BookNow />
             <hr />
           </div>
-
-
         </div>
         <PaddleLocationDeck
           background={false}
@@ -115,35 +117,37 @@ const ToursLessonsPage = () => {
             <h1 className="capitalize">
               <Sport sport={sport.nodes[0].sport} />
             </h1>
-            <p className="aconcagua">Tours &amp; Lessions</p>
-          </hgroup >
+            <p className="aconcagua">Tours &amp; Lessons</p>
+          </hgroup>
 
           <div className="deck">
-            {sport.nodes.map((tour: PaddleTicketTypes) => (
-              <PaddleTicket
-                key={tour.id}
-                {...tour}
-                tour_page='tours-lessons'
-                peek_tours_fall_back={query.strapiLocale.peek_tours}
-                allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
-              />
-            ))}
+            {sport.nodes
+              .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
+              .map((tour: PaddleTicketTypes) => (
+                <PaddleTicket
+                  key={tour.id}
+                  {...tour}
+                  tour_page="tours-lessons"
+                  peek_tours_fall_back={query.strapiLocale.peek_tours}
+                  allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
+                />
+              ))}
           </div>
-        </section >
+        </section>
       ))}
 
-      < Footer />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default ToursLessonsPage
+export default ToursLessonsPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Tours and Lessons'
+      title="Tours and Lessons"
       description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
-  )
-}
+  );
+};
