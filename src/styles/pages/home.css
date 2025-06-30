@@ -68,21 +68,3 @@
     }
   }
 }
-
-/*------------------------------------*/
-
-.home__tours {
-  max-width: var(--pelican);
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-  display: flex;
-  padding-block-start: var(--aconcagua);
-
-  @media (min-width: 40rem) {
-    display: flex;
-
-    > * {
-      flex: 1 1 20rem;
-    }
-  }
-}

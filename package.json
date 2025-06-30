@@ -9,8 +9,9 @@
     "gatsby"
   ],
   "engines": {
-    "npm": "20.x || 22.x"
+    "node": "22.x"
   },
+  "engineStrict": true,
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -23,7 +24,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.5",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.0.10",
+    "@rileybathurst/paddle": "^1.0.14",
     "@sentry/cli": "^2.45.0",
     "@sentry/gatsby": "^9.20.0",
     "gatsby": "^5.14.3",
@@ -72,5 +73,4 @@
   "optionalDependencies": {
     "@parcel/watcher-linux-x64-glibc": "^2.5.1"
   }
-  
 }

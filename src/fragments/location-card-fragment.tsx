@@ -9,11 +9,14 @@ export const query = graphql`
     opening_time
     closing_time
 
-    address {
-      data {
-        address
-      }
-    }
+    streetAddress
+    addressLocality
+    addressRegion
+    postalCode
+    commonName
+
+    phone
+    weatherPermitting
 
     description {
       data {

@@ -31,3 +31,5 @@ sup generally have a hullweight only
 
 if we have both riggedweight and hullweight show both but often there is only a hullweight
 if we have neither
+
+## Node 24 issue I need to get locked down

@@ -22,12 +22,12 @@ function Limiter(props: {
   // using foreach to remove the react key issues
 
   // all the kayaks or sups
-  const type = [];
+  const type: CardType[] = [];
 
   // only the first 4
-  const quad: any[] = [];
+  const quad: CardType[] = [];
 
-  props.brand.forEach((retail: { type: any; }) => {
+  props.brand.forEach((retail: { type: CardType[]; }) => {
     if (retail.type === props.type) {
       // console.log(retail.title);
       type.push(retail);

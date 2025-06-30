@@ -79,7 +79,10 @@ const RetailPage = () => {
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: CardType) => (
-          <Card key={kayak.id} {...kayak} />
+          <Card
+            key={kayak.id}
+            {...kayak}
+          />
         ))}
 
         <h2>
@@ -91,7 +94,7 @@ const RetailPage = () => {
         <section className="blocked">
           {/* <hr /> */}
           <h2>
-            <Link to="/retail/sup">Stand Up Paddleboards (SUPs)</Link>
+            <Link to="/retail/sup">Stand Up Paddle boards (SUPs)</Link>
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />

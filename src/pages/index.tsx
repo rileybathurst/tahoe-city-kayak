@@ -25,7 +25,54 @@ import Card from "../components/card";
 import Experience from "../content/experience";
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+
+  interface Tour {
+    id: string;
+    featured?: boolean;
+    [key: string]: any;
+  }
+
+  interface Retail {
+    id: string;
+    [key: string]: any;
+  }
+
+  interface Location {
+    [key: string]: any;
+  }
+
+  interface SunsetTourTime {
+    id: string;
+    endDate: string;
+    endTime: string;
+    startDate: string;
+    startTime: string;
+  }
+
+  interface Locale {
+    peek_tours: string;
+    season_start: string;
+    season_end: string;
+    phone: string;
+  }
+
+  interface Data {
+    allStrapiLocation: {
+      nodes: Location[];
+    };
+    allStrapiTour: {
+      nodes: Tour[];
+    };
+    allStrapiSunsetTourTime: {
+      nodes: SunsetTourTime[];
+    };
+    allStrapiRetail: {
+      nodes: Retail[];
+    };
+    strapiLocale: Locale;
+  }
+
+  const data: Data = useStaticQuery(graphql`
     query IndexQuery {
       allStrapiLocation(
         filter: {
@@ -72,11 +119,8 @@ const IndexPage = () => {
     }
   `);
 
-  // const more = { data }
-  // console.log(more);
-
-  const allTours = data.allStrapiTour.nodes;
-  allTours.sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
+  const allTours: Tour[] = data.allStrapiTour.nodes;
+  allTours.sort((a: Tour, b: Tour) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
   console.log(allTours);
 
   // State for the list
@@ -173,7 +217,7 @@ const IndexPage = () => {
             {...data.allStrapiLocation}
           />
 
-          <div className="button__double">
+          <div className="multi_button">
             <BookRental />
             <BookTour />
           </div>
@@ -192,8 +236,8 @@ const IndexPage = () => {
         </div>
       </main>
 
-      <section id="tours-lessons" className="home__tours">
-        <div>
+      <section id="tours-lessons" className="cloud aconcagua-padding-block-end">
+        <div className='condor aconcagua-padding-block-start aconcagua-padding-block-end'>
           {/* // TODO: only one h and then p */}
           <hgroup className="crest">
             <h3 className="brow">
@@ -207,32 +251,32 @@ const IndexPage = () => {
             <Link to="/tours-lessons/compare">Compare Tours &amp; Lessons</Link>
           </h4>
         </div>
-        <div>{/* stay gold */}</div>
-      </section>
 
-      <div className="deck">
-        {list
-          .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? 1 : -1))
-          .map((tour: PaddleTicketTypes) => (
-            <PaddleTicket
-              key={tour.id}
-              {...tour}
-              tour_page="tours-lessons"
-              peek_tours_fall_back={data.strapiLocale.peek_tours}
-              allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
-            />
-          ))}
-      </div>
-      <div className="deck__more">
-        {hasMore ? (
-          <button onClick={handleLoadMore} type="button">
-            VIEW MORE TOURS &amp; LESSONS
-          </button>
-        ) : (
-          <p>Thats all the tours</p>
-        )}
-        <hr />
-      </div>
+
+        <div className="flight">
+          {list
+            .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? 1 : -1))
+            .map((tour: PaddleTicketTypes) => (
+              <PaddleTicket
+                key={tour.id}
+                {...tour}
+                tour_page="tours-lessons"
+                peek_tours_fall_back={data.strapiLocale.peek_tours}
+                allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
+              />
+            ))}
+        </div>
+        <div className="condor aconcagua-padding-block-end">
+          {hasMore ? (
+            <button onClick={handleLoadMore} type="button">
+              VIEW MORE TOURS &amp; LESSONS
+            </button>
+          ) : (
+            <p>Thats all the tours</p>
+          )}
+          <hr />
+        </div>
+      </section>
 
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}

@@ -18,3 +18,17 @@
 
 /* TODO: move this to NPM package */
 @import "seocase";
+
+.equipment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  .equipment-images {
+    max-width: 100%;
+    object-fit: cover;
+    margin-inline: auto;
+  }
+}

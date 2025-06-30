@@ -35,7 +35,7 @@ const Footer = () => {
         phone
       }
 
-      allStrapiLocale(filter: {slug: {nin: ["south-lake", null]}}) {
+      allStrapiLocale(filter: {slug: {nin: ["tahoe-city", null]}}) {
         nodes {
           name
           url
@@ -74,14 +74,16 @@ const Footer = () => {
         </nav>
         <hr />
         <div className="footer__contact">
-          <Phone />
-          <a
-            href={`mailto:${data.strapiLocale.email}`}
-            rel="norel norefferer"
-            className="button"
-          >
-            {data.strapiLocale.email}
-          </a>
+          <div className="multi_button">
+            <Phone />
+            <a
+              href={`mailto:${data.strapiLocale.email}`}
+              rel="norel norefferer"
+              className="button"
+            >
+              {data.strapiLocale.email}
+            </a>
+          </div>
           <hr />
           <PaddleSocials
             instagram={data.strapiLocale.instagram}

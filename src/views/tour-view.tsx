@@ -54,6 +54,15 @@ interface TourViewTypes {
         };
         alternativeText: string;
       };
+
+      compositionImage: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+        alternativeText: string;
+      };
     };
 
     allStrapiSunsetTourTime: {
@@ -110,6 +119,15 @@ export const data = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+
+      compositionImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(aspectRatio: 1, layout: CONSTRAINED)
           }
         }
         alternativeText
@@ -316,8 +334,8 @@ const TourView = ({ data }: TourViewTypes) => {
 
         <aside>
           <Composition
-            sport={data.strapiTour.ogimage || data.strapiTour.sport}
-            // TODO: change the image on tours
+            sport={data.strapiTour.sport}
+            image={data.strapiTour?.compositionImage}
           />
 
           {/* // ! testing off <PaddleLocationCard

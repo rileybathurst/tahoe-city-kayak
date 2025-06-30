@@ -3,18 +3,6 @@
 /*------------------*/
 
 /*------------------*/
-/* #SVG */
-/*------------------*/
-
-svg {
-  fill: var(--black-metal);
-
-  @media (prefers-color-scheme: dark) {
-    fill: var(--brilliance);
-  }
-}
-
-/*------------------*/
 /* #LOGO */
 /* * Tahoe City and South Lake differ on this */
 /*------------------*/

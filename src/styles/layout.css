@@ -387,40 +387,6 @@ footer {
 }
 
 /*------------------*/
-/* #LOCATION */
-/*------------------*/
-
-/* this is to not use the .location class */
-/* as sometimes we dont want to flow in a row */
-
-.locations__complete > * {
-  display: flex;
-  flex-flow: row wrap;
-  padding-block-end: calc(var(--elbrus) / 2);
-  margin-block-end: var(--elbrus);
-  gap: 0.75rem;
-
-  > * {
-    flex: 3.5 1; /* guess and check to get the parking on one row in the footer */
-  }
-
-  > *:first-child {
-    flex: 1 1;
-  }
-}
-
-/* TODO: fix the delivery location */
-.locations__complete > .delivery {
-  > *:nth-child(2) {
-    flex: 7 1; /* guess and check to get the parking on one row in the footer */
-  }
-}
-
-.locations__complete > *:not(:last-child) {
-  border-bottom: 1px solid var(--kingly-cloud); /* match the hr */
-}
-
-/*------------------*/
 /* #COMPARE TABLE */
 /*------------------*/
 

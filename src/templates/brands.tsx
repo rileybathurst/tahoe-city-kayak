@@ -95,16 +95,16 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           {/* // TODO: needs slide that I have in other places */}
           {seriesArray.length > 0
             ? seriesArray.map((series) => (
-                <Link
-                  key={series}
-                  to={`#${series}`}
-                  onClick={(e) => scrollTo(`#${series}`)}
-                >
-                  <span className="typography__secondary">
-                    {series.replace(/-/g, " ")} Series
-                  </span>
-                </Link>
-              ))
+              <Link
+                key={series}
+                to={`#${series}`}
+                onClick={(e) => scrollTo(`#${series}`)}
+              >
+                <span className="typography__secondary">
+                  {series.replace(/-/g, " ")} Series
+                </span>
+              </Link>
+            ))
             : null}
         </section>
 
@@ -117,32 +117,32 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
 
       {seriesArray.length > 0
         ? seriesArray.map((series) => (
-            <>
-              <section
-                // key={retail.[0].series}
-                className="passage possibly-empty"
-                // id={retail.[0].series}
-              >
-                {series ? (
-                  <>
-                    <hr />
-                    <h2 className="capitalize">
-                      {series.replace(/-/g, " ")}&nbsp;
-                      <span className="typography__secondary">Series</span>
-                    </h2>
-                  </>
-                ) : null}
-              </section>
+          <>
+            <section
+              // key={retail.[0].series}
+              className="albatross possibly-empty"
+            // id={retail.[0].series}
+            >
+              {series ? (
+                <>
+                  <hr />
+                  <h2 className="capitalize">
+                    {series.replace(/-/g, " ")}&nbsp;
+                    <span className="typography__secondary">Series</span>
+                  </h2>
+                </>
+              ) : null}
+            </section>
 
-              <div className="deck" key={series}>
-                {data.allStrapiRetail.nodes
-                  .filter((retail) => retail.series === series)
-                  .map((retail) => (
-                    <Card key={retail.id} {...retail} />
-                  ))}
-              </div>
-            </>
-          ))
+            <div className="deck" key={series}>
+              {data.allStrapiRetail.nodes
+                .filter((retail) => retail.series === series)
+                .map((retail) => (
+                  <Card key={retail.id} {...retail} />
+                ))}
+            </div>
+          </>
+        ))
         : null}
 
       <hr className="pelican" />

@@ -120,7 +120,7 @@ const ToursLessonsPage = () => {
             <p className="aconcagua">Tours &amp; Lessons</p>
           </hgroup>
 
-          <div className="deck">
+          <div className="flight">
             {sport.nodes
               .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
               .map((tour: PaddleTicketTypes) => (
