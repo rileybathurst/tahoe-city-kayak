@@ -94,7 +94,7 @@ const RetailPage = () => {
       <article className="albatross wrap">
         <section className="">
           <h2>
-            <Link to="/retail/sup">Stand Up Paddle boards (SUPs)</Link>
+            <Link to="/retail/paddleboard">Stand Up Paddle boards (SUPs)</Link>
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />

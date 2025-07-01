@@ -13,6 +13,7 @@ import BrandList from "../../components/brand-list";
 import Purchase from "../../components/purchase";
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
+// import PaddleLocationCard from "@rileybathurst/paddle";
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
@@ -78,10 +79,10 @@ const RetailSportPage = ({ data }) => {
           </Markdown>
         </div>
 
-        <PaddleLocationCard
+        {/* // ! <PaddleLocationCard
           {...data.strapiLocation}
           background={false}
-        />
+        /> */}
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 

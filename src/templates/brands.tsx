@@ -6,7 +6,7 @@ import * as React from "react";
 import { Link, graphql, Script, useStaticQuery } from "gatsby";
 
 // Paddle
-import { PaddleLocationCard } from "@rileybathurst/paddle";
+// import { PaddleLocationCard } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import scrollTo from "gatsby-plugin-smoothscroll";
