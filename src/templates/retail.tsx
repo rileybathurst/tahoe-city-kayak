@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 import Sport from "../components/sport";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Card from "../components/card";
+import Purchase from "../components/purchase";
 import TextureBackgrounds from "../components/texturebackgrounds";
 import Phone from "../components/phone";
 // import SEOcase from "../components/seocase"
@@ -16,13 +16,13 @@ import type { RetailType } from "../types/retail";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import { PaddleSpecs } from "@rileybathurst/paddle";
 
-function Series(props: { series: string }) {
-  if (props.series) {
+const Series = ({ series }: { series: string }) => {
+  if (series) {
     return (
       <div className="h_series">
         <div className="spec">
           <h2>Series</h2>
-          <h3>{props.series}</h3>
+          <h3>{series}</h3>
         </div>
       </div>
     );
@@ -123,9 +123,11 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </main>
 
       {/* // TODO: ifthe description moved up dont run it here */}
-      <Markdown className="react-markdown condor">
-        {data.strapiRetail.description?.data?.description}
-      </Markdown>
+      <div className="react-markdown pelican">
+        <Markdown>
+          {data.strapiRetail.description?.data?.description}
+        </Markdown>
+      </div>
 
       {/* // TODO: description to strapi */}
       {/* // TODO: pedal drive should be a query */}
@@ -156,9 +158,9 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
               <span className="capitalize">{data.strapiRetail.brand.name}</span>
             </h2>
           </section>
-          <section className="deck">
+          <section className="bag">
             {data.allStrapiRetail.nodes.map((retail: RetailType) => (
-              <Card key={retail.id} {...retail} />
+              <Purchase key={retail.id} {...retail} />
             ))}
           </section>
           <section className="condor">
@@ -330,7 +332,7 @@ export const query = graphql`
         sort: {featured: DESC}
       ) {
         nodes {
-        ...retailCard
+        ...purchaseFragment
       }
     }
   }

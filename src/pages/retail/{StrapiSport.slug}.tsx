@@ -10,7 +10,7 @@ import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import BrandList from "../../components/brand-list";
-import Card from "../../components/card";
+import Purchase from "../../components/purchase";
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
 
@@ -44,7 +44,7 @@ export const strapiSport = graphql`
       tagline
       svg
       retail {
-        ...retailCard
+        ...purchaseFragment
         sport {
           slug
         }
@@ -78,10 +78,10 @@ const RetailSportPage = ({ data }) => {
           </Markdown>
         </div>
 
-        {/* // ! testing off <PaddleLocationCard
+        <PaddleLocationCard
           {...data.strapiLocation}
           background={false}
-        /> */}
+        />
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 
@@ -111,7 +111,7 @@ const RetailSportPage = ({ data }) => {
               </section>
 
               <div
-                className='deck'
+                className='bag'
                 key={brand.id}
               >
                 {
@@ -119,7 +119,7 @@ const RetailSportPage = ({ data }) => {
                     .filter((retail) => retail.sport.slug === data.strapiSport.slug)
                     .splice(0, 4)
                     .map((retail) => (
-                      <Card
+                      <Purchase
                         key={retail.id}
                         {...retail}
                       />
@@ -151,6 +151,7 @@ const RetailSportPage = ({ data }) => {
 
 export default RetailSportPage
 
+// TODO: needs filling out
 export const Head = () => {
   return (
     <SEO />

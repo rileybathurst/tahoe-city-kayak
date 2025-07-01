@@ -180,9 +180,8 @@ const Header = () => {
 
       {/* // TODO: weather day in other places as well */}
       <PaddleTopBar {...data} />
-
       <p className='sr-only'>
-        {data.strapiLocale.name}
+        {data.strapiLocale.name} Kayak & Paddleboard rentals and tours
       </p>
       <div className="logo-container" >
         <Link to="/" className="">

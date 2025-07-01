@@ -19,16 +19,73 @@
 /* TODO: move this to NPM package */
 @import "seocase";
 
-.equipment {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+/* exclamation point when in use asterik when waiting */
+/* ! move to paddle this is only a test area */
 
-  .equipment-images {
+.composition {
+  display: grid;
+  grid-template-columns: 5% 10% 70% 10% 5%;
+  grid-template-rows: 5% 90% 5%;
+  margin-block-end: var(--vinson);
+
+  .gatsby-image-wrapper,
+  .storybook-gatsby-image {
     max-width: 100%;
-    object-fit: cover;
-    margin-inline: auto;
+  }
+
+  /* * img__wrapped */
+  > * {
+    border-radius: 0.25rem;
+    box-shadow: var(--penumbra);
+  }
+
+  > img {
+    display: block;
+  }
+
+  .paddler {
+    grid-column: 3;
+    grid-row: 2;
+    aspect-ratio: 1;
+    border: none;
+    box-shadow: none;
+    margin-block: 1rem;
+
+    img {
+      border-radius: 50%;
+      border: 2px solid;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+    }
+  }
+
+  /* gatsby nesting breaks the design */
+  .storybook-paddler {
+    grid-column: 3;
+    grid-row: 2;
+    aspect-ratio: 1;
+    box-shadow: none;
+    margin-block: 1rem;
+    border-radius: 50%;
+    border: 2px solid;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+  }
+
+  .texture-1 {
+    grid-column: 1/5;
+    grid-row: 1/3;
+    aspect-ratio: 16/9;
+  }
+
+  .texture-2 {
+    grid-column: 2/6;
+    grid-row: 2/4;
+    aspect-ratio: 16/9;
+    place-self: end;
+
+    img {
+      object-fit: cover !important;
+    }
   }
 }

@@ -6,7 +6,7 @@ import { PaddleLocationCard } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Card from "../../components/card";
+import Purchase from "../../components/purchase";
 import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import Markdown from "react-markdown";
@@ -118,7 +118,7 @@ const DemosPage = () => {
       query DemosQuery {
         kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
-        ...retailCard
+        ...purchaseFragment
 
           brand {
         name
@@ -129,7 +129,7 @@ const DemosPage = () => {
 
       paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}, sort: {featured: ASC}) {
         nodes {
-        ...retailCard
+        ...purchaseFragment
 
           brand {
         name
@@ -236,10 +236,10 @@ const DemosPage = () => {
           <Composition sport="kayak" />
         </div>
 
-        <section className="deck">
+        <section className="bag">
           {query.kayak.nodes.map(
             (kayak: { brand: { name: string; slug: string } }) => (
-              <Card key={kayak.id} {...kayak} />
+              <Purchase key={kayak.id} {...kayak} />
             ),
           )}
         </section>
@@ -260,10 +260,10 @@ const DemosPage = () => {
         <Composition sport="sup" />
       </article>
 
-      <section className="deck">
+      <section className="bag">
         {query.paddleboards.nodes.map(
           (sup: { brand: { name: string; slug: string } }) => (
-            <Card key={sup.id} {...sup} />
+            <Purchase key={sup.id} {...sup} />
           ),
         )}
       </section>

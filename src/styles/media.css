@@ -8,17 +8,8 @@
 /*------------------*/
 
 .logo-container {
-  background-color: whitesmoke;
-  box-shadow: 0 0 0 100vmax whitesmoke;
-  clip-path: inset(0 -100vmax);
-
   @media (min-width: 30rem) {
     max-width: 32rem; /* guess and check */
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--navy-300);
-    box-shadow: 0 0 0 100vmax var(--navy-300);
   }
 
   h1 {

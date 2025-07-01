@@ -16,8 +16,8 @@ function BaseOne(props) {
       alt="deepwater texture"
       className={`texture-slice ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -31,8 +31,8 @@ function BaseTwo(props) {
       alt="clear texture"
       className={`texture-slice ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -47,8 +47,8 @@ function BaseThree(props) {
       alt="splash texture"
       className={`texture-slice ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -63,8 +63,8 @@ function TopOne(props) {
       alt="sunset texture"
       className={`texture-slice crop ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -79,8 +79,8 @@ function TopTwo(props) {
       alt="forrest texture"
       className={`texture-slice crop ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -95,8 +95,8 @@ function TopThree(props) {
       alt="sand texture"
       className={`texture-slice crop ${props.className}`}
       objectFit="contain"
-      // breakpoints={[300, 600, 900]}
-      // width={650}
+    // breakpoints={[300, 600, 900]}
+    // width={650}
     />
   );
 }
@@ -109,11 +109,11 @@ function BaseTexture() {
   return <>{textures[random]}</>;
 }
 
-function TopTexture(props: { crop?: string }) {
+function TopTexture() {
   const textures = [
-    <TopOne crop={props.crop} />,
-    <TopTwo crop={props.crop} />,
-    <TopThree crop={props.crop} />,
+    <TopOne />,
+    <TopTwo />,
+    <TopThree />,
   ];
 
   const random = Math.floor(Math.random() * textures.length);
@@ -121,7 +121,7 @@ function TopTexture(props: { crop?: string }) {
   return <>{textures[random]}</>;
 }
 
-const TextureBackgrounds = (props) => {
+const TextureBackgrounds = () => {
   // const { baseone } = useStrapiTextures()
 
   return (

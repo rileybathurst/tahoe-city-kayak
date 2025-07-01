@@ -21,12 +21,13 @@ import BrandList from "../components/brand-list";
 import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
-import Card from "../components/card";
+
 import Experience from "../content/experience";
+import Purchase from "../components/purchase";
 
 const IndexPage = () => {
 
-  interface Tour {
+  interface Tour extends PaddleTicketTypes {
     id: string;
     featured?: boolean;
     [key: string]: any;
@@ -106,7 +107,7 @@ const IndexPage = () => {
 
       allStrapiRetail(sort: {featured: ASC}) {
         nodes {
-          ...retailCard
+          ...purchaseFragment
         }
       }
 
@@ -224,6 +225,7 @@ const IndexPage = () => {
         </section>
 
         <div>
+          {/* TODO: rename this hero after I've cleaned that up */}
           <div className="home__photo-grid">
             <MahaliaCasual className="kayakers" />
             <WaterTexture className="texture" />
@@ -319,13 +321,13 @@ const IndexPage = () => {
 
         <div className="">
           <div className="pelican">
-            {/* TODOL these are cards that due to the layout cant be in a deck so need better margin-block-end */}
+            {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
             {inventory.map((retail) => (
-              <Card key={retail.id} {...retail} />
+              <Purchase key={retail.id} {...retail} />
             ))}
             {hasExtra ? (
               <button onClick={handleLoadExtra} type="button">
-                VIEW MORE PRODUCTS
+                View More Products
               </button>
             ) : (
               <p>Thats all the products</p>

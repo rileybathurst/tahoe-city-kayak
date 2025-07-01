@@ -13,7 +13,7 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Card from "../components/card";
+import Purchase from "../components/purchase";
 import type { RetailType } from "../types/retail";
 
 // TODO: get rid of props
@@ -33,7 +33,7 @@ import type { RetailType } from "../types/retail";
   // console.log(props.retail);
 
   return (
-    <Card
+    <Purchase
       key={props.retail.id}
       {props.retail}
     />
@@ -95,15 +95,18 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           {/* // TODO: needs slide that I have in other places */}
           {seriesArray.length > 0
             ? seriesArray.map((series) => (
-              <Link
-                key={series}
-                to={`#${series}`}
-                onClick={(e) => scrollTo(`#${series}`)}
-              >
-                <span className="typography__secondary">
-                  {series.replace(/-/g, " ")} Series
-                </span>
-              </Link>
+              <>
+                <Link
+                  key={series}
+                  to={`#${series}`}
+                  onClick={(e) => scrollTo(`#${series}`)}
+                >
+                  <span className="typography__secondary">
+                    {series.replace(/-/g, " ")} Series
+                  </span>
+                </Link>
+                &nbsp;
+              </>
             ))
             : null}
         </section>
@@ -134,11 +137,11 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
               ) : null}
             </section>
 
-            <div className="deck" key={series}>
+            <div className="bag" key={series}>
               {data.allStrapiRetail.nodes
                 .filter((retail) => retail.series === series)
                 .map((retail) => (
-                  <Card key={retail.id} {...retail} />
+                  <Purchase key={retail.id} {...retail} />
                 ))}
             </div>
           </>
@@ -147,11 +150,11 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
 
       <hr className="pelican" />
 
-      <section className="deck">
+      <section className="bag">
         {data.allStrapiRetail.nodes
           .filter((retail: RetailType) => retail.series === null)
           .map((retail: RetailType) => (
-            <Card key={retail.id} {...retail} />
+            <Purchase key={retail.id} {...retail} />
           ))}
       </section>
 
@@ -206,7 +209,7 @@ export const query = graphql`
         sort: {featured: ASC}
         ) {
           nodes {
-          ...retailCard
+          ...purchaseFragment
         series
       }
     }

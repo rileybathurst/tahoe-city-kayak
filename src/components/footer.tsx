@@ -50,7 +50,7 @@ const Footer = () => {
   }
 
   return (
-    <footer>
+    <footer className="cloud">
       {/* holds together a flex */}
       <div>
         <h3 className='sr-only'>

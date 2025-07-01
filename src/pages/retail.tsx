@@ -4,30 +4,28 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
-// Paddle
-import { PaddleLocationCard } from "@rileybathurst/paddle";
-
 import Header from "../components/header";
 import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";
 import BrandList from "../components/brand-list";
-import Card from "../components/card";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
 import type { CardType } from "../types/card";
+
+import Purchase from "../components/purchase";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
       kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
         nodes {
-          ...retailCard
+          ...purchaseFragment
         }
       }
 
     paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
-        ...retailCard
+        ...purchaseFragment
       }
     }
 
@@ -52,34 +50,35 @@ const RetailPage = () => {
           <h3>
             <Link to="/retail/demos">Demos</Link>
           </h3>
-        </div>
 
-        {/* // ! testing off <PaddleLocationCard
+          {/* // ! needs additional phone etc <PaddleLocationCard
           {...query.strapiLocation}
           background={false}
         /> */}
+
+          <article className="pelican wrap">
+            <section className="blocked">
+              <h2>
+                <Link to="/retail/kayak">Kayaks</Link>
+              </h2>
+              <h3 className="condensed">Browse By Feature</h3>
+              <FeatureList sport="kayak" />
+            </section>
+          </article >
+          <section className="albatross">
+            <h3>Browse By Brand</h3>
+            <BrandList sport="kayak" />
+          </section>
+        </div>
+
+        <Composition
+          sport="kayak"
+        />
       </main>
 
-      <article className="pelican wrap">
-        <section className="blocked">
-          <h2>
-            <Link to="/retail/kayak">Kayaks</Link>
-          </h2>
-          <h3 className="condensed">Browse By Feature</h3>
-          <FeatureList sport="kayak" />
-        </section>
-
-        <Composition sport="kayak" />
-      </article>
-
-      <section className="albatross">
-        <h3>Browse By Brand</h3>
-        <BrandList sport="kayak" />
-      </section>
-
-      <section className="deck">
+      <section className="bag">
         {query.kayak.nodes.map((kayak: CardType) => (
-          <Card
+          <Purchase
             key={kayak.id}
             {...kayak}
           />
@@ -90,32 +89,35 @@ const RetailPage = () => {
         </h2>
       </section>
 
-      <article className="main__full main__full--tour">
-        <section className="blocked">
-          {/* <hr /> */}
+      <hr className="albatross" />
+
+      <article className="albatross wrap">
+        <section className="">
           <h2>
             <Link to="/retail/sup">Stand Up Paddle boards (SUPs)</Link>
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />
+          <section className="albatross">
+            <h3>Browse By Brand</h3>
+            <BrandList sport="paddleboard" />
+          </section>
         </section>
 
         <Composition sport="sup" />
       </article>
 
-      <section className="albatross">
-        <h3>Browse By Brand</h3>
-        <BrandList sport="paddleboard" />
+
+
+      <section className="bag">
+        {query.paddleBoard.nodes.map((sup: CardType) => (
+          <Purchase key={sup.id} {...sup} />
+        ))}
       </section>
 
-      <section className="deck">
-        {query.paddleBoard.nodes.map((sup: CardType) => (
-          <Card key={sup.id} {...sup} />
-        ))}
-        <h2>
-          <Link to="/retail/paddleboard">All Paddleboards</Link>
-        </h2>
-      </section>
+      <h2 className="albatross">
+        <Link to="/retail/paddleboard">All Paddle boards</Link>
+      </h2>
 
       <Footer />
     </>
@@ -124,6 +126,7 @@ const RetailPage = () => {
 
 export default RetailPage;
 
+// TODO: query
 export const Head = () => {
   return (
     <SEO

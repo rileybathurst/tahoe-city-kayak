@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
-import Card from "./card";
+import Purchase from "./purchase";
 import type { CardType } from "../types/card";
 import Sport from "./sport";
 
@@ -43,7 +43,7 @@ function Limiter(props: {
       {quad.map((retail) => {
         {/* // * this is weird it needs a nested return */ }
         return (
-          <Card
+          <Purchase
             key={retail.id}
             {...retail}
           />

@@ -1,23 +1,25 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment retailCard on STRAPI_RETAIL {
+  fragment purchaseFragment on STRAPI_RETAIL {
     id
     title
     slug
     excerpt
-    sport {
-      slug
-    }
+
     length
     width
     inflatable
-    hullweight
     capacity
 
     demo
 
+
     brand {
+      slug
+    }
+
+    sport {
       slug
     }
 
@@ -33,9 +35,5 @@ export const query = graphql`
   }
 `
 
-// ? does this need demo for badges?
-
-/* (
-  breakpoints: [111, 165, 222, 444, 880]
-  width: 222
-) */
+// hullweight
+// discount

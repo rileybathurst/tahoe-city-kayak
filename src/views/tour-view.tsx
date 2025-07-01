@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import {
-  PaddleLocationCard,
   PaddleTicket,
   type PaddleTicketTypes,
   PaddleTime,
   PaddleSunsetTourTimes,
   PaddleSpecs,
+  PaddleLocationDeck,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -63,6 +63,14 @@ interface TourViewTypes {
         };
         alternativeText: string;
       };
+
+      local: {
+        name: string;
+        peek_tours: string;
+        season_start: string;
+        season_end: string;
+        phone: string;
+      };
     };
 
     allStrapiSunsetTourTime: {
@@ -78,11 +86,12 @@ interface TourViewTypes {
     local: {
       name: string;
     };
+
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
     };
 
-    strapiLocation: CardType;
+    allStrapiLocation: CardType[];
 
     strapiLocale: {
       peek_tours: string;
@@ -138,6 +147,7 @@ export const data = graphql`
         peek_tours
         season_start
         season_end
+        phone
       }
     }
 
@@ -172,17 +182,18 @@ export const data = graphql`
       }
     }
 
-    strapiLocation(
-      local: {slug: {eq: "tahoe-city"}}
-      name: {eq: "On Water Rental"}
+    allStrapiLocation(
+      filter: {
+        local: {slug: {eq: "tahoe-city"}},
+        name: {in: ["On Water Rental", "Free Parking Lot"]}
+      },
+      sort: {order: ASC}
     ) {
-      ...locationCardFragment
-
-
-      local {
-        name
+      nodes {
+        ...locationCardFragment
       }
     }
+
   }
 `;
 
@@ -198,9 +209,6 @@ const TourView = ({ data }: TourViewTypes) => {
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
     allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime,
   });
-
-  // console.log(time);
-  // console.log(data.allStrapiSunsetTourTime);
 
   // TODO: add the moonlight tour times to paddle just quick working here
   type MoonlightTourDateTime = {
@@ -330,30 +338,32 @@ const TourView = ({ data }: TourViewTypes) => {
               />
             ) : null}
           </section>
-        </div>
 
-        <aside>
-          <Composition
-            sport={data.strapiTour.sport}
-            image={data.strapiTour?.compositionImage}
+          <PaddleLocationDeck
+            season_start={data.strapiTour.local.season_start}
+            season_end={data.strapiTour.local.season_end}
+            phone={data.strapiTour.local.phone}
+            {...data.allStrapiLocation}
           />
 
-          {/* // ! testing off <PaddleLocationCard
-            key={data.strapiLocation.id}
-            {...data.strapiLocation}
-          /> */}
-        </aside>
+          <h4>
+            <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
+              Compare the {data.strapiTour.name} to another tour.
+            </Link>
+          </h4>
+        </div>
+
+        <Composition
+          sport={data.strapiTour.sport}
+          image={data.strapiTour?.compositionImage}
+        />
       </main>
 
-      <hr className="albatross" />
-
       <div className="albatross">
-        <h3>Other Tours</h3>
-        <h4>
-          <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
-            Compare the {data.strapiTour.name} to another tour.
-          </Link>
-        </h4>
+        <hr />
+        <h3>
+          <Link to="/tours-lessons">Other Tours & Lessons</Link>
+        </h3>
         <hr />
       </div>
 
