@@ -81,7 +81,6 @@ const RetailSportPage = ({ data }) => {
 
         {/* // ! <PaddleLocationCard
           {...data.strapiLocation}
-          background={false}
         /> */}
         <FeatureList sport={data.strapiSport.slug} />
       </main>

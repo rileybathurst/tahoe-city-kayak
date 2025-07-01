@@ -11,6 +11,7 @@ import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
+import LocationDeck from "../../components/location-deck";
 
 function LineBreaker(props: { text: string }) {
   const regex = /[- ]/g;
@@ -55,9 +56,7 @@ interface RetailRatesTypes {
 }
 interface CustomOrderTypes {
   RentalRates: {
-    nodes: {
-      RetailRatesTypes;
-    };
+    nodes: RetailRatesTypes[];
   };
 }
 function CustomOrder({ RentalRates }: CustomOrderTypes) {
@@ -114,14 +113,16 @@ function CustomOrder({ RentalRates }: CustomOrderTypes) {
 }
 
 const DemosPage = () => {
+
   const query = useStaticQuery(graphql`
       query DemosQuery {
+        
         kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
-        ...purchaseFragment
+          ...purchaseFragment
 
           brand {
-        name
+            name
             slug
           }
         }
@@ -132,30 +133,32 @@ const DemosPage = () => {
         ...purchaseFragment
 
           brand {
-        name
+            name
             slug
           }
         }
       }
 
-      strapiLocation: strapiLocation(
-      local: {slug: {eq: "tahoe-city"}}
-      name: {eq: "Retail Location"}
-      ) {
-        ...locationCardFragment
-      }
-
-      strapiDemo: strapiDemo {
-        text {
-        data {
-        text
-      }
+      allStrapiLocation(filter: {
+        local: {slug: {eq: "tahoe-city"}},
+        name: {eq: "Retail Location"}
+      }) {
+        nodes {
+          ...locationCardFragment
         }
       }
 
-      allStrapiRentalRate: allStrapiRentalRate(
-      filter: {item: {in: ["Demo Single", "Demo Double", "Paddle board"]}}
-      sort: {item: ASC}
+      strapiDemo {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
+      allStrapiRentalRate(
+        filter: {item: {in: ["Demo Single", "Demo Double", "Paddle board"]}}
+        sort: {item: ASC}
       ) {
         nodes {
           id
@@ -166,7 +169,7 @@ const DemosPage = () => {
         }
       }
 
-      allStrapiRentalAddon: allStrapiRentalAddon {
+      allStrapiRentalAddon {
         nodes {
           name
           single
@@ -176,7 +179,7 @@ const DemosPage = () => {
       }
 
     }
-      `);
+  `);
 
   return (
     <>
@@ -213,10 +216,9 @@ const DemosPage = () => {
           </div>
         </main>
 
-        {/* // ! testing off <PaddleLocationCard
-          {...query.strapiLocation}
-          background={false}
-        /> */}
+        <LocationDeck
+          allStrapiLocation={query.allStrapiLocation}
+        />
       </div>
 
       <section className="demo__kayak">
@@ -245,6 +247,7 @@ const DemosPage = () => {
         </section>
       </section>
 
+      {/* // TODO: classes */}
       <article className="main__full main__full--tour baseline-spacing">
         <div>
           <h4>Paddleboards from these brands</h4>

@@ -103,7 +103,6 @@ const ToursLessonsPage = () => {
           </div>
         </div>
         <PaddleLocationDeck
-          background={false}
           season_start={query.strapiLocale.season_start}
           season_end={query.strapiLocale.season_end}
           phone={query.strapiLocale.phone}

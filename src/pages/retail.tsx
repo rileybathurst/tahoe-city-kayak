@@ -53,7 +53,6 @@ const RetailPage = () => {
 
           {/* // ! needs additional phone etc <PaddleLocationCard
           {...query.strapiLocation}
-          background={false}
         /> */}
 
           <article className="pelican wrap">

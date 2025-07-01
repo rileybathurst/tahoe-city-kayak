@@ -8,6 +8,7 @@ import Sport from "../components/sport";
 import type { CardType } from "../types/card";
 import ReactMarkdown from 'react-markdown';
 import { RetailType } from "../types/retail";
+import Purchase from "../components/purchase";
 
 // * SEO isnt here its on the templates
 interface AttributeViewTypes {

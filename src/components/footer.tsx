@@ -113,7 +113,6 @@ const Footer = () => {
         <hr />
 
         <PaddleLocationDeck
-          background={false}
           season_start={data.strapiLocale.season_start}
           season_end={data.strapiLocale.season_end}
           phone={data.strapiLocale.phone}
