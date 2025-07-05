@@ -1,7 +1,25 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import SVG from 'react-inlinesvg';
 
-const BrandList = ({ sport }) => {
+type BrandListProps = {
+  sport: string;
+}
+const BrandList = ({ sport }: BrandListProps) => {
+
+  type brandTypes = {
+    id: React.Key;
+    name: string;
+    slug: string;
+    svg: string;
+    retail: {
+      title: string;
+      slug: string;
+      sport: {
+        slug: string;
+      }
+    }[]
+  }
 
   const { allStrapiBrand } = useStaticQuery(graphql`
     query SportBrandQuery {
@@ -24,7 +42,7 @@ const BrandList = ({ sport }) => {
   `)
 
   const BrandSet = new Set();
-  allStrapiBrand.nodes.map((brand) => {
+  allStrapiBrand.nodes.map((brand: brandTypes) => {
     brand.retail.map((retail) => {
       if (retail.sport.slug === sport) {
         BrandSet.add(brand);
@@ -32,32 +50,14 @@ const BrandList = ({ sport }) => {
     })
   });
 
-  const BrandArray = (Array.from(BrandSet));
-
-  interface BrandListTypes {
-    id: React.Key;
-    slug: string;
-    svg: string;
-    name: string;
-    retail: {
-      title: string;
-      slug: string;
-      sport: {
-        slug: string;
-      }
-    }[]
-  }
+  const BrandArray = Array.from(BrandSet) as brandTypes[];
 
   return (
     <ul className='brand_list'>
-      {BrandArray.map((brand) => (
+      {BrandArray.map((brand: brandTypes) => (
         <li key={brand.id}>
           <Link to={`/retail/${sport}/${brand.slug}`}>
-            {brand.svg ?
-              <div
-                dangerouslySetInnerHTML={{ __html: brand.svg }}
-              />
-              : null}
+            {brand.svg && <SVG src={brand.svg} />}
             {brand.name}
           </Link>
         </li>

@@ -11,7 +11,7 @@ import {
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import BookNow from "../components/peek/book-now";
+import BookNow from "../components/book-now";
 import Experience from "../content/experience";
 import Sport from "../components/sport";
 

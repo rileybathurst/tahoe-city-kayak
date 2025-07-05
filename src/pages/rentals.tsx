@@ -8,9 +8,9 @@ import { PaddleLocationDeck } from "@rileybathurst/paddle";
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import BookNow from "../components/peek/book-now";
+import BookNow from "../components/book-now";
 import Composition from "../components/composition";
-import { GatsbyImage, IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 import { useStrapiRental } from "../hooks/use-strapi-rental";
 

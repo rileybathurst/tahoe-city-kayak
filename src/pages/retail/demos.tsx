@@ -12,15 +12,17 @@ import Phone from "../../components/phone";
 import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import LocationDeck from "../../components/location-deck";
+import SVG from 'react-inlinesvg';
 
 function LineBreaker(props: { text: string }) {
   const regex = /[- ]/g;
   const newStr = props.text.replace(regex, "<br />$&");
   // console.log(newStr);
 
+  // ? this seems weird to h4?
   return (
     <h4>
-      <span dangerouslySetInnerHTML={{ __html: newStr }} />
+      <SVG src={newStr} />
     </h4>
   );
 }

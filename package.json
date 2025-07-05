@@ -24,7 +24,7 @@
   "dependencies": {
     "@fontsource/barlow": "^5.2.5",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.2.3",
+    "@rileybathurst/paddle": "^1.2.5",
     "@sentry/cli": "^2.45.0",
     "@sentry/gatsby": "^9.20.0",
     "gatsby": "^5.14.3",
@@ -48,6 +48,7 @@
     "react": "^18.3.1",
     "react-aria-components": "^1.9.0",
     "react-dom": "^18.3.1",
+    "react-inlinesvg": "^4.2.0",
     "react-markdown": "^10.1.0",
     "react-scroll": "^1.9.3",
     "react-wrap-balancer": "^1.1.1",

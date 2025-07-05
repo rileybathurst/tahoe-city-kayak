@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 // Paddle
 import {
+  PaddleBookNow,
   PaddleLocationDeck,
   PaddleTicket,
   type PaddleTicketTypes,
@@ -15,8 +16,6 @@ import PricingChart from "../components/pricing-chart";
 import MahaliaCasual from "../images/mahalia-casual";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
-import BookTour from "../components/peek/book-tour";
-import BookRental from "../components/peek/book-rental";
 import BrandList from "../components/brand-list";
 import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
@@ -51,10 +50,13 @@ const IndexPage = () => {
   }
 
   interface Locale {
+    name: string;
     peek_tours: string;
     season_start: string;
     season_end: string;
     phone: string;
+    peek_base: string;
+    peek_rentals: string;
   }
 
   interface Data {
@@ -112,10 +114,13 @@ const IndexPage = () => {
       }
 
       strapiLocale(slug: {eq: "tahoe-city"}) {
+        name
         peek_tours
         season_start
         season_end
         phone
+        peek_base
+        peek_rentals
       }
     }
   `);
@@ -219,8 +224,19 @@ const IndexPage = () => {
           />
 
           <div className="multi_button">
-            <BookRental />
-            <BookTour />
+            <PaddleBookNow
+              peek_base={data.strapiLocale.peek_base}
+              strapiLocaleName={data.strapiLocale.name}
+              specificName='rentals'
+              specificLink={data.strapiLocale.peek_rentals}
+            />
+
+            <PaddleBookNow
+              peek_base={data.strapiLocale.peek_base}
+              strapiLocaleName={data.strapiLocale.name}
+              specificName='tours'
+              specificLink={data.strapiLocale.peek_tours}
+            />
           </div>
         </section>
 

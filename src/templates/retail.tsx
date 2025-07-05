@@ -15,6 +15,7 @@ import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import { PaddleSpecs } from "@rileybathurst/paddle";
+import SVG from 'react-inlinesvg';
 
 const Series = ({ series }: { series: string }) => {
   if (series) {
@@ -50,9 +51,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
             className="link__subtle-svg"
           >
-            <div
-              dangerouslySetInnerHTML={{ __html: data.strapiRetail.brand.svg }}
-            />
+            <SVG src={data.strapiRetail.brand.svg} />
           </Link>
           <hgroup className="hgroup__retail">
             {/* // TODO: only one h and then p */}

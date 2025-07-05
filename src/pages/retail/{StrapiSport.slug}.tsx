@@ -14,6 +14,7 @@ import Purchase from "../../components/purchase";
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
 // import PaddleLocationCard from "@rileybathurst/paddle";
+import SVG from 'react-inlinesvg';
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
@@ -100,9 +101,7 @@ const RetailSportPage = ({ data }) => {
                 className="condor"
               >
                 {brand.svg ?
-                  <div
-                    dangerouslySetInnerHTML={{ __html: brand.svg }}
-                  />
+                  <SVG src={brand.svg} />
                   : null}
                 <h2 className='capitalize'>{brand.name}</h2>
                 <p>{brand.tagline}</p>

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import BookNow from "./peek/book-now"
+import BookNow from "./book-now"
+import SVG from 'react-inlinesvg';
 
 function LineBreaker(props: { text: string; }) {
   const regex = /[- ]/g;
@@ -9,9 +10,7 @@ function LineBreaker(props: { text: string; }) {
 
   return (
     <h4>
-      <span
-        dangerouslySetInnerHTML={{ __html: newStr }}
-      />
+      <SVG src={newStr} />
     </h4>
   );
 }

@@ -3,7 +3,7 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
-import BookNow from "./peek/book-now"
+import BookNow from "./book-now"
 
 interface MenuListTypes {
   children: React.ReactElement;

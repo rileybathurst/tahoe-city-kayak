@@ -3,7 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
 
 import * as React from "react";
-import { Link, graphql, Script, useStaticQuery } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 // Paddle
 // import { PaddleLocationCard } from "@rileybathurst/paddle";
@@ -15,6 +15,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
 import type { RetailType } from "../types/retail";
+import SVG from 'react-inlinesvg';
 
 // TODO: get rid of props
 /* function Series(props: {
@@ -83,10 +84,9 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
         <section>
           {/* // TODO: logo size */}
           <div className="logo">
-            <div
-              dangerouslySetInnerHTML={{ __html: data.brand.svg }}
-              className="logo-wrapper"
-            />
+            <div className="logo-wrapper">
+              <SVG src={data.brand.svg} />
+            </div>
             {/* // TODO: clean this up with the svg above */}
             <h1 className="capitalize">{data.brand.name}</h1>
           </div>

@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 import Purchase from "./purchase";
 import type { CardType } from "../types/card";
 import Sport from "./sport";
+import SVG from 'react-inlinesvg';
 
 // TODO: just dont query for these on kayak.tsx and sup.tsx
 // needs a second graphql with a filter but better than querying too much and then cutting down
@@ -69,9 +70,7 @@ const Brand = ({ svg, slug, name, tagline, retail, type }: BrandTypes) => {
     <>
       <section className="condor">
         <div className='brand-logo'>
-          <div
-            dangerouslySetInnerHTML={{ __html: svg }}
-          />
+          <SVG src={svg} />
           <h2 className='capitalize'>
             <Link to={`/retail/${type}/${slug}`}>
               {name}

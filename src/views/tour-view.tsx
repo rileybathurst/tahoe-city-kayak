@@ -20,7 +20,7 @@ import Composition from "../components/composition";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-import BookNow from "../components/peek/book-now";
+import BookNow from "../components/book-now";
 
 interface TourViewTypes {
   data: {
