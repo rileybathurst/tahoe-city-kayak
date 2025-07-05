@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 
 export const query = graphql`
-  fragment tourCard on STRAPI_TOUR {
+  fragment ticketFragment on STRAPI_TOUR {
     id
     name
     slug
@@ -26,8 +26,3 @@ export const query = graphql`
     }
   }
 `;
-
-/* (
-  breakpoints: [111, 165, 222, 444, 880]
-  width: 222
-) */

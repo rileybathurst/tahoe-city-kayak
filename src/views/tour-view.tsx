@@ -178,7 +178,7 @@ export const data = graphql`
         sort: {featured: ASC},
       ) {
       nodes {
-        ...tourCardFragment
+        ...ticketFragment
       }
     }
 

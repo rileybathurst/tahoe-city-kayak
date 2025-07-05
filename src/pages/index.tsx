@@ -93,7 +93,7 @@ const IndexPage = () => {
         filter: {local: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
-          ...tourCard
+          ...ticketFragment
         }
       }
 

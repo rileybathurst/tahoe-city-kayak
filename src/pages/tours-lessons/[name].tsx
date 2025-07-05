@@ -15,7 +15,7 @@ function TourCatchAll({ params }) {
   sort: {featured: ASC},
   ){
         nodes {
-          ...tourCardFragment
+          ...ticketFragment
         }
       }
 

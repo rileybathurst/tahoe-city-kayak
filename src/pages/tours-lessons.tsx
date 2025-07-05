@@ -27,7 +27,7 @@ const ToursLessonsPage = () => {
       )
       {
         nodes {
-          ...tourCard
+         ...ticketFragment
         }
       }
   
@@ -40,7 +40,7 @@ const ToursLessonsPage = () => {
           sort: {featured: ASC})
         {
           nodes {
-            ...tourCard
+           ...ticketFragment
           }
         }
 
