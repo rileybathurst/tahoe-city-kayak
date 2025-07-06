@@ -198,6 +198,99 @@ export const data = graphql`
 
 // TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
 
+
+const Time = ({ start, finish }: { start: string; finish: string }) => {
+
+  // console.log("start", start);
+  // console.log("finish", finish);
+
+  const pTime = PaddleTime({
+    start: start,
+    finish: finish
+  });
+
+  return (
+    <span>
+      {pTime.entry}
+    </span>
+  );
+};
+
+
+// TODO: add the moonlight tour times to paddle just quick working here
+type MoonlightTourDateTime = {
+  seasonStart: string;
+  seasonEnd: string;
+  nodes: {
+    id: React.Key;
+    date: string;
+    start: string;
+    finish: string;
+  }[];
+};
+const MoonlightTourDatesTimes = ({
+  seasonStart,
+  seasonEnd,
+  nodes,
+}: MoonlightTourDateTime) => {
+  const currentDate = new Date();
+  if (currentDate > new Date(seasonEnd)) {
+    // console.log('its past the end of the season');
+
+    const futureTours = nodes.filter(
+      (tour) => new Date(tour.date) >= currentDate,
+    );
+
+    // console.log(futureTours);
+
+    console.log(nodes);
+
+    if (futureTours.length > 0) {
+      return (
+        <>
+          <h3>Next season tours</h3>
+          {futureTours.map((tour) => (
+            <p key={tour.id}>
+              {new Date(tour.date).toLocaleDateString("en-US", {
+                timeZone: "UTC",
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+              &nbsp;-&nbsp;
+              <Time start={tour.start} finish={tour.finish} />
+            </p>
+          ))}
+        </>
+      );
+    }
+  }
+
+  // TODO: strike through after the date has passed
+  return (
+    <div>
+      <h3>Moonlight Tour Dates</h3>
+      <ul>
+        {nodes.map((tour) => (
+          <li key={tour.id}>
+            <h4>
+              {new Date(tour.date).toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+              &nbsp;-&nbsp;
+              <Time start={tour.start} finish={tour.finish} />
+            </h4>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const TourView = ({ data }: TourViewTypes) => {
 
   const time = PaddleTime({
@@ -207,80 +300,8 @@ const TourView = ({ data }: TourViewTypes) => {
     timeframe: data.strapiTour.timeframe,
     slug: data.strapiTour.slug,
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
-    allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime,
+    // allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime,
   });
-
-  // TODO: add the moonlight tour times to paddle just quick working here
-  type MoonlightTourDateTime = {
-    seasonStart: string;
-    seasonEnd: string;
-    nodes: {
-      id: React.Key;
-      date: string;
-      start: string;
-      finish: string;
-    }[];
-  };
-  function MoonlightTourDatesTimes({
-    seasonStart,
-    seasonEnd,
-    nodes,
-  }: MoonlightTourDateTime) {
-    const currentDate = new Date();
-    if (currentDate > new Date(seasonEnd)) {
-      // console.log('its past the end of the season');
-
-      const futureTours = nodes.filter(
-        (tour) => new Date(tour.date) >= currentDate,
-      );
-
-      // console.log(futureTours);
-
-      if (futureTours.length > 0) {
-        return (
-          <>
-            <h3>Next season tours</h3>
-            {futureTours.map((tour) => (
-              <p key={tour.id}>
-                {new Date(tour.date).toLocaleDateString("en-US", {
-                  timeZone: "UTC",
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                &nbsp;-&nbsp;
-                <PaddleTime start={tour.start} finish={tour.finish} />
-              </p>
-            ))}
-          </>
-        );
-      }
-    }
-
-    // TODO: strike through after the date has passed
-    return (
-      <div>
-        <h3>Moonlight Tour Dates</h3>
-        <ul>
-          {nodes.map((tour) => (
-            <li key={tour.id}>
-              <h4>
-                {new Date(tour.date).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                &nbsp;-&nbsp;
-                <PaddleTime start={tour.start} finish={tour.finish} />
-              </h4>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
 
   return (
     <>

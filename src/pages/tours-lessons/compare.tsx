@@ -58,8 +58,8 @@ const Details1 = ({ show, set, setLink1, setSport1, setDuration1, setStart1, set
 
 const Details2 = ({ show, set, setLink2, setSport2, setDuration2, setStart2, setFinish2, setFitness2, setLocation2, setExcerpt2, setMinimum2, setPrice2, setPeeks2 }: detailsTypes) => {
 
-  console.log(show);
-  console.log(set);
+  // console.log(show);
+  // console.log(set);
 
   for (const element of set) {
     if (element.name === show) {

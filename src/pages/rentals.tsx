@@ -184,7 +184,8 @@ const RentalsPage = () => {
         <BookNow />
       </div>
 
-      {/* <div className="albatross wrap cloud">
+      {/* // * removed upon request 5th July 2025 */}
+      <div className="albatross wrap cloud">
         <div>
           <section className="condor">
             <h2>{data.strapiRiver.title}</h2>
