@@ -4,15 +4,16 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
+import { PaddleBrandList } from "@rileybathurst/paddle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";
-import BrandList from "../components/brand-list";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
 import type { CardType } from "../types/card";
 
 import Purchase from "../components/purchase";
+import LocationDeck from "../components/location-deck";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -29,11 +30,15 @@ const RetailPage = () => {
       }
     }
 
-    strapiLocation(
-      local: {slug: {eq: "tahoe-city"}}
-      name: {eq: "Retail Location"}
+    allStrapiLocation(
+      filter: {
+        name: {eq: "Retail Location"}
+        local: {slug: {eq: "tahoe-city"}}
+      }
     ) {
-      ...locationCardFragment
+      nodes {
+        ...locationCardFragment
+      }
     }
 
   }
@@ -51,9 +56,9 @@ const RetailPage = () => {
             <Link to="/retail/demos">Demos</Link>
           </h3>
 
-          {/* // ! needs additional phone etc <PaddleLocationCard
-          {...query.strapiLocation}
-        /> */}
+          <LocationDeck
+            allStrapiLocation={query.allStrapiLocation}
+          />
 
           <article className="pelican wrap">
             <section className="blocked">
@@ -66,7 +71,7 @@ const RetailPage = () => {
           </article >
           <section className="albatross">
             <h3>Browse By Brand</h3>
-            <BrandList sport="kayak" />
+            {/* // ! <PaddleBrandList sport="kayak" /> */}
           </section>
         </div>
 
@@ -99,14 +104,12 @@ const RetailPage = () => {
           <FeatureList sport="paddleboard" />
           <section className="albatross">
             <h3>Browse By Brand</h3>
-            <BrandList sport="paddleboard" />
+            {/* // ! <PaddleBrandList sport="paddleboard" /> */}
           </section>
         </section>
 
         <Composition sport="sup" />
       </article>
-
-
 
       <section className="bag">
         {query.paddleBoard.nodes.map((sup: CardType) => (

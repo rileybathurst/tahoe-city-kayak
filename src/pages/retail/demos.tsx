@@ -13,6 +13,7 @@ import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import LocationDeck from "../../components/location-deck";
 import SVG from 'react-inlinesvg';
+// import PricingChart from "../../components/pricing-chart";
 
 function LineBreaker(props: { text: string }) {
   const regex = /[- ]/g;
@@ -34,8 +35,18 @@ function getUniqueListBy(arr, key) {
   return [...new Map(arr.map((item) => [item[key], item])).values()];
 }
 
-function Dedupedbrands(props) {
-  const dedupedbrands = getUniqueListBy(props.brand, "name");
+interface BrandType {
+  name: string;
+  slug: string;
+}
+
+interface DedupedbrandsProps {
+  brand: BrandType[];
+  sport: string;
+}
+
+function Dedupedbrands(props: DedupedbrandsProps) {
+  const dedupedbrands: BrandType[] = getUniqueListBy(props.brand, "name") as BrandType[];
 
   return (
     <>
@@ -49,7 +60,7 @@ function Dedupedbrands(props) {
 }
 
 interface RetailRatesTypes {
-  id: string;
+  id: React.Key;
   item: string;
   oneHour: number;
   threeHour: number;
@@ -215,6 +226,13 @@ const DemosPage = () => {
                 ),
               )}
             </div>
+
+            {/* // TODO: this needs a few additional props
+            <PricingChart
+              rentalRates={query.allStrapiRentalRate}
+              rentalAddons={query.allStrapiRentalAddon}
+              book={false}
+            /> */}
           </div>
         </main>
 

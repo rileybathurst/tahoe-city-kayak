@@ -22,7 +22,7 @@ const FaqPage = () => {
 
           {useStrapiFaq().nodes.map((faq:
             {
-              id: string;
+              id: React.Key;
               question: string;
               answer: string;
             }) => (

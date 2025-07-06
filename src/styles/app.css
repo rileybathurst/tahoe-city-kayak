@@ -7,7 +7,6 @@
 @import "layout";
 @import "tables";
 @import "media";
-@import "visibility";
 
 /* pages */
 @import "pages/home";

@@ -53,14 +53,16 @@ import { PaddleTopBar } from '@rileybathurst/paddle';
   );
 } */}
 
-function Button() {
+const Button = () => {
   const [slide, setSlide] = useState('firstload');
   const [amount, setAmount] = useState(0);
-  const ref = useRef();
+  const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     // console.log(ref.current.clientHeight);
-    setAmount(ref.current.clientHeight);
+    if (ref.current) {
+      setAmount(ref.current.clientHeight);
+    }
   });
 
   if (slide === "firstload") {
@@ -80,19 +82,19 @@ function Button() {
             style={{ transform: 'translateY(-2rem)' }}
             className="span-styles"
           >CLOSE<br />MENU
+            <nav
+              className='menu__small'
+              style={{
+                transform: `translateY(-${amount}px)`,
+                marginBottom: `-${amount}px`,
+                visibility: "hidden",
+              }}
+              ref={ref as React.RefObject<HTMLDivElement>}
+            >
+              <MenuList />
+            </nav>
           </span>
         </button>
-        <nav
-          className='menu__small'
-          style={{
-            transform: `translateY(-${amount}px)`,
-            marginBottom: `-${amount}px`,
-            visibility: "hidden",
-          }}
-          ref={ref}
-        >
-          <MenuList />
-        </nav>
       </div>
     );
   } if (slide === "menu") {
@@ -121,10 +123,11 @@ function Button() {
         >
           <MenuList />
         </nav>
+
       </div>
     );
   }
-  // console.log('else');
+  {/* // console.log('else'); */ }
   return (
     <div className='menu__small'
       style={{
@@ -140,17 +143,17 @@ function Button() {
           style={{ transform: 'translateY(0)' }}
           className="span-styles"
         >CLOSE<br />MENU
+          <nav
+            style={{
+              transform: 'translateY(0)',
+              marginBottom: `-${amount}px`,
+            }}
+            ref={ref as React.RefObject<HTMLDivElement>}
+          >
+            <MenuList />
+          </nav>
         </span>
       </button>
-      <nav
-        style={{
-          transform: 'translateY(0)',
-          marginBottom: `-${amount}px`,
-        }}
-        ref={ref}
-      >
-        <MenuList />
-      </nav>
     </div>
   );
 }
@@ -158,20 +161,20 @@ function Button() {
 const Header = () => {
 
   const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      strapiLocale(slug: {eq: "tahoe-city"}) {
-        name
+        query HeaderQuery {
+          strapiLocale(slug: {eq: "tahoe-city"}) {
+          name
 
         topbar {
           data {
-            topbar
-          }
+          topbar
+        }
         }
         RainCheck
         RainCheckReason
       }
     }
-  `)
+        `)
 
 
 
@@ -195,25 +198,3 @@ const Header = () => {
 }
 
 export default Header
-
-// TODO: think about having this live update
-// ? does this mean I have to keep the server running?
-/* export async function getServerData() {
-  try {
-    const res = await fetch("https://dog.ceo/api/breeds/image/random")
-
-    if (!res.ok) {
-      throw new Error("Response failed")
-    }
-
-    return {
-      props: await res.json(),
-    }
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {}
-    }
-  }
-} */

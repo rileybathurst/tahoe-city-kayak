@@ -30,8 +30,6 @@ const AboutPage = () => {
               <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
               <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
             </ul>
-            <hr />
-            {/* <h2>We are here</h2> */}
           </div>
         </main>
 

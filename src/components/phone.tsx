@@ -1,14 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-
-function FormatPhoneNumber({ phoneNumberString }: { phoneNumberString: number }) {
-  const cleaned = (`${phoneNumberString}`).replace(/\D/g, '');
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-  if (match) {
-    return `(${match[1]}) ${match[2]}-${match[3]}`;
-  }
-  return null;
-}
+import { PaddleFormatPhoneNumber } from "@rileybathurst/paddle"
 
 const Phone = () => {
 
@@ -26,7 +18,7 @@ const Phone = () => {
       rel="norel norefferer"
       className="button"
     >
-      Phone: <FormatPhoneNumber phoneNumberString={strapiLocale.phone} />
+      Phone: <PaddleFormatPhoneNumber phoneNumberString={strapiLocale.phone} />
     </a>
   )
 }

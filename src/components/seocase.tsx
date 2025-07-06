@@ -1,27 +1,32 @@
 // TODO: move this all to NPM
 import * as React from "react"
 
-function Breadcrumbs(props) {
-  if (props.breadcrumbs) {
-    return (
-      <div className="breadcrumbs">
-        <p>breadcrumbs</p>
-      </div>
-    )
-  }
-  return null
+function Breadcrumbs({ breadcrumbs }: { breadcrumbs: string }) {
+  return (
+    <div className="breadcrumbs">
+      <p>{breadcrumbs}</p>
+    </div>
+  )
 }
 
-const SEOcase = (props) => {
+type SEOcaseTypes = {
+  title: string;
+  description: string;
+  image: string;
+  breadcrumbs?: string;
+}
+const SEOcase = ({ title, description, image, breadcrumbs }: SEOcaseTypes) => {
   return (
     <>
       {process.env.NODE_ENV === "development" ? (
         <section className="SEOcase">
-          <p>title = {props.title}</p>
-          <p>description = {props.description}</p>
-          <p>image = {props.image}</p>
+          <p>title = {title}</p>
+          <p>description = {description}</p>
+          <p>image = {image}</p>
 
-          <Breadcrumbs />
+          {breadcrumbs ? (
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          ) : null}
         </section>
       ) : null}
     </>

@@ -1,28 +1,8 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby"
 import { PaddlePurchase } from "@rileybathurst/paddle";
-import type { GatsbyImageType } from "@rileybathurst/paddle";
 
-type purchaseTypes = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  length: number;
-  width: number;
-  inflatable: boolean;
-  capacity: number;
-  demo: boolean;
-  discount?: number;
-  cutout: GatsbyImageType;
-  sport: {
-    slug: string;
-  };
-  brand: {
-    slug: string;
-  };
-};
-const Purchase = ({ id, title, slug, excerpt, length, width, inflatable, capacity, demo, discount, cutout, sport, brand }: purchaseTypes) => {
+const Purchase = ({ id, title, slug, excerpt, length, width, inflatable, capacity, demo, discount, cutout, sport, brand }: PaddlePurchaseTypes) => {
 
   const data = useStaticQuery(graphql`
     query {

@@ -4,7 +4,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-function AnnouncementCatchAll({ params }) {
+function AnnouncementCatchAll({ params }: { params: { name: string } }) {
 
   const { allStrapiAnnouncement } = useStaticQuery(graphql`
     query AnnouncementCatchAllQuery {
@@ -30,7 +30,7 @@ function AnnouncementCatchAll({ params }) {
         <h2>Announcements</h2>
 
         <ul>
-          {allStrapiAnnouncement.nodes.map((announcement) => (
+          {allStrapiAnnouncement.nodes.map((announcement: { slug: string }) => (
             <li key={announcement.slug}>
               <Link to={`/announcement/${announcement.slug}`}>{announcement.slug}</Link>
             </li>

@@ -1,4 +1,5 @@
 // TODO: this can be prettier with a map of the feature types but its fine for now
+// some of the features currently are empty so they have to be removed
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -35,10 +36,26 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
   const inflatableSet = new Set();
   const rigidSet = new Set();
   const tandemSet = new Set();
-  const ultralightSet = new Set();
-  const ultralightTandemSet = new Set
+  // const ultralightSet = new Set();
+  // const ultralightTandemSet = new Set();
 
-  data.allStrapiRetail.nodes.map((retail) => {
+  type RetailFeatureTypes = {
+    id: React.Key;
+    sport: {
+      slug: string;
+    };
+    inflatable: boolean;
+    crew: string;
+    hullweight: number;
+  }
+
+  type AttributeNode = {
+    id: React.Key;
+    name: string;
+    slug: string;
+  }
+
+  data.allStrapiRetail.nodes.map((retail: RetailFeatureTypes) => {
     if (retail.inflatable === true && retail.sport.slug === sport) {
       inflatableSet.add({
         id: retail.id,
@@ -68,7 +85,7 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
 
   });
 
-  data.allStrapiRetail.nodes.map((retail) => {
+  data.allStrapiRetail.nodes.map((retail: RetailFeatureTypes) => {
     if (retail.inflatable === true && retail.sport.slug === sport) {
       inflatableSet.add({
         id: retail.id,
@@ -106,10 +123,10 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
 
   return (
     <ul className='features'>
-      {FeatureArray.map((feature) => (
+      {FeatureArray.map((feature: string) => (
         data.allStrapiAttribute.nodes
-          .filter((attribute) => attribute.slug === feature)
-          .map((attribute) => (
+          .filter((attribute: AttributeNode) => attribute.slug === feature)
+          .map((attribute: AttributeNode) => (
             <li key={attribute.id}>
               <Link to={`/retail/attribute/${sport}/${attribute.slug}`}>
                 {attribute.name}

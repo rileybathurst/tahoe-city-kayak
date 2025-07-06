@@ -5,15 +5,14 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
 
-function TourCatchAll({ params }) {
-  // console.log(params);
+function TourCatchAll({ params }: { params: { name: string } }) {
   const data = useStaticQuery(graphql`
     query TourCatchAllQuery {
       allStrapiTour(filter: {
-    local: {slug: {eq: "tahoe-city"}}
-  },
-  sort: {featured: ASC},
-  ){
+        local: {slug: {eq: "tahoe-city"}}
+      },
+      sort: {featured: ASC},
+      ){
         nodes {
           ...ticketFragment
         }

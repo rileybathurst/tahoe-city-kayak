@@ -1,21 +1,8 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import BookNow from "./book-now"
-import SVG from 'react-inlinesvg';
+import { graphql, useStaticQuery } from "gatsby"
+import { PaddlePricingChart } from "@rileybathurst/paddle"
 
-function LineBreaker(props: { text: string; }) {
-  const regex = /[- ]/g;
-  const newStr = props.text.replace(regex, "<br />$&");
-  // console.log(newStr);
-
-  return (
-    <h4>
-      <SVG src={newStr} />
-    </h4>
-  );
-}
-
-const PricingChart = (props: { book: boolean; }) => {
+const PricingChart = ({ book }: { book: boolean; }) => {
 
   const data = useStaticQuery(graphql`
     query PricingChartQuery {
@@ -38,62 +25,23 @@ const PricingChart = (props: { book: boolean; }) => {
           sup
         }
       }
+
+      strapiLocale(slug: {eq: "tahoe-city"}) {
+        name
+        peek_base
+      }
+
     }
   `)
 
-  interface addonTypes {
-    id: React.Key;
-    name: string;
-    single: number;
-    double: number;
-    sup: number;
-  }
-
   return (
-    <>
-      <div className="charts">
-        <div className="pricing-chart">
-          <div className="row row-header">
-            <h2 className="kilimanjaro"><Link to="/rentals">Rental<br />Rates</Link></h2>
-            <p>1 Hour</p>
-            <p><span>3 Hours</span></p>
-            <p><span>Full Day</span></p>
-          </div>
-
-          {data.allStrapiRentalRate.nodes.map((rate: {
-            id: React.Key;
-            item: string;
-            oneHour: number;
-            threeHour: number;
-            fullDay: number;
-          }) => (
-            <div key={rate.id} className="row">
-              {/* <h4>{rate.item}</h4> */}
-              <LineBreaker text={rate.item} />
-              <p>{rate.oneHour}</p>
-              <p>{rate.threeHour}</p>
-              <p>{rate.fullDay}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="pricing-chart">
-          {data.allStrapiRentalAddon.nodes.map((addon: addonTypes) => (
-            <React.Fragment key={addon.id}>
-              <p>{addon.name}</p>
-              <p>+{addon.single}</p>
-              <p>+{addon.double}</p>
-              <p>+{addon.sup}</p>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
-      <div className={`pricing-chart__${props.book}`}>
-        <BookNow />
-      </div>
-    </>
-
+    <PaddlePricingChart
+      book={book}
+      rentalRates={data.allStrapiRentalRate}
+      rentalAddons={data.allStrapiRentalAddon}
+      strapiLocaleName={data.strapiLocale.name}
+      peek_base={data.strapiLocale.peek_base}
+    />
   )
 }
 

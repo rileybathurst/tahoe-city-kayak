@@ -1,12 +1,12 @@
-// TODO: add the abiity to be able to pass in a list of items
-// ! hard coded hack
+// TODO: hard coded hack
 
 import * as React from "react"
 import { Link } from "gatsby"
 import BookNow from "./book-now"
 
-interface MenuListTypes {
-  children: React.ReactElement;
+// * used in footer
+type MenuListTypes = {
+  children?: React.ReactElement;
 }
 const MenuList = ({ children }: MenuListTypes) => {
   return (

@@ -76,7 +76,7 @@ const RentalsPage = () => {
 `);
 
   type RentalTypes = {
-    id: string;
+    id: React.Key;
     name: string;
     oneHour: number;
     threeHour: number;
@@ -84,7 +84,7 @@ const RentalsPage = () => {
   };
 
   type RiverTypes = {
-    id: string;
+    id: React.Key;
     alternativeText: string;
     localFile: {
       childImageSharp: {
@@ -184,7 +184,7 @@ const RentalsPage = () => {
         <BookNow />
       </div>
 
-      <div className="albatross wrap cloud">
+      {/* <div className="albatross wrap cloud">
         <div>
           <section className="condor">
             <h2>{data.strapiRiver.title}</h2>
@@ -205,9 +205,7 @@ const RentalsPage = () => {
             />
           ))}
         </div>
-
-
-      </div>
+      </div> */}
 
       <Footer />
     </>

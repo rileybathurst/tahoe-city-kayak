@@ -1,14 +1,15 @@
 import * as React from "react"
 
-function Sport(props: { sport: string }) {
+function Sport({ sport }: { sport: string }) {
 
-  if (props.sport === "sup" || props.sport === "sups") {
+  // TODO: check on the plural seems like that would also need the "S"
+  if (sport === "sup" || sport === "sups") {
     return (
-      <>Paddleboard</>
+      <>Paddle board</>
     )
   } else {
     return (
-      <>{props.sport}</>
+      <>{sport}</>
     )
   }
 }

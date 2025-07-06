@@ -6,7 +6,10 @@ import {
   PaddleBookNow,
   PaddleLocationDeck,
   PaddleTicket,
+  PaddleBrandList,
   type PaddleTicketTypes,
+  type PaddleLocationCardTypes,
+  type PaddlePurchaseTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -16,7 +19,6 @@ import PricingChart from "../components/pricing-chart";
 import MahaliaCasual from "../images/mahalia-casual";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
-import BrandList from "../components/brand-list";
 import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
@@ -26,30 +28,15 @@ import Purchase from "../components/purchase";
 
 const IndexPage = () => {
 
-  interface Tour extends PaddleTicketTypes {
-    id: string;
-    featured?: boolean;
-    [key: string]: any;
-  }
-
-  interface Retail {
-    id: string;
-    [key: string]: any;
-  }
-
-  interface Location {
-    [key: string]: any;
-  }
-
-  interface SunsetTourTime {
-    id: string;
+  type SunsetTourTime = {
+    id: React.Key;
     endDate: string;
     endTime: string;
     startDate: string;
     startTime: string;
   }
 
-  interface Locale {
+  type Locale = {
     name: string;
     peek_tours: string;
     season_start: string;
@@ -59,23 +46,23 @@ const IndexPage = () => {
     peek_rentals: string;
   }
 
-  interface Data {
+  type indexTypes = {
     allStrapiLocation: {
-      nodes: Location[];
+      nodes: PaddleLocationCardTypes[];
     };
     allStrapiTour: {
-      nodes: Tour[];
+      nodes: PaddleTicketTypes[];
     };
     allStrapiSunsetTourTime: {
       nodes: SunsetTourTime[];
     };
     allStrapiRetail: {
-      nodes: Retail[];
+      nodes: PaddlePurchaseTypes[];
     };
     strapiLocale: Locale;
   }
 
-  const data: Data = useStaticQuery(graphql`
+  const data: indexTypes = useStaticQuery(graphql`
     query IndexQuery {
       allStrapiLocation(
         filter: {
@@ -125,9 +112,9 @@ const IndexPage = () => {
     }
   `);
 
-  const allTours: Tour[] = data.allStrapiTour.nodes;
-  allTours.sort((a: Tour, b: Tour) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
-  console.log(allTours);
+  const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
+  allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
+  // console.log(allTours);
 
   // State for the list
   const [list, setList] = useState([...allTours.slice(0, 2)]);
@@ -321,7 +308,7 @@ const IndexPage = () => {
             <h5>Shop By Feature</h5>
             <FeatureList sport="kayak" />
             <h5>Shop By Brand</h5>
-            <BrandList sport="kayak" />
+            {/* // ! <PaddleBrandList sport="kayak" /> */}
 
             <hr />
 
@@ -331,7 +318,7 @@ const IndexPage = () => {
             <h5>Shop By Feature</h5>
             <FeatureList sport="paddleboard" />
             <h5>Shop By Brand</h5>
-            <BrandList sport="paddleboard" />
+            {/* // ! <PaddleBrandList sport="paddleboard" /> */}
           </div>
         </div>
 

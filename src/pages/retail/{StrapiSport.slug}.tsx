@@ -1,4 +1,5 @@
 // TODO: rename this with a redirect to paddleboard
+// ! Warning: Encountered two children with the same key
 
 import * as React from "react"
 import { graphql, Link } from 'gatsby';
@@ -9,12 +10,17 @@ import { SEO } from "../../components/seo";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import BrandList from "../../components/brand-list";
 import Purchase from "../../components/purchase";
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
-// import PaddleLocationCard from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
+import LocationDeck from "../../components/location-deck";
+import {
+  PaddleBrandList,
+  type PaddleLocationCardTypes,
+  type PaddleBrandType,
+  type PaddlePurchaseTypes
+} from "@rileybathurst/paddle";
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
@@ -31,11 +37,15 @@ export const strapiSport = graphql`
     }
   }
 
-  strapiLocation(
-    local: {slug: {eq: "tahoe-city"}}
-    name: {eq: "Retail Location"}
+  allStrapiLocation(
+    filter: {
+      local: {slug: {eq: "tahoe-city"}},
+      name: {eq: "Retail Location"}
+      }
   ) {
-    ...locationCardFragment
+    nodes {
+      ...locationCardFragment
+    }
   }
 
   allStrapiBrand {
@@ -56,7 +66,28 @@ export const strapiSport = graphql`
 }
 `
 
-const RetailSportPage = ({ data }) => {
+type retailSportTypes = {
+  data: {
+    strapiSport: {
+      title: string;
+      slug: string;
+    };
+    strapiShop: {
+      text: {
+        data: {
+          text: string;
+        }
+      }
+    };
+    allStrapiLocation: {
+      nodes: PaddleLocationCardTypes[];
+    };
+    allStrapiBrand: {
+      nodes: PaddleBrandType[];
+    };
+  }
+}
+const RetailSportPage = ({ data }: retailSportTypes) => {
 
   const brandSet = new Set();
   for (const brand of data.allStrapiBrand.nodes) {
@@ -67,7 +98,6 @@ const RetailSportPage = ({ data }) => {
     })
   }
   const brandArray = Array.from(brandSet);
-  // console.log(brandArray)
 
   return (
     <>
@@ -80,15 +110,20 @@ const RetailSportPage = ({ data }) => {
           </Markdown>
         </div>
 
-        {/* // ! <PaddleLocationCard
-          {...data.strapiLocation}
-        /> */}
+        <LocationDeck
+          allStrapiLocation={data.allStrapiLocation}
+        />
+
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 
       <div className="albatross">
-        {/* // TODO: seems like I could ... this */}
-        <BrandList sport={data.strapiSport.slug} />
+
+        <PaddleBrandList
+          sport={data.strapiSport.slug}
+          {...data.allStrapiBrand}
+        />
+
       </div>
 
       {brandArray.map((brandSlug) => (

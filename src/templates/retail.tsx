@@ -8,13 +8,12 @@ import Sport from "../components/sport";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
-import TextureBackgrounds from "../components/texturebackgrounds";
 import Phone from "../components/phone";
 // import SEOcase from "../components/seocase"
 import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
-import { PaddleSpecs } from "@rileybathurst/paddle";
+import { type GatsbyImageType, PaddleSpecs, PaddleTextureBackgrounds } from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
 
 const Series = ({ series }: { series: string }) => {
@@ -37,9 +36,16 @@ type RetailTypeViewProps = {
     allStrapiRetail: {
       nodes: RetailType[];
     };
+    baseOne: GatsbyImageType;
+    baseTwo: GatsbyImageType;
+    baseThree: GatsbyImageType;
+    topOne: GatsbyImageType;
+    topTwo: GatsbyImageType;
+    topThree: GatsbyImageType;
   };
 };
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
+
   return (
     <>
       <Header />
@@ -93,7 +99,14 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
 
         <div className="collage card-collage hero">
-          <TextureBackgrounds />
+          <PaddleTextureBackgrounds
+            baseOne={data.baseOne}
+            baseTwo={data.baseTwo}
+            baseThree={data.baseThree}
+            topOne={data.topOne}
+            topTwo={data.topTwo}
+            topThree={data.topThree}
+          />
 
           <GatsbyImage
             image={
@@ -185,6 +198,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
       )}
 
+      {/* // TODO: I think we have a better version of this */}
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/retail/">Retail</Link>
@@ -206,7 +220,6 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </Breadcrumbs>
 
       <Footer />
-
       {/* <SEOcase
         title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
         description={data.strapiRetail.excerpt}
@@ -334,8 +347,66 @@ export const query = graphql`
         ...purchaseFragment
       }
     }
+
+    baseOne: strapiImagegrab(title: {eq: "BaseOne"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+
+    baseTwo: strapiImagegrab(title: {eq: "BaseTwo"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+
+    baseThree: strapiImagegrab(title: {eq: "BaseThree"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+
+    topOne: strapiImagegrab(title: {eq: "TopOne"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+    topTwo: strapiImagegrab(title: {eq: "TopTwo"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+    topThree: strapiImagegrab(title: {eq: "TopThree"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
   }
 `;
 
-// discount was removed as currently we dont have it in use so its breaking the build
-// volume was removed as currently we dont have it in use so its breaking the build
+// * discount was removed as currently we dont have it in use so its breaking the build
+// * volume was removed as currently we dont have it in use so its breaking the build

@@ -6,17 +6,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Markdown from "react-markdown";
-
-/* function Calendar({ calendar }) {
-  if (calendar) {
-    return (
-      <>
-
-      </>
-    )
-  }
-  return null
-} */
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 export const query = graphql`
   query AnnouncementQuery($slug: String!) {
@@ -44,7 +34,24 @@ export const query = graphql`
   }
 `
 
-const AnnouncmentPostPage = ({ data }) => {
+type AnnouncementTypes = {
+  data: {
+    strapiAnnouncement: {
+      title: string;
+      slug: string;
+      calendar?: string;
+      publishedAt: string;
+      post: {
+        data: {
+          post: string;
+        };
+      };
+      hero?: PaddleGatsbyImageType
+    };
+  };
+};
+
+const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
   return (
     <>
       <Header />
@@ -60,8 +67,8 @@ const AnnouncmentPostPage = ({ data }) => {
           <h1 className="supra">{data.strapiAnnouncement.title}</h1>
           <p className="brow">Announcement</p>
         </div>
-        {/* TODO: test this */}
-        <time dateTime={data.strapiAnnouncement.publishedAt}>{data.strapiAnnouncement.publishedAt}</time>
+
+        {data.strapiAnnouncement.publishedAt}
         {/* //TODO: do more with it */}
         {/* <Calendar {...data.strapiAnnouncement.calendar} /> */}
         <hr />
@@ -86,7 +93,15 @@ const AnnouncmentPostPage = ({ data }) => {
 
 export default AnnouncmentPostPage;
 
-export const Head = ({ data }) => {
+type AnnouncementHeadTypes = {
+  data: {
+    strapiAnnouncement: {
+      title: string;
+      slug: string;
+    };
+  };
+};
+export const Head = ({ data }: AnnouncementHeadTypes) => {
 
   return (
     <SEO

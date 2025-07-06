@@ -11,7 +11,7 @@ type SEOtypes = {
   ogImageDescription?: string;
   breadcrumbs?: {
     name: string;
-    item: string;
+    item?: string;
   }[];
   children?: React.ReactNode;
 };
@@ -89,6 +89,7 @@ export const SEO = ({
   // console.log(data.strapiLocale.topbar.data.topbar);
 
   // console.log(title)
+  // console.log()
 
   return (
     <>
@@ -98,8 +99,8 @@ export const SEO = ({
         title={title || null}
         description={description || null}
         breadcrumbs={breadcrumbs || null}
-        // ogImage={ogImage || null}
-        // ogimagedescription={ogImagedescription || null}
+        ogImage={ogImage || null}
+        ogImageDescription={ogImageDescription || null}
         {...data}
       >
         {children}

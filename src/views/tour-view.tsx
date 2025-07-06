@@ -14,7 +14,6 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import Time from "../components/time";
 
 import Composition from "../components/composition";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
@@ -75,7 +74,7 @@ interface TourViewTypes {
 
     allStrapiSunsetTourTime: {
       nodes: {
-        id: string;
+        id: React.Key;
         startDate: string;
         endDate: string;
         startTime: string;
@@ -200,6 +199,7 @@ export const data = graphql`
 // TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
 
 const TourView = ({ data }: TourViewTypes) => {
+
   const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
@@ -215,7 +215,7 @@ const TourView = ({ data }: TourViewTypes) => {
     seasonStart: string;
     seasonEnd: string;
     nodes: {
-      id: string;
+      id: React.Key;
       date: string;
       start: string;
       finish: string;
@@ -250,7 +250,7 @@ const TourView = ({ data }: TourViewTypes) => {
                   day: "numeric",
                 })}
                 &nbsp;-&nbsp;
-                <Time start={tour.start} finish={tour.finish} />
+                <PaddleTime start={tour.start} finish={tour.finish} />
               </p>
             ))}
           </>
@@ -259,7 +259,6 @@ const TourView = ({ data }: TourViewTypes) => {
     }
 
     // TODO: strike through after the date has passed
-
     return (
       <div>
         <h3>Moonlight Tour Dates</h3>
@@ -274,7 +273,7 @@ const TourView = ({ data }: TourViewTypes) => {
                   day: "numeric",
                 })}
                 &nbsp;-&nbsp;
-                <Time start={tour.start} finish={tour.finish} />
+                <PaddleTime start={tour.start} finish={tour.finish} />
               </h4>
             </li>
           ))}
