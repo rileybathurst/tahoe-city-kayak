@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-// import { PaddleLocationCard } from "@rileybathurst/paddle";
+
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -12,19 +12,14 @@ import Phone from "../../components/phone";
 import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import LocationDeck from "../../components/location-deck";
-import SVG from 'react-inlinesvg';
-// import PricingChart from "../../components/pricing-chart";
+import { PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
 function LineBreaker(props: { text: string }) {
   const regex = /[- ]/g;
   const newStr = props.text.replace(regex, "<br />$&");
   // console.log(newStr);
-
-  // ? this seems weird to h4?
   return (
-    <h4>
-      <SVG src={newStr} />
-    </h4>
+    <h4 dangerouslySetInnerHTML={{ __html: newStr }} />
   );
 }
 
@@ -73,7 +68,7 @@ interface CustomOrderTypes {
   };
 }
 function CustomOrder({ RentalRates }: CustomOrderTypes) {
-  let CustomOrder = {
+  const CustomOrder = {
     demoSingle: 1,
     demoDouble: 2,
     paddleBoard: 3,
@@ -194,6 +189,9 @@ const DemosPage = () => {
     }
   `);
 
+  console.log(query.kayak);
+  console.log(query.paddleboards);
+
   return (
     <>
       <Header />
@@ -241,55 +239,65 @@ const DemosPage = () => {
         />
       </div>
 
-      <section className="demo__kayak">
-        <div className="demo__kayak--header">
-          <div>
-            <h3>Demos</h3>
-            <hr />
-            <h4>Kayaks from these brands</h4>
-            <ul>
-              <Dedupedbrands
-                brand={query.kayak.nodes.map((brand) => brand.brand)}
-                sport="kayak"
-              />
-            </ul>
+      {query.kayak.nodes.length > 0 && (
+        <section>
+          <div className="albatross wrap">
+            <div>
+              <h3>Demos</h3>
+              <hr />
+              <h4>Kayaks from these brands</h4>
+              <ul>
+                <Dedupedbrands
+                  brand={query.kayak.nodes.map((brand) => brand.brand)}
+                  sport="kayak"
+                />
+              </ul>
+            </div>
+
+            <Composition sport="kayak" />
           </div>
 
-          <Composition sport="kayak" />
-        </div>
-
-        <section className="bag">
-          {query.kayak.nodes.map(
-            (kayak: { brand: { name: string; slug: string } }) => (
-              <Purchase key={kayak.id} {...kayak} />
-            ),
-          )}
+          <section className="bag">
+            {query.kayak.nodes.map(
+              (kayak: PaddlePurchaseTypes) => (
+                <Purchase
+                  key={kayak.id}
+                  {...kayak}
+                />
+              ),
+            )}
+          </section>
         </section>
-      </section>
+      )}
 
-      {/* // TODO: classes */}
-      <article className="main__full main__full--tour baseline-spacing">
-        <div>
-          <h4>Paddleboards from these brands</h4>
+      {query.paddleboards.nodes.length > 0 && (
+        <section>
+          <article className="albatross wrap">
+            <div>
+              <h4>Paddleboards from these brands</h4>
 
-          <ul>
-            <Dedupedbrands
-              brand={query.paddleboards.nodes.map((brand) => brand.brand)}
-              sport="sup"
-            />
-          </ul>
-        </div>
+              <ul>
+                <Dedupedbrands
+                  brand={query.paddleboards.nodes.map((brand) => brand.brand)}
+                  sport="sup"
+                />
+              </ul>
+            </div>
 
-        <Composition sport="sup" />
-      </article>
+            <Composition sport="sup" />
+          </article>
 
-      <section className="bag">
-        {query.paddleboards.nodes.map(
-          (sup: { brand: { name: string; slug: string } }) => (
-            <Purchase key={sup.id} {...sup} />
-          ),
-        )}
-      </section>
+          <section className="bag">
+            {query.paddleboards.nodes.map(
+              (sup: PaddlePurchaseTypes) => (
+                <Purchase key={sup.id}
+                  {...sup}
+                />
+              ),
+            )}
+          </section>
+        </section>
+      )}
 
       <Breadcrumbs>
         <Breadcrumb>
