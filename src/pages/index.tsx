@@ -114,16 +114,25 @@ const IndexPage = () => {
 
   const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
   allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
-  // console.log(allTours);
+  // Sort so that featured: true first, then featured: null, then featured: false
+  allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => {
+    if (a.featured === b.featured) return 0;
+    if (a.featured === true) return -1;
+    if (b.featured === true) return 1;
+    if (a.featured === null && b.featured === false) return -1;
+    if (a.featured === false && b.featured === null) return 1;
+    return 0;
+  });
+  console.log(allTours);
 
   // State for the list
-  const [list, setList] = useState([...allTours.slice(0, 2)]);
+  const [list, setList] = useState([...allTours.slice(0, 4)]);
 
   // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false);
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allTours.length > 2);
+  const [hasMore, setHasMore] = useState(allTours.length > 4);
 
   // Load more button click
   const handleLoadMore = () => {
@@ -289,13 +298,12 @@ const IndexPage = () => {
       <section id="retail" className="albatross wrap kilimanjaro-block-end">
         <div>
           <div className="pelican">
-            {/* // TODO: only one h and then p */}
-            <hgroup className="crest">
-              <h3 className="brow">
-                <Link to="/retail">Retail Store</Link>
-              </h3>
-              <h4 className="supra">Kayaks and Paddleboards</h4>
-            </hgroup>
+
+            <h3 className="aconcagua">
+              <Link to="/retail">
+                Retail Store
+              </Link>
+            </h3>
 
             <Shop />
 
@@ -307,7 +315,7 @@ const IndexPage = () => {
             </h4>
             <h5>Shop By Feature</h5>
             <FeatureList sport="kayak" />
-            <h5>Shop By Brand</h5>
+            {/* <h5>Shop By Brand</h5> */}
             {/* // ! <PaddleBrandList sport="kayak" /> */}
 
             <hr />
@@ -317,27 +325,25 @@ const IndexPage = () => {
             </h4>
             <h5>Shop By Feature</h5>
             <FeatureList sport="paddleboard" />
-            <h5>Shop By Brand</h5>
+            {/* <h5>Shop By Brand</h5> */}
             {/* // ! <PaddleBrandList sport="paddleboard" /> */}
           </div>
         </div>
 
-        <div className="">
-          <div className="pelican">
-            {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
-            {inventory.map((retail) => (
-              <Purchase key={retail.id} {...retail} />
-            ))}
-            {hasExtra ? (
-              <button onClick={handleLoadExtra} type="button">
-                View More Products
-              </button>
-            ) : (
-              <p>Thats all the products</p>
-            )}
-          </div>
+        <div className="pelican">
+          {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
+          {inventory.map((retail) => (
+            <Purchase key={retail.id} {...retail} />
+          ))}
+          {hasExtra ? (
+            <button onClick={handleLoadExtra} type="button">
+              View More Products
+            </button>
+          ) : (
+            <p>Thats all the products</p>
+          )}
         </div>
-      </section>
+      </section >
 
       <Footer />
     </>

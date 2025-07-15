@@ -40,7 +40,7 @@ function Limiter(props: {
   });
 
   return (
-    <div className='deck'>
+    <div className='bag'>
       {quad.map((retail) => {
         {/* // * this is weird it needs a nested return */ }
         return (

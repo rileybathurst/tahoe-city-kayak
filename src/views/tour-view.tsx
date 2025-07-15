@@ -243,7 +243,7 @@ const MoonlightTourDatesTimes = ({
 
     // console.log(futureTours);
 
-    console.log(nodes);
+    // console.log(nodes);
 
     if (futureTours.length > 0) {
       return (
@@ -387,7 +387,7 @@ const TourView = ({ data }: TourViewTypes) => {
         <hr />
       </div>
 
-      <section className="deck">
+      <section className="flight">
         {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
           <PaddleTicket
             key={tour.id}
