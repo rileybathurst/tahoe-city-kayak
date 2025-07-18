@@ -37,6 +37,7 @@ const strapiConfig = {
     "river",
     "shop", // TODO: update the links
     "invasive",
+    "parking",
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,
