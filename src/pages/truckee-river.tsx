@@ -182,11 +182,6 @@ const TruckeeRiverPage = () => {
 
       </main>
 
-      <Breadcrumbs>
-        <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>
-        <Breadcrumb>Truckee River Rentals</Breadcrumb>
-      </Breadcrumbs>
-
       <Footer />
     </>
   )
@@ -194,21 +189,12 @@ const TruckeeRiverPage = () => {
 
 export default TruckeeRiverPage
 
+// ! Query this info it keeps changing and this is messy
 export const Head = () => {
   return (
     <SEO
-      title='Truckee River Rentals'
+      title='How to Float the Truckee River'
       description="We offer high end inflatables as well as inexpensive tubes and rafts for purchase for the Truckee River."
-      breadcrumbs={[
-        {
-          name: "Rentals",
-          item: "rentals"
-        },
-        {
-          name: 'Truckee River Rentals',
-          item: 'truckee-river'
-        }
-      ]}
     />
   )
 }
