@@ -10,7 +10,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import BookNow from "../components/book-now";
 import Composition from "../components/composition";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 
 import { useStrapiRental } from "../hooks/use-strapi-rental";
 import LocationDeck from "../components/location-deck";
@@ -43,36 +42,10 @@ const RentalsPage = () => {
       }
     }
 
-    strapiRiver {
-      title
-      description {
-        data {
-          description
-        }
-      }
-      equipment {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(height: 900, layout: CONSTRAINED, placeholder: BLURRED)
-            }
-          }
-        alternativeText
-        id
-      }
-    }
-
   }
 `);
 
-  type RiverTypes = {
-    id: React.Key;
-    alternativeText: string;
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-  };
+
 
   return (
     <>
@@ -109,29 +82,6 @@ const RentalsPage = () => {
           </div>
         </div>
       </main>
-
-      <div className="albatross wrap cloud">
-        <div>
-          <section className="condor">
-            <h2>{data.strapiRiver.title}</h2>
-
-            <Markdown>
-              {data.strapiRiver.description.data.description}
-            </Markdown>
-          </section>
-        </div>
-
-        <div className="equipment">
-          {data.strapiRiver.equipment.map((image: RiverTypes) => (
-            <GatsbyImage
-              key={image.id}
-              image={image.localFile.childImageSharp.gatsbyImageData}
-              alt={image.alternativeText}
-              className="equipment-images"
-            />
-          ))}
-        </div>
-      </div>
 
       <Footer />
     </>

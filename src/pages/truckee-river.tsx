@@ -3,15 +3,16 @@
 
 import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby";
-import { SEO } from "../../components/seo";
+import { SEO } from "../components/seo";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from "react-markdown";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 // import { useMapEvents } from 'react-leaflet/hooks'
 
-import Header from "../../components/header";
-import Footer from "../../components/footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 // import Composition from "../../components/composition";
 
 /* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
@@ -129,22 +130,57 @@ const TruckeeRiverPage = () => {
             description
           }
         }
+
+        equipment {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(height: 900, layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
+        alternativeText
+        id
       }
     }
+    }
   `);
+
+
+  type RiverTypes = {
+    id: React.Key;
+    alternativeText: string;
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      };
+    };
+  };
 
   return (
     <>
       <Header />
 
-      <main>
-        <h1>{strapiRiver.title}</h1>
-        <ReactMarkdown>
-          {strapiRiver.description.data.description}
-        </ReactMarkdown>
-      </main>
+      <main className="albatross wrap">
+        <div>
+          <section className="condor">
+            <h1>{strapiRiver.title}</h1>
+            <ReactMarkdown>
+              {strapiRiver.description.data.description}
+            </ReactMarkdown>
+          </section>
+        </div>
 
-      <hr />
+        <div className="equipment">
+          {strapiRiver.equipment.map((image: RiverTypes) => (
+            <GatsbyImage
+              key={image.id}
+              image={image.localFile.childImageSharp.gatsbyImageData}
+              alt={image.alternativeText}
+              className="equipment-images"
+            />
+          ))}
+        </div>
+
+      </main>
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/rentals/">Rentals</Link></Breadcrumb>
