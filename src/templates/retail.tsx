@@ -124,6 +124,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </div>
 
         {/* // TODO: if no features move the description up */}
+        {/* I think this has line heights that need to be adjusted if I do that */}
         {data.strapiRetail.features ? (
           <>
             <h3>Features</h3>
@@ -153,8 +154,6 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             if you decide to purchase a boat or board from us in the same
             season. &#x28;Up to two full days rental charge&#x29;
           </p>
-          {/* // TODO cost may be a single query */}
-          <p>* Pedal drive is an additional $5 per rental.</p>
           <p>
             <Phone />
           </p>
@@ -162,7 +161,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       ) : null}
 
       {/* kayak/kokopelli has only one needs a better */}
-      {data.allStrapiRetail ? (
+      {data.allStrapiRetail.nodes.length > 0 ? (
         <article>
           <section className="condor">
             <h2>
@@ -189,7 +188,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
           </section>
         </article>
       ) : (
-        <section className="none">
+        <section className="none condor">
           <h3>
             <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
               Browse other <Sport sport={data.strapiRetail.sport.slug} />s

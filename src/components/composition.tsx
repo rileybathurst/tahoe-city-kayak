@@ -1,13 +1,13 @@
 // * this takes the default queries I would have to pull way too many times without
 
 import * as React from "react"
-
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby"
-import { PaddleComposition, type GatsbyImageType } from "@rileybathurst/paddle";
+import { PaddleComposition } from "@rileybathurst/paddle";
 
 type compositionTypes = {
   sport?: string;
-  image?: GatsbyImageType;
+  image?: IGatsbyImageData;
 }
 const Composition = ({ sport, image }: compositionTypes) => {
 
@@ -25,7 +25,7 @@ const Composition = ({ sport, image }: compositionTypes) => {
         }
       }
       
-      kayaker: strapiImagegrab(title: {eq: "casualKayak"}) {
+      kayaker: strapiImagegrab(title: {eq: "hero2025"}) {
         title
         image {
           localFile {

@@ -8,6 +8,8 @@ import MenuList from "./menu-list";
 import Logo from "../images/logo";
 import Phone from "./phone";
 
+import type { AnnouncementType } from "../types/announcement-type";
+
 const Footer = () => {
   // TODO: allStrapiLocale is pulling an additional result from somewhere I dont understand
 
@@ -41,6 +43,20 @@ const Footer = () => {
           url
         }
       }
+
+      allStrapiAnnouncement(
+        filter: 
+        {
+          locales: {elemMatch: {slug: {eq: "tahoe-city"}}},
+          featured: {eq: true}
+        }
+      )  {
+        nodes {
+          id
+          title
+          slug
+        }
+      }
     }
   `)
 
@@ -50,7 +66,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="cloud">
+    <footer>
       {/* holds together a flex */}
       <div>
         <h3 className='sr-only'>
@@ -61,14 +77,26 @@ const Footer = () => {
         <hr />
         <nav>
           <MenuList>
-            <li key='announcement'>
-              <Link
-                to="/announcement"
-                className='link__backed'
-                activeClassName="active">
-                Announcements
-              </Link>
-            </li>
+            <>
+              <li key='announcement'>
+                <Link
+                  to="/announcement"
+                  className='link__backed'
+                  activeClassName="active">
+                  Announcements
+                </Link>
+              </li>
+              {data.allStrapiAnnouncement.nodes.map((announcement: AnnouncementType) => (
+                <li key={announcement.id}>
+                  <Link
+                    to={`/announcement/${announcement.slug}`}
+                    className='link__backed'
+                    activeClassName="active">
+                    {announcement.title}
+                  </Link>
+                </li>
+              ))}
+            </>
           </MenuList>
 
         </nav>
@@ -109,7 +137,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <PricingChart book={false} />
+        <PricingChart />
         <hr />
 
         <PaddleLocationDeck

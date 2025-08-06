@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-
+import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import type { AnnouncementType } from "../types/announcement-type";
 
 function AnnouncementPage() {
 
@@ -16,11 +17,6 @@ function AnnouncementPage() {
       }
     }
   `)
-
-  type AnnouncementType = {
-    title: string,
-    slug: string
-  }
 
   return (
     <>
@@ -43,3 +39,7 @@ function AnnouncementPage() {
 }
 
 export default AnnouncementPage
+
+export const Head = () => {
+  return <SEO title="Announcments" />;
+};

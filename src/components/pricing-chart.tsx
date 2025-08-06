@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { PaddlePricingChart } from "@rileybathurst/paddle"
 
-const PricingChart = ({ book }: { book: boolean; }) => {
+const PricingChart = () => {
 
   const data = useStaticQuery(graphql`
     query PricingChartQuery {
@@ -13,34 +13,25 @@ const PricingChart = ({ book }: { book: boolean; }) => {
           oneHour
           threeHour
           fullDay
+          pedalAdd
+
+          retail {
+            slug
+            sport {
+              slug
+            }
+            brand {
+              slug
+            }
+          }
         }
       }
-
-      allStrapiRentalAddon {
-        nodes {
-          id
-          name
-          single
-          double
-          sup
-        }
-      }
-
-      strapiLocale(slug: {eq: "tahoe-city"}) {
-        name
-        peek_base
-      }
-
     }
   `)
 
   return (
     <PaddlePricingChart
-      book={book}
       rentalRates={data.allStrapiRentalRate}
-      rentalAddons={data.allStrapiRentalAddon}
-      strapiLocaleName={data.strapiLocale.name}
-      peek_base={data.strapiLocale.peek_base}
     />
   )
 }

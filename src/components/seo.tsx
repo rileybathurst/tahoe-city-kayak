@@ -94,6 +94,8 @@ export const SEO = ({
   return (
     <>
       <html lang="en" />
+      {/* // if a page doesnt have this linked it wont pull thge theme as it needs this line */}
+      {/* // TODO: write a test to check this is on pages */}
       <body className="tahoe-city" />
       <PaddleSEO
         title={title || null}

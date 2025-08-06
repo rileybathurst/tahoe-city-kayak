@@ -1,11 +1,23 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { SEO } from "../components/seo";
+import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const NotFoundPage = ({ location }) => {
+type NotFoundPageTypes = {
+  data: {
+    strapiError: {
+      excerpt: string;
+      return: BlocksContent;
+    };
+  };
+  location: {
+    pathname: string;
+  };
+};
+const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
   return (
     <>
       <Header />
@@ -14,9 +26,8 @@ const NotFoundPage = ({ location }) => {
         {/* // TODO: add an eyebrow to this */}
         <h2 className="crest">404 - {location.pathname}</h2>
 
-        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
-        <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link>
-        </p>
+        <h1 className="mixta">{data.strapiError.excerpt}</h1>
+        <BlocksRenderer content={data.strapiError.return} />
       </main>
       <Footer />
     </>
@@ -25,11 +36,49 @@ const NotFoundPage = ({ location }) => {
 
 export default NotFoundPage
 
-export const Head = ({ location }) => {
+// This might be brittle but its better than not
+// Although this doesn't need SEO it still needs a title so this is the best way to do it
+export const Head = ({ location, data }: NotFoundPageTypes) => {
+
+  // console.log(data.strapiError.return);
+  let cleanText = "";
+  data.strapiError.return[0].children.map((child) => {
+    if (child.type === 'text') {
+      cleanText += child.text;
+    }
+    if (child.type === 'link') {
+      cleanText += child.children.map((linkChild) => linkChild.text).join('');
+    }
+  });
+
+  // console.log("cleanText", cleanText);
+
   return (
     <SEO
-      title={`404 - ${location.pathname}`}
-      description="Looks like you&apos;ve paddled into uncharted waters! Don&apos;t worry, we&apos;ll help you navigate back to our homepage."
+      title={location.pathname}
+      description={`${data.strapiError.excerpt} ${cleanText}`}
     />
   )
 }
+
+export const data = graphql`
+  query NotFoundPageQuery {
+    strapiError {
+      excerpt
+
+      return {
+        type
+        children {
+          children {
+          text
+          type
+        }
+        text
+        type
+        url
+      }
+    }
+
+  }
+}
+`

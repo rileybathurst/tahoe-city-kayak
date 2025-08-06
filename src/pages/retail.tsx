@@ -15,6 +15,8 @@ import type { CardType } from "../types/card";
 import Purchase from "../components/purchase";
 import LocationDeck from "../components/location-deck";
 
+import Markdown from "react-markdown";
+
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
@@ -41,6 +43,14 @@ const RetailPage = () => {
       }
     }
 
+    strapiDemo {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
   }
 `);
 
@@ -52,9 +62,6 @@ const RetailPage = () => {
         <div>
           <h1>Retail</h1>
           <Shop />
-          <h3>
-            <Link to="/retail/demos">Demos</Link>
-          </h3>
 
           <LocationDeck
             allStrapiLocation={query.allStrapiLocation}
@@ -69,10 +76,10 @@ const RetailPage = () => {
               <FeatureList sport="kayak" />
             </section>
           </article >
-          <section className="albatross">
+          {/* // ! <section className="albatross">
             <h3>Browse By Brand</h3>
-            {/* // ! <PaddleBrandList sport="kayak" /> */}
-          </section>
+            <PaddleBrandList sport="kayak" />
+          </section> */}
         </div>
 
         <Composition
@@ -102,13 +109,13 @@ const RetailPage = () => {
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />
-          <section className="albatross">
+          {/* // ! <section className="albatross">
             <h3>Browse By Brand</h3>
-            {/* // ! <PaddleBrandList sport="paddleboard" /> */}
+            <PaddleBrandList sport="paddleboard" />
           </section>
+           */}
         </section>
 
-        <Composition sport="sup" />
       </article>
 
       <section className="bag">
@@ -120,6 +127,14 @@ const RetailPage = () => {
       <h2 className="albatross">
         <Link to="/retail/paddleboard">All Paddle boards</Link>
       </h2>
+
+      <div className="pelican">
+        <hr />
+        <h3>
+          <Link to="/retail/demos">Demos</Link>
+        </h3>
+        <Markdown>{query.strapiDemo.text.data.text}</Markdown>
+      </div>
 
       <Footer />
     </>

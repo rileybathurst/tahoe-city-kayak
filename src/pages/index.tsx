@@ -6,7 +6,6 @@ import {
   PaddleBookNow,
   PaddleLocationDeck,
   PaddleTicket,
-  PaddleBrandList,
   type PaddleTicketTypes,
   type PaddleLocationCardTypes,
   type PaddlePurchaseTypes,
@@ -16,7 +15,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import MahaliaCasual from "../images/mahalia-casual";
+import Hero2025 from "../images/hero-2025";
 import WaterTexture from "../images/watertexture";
 import AndyPaddling from "../images/andypaddling";
 import FeatureList from "../components/feature-list";
@@ -123,7 +122,7 @@ const IndexPage = () => {
     if (a.featured === false && b.featured === null) return 1;
     return 0;
   });
-  console.log(allTours);
+  // console.log(allTours);
 
   // State for the list
   const [list, setList] = useState([...allTours.slice(0, 4)]);
@@ -239,7 +238,7 @@ const IndexPage = () => {
         <div>
           {/* TODO: rename this hero after I've cleaned that up */}
           <div className="home__photo-grid">
-            <MahaliaCasual className="kayakers" />
+            <Hero2025 className="kayakers" />
             <WaterTexture className="texture" />
             <AndyPaddling className="andy" />
           </div>
@@ -331,17 +330,19 @@ const IndexPage = () => {
         </div>
 
         <div className="pelican">
-          {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
-          {inventory.map((retail) => (
-            <Purchase key={retail.id} {...retail} />
-          ))}
-          {hasExtra ? (
-            <button onClick={handleLoadExtra} type="button">
-              View More Products
-            </button>
-          ) : (
-            <p>Thats all the products</p>
-          )}
+          <div className="bag">
+            {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
+            {inventory.map((retail) => (
+              <Purchase key={retail.id} {...retail} />
+            ))}
+            {hasExtra ? (
+              <button onClick={handleLoadExtra} type="button">
+                View More Products
+              </button>
+            ) : (
+              <p>Thats all the products</p>
+            )}
+          </div>
         </div>
       </section >
 

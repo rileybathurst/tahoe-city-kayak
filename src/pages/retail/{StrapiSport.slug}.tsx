@@ -19,7 +19,6 @@ import {
   PaddleBrandList,
   type PaddleLocationCardTypes,
   type PaddleBrandType,
-  type PaddlePurchaseTypes
 } from "@rileybathurst/paddle";
 
 export const strapiSport = graphql`

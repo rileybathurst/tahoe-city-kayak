@@ -14,17 +14,19 @@
   "engineStrict": true,
   "scripts": {
     "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build && npm run sentry:sourcemaps",
+    "start": "tsc --noEmit && gatsby develop",
+    "dirty-start": "gatsby develop",
+    "build": "gatsby build && npm run sentry:sourcemaps && tsc --noEmit",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "cleanstart": "gatsby clean && gatsby develop",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project tahoe-city-kayak ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project tahoe-city-kayak ./public"
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project tahoe-city-kayak ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project tahoe-city-kayak ./public",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.2.5",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.3.10",
+    "@rileybathurst/paddle": "^1.6.2",
     "@sentry/cli": "^2.45.0",
     "@sentry/gatsby": "^9.20.0",
     "@strapi/blocks-react-renderer": "^1.0.2",

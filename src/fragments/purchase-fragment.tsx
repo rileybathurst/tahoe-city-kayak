@@ -34,6 +34,3 @@ export const query = graphql`
 
   }
 `
-
-// hullweight
-// discount

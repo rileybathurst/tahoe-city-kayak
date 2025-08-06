@@ -32,7 +32,7 @@ export const query = graphql`
 
     }
   }
-`
+`;
 
 type AnnouncementTypes = {
   data: {
@@ -51,7 +51,11 @@ type AnnouncementTypes = {
   };
 };
 
+
 const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
+
+  console.log(data);
+
   return (
     <>
       <Header />
@@ -70,7 +74,7 @@ const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
 
         {data.strapiAnnouncement.publishedAt}
         {/* //TODO: do more with it */}
-        {/* <Calendar {...data.strapiAnnouncement.calendar} /> */}
+        {/* <Calendar {...strapiAnnouncement.calendar} /> */}
         <hr />
 
         <div className="react-markdown">

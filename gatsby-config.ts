@@ -19,7 +19,6 @@ const strapiConfig = {
     "location",
     "moonlight-tour-date-time",
     "policy",
-    "rental-addon",
     "rental-rate",
     "retail",
     "sunset-tour-time",
@@ -30,6 +29,7 @@ const strapiConfig = {
   ],
   singleTypes: [
     "about",
+    "error",
     "experience",
     "demo",
     "protect",

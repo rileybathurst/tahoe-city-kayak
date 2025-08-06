@@ -15,7 +15,6 @@ exports.onPostBuild = ({ reporter }: reporterType) => {
 };
 
 // Create blog pages dynamically
-import type { GatsbyGraphQLQueryFn } from "gatsby";
 import type { Actions } from "gatsby";
 
 type createPagesType = {
