@@ -198,7 +198,7 @@ export const Head = () => {
   return (
     <SEO
       title='Truckee River Rentals'
-      description="We offer high end inflatables that you can rent for the Truckee River, as well as inexpensive tubes and rafts for purchase"
+      description="We offer high end inflatables as well as inexpensive tubes and rafts for purchase for the Truckee River."
       breadcrumbs={[
         {
           name: "Rentals",
