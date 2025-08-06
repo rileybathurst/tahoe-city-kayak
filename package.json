@@ -16,7 +16,7 @@
     "develop": "gatsby develop",
     "start": "tsc --noEmit && gatsby develop",
     "dirty-start": "gatsby develop",
-    "build": "gatsby build && npm run sentry:sourcemaps && tsc --noEmit",
+    "build": "gatsby build && npm run sentry:sourcemaps",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "cleanstart": "gatsby clean && gatsby develop",
