@@ -12,7 +12,6 @@ const strapiConfig = {
     "branch",
     "brand",
     "condition",
-    "event",
     "faq",
     "imagegrab",
     "job",
@@ -38,6 +37,7 @@ const strapiConfig = {
     "shop", // TODO: update the links
     "invasive",
     "parking",
+    "membership",
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,

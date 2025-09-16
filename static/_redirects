@@ -2,8 +2,6 @@
 
 ## https://docs.netlify.com/routing/redirects/redirect-options/
 
-## /news/*  /blog/:splat
-
 /home         /
 
 ### Rentals

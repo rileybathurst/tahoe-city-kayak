@@ -14,7 +14,6 @@ exports.onPostBuild = ({ reporter }: reporterType) => {
   reporter.info("Your Gatsby site has been built!");
 };
 
-// Create blog pages dynamically
 import type { Actions } from "gatsby";
 
 type createPagesType = {
