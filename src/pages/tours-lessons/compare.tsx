@@ -46,7 +46,7 @@ const Details1 = ({ show, set, setLink1, setSport1, setDuration1, setStart1, set
       setStart1(element.start);
       setFinish1(element.finish);
       setFitness1(element.fitness);
-      setLocation1(element.local.name);
+      setLocation1(element.branch.name);
       setExcerpt1(element.excerpt);
       setMinimum1(element.minimum);
       setPrice1(element.price);
@@ -69,7 +69,7 @@ const Details2 = ({ show, set, setLink2, setSport2, setDuration2, setStart2, set
       setStart2(element.start);
       setFinish2(element.finish);
       setFitness2(element.fitness);
-      setLocation2(element.local.name);
+      setLocation2(element.branch.name);
       setExcerpt2(element.excerpt);
       setMinimum2(element.minimum);
       setPrice2(element.price);
@@ -157,8 +157,8 @@ const Compare = ({ tours }) => {
   const [finish1, setFinish1] = useState(tours[0].finish || "Finish 1");
   const [finish2, setFinish2] = useState(tours[1].finish || "Finish 2");
 
-  const [location1, setLocation1] = useState(tours[0].local.name || "Location 1");
-  const [location2, setLocation2] = useState(tours[1].local.name || "Location 2");
+  const [location1, setLocation1] = useState(tours[0].branch.name || "Location 1");
+  const [location2, setLocation2] = useState(tours[1].branch.name || "Location 2");
 
   const [excerpt1, setExcerpt1] = useState(tours[0].excerpt || "Excerpt 1");
   const [excerpt2, setExcerpt2] = useState(tours[1].excerpt || "Excerpt 2");

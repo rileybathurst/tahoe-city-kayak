@@ -6,15 +6,13 @@ export const useStrapiTopBar = () => {
     query {
       strapiBranch(slug: { eq: "tahoe-city" }) {
         topbar {
-          type
-          children {
-            type
-            text
+          data {
+            topbar
           }
         }
       }
     }
   `);
 
-  return strapiBranch.topbar;
+  return strapiBranch.topbar.data.topbar;
 };

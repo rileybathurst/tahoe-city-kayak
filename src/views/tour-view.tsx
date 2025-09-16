@@ -266,9 +266,9 @@ const TourView = ({ data }: TourViewTypes) => {
           </section>
 
           <PaddleLocationDeck
-            season_start={data.strapiTour.local.season_start}
-            season_end={data.strapiTour.local.season_end}
-            phone={data.strapiTour.local.phone}
+            season_start={data.strapiTour.branch.season_start}
+            season_end={data.strapiTour.branch.season_end}
+            phone={data.strapiTour.branch.phone}
             {...data.allStrapiLocation}
           />
 
@@ -299,7 +299,7 @@ const TourView = ({ data }: TourViewTypes) => {
             key={tour.id}
             {...tour}
             tour_page="tours-lessons"
-            peek_tours_fall_back={data.strapiTour.local.peek_tours}
+            peek_tours_fall_back={data.strapiTour.branch.peek_tours}
             allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         ))}

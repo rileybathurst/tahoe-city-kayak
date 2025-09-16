@@ -1,21 +1,15 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import Markdown from "react-markdown"
 
 const AboutUs = () => {
 
-  // * this needs a messy query due to blocks on strapi
   const { strapiBranch } = useStaticQuery(graphql`
     query AboutQuery {
       strapiBranch(slug: {eq: "tahoe-city"}) {
         about {
-          type
-          children {
-            type
-            children {
-              text
-              type
-            }
+          data {
+            about
           }
         }
       }
@@ -23,7 +17,7 @@ const AboutUs = () => {
   `)
 
   return (
-    <BlocksRenderer content={strapiBranch.about} />
+    <Markdown>{strapiBranch.about.data.about}</Markdown>
   )
 }
 

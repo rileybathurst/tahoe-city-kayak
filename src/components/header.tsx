@@ -167,10 +167,8 @@ const Header = () => {
         name
 
         topbar {
-          type
-          children {
-            type
-            text
+          data {
+            topbar
           }
         }
       }

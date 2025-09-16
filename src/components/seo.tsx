@@ -43,10 +43,8 @@ export const SEO = ({
         slogan
 
         topbar {
-          type
-          children {
-            type
-            text
+          data {
+            topbar
           }
         }
       }
