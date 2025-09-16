@@ -353,7 +353,7 @@ const ComparePage = () => {
           excerpt
           duration
 
-          local {
+          branch {
             name
           }
         }

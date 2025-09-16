@@ -27,7 +27,7 @@ const ToursLessonsPage = () => {
       )
       {
         nodes {
-         ...ticketFragment
+          ...ticketFragment
         }
       }
   
@@ -40,7 +40,7 @@ const ToursLessonsPage = () => {
           sort: {featured: ASC})
         {
           nodes {
-           ...ticketFragment
+            ...ticketFragment
           }
         }
 
@@ -55,10 +55,6 @@ const ToursLessonsPage = () => {
           }
         }
 
-        strapiLocale(slug: {eq: "tahoe-city"}) {
-          peek_tours
-        }
-
         allStrapiSunsetTourTime(sort: {startDate: ASC}) {
           nodes {
             id
@@ -69,7 +65,7 @@ const ToursLessonsPage = () => {
           }
         }
 
-        strapiLocale(slug: {eq: "tahoe-city"}) {
+        strapiBranch(slug: {eq: "tahoe-city"}) {
           peek_tours
           season_start
           season_end
@@ -103,9 +99,9 @@ const ToursLessonsPage = () => {
           </div>
         </div>
         <PaddleLocationDeck
-          season_start={query.strapiLocale.season_start}
-          season_end={query.strapiLocale.season_end}
-          phone={query.strapiLocale.phone}
+          season_start={query.strapiBranch.season_start}
+          season_end={query.strapiBranch.season_end}
+          phone={query.strapiBranch.phone}
           {...query.allStrapiLocation}
         />
       </main>
@@ -127,7 +123,7 @@ const ToursLessonsPage = () => {
                   key={tour.id}
                   {...tour}
                   tour_page="tours-lessons"
-                  peek_tours_fall_back={query.strapiLocale.peek_tours}
+                  peek_tours_fall_back={query.strapiBranch.peek_tours}
                   allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
                 />
               ))}

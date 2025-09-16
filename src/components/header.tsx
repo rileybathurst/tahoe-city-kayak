@@ -160,22 +160,22 @@ const Button = () => {
 
 const Header = () => {
 
+  // TODO: raincheck is the old version I have weather now it needs to be updated
   const data = useStaticQuery(graphql`
-        query HeaderQuery {
-          strapiLocale(slug: {eq: "tahoe-city"}) {
-          name
+    query HeaderQuery {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
+        name
 
         topbar {
-          data {
-          topbar
+          type
+          children {
+            type
+            text
+          }
         }
-        }
-        RainCheck
-        RainCheckReason
       }
     }
-        `)
-
+  `)
 
 
   return (
@@ -184,7 +184,7 @@ const Header = () => {
       {/* // TODO: weather day in other places as well */}
       <PaddleTopBar {...data} />
       <p className='sr-only'>
-        {data.strapiLocale.name} Kayak & Paddleboard rentals and tours
+        {data.strapiBranch.name} Kayak & Paddleboard rentals and tours
       </p>
       <div className="logo-container" >
         <Link to="/" className="">

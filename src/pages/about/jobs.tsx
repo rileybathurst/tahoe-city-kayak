@@ -1,5 +1,5 @@
 // TODO: some of the typographic sizing is really out
-// TODO: I think I already have this in strapi
+// ! I already have this in strapi
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -10,10 +10,10 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const JobsPage = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query jobsQuery {
-      strapiLocale(slug: {eq: "tahoe-city"}) {
-        jobEmail
+      strapiBranch(slug: {eq: "tahoe-city"}) {
+        job_email
       }
     }
   `)
@@ -44,7 +44,7 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href={`mailto:${strapiLocale.jobEmail}`} className="button">{strapiLocale.jobEmail}</a>
+          <a href={`mailto:${strapiBranch.jobEmail}`} className="button">{strapiBranch.jobEmail}</a>
         </section>
 
         <section>

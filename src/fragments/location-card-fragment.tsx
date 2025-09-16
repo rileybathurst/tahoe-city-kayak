@@ -26,7 +26,7 @@ export const query = graphql`
 
     offSeasonDetails
     
-    local {
+    branch {
       season_start(formatString: "MMMM DD")
       season_end(formatString: "MMMM")
     }

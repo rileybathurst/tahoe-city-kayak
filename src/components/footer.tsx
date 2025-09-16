@@ -11,8 +11,6 @@ import Phone from "./phone";
 import type { AnnouncementType } from "../types/announcement-type";
 
 const Footer = () => {
-  // TODO: allStrapiLocale is pulling an additional result from somewhere I dont understand
-
   const data = useStaticQuery(graphql`
     query FooterQuery {
       allStrapiLocation(
@@ -26,7 +24,7 @@ const Footer = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         name
         instagram
         facebook
@@ -37,7 +35,7 @@ const Footer = () => {
         phone
       }
 
-      allStrapiLocale(filter: {slug: {nin: ["tahoe-city", null]}}) {
+      allStrapiBranch(filter: {slug: {ne: "tahoe-city"}}) {
         nodes {
           name
           url
@@ -70,7 +68,7 @@ const Footer = () => {
       {/* holds together a flex */}
       <div>
         <h3 className='sr-only'>
-          <Link to="/">{data.strapiLocale.name}</Link>
+          <Link to="/">{data.strapiBranch.name}</Link>
         </h3>
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
@@ -105,25 +103,25 @@ const Footer = () => {
           <div className="multi_button">
             <Phone />
             <a
-              href={`mailto:${data.strapiLocale.email}`}
+              href={`mailto:${data.strapiBranch.email}`}
               rel="norel norefferer"
               className="button"
             >
-              {data.strapiLocale.email}
+              {data.strapiBranch.email}
             </a>
           </div>
           <hr />
           <PaddleSocials
-            instagram={data.strapiLocale.instagram}
-            facebook={data.strapiLocale.facebook}
-            tripadvisor={data.strapiLocale.tripadvisor}
+            instagram={data.strapiBranch.instagram}
+            facebook={data.strapiBranch.facebook}
+            tripadvisor={data.strapiBranch.tripadvisor}
           />
         </div>
         <hr />
         <div className="footer__locations">
           <h3>Our Partner Locations</h3>
           <ul>
-            {data.allStrapiLocale.nodes.map((locale: LocaleTypes) => (
+            {data.allStrapiBranch.nodes.map((locale: LocaleTypes) => (
               <li key={locale.name}>
                 <a href={locale.url}
                   target="_blank"
@@ -141,9 +139,9 @@ const Footer = () => {
         <hr />
 
         <PaddleLocationDeck
-          season_start={data.strapiLocale.season_start}
-          season_end={data.strapiLocale.season_end}
-          phone={data.strapiLocale.phone}
+          season_start={data.strapiBranch.season_start}
+          season_end={data.strapiBranch.season_end}
+          phone={data.strapiBranch.phone}
           {...data.allStrapiLocation}
         />
 

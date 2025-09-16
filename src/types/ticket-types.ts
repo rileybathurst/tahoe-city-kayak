@@ -2,7 +2,7 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 export interface TicketTypes {
   id: React.Key;
-  ogimage: {
+  ogImage: {
     localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
     alternativeText?: string;
   };

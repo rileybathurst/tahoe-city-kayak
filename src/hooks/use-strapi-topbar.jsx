@@ -2,17 +2,19 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 export const useStrapiTopBar = () => {
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query {
-      strapiLocale(slug: { eq: "tahoe-city" }) {
+      strapiBranch(slug: { eq: "tahoe-city" }) {
         topbar {
-          data {
-            topbar
+          type
+          children {
+            type
+            text
           }
         }
       }
     }
   `);
 
-  return strapiLocale.topbar.data;
+  return strapiBranch.topbar;
 };

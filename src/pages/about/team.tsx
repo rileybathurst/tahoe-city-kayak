@@ -34,7 +34,7 @@ const TeamPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         name
       }
     }
@@ -65,7 +65,7 @@ const TeamPage = () => {
 
       <main className="pelican">
         <h1>Team</h1>
-        <p>Meet the team at {data.strapiLocale.name} Kayak & Paddleboard</p>
+        <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
 
         {data.allStrapiTeam.nodes.map((team: teamTypes) => (
@@ -84,7 +84,7 @@ const TeamPage = () => {
               </Link>
             </h2>
             {/* // TODO: reviews about person */}
-            {team.bio ? <ReactMarkdown className='react-markdown'>{team.bio.data.bio}</ReactMarkdown> : null}
+            {team.bio ? <div className='react-markdown'><ReactMarkdown>{team.bio.data.bio}</ReactMarkdown></div> : null}
             <hr />
           </section >
 

@@ -27,6 +27,7 @@ import Purchase from "../components/purchase";
 
 const IndexPage = () => {
 
+  // ? seems like a weird place to have sunset tour time
   type SunsetTourTime = {
     id: React.Key;
     endDate: string;
@@ -35,7 +36,7 @@ const IndexPage = () => {
     startTime: string;
   }
 
-  type Locale = {
+  type Branch = {
     name: string;
     peek_tours: string;
     season_start: string;
@@ -58,7 +59,7 @@ const IndexPage = () => {
     allStrapiRetail: {
       nodes: PaddlePurchaseTypes[];
     };
-    strapiLocale: Locale;
+    strapiBranch: Branch;
   }
 
   const data: indexTypes = useStaticQuery(graphql`
@@ -99,7 +100,7 @@ const IndexPage = () => {
         }
       }
 
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         name
         peek_tours
         season_start
@@ -212,25 +213,25 @@ const IndexPage = () => {
           </div>
 
           <PaddleLocationDeck
-            season_start={data.strapiLocale.season_start}
-            season_end={data.strapiLocale.season_end}
-            phone={data.strapiLocale.phone}
+            season_start={data.strapiBranch.season_start}
+            season_end={data.strapiBranch.season_end}
+            phone={data.strapiBranch.phone}
             {...data.allStrapiLocation}
           />
 
           <div className="multi_button">
             <PaddleBookNow
-              peek_base={data.strapiLocale.peek_base}
-              strapiLocaleName={data.strapiLocale.name}
+              peek_base={data.strapiBranch.peek_base}
+              strapiBranchName={data.strapiBranch.name}
               specificName='rentals'
-              specificLink={data.strapiLocale.peek_rentals}
+              specificLink={data.strapiBranch.peek_rentals}
             />
 
             <PaddleBookNow
-              peek_base={data.strapiLocale.peek_base}
-              strapiLocaleName={data.strapiLocale.name}
+              peek_base={data.strapiBranch.peek_base}
+              strapiBranchName={data.strapiBranch.name}
               specificName='tours'
-              specificLink={data.strapiLocale.peek_tours}
+              specificLink={data.strapiBranch.peek_tours}
             />
           </div>
         </section>
@@ -274,7 +275,7 @@ const IndexPage = () => {
                 key={tour.id}
                 {...tour}
                 tour_page="tours-lessons"
-                peek_tours_fall_back={data.strapiLocale.peek_tours}
+                peek_tours_fall_back={data.strapiBranch.peek_tours}
                 allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
               />
             ))}

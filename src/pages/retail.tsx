@@ -4,9 +4,6 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
-import { PaddleBrandList } from "@rileybathurst/paddle";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
-
 import Header from "../components/header";
 import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";

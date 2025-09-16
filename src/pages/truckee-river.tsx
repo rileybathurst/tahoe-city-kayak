@@ -1,10 +1,9 @@
 // ! leaflet isnt working with react 18
 // less of a problem as we are holding back this page for now anyway
 
-import React, { useState, useRef } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby";
+import React from "react"
+import { graphql, useStaticQuery } from "gatsby";
 import { SEO } from "../components/seo";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from "react-markdown";
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 

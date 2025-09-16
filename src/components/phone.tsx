@@ -4,9 +4,9 @@ import { PaddleFormatPhoneNumber } from "@rileybathurst/paddle"
 
 const Phone = () => {
 
-  const { strapiLocale } = useStaticQuery(graphql`
+  const { strapiBranch } = useStaticQuery(graphql`
     query PhoneQuery {
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         phone
       }
     }
@@ -14,11 +14,11 @@ const Phone = () => {
 
   return (
     <a
-      href={`tel:${strapiLocale.phone}`}
+      href={`tel:${strapiBranch.phone}`}
       rel="norel norefferer"
       className="button"
     >
-      Phone: <PaddleFormatPhoneNumber phoneNumberString={strapiLocale.phone} />
+      Phone: <PaddleFormatPhoneNumber phoneNumberString={strapiBranch.phone} />
     </a>
   )
 }

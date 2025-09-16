@@ -7,8 +7,8 @@ type SEOtypes = {
   title?: string;
   description?: string;
   url?: string;
-  ogImage?: string;
-  ogImageDescription?: string;
+  og_image?: string;
+  og_image_description?: string;
   breadcrumbs?: {
     name: string;
     item?: string;
@@ -18,41 +18,42 @@ type SEOtypes = {
 export const SEO = ({
   title,
   description,
-  ogImage,
-  ogImageDescription,
+  og_image,
+  og_image_description,
   breadcrumbs,
   children,
 }: SEOtypes) => {
   const data = useStaticQuery(graphql`
     query SEOQuery {
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         name
         excerpt
         url
-        ogImage
-        ogImageDescription
+        og_image
+        og_image_description
         latitude
         longitude
-        geoRadius
-        themeColor
-        numberOfEmployees
+        geo_radius
+        theme_color
+        number_of_employees
         phone
         email
-        paymentAccepted
-        priceRange
+        payment_accepted
+        price_range
         slogan
 
         topbar {
-          data {
-            topbar
+          type
+          children {
+            type
+            text
           }
         }
       }
 
-      # location
       strapiLocation(
           name: {eq: "Retail Location"},
-          local: {slug: {eq: "tahoe-city"}}
+          branch: {slug: {eq: "tahoe-city"}}
         ) {
           streetAddress
           addressLocality
@@ -60,11 +61,10 @@ export const SEO = ({
           postalCode
         }
 
-      # departments
       allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental"]},
-          local: {slug: {eq: "tahoe-city"}}
+          branch: {slug: {eq: "tahoe-city"}}
         }
       ) {
         nodes {
@@ -85,12 +85,6 @@ export const SEO = ({
     }
   `);
 
-  // console.log('tck-seo.tsx');
-  // console.log(data.strapiLocale.topbar.data.topbar);
-
-  // console.log(title)
-  // console.log()
-
   return (
     <>
       <html lang="en" />
@@ -101,8 +95,8 @@ export const SEO = ({
         title={title || null}
         description={description || null}
         breadcrumbs={breadcrumbs || null}
-        ogImage={ogImage || null}
-        ogImageDescription={ogImageDescription || null}
+        og_image={og_image || null}
+        og_image_description={og_image_description || null}
         {...data}
       >
         {children}

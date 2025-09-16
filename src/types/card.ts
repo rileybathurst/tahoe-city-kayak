@@ -11,7 +11,7 @@ export interface CardType {
   end?: Date;
   duration?: number;
   peek: string;
-  iogimage: {
+  ogImage: {
     localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
     alternativeText: string;
   };

@@ -46,7 +46,7 @@ interface TourViewTypes {
       excerpt: string;
       price: number;
       slug: string;
-      ogimage: {
+      ogImage: {
         localFile: {
           childImageSharp: {
             gatsbyImageData: IGatsbyImageData;
@@ -93,7 +93,7 @@ interface TourViewTypes {
 
     allStrapiLocation: CardType[];
 
-    strapiLocale: {
+    strapiBranch: {
       peek_tours: string;
     };
   };
@@ -142,7 +142,7 @@ export const data = graphql`
         alternativeText
       }
 
-      local {
+      branch {
         name
         peek_tours
         season_start

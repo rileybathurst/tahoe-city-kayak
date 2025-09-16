@@ -9,7 +9,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
 import Phone from "../components/phone";
-// import SEOcase from "../components/seocase"
 import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";

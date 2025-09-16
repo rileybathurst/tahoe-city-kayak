@@ -18,7 +18,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
         }
       }
 
-      strapiLocale(slug: {eq: "tahoe-city"}) {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
         peek_tours
       }
 
@@ -58,7 +58,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
             key={tour.id}
             {...tour}
             tour_page="tours-lessons"
-            peek_tours_fall_back={data.strapiLocale.peek_tours}
+            peek_tours_fall_back={data.strapiBranch.peek_tours}
             allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
           />
         ))}

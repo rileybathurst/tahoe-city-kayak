@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { SEO } from "../components/seo";
 import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
 
@@ -61,6 +61,7 @@ export const Head = ({ location, data }: NotFoundPageTypes) => {
   )
 }
 
+// * strapi gatsby query is bad but this is the best we can do for now
 export const data = graphql`
   query NotFoundPageQuery {
     strapiError {
@@ -70,9 +71,9 @@ export const data = graphql`
         type
         children {
           children {
-          text
-          type
-        }
+            text
+            type
+          }
         text
         type
         url
