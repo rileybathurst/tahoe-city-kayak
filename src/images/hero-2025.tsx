@@ -24,7 +24,7 @@ const Hero2025 = ({ className }: { className?: string; }) => {
       image={strapiImagegrab.image.localFile.childImageSharp.gatsbyImageData}
       alt={strapiImagegrab.image.alternativeText || "Hero Image 2025"}
       className={`img__wrapped ${className}`}
-      objectPosition="0 -10rem" // * guess and check
+      objectPosition="center top"
     />
   )
 };
