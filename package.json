@@ -14,13 +14,14 @@
   "engineStrict": true,
   "scripts": {
     "develop": "gatsby develop",
-    "start": "tsc --noEmit && stay-gold && gatsby develop",
+    "start": "npm run typecheck && npm run stay-gold && gatsby develop",
     "dirty": "gatsby develop",
-    "build": "gatsby build && npm run sentry:sourcemaps",
+    "build": "gatsby build",
+    "sentry-build": "SENTRY_TELEMETRY=false gatsby build && SENTRY_TELEMETRY=false npm run sentry:sourcemaps",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "cleanstart": "gatsby clean && gatsby develop",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project tahoe-city-kayak ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project tahoe-city-kayak ./public",
+    "sentry:sourcemaps": "if [ -n \"$CI\" ] && [ -n \"$SENTRY_AUTH_TOKEN\" ] && [ -n \"$SENTRY_ORG\" ] && [ -n \"$SENTRY_PROJECT\" ]; then sentry-cli sourcemaps inject ./public && sentry-cli sourcemaps upload --org \"$SENTRY_ORG\" --project \"$SENTRY_PROJECT\" ./public; else echo 'Skipping Sentry sourcemaps upload (missing CI, SENTRY_AUTH_TOKEN, SENTRY_ORG, or SENTRY_PROJECT).'; fi",
     "typecheck": "tsc --noEmit",
     "stay-gold": "stay-gold"
   },

@@ -138,12 +138,9 @@ module.exports = {
         linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
       },
     }, */
-    {
+    /* // * Im not using this and behind on a bunch of other updates, so removing for now. Will add back if I need it.{
       resolve: "@sentry/gatsby",
-      options: {
-        dsn: process.env.SENTRY_DSN, // this is the default
-      },
-    },
+    }, */
     "gatsby-plugin-smoothscroll",
     {
       resolve: "gatsby-plugin-typescript",

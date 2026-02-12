@@ -112,7 +112,7 @@ const IndexPage = () => {
     }
   `);
 
-  console.log(data.allStrapiTour.nodes);
+  // console.log(data.allStrapiTour.nodes);
 
   const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
   allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));

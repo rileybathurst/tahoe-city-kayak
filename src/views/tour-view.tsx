@@ -294,7 +294,7 @@ const TourView = ({ data }: TourViewTypes) => {
 
         <Composition
           sport={data.strapiTour.sport}
-          image={data.strapiTour?.compositionImage?.localFile?.childImageSharp?.gatsbyImageData}
+          image={data.strapiTour?.compositionImage}
         />
       </main>
 

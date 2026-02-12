@@ -8,7 +8,6 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+
+  sendDefaultPii: true,
 })
-
-
-// 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
