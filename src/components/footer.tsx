@@ -75,7 +75,7 @@ const Footer = () => {
         <hr />
         <nav>
           <MenuList>
-            <>
+            <React.Fragment>
               <li key='announcement'>
                 <Link
                   to="/announcement"
@@ -94,7 +94,7 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-            </>
+            </React.Fragment>
           </MenuList>
 
         </nav>

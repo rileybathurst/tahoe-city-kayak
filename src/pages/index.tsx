@@ -112,6 +112,8 @@ const IndexPage = () => {
     }
   `);
 
+  console.log(data.allStrapiTour.nodes);
+
   const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
   allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
   // Sort so that featured: true first, then featured: null, then featured: false
@@ -123,10 +125,10 @@ const IndexPage = () => {
     if (a.featured === false && b.featured === null) return 1;
     return 0;
   });
-  // console.log(allTours);
+  // console.log(allTours + "AFTER SORT");
 
   // State for the list
-  const [list, setList] = useState([...allTours.slice(0, 4)]);
+  const [sortedList, setList] = useState([...allTours.slice(0, 4)]);
 
   // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false);
@@ -142,21 +144,21 @@ const IndexPage = () => {
   // Handle loading more articles
   useEffect(() => {
     if (loadMore && hasMore) {
-      const currentLength = list.length;
+      const currentLength = sortedList.length;
       const isMore = currentLength < allTours.length;
       const nextResults = isMore
         ? allTours.slice(currentLength, currentLength + 2)
         : [];
-      setList([...list, ...nextResults]);
+      setList([...sortedList, ...nextResults]);
       setLoadMore(false);
     }
-  }, [loadMore, hasMore, list, allTours.length, allTours.slice]);
+  }, [loadMore, hasMore, sortedList, allTours.length, allTours.slice]);
 
   //Check if there is more
   useEffect(() => {
-    const isMore = list.length < allTours.length;
+    const isMore = sortedList.length < allTours.length;
     setHasMore(isMore);
-  }, [list, allTours.length]);
+  }, [sortedList, allTours.length]);
 
   // Retail
   const allRetail = data.allStrapiRetail.nodes;
@@ -186,6 +188,14 @@ const IndexPage = () => {
   }, [inventory, allRetail.length]);
 
   // console.log(data.allStrapiLocation);
+
+
+  /* // ! testing
+  function Order(tour: PaddleTicketTypes) =
+  {if (tour.featured === true) { <p>Featured Tour</p> }
+                else if (tour.featured === false) { <p>Not Featured Tour</p> }
+                else { <p>Regular Tour</p> }
+                } */
 
   return (
     <>
@@ -266,18 +276,28 @@ const IndexPage = () => {
           </h4>
         </div>
 
-
-        <div className="flight">
-          {list
-            .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? 1 : -1))
-            .map((tour: PaddleTicketTypes) => (
-              <PaddleTicket
+        {/* // ! Test removed this to figure out the featured sorted order
+              // <PaddleTicket
                 key={tour.id}
                 {...tour}
                 tour_page="tours-lessons"
                 peek_tours_fall_back={data.strapiBranch.peek_tours}
                 allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
-              />
+              /> */}
+
+        <div className="flight">
+          {sortedList
+            .map((tour: PaddleTicketTypes) => (
+              <section key={tour.id}>
+                <h1>{tour.name}</h1>
+
+                {/* <Order
+                  key={tour.id}
+                  {...tour}
+                /> */}
+                
+
+              </section>
             ))}
         </div>
         <div className="condor aconcagua-padding-block-end">
@@ -316,7 +336,7 @@ const IndexPage = () => {
             <h5>Shop By Feature</h5>
             <FeatureList sport="kayak" />
             {/* <h5>Shop By Brand</h5> */}
-            {/* // ! <PaddleBrandList sport="kayak" /> */}
+            {/* // ! <PaddleBr`andList sport="kayak" /> */}
 
             <hr />
 

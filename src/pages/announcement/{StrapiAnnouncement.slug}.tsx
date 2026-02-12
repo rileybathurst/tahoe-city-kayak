@@ -54,8 +54,6 @@ type AnnouncementTypes = {
 
 const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
 
-  console.log(data);
-
   return (
     <>
       <Header />

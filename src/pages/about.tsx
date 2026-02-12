@@ -33,7 +33,7 @@ const AboutPage = () => {
           </div>
         </main>
 
-        {/* // TODO: this is starting to feel messy */}
+        {/* // TODO: this is starting to feel messy atleast give it a name or stay gold class to know its there for a reason */}
         <div>
           <div className="condor">
             <Composition />

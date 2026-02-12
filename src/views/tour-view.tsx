@@ -55,6 +55,14 @@ interface TourViewTypes {
         alternativeText: string;
       };
 
+      branch: {
+        name: string;
+        peek_tours: string;
+        season_start: string;
+        season_end: string;
+        phone: string;
+      };
+
       compositionImage: {
         localFile: {
           childImageSharp: {
@@ -91,7 +99,11 @@ interface TourViewTypes {
       nodes: PaddleTicketTypes[];
     };
 
-    allStrapiLocation: CardType[];
+    // ! this is a mess it shouldnt be a tour card its a location
+    // TODO: build these out with a storybook first
+    allStrapiLocation: {
+      nodes: CardType[];
+    };
 
     strapiBranch: {
       peek_tours: string;
@@ -225,6 +237,7 @@ const TourView = ({ data }: TourViewTypes) => {
                 rel="noopener noreferrer"
                 className="book-now"
               >
+                {/* // TODO: Paddle Book now */}
                 BOOK NOW
               </a>
             ) : (
@@ -269,7 +282,7 @@ const TourView = ({ data }: TourViewTypes) => {
             season_start={data.strapiTour.branch.season_start}
             season_end={data.strapiTour.branch.season_end}
             phone={data.strapiTour.branch.phone}
-            {...data.allStrapiLocation}
+            nodes={data.allStrapiLocation.nodes}
           />
 
           <h4>
@@ -281,7 +294,7 @@ const TourView = ({ data }: TourViewTypes) => {
 
         <Composition
           sport={data.strapiTour.sport}
-          image={data.strapiTour?.compositionImage}
+          image={data.strapiTour?.compositionImage?.localFile?.childImageSharp?.gatsbyImageData}
         />
       </main>
 
