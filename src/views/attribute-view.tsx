@@ -4,7 +4,7 @@ import Footer from "../components/footer"
 import FeatureList from "../components/feature-list";
 import Sport from "../components/sport";
 import ReactMarkdown from 'react-markdown';
-import type { RetailType } from "../types/retail";
+import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
 import Purchase from "../components/purchase";
 
 // * SEO isnt here its on the templates
@@ -12,7 +12,7 @@ interface AttributeViewTypes {
   allStrapiRetail: {
     title: string;
     description: string;
-    nodes: RetailType[];
+    nodes: PaddlePurchaseTypes[];
   };
   strapiAttribute: {
     name: string;

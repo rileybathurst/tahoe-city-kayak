@@ -3,7 +3,20 @@ import { graphql, useStaticQuery } from "gatsby"
 import { PaddlePurchase } from "@rileybathurst/paddle";
 import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
-const Purchase = ({ id, title, slug, excerpt, length, width, inflatable, capacity, demo, discount, cutout, sport, brand }: PaddlePurchaseTypes) => {
+const Purchase = ({ 
+  id,
+  title,
+  slug,
+  excerpt,
+  length,
+  width,
+  inflatable,
+  capacity,
+  demo,
+  discount,
+  cutout,
+  sport,
+  brand }: PaddlePurchaseTypes) => {
 
   const data = useStaticQuery(graphql`
     query {

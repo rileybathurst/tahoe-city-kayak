@@ -89,8 +89,6 @@ nav {
     clip-path: inset(0 -100vmax);
     /* border-block-end: 2px solid var(--industrial-revolution); this isnt full width */
 
-    /* ! dark */
-
     li a {
       padding-inline: calc(var(--elbrus) / 2);
       padding-block: calc(var(--elbrus) / 4);
@@ -98,8 +96,6 @@ nav {
     }
 
     li:first-child {
-      margin-block-start: 1.5rem;
-      margin-block-start: calc(var(--elbrus) / 2);
       margin-block-start: 0;
     }
 

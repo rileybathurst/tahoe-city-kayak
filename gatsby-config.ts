@@ -54,6 +54,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    // ! CSP errors on TCK
     {
       resolve: "gatsby-plugin-csp",
       options: {

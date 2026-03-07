@@ -6,14 +6,12 @@ export const query = graphql`
     title
     slug
     excerpt
-
     length
     width
     inflatable
     capacity
-
+    weight
     demo
-
 
     brand {
       slug

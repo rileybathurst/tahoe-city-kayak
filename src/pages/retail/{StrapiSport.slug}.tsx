@@ -17,7 +17,7 @@ import SVG from 'react-inlinesvg';
 import LocationDeck from "../../components/location-deck";
 import {
   PaddleBrandList,
-  type PaddleLocationCardTypes,
+  type PaddleLocationTypes,
   type PaddleBrandType,
 } from "@rileybathurst/paddle";
 
@@ -79,7 +79,7 @@ type retailSportTypes = {
       }
     };
     allStrapiLocation: {
-      nodes: PaddleLocationCardTypes[];
+      nodes: PaddleLocationTypes[];
     };
     allStrapiBrand: {
       nodes: PaddleBrandType[];

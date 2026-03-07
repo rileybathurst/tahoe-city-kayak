@@ -7,7 +7,7 @@ import {
   PaddleLocationDeck,
   PaddleTicket,
   type PaddleTicketTypes,
-  type PaddleLocationCardTypes,
+  type PaddleLocationTypes,
   type PaddlePurchaseTypes,
 } from "@rileybathurst/paddle";
 
@@ -24,6 +24,7 @@ import Shop from "../content/shop";
 
 import Experience from "../content/experience";
 import Purchase from "../components/purchase";
+import ReactMarkdown from "react-markdown";
 
 const IndexPage = () => {
 
@@ -44,11 +45,16 @@ const IndexPage = () => {
     phone: string;
     peek_base: string;
     peek_rentals: string;
+    lead: {
+      data: {
+        lead: string;
+      };
+    };
   }
 
   type indexTypes = {
     allStrapiLocation: {
-      nodes: PaddleLocationCardTypes[];
+      nodes: PaddleLocationTypes[];
     };
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
@@ -108,6 +114,11 @@ const IndexPage = () => {
         phone
         peek_base
         peek_rentals
+        lead {
+          data {
+            lead
+          }
+        }
       }
     }
   `);
@@ -202,7 +213,7 @@ const IndexPage = () => {
       <Header />
       <main className="home">
         <section>
-          <h2 className="page-title">
+          <h2>
             {/* // TODO: strapi this */}
             Tahoe's Premier Kayak and Paddleboard Provider, offering{" "}
             <Link to="/rentals">Rentals</Link>, <Link to="/retail">Sales</Link>,{" "}
@@ -216,6 +227,11 @@ const IndexPage = () => {
               South Lake Tahoe
             </a>
             .
+            {data.strapiBranch.lead ? (
+              <div className="react-markdown">
+                <ReactMarkdown>{data.strapiBranch.lead.data.lead}</ReactMarkdown>
+              </div>
+            ) : null}
           </h2>
 
           <div className="aconcagua-margin-block-end">
@@ -256,11 +272,14 @@ const IndexPage = () => {
 
           <hr />
 
-          <PricingChart book={true} />
+          <PricingChart />
         </div>
       </main>
 
-      <section id="tours-lessons" className="cloud aconcagua-padding-block-end">
+      <section
+        id="tours-lessons" 
+        className="cloud aconcagua-padding-block-end"
+      >
         <div className='condor aconcagua-padding-block-start aconcagua-padding-block-end'>
           {/* // TODO: only one h and then p */}
           <hgroup className="crest">
@@ -295,7 +314,7 @@ const IndexPage = () => {
                   key={tour.id}
                   {...tour}
                 /> */}
-                
+
 
               </section>
             ))}

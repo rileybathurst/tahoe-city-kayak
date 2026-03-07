@@ -6,6 +6,11 @@ export interface RetailType {
   brand: {
     name: string;
     slug: string;
+    svg: {
+      localFile: {
+        publicURL: string;
+      };
+    };
   };
   slug: string;
   price: number;

@@ -6,7 +6,11 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 
 // Paddle
-// import { PaddleLocationCard } from "@rileybathurst/paddle";
+import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
+
+type PaddlePurchaseTypesWithSeries = PaddlePurchaseTypes & {
+  series?: string | null;
+};
 
 import { SEO } from "../components/seo";
 import scrollTo from "gatsby-plugin-smoothscroll";
@@ -14,7 +18,6 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
-import type { RetailType } from "../types/retail";
 import SVG from 'react-inlinesvg';
 
 // TODO: get rid of props
@@ -54,7 +57,7 @@ type BrandsViewTypes = {
       };
     };
     allStrapiRetail: {
-      nodes: RetailType[];
+      nodes: PaddlePurchaseTypes[];
     };
     strapiLocation: {
       opening_time: string;
@@ -69,7 +72,7 @@ type BrandsViewTypes = {
 };
 const BrandsView = ({ data }: BrandsViewTypes) => {
   const seriesSet = new Set();
-  for (const retail of data.allStrapiRetail.nodes) {
+  for (const retail of data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[]) {
     retail.series ? seriesSet.add(retail.series) : null;
   }
   const seriesArray = Array.from(seriesSet);
@@ -92,6 +95,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           </div>
           <p>{data.brand.tagline}.</p>
           <hr />
+          
           {/* // TODO: needs slide that I have in other places */}
           {seriesArray.length > 0
             ? seriesArray.map((series) => (
@@ -152,8 +156,8 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
 
       <section className="bag">
         {data.allStrapiRetail.nodes
-          .filter((retail: RetailType) => retail.series === null)
-          .map((retail: RetailType) => (
+          .filter((retail: PaddlePurchaseTypes) => retail.series === null)
+          .map((retail: PaddlePurchaseTypes) => (
             <Purchase key={retail.id} {...retail} />
           ))}
       </section>

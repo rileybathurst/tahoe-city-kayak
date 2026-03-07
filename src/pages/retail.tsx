@@ -9,12 +9,13 @@ import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";
 import Composition from "../components/composition";
 import Shop from "../content/shop";
-import type { CardType } from "../types/card";
 
 import Purchase from "../components/purchase";
 import LocationDeck from "../components/location-deck";
 
 import Markdown from "react-markdown";
+
+import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -87,7 +88,7 @@ const RetailPage = () => {
       </main>
 
       <section className="bag">
-        {query.kayak.nodes.map((kayak: CardType) => (
+        {query.kayak.nodes.map((kayak: PaddlePurchaseTypes) => (
           <Purchase
             key={kayak.id}
             {...kayak}
@@ -118,7 +119,7 @@ const RetailPage = () => {
       </article>
 
       <section className="bag">
-        {query.paddleBoard.nodes.map((sup: CardType) => (
+        {query.paddleBoard.nodes.map((sup: PaddlePurchaseTypes) => (
           <Purchase key={sup.id} {...sup} />
         ))}
       </section>

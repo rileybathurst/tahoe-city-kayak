@@ -12,7 +12,12 @@ import Phone from "../components/phone";
 import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
-import { type GatsbyImageType, PaddleSpecs, PaddleTextureBackgrounds } from "@rileybathurst/paddle";
+import { 
+  PaddleSpecs,
+  PaddleTextureBackgrounds,
+  type PaddleGatsbyImageType,
+  type PaddlePurchaseTypes
+} from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
 
 const Series = ({ series }: { series: string }) => {
@@ -33,14 +38,14 @@ type RetailTypeViewProps = {
   data: {
     strapiRetail: RetailType;
     allStrapiRetail: {
-      nodes: RetailType[];
+      nodes: PaddlePurchaseTypes[];
     };
-    baseOne: GatsbyImageType;
-    baseTwo: GatsbyImageType;
-    baseThree: GatsbyImageType;
-    topOne: GatsbyImageType;
-    topTwo: GatsbyImageType;
-    topThree: GatsbyImageType;
+    baseOne: PaddleGatsbyImageType;
+    baseTwo: PaddleGatsbyImageType;
+    baseThree: PaddleGatsbyImageType;
+    topOne: PaddleGatsbyImageType;
+    topTwo: PaddleGatsbyImageType;
+    topThree: PaddleGatsbyImageType;
   };
 };
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
@@ -169,7 +174,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             </h2>
           </section>
           <section className="bag">
-            {data.allStrapiRetail.nodes.map((retail: RetailType) => (
+            {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
               <Purchase key={retail.id} {...retail} />
             ))}
           </section>

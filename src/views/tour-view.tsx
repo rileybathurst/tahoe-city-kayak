@@ -7,7 +7,9 @@ import {
   PaddleSunsetTourTimes,
   PaddleSpecs,
   PaddleLocationDeck,
-  PaddleMoonlightDatesTimes
+  PaddleMoonlightDatesTimes,
+  type PaddleGatsbyImageType,
+  type PaddleLocationTypes
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -15,10 +17,8 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-
 import Composition from "../components/composition";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
-import type { CardType } from "../types/card";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 
@@ -46,14 +46,7 @@ interface TourViewTypes {
       excerpt: string;
       price: number;
       slug: string;
-      ogImage: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      ogImage: PaddleGatsbyImageType;
 
       branch: {
         name: string;
@@ -99,10 +92,8 @@ interface TourViewTypes {
       nodes: PaddleTicketTypes[];
     };
 
-    // ! this is a mess it shouldnt be a tour card its a location
-    // TODO: build these out with a storybook first
     allStrapiLocation: {
-      nodes: CardType[];
+      nodes: PaddleLocationTypes[];
     };
 
     strapiBranch: {
@@ -232,14 +223,10 @@ const TourView = ({ data }: TourViewTypes) => {
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
             {data.strapiTour.peek ? (
-              <a
-                href={data.strapiTour.peek}
-                rel="noopener noreferrer"
-                className="book-now"
-              >
-                {/* // TODO: Paddle Book now */}
-                BOOK NOW
-              </a>
+              <BookNow
+                specificLink={data.strapiTour.peek}
+                specificName={data.strapiTour.name}
+              />
             ) : (
               <BookNow />
             )}
