@@ -1,8 +1,9 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { PaddleBookNow, type PaddleBookNowTypes } from "@rileybathurst/paddle"
+import { PaddleBookNow } from "@rileybathurst/paddle"
+import type { BookNowTypes } from "../types/book-now-types"
 
-const BookNow = ({specificLink, specificName}: PaddleBookNowTypes) => {
+const BookNow = ({specificLink, specificName}: BookNowTypes) => {
 
   const { strapiBranch } = useStaticQuery(graphql`
     query BookNowQuery {

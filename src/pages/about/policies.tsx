@@ -77,8 +77,8 @@ export const Head = () => {
       title='About Us'
       description="Transportation, Tour Booking Procedure and Cancellation Policy."
       breadcrumbs={[
-        { name: "About", path: "about" },
-        { name: "Policies", path: "policies" }
+        { name: "About", item: "about" },
+        { name: "Policies", item: "policies" }
       ]}
     />
   )

@@ -1,11 +1,13 @@
-// TODO: I think this can be removed its all on about now
+// TODO: This is interesting but unfinished
 
 import * as React from "react";
 
-const MapSVG = (props) => {
+const MapSVG = () => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-			viewBox="0 0 3032.1 3067.3" className="map-svg" >
+			viewBox="0 0 3032.1 3067.3" className="map-svg"
+			>
+				<title>Map of Tahoe City</title>
 
 			{/*         <style type="text/css">
           .st0{fill:#0071BA;}

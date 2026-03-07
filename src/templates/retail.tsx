@@ -34,11 +34,30 @@ const Series = ({ series }: { series: string }) => {
   return null;
 }
 
+type ExtentdedPurchaseTypes = PaddlePurchaseTypes & {
+  series: string;
+  crew: number;
+  hullweight: number;
+  riggedweight: number;
+  thickness: number;
+  price: number;
+  description: {
+    data: {
+      description: string;
+    };
+  };
+  features: {
+    data: {
+      features: string;
+    };
+  };
+};
+
 type RetailTypeViewProps = {
   data: {
     strapiRetail: RetailType;
     allStrapiRetail: {
-      nodes: PaddlePurchaseTypes[];
+      nodes: ExtentdedPurchaseTypes[];
     };
     baseOne: PaddleGatsbyImageType;
     baseTwo: PaddleGatsbyImageType;
@@ -61,7 +80,10 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
             className="link__subtle-svg"
           >
-            <SVG src={data.strapiRetail.brand.svg} />
+            <SVG
+            // src={data.strapiRetail.brand.svg}
+            src={data.strapiRetail.brand.svg.localFile.publicURL}
+            />
           </Link>
           <hgroup className="hgroup__retail">
             {/* // TODO: only one h and then p */}
@@ -88,15 +110,15 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             length={data.strapiRetail.length}
             width={data.strapiRetail.width}
             weight={{
-              hullweight: data.strapiRetail.hullweight,
-              riggedweight: data.strapiRetail.riggedweight,
+              hullweight: [data.strapiRetail.hullweight],
+              riggedweight: [data.strapiRetail.riggedweight],
             }}
             thickness={data.strapiRetail.thickness}
             // volume={data.strapiRetail.volume}
-            inflatable={data.strapiRetail.inflatable}
-            demo={data.strapiRetail.demo}
+            inflatable={data.strapiRetail.inflatable ? "Yes" : "No"}
+            demo={data.strapiRetail.demo ? "Yes" : "No"}
             cost={{
-              price: data.strapiRetail.price,
+              price: [data.strapiRetail.price],
               // discount: data.strapiRetail.discount
             }}
           />
@@ -201,7 +223,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
       )}
 
-      {/* // TODO: I think we have a better version of this */}
+      {/* // ! I think we have a better version of this */}
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/retail/">Retail</Link>
@@ -286,38 +308,38 @@ export const Head = ({ data }: RetailTypeViewHeadProps) => {
 };
 
 export const query = graphql`
-      query (
-      $slug: String!,
-      $brand: String!
-      ) {
-        strapiRetail(slug: {eq: $slug}) {
-        id
-        title
-        excerpt
-        series
-        crew
-        capacity
-        length
-        hullweight
-        riggedweight
-        width
-        thickness
-        inflatable
-        demo
-        price
+  query (
+  $slug: String!,
+  $brand: String!
+  ) {
+    strapiRetail(slug: {eq: $slug}) {
+      id
+      title
+      excerpt
+      series
+      crew
+      capacity
+      length
+      hullweight
+      riggedweight
+      width
+      thickness
+      inflatable
+      demo
+      price
 
-        sport {
-          slug
-        }
+      sport {
+        slug
+      }
 
-        brand {
-          name
-          slug
-          svg
-        }
+      brand {
+        name
+        slug
+        svg
+      }
 
-        description {
-          data {
+      description {
+        data {
           description
         }
       }
@@ -338,14 +360,14 @@ export const query = graphql`
       }
     }
 
-      allStrapiRetail(filter:
-        {
-          slug: {ne: $slug},
-          brand: {slug: {eq: $brand}}
-        }
-        limit: 2,
-        sort: {featured: DESC}
-      ) {
+    allStrapiRetail(filter:
+      {
+        slug: {ne: $slug},
+        brand: {slug: {eq: $brand}}
+      }
+      limit: 2,
+      sort: {featured: DESC}
+    ) {
         nodes {
         ...purchaseFragment
       }

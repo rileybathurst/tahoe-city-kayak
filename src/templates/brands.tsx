@@ -71,11 +71,11 @@ type BrandsViewTypes = {
   };
 };
 const BrandsView = ({ data }: BrandsViewTypes) => {
-  const seriesSet = new Set();
+  const seriesSet = new Set<string>();
   for (const retail of data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[]) {
     retail.series ? seriesSet.add(retail.series) : null;
   }
-  const seriesArray = Array.from(seriesSet);
+  const seriesArray: string[] = Array.from(seriesSet);
   // console.log(seriesArray);
 
   return (
@@ -142,7 +142,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
             </section>
 
             <div className="bag" key={series}>
-              {data.allStrapiRetail.nodes
+              {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
                 .filter((retail) => retail.series === series)
                 .map((retail) => (
                   <Purchase key={retail.id} {...retail} />
@@ -155,9 +155,9 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
       <hr className="pelican" />
 
       <section className="bag">
-        {data.allStrapiRetail.nodes
-          .filter((retail: PaddlePurchaseTypes) => retail.series === null)
-          .map((retail: PaddlePurchaseTypes) => (
+        {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
+          .filter((retail) => retail.series === null)
+          .map((retail) => (
             <Purchase key={retail.id} {...retail} />
           ))}
       </section>

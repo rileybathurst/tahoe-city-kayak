@@ -1,7 +1,6 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby"
-import { PaddlePurchase } from "@rileybathurst/paddle";
-import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import { PaddlePurchase, type PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
 const Purchase = ({ 
   id,

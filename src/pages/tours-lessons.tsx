@@ -77,10 +77,7 @@ const ToursLessonsPage = () => {
 
   const sports = [query.kayak, query.paddleBoard];
 
-  // console.log(`check its here ${query.allStrapiSunsetTourTime}`)
-  // console.log(query.allStrapiSunsetTourTime)
-
-  // console.log(sports);
+  type PaddleTicketTypesWithSort = PaddleTicketTypes & { featured: boolean };
 
   return (
     <>
@@ -117,8 +114,8 @@ const ToursLessonsPage = () => {
 
           <div className="flight">
             {sport.nodes
-              .sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
-              .map((tour: PaddleTicketTypes) => (
+              .sort((a: PaddleTicketTypesWithSort, b: PaddleTicketTypesWithSort) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
+              .map((tour: PaddleTicketTypesWithSort) => (
                 <PaddleTicket
                   key={tour.id}
                   {...tour}

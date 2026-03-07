@@ -6,12 +6,12 @@ import ReactMarkdown from "react-markdown";
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
-export const { strapiTeam } = graphql`
+export const data = graphql`
   query TeamViewQuery($slug: String!) {
     strapiTeam(
       slug: { eq: $slug },
       local: {elemMatch: {slug: {eq: "tahoe-city"}}}
-      ) {
+    ) {
       id
       name
       bio {

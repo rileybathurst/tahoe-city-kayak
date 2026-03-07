@@ -2,8 +2,7 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";
 
-// Paddle
-import { PaddlePricingChart } from "@rileybathurst/paddle";
+import { PaddlePricingChart, type PaddleLocationTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -26,15 +25,7 @@ type RentalsPageTypes = {
       }[];
     };
     allStrapiLocation: {
-      nodes: {
-        id: string;
-        name: string;
-        excerpt: string;
-        slug: string;
-        parking: {
-          name: string;
-        }[] | null;
-      }[];
+      nodes: PaddleLocationTypes[];
     };
 
     strapiBranch: {
@@ -89,6 +80,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
             <h3>{data.strapiMembership.title}</h3>
             <p>{data.strapiMembership.excerpt}</p>
 
+            {/* TODO: <BookNow */}
             <a href={data.strapiBranch.peek_membership}
               target="_blank"
               rel="noreferrer"

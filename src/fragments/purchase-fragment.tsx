@@ -12,12 +12,17 @@ export const query = graphql`
     capacity
     weight
     demo
+    discount
 
     brand {
+      id
+      name
       slug
     }
 
     sport {
+      id
+      title
       slug
     }
 

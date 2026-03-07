@@ -4,25 +4,9 @@ import Footer from "../components/footer"
 import FeatureList from "../components/feature-list";
 import Sport from "../components/sport";
 import ReactMarkdown from 'react-markdown';
-import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import type { AttributeViewTypes } from "../types/attribute-view-types";
 import Purchase from "../components/purchase";
 
-// * SEO isnt here its on the templates
-interface AttributeViewTypes {
-  allStrapiRetail: {
-    title: string;
-    description: string;
-    nodes: PaddlePurchaseTypes[];
-  };
-  strapiAttribute: {
-    name: string;
-    description: {
-      data: {
-        description: string;
-      };
-    };
-  };
-}
 const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes) => {
   return (
     allStrapiRetail.nodes.length > 0 ?

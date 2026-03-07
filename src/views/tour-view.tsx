@@ -22,6 +22,7 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 
+// TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
   data: {
     allStrapiMoonlightTourDateTime: {
@@ -56,14 +57,7 @@ interface TourViewTypes {
         phone: string;
       };
 
-      compositionImage: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      compositionImage: PaddleGatsbyImageType;
 
       local: {
         name: string;

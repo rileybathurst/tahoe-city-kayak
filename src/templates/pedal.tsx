@@ -2,8 +2,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import AttributeView from '../views/attribute-view';
 import { SEO } from '../components/seo';
+import type { AttributeViewTypes } from '../types/attribute-view-types';
 
-const PedalTemplate = ({ data }) => {
+const PedalTemplate = ({ data }: { data: AttributeViewTypes }) => {
   return (
     <AttributeView
       {...data}
@@ -13,7 +14,7 @@ const PedalTemplate = ({ data }) => {
 
 export default PedalTemplate;
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: { data: AttributeViewTypes }) => {
   return (
     <SEO
       title={`${data.strapiAttribute.name} ${data.strapiAttribute.type}s`}

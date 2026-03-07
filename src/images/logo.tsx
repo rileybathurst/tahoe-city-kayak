@@ -21,7 +21,7 @@ function LogoDark() {
 }
 
 // light to dark switch
-export function useMediaQuery(query) {
+export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export function useMediaQuery(query) {
 }
 
 function Logo() {
-  let isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
+  var isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
     <>

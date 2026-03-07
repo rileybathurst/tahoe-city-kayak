@@ -19,51 +19,55 @@ import {
   PaddleBrandList,
   type PaddleLocationTypes,
   type PaddleBrandType,
+  type PaddlePurchaseTypes,
 } from "@rileybathurst/paddle";
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
-  strapiSport(slug: { eq: $slug }) {
-    title
-    slug
-  }
-
-  strapiShop {
-    text {
-      data {
-        text
-      }
-    }
-  }
-
-  allStrapiLocation(
-    filter: {
-      local: {slug: {eq: "tahoe-city"}},
-      name: {eq: "Retail Location"}
-      }
-  ) {
-    nodes {
-      ...locationCardFragment
-    }
-  }
-
-  allStrapiBrand {
-    nodes {
-      id
-      name
+    strapiSport(slug: { eq: $slug }) {
+      title
       slug
-      tagline
-      svg
-      retail {
-        ...purchaseFragment
-        sport {
-          slug
+    }
+
+    strapiShop {
+      text {
+        data {
+          text
+        }
+      }
+    }
+
+    allStrapiLocation(
+      filter: {
+        local: {slug: {eq: "tahoe-city"}},
+        name: {eq: "Retail Location"}
+        }
+    ) {
+      nodes {
+        ...locationCardFragment
+      }
+    }
+
+    allStrapiBrand {
+      nodes {
+        id
+        name
+        slug
+        tagline
+        svg
+        retail {
+          ...purchaseFragment
         }
       }
     }
   }
-}
 `
+
+// ? I dont understand omit
+type PaddleBrandTypesWithTagline = Omit<PaddleBrandType, "retail"> & {
+  tagline: string;
+  retail: PaddlePurchaseTypes[];
+};
 
 type retailSportTypes = {
   data: {
@@ -82,7 +86,7 @@ type retailSportTypes = {
       nodes: PaddleLocationTypes[];
     };
     allStrapiBrand: {
-      nodes: PaddleBrandType[];
+      nodes: PaddleBrandTypesWithTagline[];
     };
   }
 }
@@ -128,7 +132,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
       {brandArray.map((brandSlug) => (
         data.allStrapiBrand.nodes
           .filter((brand) => brand.slug === brandSlug)
-          .map((brand) => (
+          .map((brand: PaddleBrandTypesWithTagline) => (
             <>
               <section
                 key={brand.id}
