@@ -1,5 +1,3 @@
-// ! import and not repeat
-
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
@@ -17,6 +15,7 @@ import { PaddlePricingChart, type PaddlePurchaseTypes } from "@rileybathurst/pad
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
 // * Sets dont think array or objects are unique so we go with the old method
+// TODO: use a set I understand those better
 function getUniqueListBy<T extends Record<string, unknown>>({ arr, key }: { arr: T[], key: keyof T }) {
   return [...new Map(arr.map((item) => [item[key], item])).values()];
 }
@@ -107,6 +106,11 @@ const DemosPage = () => {
     }
   `);
 
+  const sports = [
+    { sport: "kayak", nodes: query.kayak.nodes, title: "Kayaks" },
+    { sport: "sup", nodes: query.paddleboards.nodes, title: "Paddleboards" }
+  ].filter(({ nodes }) => nodes.length > 0);
+
   return (
     <>
       <Header />
@@ -126,65 +130,39 @@ const DemosPage = () => {
         
       </div>
 
-      {query.kayak.nodes.length > 0 && (
-        <section>
+      {sports.map(({ sport, nodes, title }) => (
+        <section key={sport}>
           <div className="albatross wrap">
             <div>
-              <h3>Demos</h3>
-              <hr />
-              <h4>Kayaks from these brands</h4>
+              {sport === "kayak" && (
+                <>
+                  <h3>Demos</h3>
+                  <hr />
+                </>
+              )}
+              <h4>{title} from these brands</h4>
               <ul>
                 <Dedupedbrands
-                  brand={query.kayak.nodes.map((brand: { brand: BrandType }) => brand.brand)}
-                  sport="kayak"
+                  brand={nodes.map((brand: { brand: BrandType }) => brand.brand)}
+                  sport={sport}
                 />
               </ul>
             </div>
 
-            <Composition sport="kayak" />
+            <Composition sport={sport} />
           </div>
 
           <section className="bag">
-            {query.kayak.nodes.map(
-              (kayak: PaddlePurchaseTypes) => (
-                <Purchase
-                  key={kayak.id}
-                  {...kayak}
-                />
-              ),
-            )}
+            {nodes.map((item: PaddlePurchaseTypes) => (
+              <Purchase
+                key={item.id}
+                {...item}
+              />
+            ))}
           </section>
         </section>
-      )}
+      ))}
 
-      {query.paddleboards.nodes.length > 0 && (
-        <section>
-          <article className="albatross wrap">
-            <div>
-              <h4>Paddleboards from these brands</h4>
-
-              <ul>
-                <Dedupedbrands
-                  brand={query.paddleboards.nodes.map((brand: { brand: BrandType }) => brand.brand)}
-                  sport="sup"
-                />
-              </ul>
-            </div>
-
-            <Composition sport="sup" />
-          </article>
-
-          <section className="bag">
-            {query.paddleboards.nodes.map(
-              (sup: PaddlePurchaseTypes) => (
-                <Purchase key={sup.id}
-                  {...sup}
-                />
-              ),
-            )}
-          </section>
-        </section>
-      )}
 
       <div className="albatross aurora">
         <PaddlePricingChart

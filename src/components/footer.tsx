@@ -139,10 +139,9 @@ const Footer = () => {
         <PricingChart />
         <hr />
 
-        {/* // ! testing off
         <LocationDeck
           allStrapiLocation={data.allStrapiLocation}
-        /> */}
+        />
 
       </div>
 

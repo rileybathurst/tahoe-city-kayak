@@ -15,20 +15,20 @@ import LocationDeck from "../components/location-deck";
 
 import Markdown from "react-markdown";
 
-import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import  { PaddleBrandList, type PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
       kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
         nodes {
-          ...purchaseFragment
+          ...brandedFragment
         }
       }
 
     paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
-        ...purchaseFragment
+        ...brandedFragment
       }
     }
 
@@ -64,7 +64,7 @@ const RetailPage = () => {
           <Shop />
 
           <LocationDeck
-            allStrapiLocation={{...query.allStrapiLocation}}
+            allStrapiLocation={{ ...query.allStrapiLocation }}
           />
 
           <article className="pelican wrap">
@@ -76,10 +76,19 @@ const RetailPage = () => {
               <FeatureList sport="kayak" />
             </section>
           </article >
-          {/* // ! <section className="albatross">
+
+          <section className="albatross">
             <h3>Browse By Brand</h3>
-            <PaddleBrandList sport="kayak" />
-          </section> */}
+            <PaddleBrandList
+              nodes={Array.from(
+                new Map(query.kayak.nodes
+                  .filter((retail) => retail.sport.slug === "kayak")
+                  .map((retail) => [retail.brand.id, retail.brand]))
+                  .values()
+              )}
+              sport="kayak"
+            />
+          </section>
         </div>
 
         <Composition
@@ -109,11 +118,16 @@ const RetailPage = () => {
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />
-          {/* // ! <section className="albatross">
             <h3>Browse By Brand</h3>
-            <PaddleBrandList sport="paddleboard" />
-          </section>
-           */}
+            <PaddleBrandList
+              nodes={Array.from(
+                new Map(query.paddleBoard.nodes
+                  .filter((retail) => retail.sport.slug === "paddleboard")
+                  .map((retail) => [retail.brand.id, retail.brand]))
+                  .values()
+              )}
+              sport="paddleboard"
+            />
         </section>
 
       </article>

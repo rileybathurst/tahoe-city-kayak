@@ -1,6 +1,3 @@
-// TODO: rename this with a redirect to paddleboard
-// ! Warning: Encountered two children with the same key
-
 import * as React from "react"
 import { graphql, Link } from 'gatsby';
 import Markdown from "react-markdown";
@@ -60,6 +57,12 @@ export const strapiSport = graphql`
         }
       }
     }
+
+    allStrapiRetail(sort: {featured: ASC}) {
+      nodes {
+        ...brandedFragment
+      }
+    }
   }
 `
 
@@ -87,6 +90,9 @@ type retailSportTypes = {
     };
     allStrapiBrand: {
       nodes: PaddleBrandTypesWithTagline[];
+    };
+    allStrapiRetail: {
+      nodes: PaddleBrandedTypes[];
     };
   }
 }
@@ -123,8 +129,13 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
       <div className="albatross">
 
         <PaddleBrandList
+          nodes={Array.from(
+            new Map(data.allStrapiRetail.nodes
+              .filter((retail) => retail.sport.slug === data.strapiSport.slug)
+              .map((retail) => [retail.brand.id, retail.brand]))
+              .values()
+          )}
           sport={data.strapiSport.slug}
-          {...data.allStrapiBrand}
         />
 
       </div>
@@ -133,9 +144,8 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         data.allStrapiBrand.nodes
           .filter((brand) => brand.slug === brandSlug)
           .map((brand: PaddleBrandTypesWithTagline) => (
-            <>
+            <React.Fragment key={brand.id}>
               <section
-                key={brand.id}
                 className="condor"
               >
                 {brand.svg ?
@@ -149,7 +159,6 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
 
               <div
                 className='bag'
-                key={brand.id}
               >
                 {brand.retail
                   .filter((retail) => retail.sport.slug === data.strapiSport.slug)
@@ -165,7 +174,6 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
 
               {brand.retail.length > 4 ?
                 <section
-                  key={brand.id}
                   className="condor"
                 >
                   <h3 className='capitalize'>
@@ -176,7 +184,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                   <hr />
                 </section>
                 : null}
-            </>
+            </React.Fragment>
           ))
       ))}
 

@@ -28,7 +28,6 @@ export const Head = ({ data }: { data: AttributeViewTypes }) => {
   );
 }
 
-// ! slug has to be wrong?
 export const query = graphql`
   query(
     $name: String!,

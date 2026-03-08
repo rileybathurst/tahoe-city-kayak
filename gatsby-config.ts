@@ -54,7 +54,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-    // ! CSP errors on TCK
+    // TODO: keep a lookout
     {
       resolve: "gatsby-plugin-csp",
       options: {
@@ -63,12 +63,12 @@ module.exports = {
         mergeStyleHashes: false,
         directives: {
           "script-src":
-            "'self' 'unsafe-inline' www.google-analytics.com googletagmanager.com book.peek.com book12.freetls.fastly.net use.typekit.net",
+            "'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com googletagmanager.com book.peek.com book12.freetls.fastly.net use.typekit.net",
           "frame-src": "'self' book.peek.com",
           "style-src":
             "'self' 'unsafe-inline' book12.freetls.fastly.net localhost:8000",
           "font-src": "'self' data: 'unsafe-inline' use.typekit.net",
-          "img-src": "'self' google-analytics.com data: about:", // ? I think  is a tracking pixel
+          "img-src": "'self' google-analytics.com p.typekit.net data: about:", // ? I think  is a tracking pixel
           "connect-src": "'self' data: google-analytics.com sentry.io",
           "media-src": "'self' data:",
         },

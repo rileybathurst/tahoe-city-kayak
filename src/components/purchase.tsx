@@ -79,11 +79,6 @@ const Purchase = ({
     }
   `)
 
-  console.log('sport')
-  console.log(sport)
-  console.log('brand')
-  console.log(brand)
-
   return (
     <PaddlePurchase
       id={id}

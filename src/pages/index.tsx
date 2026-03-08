@@ -5,9 +5,11 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import {
   PaddleBookNow,
   PaddleTicket,
+  PaddleBrandList,
   type PaddleTicketTypes,
   type PaddleLocationTypes,
   type PaddlePurchaseTypes,
+  type PaddleBrandedTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -63,7 +65,7 @@ const IndexPage = () => {
       nodes: SunsetTourTime[];
     };
     allStrapiRetail: {
-      nodes: PaddlePurchaseTypes[];
+      nodes: PaddleBrandedTypes[];
     };
     strapiBranch: Branch;
   }
@@ -102,7 +104,7 @@ const IndexPage = () => {
 
       allStrapiRetail(sort: {featured: ASC}) {
         nodes {
-          ...purchaseFragment
+          ...brandedFragment
         }
       }
 
@@ -123,8 +125,6 @@ const IndexPage = () => {
     }
   `);
 
-  console.log(data.allStrapiTour.nodes);
-
   const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
   allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
   // Sort so that featured: true first, then featured: null, then featured: false
@@ -137,13 +137,10 @@ const IndexPage = () => {
     return 0;
   });
 
-  console.log("AFTER SORT");
-  console.log(allTours);
-
   // State for the list
   const [sortedList, setList] = useState([...allTours.slice(0, 4)]);
 
-  // State to trigger oad more
+  // State to trigger load more
   const [loadMore, setLoadMore] = useState(false);
 
   // State of whether there is more to load
@@ -173,7 +170,7 @@ const IndexPage = () => {
     setHasMore(isMore);
   }, [sortedList, allTours.length]);
 
-  // Retail
+  // * Retail
   const allRetail = data.allStrapiRetail.nodes;
   const [inventory, setInventory] = useState([...allRetail.slice(0, 2)]);
   const [loadExtra, setLoadExtra] = useState(false);
@@ -181,6 +178,9 @@ const IndexPage = () => {
   const handleLoadExtra = () => {
     setLoadExtra(true);
   };
+
+  // const brands = Array.from(new Set(allRetail.map((item) => item.brand.slug)));
+  // console.log("Unique brands in retail:", brands);
 
   useEffect(() => {
     if (loadExtra && hasExtra) {
@@ -321,8 +321,17 @@ const IndexPage = () => {
             </h4>
             <h5>Shop By Feature</h5>
             <FeatureList sport="kayak" />
-            {/* <h5>Shop By Brand</h5> */}
-            {/* // ! <PaddleBr`andList sport="kayak" /> */}
+            <h5>Shop By Brand</h5>
+
+            <PaddleBrandList
+              nodes={Array.from(
+                new Map(data.allStrapiRetail.nodes
+                  .filter((retail) => retail.sport.slug === "kayak")
+                  .map((retail) => [retail.brand.id, retail.brand]))
+                  .values()
+              )}
+              sport="kayak"
+            />
 
             <hr />
 
@@ -331,8 +340,16 @@ const IndexPage = () => {
             </h4>
             <h5>Shop By Feature</h5>
             <FeatureList sport="paddleboard" />
-            {/* <h5>Shop By Brand</h5> */}
-            {/* // ! <PaddleBrandList sport="paddleboard" /> */}
+            <h5>Shop By Brand</h5>
+            <PaddleBrandList
+              nodes={Array.from(
+                new Map(data.allStrapiRetail.nodes
+                  .filter((retail) => retail.sport.slug === "paddleboard")
+                  .map((retail) => [retail.brand.id, retail.brand]))
+                  .values()
+              )}
+              sport="paddleboard"
+            />
           </div>
         </div>
 

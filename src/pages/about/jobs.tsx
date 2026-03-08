@@ -1,22 +1,33 @@
 // TODO: some of the typographic sizing is really out
-// ! I already have this in strapi
 
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import ReactMarkdown from "react-markdown";
 
-const JobsPage = () => {
-
-  const { strapiBranch } = useStaticQuery(graphql`
-    query jobsQuery {
-      strapiBranch(slug: {eq: "tahoe-city"}) {
-        job_email
-      }
+type JobsPageType = {
+  data: {
+    strapiBranch: {
+      job_email: string
+    },
+    allStrapiJob: {
+      nodes: {
+        id: string,
+        title: string,
+        description: {
+          data: {
+            description: string
+          }
+        }
+      }[]
     }
-  `)
+  }
+}
+
+const JobsPage = ({ data }: JobsPageType) => {
 
   return (
     <>
@@ -27,7 +38,6 @@ const JobsPage = () => {
         <section>
           <hgroup className="crest">
             {/* // TODO: only one h and then p */}
-
             <h1 className="brow">Jobs</h1>
             <h2 className="supra">Help Wanted</h2>
           </hgroup>
@@ -44,25 +54,23 @@ const JobsPage = () => {
           <p>
             please send a resume with references to
           </p>
-          <a href={`mailto:${strapiBranch.jobEmail}`} className="button">{strapiBranch.jobEmail}</a>
+          <a href={`mailto:${data.strapiBranch.job_email}`} className="button">{data.strapiBranch.job_email}</a>
         </section>
 
         <section>
-          <h3>Kayak/Paddleboard Guide</h3>
-          <p>take people on guided paddling tours and entertain them with fun facts, dad jokes, etc. Full or part time. Training provided.</p>
-          <hr />
-          <h3>Operations Manager</h3>
-          <p>Work in our retail kayak shop while managing incoming reservations and assigning guides to kayak tours.</p>
-          <hr />
-          <h3>Sales Manager</h3>
-          <p>Manage our retail store, sell kayaks, order inventory, etc.</p>
-          <hr />
-          <h3>Beach Rental Tech</h3>
-          <p>Work on the local beach renting kayaks</p>
-          <hr />
-          <h3>Shuttle Van Driver</h3>
-          <p>Must have a clean driving record and the ability to pass a drug test and physical <strong>state requirements</strong>.</p>
+          {data.allStrapiJob.nodes.map((job) => (
+            <div key={job.id}>
+              <hr />
+              <h3>{job.title}</h3>
+              <div className="react-markdown">
+                <ReactMarkdown>{job.description.data.description}</ReactMarkdown>
+              </div>
+            </div>
+          ))}
+
         </section>
+
+
       </main >
 
       <Breadcrumbs>
@@ -91,6 +99,28 @@ export const Head = () => {
           item: "about/jobs"
         }
       ]}
+
+      // TODO: jobs
     />
   )
 }
+
+export const query = graphql`
+  query jobsQuery {
+    strapiBranch(slug: {eq: "tahoe-city"}) {
+      job_email
+    }
+
+    allStrapiJob(filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}}) {
+      nodes {
+        id
+        title
+        description {
+          data {
+            description
+          }
+        }
+      }
+    }
+  }
+`;

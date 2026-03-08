@@ -1,5 +1,5 @@
-// ! leaflet isnt working with react 18
-// less of a problem as we are holding back this page for now anyway
+// TODO: leaflet isnt working with react 18
+// the map is removed currently
 
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby";
@@ -12,6 +12,7 @@ import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 // import Composition from "../../components/composition";
 
 /* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
@@ -118,9 +119,70 @@ const zoom = 14 */
 } */
 
 
-const TruckeeRiverPage = () => {
+type RiverTypes = {
+  strapiRiver: {
+    title: string;
+    description: {
+      data: {
+        description: string;
+      }
+    };
+    equipment: PaddleGatsbyImageType[];
+  };
+};
+const TruckeeRiverPage = (data: RiverTypes) => {
 
-  const { strapiRiver } = useStaticQuery(graphql`
+
+  return (
+    <>
+      <Header />
+
+      <main className="albatross wrap">
+        <div>
+          <section className="condor">
+            <h1>{data.strapiRiver.title}</h1>
+            <ReactMarkdown>
+              {data.strapiRiver.description.data.description}
+            </ReactMarkdown>
+          </section>
+        </div>
+
+        <div className="equipment">
+          {data.strapiRiver.equipment.map((image) => (
+            <GatsbyImage
+              key={image.alternativeText}
+              image={image.localFile.childImageSharp.gatsbyImageData}
+              alt={image.alternativeText}
+              className="equipment-images"
+            />
+          ))}
+        </div>
+
+      </main>
+
+      <Footer />
+    </>
+  )
+}
+
+export default TruckeeRiverPage
+
+type TruckeeRiverHeadTypes = {
+  strapiRiver: {
+    title: string;
+    excerpt: string;
+  };
+};
+export const Head = (data: TruckeeRiverHeadTypes) => {
+  return (
+    <SEO
+      title={data.strapiRiver.title}
+      description={data.strapiRiver.excerpt}
+    />
+  )
+}
+
+export const data = graphql`
     query TruckeeRiverQuery {
       strapiRiver {
         title
@@ -141,62 +203,7 @@ const TruckeeRiverPage = () => {
       }
     }
     }
-  `);
-
-
-  type RiverTypes = {
-    id: React.Key;
-    alternativeText: string;
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-  };
-
-  return (
-    <>
-      <Header />
-
-      <main className="albatross wrap">
-        <div>
-          <section className="condor">
-            <h1>{strapiRiver.title}</h1>
-            <ReactMarkdown>
-              {strapiRiver.description.data.description}
-            </ReactMarkdown>
-          </section>
-        </div>
-
-        <div className="equipment">
-          {strapiRiver.equipment.map((image: RiverTypes) => (
-            <GatsbyImage
-              key={image.id}
-              image={image.localFile.childImageSharp.gatsbyImageData}
-              alt={image.alternativeText}
-              className="equipment-images"
-            />
-          ))}
-        </div>
-
-      </main>
-
-      <Footer />
-    </>
-  )
-}
-
-export default TruckeeRiverPage
-
-// ! Query this info it keeps changing and this is messy
-export const Head = () => {
-  return (
-    <SEO
-      title='How to Float the Truckee River'
-      description="We offer high end inflatables as well as inexpensive tubes and rafts for purchase for the Truckee River."
-    />
-  )
-}
+  `;
 
 /* <section className="map">
   <h3>Map</h3>

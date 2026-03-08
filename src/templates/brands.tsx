@@ -5,8 +5,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-// Paddle
-import type { PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import type {  PaddlePurchaseTypes, PaddleLocationTypes } from "@rileybathurst/paddle";
 
 type PaddlePurchaseTypesWithSeries = PaddlePurchaseTypes & {
   series?: string | null;
@@ -19,6 +18,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
 import SVG from 'react-inlinesvg';
+import LocationDeck from "../components/location-deck";
 
 // TODO: get rid of props
 /* function Series(props: {
@@ -59,15 +59,9 @@ type BrandsViewTypes = {
     allStrapiRetail: {
       nodes: PaddlePurchaseTypes[];
     };
-    strapiLocation: {
-      opening_time: string;
-      closing_time: string;
-      streetAddress?: string;
-      addressLocality: string;
-      addressRegion: string;
-      postalCode: string;
-      paymentAccepted: string;
-    };
+    allStrapiLocation: {
+      nodes: PaddleLocationTypes[];
+    }  
   };
 };
 const BrandsView = ({ data }: BrandsViewTypes) => {
@@ -115,11 +109,9 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
             : null}
         </section>
 
-        {/* // TODO: hover the whole card and give it a shadow when we do */}
-        {/* // ! testing off <PaddleLocationCard
-          {...data.strapiLocation}
-          background={false}
-        /> */}
+        <LocationDeck
+          allStrapiLocation={data.allStrapiLocation}
+        />
       </main>
 
       {seriesArray.length > 0
@@ -218,11 +210,13 @@ export const query = graphql`
       }
     }
 
-    strapiLocation: strapiLocation(
-      local: {slug: {eq: "tahoe-city"}}
-      name: {eq: "Retail Location"}
-    ) {
-      ...locationCardFragment
+    allStrapiLocation(filter: {
+        local: {slug: {eq: "tahoe-city"}},
+        name: {eq: "Retail Location"}
+      }) {
+      nodes {
+        ...locationCardFragment
+      }
     }
 
   }

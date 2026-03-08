@@ -88,7 +88,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
     <>
       <Header />
 
-      {/* // ! I need to close out the title and specs to get them to line up */}
+      {/* // TODO: close out the title and specs to get them to line up */}
       <main className="retail">
         <div className="title">
           <Link
@@ -127,6 +127,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
               riggedweight: [data.strapiRetail.riggedweight],
             }}
             thickness={data.strapiRetail.thickness}
+            
             // volume={data.strapiRetail.volume}
             inflatable={data.strapiRetail.inflatable ? "Yes" : "No"}
             demo={data.strapiRetail.demo ? "Yes" : "No"}
@@ -140,6 +141,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
 
         {/* // TODO: sort out these classNames hero shouldn't be across the board */}
+        {/* // TODO: these can be bigger for sure */}
         <div className="collage card-collage hero">
           <PaddleTextureBackgrounds
             baseOne={data.baseOne}
@@ -239,7 +241,6 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
       )}
 
-      {/* // ! I think we have a better version of this */}
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/retail/">Retail</Link>
