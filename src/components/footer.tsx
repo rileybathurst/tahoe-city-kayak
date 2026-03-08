@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-import { PaddleSocials, PaddleLocationDeck } from "@rileybathurst/paddle";
+import { PaddleSocials } from "@rileybathurst/paddle";
 
 import PricingChart from "./pricing-chart";
 import MenuList from "./menu-list";
@@ -9,6 +9,7 @@ import Logo from "../images/logo";
 import Phone from "./phone";
 
 import type { AnnouncementType } from "../types/announcement-type";
+import LocationDeck from "./location-deck";
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -138,12 +139,10 @@ const Footer = () => {
         <PricingChart />
         <hr />
 
-        <PaddleLocationDeck
-          season_start={data.strapiBranch.season_start}
-          season_end={data.strapiBranch.season_end}
-          phone={data.strapiBranch.phone}
-          {...data.allStrapiLocation}
-        />
+        {/* // ! testing off
+        <LocationDeck
+          allStrapiLocation={data.allStrapiLocation}
+        /> */}
 
       </div>
 

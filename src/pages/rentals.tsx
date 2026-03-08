@@ -63,9 +63,11 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
         <div>
           <div className="condor">
             <h1>Rentals</h1>
+            
             <LocationDeck
-              allStrapiLocation={data.allStrapiLocation}
+              allStrapiLocation={{...data.allStrapiLocation}}
             />
+            
             <h2>Commons Beach Rentals</h2>
             <div className="react-markdown">
               <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>

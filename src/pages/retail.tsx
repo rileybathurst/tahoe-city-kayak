@@ -64,7 +64,7 @@ const RetailPage = () => {
           <Shop />
 
           <LocationDeck
-            allStrapiLocation={query.allStrapiLocation}
+            allStrapiLocation={{...query.allStrapiLocation}}
           />
 
           <article className="pelican wrap">

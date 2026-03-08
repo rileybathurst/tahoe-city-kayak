@@ -15,7 +15,7 @@ export const query = graphql`
     postalCode
     commonName
 
-    phone
+    showThePhone
     weatherPermitting
 
     description {

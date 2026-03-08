@@ -59,14 +59,15 @@ type RetailTypeViewProps = {
     allStrapiRetail: {
       nodes: ExtentdedPurchaseTypes[];
     };
-    baseOne: PaddleGatsbyImageType;
+    /* baseOne: PaddleGatsbyImageType;
     baseTwo: PaddleGatsbyImageType;
     baseThree: PaddleGatsbyImageType;
     topOne: PaddleGatsbyImageType;
     topTwo: PaddleGatsbyImageType;
-    topThree: PaddleGatsbyImageType;
+    topThree: PaddleGatsbyImageType; */
   };
 };
+
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
   return (
@@ -80,10 +81,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
             className="link__subtle-svg"
           >
-            <SVG
-            // src={data.strapiRetail.brand.svg}
-            src={data.strapiRetail.brand.svg.localFile.publicURL}
-            />
+            <SVG src={data.strapiRetail.brand.svg} />
           </Link>
           <hgroup className="hgroup__retail">
             {/* // TODO: only one h and then p */}
@@ -124,7 +122,18 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
           />
         </section>
 
+        {/* // TODO: sort out these classNames hero shouldn't be across the board */}
         <div className="collage card-collage hero">
+          {/* // ! confirm wheter having the .image works or breaks the build as typescript is asking for it */}
+          {/* <PaddleTextureBackgrounds
+            baseOne={data.baseOne.image}
+            baseTwo={data.baseTwo.image}
+            baseThree={data.baseThree.image}
+            topOne={data.topOne.image}
+            topTwo={data.topTwo.image}
+            topThree={data.topThree.image}
+          /> */}
+
           <PaddleTextureBackgrounds
             baseOne={data.baseOne}
             baseTwo={data.baseTwo}

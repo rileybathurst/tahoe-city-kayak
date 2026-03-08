@@ -114,7 +114,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         </div>
 
         <LocationDeck
-          allStrapiLocation={data.allStrapiLocation}
+          allStrapiLocation={{...data.allStrapiLocation}}
         />
 
         <FeatureList sport={data.strapiSport.slug} />

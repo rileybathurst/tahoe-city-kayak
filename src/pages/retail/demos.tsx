@@ -121,8 +121,9 @@ const DemosPage = () => {
         </main>
 
         <LocationDeck
-          allStrapiLocation={query.allStrapiLocation}
+          allStrapiLocation={{...query.allStrapiLocation}}
         />
+        
       </div>
 
       {query.kayak.nodes.length > 0 && (

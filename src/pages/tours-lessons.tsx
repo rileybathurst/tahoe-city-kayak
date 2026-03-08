@@ -14,6 +14,7 @@ import Footer from "../components/footer";
 import BookNow from "../components/book-now";
 import Experience from "../content/experience";
 import Sport from "../components/sport";
+import LocationDeck from "../components/location-deck";
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -95,12 +96,11 @@ const ToursLessonsPage = () => {
             <hr />
           </div>
         </div>
-        <PaddleLocationDeck
-          season_start={query.strapiBranch.season_start}
-          season_end={query.strapiBranch.season_end}
-          phone={query.strapiBranch.phone}
-          {...query.allStrapiLocation}
+
+        <LocationDeck
+          allStrapiLocation={{...query.allStrapiLocation}}
         />
+        
       </main>
 
       {sports.map((sport) => (

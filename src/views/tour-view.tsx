@@ -21,6 +21,7 @@ import Composition from "../components/composition";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
+import LocationDeck from "../components/location-deck";
 
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
@@ -259,11 +260,8 @@ const TourView = ({ data }: TourViewTypes) => {
             ) : null}
           </section>
 
-          <PaddleLocationDeck
-            season_start={data.strapiTour.branch.season_start}
-            season_end={data.strapiTour.branch.season_end}
-            phone={data.strapiTour.branch.phone}
-            nodes={data.allStrapiLocation.nodes}
+          <LocationDeck
+            allStrapiLocation={{...data.allStrapiLocation}}
           />
 
           <h4>

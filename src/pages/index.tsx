@@ -4,7 +4,6 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 // Paddle
 import {
   PaddleBookNow,
-  PaddleLocationDeck,
   PaddleTicket,
   type PaddleTicketTypes,
   type PaddleLocationTypes,
@@ -25,6 +24,7 @@ import Shop from "../content/shop";
 import Experience from "../content/experience";
 import Purchase from "../components/purchase";
 import ReactMarkdown from "react-markdown";
+import LocationDeck from "../components/location-deck";
 
 const IndexPage = () => {
 
@@ -42,7 +42,7 @@ const IndexPage = () => {
     peek_tours: string;
     season_start: string;
     season_end: string;
-    phone: string;
+    phone: number;
     peek_base: string;
     peek_rentals: string;
     lead: {
@@ -123,7 +123,7 @@ const IndexPage = () => {
     }
   `);
 
-  // console.log(data.allStrapiTour.nodes);
+  console.log(data.allStrapiTour.nodes);
 
   const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
   allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
@@ -136,7 +136,9 @@ const IndexPage = () => {
     if (a.featured === false && b.featured === null) return 1;
     return 0;
   });
-  // console.log(allTours + "AFTER SORT");
+
+  console.log("AFTER SORT");
+  console.log(allTours);
 
   // State for the list
   const [sortedList, setList] = useState([...allTours.slice(0, 4)]);
@@ -208,41 +210,30 @@ const IndexPage = () => {
                 else { <p>Regular Tour</p> }
                 } */
 
+  console.log(data.allStrapiLocation);
+
   return (
     <>
       <Header />
       <main className="home">
         <section>
-          <h2>
-            {/* // TODO: strapi this */}
-            Tahoe's Premier Kayak and Paddleboard Provider, offering{" "}
-            <Link to="/rentals">Rentals</Link>, <Link to="/retail">Sales</Link>,{" "}
-            <Link to="/tours-lessons/">Lessons and Tours</Link> in both North
-            and{" "}
-            <a
-              href="https://southtahoekayak.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              South Lake Tahoe
-            </a>
-            .
-            {data.strapiBranch.lead ? (
+          {data.strapiBranch.lead ? (
+            <h2 className="denali">
               <div className="react-markdown">
-                <ReactMarkdown>{data.strapiBranch.lead.data.lead}</ReactMarkdown>
+                <ReactMarkdown>
+                  {data.strapiBranch.lead.data.lead}
+                </ReactMarkdown>
               </div>
-            ) : null}
-          </h2>
+            </h2>
+          ) : null}
 
           <div className="aconcagua-margin-block-end">
             <AboutUs />
           </div>
 
-          <PaddleLocationDeck
-            season_start={data.strapiBranch.season_start}
-            season_end={data.strapiBranch.season_end}
-            phone={data.strapiBranch.phone}
-            {...data.allStrapiLocation}
+
+          <LocationDeck
+            allStrapiLocation={{ ...data.allStrapiLocation }}
           />
 
           <div className="multi_button">
@@ -277,7 +268,7 @@ const IndexPage = () => {
       </main>
 
       <section
-        id="tours-lessons" 
+        id="tours-lessons"
         className="cloud aconcagua-padding-block-end"
       >
         <div className='condor aconcagua-padding-block-start aconcagua-padding-block-end'>
@@ -295,28 +286,16 @@ const IndexPage = () => {
           </h4>
         </div>
 
-        {/* // ! Test removed this to figure out the featured sorted order
-              // <PaddleTicket
+        <div className="flight">
+          {sortedList
+            .map((tour: PaddleTicketTypes) => (
+              <PaddleTicket
                 key={tour.id}
                 {...tour}
                 tour_page="tours-lessons"
                 peek_tours_fall_back={data.strapiBranch.peek_tours}
                 allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
-              /> */}
-
-        <div className="flight">
-          {sortedList
-            .map((tour: PaddleTicketTypes) => (
-              <section key={tour.id}>
-                <h1>{tour.name}</h1>
-
-                {/* <Order
-                  key={tour.id}
-                  {...tour}
-                /> */}
-
-
-              </section>
+              />
             ))}
         </div>
         <div className="condor aconcagua-padding-block-end">

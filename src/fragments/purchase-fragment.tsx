@@ -1,3 +1,5 @@
+// * discount has been removed as its not used on anything and breaks the query
+
 import { graphql } from "gatsby"
 
 export const query = graphql`
@@ -10,9 +12,7 @@ export const query = graphql`
     width
     inflatable
     capacity
-    weight
     demo
-    discount
 
     brand {
       id

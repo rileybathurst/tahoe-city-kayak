@@ -1,4 +1,4 @@
-import type { IGatsbyImageData } from "gatsby-plugin-image";
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 export interface RetailType {
   id: React.Key;
@@ -6,11 +6,7 @@ export interface RetailType {
   brand: {
     name: string;
     slug: string;
-    svg: {
-      localFile: {
-        publicURL: string;
-      };
-    };
+    svg: string;
   };
   slug: string;
   price: number;
@@ -30,14 +26,12 @@ export interface RetailType {
 
   inflatable: boolean;
   demo: boolean;
-  // discount?: number;
+
+  // discount?: number; currently unused so has to be removed from query
   length: number;
   width: number;
   capacity: number;
-  cutout: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
+  cutout: PaddleGatsbyImageType;
   features: {
     data: {
       features: string;
