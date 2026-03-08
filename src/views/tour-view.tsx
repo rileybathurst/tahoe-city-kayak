@@ -26,9 +26,6 @@ import LocationDeck from "../components/location-deck";
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
   data: {
-    allStrapiMoonlightTourDateTime: {
-      nodes: { id: React.Key; date: string; start: string; finish: string }[];
-    };
     strapiTour: {
       id: React.Key;
       name: string;
@@ -67,6 +64,15 @@ interface TourViewTypes {
         season_end: string;
         phone: string;
       };
+    };
+
+    allStrapiMoonlightTourDateTime: {
+      nodes: { 
+        id: React.Key;
+        date: string;
+        start: string;
+        finish: string;
+      }[];
     };
 
     allStrapiSunsetTourTime: {
@@ -220,7 +226,6 @@ const TourView = ({ data }: TourViewTypes) => {
             {data.strapiTour.peek ? (
               <BookNow
                 specificLink={data.strapiTour.peek}
-                specificName={data.strapiTour.name}
               />
             ) : (
               <BookNow />
@@ -239,8 +244,9 @@ const TourView = ({ data }: TourViewTypes) => {
             fitness={data.strapiTour.fitness}
             // ? experience={data.strapiTour.experience}
             price={data.strapiTour.price}
-            time={time}
           />
+          {/* * needed as theres a bunch of values that may be passed but none is specific */}
+          {time.value ? <PaddleSpecs time={time} /> : null}
 
           {data.strapiTour.slug === "sunset" ? (
             <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />

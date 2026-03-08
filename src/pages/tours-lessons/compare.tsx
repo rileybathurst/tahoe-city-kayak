@@ -5,14 +5,36 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 
-// TODO: move to paddletime
-// import Time from "../../components/time";
 import { PaddleTime } from "@rileybathurst/paddle";
 
-// todo: this is bad but I think in general the whole thing can be looped in a better way
+// TODO: this is bad but I think in general the whole thing can be looped in a better way
+type TourTypes = {
+  id: string;
+  fitness: string;
+  slug: string;
+  start: string;
+  sport: string;
+  peek: string;
+  price: number;
+  name: string;
+  minimum: number;
+  finish: string;
+  excerpt: string;
+  duration: string;
+  branch: {
+    name: string;
+  };
+}
+type OptionProps = {
+    key: string;
+    name: string;
+    current: string;
+    other: string;
+  }
+
 type detailsTypes = {
   show: string;
-  set: any[];
+  set: TourTypes[];
   setLink1?: (value: string) => void;
   setSport1?: (value: string) => void;
   setDuration1?: (value: string) => void;
@@ -37,49 +59,47 @@ type detailsTypes = {
   setPeeks2?: (value: string) => void;
 };
 
-const Details1 = ({ show, set, setLink1, setSport1, setDuration1, setStart1, setFinish1, setFitness1, setLocation1, setExcerpt1, setMinimum1, setPrice1, setPeeks1 }: detailsTypes) => {
+const Details1 = ({ show, set, setLink1, setSport1, setStart1, setFinish1, setFitness1, setLocation1, setExcerpt1, setMinimum1, setPrice1, setPeeks1 }: detailsTypes) => {
   for (const element of set) {
     if (element.name === show) {
-      setLink1(element.slug);
-      setSport1(element.sport);
-      setDuration1(element.duration);
-      setStart1(element.start);
-      setFinish1(element.finish);
-      setFitness1(element.fitness);
-      setLocation1(element.branch.name);
-      setExcerpt1(element.excerpt);
-      setMinimum1(element.minimum);
-      setPrice1(element.price);
-      setPeeks1(element.peek);
+      setLink1?.(element.slug);
+      setSport1?.(element.sport);
+      setStart1?.(element.start);
+      setFinish1?.(element.finish);
+      setFitness1?.(element.fitness);
+      setLocation1?.(element.branch.name);
+      setExcerpt1?.(element.excerpt);
+      setMinimum1?.(element.minimum);
+      setPrice1?.(element.price);
+      setPeeks1?.(element.peek);
     }
   }
   return null;
 };
 
-const Details2 = ({ show, set, setLink2, setSport2, setDuration2, setStart2, setFinish2, setFitness2, setLocation2, setExcerpt2, setMinimum2, setPrice2, setPeeks2 }: detailsTypes) => {
+const Details2 = ({ show, set, setLink2, setSport2, setStart2, setFinish2, setFitness2, setLocation2, setExcerpt2, setMinimum2, setPrice2, setPeeks2 }: detailsTypes) => {
 
   // console.log(show);
   // console.log(set);
 
   for (const element of set) {
     if (element.name === show) {
-      setLink2(element.slug);
-      setSport2(element.sport);
-      setDuration2(element.duration);
-      setStart2(element.start);
-      setFinish2(element.finish);
-      setFitness2(element.fitness);
-      setLocation2(element.branch.name);
-      setExcerpt2(element.excerpt);
-      setMinimum2(element.minimum);
-      setPrice2(element.price);
-      setPeeks2(element.peek);
+      setLink2?.(element.slug);
+      setSport2?.(element.sport);
+      setStart2?.(element.start);
+      setFinish2?.(element.finish);
+      setFitness2?.(element.fitness);
+      setLocation2?.(element.branch.name);
+      setExcerpt2?.(element.excerpt);
+      setMinimum2?.(element.minimum);
+      setPrice2?.(element.price);
+      setPeeks2?.(element.peek);
     }
   }
   return null;
 };
 
-const Option = (tours) => {
+const Option = (tours: OptionProps) => {
   if (tours.name === tours.current) {
     return (
       <option selected key={tours.key}>
@@ -97,36 +117,7 @@ const Option = (tours) => {
   return <option key={tours.key}>{tours.name}</option>;
 };
 
-const Compare = ({ tours }) => {
-
-  type OptionProps = {
-    key: string;
-    name: string;
-    current: string;
-    other: string;
-  }
-
-  type Tour = {
-    id: string;
-    fitness: string;
-    slug: string;
-    start: string;
-    sport: string;
-    peek: string;
-    price: number;
-    name: string;
-    minimum: number;
-    finish: string;
-    excerpt: string;
-    duration: string;
-    local: {
-      name: string;
-    };
-  }
-
-  type CompareProps = {
-    tours: Tour[];
-  }
+const Compare = ({ tours }: { tours: TourTypes[] }) => {
 
   const first = (e: React.ChangeEvent<HTMLSelectElement>): null => {
     setTour1(e.target.value);
@@ -147,9 +138,6 @@ const Compare = ({ tours }) => {
 
   const [sport1, setSport1] = useState(tours[0].sport || "Sport 1");
   const [sport2, setSport2] = useState(tours[1].sport || "Sport 2");
-
-  const [duration1, setDuration1] = useState(tours[0].duration || "Duration 1");
-  const [duration2, setDuration2] = useState(tours[1].duration || "Duration 2");
 
   const [start1, setStart1] = useState(tours[0].start || "Start 1");
   const [start2, setStart2] = useState(tours[1].start || "Start 2");
@@ -229,7 +217,6 @@ const Compare = ({ tours }) => {
             set={tours}
             setLink1={setLink1}
             setSport1={setSport1}
-            setDuration1={setDuration1}
             setStart1={setStart1}
             setFinish1={setFinish1}
             setFitness1={setFitness1}
@@ -290,7 +277,6 @@ const Compare = ({ tours }) => {
             set={tours}
             setLink2={setLink2}
             setSport2={setSport2}
-            setDuration2={setDuration2}
             setStart2={setStart2}
             setFinish2={setFinish2}
             setFitness2={setFitness2}

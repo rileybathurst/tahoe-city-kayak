@@ -59,16 +59,30 @@ type RetailTypeViewProps = {
     allStrapiRetail: {
       nodes: ExtentdedPurchaseTypes[];
     };
-    /* baseOne: PaddleGatsbyImageType;
-    baseTwo: PaddleGatsbyImageType;
-    baseThree: PaddleGatsbyImageType;
-    topOne: PaddleGatsbyImageType;
-    topTwo: PaddleGatsbyImageType;
-    topThree: PaddleGatsbyImageType; */
+    baseOne: {
+      image: PaddleGatsbyImageType;
+    };
+    baseTwo: {
+      image: PaddleGatsbyImageType;
+    }
+    baseThree: {
+      image: PaddleGatsbyImageType;
+    }
+    topOne: {
+      image: PaddleGatsbyImageType;
+    }
+    topTwo: {
+      image: PaddleGatsbyImageType;
+    }
+    topThree: {
+      image: PaddleGatsbyImageType;
+    }
   };
 };
 
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
+
+  console.log(data.baseOne.image);
 
   return (
     <>
@@ -101,12 +115,13 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
         <section className="specs">
           <h3>SPECS:</h3>
-          {/* TODO: pull the type through */}
           <PaddleSpecs
             crew={data.strapiRetail.crew}
             capacity={data.strapiRetail.capacity}
             length={data.strapiRetail.length}
             width={data.strapiRetail.width}
+
+            // ! /retail/kayak/hobie/itrek-11-inflatable-kayak/ is giving a 0 for weight or thickness figure it out
             weight={{
               hullweight: [data.strapiRetail.hullweight],
               riggedweight: [data.strapiRetail.riggedweight],
@@ -115,25 +130,17 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             // volume={data.strapiRetail.volume}
             inflatable={data.strapiRetail.inflatable ? "Yes" : "No"}
             demo={data.strapiRetail.demo ? "Yes" : "No"}
+            
             cost={{
-              price: [data.strapiRetail.price],
+              price: data.strapiRetail.price,
               // discount: data.strapiRetail.discount
             }}
           />
+
         </section>
 
         {/* // TODO: sort out these classNames hero shouldn't be across the board */}
         <div className="collage card-collage hero">
-          {/* // ! confirm wheter having the .image works or breaks the build as typescript is asking for it */}
-          {/* <PaddleTextureBackgrounds
-            baseOne={data.baseOne.image}
-            baseTwo={data.baseTwo.image}
-            baseThree={data.baseThree.image}
-            topOne={data.topOne.image}
-            topTwo={data.topTwo.image}
-            topThree={data.topThree.image}
-          /> */}
-
           <PaddleTextureBackgrounds
             baseOne={data.baseOne}
             baseTwo={data.baseTwo}

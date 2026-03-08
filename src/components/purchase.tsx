@@ -79,6 +79,11 @@ const Purchase = ({
     }
   `)
 
+  console.log('sport')
+  console.log(sport)
+  console.log('brand')
+  console.log(brand)
+
   return (
     <PaddlePurchase
       id={id}
@@ -92,8 +97,9 @@ const Purchase = ({
       demo={demo}
       discount={discount}
       cutout={cutout}
-      sportSlug={sport.slug}
-      brandSlug={brand.slug}
+      
+      sport={sport}
+      brand={brand}
 
       baseOne={data.baseOne}
       baseTwo={data.baseTwo}

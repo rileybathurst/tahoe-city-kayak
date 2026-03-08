@@ -114,7 +114,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         </div>
 
         <LocationDeck
-          allStrapiLocation={{...data.allStrapiLocation}}
+          allStrapiLocation={{ ...data.allStrapiLocation }}
         />
 
         <FeatureList sport={data.strapiSport.slug} />
@@ -151,16 +151,15 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                 className='bag'
                 key={brand.id}
               >
-                {
-                  brand.retail
-                    .filter((retail) => retail.sport.slug === data.strapiSport.slug)
-                    .splice(0, 4)
-                    .map((retail) => (
-                      <Purchase
-                        key={retail.id}
-                        {...retail}
-                      />
-                    ))
+                {brand.retail
+                  .filter((retail) => retail.sport.slug === data.strapiSport.slug)
+                  .splice(0, 4)
+                  .map((retail) => (
+                    <Purchase
+                      key={retail.id}
+                      {...retail}
+                    />
+                  ))
                 }
               </div>
 

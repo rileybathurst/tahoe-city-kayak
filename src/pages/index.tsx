@@ -200,18 +200,6 @@ const IndexPage = () => {
     setHasExtra(isExtra);
   }, [inventory, allRetail.length]);
 
-  // console.log(data.allStrapiLocation);
-
-
-  /* // ! testing
-  function Order(tour: PaddleTicketTypes) =
-  {if (tour.featured === true) { <p>Featured Tour</p> }
-                else if (tour.featured === false) { <p>Not Featured Tour</p> }
-                else { <p>Regular Tour</p> }
-                } */
-
-  console.log(data.allStrapiLocation);
-
   return (
     <>
       <Header />
