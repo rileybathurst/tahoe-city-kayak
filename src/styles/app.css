@@ -11,8 +11,6 @@
 @import "pages/home";
 @import "pages/tours";
 @import "pages/retail";
-@import "pages/demo";
-@import "pages/jobs";
 
 /* TODO: move this to NPM package */
 @import "seocase";

@@ -82,7 +82,7 @@ type RetailTypeViewProps = {
 
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
-  console.log(data.baseOne.image);
+  console.log(data.strapiRetail.hullweight);
 
   return (
     <>
@@ -120,21 +120,16 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             capacity={data.strapiRetail.capacity}
             length={data.strapiRetail.length}
             width={data.strapiRetail.width}
-
-            // ! /retail/kayak/hobie/itrek-11-inflatable-kayak/ is giving a 0 for weight or thickness figure it out
             weight={{
-              hullweight: [data.strapiRetail.hullweight],
-              riggedweight: [data.strapiRetail.riggedweight],
+              hullweight: data.strapiRetail.hullweight,
+              riggedweight: data.strapiRetail.riggedweight,
             }}
             thickness={data.strapiRetail.thickness}
-            
-            // volume={data.strapiRetail.volume}
             inflatable={data.strapiRetail.inflatable ? "Yes" : "No"}
             demo={data.strapiRetail.demo ? "Yes" : "No"}
-            
             cost={{
               price: data.strapiRetail.price,
-              // discount: data.strapiRetail.discount
+              // discount: data.strapiRetail.discount // * currently unused so has to be removed
             }}
           />
 
@@ -245,6 +240,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         <Breadcrumb>
           <Link to="/retail/">Retail</Link>
         </Breadcrumb>
+        
         <Breadcrumb>
           <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
             <Sport sport={data.strapiRetail.sport.slug} />

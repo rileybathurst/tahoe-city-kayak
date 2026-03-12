@@ -15,7 +15,7 @@ import LocationDeck from "../components/location-deck";
 
 import Markdown from "react-markdown";
 
-import  { PaddleBrandList, type PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import  { PaddleBrandList, type PaddlePurchaseTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -77,18 +77,18 @@ const RetailPage = () => {
             </section>
           </article >
 
-          <section className="albatross">
+            <section className="albatross">
             <h3>Browse By Brand</h3>
             <PaddleBrandList
-              nodes={Array.from(
-                new Map(query.kayak.nodes
-                  .filter((retail) => retail.sport.slug === "kayak")
-                  .map((retail) => [retail.brand.id, retail.brand]))
-                  .values()
-              )}
+              brands={Array.from(
+              new Map(query.kayak.nodes
+              .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
+              .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+              .values()
+              ) as PaddleBrandListTypes[]}
               sport="kayak"
             />
-          </section>
+            </section>
         </div>
 
         <Composition
@@ -120,12 +120,12 @@ const RetailPage = () => {
           <FeatureList sport="paddleboard" />
             <h3>Browse By Brand</h3>
             <PaddleBrandList
-              nodes={Array.from(
+              brands={Array.from(
                 new Map(query.paddleBoard.nodes
-                  .filter((retail) => retail.sport.slug === "paddleboard")
-                  .map((retail) => [retail.brand.id, retail.brand]))
+                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
+                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                   .values()
-              )}
+              ) as PaddleBrandListTypes[]}
               sport="paddleboard"
             />
         </section>

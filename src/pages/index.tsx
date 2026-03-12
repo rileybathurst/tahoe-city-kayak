@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-// Paddle
 import {
   PaddleBookNow,
   PaddleTicket,
   PaddleBrandList,
   type PaddleTicketTypes,
   type PaddleLocationTypes,
-  type PaddlePurchaseTypes,
-  type PaddleBrandedTypes,
+  type PaddleBrandListTypes,
+  type PaddlePurchaseTypes
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -65,7 +64,7 @@ const IndexPage = () => {
       nodes: SunsetTourTime[];
     };
     allStrapiRetail: {
-      nodes: PaddleBrandedTypes[];
+      nodes: PaddlePurchaseTypes[];
     };
     strapiBranch: Branch;
   }
@@ -324,12 +323,12 @@ const IndexPage = () => {
             <h5>Shop By Brand</h5>
 
             <PaddleBrandList
-              nodes={Array.from(
-                new Map(data.allStrapiRetail.nodes
-                  .filter((retail) => retail.sport.slug === "kayak")
-                  .map((retail) => [retail.brand.id, retail.brand]))
+              brands={Array.from(
+                new Map((data.allStrapiRetail.nodes as PaddlePurchaseTypes[])
+                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
+                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                   .values()
-              )}
+              ) as PaddleBrandListTypes[]}
               sport="kayak"
             />
 
@@ -342,12 +341,12 @@ const IndexPage = () => {
             <FeatureList sport="paddleboard" />
             <h5>Shop By Brand</h5>
             <PaddleBrandList
-              nodes={Array.from(
-                new Map(data.allStrapiRetail.nodes
-                  .filter((retail) => retail.sport.slug === "paddleboard")
-                  .map((retail) => [retail.brand.id, retail.brand]))
+              brands={Array.from(
+                new Map((data.allStrapiRetail.nodes as PaddlePurchaseTypes[])
+                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
+                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                   .values()
-              )}
+              ) as PaddleBrandListTypes[]}
               sport="paddleboard"
             />
           </div>

@@ -63,18 +63,18 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
         <div>
           <div className="condor">
             <h1>Rentals</h1>
-            
+
             <LocationDeck
-              allStrapiLocation={{...data.allStrapiLocation}}
+              allStrapiLocation={{ ...data.allStrapiLocation }}
             />
-            
+
             <h2>Commons Beach Rentals</h2>
             <div className="react-markdown">
               <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
             </div>
-            <Link to="/about/faq">
+            <p><Link to="/about/faq">
               Frequently Asked Questions about getting out on the water
-            </Link>
+            </Link></p>
 
             <BookNow />
 
@@ -82,26 +82,19 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
             <h3>{data.strapiMembership.title}</h3>
             <p>{data.strapiMembership.excerpt}</p>
 
-            {/* TODO: <BookNow */}
-            <a href={data.strapiBranch.peek_membership}
-              target="_blank"
-              rel="noreferrer"
-              className="button"
-            >
-              JOIN NOW
-            </a>
-            
+            <BookNow
+              specificName="MEMBERSHIP"
+              specificLink={data.strapiBranch.peek_membership}
+            />
+
             <h4>Paddler's 6-Pack Deal </h4>
-              <p><em>- Single Kayak or Paddleboard</em></p>
+            <p><em>- Single Kayak or Paddleboard</em></p>
             <p>{data.strapiMembership.six}</p>
 
-            <a href={data.strapiBranch.peek_six_pack}
-              target="_blank"
-              rel="noreferrer"
-              className="button"
-            >
-              BUY NOW
-            </a>
+            <BookNow
+              specificName="SIX PACK"
+              specificLink={data.strapiBranch.peek_six_pack}
+            />
           </div>
         </div>
 
@@ -122,7 +115,7 @@ export default RentalsPage;
 export const Head = ({ data }: RentalsPageTypes) => {
 
   return (
-    <SEO 
+    <SEO
       title="Rentals"
       description={data.strapiBranch.rental_excerpt}
     />

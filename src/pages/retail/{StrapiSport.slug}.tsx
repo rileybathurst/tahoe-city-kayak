@@ -15,7 +15,7 @@ import LocationDeck from "../../components/location-deck";
 import {
   PaddleBrandList,
   type PaddleLocationTypes,
-  type PaddleBrandType,
+  type PaddleBrandListTypes,
   type PaddlePurchaseTypes,
 } from "@rileybathurst/paddle";
 
@@ -67,7 +67,7 @@ export const strapiSport = graphql`
 `
 
 // ? I dont understand omit
-type PaddleBrandTypesWithTagline = Omit<PaddleBrandType, "retail"> & {
+type PaddleBrandTypesWithTagline = Omit<PaddleBrandListTypes, "retail"> & {
   tagline: string;
   retail: PaddlePurchaseTypes[];
 };
@@ -92,7 +92,7 @@ type retailSportTypes = {
       nodes: PaddleBrandTypesWithTagline[];
     };
     allStrapiRetail: {
-      nodes: PaddleBrandedTypes[];
+      nodes: PaddlePurchaseTypes[];
     };
   }
 }
@@ -129,10 +129,10 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
       <div className="albatross">
 
         <PaddleBrandList
-          nodes={Array.from(
+          brands={Array.from(
             new Map(data.allStrapiRetail.nodes
-              .filter((retail) => retail.sport.slug === data.strapiSport.slug)
-              .map((retail) => [retail.brand.id, retail.brand]))
+              .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === data.strapiSport.slug)
+              .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
               .values()
           )}
           sport={data.strapiSport.slug}
