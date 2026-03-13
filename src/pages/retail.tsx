@@ -35,7 +35,7 @@ const RetailPage = () => {
     allStrapiLocation(
       filter: {
         name: {eq: "Retail Location"}
-        local: {slug: {eq: "tahoe-city"}}
+        branch: {slug: {eq: "tahoe-city"}}
       }
     ) {
       nodes {

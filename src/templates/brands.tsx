@@ -211,7 +211,7 @@ export const query = graphql`
     }
 
     allStrapiLocation(filter: {
-        local: {slug: {eq: "tahoe-city"}},
+        branch: {slug: {eq: "tahoe-city"}},
         name: {eq: "Retail Location"}
       }) {
       nodes {

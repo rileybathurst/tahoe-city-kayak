@@ -17,7 +17,7 @@ const Footer = () => {
     query FooterQuery {
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "tahoe-city"}}
+          branch: {slug: {eq: "tahoe-city"}}
         },
         sort: {order: ASC}
       ) {

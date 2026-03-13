@@ -82,8 +82,6 @@ type RetailTypeViewProps = {
 
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
-  console.log(data.strapiRetail.hullweight);
-
   return (
     <>
       <Header />

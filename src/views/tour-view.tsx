@@ -6,7 +6,6 @@ import {
   PaddleTime,
   PaddleSunsetTourTimes,
   PaddleSpecs,
-  PaddleLocationDeck,
   PaddleMoonlightDatesTimes,
   type PaddleGatsbyImageType,
   type PaddleLocationTypes
@@ -18,7 +17,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 import Composition from "../components/composition";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import LocationDeck from "../components/location-deck";
@@ -56,14 +54,6 @@ interface TourViewTypes {
       };
 
       compositionImage: PaddleGatsbyImageType;
-
-      local: {
-        name: string;
-        peek_tours: string;
-        season_start: string;
-        season_end: string;
-        phone: string;
-      };
     };
 
     allStrapiMoonlightTourDateTime: {
@@ -85,7 +75,7 @@ interface TourViewTypes {
       }[];
     };
 
-    local: {
+    branch: {
       name: string;
     };
 
@@ -107,7 +97,7 @@ export const data = graphql`
   query TourQuery($slug: String!) {
     strapiTour(
       slug: { eq: $slug },
-      local: {slug: {eq: "tahoe-city"}}
+      branch: {slug: {eq: "tahoe-city"}}
       ) {
       id
       name
@@ -177,7 +167,7 @@ export const data = graphql`
     allStrapiTour(
         filter: {
           slug: {nin: [$slug] },
-          local: {slug: {eq: "tahoe-city"}}
+          branch: {slug: {eq: "tahoe-city"}}
           },
         sort: {featured: ASC},
       ) {
@@ -188,7 +178,7 @@ export const data = graphql`
 
     allStrapiLocation(
       filter: {
-        local: {slug: {eq: "tahoe-city"}},
+        branch: {slug: {eq: "tahoe-city"}},
         name: {in: ["On Water Rental", "Free Parking Lot"]}
       },
       sort: {order: ASC}

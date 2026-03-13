@@ -73,7 +73,7 @@ const IndexPage = () => {
     query IndexQuery {
       allStrapiLocation(
         filter: {
-          local: {slug: {eq: "tahoe-city"}}
+          branch: {slug: {eq: "tahoe-city"}}
         },
         sort: {order: ASC}
       ) {
@@ -84,7 +84,7 @@ const IndexPage = () => {
 
       allStrapiTour(
         sort: {featured: ASC},
-        filter: {local: {slug: {eq: "tahoe-city"}}}
+        filter: {branch: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
           ...ticketFragment

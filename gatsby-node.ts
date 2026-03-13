@@ -154,6 +154,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
           });
         }
 
+        // * currently no ultralights
         /* if (slug === "ultralight" || slug === "ultralight-tandem") {
           createPage({
             path: `/retail/attribute/${sport.slug}/${slug}`,
@@ -184,7 +185,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
 
   const getStrapiTour = await graphql(`
     query {
-      allStrapiTour(filter: { local: { slug: { eq: "tahoe-city" } } }) {
+      allStrapiTour(filter: { branch: { slug: { eq: "tahoe-city" } } }) {
         edges {
           node {
             slug
@@ -207,7 +208,7 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
   const getStrapiTeam = await graphql(`
     query {
       allStrapiTeam(
-        filter: { local: { elemMatch: { slug: { eq: "tahoe-city" } } } }
+        filter: { branches: { elemMatch: { slug: { eq: "tahoe-city" } } } }
       ) {
         edges {
           node {
