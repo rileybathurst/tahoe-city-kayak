@@ -4,7 +4,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import { PaddleSocials } from "@rileybathurst/paddle";
 
 import PricingChart from "./pricing-chart";
-import MenuList from './menu-list';
+import { MenuList } from './menu-list';
 import Logo from "../images/logo";
 import Phone from "./phone";
 
@@ -47,7 +47,7 @@ const Footer = () => {
       allStrapiAnnouncement(
         filter: 
         {
-          locales: {elemMatch: {slug: {eq: "tahoe-city"}}},
+          branches: {elemMatch: {slug: {eq: "tahoe-city"}}},
           featured: {eq: true}
         }
       )  {
@@ -60,7 +60,7 @@ const Footer = () => {
     }
   `)
 
-  interface LocaleTypes {
+  type BranchTypes = {
     name: string,
     url: string
   }
@@ -121,13 +121,13 @@ const Footer = () => {
         <div className="footer__locations">
           <h3>Our Partner Locations</h3>
           <ul>
-            {data.allStrapiBranch.nodes.map((locale: LocaleTypes) => (
-              <li key={locale.name}>
-                <a href={locale.url}
+            {data.allStrapiBranch.nodes.map((branch: BranchTypes) => (
+              <li key={branch.name}>
+                <a href={branch.url}
                   target="_blank"
                   rel='noopener noreferrer'
                 >
-                  {locale.name} Kayak & Paddleboard
+                  {branch.name} Kayak & Paddleboard
                 </a>
               </li>
             ))}

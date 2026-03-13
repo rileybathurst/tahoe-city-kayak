@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby"
-import MenuList from './menu-list';
+import { MenuList } from './menu-list';
 import Logo from '../images/logo';
 import { PaddleTopBar, PaddleMenu } from '@rileybathurst/paddle';
 
@@ -35,11 +35,13 @@ const Header = () => {
         </Link>
       </div>
       
+      <hr />
       <PaddleMenu
         menu_items={MenuList}
         peek_base={data.strapiBranch.peek_base}
         strapiBranchName={data.strapiBranch.name}
       />
+      <hr />
       
     </header >
   )
