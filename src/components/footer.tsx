@@ -4,12 +4,13 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import { PaddleSocials } from "@rileybathurst/paddle";
 
 import PricingChart from "./pricing-chart";
-import MenuList from "./menu-list";
+import MenuList from './menu-list';
 import Logo from "../images/logo";
 import Phone from "./phone";
 
-import type { AnnouncementType } from "../types/announcement-type";
+// import type { AnnouncementType } from "../types/announcement-type";
 import LocationDeck from "./location-deck";
+import BookNow from "./book-now";
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -64,9 +65,16 @@ const Footer = () => {
     url: string
   }
 
+  const MenuPlus = [...MenuList,
+    {href: "/announcement", label: "Announcements"},
+    ...data.allStrapiAnnouncement.nodes.map((announcement: {title: string, slug: string}) => (
+      {href: `/announcement/${announcement.slug}`, label: announcement.title}
+    ))
+  ]
+
   return (
     <footer>
-      {/* holds together a flex */}
+      {/* // * holds together a flex */}
       <div>
         <h3 className='sr-only'>
           <Link to="/">{data.strapiBranch.name}</Link>
@@ -74,31 +82,22 @@ const Footer = () => {
         <Link to="/" className="logo-link"><Logo /></Link>
         <p>&copy; {new Date().getFullYear()}</p>
         <hr />
-        <nav>
-          <MenuList>
-            <React.Fragment>
-              <li key='announcement'>
-                <Link
-                  to="/announcement"
-                  className='link__backed'
-                  activeClassName="active">
-                  Announcements
-                </Link>
-              </li>
-              {data.allStrapiAnnouncement.nodes.map((announcement: AnnouncementType) => (
-                <li key={announcement.id}>
-                  <Link
-                    to={`/announcement/${announcement.slug}`}
-                    className='link__backed'
-                    activeClassName="active">
-                    {announcement.title}
-                  </Link>
-                </li>
-              ))}
-            </React.Fragment>
-          </MenuList>
 
-        </nav>
+        <nav className="nav" aria-label="Footer navigation">
+            {/* // * is always open  */}
+            <ul className="menu-list is-open">
+              {MenuPlus.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                )
+              )}
+              <li key='book-now'>
+                <BookNow />
+              </li>
+            </ul>
+          </nav>
+
         <hr />
         <div className="footer__contact">
           <div className="multi_button">

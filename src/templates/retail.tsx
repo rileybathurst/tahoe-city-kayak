@@ -200,6 +200,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       ) : null}
 
       {/* kayak/kokopelli has only one needs a better */}
+      <div className="panel">
       {data.allStrapiRetail.nodes.length > 0 ? (
         <article>
           <section className="condor">
@@ -227,7 +228,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
           </section>
         </article>
       ) : (
-        <section className="none condor">
+        <section className="condor">
           <h3>
             <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
               Browse other <Sport sport={data.strapiRetail.sport.slug} />s
@@ -235,6 +236,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
           </h3>
         </section>
       )}
+      </div>
 
       <Breadcrumbs>
         <Breadcrumb>

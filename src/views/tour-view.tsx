@@ -283,6 +283,7 @@ const TourView = ({ data }: TourViewTypes) => {
         />
       </main>
 
+<div className="panel">
       <div className="albatross">
         <hr />
         <h3>
@@ -302,6 +303,7 @@ const TourView = ({ data }: TourViewTypes) => {
           />
         ))}
       </section>
+      </div>
 
       <Breadcrumbs>
         <Breadcrumb>

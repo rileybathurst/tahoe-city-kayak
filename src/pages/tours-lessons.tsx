@@ -103,6 +103,7 @@ const ToursLessonsPage = () => {
         
       </main>
 
+<div className="panel">
       {sports.map((sport) => (
         <section key={sport.nodes[0].id}>
           <hgroup className="pelican">
@@ -127,6 +128,7 @@ const ToursLessonsPage = () => {
           </div>
         </section>
       ))}
+      </div>
 
       <Footer />
     </>

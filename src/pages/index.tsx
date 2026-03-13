@@ -256,7 +256,7 @@ const IndexPage = () => {
 
       <section
         id="tours-lessons"
-        className="cloud aconcagua-padding-block-end"
+        className="panel aconcagua-padding-block-end"
       >
         <div className='condor aconcagua-padding-block-start aconcagua-padding-block-end'>
           {/* // TODO: only one h and then p */}
@@ -352,7 +352,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="pelican">
+        <div className="panel pelican">
           <div className="bag">
             {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
             {inventory.map((retail) => (
