@@ -130,8 +130,9 @@ type RiverTypes = {
     equipment: PaddleGatsbyImageType[];
   };
 };
-const TruckeeRiverPage = (data: RiverTypes) => {
+const TruckeeRiverPage = ({data}: {data: RiverTypes}) => {
 
+  console.log(data.strapiRiver)
 
   return (
     <>
@@ -173,7 +174,7 @@ type TruckeeRiverHeadTypes = {
     excerpt: string;
   };
 };
-export const Head = (data: TruckeeRiverHeadTypes) => {
+export const Head = ({data}: {data: TruckeeRiverHeadTypes}) => {
   return (
     <SEO
       title={data.strapiRiver.title}
