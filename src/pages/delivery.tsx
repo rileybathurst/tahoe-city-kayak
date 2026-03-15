@@ -1,3 +1,5 @@
+// ! fix the layout, compostion should be across
+
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { SEO } from "../components/seo";
@@ -6,11 +8,34 @@ import Phone from "../components/phone";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Composition from "../components/composition";
+import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 
 const DeliveryPage = () => {
 
-  const { strapiBranch } = useStaticQuery(graphql`
+  type deliveryTypes = {
+    strapiDelivery: {
+      text: {
+        data: {
+          text: string;
+        }
+      }
+    },
+    strapiBranch: {
+      email: string;
+      phone: number;
+    }
+  }
+
+  const data: deliveryTypes = useStaticQuery(graphql`
     query DeliveryQuery {
+      strapiDelivery {
+        text {
+          data {
+            text
+          }
+        }
+      }
+
       strapiBranch(slug: {eq: "tahoe-city"}) {
         email
         phone
@@ -18,33 +43,49 @@ const DeliveryPage = () => {
     }
   `)
 
+  const phoneAndEmailLinks = data.strapiDelivery.text.data.text
+    .replaceAll(
+      "(phoneLink)",
+      `(tel:${data.strapiBranch.phone})`
+    )
+    .replaceAll(
+      "(emailLink)",
+      `(mailto:${data.strapiBranch.email})`
+    )
+
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
         <article>
           {/* // TODO: move to CMS */}
           <h1>Delivery</h1>
-          <p>Whether you need retail kayaks or paddleboards, or our rental watercraft, we can deliver throughout the Tahoe Region and beyond &#40;Sacramento and Reno areas included&#41;. We can deliver to your home, vacation property, or to public beaches &#40;where local rules and access allow&#41;.</p>
+          <div className="react-markdown">
+            
+            {/* // * by default this pulls phone links out */}
+            <ReactMarkdown
+              urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
+            >
+              {phoneAndEmailLinks}
+            </ReactMarkdown>
+          </div>
 
-          <p>
-            Since every delivery is different, a <a href={`tel:${strapiBranch.phone}`} rel="norel norefferer">phone call</a> or <a href={`mailto:${strapiBranch.email}`} rel="norel norefferer">email</a> is the best way to make a plan that meets your needs. Our delivery fees depend on how far we are traveling, how many employees we need to send, and how straightforward the delivery is &#40;ie. if we have to carry watercraft down flights of stairs, over rocks, etc&#41;. We aren't trying to make a profit from delivery fees, but we do need to cover our costs.
-          </p>
+          {/* // TODO: multi button */}
           <Phone />
           <a
-            href={`mailto:${strapiBranch.email}`}
-            rel="norel norefferer"
+            href={`mailto:${data.strapiBranch.email}`}
+            rel="noreferrer noopener"
             className="button"
           >
-            {strapiBranch.email}
+            {data.strapiBranch.email}
           </a>
         </article>
         <Composition />
       </main >
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

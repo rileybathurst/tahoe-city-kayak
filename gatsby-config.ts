@@ -31,10 +31,12 @@ const strapiConfig = {
     "error",
     "experience",
     "demo",
+    "delivery",
+    "group",
     "protect",
     "rental",
     "river",
-    "shop", // TODO: update the links
+    "shop",
     "invasive",
     "parking",
     "membership",
