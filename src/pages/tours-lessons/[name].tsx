@@ -11,7 +11,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
       allStrapiTour(filter: {
         branch: {slug: {eq: "tahoe-city"}}
       },
-      sort: {featured: ASC},
+      sort: {order: ASC},
       ){
         nodes {
           ...ticketFragment

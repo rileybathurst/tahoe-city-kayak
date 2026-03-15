@@ -169,7 +169,7 @@ export const data = graphql`
           slug: {nin: [$slug] },
           branch: {slug: {eq: "tahoe-city"}}
           },
-        sort: {featured: ASC},
+        sort: {order: ASC},
       ) {
       nodes {
         ...ticketFragment

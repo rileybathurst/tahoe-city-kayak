@@ -323,7 +323,7 @@ const ComparePage = () => {
     query TourCompareQuery {
       allStrapiTour(
         filter: {branch: {slug: {eq: "tahoe-city"}}}
-        sort: {featured: ASC}
+        sort: {order: ASC}
       ) {
         nodes {
           id
@@ -356,12 +356,14 @@ const ComparePage = () => {
         <Compare tours={allStrapiTour.nodes} />
       </main>
 
+      <div className="panel">
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/tours-lessons/">Tours &amp; Lessons</Link>
         </Breadcrumb>
         <Breadcrumb>Compare</Breadcrumb>
       </Breadcrumbs>
+      </div>
 
       <Footer />
     </>

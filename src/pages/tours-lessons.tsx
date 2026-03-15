@@ -24,7 +24,7 @@ const ToursLessonsPage = () => {
           sport: {eq: "kayak"},
           branch: {slug: {eq: "tahoe-city"}}
         }
-        sort: {featured: ASC}
+        sort: {order: ASC}
       )
       {
         nodes {
@@ -38,7 +38,7 @@ const ToursLessonsPage = () => {
             sport: { eq: "sup" },
             branch: { slug: {eq: "tahoe-city"}}
           }
-          sort: {featured: ASC})
+          sort: {order: ASC})
         {
           nodes {
             ...ticketFragment
@@ -78,8 +78,6 @@ const ToursLessonsPage = () => {
 
   const sports = [query.kayak, query.paddleBoard];
 
-  type PaddleTicketTypesWithSort = PaddleTicketTypes & { featured: boolean };
-
   return (
     <>
       <Header />
@@ -115,8 +113,7 @@ const ToursLessonsPage = () => {
 
           <div className="flight">
             {sport.nodes
-              .sort((a: PaddleTicketTypesWithSort, b: PaddleTicketTypesWithSort) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
-              .map((tour: PaddleTicketTypesWithSort) => (
+              .map((tour: PaddleTicketTypes) => (
                 <PaddleTicket
                   key={tour.id}
                   {...tour}

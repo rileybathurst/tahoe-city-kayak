@@ -29,30 +29,6 @@ import LocationDeck from "../components/location-deck";
 
 const IndexPage = () => {
 
-  // ? seems like a weird place to have sunset tour time
-  type SunsetTourTime = {
-    id: React.Key;
-    endDate: string;
-    endTime: string;
-    startDate: string;
-    startTime: string;
-  }
-
-  type Branch = {
-    name: string;
-    peek_tours: string;
-    season_start: string;
-    season_end: string;
-    phone: number;
-    peek_base: string;
-    peek_rentals: string;
-    lead: {
-      data: {
-        lead: string;
-      };
-    };
-  }
-
   type indexTypes = {
     allStrapiLocation: {
       nodes: PaddleLocationTypes[];
@@ -61,12 +37,45 @@ const IndexPage = () => {
       nodes: PaddleTicketTypes[];
     };
     allStrapiSunsetTourTime: {
-      nodes: SunsetTourTime[];
+      nodes: {
+        id: React.Key;
+        endDate: string;
+        endTime: string;
+        startDate: string;
+        startTime: string;
+      }[];
     };
-    allStrapiRetail: {
-      nodes: PaddlePurchaseTypes[];
+    kayak: PaddlePurchaseTypes;
+    paddleboard: PaddlePurchaseTypes;
+    strapiBranch: {
+      name: string;
+      peek_tours: string;
+      season_start: string;
+      season_end: string;
+      phone: number;
+      peek_base: string;
+      peek_rentals: string;
+      lead: {
+        data: {
+          lead: string;
+        };
+      };
     };
-    strapiBranch: Branch;
+    allStrapiBrand: {
+      nodes: {
+        name: string;
+        id: string;
+        slug: string;
+        svg: string;
+
+        retail: {
+          id: string;
+          sport: {
+            slug: string;
+          };
+        }[];
+      }[];
+    };
   }
 
   const data: indexTypes = useStaticQuery(graphql`
@@ -83,7 +92,7 @@ const IndexPage = () => {
       }
 
       allStrapiTour(
-        sort: {featured: ASC},
+        sort: {order: ASC}
         filter: {branch: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
@@ -101,10 +110,34 @@ const IndexPage = () => {
         }
       }
 
-      allStrapiRetail(sort: {featured: ASC}) {
+      allStrapiBrand {
         nodes {
-          ...brandedFragment
+          id
+          name
+          slug
+          svg
+
+          retail {
+            id
+            sport {
+              slug
+            }
+          }
         }
+      }
+
+      kayak: strapiRetail(
+        featured: {eq: true},
+        sport: {slug: {eq: "kayak"}}
+        ) {
+          ...brandedFragment
+      }
+      
+      paddleboard: strapiRetail(
+        featured: {eq: true},
+        sport: {slug: {eq: "paddleboard"}}
+        ) {
+          ...brandedFragment
       }
 
       strapiBranch(slug: {eq: "tahoe-city"}) {
@@ -124,26 +157,14 @@ const IndexPage = () => {
     }
   `);
 
-  const allTours: PaddleTicketTypes[] = data.allStrapiTour.nodes;
-  allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
-  // Sort so that featured: true first, then featured: null, then featured: false
-  allTours.sort((a: PaddleTicketTypes, b: PaddleTicketTypes) => {
-    if (a.featured === b.featured) return 0;
-    if (a.featured === true) return -1;
-    if (b.featured === true) return 1;
-    if (a.featured === null && b.featured === false) return -1;
-    if (a.featured === false && b.featured === null) return 1;
-    return 0;
-  });
-
-  // State for the list
+  const allTours = data.allStrapiTour.nodes;
   const [sortedList, setList] = useState([...allTours.slice(0, 4)]);
 
   // State to trigger load more
   const [loadMore, setLoadMore] = useState(false);
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allTours.length > 4);
+  const [hasMore, setHasMore] = useState(data.allStrapiTour.nodes.length > 4);
 
   // Load more button click
   const handleLoadMore = () => {
@@ -154,53 +175,28 @@ const IndexPage = () => {
   useEffect(() => {
     if (loadMore && hasMore) {
       const currentLength = sortedList.length;
-      const isMore = currentLength < allTours.length;
+      const isMore = currentLength < data.allStrapiTour.nodes.length;
       const nextResults = isMore
-        ? allTours.slice(currentLength, currentLength + 2)
+        ? data.allStrapiTour.nodes.slice(currentLength, currentLength + 2)
         : [];
       setList([...sortedList, ...nextResults]);
       setLoadMore(false);
     }
-  }, [loadMore, hasMore, sortedList, allTours.length, allTours.slice]);
+  }, [loadMore, hasMore, sortedList, data.allStrapiTour.nodes.length, data.allStrapiTour.nodes.slice]);
 
   //Check if there is more
   useEffect(() => {
-    const isMore = sortedList.length < allTours.length;
+    const isMore = sortedList.length < data.allStrapiTour.nodes.length;
     setHasMore(isMore);
-  }, [sortedList, allTours.length]);
+  }, [sortedList, data.allStrapiTour.nodes.length]);
 
-  // * Retail
-  const allRetail = data.allStrapiRetail.nodes;
-  const [inventory, setInventory] = useState([...allRetail.slice(0, 2)]);
-  const [loadExtra, setLoadExtra] = useState(false);
-  const [hasExtra, setHasExtra] = useState(allRetail.length > 2);
-  const handleLoadExtra = () => {
-    setLoadExtra(true);
-  };
+  // console.log(data.kayak);
+  // console.log(data.paddleboard);
 
-  // const brands = Array.from(new Set(allRetail.map((item) => item.brand.slug)));
-  // console.log("Unique brands in retail:", brands);
-
-  useEffect(() => {
-    if (loadExtra && hasExtra) {
-      const currentRange = inventory.length;
-      const isExtra = currentRange < allRetail.length;
-      const nextOutcome = isExtra
-        ? allRetail.slice(currentRange, currentRange + 2)
-        : [];
-      setInventory([...inventory, ...nextOutcome]);
-      setLoadExtra(false);
-    }
-  }, [loadExtra, hasExtra, inventory, allRetail.length, allRetail.slice]);
-
-  //Check if there is more
-  useEffect(() => {
-    const isExtra = inventory.length < allRetail.length;
-    setHasExtra(isExtra);
-  }, [inventory, allRetail.length]);
+  const products = [data.kayak, data.paddleboard] as PaddlePurchaseTypes[];
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="home">
         <section>
@@ -258,19 +254,11 @@ const IndexPage = () => {
         id="tours-lessons"
         className="panel aconcagua-padding-block-end"
       >
-        <div className='condor aconcagua-padding-block-start aconcagua-padding-block-end'>
-          {/* // TODO: only one h and then p */}
-          <hgroup className="crest">
-            <h3 className="brow">
-              <Link to="/tours-lessons">Tours &amp; Lessons</Link>
-            </h3>
-            {/* think about capitalization here */}
-            <h4 className="supra">Enjoy The Majesty Of Lake Tahoe</h4>
-          </hgroup>
+        <div className='condor aconcagua-padding-block'>
+          <h2>
+            <Link to="/tours-lessons">Tours &amp; Lessons</Link>
+          </h2>
           <Experience />
-          <h4>
-            <Link to="/tours-lessons/compare">Compare Tours &amp; Lessons</Link>
-          </h4>
         </div>
 
         <div className="flight">
@@ -288,12 +276,15 @@ const IndexPage = () => {
         <div className="condor aconcagua-padding-block-end">
           {hasMore ? (
             <button onClick={handleLoadMore} type="button">
-              VIEW MORE TOURS &amp; LESSONS
+              View More Tours &amp; Lessons
             </button>
           ) : (
             <p>Thats all the tours</p>
           )}
           <hr />
+          <h4>
+            <Link to="/tours-lessons/compare">Compare Tours &amp; Lessons</Link>
+          </h4>
         </div>
       </section>
 
@@ -323,12 +314,9 @@ const IndexPage = () => {
             <h5>Shop By Brand</h5>
 
             <PaddleBrandList
-              brands={Array.from(
-                new Map((data.allStrapiRetail.nodes as PaddlePurchaseTypes[])
-                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
-                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                  .values()
-              ) as PaddleBrandListTypes[]}
+              brands={data.allStrapiBrand.nodes
+                .filter((brand) => brand.retail.some((retail) => retail.sport.slug === "kayak"))
+              }
               sport="kayak"
             />
 
@@ -341,12 +329,9 @@ const IndexPage = () => {
             <FeatureList sport="paddleboard" />
             <h5>Shop By Brand</h5>
             <PaddleBrandList
-              brands={Array.from(
-                new Map((data.allStrapiRetail.nodes as PaddlePurchaseTypes[])
-                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
-                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                  .values()
-              ) as PaddleBrandListTypes[]}
+              brands={data.allStrapiBrand.nodes
+                .filter((brand) => brand.retail.some((retail) => retail.sport.slug === "paddleboard"))
+              }
               sport="paddleboard"
             />
           </div>
@@ -354,23 +339,15 @@ const IndexPage = () => {
 
         <div className="panel pelican">
           <div className="bag">
-            {/* // TODO: these are cards that due to the layout cant be in a deck so need better margin-block-end */}
-            {inventory.map((retail) => (
+            {products.map((retail: PaddlePurchaseTypes) => (
               <Purchase key={retail.id} {...retail} />
             ))}
-            {hasExtra ? (
-              <button onClick={handleLoadExtra} type="button">
-                View More Products
-              </button>
-            ) : (
-              <p>Thats all the products</p>
-            )}
           </div>
         </div>
       </section >
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

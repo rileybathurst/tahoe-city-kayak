@@ -14,7 +14,7 @@ export const query = graphql`
     timeframe
     fitness
     sport
-    featured
+    order
 
     ogimage {
       localFile {
