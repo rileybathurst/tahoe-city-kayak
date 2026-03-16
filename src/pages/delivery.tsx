@@ -1,5 +1,3 @@
-// ! fix the layout, compostion should be across
-
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { SEO } from "../components/seo";
@@ -57,32 +55,35 @@ const DeliveryPage = () => {
     <React.Fragment>
       <Header />
 
-      <main>
-        <article>
-          {/* // TODO: move to CMS */}
-          <h1>Delivery</h1>
-          <div className="react-markdown">
-            
-            {/* // * by default this pulls phone links out */}
-            <ReactMarkdown
-              urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
-            >
-              {phoneAndEmailLinks}
-            </ReactMarkdown>
-          </div>
+      <div className='albatross wrap'>
+        <main>
+          <article>
+            {/* // TODO: move to CMS */}
+            <h1>Delivery</h1>
+            <div className="react-markdown">
 
-          {/* // TODO: multi button */}
-          <Phone />
-          <a
-            href={`mailto:${data.strapiBranch.email}`}
-            rel="noreferrer noopener"
-            className="button"
-          >
-            {data.strapiBranch.email}
-          </a>
-        </article>
+              {/* // * by default this pulls phone links out */}
+              <ReactMarkdown
+                urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
+              >
+                {phoneAndEmailLinks}
+              </ReactMarkdown>
+            </div>
+
+            <div className="multi_button">
+              <Phone />
+              <a
+                href={`mailto:${data.strapiBranch.email}`}
+                rel="noreferrer noopener"
+                className="button"
+              >
+                {data.strapiBranch.email}
+              </a>
+            </div>
+          </article>
+        </main >
         <Composition />
-      </main >
+      </div>
 
       <Footer />
     </React.Fragment>

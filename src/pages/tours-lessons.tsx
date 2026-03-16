@@ -87,11 +87,10 @@ const ToursLessonsPage = () => {
           <div className="condor">
             <h1>Tours &amp; Lessons</h1>
             <Experience />
-            <h2>
+            <h2 className="denali">
               <Link to="/tours-lessons/compare">Compare Tours</Link>
             </h2>
             <BookNow />
-            <hr />
           </div>
         </div>
 
@@ -101,7 +100,7 @@ const ToursLessonsPage = () => {
         
       </main>
 
-<div className="panel">
+<div className="panel everest-padding-block">
       {sports.map((sport) => (
         <section key={sport.nodes[0].id}>
           <hgroup className="pelican">

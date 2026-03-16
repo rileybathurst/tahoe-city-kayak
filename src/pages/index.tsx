@@ -194,6 +194,10 @@ const IndexPage = () => {
   // console.log(data.paddleboard);
 
   const products = [data.kayak, data.paddleboard] as PaddlePurchaseTypes[];
+  const retailSports = [
+    { slug: "kayak", label: "Kayaks" },
+    { slug: "paddleboard", label: "Paddleboards" },
+  ] as const;
 
   return (
     <React.Fragment>
@@ -303,41 +307,31 @@ const IndexPage = () => {
 
             <Shop />
 
-            <hr className="" />
-
-            {/* // TODO: this should be a sport loop */}
-            <h4>
-              <Link to="/retail/kayak">Shop All Kayaks</Link>
-            </h4>
-            <h5>Shop By Feature</h5>
-            <FeatureList sport="kayak" />
-            <h5>Shop By Brand</h5>
-
-            <PaddleBrandList
-              brands={data.allStrapiBrand.nodes
-                .filter((brand) => brand.retail.some((retail) => retail.sport.slug === "kayak"))
-              }
-              sport="kayak"
-            />
-
             <hr />
 
-            <h4>
-              <Link to="/retail/paddleboard">Shop All Paddleboards</Link>
-            </h4>
-            <h5>Shop By Feature</h5>
-            <FeatureList sport="paddleboard" />
-            <h5>Shop By Brand</h5>
-            <PaddleBrandList
-              brands={data.allStrapiBrand.nodes
-                .filter((brand) => brand.retail.some((retail) => retail.sport.slug === "paddleboard"))
-              }
-              sport="paddleboard"
-            />
+            {retailSports.map((sport, index) => (
+              <React.Fragment key={sport.slug}>
+                {index > 0 ? <hr /> : null}
+
+                <h4>
+                  <Link to={`/retail/${sport.slug}`}>Shop All {sport.label}</Link>
+                </h4>
+                <h5>Shop By Feature</h5>
+                <FeatureList sport={sport.slug} />
+                <h5>Shop By Brand</h5>
+
+                <PaddleBrandList
+                  brands={data.allStrapiBrand.nodes
+                    .filter((brand) => brand.retail.some((retail) => retail.sport.slug === sport.slug))
+                  }
+                  sport={sport.slug}
+                />
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
-        <div className="panel pelican">
+        <div className="panel pelican everest-padding-block">
           <div className="bag">
             {products.map((retail: PaddlePurchaseTypes) => (
               <Purchase key={retail.id} {...retail} />

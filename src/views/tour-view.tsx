@@ -57,7 +57,7 @@ interface TourViewTypes {
     };
 
     allStrapiMoonlightTourDateTime: {
-      nodes: { 
+      nodes: {
         id: React.Key;
         date: string;
         start: string;
@@ -251,48 +251,51 @@ const TourView = ({ data }: TourViewTypes) => {
 
             {data.strapiTour.slug === "moonlight" ? (
               <PaddleMoonlightDatesTimes
-              nodes={data.allStrapiMoonlightTourDateTime.nodes}
-            />
+                nodes={data.allStrapiMoonlightTourDateTime.nodes}
+              />
             ) : null}
           </section>
 
-          <LocationDeck
-            allStrapiLocation={{...data.allStrapiLocation}}
-          />
-
-          <h4>
-            <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
-              Compare the {data.strapiTour.name} to another tour.
-            </Link>
-          </h4>
         </div>
 
-        <Composition
-          sport={data.strapiTour.sport}
-          image={data.strapiTour?.compositionImage}
-        />
+        <div>
+          <Composition
+            sport={data.strapiTour.sport}
+            image={data.strapiTour?.compositionImage}
+          />
+
+          <hr />
+
+          <LocationDeck
+            allStrapiLocation={{ ...data.allStrapiLocation }}
+          />
+        </div>
       </main>
 
-<div className="panel">
-      <div className="albatross">
-        <hr />
-        <h3>
-          <Link to="/tours-lessons">Other Tours & Lessons</Link>
-        </h3>
-        <hr />
-      </div>
+      <div className="panel everest-padding-block">
+        <div className="albatross">
+          <h3>
+            <Link to="/tours-lessons">Other Tours & Lessons</Link>
+          </h3>
+        </div>
 
-      <section className="flight">
-        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
-          <PaddleTicket
-            key={tour.id}
-            {...tour}
-            tour_page="tours-lessons"
-            peek_tours_fall_back={data.strapiTour.branch.peek_tours}
-            allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
-          />
-        ))}
-      </section>
+        <section className="flight">
+          {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
+            <PaddleTicket
+              key={tour.id}
+              {...tour}
+              tour_page="tours-lessons"
+              peek_tours_fall_back={data.strapiTour.branch.peek_tours}
+              allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
+            />
+          ))}
+        </section>
+
+        <h4 className="albatross">
+          <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
+            Compare the {data.strapiTour.name} to another tour.
+          </Link>
+        </h4>
       </div>
 
       <Breadcrumbs>

@@ -50,9 +50,8 @@ const GroupPage = () => {
 
           </div>
 
-{/* // ! this is breaking something */}
-          {/* <Composition /> */}
         </main>
+          <Composition />
       </div>
 
       <Footer />

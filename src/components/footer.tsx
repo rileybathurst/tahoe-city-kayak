@@ -66,6 +66,7 @@ const Footer = () => {
   }
 
   const MenuPlus = [...MenuList,
+    {href: "/group", label: "Group"},
     {href: "/announcement", label: "Announcements"},
     ...data.allStrapiAnnouncement.nodes.map((announcement: {title: string, slug: string}) => (
       {href: `/announcement/${announcement.slug}`, label: announcement.title}
