@@ -11,8 +11,8 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import Composition from "../components/composition";
 import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+import SplitLayout from "../components/split-layout";
 
 type EverestToDenaliTypes = {
   blocks: BlocksContent;
@@ -41,33 +41,18 @@ type ParkingPageTypes = {
 const ParkingPage = ({ data }: ParkingPageTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
-      <div className="albatross wrap">
+      <SplitLayout content={
+        <React.Fragment>
+          <h1>Parking Information</h1>
 
-        <main>
-          <div className="condor">
-            <h1>Parking Information</h1>
-
-            <div className="">
-              <EverestToDenali
-                blocks={data.strapiParking.blocks}
-              />
-            </div>
-
-          </div>
-        </main>
-
-        {/* // TODO: this is starting to feel messy aka it needs to be put into a template */}
-        <div>
-          <div className="condor">
-            <Composition />
-          </div>
-        </div>
-      </div>
+          <EverestToDenali blocks={data.strapiParking.blocks} />
+        </React.Fragment>
+      } />
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

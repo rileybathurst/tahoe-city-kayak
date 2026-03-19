@@ -1,12 +1,28 @@
-// TOD: I started moving this to starpi but it needs some more thought
+// TODO: I started moving this to Strapi but it needs some more thought
 
 import * as React from "react"
-import { Link, Script } from "gatsby"
+import { Link } from "gatsby"
 import { SEO } from "../../components/seo";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+
+/* const data = () => {
+  const { allStrapiFaq } = useStaticQuery(graphql`
+    query {
+      allStrapiFaq {
+        nodes {
+          id
+          question
+          answer
+        }
+      }
+    }
+  `);
+
+  return allStrapiFaq;
+}; */
 
 const InformationPage = () => {
   return (

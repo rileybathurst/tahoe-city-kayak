@@ -1,13 +1,35 @@
 import * as React from "react"
-import { Script, Link } from 'gatsby';
+import { Script, Link, graphql, useStaticQuery } from 'gatsby';
 import { SEO } from "../../components/seo";
-import { useStrapiFaq } from "../../hooks/use-strapi-faq";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
+type allFaqTypes = {
+  data: {
+    allStrapiFaq: {
+      nodes: {
+        id: string;
+        question: string;
+        answer: string;
+      }[]
+    }
+  }
+}
 
-const FaqPage = () => {
+export const data = graphql`
+  query useStrapiFaq {
+    allStrapiFaq {
+      nodes {
+        id
+        question
+        answer
+      }
+    }
+  }
+`;
+
+const FaqPage = ({ data }: allFaqTypes) => {
 
   return (
     <>
@@ -20,7 +42,7 @@ const FaqPage = () => {
 
         <ul className="faq">
 
-          {useStrapiFaq().nodes.map((faq:
+          {data.allStrapiFaq.nodes.map((faq:
             {
               id: React.Key;
               question: string;
@@ -49,15 +71,12 @@ const FaqPage = () => {
 
 export default FaqPage
 
-export const Head = () => {
-
-  // console.log(useStrapiFaq);
+export const Head = ({data}: allFaqTypes) => {
 
   return (
     <SEO
       title='Frequently Asked Questions'
       description="Get answers to your questions about kayaking and paddleboarding in Lake Tahoe with Tahoe City Kayak and Paddleboards frequently asked questions page. Learn about our kayak and paddleboard rentals, sales, lessons, tours, and storage options."
-      // * 2024 version of breadcrumbs
       breadcrumbs={[
         {
           name: "About",
@@ -71,23 +90,23 @@ export const Head = () => {
     >
       <Script type="application/ld+json">
         {`
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              ${useStrapiFaq().nodes.map((faq: { question: string; answer: string; }) => (
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            ${data.allStrapiFaq.nodes.map((faq) => (
           `{
-                  "@type": "Question",
-                  "name": "${faq.question}",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "${faq.answer}"
-                  }
-                }`
+                "@type": "Question",
+                "name": "${faq.question}",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "${faq.answer}"
+                }
+              }`
         )).join(',')}
-            ]
-          }
-        `}
+          ]
+        }
+      `}
       </Script>
     </SEO>
   )

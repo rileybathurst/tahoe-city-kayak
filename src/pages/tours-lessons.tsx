@@ -45,7 +45,7 @@ const ToursLessonsPage = () => {
           }
         }
 
-        allStrapiLocation: allStrapiLocation(
+        allStrapiLocation(
           filter: {
             name: {in: ["On Water Rental", "Free Parking Lot"]}
             branch: {slug: {eq: "tahoe-city"}}

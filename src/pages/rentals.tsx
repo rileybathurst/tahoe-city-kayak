@@ -11,6 +11,7 @@ import BookNow from "../components/book-now";
 import Composition from "../components/composition";
 
 import LocationDeck from "../components/location-deck";
+import SplitLayout from "../components/split-layout";
 
 type RentalsPageTypes = {
   data: {
@@ -59,51 +60,43 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
         />
       </div>
 
-      <main className="albatross wrap">
-        <div>
-          <div className="condor">
-            <h1>Rentals</h1>
+      <SplitLayout content={
+        <React.Fragment>
+          <h1>Rentals</h1>
 
-            <LocationDeck
-              allStrapiLocation={{ ...data.allStrapiLocation }}
-            />
+          <LocationDeck
+            allStrapiLocation={{ ...data.allStrapiLocation }}
+          />
 
-            <h2>Commons Beach Rentals</h2>
-            <div className="react-markdown">
-              <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
-            </div>
-            <p><Link to="/about/faq">
-              Frequently Asked Questions about getting out on the water
-            </Link></p>
-
-            <BookNow />
-
-            <br />
-            <h3>{data.strapiMembership.title}</h3>
-            <p>{data.strapiMembership.excerpt}</p>
-
-            <BookNow
-              specificName="MEMBERSHIP"
-              specificLink={data.strapiBranch.peek_membership}
-            />
-
-            <h4>Paddler's 6-Pack Deal </h4>
-            <p><em>- Single Kayak or Paddleboard</em></p>
-            <p>{data.strapiMembership.six}</p>
-
-            <BookNow
-              specificName="SIX PACK"
-              specificLink={data.strapiBranch.peek_six_pack}
-            />
+          <h2>Commons Beach Rentals</h2>
+          <div className="react-markdown">
+            <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
           </div>
-        </div>
+          <p><Link to="/about/faq">
+            Frequently Asked Questions about getting out on the water
+          </Link></p>
 
-        <div>
-          <div className="condor">
-            <Composition />
-          </div>
-        </div>
-      </main>
+          <BookNow />
+
+          <br />
+          <h3>{data.strapiMembership.title}</h3>
+          <p>{data.strapiMembership.excerpt}</p>
+
+          <BookNow
+            specificName="MEMBERSHIP"
+            specificLink={data.strapiBranch.peek_membership}
+          />
+
+          <h4>Paddler's 6-Pack Deal </h4>
+          <p><em>- Single Kayak or Paddleboard</em></p>
+          <p>{data.strapiMembership.six}</p>
+
+          <BookNow
+            specificName="SIX PACK"
+            specificLink={data.strapiBranch.peek_six_pack}
+          />
+        </React.Fragment>
+      } />
 
       <Footer />
     </>

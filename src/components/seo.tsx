@@ -85,6 +85,9 @@ export const SEO = ({
     }
   `);
 
+
+    // TODO: allStrapiLocation is only pulling one this can have an alias to a strapiLocation
+
   return (
     <>
       <html lang="en" />
