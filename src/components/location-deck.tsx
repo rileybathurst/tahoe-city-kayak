@@ -47,10 +47,6 @@ const LocationDeck = ({ allStrapiLocation }: LocationDeckProps) => {
 
   console.log(data.allStrapiLocation.nodes);
 
-  const trueLocations = [
-    var delivery = true;
-  ]
-
   
 
   return (
@@ -64,3 +60,52 @@ const LocationDeck = ({ allStrapiLocation }: LocationDeckProps) => {
 }
 
 export default LocationDeck;
+
+
+
+const Display = () => {
+
+  return (
+  <div>
+    <h2>Hey</h2>
+  </div>
+  );
+}
+
+type SwitchTypes = {
+  one?: boolean;
+  two?: boolean;
+  three?: boolean;
+  all?: boolean;
+}
+const Switches = ({ one, two, three, all }: SwitchTypes) => {
+  return (
+    <>
+      {(one || all) && <Display />}
+      {(two || all) && <Display />}
+      {(three || all) && <Display />}
+    </>
+  );
+}
+
+// ! I think this logic can make it work
+const TestPage = () => {
+
+  return (
+    <main>
+      <h1>Boolean switches</h1>
+
+      <Switches
+        one={true}
+        two={true}
+        three={false}
+      />
+
+      <hr />
+
+      <Switches
+        all={true}
+      />
+    </main>
+  );
+};
