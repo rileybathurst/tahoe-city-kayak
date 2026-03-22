@@ -28,7 +28,7 @@ const ComparePage = () => {
         excerpt
         duration
 
-        compositionImage {
+        ogimage {
           localFile {
             childImageSharp {
               gatsbyImageData(
