@@ -45,17 +45,6 @@ const ToursLessonsPage = () => {
           }
         }
 
-        allStrapiLocation(
-          filter: {
-            name: {in: ["On Water Rental", "Free Parking Lot"]}
-            branch: {slug: {eq: "tahoe-city"}}
-          }
-        ) {
-          nodes {
-            ...locationCardFragment
-          }
-        }
-
         allStrapiSunsetTourTime(sort: {startDate: ASC}) {
           nodes {
             id
@@ -95,7 +84,8 @@ const ToursLessonsPage = () => {
         </div>
 
         <LocationDeck
-          allStrapiLocation={{...query.allStrapiLocation}}
+          water={true}
+          parking={true}
         />
         
       </main>

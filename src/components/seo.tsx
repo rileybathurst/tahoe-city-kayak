@@ -51,6 +51,7 @@ export const SEO = ({
         }
       }
 
+      # main locations 
       strapiLocation(
           name: {eq: "Retail Location"},
           branch: {slug: {eq: "tahoe-city"}}
@@ -61,6 +62,8 @@ export const SEO = ({
           postalCode
         }
 
+      # department locations
+      # currently only using one but if I put more this code is cleaner
       allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental"]},
@@ -84,9 +87,6 @@ export const SEO = ({
 
     }
   `);
-
-
-    // TODO: allStrapiLocation is only pulling one this can have an alias to a strapiLocation
 
   return (
     <>

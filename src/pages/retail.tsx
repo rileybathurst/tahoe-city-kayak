@@ -15,7 +15,7 @@ import LocationDeck from "../components/location-deck";
 
 import Markdown from "react-markdown";
 
-import  { PaddleBrandList, type PaddlePurchaseTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
+import { PaddleBrandList, type PaddlePurchaseTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -29,17 +29,6 @@ const RetailPage = () => {
     paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
         ...brandedFragment
-      }
-    }
-
-    allStrapiLocation(
-      filter: {
-        name: {eq: "Retail Location"}
-        branch: {slug: {eq: "tahoe-city"}}
-      }
-    ) {
-      nodes {
-        ...locationCardFragment
       }
     }
 
@@ -64,7 +53,7 @@ const RetailPage = () => {
           <Shop />
 
           <LocationDeck
-            allStrapiLocation={{ ...query.allStrapiLocation }}
+            retail={true}
           />
 
           <article className="pelican wrap">
@@ -77,18 +66,18 @@ const RetailPage = () => {
             </section>
           </article >
 
-            <section className="albatross">
+          <section className="albatross">
             <h3>Browse By Brand</h3>
             <PaddleBrandList
               brands={Array.from(
-              new Map(query.kayak.nodes
-              .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
-              .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-              .values()
+                new Map(query.kayak.nodes
+                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
+                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                  .values()
               ) as PaddleBrandListTypes[]}
               sport="kayak"
             />
-            </section>
+          </section>
         </div>
 
         <Composition
@@ -118,16 +107,16 @@ const RetailPage = () => {
           </h2>
           <h3 className="condensed">Browse By Feature</h3>
           <FeatureList sport="paddleboard" />
-            <h3>Browse By Brand</h3>
-            <PaddleBrandList
-              brands={Array.from(
-                new Map(query.paddleBoard.nodes
-                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
-                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                  .values()
-              ) as PaddleBrandListTypes[]}
-              sport="paddleboard"
-            />
+          <h3>Browse By Brand</h3>
+          <PaddleBrandList
+            brands={Array.from(
+              new Map(query.paddleBoard.nodes
+                .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
+                .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                .values()
+            ) as PaddleBrandListTypes[]}
+            sport="paddleboard"
+          />
         </section>
 
       </article>

@@ -83,10 +83,6 @@ interface TourViewTypes {
       nodes: PaddleTicketTypes[];
     };
 
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
-    };
-
     strapiBranch: {
       peek_tours: string;
     };
@@ -176,18 +172,6 @@ export const data = graphql`
       }
     }
 
-    allStrapiLocation(
-      filter: {
-        branch: {slug: {eq: "tahoe-city"}},
-        name: {in: ["On Water Rental", "Free Parking Lot"]}
-      },
-      sort: {order: ASC}
-    ) {
-      nodes {
-        ...locationCardFragment
-      }
-    }
-
   }
 `;
 
@@ -267,7 +251,8 @@ const TourView = ({ data }: TourViewTypes) => {
           <hr />
 
           <LocationDeck
-            allStrapiLocation={{ ...data.allStrapiLocation }}
+            water={true}
+            parking={true}
           />
         </div>
       </main>

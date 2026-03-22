@@ -15,16 +15,6 @@ import BookNow from "./book-now";
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
-      allStrapiLocation(
-        filter: {
-          branch: {slug: {eq: "tahoe-city"}}
-        },
-        sort: {order: ASC}
-      ) {
-        nodes {
-          ...locationCardFragment
-        }
-      }
 
       strapiBranch(slug: {eq: "tahoe-city"}) {
         name
@@ -140,7 +130,7 @@ const Footer = () => {
         <hr />
 
         <LocationDeck
-          allStrapiLocation={data.allStrapiLocation}
+          all={true}
         />
 
       </div>

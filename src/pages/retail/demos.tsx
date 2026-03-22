@@ -72,15 +72,6 @@ const DemosPage = () => {
         }
       }
 
-      allStrapiLocation(filter: {
-        branch: {slug: {eq: "tahoe-city"}},
-        name: {eq: "Retail Location"}
-      }) {
-        nodes {
-          ...locationCardFragment
-        }
-      }
-
       strapiDemo {
         text {
           data {
@@ -125,7 +116,7 @@ const DemosPage = () => {
         </main>
 
         <LocationDeck
-          allStrapiLocation={{...query.allStrapiLocation}}
+          retail={true}
         />
         
       </div>

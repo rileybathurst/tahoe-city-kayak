@@ -2,13 +2,12 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";
 
-import { PaddlePricingChart, type PaddleLocationTypes } from "@rileybathurst/paddle";
+import { PaddlePricingChart } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import BookNow from "../components/book-now";
-import Composition from "../components/composition";
 
 import LocationDeck from "../components/location-deck";
 import SplitLayout from "../components/split-layout";
@@ -24,9 +23,6 @@ type RentalsPageTypes = {
         fullDay: number;
         pedalAdd: number;
       }[];
-    };
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
     };
 
     strapiBranch: {
@@ -65,7 +61,8 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
           <h1>Rentals</h1>
 
           <LocationDeck
-            allStrapiLocation={{ ...data.allStrapiLocation }}
+            parking={true}
+            water={true}
           />
 
           <h2>Commons Beach Rentals</h2>
@@ -128,17 +125,6 @@ export const data = graphql`
         threeHour
         fullDay
         pedalAdd
-      }
-    }
-
-    allStrapiLocation(
-      filter: {
-        name: {in: ["On Water Rental", "Free Parking Lot"]}
-        branch: {slug: {eq: "tahoe-city"}}
-      }
-    ) {
-      nodes {
-        ...locationCardFragment
       }
     }
 

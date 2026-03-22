@@ -6,8 +6,6 @@ import {
   PaddleTicket,
   PaddleBrandList,
   type PaddleTicketTypes,
-  type PaddleLocationTypes,
-  type PaddleBrandListTypes,
   type PaddlePurchaseTypes
 } from "@rileybathurst/paddle";
 
@@ -30,9 +28,6 @@ import LocationDeck from "../components/location-deck";
 const IndexPage = () => {
 
   type indexTypes = {
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
-    };
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
     };
@@ -80,16 +75,6 @@ const IndexPage = () => {
 
   const data: indexTypes = useStaticQuery(graphql`
     query IndexQuery {
-      allStrapiLocation(
-        filter: {
-          branch: {slug: {eq: "tahoe-city"}}
-        },
-        sort: {order: ASC}
-      ) {
-        nodes {
-          ...locationCardFragment
-        }
-      }
 
       allStrapiTour(
         sort: {order: ASC}
@@ -220,7 +205,7 @@ const IndexPage = () => {
 
 
           <LocationDeck
-            allStrapiLocation={{ ...data.allStrapiLocation }}
+            all={true}
           />
 
           <div className="multi_button">

@@ -59,9 +59,6 @@ type BrandsViewTypes = {
     allStrapiRetail: {
       nodes: PaddlePurchaseTypes[];
     };
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
-    }  
   };
 };
 const BrandsView = ({ data }: BrandsViewTypes) => {
@@ -110,7 +107,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
         </section>
 
         <LocationDeck
-          allStrapiLocation={data.allStrapiLocation}
+          retail={true}
         />
       </main>
 
@@ -207,15 +204,6 @@ export const query = graphql`
           nodes {
           ...purchaseFragment
         series
-      }
-    }
-
-    allStrapiLocation(filter: {
-        branch: {slug: {eq: "tahoe-city"}},
-        name: {eq: "Retail Location"}
-      }) {
-      nodes {
-        ...locationCardFragment
       }
     }
 

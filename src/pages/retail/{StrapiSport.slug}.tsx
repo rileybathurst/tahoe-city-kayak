@@ -34,17 +34,6 @@ export const strapiSport = graphql`
       }
     }
 
-    allStrapiLocation(
-      filter: {
-        branch: {slug: {eq: "tahoe-city"}},
-        name: {eq: "Retail Location"}
-        }
-    ) {
-      nodes {
-        ...locationCardFragment
-      }
-    }
-
     allStrapiBrand {
       nodes {
         id
@@ -85,9 +74,6 @@ type retailSportTypes = {
         }
       }
     };
-    allStrapiLocation: {
-      nodes: PaddleLocationTypes[];
-    };
     allStrapiBrand: {
       nodes: PaddleBrandTypesWithTagline[];
     };
@@ -120,7 +106,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         </div>
 
         <LocationDeck
-          allStrapiLocation={{ ...data.allStrapiLocation }}
+          retail={true}
         />
 
         <FeatureList sport={data.strapiSport.slug} />
