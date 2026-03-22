@@ -38,7 +38,9 @@ function Dedupedbrands(props: DedupedbrandsProps) {
     <>
       {dedupedbrands.map((brand) => (
         <li key={brand.slug} className="capitalize">
-          <Link to={`/retail/${props.sport}/${brand.slug}`}>{brand.name}</Link>
+          <h3 className="kilimanjaro">
+            <Link to={`/retail/${props.sport}/${brand.slug}`}>{brand.name}</Link>
+          </h3>
         </li>
       ))}
     </>
@@ -125,12 +127,7 @@ const DemosPage = () => {
         <section key={sport}>
           <div className="albatross wrap">
             <div>
-              {sport === "kayak" && (
-                <>
-                  <h3>Demos</h3>
-                  <hr />
-                </>
-              )}
+              <hr />
               <h4>{title} from these brands</h4>
               <ul>
                 <Dedupedbrands
@@ -155,7 +152,8 @@ const DemosPage = () => {
       ))}
 
 
-      <div className="albatross aurora">
+      <div className="albatross panel">
+        {/* TODO: pricing chart on a panel needs border color updates */}
         <PaddlePricingChart
           rentalRates={query.allStrapiRentalRate}
         />

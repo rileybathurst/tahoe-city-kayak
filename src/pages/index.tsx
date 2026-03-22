@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 
 import {
   PaddleBookNow,
   PaddleTicket,
   PaddleBrandList,
+  PaddleTestimonial,
   type PaddleTicketTypes,
-  type PaddlePurchaseTypes
+  type PaddlePurchaseTypes,
+  type PaddleTestimonialTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -14,8 +17,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
 import Hero2025 from "../images/hero-2025";
-import WaterTexture from "../images/watertexture";
-import AndyPaddling from "../images/andypaddling";
 import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
@@ -28,6 +29,36 @@ import LocationDeck from "../components/location-deck";
 const IndexPage = () => {
 
   type indexTypes = {
+    hero2025: {
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+        alternativeText: string;
+      };
+    };
+    andy: {
+      title: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+      };
+    };
+    water: {
+      title: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+      };
+    };
     allStrapiTour: {
       nodes: PaddleTicketTypes[];
     };
@@ -71,10 +102,44 @@ const IndexPage = () => {
         }[];
       }[];
     };
+    strapiTestimonial: PaddleTestimonialTypes;
   }
 
   const data: indexTypes = useStaticQuery(graphql`
     query IndexQuery {
+
+      hero2025: strapiImagegrab(title: {eq: "hero2025"}) {
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+
+      andy: strapiImagegrab(title: {eq: "andy"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+
+      water: strapiImagegrab(title: {eq: "WaterTexture"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
 
       allStrapiTour(
         sort: {order: ASC}
@@ -138,6 +203,13 @@ const IndexPage = () => {
             lead
           }
         }
+      }
+
+      strapiTestimonial(branch: {slug: {eq: "tahoe-city"}}) {
+        testimonial
+        customer
+        sign
+        location
       }
     }
   `);
@@ -228,9 +300,22 @@ const IndexPage = () => {
         <div>
           {/* TODO: rename this hero after I've cleaned that up */}
           <div className="home__photo-grid">
-            <Hero2025 className="kayakers" />
-            <WaterTexture className="texture" />
-            <AndyPaddling className="andy" />
+            <GatsbyImage
+              image={data.hero2025.image.localFile.childImageSharp.gatsbyImageData}
+              alt={data.hero2025.image.alternativeText || "Hero Image 2025"}
+              className="img__wrapped kayakers"
+              objectPosition="center top"
+            />
+            <GatsbyImage
+              image={data.water.image?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={data.water.title}
+              className="img__wrapped texture"
+            />
+            <GatsbyImage
+              image={data.andy.image?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={data.andy.title}
+              className="img__wrapped andy"
+            />
           </div>
 
           <hr />
@@ -324,6 +409,14 @@ const IndexPage = () => {
           </div>
         </div>
       </section >
+
+      {/* // * specifically using a single here */}
+      <section className="denali-padding-block">
+        <ul className='pelican aconcagua-margin-block-end'>
+          {/* TODO: quotes need the spacing to be cleaned up */}
+          <PaddleTestimonial {...data.strapiTestimonial} />
+        </ul>
+      </section>
 
       <Footer />
     </React.Fragment>

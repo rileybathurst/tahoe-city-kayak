@@ -56,6 +56,13 @@ type ExtentdedPurchaseTypes = PaddlePurchaseTypes & {
 type RetailTypeViewProps = {
   data: {
     strapiRetail: RetailType;
+    strapiDemo: {
+      text: {
+        data: {
+          text: string;
+        };
+      };
+    };
     allStrapiRetail: {
       nodes: ExtentdedPurchaseTypes[];
     };
@@ -179,18 +186,15 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </Markdown>
       </div>
 
-      {/* // TODO: description to strapi */}
       {/* // TODO: pedal drive should be a query */}
       {data.strapiRetail.demo ? (
         <div className="single__book">
           <h3>Demo</h3>
-          <p>
-            If you&rsquo;re looking to try this particular{" "}
-            {data.strapiRetail.sport.slug}, call the shop and request a demo.
-            We&rsquo;ll charge you our rental fee*, but we will credit that fee
-            if you decide to purchase a boat or board from us in the same
-            season. &#x28;Up to two full days rental charge&#x29;
-          </p>
+          <div className="react-markdown">
+            <Markdown>
+              {data.strapiDemo.text.data.text}
+            </Markdown>
+          </div>
           <p>
             <Phone />
           </p>
@@ -370,6 +374,14 @@ export const query = graphql`
           }
         }
         alternativeText
+      }
+    }
+
+    strapiDemo {
+      text {
+        data {
+          text
+        }
       }
     }
 

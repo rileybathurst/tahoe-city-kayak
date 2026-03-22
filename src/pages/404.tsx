@@ -62,6 +62,7 @@ export const Head = ({ location, data }: NotFoundPageTypes) => {
 }
 
 // * strapi gatsby query is bad but this is the best we can do for now
+// TODO: I think this is trapi blocks
 export const data = graphql`
   query NotFoundPageQuery {
     strapiError {

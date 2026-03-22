@@ -67,10 +67,10 @@ const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
           /> : null}
         <div className="crest">
           <h1 className="supra">{data.strapiAnnouncement.title}</h1>
-          <p className="brow">Announcement</p>
+          <p className="brow">Announcement - {data.strapiAnnouncement.publishedAt}</p>
         </div>
 
-        {data.strapiAnnouncement.publishedAt}
+        
         {/* //TODO: do more with it */}
         {/* <Calendar {...strapiAnnouncement.calendar} /> */}
         <hr />

@@ -226,7 +226,7 @@ const TourView = ({ data }: TourViewTypes) => {
             <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
           ) : null}
 
-          <section className="single__description">
+          <section className="elbrus-margin-block">
             <div className="react-markdown ">
               <Markdown>
                 {data.strapiTour.information?.data?.information}

@@ -12,7 +12,7 @@ import BookNow from "../components/book-now";
 import LocationDeck from "../components/location-deck";
 import SplitLayout from "../components/split-layout";
 
-type RentalsPageTypes = {
+type MembershipPageTypes = {
   data: {
     allStrapiRentalRate: {
       nodes: {
@@ -43,39 +43,15 @@ type RentalsPageTypes = {
     };
   };
 };
-const RentalsPage = ({ data }: RentalsPageTypes) => {
-
-
+const MembershipPage = ({ data }: MembershipPageTypes) => {
   return (
     <>
       <Header />
 
-      <div className="albatross panel">
-        <PaddlePricingChart
-          rentalRates={data.allStrapiRentalRate}
-        />
-      </div>
-
       <SplitLayout content={
         <React.Fragment>
-          <h1>Rentals</h1>
+          <h1>Membership</h1>
 
-          <LocationDeck
-            parking={true}
-            water={true}
-          />
-
-          <h2>Commons Beach Rentals</h2>
-          <div className="react-markdown">
-            <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
-          </div>
-          <p><Link to="/about/faq">
-            Frequently Asked Questions about getting out on the water
-          </Link></p>
-
-          <BookNow />
-
-          <br />
           <h3>{data.strapiMembership.title}</h3>
           <p>{data.strapiMembership.excerpt}</p>
 
@@ -83,6 +59,8 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
             specificName="MEMBERSHIP"
             specificLink={data.strapiBranch.peek_membership}
           />
+
+          <hr />
 
           <h4>Paddler's 6-Pack Deal </h4>
           <p><em>- Single Kayak or Paddleboard</em></p>
@@ -100,9 +78,9 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
   );
 };
 
-export default RentalsPage;
+export default MembershipPage;
 
-export const Head = ({ data }: RentalsPageTypes) => {
+export const Head = ({ data }: MembershipPageTypes) => {
 
   return (
     <SEO

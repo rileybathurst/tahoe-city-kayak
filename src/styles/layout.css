@@ -6,13 +6,6 @@
 /* #SINGLES */
 /*------------------*/
 
-.single__description {
-  margin-block-start: var(--elbrus);
-  padding-block: var(--elbrus);
-  max-width: var(--pelican);
-  margin-inline: auto;
-}
-
 .single__book {
   max-width: var(--condor);
   margin-inline: auto;
