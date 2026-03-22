@@ -1,5 +1,3 @@
-// ! compare time is brokem i need a clear head
-
 import React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { SEO } from "../../components/seo";
