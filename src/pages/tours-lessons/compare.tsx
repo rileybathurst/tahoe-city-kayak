@@ -28,6 +28,16 @@ const ComparePage = () => {
         excerpt
         duration
 
+        compositionImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 400
+              )
+            }
+          }
+        }
+
         branch {
           name
         }
@@ -49,19 +59,18 @@ const ComparePage = () => {
         <h1>Compare</h1>
         <PaddleCompare
           tours={data.allStrapiTour.nodes}
+          breadcrumb="tours-lessons"
           strapiBranchName={data.strapiBranch.name}
           peek_base={data.strapiBranch.peek_base}
         />
       </main>
 
-      <div className="panel">
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/tours-lessons/">Tours &amp; Lessons</Link>
         </Breadcrumb>
         <Breadcrumb>Compare</Breadcrumb>
       </Breadcrumbs>
-      </div>
 
       <Footer />
     </>

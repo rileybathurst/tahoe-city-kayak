@@ -132,8 +132,6 @@ type RiverTypes = {
 };
 const TruckeeRiverPage = ({data}: {data: RiverTypes}) => {
 
-  console.log(data.strapiRiver)
-
   return (
     <>
       <Header />

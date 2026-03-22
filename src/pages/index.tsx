@@ -10,13 +10,13 @@ import {
   type PaddleTicketTypes,
   type PaddlePurchaseTypes,
   type PaddleTestimonialTypes,
+  type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import Hero2025 from "../images/hero-2025";
 import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
@@ -30,16 +30,9 @@ const IndexPage = () => {
 
   type indexTypes = {
     hero2025: {
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      image: PaddleGatsbyImageType
     };
-    andy: {
+    circle: {
       title: string;
       image: {
         localFile: {
@@ -119,7 +112,7 @@ const IndexPage = () => {
         }
       }
 
-      andy: strapiImagegrab(title: {eq: "andy"}) {
+      circle: strapiImagegrab(title: {eq: "sunset silhouette"}) {
         title
         image {
           localFile {
@@ -312,9 +305,9 @@ const IndexPage = () => {
               className="img__wrapped texture"
             />
             <GatsbyImage
-              image={data.andy.image?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={data.andy.title}
-              className="img__wrapped andy"
+              image={data.circle.image?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={data.circle.title}
+              className="img__wrapped circle"
             />
           </div>
 
