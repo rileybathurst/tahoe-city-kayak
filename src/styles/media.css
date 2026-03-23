@@ -40,14 +40,3 @@ footer {
   }
 }
 
-/*------------------*/
-/* #IMAGE */
-/*------------------*/
-
-.img__wrapped {
-  border: 1px solid white;
-
-  @media (prefers-color-scheme: dark) {
-    border: 1px solid var(--metal);
-  }
-}
