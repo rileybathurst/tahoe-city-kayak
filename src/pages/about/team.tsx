@@ -1,12 +1,11 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image';
 
 import { SEO } from "../../components/seo"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
-import ReactMarkdown from "react-markdown"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
+import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
 
 const TeamPage = () => {
 
@@ -15,7 +14,7 @@ const TeamPage = () => {
       allStrapiTeam(filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}}) {
         nodes {
           id
-          name
+          title: name
           slug
           bio {
             data {
@@ -23,7 +22,7 @@ const TeamPage = () => {
             }
           }
 
-          profile {
+          image: profile {
             localFile {
               childImageSharp {
                 gatsbyImageData
@@ -40,22 +39,13 @@ const TeamPage = () => {
     }
   `)
 
-  type teamTypes = {
-    id: string,
-    name: string,
+  type teamTypes = Omit<PaddleCardTypes, 'link' | 'excerpt'> & {
+    id: React.Key,
     slug: string,
     bio: {
       data: {
         bio: string
       }
-    }
-    profile: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData
-        }
-      }
-      alternativeText: string
     }
   }
 
@@ -68,27 +58,17 @@ const TeamPage = () => {
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
 
-        {data.allStrapiTeam.nodes.map((team: teamTypes) => (
-          <section key={team.id}>
-            {/* // TODO: stylize the iamge in Paddle */}
-            {team.profile ? <Link to={team.slug}>
-              <GatsbyImage
-                image={team.profile.localFile.childImageSharp.gatsbyImageData}
-                alt={team.profile.alternativeText}
-                className="img__wrapped"
-              />
-            </Link> : null}
-            <h2>
-              <Link to={team.slug}>
-                {team.name}
-              </Link>
-            </h2>
-            {/* // TODO: reviews about person */}
-            {team.bio ? <div className='react-markdown'><ReactMarkdown>{team.bio.data.bio}</ReactMarkdown></div> : null}
-            <hr />
-          </section >
-
-        ))}
+        <section className="deck">
+          {data.allStrapiTeam.nodes.map((team: teamTypes) => (
+            <PaddleCard
+              key={team.id}
+              link={`/about/team/${team.slug}`}
+              image={team.image}
+              title={team.title}
+              excerpt={team.bio.data.bio}
+            />
+          ))}
+        </section>
 
       </main>
       <Breadcrumbs>
