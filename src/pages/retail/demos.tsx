@@ -9,7 +9,7 @@ import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-import LocationDeck from "../../components/location-deck";
+import Locales from "../../components/locales";
 import { PaddlePricingChart, type PaddlePurchaseTypes } from "@rileybathurst/paddle";
 
 // I dont understand this but it works
@@ -108,7 +108,7 @@ const DemosPage = () => {
     <>
       <Header />
 
-      <div className="albatross wrap">
+      <div className="albatross">
         <main>
           <h1>Demos</h1>
           <div className="react-markdown">
@@ -117,15 +117,15 @@ const DemosPage = () => {
           <Phone />
         </main>
 
-        <LocationDeck
+        <Locales
           retail={true}
         />
-        
+
       </div>
 
       {sports.map(({ sport, nodes, title }) => (
         <section key={sport}>
-          <div className="albatross wrap">
+          <div className="albatross">
             <div>
               <hr />
               <h4>{title} from these brands</h4>
@@ -137,10 +137,9 @@ const DemosPage = () => {
               </ul>
             </div>
 
-            <Composition sport={sport} />
           </div>
 
-          <section className="bag">
+          <section className="deck">
             {nodes.map((item: PaddlePurchaseTypes) => (
               <Purchase
                 key={item.id}

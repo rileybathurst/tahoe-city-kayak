@@ -3,9 +3,9 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 // Paddle
 import {
-  PaddleLocationDeck,
-  PaddleTicket,
-  type PaddleTicketTypes,
+  PaddleLocales,
+  PaddleCard,
+  type PaddleCardTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -14,7 +14,7 @@ import Footer from "../components/footer";
 import BookNow from "../components/book-now";
 import Experience from "../content/experience";
 import Sport from "../components/sport";
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -71,7 +71,7 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
-      <main className="albatross wrap">
+      <main className="albatross">
         <div>
           <div className="condor">
             <h1>Tours &amp; Lessons</h1>
@@ -83,37 +83,37 @@ const ToursLessonsPage = () => {
           </div>
         </div>
 
-        <LocationDeck
+        <Locales
           water={true}
           parking={true}
         />
-        
+
       </main>
 
-<div className="panel everest-padding-block">
-      {sports.map((sport) => (
-        <section key={sport.nodes[0].id}>
-          <hgroup className="pelican">
-            <h1 className="capitalize">
-              <Sport sport={sport.nodes[0].sport} />
-            </h1>
-            <p className="aconcagua">Tours &amp; Lessons</p>
-          </hgroup>
+      <div className="panel everest-padding-block">
+        {sports.map((sport) => (
+          <section key={sport.nodes[0].id}>
+            <hgroup className="pelican">
+              <h1 className="capitalize">
+                <Sport sport={sport.nodes[0].sport} />
+              </h1>
+              <p className="aconcagua">Tours &amp; Lessons</p>
+            </hgroup>
 
-          <div className="flight">
-            {sport.nodes
-              .map((tour: PaddleTicketTypes) => (
-                <PaddleTicket
-                  key={tour.id}
-                  {...tour}
-                  tour_page="tours-lessons"
-                  peek_tours_fall_back={query.strapiBranch.peek_tours}
-                  allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
-                />
-              ))}
-          </div>
-        </section>
-      ))}
+            <div className="flight">
+              {sport.nodes
+                .map((tour: PaddleCardTypes) => (
+                  <PaddleCard
+                    key={tour.id}
+                    {...tour}
+                    link={`/tours-lessons/${tour.slug}`}
+                    peek_tours_fall_back={query.strapiBranch.peek_tours}
+                    allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
+                  />
+                ))}
+            </div>
+          </section>
+        ))}
       </div>
 
       <Footer />

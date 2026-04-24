@@ -3,7 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { PaddleTicket, type PaddleTicketTypes } from "@rileybathurst/paddle";
+import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
 
 function TourCatchAll({ params }: { params: { name: string } }) {
   const data = useStaticQuery(graphql`
@@ -53,8 +53,8 @@ function TourCatchAll({ params }: { params: { name: string } }) {
       </main>
 
       <section className="flight">
-        {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
-          <PaddleTicket
+        {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
+          <PaddleCard
             key={tour.id}
             {...tour}
             tour_page="tours-lessons"

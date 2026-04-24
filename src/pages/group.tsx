@@ -7,9 +7,6 @@ import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
 import Phone from "../components/phone";
 
-import Composition from "../components/composition";
-import SplitLayout from "../components/split-layout";
-
 type groupTypes = {
   strapiGroup: {
     text: {
@@ -36,20 +33,14 @@ const GroupPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <SplitLayout content={
-        <React.Fragment>
-            <h1>Group</h1>
+      <h1>Group</h1>
 
-            <div className="react-markdown">
-              <ReactMarkdown>
-                {data.strapiGroup.text.data.text}
-              </ReactMarkdown>
-              <Phone />
-            </div>
-
-        </React.Fragment>
-
-      }/>
+      <div className="react-markdown">
+        <ReactMarkdown>
+          {data.strapiGroup.text.data.text}
+        </ReactMarkdown>
+        <Phone />
+      </div>
 
       <Footer />
     </React.Fragment>
@@ -62,7 +53,7 @@ export const Head = () => {
   return (
     <SEO
       title='Group'
-      // TODO: description
+    // TODO: description
     />
   )
 }

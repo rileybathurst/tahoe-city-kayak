@@ -8,7 +8,6 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from 'react-markdown';
-import SplitLayout from "../../components/split-layout";
 import Phone from "../../components/phone";
 
 const PoliciesPage = () => {
@@ -44,25 +43,20 @@ const PoliciesPage = () => {
       <Header />
 
       {/* // TODO links to phone and online booking */}
+      <h1>Store Policies</h1>
+      {allStrapiPolicy.nodes.map((policy: PolicyTypes) => (
+        <article key={policy.id}>
+          <h2>{policy.title}</h2>
+          {policy.markdown ?
+            <ReactMarkdown>
+              {policy.markdown.data.markdown}
+            </ReactMarkdown>
+            : null}
+          <hr />
+        </article>
+      ))}
+      <Phone />
 
-      <SplitLayout content={
-        <>
-          <h1>Store Policies</h1>
-          {allStrapiPolicy.nodes.map((policy: PolicyTypes) => (
-            <article key={policy.id}>
-              <h2>{policy.title}</h2>
-              {policy.markdown ?
-                <ReactMarkdown>
-                  {policy.markdown.data.markdown}
-                </ReactMarkdown>
-                : null}
-              <hr />
-            </article>
-          ))}
-          <Phone />
-        </>
-      }
-      />
 
       <div className="panel">
         <Breadcrumbs>

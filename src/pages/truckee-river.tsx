@@ -130,13 +130,13 @@ type RiverTypes = {
     equipment: PaddleGatsbyImageType[];
   };
 };
-const TruckeeRiverPage = ({data}: {data: RiverTypes}) => {
+const TruckeeRiverPage = ({ data }: { data: RiverTypes }) => {
 
   return (
     <>
       <Header />
 
-      <main className="albatross wrap">
+      <main className="albatross">
         <div>
           <section className="condor">
             <h1>{data.strapiRiver.title}</h1>
@@ -172,7 +172,7 @@ type TruckeeRiverHeadTypes = {
     excerpt: string;
   };
 };
-export const Head = ({data}: {data: TruckeeRiverHeadTypes}) => {
+export const Head = ({ data }: { data: TruckeeRiverHeadTypes }) => {
   return (
     <SEO
       title={data.strapiRiver.title}

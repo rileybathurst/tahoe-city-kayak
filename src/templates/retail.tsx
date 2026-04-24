@@ -12,7 +12,7 @@ import Phone from "../components/phone";
 import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
-import { 
+import {
   PaddleSpecs,
   PaddleTextureBackgrounds,
   type PaddleGatsbyImageType,
@@ -203,48 +203,48 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
       {/* kayak/kokopelli has only one needs a better */}
       <div className="panel">
-      {data.allStrapiRetail.nodes.length > 0 ? (
-        <article>
-          <section className="condor">
-            <h2>
-              Other <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
-              <span className="capitalize">{data.strapiRetail.brand.name}</span>
-            </h2>
-          </section>
-          <section className="bag">
-            {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
-              <Purchase key={retail.id} {...retail} />
-            ))}
-          </section>
+        {data.allStrapiRetail.nodes.length > 0 ? (
+          <article>
+            <section className="condor">
+              <h2>
+                Other <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
+                <span className="capitalize">{data.strapiRetail.brand.name}</span>
+              </h2>
+            </section>
+            <section className="deck">
+              {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
+                <Purchase key={retail.id} {...retail} />
+              ))}
+            </section>
+            <section className="condor">
+              <h3>
+                <Link
+                  to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
+                >
+                  More <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
+                  <span className="capitalize">
+                    {data.strapiRetail.brand.name}
+                  </span>
+                </Link>
+              </h3>
+            </section>
+          </article>
+        ) : (
           <section className="condor">
             <h3>
-              <Link
-                to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
-              >
-                More <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
-                <span className="capitalize">
-                  {data.strapiRetail.brand.name}
-                </span>
+              <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
+                Browse other <Sport sport={data.strapiRetail.sport.slug} />s
               </Link>
             </h3>
           </section>
-        </article>
-      ) : (
-        <section className="condor">
-          <h3>
-            <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
-              Browse other <Sport sport={data.strapiRetail.sport.slug} />s
-            </Link>
-          </h3>
-        </section>
-      )}
+        )}
       </div>
 
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/retail/">Retail</Link>
         </Breadcrumb>
-        
+
         <Breadcrumb>
           <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
             <Sport sport={data.strapiRetail.sport.slug} />

@@ -16,11 +16,7 @@ const TeamPage = () => {
           id
           title: name
           slug
-          bio {
-            data {
-              bio
-            }
-          }
+          excerpt
 
           image: profile {
             localFile {
@@ -39,14 +35,8 @@ const TeamPage = () => {
     }
   `)
 
-  type teamTypes = Omit<PaddleCardTypes, 'link' | 'excerpt'> & {
-    id: React.Key,
+  type teamTypes = Omit<PaddleCardTypes, 'link'> & {
     slug: string,
-    bio: {
-      data: {
-        bio: string
-      }
-    }
   }
 
   return (
@@ -65,7 +55,7 @@ const TeamPage = () => {
               link={`/about/team/${team.slug}`}
               image={team.image}
               title={team.title}
-              excerpt={team.bio.data.bio}
+              excerpt={team.excerpt}
             />
           ))}
         </section>
@@ -87,6 +77,7 @@ export const Head = () => {
   return (
     <SEO
       title='Team'
+    // TODO:
     // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
     />
   )

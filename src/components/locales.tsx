@@ -2,7 +2,7 @@ import * as React from "react";
 import { PaddleLocales } from "@rileybathurst/paddle";
 import { graphql, useStaticQuery } from "gatsby";
 
-type LocalesTypes = {
+type locationDeckTypes = {
   all?: boolean;
   delivery?: boolean;
   parking?: boolean;
@@ -10,9 +10,9 @@ type LocalesTypes = {
   water?: boolean;
 };
 
-const Locales = ({ all, delivery, parking, retail, water }: LocalesTypes) => {
+const Locales = ({ all, delivery, parking, retail, water }: locationDeckTypes) => {
   const data = useStaticQuery(graphql`
-    query LocalesQuery {
+    query locationDeckQuery {
       strapiBranch(slug: {eq: "tahoe-city"}) {
         name
         season_start

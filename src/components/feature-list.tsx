@@ -122,14 +122,14 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
     } */
 
   return (
-    <ul className='features'>
+    <ul className=''>
       {FeatureArray.map((feature: string) => (
         data.allStrapiAttribute.nodes
           .filter((attribute: AttributeNode) => attribute.slug === feature)
           .map((attribute: AttributeNode) => (
             <li key={attribute.id}>
               <Link to={`/retail/attribute/${sport}/${attribute.slug}`}>
-                {attribute.name}
+                {attribute.name} {sport}s
               </Link>
             </li>
           ))

@@ -5,7 +5,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import type {  PaddlePurchaseTypes, PaddleLocationTypes } from "@rileybathurst/paddle";
+import type { PaddlePurchaseTypes, PaddleLocationTypes } from "@rileybathurst/paddle";
 
 type PaddlePurchaseTypesWithSeries = PaddlePurchaseTypes & {
   series?: string | null;
@@ -18,7 +18,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Purchase from "../components/purchase";
 import SVG from 'react-inlinesvg';
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
 
 // TODO: get rid of props
 /* function Series(props: {
@@ -74,7 +74,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
       <Header />
 
       {/* // TODO: needs to be wider but not let the text get too long */}
-      <main className="pelican wrap">
+      <main className="pelican">
         <section>
           {/* // TODO: logo size */}
           <div className="logo">
@@ -86,7 +86,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
           </div>
           <p>{data.brand.tagline}.</p>
           <hr />
-          
+
           {/* // TODO: needs slide that I have in other places */}
           {seriesArray.length > 0
             ? seriesArray.map((series) => (
@@ -106,7 +106,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
             : null}
         </section>
 
-        <LocationDeck
+        <Locales
           retail={true}
         />
       </main>
@@ -130,7 +130,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
               ) : null}
             </section>
 
-            <div className="bag" key={series}>
+            <div className="deck" key={series}>
               {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
                 .filter((retail) => retail.series === series)
                 .map((retail) => (
@@ -143,7 +143,7 @@ const BrandsView = ({ data }: BrandsViewTypes) => {
 
       <hr className="pelican" />
 
-      <section className="bag">
+      <section className="deck">
         {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
           .filter((retail) => retail.series === null)
           .map((retail) => (

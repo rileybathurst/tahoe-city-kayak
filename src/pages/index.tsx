@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
-
+import SVG from 'react-inlinesvg';
 import {
   PaddleBookNow,
-  PaddleTicket,
+  PaddleCard,
   PaddleBrandList,
   PaddleTestimonial,
-  type PaddleTicketTypes,
+  PaddleHero,
+  type PaddleCardTypes as OriginalPaddleCardTypes,
   type PaddlePurchaseTypes,
   type PaddleTestimonialTypes,
   type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
+
+// Local type with ogImage instead of image
+type PaddleCardTypes = Omit<OriginalPaddleCardTypes, 'image'> & {
+  ogImage: PaddleGatsbyImageType;
+};
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -24,36 +30,17 @@ import Shop from "../content/shop";
 import Experience from "../content/experience";
 import Purchase from "../components/purchase";
 import ReactMarkdown from "react-markdown";
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
+// import { Hero } from "../components/hero";
 
 const IndexPage = () => {
 
   type indexTypes = {
-    hero2025: {
+    strapiImagegrab: {
       image: PaddleGatsbyImageType
     };
-    circle: {
-      title: string;
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-      };
-    };
-    water: {
-      title: string;
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-      };
-    };
     allStrapiTour: {
-      nodes: PaddleTicketTypes[];
+      nodes: PaddleCardTypes[];
     };
     allStrapiSunsetTourTime: {
       nodes: {
@@ -101,7 +88,7 @@ const IndexPage = () => {
   const data: indexTypes = useStaticQuery(graphql`
     query IndexQuery {
 
-      hero2025: strapiImagegrab(title: {eq: "hero2025"}) {
+      strapiImagegrab(title: {eq: "hero2025"}) {
         image {
           localFile {
             childImageSharp {
@@ -112,44 +99,12 @@ const IndexPage = () => {
         }
       }
 
-      circle: strapiImagegrab(title: {eq: "sunset silhouette"}) {
-        title
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-
-      water: strapiImagegrab(title: {eq: "WaterTexture"}) {
-        title
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-
       allStrapiTour(
         sort: {order: ASC}
         filter: {branch: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
-          ...ticketFragment
-        }
-      }
-
-      allStrapiSunsetTourTime(sort: {startDate: ASC}) {
-        nodes {
-          id
-          endDate
-          endTime
-          startDate
-          startTime
+          ...cardTourFragment
         }
       }
 
@@ -249,97 +204,83 @@ const IndexPage = () => {
     { slug: "paddleboard", label: "Paddleboards" },
   ] as const;
 
+  // console.log(data.strapiImagegrab.image.localFile.childImageSharp.gatsbyImageData);
+
   return (
     <React.Fragment>
       <Header />
-      <main className="home">
-        <section>
-          {data.strapiBranch.lead ? (
+      <main className="albatross">
+
+        <PaddleHero
+          image={data.strapiImagegrab.image}
+          overlay={<Locales />}
+        />
+
+        <PricingChart />
+
+
+        <div className='pelican'>
+          <div className="margin-block-end-aconcagua">
             <h2 className="denali">
-              <div className="react-markdown">
-                <ReactMarkdown>
-                  {data.strapiBranch.lead.data.lead}
-                </ReactMarkdown>
-              </div>
+              <ReactMarkdown>
+                {data.strapiBranch.lead.data.lead}
+              </ReactMarkdown>
             </h2>
-          ) : null}
-
-          <div className="aconcagua-margin-block-end">
-            <AboutUs />
+            <div className="react-markdown">
+              <AboutUs />
+            </div>
           </div>
+        </div>
 
-
-          <LocationDeck
-            all={true}
+        <div className="pelican multi_button">
+          <PaddleBookNow
+            peek_base={data.strapiBranch.peek_base}
+            strapiBranchName={data.strapiBranch.name}
+            specificName='rentals'
+            specificLink={data.strapiBranch.peek_rentals}
           />
 
-          <div className="multi_button">
-            <PaddleBookNow
-              peek_base={data.strapiBranch.peek_base}
-              strapiBranchName={data.strapiBranch.name}
-              specificName='rentals'
-              specificLink={data.strapiBranch.peek_rentals}
-            />
-
-            <PaddleBookNow
-              peek_base={data.strapiBranch.peek_base}
-              strapiBranchName={data.strapiBranch.name}
-              specificName='tours'
-              specificLink={data.strapiBranch.peek_tours}
-            />
-          </div>
-        </section>
-
-        <div>
-          {/* TODO: rename this hero after I've cleaned that up */}
-          <div className="home__photo-grid">
-            <GatsbyImage
-              image={data.hero2025.image.localFile.childImageSharp.gatsbyImageData}
-              alt={data.hero2025.image.alternativeText || "Hero Image 2025"}
-              className="img__wrapped kayakers"
-              objectPosition="center top"
-            />
-            <GatsbyImage
-              image={data.water.image?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={data.water.title}
-              className="img__wrapped texture"
-            />
-            <GatsbyImage
-              image={data.circle.image?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={data.circle.title}
-              className="img__wrapped circle"
-            />
-          </div>
-
-          <hr />
-
-          <PricingChart />
+          <PaddleBookNow
+            peek_base={data.strapiBranch.peek_base}
+            strapiBranchName={data.strapiBranch.name}
+            specificName='tours'
+            specificLink={data.strapiBranch.peek_tours}
+          />
         </div>
-      </main>
+
+      </main >
 
       <section
         id="tours-lessons"
         className="panel aconcagua-padding-block-end"
       >
         <div className='condor aconcagua-padding-block'>
-          <h2>
-            <Link to="/tours-lessons">Tours &amp; Lessons</Link>
-          </h2>
+          <h3 className="font-serif">
+            <Link to="/tours-lessons">Let Us Be Your Guide to Tahoe Adventure</Link>
+          </h3>
           <Experience />
         </div>
 
-        <div className="flight">
+        {/* // ! this is where I got to working in paddle to make one card */}
+        {/* <div className="deck">
           {sortedList
-            .map((tour: PaddleTicketTypes) => (
-              <PaddleTicket
-                key={tour.id}
-                {...tour}
-                tour_page="tours-lessons"
-                peek_tours_fall_back={data.strapiBranch.peek_tours}
-                allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
-              />
-            ))}
-        </div>
+            .map((tour) => {
+              return (
+                <PaddleCard
+                  key={tour.id}
+                  title={tour.name}
+                  link={`/tours-lessons/${tour.slug}`}
+                  image={tour.ogimage}
+                  excerpt={tour.excerpt}
+                  paddleBookNow={{
+                    peek_base: data.strapiBranch.peek_base,
+                    strapiBranchName: data.strapiBranch.name,
+                    specificLink: tour.peek,
+                  }}
+                />
+              );
+            })}
+        </div> */}
         <div className="condor aconcagua-padding-block-end">
           {hasMore ? (
             <button onClick={handleLoadMore} type="button">
@@ -358,53 +299,72 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="albatross wrap kilimanjaro-block-end">
-        <div>
-          <div className="pelican">
+      <section id="retail" className="albatross kilimanjaro-block-end">
+        <div className="pelican">
 
-            <h3 className="aconcagua">
-              <Link to="/retail">
-                Retail Store
-              </Link>
-            </h3>
+          <h3 className="aconcagua">
+            <Link to="/retail">
+              Retail Store
+            </Link>
+          </h3>
 
-            <Shop />
+          <Shop />
 
-            <hr />
+          <hr />
 
-            {retailSports.map((sport, index) => (
-              <React.Fragment key={sport.slug}>
-                {index > 0 ? <hr /> : null}
+          {/*           {retailSports.map((sport, index) => (
+            <React.Fragment key={sport.slug}>
+              {index > 0 ? <hr /> : null}
 
-                <h4>
-                  <Link to={`/retail/${sport.slug}`}>Shop All {sport.label}</Link>
-                </h4>
-                <h5>Shop By Feature</h5>
-                <FeatureList sport={sport.slug} />
-                <h5>Shop By Brand</h5>
+              <h4>
+                <Link to={`/retail/${sport.slug}`}>Shop All {sport.label}</Link>
+              </h4>
+              // <h5>Shop By Feature</h5>
+          <FeatureList sport={sport.slug} />
+        </React.Fragment>
+          ))} */}
 
-                <PaddleBrandList
-                  brands={data.allStrapiBrand.nodes
-                    .filter((brand) => brand.retail.some((retail) => retail.sport.slug === sport.slug))
-                  }
-                  sport={sport.slug}
-                />
-              </React.Fragment>
-            ))}
-          </div>
         </div>
 
-        <div className="panel pelican everest-padding-block">
-          <div className="bag">
-            {products.map((retail: PaddlePurchaseTypes) => (
-              <Purchase key={retail.id} {...retail} />
+
+        <ul className='albatross brand_list'>
+          {data.allStrapiBrand.nodes
+            .filter(brand => brand.retail.some((item) => retailSports.some(sport => sport.slug === item.sport.slug)))
+            .map((brand: PaddleBrandListTypes) => {
+              const sportSlug = brand.retail.some(item => item.sport.slug === 'kayak') ? 'kayak' : 'paddleboard';
+              return (
+                <li key={brand.id}>
+                  <Link to={`/retail/${sportSlug}/${brand.slug}`}
+                    className='button'
+                  >
+                    {brand.svg &&
+                      <SVG src={brand.svg} />
+                    }
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+
+
+
+        <div className="everest-padding-block">
+          <div className="deck">
+            {products.map((retail: PaddleCardRetailTypes) => (
+              <PaddleCard
+                key={retail.id}
+                link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                title={retail.title}
+                image={retail.cutout}
+                excerpt={retail.excerpt}
+              />
             ))}
           </div>
         </div>
       </section >
 
       {/* // * specifically using a single here */}
-      <section className="denali-padding-block">
+      <section className="panel denali-padding-block">
         <ul className='pelican aconcagua-margin-block-end'>
           {/* TODO: quotes need the spacing to be cleaned up */}
           <PaddleTestimonial {...data.strapiTestimonial} />
@@ -412,7 +372,7 @@ const IndexPage = () => {
       </section>
 
       <Footer />
-    </React.Fragment>
+    </React.Fragment >
   );
 };
 

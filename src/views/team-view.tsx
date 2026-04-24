@@ -5,6 +5,8 @@ import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
 import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+// import { Hero } from "../components/hero";
+import { SEO } from "../components/seo";
 
 export const data = graphql`
   query TeamViewQuery($slug: String!) {
@@ -14,6 +16,7 @@ export const data = graphql`
     ) {
       id
       name
+      slug
       bio {
         data {
           bio
@@ -35,6 +38,7 @@ type TeamViewTypes = {
   data: {
     strapiTeam: {
       name: string,
+      slug: string,
       bio: {
         data: {
           bio: string
@@ -56,6 +60,8 @@ const TeamView = ({ data }: TeamViewTypes) => {
   return (
     <>
       <Header />
+      {/* // TODO: */}
+      {/* <PaddleHero /> */}
 
       <div className="pelican aconcagua-block-end">
         {data.strapiTeam.profile ? <GatsbyImage
@@ -85,15 +91,16 @@ const TeamView = ({ data }: TeamViewTypes) => {
 
 export default TeamView;
 
-/* export const Head = ({ data }) => {
+export const Head = ({ data }: TeamViewTypes) => {
   return (
     <SEO
-      title={data.strapiTour.name}
-      description={data.strapiTour.excerpt}
-    breadcrumbs={[
-            { name: "Tours & Lessons", path: "/tours-lessons" },
-            { name: data.strapiTour.name, path: `/tours-lessons/${data.strapiTour.slug}` }
-          ]}
+      title={data.strapiTeam.name}
+      description={data.strapiTeam.bio.data.bio}
+      breadcrumbs={[
+        { name: "About", item: "/about" },
+        { name: "Team", item: "/about/team" },
+        { name: data.strapiTeam.name, item: `/about/team/${data.strapiTeam.slug}` }
+      ]}
     />
   );
-} */
+}

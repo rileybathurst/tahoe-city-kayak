@@ -5,9 +5,7 @@ import { SEO } from "../components/seo";
 import Phone from "../components/phone";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Composition from "../components/composition";
 import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
-import SplitLayout from "../components/split-layout";
 
 const DeliveryPage = () => {
 
@@ -56,31 +54,28 @@ const DeliveryPage = () => {
     <React.Fragment>
       <Header />
 
-      <SplitLayout content={
-        <>
-          <h1>Delivery</h1>
-          <div className="react-markdown">
+      <h1>Delivery</h1>
+      <div className="react-markdown">
 
-            {/* // * by default this pulls phone links out */}
-            <ReactMarkdown
-              urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
-            >
-              {phoneAndEmailLinks}
-            </ReactMarkdown>
-          </div>
+        {/* // * by default this pulls phone links out */}
+        <ReactMarkdown
+          urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
+        >
+          {phoneAndEmailLinks}
+        </ReactMarkdown>
+      </div>
 
-          <div className="multi_button">
-            <Phone />
-            <a
-              href={`mailto:${data.strapiBranch.email}`}
-              rel="noreferrer noopener"
-              className="button"
-            >
-              {data.strapiBranch.email}
-            </a>
-          </div>
-        </>
-      } />
+      <div className="multi_button">
+        <Phone />
+        <a
+          href={`mailto:${data.strapiBranch.email}`}
+          rel="noreferrer noopener"
+          className="button"
+        >
+          {data.strapiBranch.email}
+        </a>
+      </div>
+
 
       <Footer />
     </React.Fragment>

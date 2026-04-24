@@ -4,6 +4,8 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
+import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";
@@ -11,7 +13,7 @@ import Composition from "../components/composition";
 import Shop from "../content/shop";
 
 import Purchase from "../components/purchase";
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
 
 import Markdown from "react-markdown";
 
@@ -33,12 +35,23 @@ const RetailPage = () => {
     }
 
     strapiDemo {
-        text {
-          data {
-            text
-          }
+      text {
+        data {
+          text
         }
       }
+    }
+
+    strapiImagegrab(title: {eq: "hero2025"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(aspectRatio: 1)
+          }
+        }
+        alternativeText
+      }
+    }
 
   }
 `);
@@ -47,16 +60,21 @@ const RetailPage = () => {
     <>
       <Header />
 
-      <main className="albatross wrap">
+      <PaddleHero
+        image={query.strapiImagegrab.image}
+        overlay={<Locales
+          retail={true}
+        />}
+      />
+
+      <main className="albatross">
         <div>
           <h1>Retail</h1>
           <Shop />
 
-          <LocationDeck
-            retail={true}
-          />
 
-          <article className="pelican wrap">
+
+          <article className="pelican">
             <section className="blocked">
               <h2>
                 <Link to="/retail/kayak">Kayaks</Link>
@@ -80,12 +98,9 @@ const RetailPage = () => {
           </section>
         </div>
 
-        <Composition
-          sport="kayak"
-        />
       </main>
 
-      <section className="bag">
+      <section className="deck">
         {query.kayak.nodes.map((kayak: PaddlePurchaseTypes) => (
           <Purchase
             key={kayak.id}
@@ -100,7 +115,7 @@ const RetailPage = () => {
 
       <hr className="albatross" />
 
-      <article className="albatross wrap">
+      <article className="albatross">
         <section className="">
           <h2>
             <Link to="/retail/paddleboard">Stand Up Paddle boards (SUPs)</Link>
@@ -121,7 +136,7 @@ const RetailPage = () => {
 
       </article>
 
-      <section className="bag">
+      <section className="deck">
         {query.paddleBoard.nodes.map((sup: PaddlePurchaseTypes) => (
           <Purchase key={sup.id} {...sup} />
         ))}

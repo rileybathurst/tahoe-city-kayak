@@ -2,11 +2,12 @@
 /* #TAHOE CITY KAYAK */
 /*------------------*/
 
+/* TODO: I really dont think there should be anything in here */
+
 @import "layout";
 @import "media";
 
 /* pages */
-@import "pages/home";
 @import "pages/tours";
 @import "pages/retail";
 

@@ -23,7 +23,7 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
           </ReactMarkdown>
         </main>
 
-        <section className="bag">
+        <section className="deck">
           {allStrapiRetail.nodes.map((retail) => (
             <Purchase
               key={retail.id}

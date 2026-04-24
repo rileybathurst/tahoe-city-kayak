@@ -11,7 +11,7 @@ import Purchase from "../../components/purchase";
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
 import SVG from 'react-inlinesvg';
-import LocationDeck from "../../components/location-deck";
+import Locales from "../../components/locales";
 import {
   PaddleBrandList,
   type PaddleLocationTypes,
@@ -105,7 +105,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
           </Markdown>
         </div>
 
-        <LocationDeck
+        <Locales
           retail={true}
         />
 

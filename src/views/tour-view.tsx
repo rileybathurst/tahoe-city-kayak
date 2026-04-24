@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import {
-  PaddleTicket,
-  type PaddleTicketTypes,
+  PaddleCard,
+  type PaddleCardTypes,
   PaddleTime,
   PaddleSunsetTourTimes,
   PaddleSpecs,
@@ -19,7 +19,7 @@ import Footer from "../components/footer";
 import Composition from "../components/composition";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
-import LocationDeck from "../components/location-deck";
+import Locales from "../components/locales";
 
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
@@ -80,7 +80,7 @@ interface TourViewTypes {
     };
 
     allStrapiTour: {
-      nodes: PaddleTicketTypes[];
+      nodes: PaddleCardTypes[];
     };
 
     strapiBranch: {
@@ -193,7 +193,7 @@ const TourView = ({ data }: TourViewTypes) => {
     <>
       <Header />
 
-      <main className="albatross wrap">
+      <main className="albatross">
         <div>
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
@@ -243,14 +243,10 @@ const TourView = ({ data }: TourViewTypes) => {
         </div>
 
         <div>
-          <Composition
-            sport={data.strapiTour.sport}
-            image={data.strapiTour?.compositionImage}
-          />
 
           <hr />
 
-          <LocationDeck
+          <Locales
             water={true}
             parking={true}
           />
@@ -265,8 +261,8 @@ const TourView = ({ data }: TourViewTypes) => {
         </div>
 
         <section className="flight">
-          {data.allStrapiTour.nodes.map((tour: PaddleTicketTypes) => (
-            <PaddleTicket
+          {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
+            <PaddleCard
               key={tour.id}
               {...tour}
               tour_page="tours-lessons"

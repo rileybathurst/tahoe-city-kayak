@@ -20,7 +20,7 @@
     box-shadow: 0 0 0 100vmax var(--navy-200);
   }
 
-  > * {
+  >* {
     margin-inline: calc(var(--elbrus) / 2);
   }
 
@@ -40,93 +40,6 @@
 
   .h_title {
     order: 2;
-  }
-}
-
-/*------------------*/
-/* #FOOTER */
-/*------------------*/
-
-footer {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-
-  padding-block-start: 1.5rem;
-  padding-inline: var(--elbrus);
-
-  > * {
-    flex: 1 1 20rem;
-    border-block-end: 1px solid var(--kingly-cloud);
-
-    @media (prefers-color-scheme: dark) {
-      border-block-end-color: var(--navy-300);
-    }
-  }
-
-  .logo-link {
-    display: inline-block;
-    transition: var(--fade);
-
-    .gatsby-image-wrapper {
-      margin-block-end: var(--elbrus);
-    }
-  }
-
-  .logo-link:where(:hover, :focus) {
-    filter: brightness(0.5);
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    margin-block-end: var(--elbrus);
-  }
-
-  .copy {
-    font-size: 1rem;
-    margin-block-end: var(--elbrus);
-  }
-
-  nav {
-    margin: 0;
-    padding: 0;
-
-    ul {
-      margin: 0;
-      padding-block-start: 0;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-  }
-
-  hr {
-    margin-block-end: var(--elbrus);
-  }
-
-  .book-now {
-    border-block-end: 1px solid var(--ruby-100);
-  }
-
-  .footer__contact {
-    p {
-      margin-block-end: var(--elbrus);
-    }
-  }
-}
-
-.social {
-  display: flex;
-  gap: 1rem;
-  margin-block: var(--elbrus);
-
-  @media (min-width: 40rem) {
-    margin-block-end: 2.5rem;
-  }
-
-  svg {
-    height: 2.5rem;
-    max-width: 2.5rem;
   }
 }
 
@@ -172,7 +85,7 @@ footer {
   display: grid;
   /* grid-template-rows: 10rem auto auto; */
 
-  > * {
+  >* {
     grid-row: 1;
     grid-column: 1;
   }
@@ -228,7 +141,7 @@ footer {
 .card-collage {
   display: grid;
 
-  > * {
+  >* {
     grid-row: 1;
     grid-column: 1;
   }
@@ -251,7 +164,8 @@ footer {
     object-fit: contain;
     place-self: center;
     /* box-shadow: var(--umbra); */
-    z-index: 2; /* TODO: variable */
+    z-index: 2;
+    /* TODO: variable */
     grid-row: 1/1;
     filter: drop-shadow(5px 5px 5px var(--black-out));
     aspect-ratio: 16/9;
@@ -259,12 +173,15 @@ footer {
   }
 
   .card__placeholder {
-    max-height: 20rem !important; /* I can probably get around this once its built out */
+    max-height: 20rem !important;
+    /* I can probably get around this once its built out */
   }
 
   svg {
-    z-index: 1; /* TODO: variable */
-    max-height: 100%; /* overwrite the default */
+    z-index: 1;
+    /* TODO: variable */
+    max-height: 100%;
+    /* overwrite the default */
     margin: calc(var(--elbrus) / 2);
     width: calc(100% - var(--elbrus));
     stroke: whitesmoke;
@@ -309,7 +226,8 @@ footer {
 
 .comparesheet_select {
   z-index: var(--emergent);
-  max-width: calc(50vw - 2.25rem); /* guess and check */
+  max-width: calc(50vw - 2.25rem);
+  /* guess and check */
 }
 
 /*------------------*/
@@ -333,18 +251,19 @@ footer {
   gap: 1rem;
   margin-block-end: calc(2 * var(--elbrus));
 
-  > *:first-child {
+  >*:first-child {
     flex: 1;
   }
 
-  > *:last-child {
+  >*:last-child {
     flex: 1.67;
   }
 
-  > nav {
-    padding-inline-start: 0; /* reset */
+  >nav {
+    padding-inline-start: 0;
+    /* reset */
 
-    > ul {
+    >ul {
       display: flex;
       flex-direction: column;
       margin-inline-start: 0;
@@ -355,12 +274,12 @@ footer {
 }
 
 /* keep the inception rule */
-.wiki > nav > ul {
-  > li {
+.wiki>nav>ul {
+  >li {
     line-height: calc(2 * var(--elbrus));
   }
 
-  > li.current {
+  >li.current {
     font-weight: bold;
     color: var(--ruby-100);
   }

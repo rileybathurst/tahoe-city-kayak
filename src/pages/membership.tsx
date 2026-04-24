@@ -9,9 +9,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import BookNow from "../components/book-now";
 
-import LocationDeck from "../components/location-deck";
-import SplitLayout from "../components/split-layout";
-
 type MembershipPageTypes = {
   data: {
     allStrapiRentalRate: {
@@ -48,30 +45,26 @@ const MembershipPage = ({ data }: MembershipPageTypes) => {
     <>
       <Header />
 
-      <SplitLayout content={
-        <React.Fragment>
-          <h1>Membership</h1>
+      <h1>Membership</h1>
 
-          <h3>{data.strapiMembership.title}</h3>
-          <p>{data.strapiMembership.excerpt}</p>
+      <h3>{data.strapiMembership.title}</h3>
+      <p>{data.strapiMembership.excerpt}</p>
 
-          <BookNow
-            specificName="MEMBERSHIP"
-            specificLink={data.strapiBranch.peek_membership}
-          />
+      <BookNow
+        specificName="MEMBERSHIP"
+        specificLink={data.strapiBranch.peek_membership}
+      />
 
-          <hr />
+      <hr />
 
-          <h4>Paddler's 6-Pack Deal </h4>
-          <p><em>- Single Kayak or Paddleboard</em></p>
-          <p>{data.strapiMembership.six}</p>
+      <h4>Paddler's 6-Pack Deal </h4>
+      <p><em>- Single Kayak or Paddleboard</em></p>
+      <p>{data.strapiMembership.six}</p>
 
-          <BookNow
-            specificName="SIX PACK"
-            specificLink={data.strapiBranch.peek_six_pack}
-          />
-        </React.Fragment>
-      } />
+      <BookNow
+        specificName="SIX PACK"
+        specificLink={data.strapiBranch.peek_six_pack}
+      />
 
       <Footer />
     </>

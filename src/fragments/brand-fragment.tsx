@@ -4,12 +4,10 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment brandedFragment on STRAPI_RETAIL {
-    ...purchaseFragment
-    brand {
-      id
-      slug
-      svg
-    }
+  fragment brandFragment on STRAPI_BRAND {
+    id
+    name
+    slug
+    svg
   }
 `
