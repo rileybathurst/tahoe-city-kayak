@@ -3,7 +3,7 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment purchaseFragment on STRAPI_RETAIL {
+  fragment CardRetailFragment on STRAPI_RETAIL {
     id
     title
     slug
@@ -26,7 +26,7 @@ export const query = graphql`
       slug
     }
 
-    cutout {
+    image: cutout {
       localFile {
         childImageSharp {
           gatsbyImageData

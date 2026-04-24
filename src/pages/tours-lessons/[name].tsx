@@ -14,7 +14,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
       sort: {order: ASC},
       ){
         nodes {
-          ...ticketFragment
+          ...CardTourFragment
         }
       }
 
@@ -52,7 +52,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
         </p>
       </main>
 
-      <section className="flight">
+      <section className="deck">
         {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
           <PaddleCard
             key={tour.id}

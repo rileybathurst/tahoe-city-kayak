@@ -25,7 +25,7 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
 
         <section className="deck">
           {allStrapiRetail.nodes.map((retail) => (
-            <Purchase
+            <PaddleCard
               key={retail.id}
               {...retail}
             />

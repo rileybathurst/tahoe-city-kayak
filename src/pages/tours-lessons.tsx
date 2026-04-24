@@ -15,6 +15,7 @@ import BookNow from "../components/book-now";
 import Experience from "../content/experience";
 import Sport from "../components/sport";
 import Locales from "../components/locales";
+import Hero from "../components/hero";
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -28,7 +29,7 @@ const ToursLessonsPage = () => {
       )
       {
         nodes {
-          ...ticketFragment
+          ...CardTourFragment
         }
       }
   
@@ -41,7 +42,7 @@ const ToursLessonsPage = () => {
           sort: {order: ASC})
         {
           nodes {
-            ...ticketFragment
+            ...CardTourFragment
           }
         }
 
@@ -71,6 +72,13 @@ const ToursLessonsPage = () => {
     <>
       <Header />
 
+      <Hero
+        overlay={<Locales
+          water={true}
+          parking={true}
+        />}
+      />
+
       <main className="albatross">
         <div>
           <div className="condor">
@@ -82,15 +90,9 @@ const ToursLessonsPage = () => {
             <BookNow />
           </div>
         </div>
-
-        <Locales
-          water={true}
-          parking={true}
-        />
-
       </main>
 
-      <div className="panel everest-padding-block">
+      <div className="everest-padding-block">
         {sports.map((sport) => (
           <section key={sport.nodes[0].id}>
             <hgroup className="pelican">
@@ -100,15 +102,15 @@ const ToursLessonsPage = () => {
               <p className="aconcagua">Tours &amp; Lessons</p>
             </hgroup>
 
-            <div className="flight">
+            <div className="deck">
               {sport.nodes
                 .map((tour: PaddleCardTypes) => (
                   <PaddleCard
                     key={tour.id}
                     {...tour}
                     link={`/tours-lessons/${tour.slug}`}
-                    peek_tours_fall_back={query.strapiBranch.peek_tours}
-                    allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
+                  // peek_tours_fall_back={query.strapiBranch.peek_tours}
+                  // allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
                   />
                 ))}
             </div>
@@ -116,7 +118,7 @@ const ToursLessonsPage = () => {
         ))}
       </div>
 
-      <Footer />
+      <Footer topHR={true} />
     </>
   );
 };

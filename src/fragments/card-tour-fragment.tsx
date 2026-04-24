@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 
 // these have to be on a specific type
 export const query = graphql`
-  fragment cardTourFragment on STRAPI_TOUR {
+  fragment CardTourFragment on STRAPI_TOUR {
     id
     title: name
     slug

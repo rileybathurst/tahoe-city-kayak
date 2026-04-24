@@ -19,6 +19,7 @@ import {
   type PaddlePurchaseTypes
 } from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
+import Hero from "../components/hero";
 
 const Series = ({ series }: { series: string }) => {
   if (series) {
@@ -93,30 +94,43 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
     <>
       <Header />
 
-      {/* // TODO: close out the title and specs to get them to line up */}
-      <main className="retail">
-        <div className="title">
-          <Link
-            to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
-            className="link__subtle-svg"
-          >
-            <SVG src={data.strapiRetail.brand.svg} />
-          </Link>
-          <hgroup className="hgroup__retail">
-            {/* // TODO: only one h and then p */}
+      <Hero />
 
-            <h1 className="h_title">{data.strapiRetail.title}</h1>
-            <h2 className="h_brand">
-              <Link
-                to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
-              >
-                {data.strapiRetail.brand.name}
-              </Link>
-            </h2>
+      {/* <div className="collage card-collage hero">
+        <PaddleTextureBackgrounds
+          baseOne={data.baseOne}
+          baseTwo={data.baseTwo}
+          baseThree={data.baseThree}
+          topOne={data.topOne}
+          topTwo={data.topTwo}
+          topThree={data.topThree}
+        /> */}
 
-            <Series series={data.strapiRetail.series} />
-          </hgroup>
-        </div>
+      {/* // ! needs something for getting the layered image on the hero */}
+      {/* <GatsbyImage
+          image={
+            data.strapiRetail?.cutout?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={
+            data.strapiRetail?.cutout?.alternativeText ||
+            `${data.strapiRetail.title} image`
+          }
+          className="cutout"
+          objectFit="contain"
+        />
+        {/* {data.strapiRetail?.cutout?.alternativeText}
+      </div> */}
+
+      <main>
+        <Link to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}>
+          <h2 className="sr-only">{data.strapiRetail.brand.name}</h2>
+          <SVG src={data.strapiRetail.brand.svg} />
+        </Link>
+
+        <h1>{data.strapiRetail.title}</h1>
+
+        <Series series={data.strapiRetail.series} />
 
         <section className="specs">
           <h3>SPECS:</h3>
@@ -137,56 +151,25 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
               // discount: data.strapiRetail.discount // * currently unused so has to be removed
             }}
           />
-
         </section>
 
-        {/* // TODO: sort out these classNames hero shouldn't be across the board */}
-        {/* // TODO: these can be bigger for sure */}
-        <div className="collage card-collage hero">
-          <PaddleTextureBackgrounds
-            baseOne={data.baseOne}
-            baseTwo={data.baseTwo}
-            baseThree={data.baseThree}
-            topOne={data.topOne}
-            topTwo={data.topTwo}
-            topThree={data.topThree}
-          />
-
-          <GatsbyImage
-            image={
-              data.strapiRetail?.cutout?.localFile?.childImageSharp
-                ?.gatsbyImageData
-            }
-            alt={
-              data.strapiRetail?.cutout?.alternativeText ||
-              `${data.strapiRetail.title} image`
-            }
-            className="cutout"
-            objectFit="contain"
-          />
-          {/* {data.strapiRetail?.cutout?.alternativeText} */}
-        </div>
-
-        {/* // TODO: if no features move the description up */}
-        {/* I think this has line heights that need to be adjusted if I do that */}
-        {data.strapiRetail.features ? (
+        {data.strapiRetail.features && (
           <>
             <h3>Features</h3>
             <div className="react-markdown features">
               <Markdown>{data.strapiRetail.features.data.features}</Markdown>
             </div>
+            <hr />
           </>
-        ) : null}
+        )}
       </main>
 
-      {/* // TODO: ifthe description moved up dont run it here */}
       <div className="react-markdown pelican">
         <Markdown>
           {data.strapiRetail.description?.data?.description}
         </Markdown>
       </div>
 
-      {/* // TODO: pedal drive should be a query */}
       {data.strapiRetail.demo ? (
         <div className="single__book">
           <h3>Demo</h3>
@@ -201,44 +184,42 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </div>
       ) : null}
 
-      {/* kayak/kokopelli has only one needs a better */}
-      <div className="panel">
-        {data.allStrapiRetail.nodes.length > 0 ? (
-          <article>
-            <section className="condor">
-              <h2>
-                Other <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
-                <span className="capitalize">{data.strapiRetail.brand.name}</span>
-              </h2>
-            </section>
-            <section className="deck">
-              {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
-                <Purchase key={retail.id} {...retail} />
-              ))}
-            </section>
-            <section className="condor">
-              <h3>
-                <Link
-                  to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
-                >
-                  More <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
-                  <span className="capitalize">
-                    {data.strapiRetail.brand.name}
-                  </span>
-                </Link>
-              </h3>
-            </section>
-          </article>
-        ) : (
+      <hr className="albatross" />
+      {data.allStrapiRetail.nodes.length > 0 ? (
+        <article>
+          <section className="condor">
+            <h2>
+              Other <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
+              <span className="capitalize">{data.strapiRetail.brand.name}</span>
+            </h2>
+          </section>
+          <section className="deck">
+            {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
+              <PaddleCard key={retail.id} {...retail} />
+            ))}
+          </section>
           <section className="condor">
             <h3>
-              <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
-                Browse other <Sport sport={data.strapiRetail.sport.slug} />s
+              <Link
+                to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}
+              >
+                More <Sport sport={data.strapiRetail.sport.slug} />s by{" "}
+                <span className="capitalize">
+                  {data.strapiRetail.brand.name}
+                </span>
               </Link>
             </h3>
           </section>
-        )}
-      </div>
+        </article>
+      ) : (
+        <section className="condor">
+          <h3>
+            <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
+              Browse other <Sport sport={data.strapiRetail.sport.slug} />s
+            </Link>
+          </h3>
+        </section>
+      )}
 
       <Breadcrumbs>
         <Breadcrumb>
@@ -262,10 +243,6 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </Breadcrumbs>
 
       <Footer />
-      {/* <SEOcase
-        title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
-        description={data.strapiRetail.excerpt}
-      /> */}
     </>
   );
 };
@@ -325,12 +302,12 @@ export const Head = ({ data }: RetailTypeViewHeadProps) => {
 };
 
 export const query = graphql`
-  query (
-  $slug: String!,
-  $brand: String!
-  ) {
-    strapiRetail(slug: {eq: $slug}) {
-      id
+      query (
+      $slug: String!,
+      $brand: String!
+      ) {
+        strapiRetail(slug: {eq: $slug}) {
+        id
       title
       excerpt
       series
@@ -352,111 +329,111 @@ export const query = graphql`
       brand {
         name
         slug
-        svg
+      svg
       }
 
       description {
         data {
-          description
-        }
+        description
+      }
       }
 
       features {
         data {
-          features
-        }
+        features
+      }
       }
 
       cutout {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
         }
-        alternativeText
+      alternativeText
       }
     }
 
-    strapiDemo {
-      text {
+      strapiDemo {
+        text {
         data {
-          text
-        }
+        text
+      }
       }
     }
 
-    allStrapiRetail(filter:
+      allStrapiRetail(filter:
       {
         slug: {ne: $slug},
-        brand: {slug: {eq: $brand}}
+      brand: {slug: {eq: $brand}}
       }
       limit: 2,
       sort: {featured: DESC}
-    ) {
+      ) {
         nodes {
-        ...purchaseFragment
+        ...CardRetailFragment
       }
     }
 
-    baseOne: strapiImagegrab(title: {eq: "BaseOne"}) {
-      image {
+      baseOne: strapiImagegrab(title: {eq: "BaseOne"}) {
+        image {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
+        childImageSharp {
+        gatsbyImageData
       }
-    }
-
-    baseTwo: strapiImagegrab(title: {eq: "BaseTwo"}) {
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
         }
       }
     }
 
-    baseThree: strapiImagegrab(title: {eq: "BaseThree"}) {
-      image {
+      baseTwo: strapiImagegrab(title: {eq: "BaseTwo"}) {
+        image {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
         }
       }
     }
 
-    topOne: strapiImagegrab(title: {eq: "TopOne"}) {
-      image {
+      baseThree: strapiImagegrab(title: {eq: "BaseThree"}) {
+        image {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
         }
       }
     }
-    topTwo: strapiImagegrab(title: {eq: "TopTwo"}) {
-      image {
+
+      topOne: strapiImagegrab(title: {eq: "TopOne"}) {
+        image {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
         }
       }
     }
-    topThree: strapiImagegrab(title: {eq: "TopThree"}) {
-      image {
+      topTwo: strapiImagegrab(title: {eq: "TopTwo"}) {
+        image {
         localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
+        childImageSharp {
+        gatsbyImageData
+      }
+        }
+      }
+    }
+      topThree: strapiImagegrab(title: {eq: "TopThree"}) {
+        image {
+        localFile {
+        childImageSharp {
+        gatsbyImageData
+      }
         }
       }
     }
   }
-`;
+      `;
 
 // * discount was removed as currently we dont have it in use so its breaking the build
 // * volume was removed as currently we dont have it in use so its breaking the build

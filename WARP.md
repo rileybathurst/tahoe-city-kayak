@@ -111,8 +111,8 @@ Most queries filter by `locale: {slug: {eq: "tahoe-city"}}` since this is a mult
 Use fragments from `src/fragments/` for consistent data shapes:
 
 - `locationCardFragment` - Location data for cards
-- `purchaseFragment` - Retail item data
-- `ticketFragment` - Tour/lesson data
+- `CardRetailFragment` - Retail item data
+- `CardTourFragment` - Tour/lesson data
 
 ## Environment & Configuration
 

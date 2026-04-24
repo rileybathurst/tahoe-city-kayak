@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { PaddleBookNow } from "@rileybathurst/paddle"
 import type { BookNowTypes } from "../types/book-now-types"
 
-const BookNow = ({specificLink, specificName}: BookNowTypes) => {
+const BookNow = ({ specificLink, specificName }: BookNowTypes) => {
 
   const { strapiBranch } = useStaticQuery(graphql`
     query BookNowQuery {

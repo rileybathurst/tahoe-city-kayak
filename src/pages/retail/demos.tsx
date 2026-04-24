@@ -54,7 +54,7 @@ const DemosPage = () => {
         
         kayak: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "kayak"}}, sort: {featured: ASC}) {
         nodes {
-          ...purchaseFragment
+          ...CardRetailFragment
 
           brand {
             name
@@ -65,7 +65,7 @@ const DemosPage = () => {
 
       paddleboards: allStrapiRetail(filter: {demo: {eq: true}, type: {eq: "sup"}}, sort: {featured: ASC}) {
         nodes {
-        ...purchaseFragment
+        ...CardRetailFragment
 
           brand {
             name
@@ -141,7 +141,7 @@ const DemosPage = () => {
 
           <section className="deck">
             {nodes.map((item: PaddlePurchaseTypes) => (
-              <Purchase
+              <PaddleCard
                 key={item.id}
                 {...item}
               />

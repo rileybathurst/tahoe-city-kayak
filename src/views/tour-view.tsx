@@ -20,6 +20,7 @@ import Composition from "../components/composition";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import Locales from "../components/locales";
+import Hero from "../components/hero";
 
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
@@ -168,7 +169,7 @@ export const data = graphql`
         sort: {order: ASC},
       ) {
       nodes {
-        ...ticketFragment
+        ...CardTourFragment
       }
     }
 
@@ -193,7 +194,14 @@ const TourView = ({ data }: TourViewTypes) => {
     <>
       <Header />
 
-      <main className="albatross">
+      <Hero
+        overlay={<Locales
+          water={true}
+          parking={true}
+        />}
+      />
+
+      <main className="pelican">
         <div>
           <h1>{data.strapiTour.name}</h1>
           <div className="tour__minimum">
@@ -246,10 +254,7 @@ const TourView = ({ data }: TourViewTypes) => {
 
           <hr />
 
-          <Locales
-            water={true}
-            parking={true}
-          />
+
         </div>
       </main>
 
@@ -260,7 +265,7 @@ const TourView = ({ data }: TourViewTypes) => {
           </h3>
         </div>
 
-        <section className="flight">
+        <section className="deck">
           {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
             <PaddleCard
               key={tour.id}

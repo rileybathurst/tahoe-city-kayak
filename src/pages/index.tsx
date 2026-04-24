@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+// import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import SVG from 'react-inlinesvg';
 import {
   PaddleBookNow,
   PaddleCard,
-  PaddleBrandList,
+  // PaddleBrandList,
   PaddleTestimonial,
-  PaddleHero,
-  type PaddleCardTypes as OriginalPaddleCardTypes,
+  type PaddleCardTypes,
   type PaddlePurchaseTypes,
   type PaddleTestimonialTypes,
   type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
 
-// Local type with ogImage instead of image
-type PaddleCardTypes = Omit<OriginalPaddleCardTypes, 'image'> & {
-  ogImage: PaddleGatsbyImageType;
-};
-
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-import FeatureList from "../components/feature-list";
+// import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 
 import Experience from "../content/experience";
-import Purchase from "../components/purchase";
+// import Purchase from "../components/purchase";
 import ReactMarkdown from "react-markdown";
 import Locales from "../components/locales";
-// import { Hero } from "../components/hero";
+import Hero from "../components/hero";
 
 const IndexPage = () => {
 
@@ -88,23 +82,12 @@ const IndexPage = () => {
   const data: indexTypes = useStaticQuery(graphql`
     query IndexQuery {
 
-      strapiImagegrab(title: {eq: "hero2025"}) {
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
-      }
-
       allStrapiTour(
         sort: {order: ASC}
         filter: {branch: {slug: {eq: "tahoe-city"}}}
         ) {
         nodes {
-          ...cardTourFragment
+          ...CardTourFragment
         }
       }
 
@@ -211,9 +194,8 @@ const IndexPage = () => {
       <Header />
       <main className="albatross">
 
-        <PaddleHero
-          image={data.strapiImagegrab.image}
-          overlay={<Locales />}
+        <Hero
+          overlay={<Locales all={true} />}
         />
 
         <PricingChart />

@@ -67,42 +67,40 @@ const RetailPage = () => {
         />}
       />
 
-      <main className="albatross">
-        <div>
-          <h1>Retail</h1>
-          <Shop />
+      <main className="pelican">
+        <h1>Retail</h1>
+        <Shop />
 
 
 
-          <article className="pelican">
-            <section className="blocked">
-              <h2>
-                <Link to="/retail/kayak">Kayaks</Link>
-              </h2>
-              <h3 className="condensed">Browse By Feature</h3>
-              <FeatureList sport="kayak" />
-            </section>
-          </article >
-
-          <section className="albatross">
-            <h3>Browse By Brand</h3>
-            <PaddleBrandList
-              brands={Array.from(
-                new Map(query.kayak.nodes
-                  .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
-                  .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                  .values()
-              ) as PaddleBrandListTypes[]}
-              sport="kayak"
-            />
+        <article className="pelican">
+          <section className="blocked">
+            <h2>
+              <Link to="/retail/kayak">Kayaks</Link>
+            </h2>
+            <h3 className="condensed">Browse By Feature</h3>
+            <FeatureList sport="kayak" />
           </section>
-        </div>
+        </article >
+
+        <section className="albatross">
+          <h3>Browse By Brand</h3>
+          <PaddleBrandList
+            brands={Array.from(
+              new Map(query.kayak.nodes
+                .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
+                .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                .values()
+            ) as PaddleBrandListTypes[]}
+            sport="kayak"
+          />
+        </section>
 
       </main>
 
       <section className="deck">
         {query.kayak.nodes.map((kayak: PaddlePurchaseTypes) => (
-          <Purchase
+          <PaddleCard
             key={kayak.id}
             {...kayak}
           />
@@ -138,7 +136,7 @@ const RetailPage = () => {
 
       <section className="deck">
         {query.paddleBoard.nodes.map((sup: PaddlePurchaseTypes) => (
-          <Purchase key={sup.id} {...sup} />
+          <PaddleCard key={sup.id} {...sup} />
         ))}
       </section>
 

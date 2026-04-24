@@ -7,17 +7,18 @@ import { SEO } from "../../components/seo";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Purchase from "../../components/purchase";
+import {
+  PaddleCard,
+  type PaddleCardTypes,
+  PaddleBrandList,
+  type PaddleBrandListTypes,
+  type PaddlePurchaseTypes,
+} from "@rileybathurst/paddle";
+
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
 import SVG from 'react-inlinesvg';
 import Locales from "../../components/locales";
-import {
-  PaddleBrandList,
-  type PaddleLocationTypes,
-  type PaddleBrandListTypes,
-  type PaddlePurchaseTypes,
-} from "@rileybathurst/paddle";
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
@@ -42,7 +43,7 @@ export const strapiSport = graphql`
         tagline
         svg
         retail {
-          ...purchaseFragment
+          ...CardRetailFragment
         }
       }
     }
@@ -144,18 +145,20 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
               </section>
 
               <div
-                className='bag'
+                className='deck'
               >
                 {brand.retail
                   .filter((retail) => retail.sport.slug === data.strapiSport.slug)
                   .splice(0, 4)
                   .map((retail) => (
-                    <Purchase
+                    <PaddleCard
                       key={retail.id}
-                      {...retail}
+                      link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                      title={retail.title}
+                      image={retail.cutout}
+                      excerpt={retail.excerpt}
                     />
-                  ))
-                }
+                  ))}
               </div>
 
               {brand.retail.length > 4 ?
