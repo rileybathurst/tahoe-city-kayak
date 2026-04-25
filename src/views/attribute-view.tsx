@@ -5,7 +5,7 @@ import FeatureList from "../components/feature-list";
 import Sport from "../components/sport";
 import ReactMarkdown from 'react-markdown';
 import type { AttributeViewTypes } from "../types/attribute-view-types";
-import Purchase from "../components/purchase";
+import { PaddleCard } from "@rileybathurst/paddle";
 
 const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes) => {
   return (
@@ -28,6 +28,7 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
             <PaddleCard
               key={retail.id}
               {...retail}
+            // ! link
             />
           ))}
         </section>

@@ -54,30 +54,20 @@ const DeliveryPage = () => {
     <React.Fragment>
       <Header />
 
-      <h1>Delivery</h1>
-      <div className="react-markdown">
+      <main>
+        <h1>Delivery</h1>
+        <div className="react-markdown">
 
-        {/* // * by default this pulls phone links out */}
-        <ReactMarkdown
-          urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
-        >
-          {phoneAndEmailLinks}
-        </ReactMarkdown>
-      </div>
+          {/* // * by default this pulls phone links out */}
+          <ReactMarkdown
+            urlTransform={(url) => url.startsWith("tel:") ? url : defaultUrlTransform(url)}
+          >
+            {phoneAndEmailLinks}
+          </ReactMarkdown>
+        </div>
+      </main>
 
-      <div className="multi_button">
-        <Phone />
-        <a
-          href={`mailto:${data.strapiBranch.email}`}
-          rel="noreferrer noopener"
-          className="button"
-        >
-          {data.strapiBranch.email}
-        </a>
-      </div>
-
-
-      <Footer />
+      <Footer topHR={true} />
     </React.Fragment>
   )
 }

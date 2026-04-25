@@ -21,7 +21,7 @@ function AnnouncementPage() {
   return (
     <>
       <Header />
-      <main className="measure">
+      <main>
         <h1>Announcements</h1>
 
         <ul>
@@ -32,8 +32,8 @@ function AnnouncementPage() {
           ))}
         </ul>
 
-      </main>
-      <Footer />
+      </main >
+      <Footer topHR={true} />
     </>
   )
 }
@@ -41,5 +41,5 @@ function AnnouncementPage() {
 export default AnnouncementPage
 
 export const Head = () => {
-  return <SEO title="Announcments" />;
+  return <SEO title="Announcements" />;
 };

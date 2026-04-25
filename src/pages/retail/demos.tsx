@@ -4,13 +4,11 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Purchase from "../../components/purchase";
-import Composition from "../../components/composition";
 import Phone from "../../components/phone";
 import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import Locales from "../../components/locales";
-import { PaddlePricingChart, type PaddlePurchaseTypes } from "@rileybathurst/paddle";
+import { PaddlePricingChart, type PaddleCardTypes, PaddleCard } from "@rileybathurst/paddle";
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
@@ -140,7 +138,7 @@ const DemosPage = () => {
           </div>
 
           <section className="deck">
-            {nodes.map((item: PaddlePurchaseTypes) => (
+            {nodes.map((item: PaddleCardTypes) => (
               <PaddleCard
                 key={item.id}
                 {...item}

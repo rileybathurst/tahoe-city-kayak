@@ -3,6 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { SEO } from "../../components/seo";
 
 function AnnouncementCatchAll({ params }: { params: { name: string } }) {
 
@@ -19,14 +20,14 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
   return (
     <>
       <Header />
-      <main className="measure">
-        <h2 className="crest">
+      <main>
+        <h2>
           <Link to="/announcement">Announcement</Link> / {params.name}</h2>
 
-        {/* // TODO: this should be a component */}
-        <h1 className="mixta">Looks like you&apos;ve paddled into uncharted waters!</h1>
+        <h1>Looks like you&apos;ve paddled into uncharted waters!</h1>
         <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link></p>
 
+        <hr />
         <h2>Announcements</h2>
 
         <ul>
@@ -38,9 +39,13 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
         </ul>
 
       </main>
-      <Footer />
+      <Footer topHR={true} />
     </>
   )
 }
 
 export default AnnouncementCatchAll
+
+export const Head = () => {
+  return <SEO title="Announcement 404" />;
+};

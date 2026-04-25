@@ -1,13 +1,17 @@
 import * as React from "react"
-import { PaddleHero, type PaddleGatsbyImageType, type PaddleHeroTypes } from "@rileybathurst/paddle"
-import Locales from "./locales"
+import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle"
 import { graphql, useStaticQuery } from "gatsby"
 
 type heroTypes = {
   strapiMedia: PaddleGatsbyImageType
 }
 
-const Hero = ({ image, overlay }: PaddleHeroTypes) => {
+type HeroTypes = {
+  image?: PaddleGatsbyImageType
+  overlay?: React.ReactNode
+}
+
+const Hero = ({ image, overlay }: HeroTypes) => {
 
   console.log(overlay);
 

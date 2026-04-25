@@ -4,33 +4,32 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
-import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
+import { PaddleHero, PaddleCard } from "@rileybathurst/paddle";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import FeatureList from "../components/feature-list";
-import Composition from "../components/composition";
 import Shop from "../content/shop";
 
-import Purchase from "../components/purchase";
 import Locales from "../components/locales";
 
 import Markdown from "react-markdown";
 
-import { PaddleBrandList, type PaddlePurchaseTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
+import { PaddleBrandList, type PaddleCardTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
+import { RetailCardTypes } from "../types/retail-card-types";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
       kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
         nodes {
-          ...brandedFragment
+          ...CardRetailFragmentPlusBrand
         }
       }
 
     paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
       nodes {
-        ...brandedFragment
+        ...CardRetailFragmentPlusBrand
       }
     }
 
@@ -69,9 +68,8 @@ const RetailPage = () => {
 
       <main className="pelican">
         <h1>Retail</h1>
+
         <Shop />
-
-
 
         <article className="pelican">
           <section className="blocked">
@@ -88,8 +86,8 @@ const RetailPage = () => {
           <PaddleBrandList
             brands={Array.from(
               new Map(query.kayak.nodes
-                .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "kayak")
-                .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                .filter((retail: RetailCardTypes) => retail.sport.slug === "kayak")
+                .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                 .values()
             ) as PaddleBrandListTypes[]}
             sport="kayak"
@@ -99,10 +97,12 @@ const RetailPage = () => {
       </main>
 
       <section className="deck">
-        {query.kayak.nodes.map((kayak: PaddlePurchaseTypes) => (
+        {query.kayak.nodes.map((kayak: RetailCardTypes) => (
           <PaddleCard
             key={kayak.id}
             {...kayak}
+            link={`/retail/kayak/${kayak.brand.slug}/${kayak.slug}`}
+            breadcrumb="kayak"
           />
         ))}
 
@@ -124,8 +124,8 @@ const RetailPage = () => {
           <PaddleBrandList
             brands={Array.from(
               new Map(query.paddleBoard.nodes
-                .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === "paddleboard")
-                .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                .filter((retail: PaddleCardTypes) => retail.sport.slug === "paddleboard")
+                .map((retail: PaddleCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                 .values()
             ) as PaddleBrandListTypes[]}
             sport="paddleboard"
@@ -135,9 +135,9 @@ const RetailPage = () => {
       </article>
 
       <section className="deck">
-        {query.paddleBoard.nodes.map((sup: PaddlePurchaseTypes) => (
-          <PaddleCard key={sup.id} {...sup} />
-        ))}
+        {/* {query.paddleBoard.nodes.map((sup: PaddleCardTypes) => (
+          <PaddleCard key={sup.id} {...sup} image={sup.cutout} />
+        ))} */}
       </section>
 
       <h2 className="albatross">

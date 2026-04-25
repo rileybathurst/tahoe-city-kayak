@@ -35,6 +35,7 @@ const TeamPage = () => {
     }
   `)
 
+  // ! O think we were meant to go the other way
   type teamTypes = Omit<PaddleCardTypes, 'link'> & {
     slug: string,
   }

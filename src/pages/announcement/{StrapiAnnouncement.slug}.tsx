@@ -7,6 +7,7 @@ import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Markdown from "react-markdown";
 import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
+import Hero from "../../components/hero";
 
 export const query = graphql`
   query AnnouncementQuery($slug: String!) {
@@ -57,20 +58,18 @@ const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
   return (
     <>
       <Header />
-      <main className="condor">
+      {data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData &&
+        <Hero
+          image={data.strapiAnnouncement.hero}
+        />}
+      <main>
 
-        {data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData ?
-          <GatsbyImage
-            image={data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={data.strapiAnnouncement.title}
-            className="img__wrapped"
-          /> : null}
         <div className="crest">
           <h1 className="supra">{data.strapiAnnouncement.title}</h1>
           <p className="brow">Announcement - {data.strapiAnnouncement.publishedAt}</p>
         </div>
 
-        
+
         {/* //TODO: do more with it */}
         {/* <Calendar {...strapiAnnouncement.calendar} /> */}
         <hr />

@@ -9,10 +9,9 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import {
   PaddleCard,
-  type PaddleCardTypes,
   PaddleBrandList,
   type PaddleBrandListTypes,
-  type PaddlePurchaseTypes,
+  type PaddleCardTypes,
 } from "@rileybathurst/paddle";
 
 import Sport from "../../components/sport";
@@ -50,7 +49,7 @@ export const strapiSport = graphql`
 
     allStrapiRetail(sort: {featured: ASC}) {
       nodes {
-        ...brandedFragment
+        ...CardRetailFragmentPlusBrand
       }
     }
   }
@@ -59,7 +58,7 @@ export const strapiSport = graphql`
 // ? I dont understand omit
 type PaddleBrandTypesWithTagline = Omit<PaddleBrandListTypes, "retail"> & {
   tagline: string;
-  retail: PaddlePurchaseTypes[];
+  retail: PaddleCardTypes[];
 };
 
 type retailSportTypes = {
@@ -79,7 +78,7 @@ type retailSportTypes = {
       nodes: PaddleBrandTypesWithTagline[];
     };
     allStrapiRetail: {
-      nodes: PaddlePurchaseTypes[];
+      nodes: PaddleCardTypes[];
     };
   }
 }
@@ -118,8 +117,8 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         <PaddleBrandList
           brands={Array.from(
             new Map(data.allStrapiRetail.nodes
-              .filter((retail: PaddlePurchaseTypes) => retail.sport.slug === data.strapiSport.slug)
-              .map((retail: PaddlePurchaseTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+              .filter((retail: PaddleCardTypes) => retail.sport.slug === data.strapiSport.slug)
+              .map((retail: PaddleCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
               .values()
           )}
           sport={data.strapiSport.slug}

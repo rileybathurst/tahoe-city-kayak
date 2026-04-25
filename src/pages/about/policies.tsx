@@ -42,28 +42,28 @@ const PoliciesPage = () => {
     <>
       <Header />
 
-      {/* // TODO links to phone and online booking */}
-      <h1>Store Policies</h1>
-      {allStrapiPolicy.nodes.map((policy: PolicyTypes) => (
-        <article key={policy.id}>
-          <h2>{policy.title}</h2>
-          {policy.markdown ?
-            <ReactMarkdown>
-              {policy.markdown.data.markdown}
-            </ReactMarkdown>
-            : null}
-          <hr />
-        </article>
-      ))}
-      <Phone />
+      <main>
+
+        <h1>Store Policies</h1>
+        {allStrapiPolicy.nodes.map((policy: PolicyTypes) => (
+          <article key={policy.id}>
+            <h2>{policy.title}</h2>
+            {policy.markdown ?
+              <ReactMarkdown>
+                {policy.markdown.data.markdown}
+              </ReactMarkdown>
+              : null}
+            <hr />
+          </article>
+        ))}
+        <Phone />
+      </main>
 
 
-      <div className="panel">
-        <Breadcrumbs>
-          <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
-          <Breadcrumb>Store Policies</Breadcrumb>
-        </Breadcrumbs>
-      </div>
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
+        <Breadcrumb>Store Policies</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

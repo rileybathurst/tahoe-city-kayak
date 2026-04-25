@@ -45,28 +45,31 @@ const MembershipPage = ({ data }: MembershipPageTypes) => {
     <>
       <Header />
 
-      <h1>Membership</h1>
+      <main>
 
-      <h3>{data.strapiMembership.title}</h3>
-      <p>{data.strapiMembership.excerpt}</p>
+        <h1>Membership</h1>
 
-      <BookNow
-        specificName="MEMBERSHIP"
-        specificLink={data.strapiBranch.peek_membership}
-      />
+        <h3>{data.strapiMembership.title}</h3>
+        <p>{data.strapiMembership.excerpt}</p>
 
-      <hr />
+        <BookNow
+          specificName="MEMBERSHIP"
+          specificLink={data.strapiBranch.peek_membership}
+        />
 
-      <h4>Paddler's 6-Pack Deal </h4>
-      <p><em>- Single Kayak or Paddleboard</em></p>
-      <p>{data.strapiMembership.six}</p>
+        <hr />
 
-      <BookNow
-        specificName="SIX PACK"
-        specificLink={data.strapiBranch.peek_six_pack}
-      />
+        <h4>Paddler's 6-Pack Deal </h4>
+        <p><em>- Single Kayak or Paddleboard</em></p>
+        <p>{data.strapiMembership.six}</p>
 
-      <Footer />
+        <BookNow
+          specificName="SIX PACK"
+          specificLink={data.strapiBranch.peek_six_pack}
+        />
+      </main>
+
+      <Footer topHR={true} />
     </>
   );
 };

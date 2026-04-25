@@ -49,9 +49,11 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
     <>
       <Header />
 
-      <Hero overlay={<PaddlePricingChart
-        rentalRates={data.allStrapiRentalRate}
-      />} />
+      <Hero
+        overlay={<PaddlePricingChart
+          rentalRates={data.allStrapiRentalRate}
+        />}
+      />
 
       <div className="pelican">
 

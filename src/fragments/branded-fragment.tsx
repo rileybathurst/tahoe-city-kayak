@@ -4,7 +4,7 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment brandedFragment on STRAPI_RETAIL {
+  fragment CardRetailFragmentPlusBrand on STRAPI_RETAIL {
     ...CardRetailFragment
     brand {
       id

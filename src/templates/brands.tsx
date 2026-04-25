@@ -1,12 +1,8 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import { type PaddlePurchaseTypes, PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-
-type PaddlePurchaseTypesWithSeries = PaddlePurchaseTypes & {
-  series?: string | null;
-};
 
 import { SEO } from "../components/seo";
 import scrollTo from "gatsby-plugin-smoothscroll";
@@ -15,6 +11,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import SVG from 'react-inlinesvg';
 import Locales from "../components/locales";
+import type { RetailCardTypes } from "../types/retail-card-types";
 
 type BrandsViewTypes = {
   strapiBrand: {
@@ -28,7 +25,7 @@ type BrandsViewTypes = {
     };
   };
   allStrapiRetail: {
-    nodes: PaddlePurchaseTypes[];
+    nodes: RetailCardTypes[];
   };
 };
 const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pathname: string } }) => {
@@ -42,7 +39,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
   console.log('Is valid sport:', isValidSport);
 
   const seriesSet = new Set<string>();
-  for (const retail of data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[]) {
+  for (const retail of data.allStrapiRetail.nodes as RetailCardTypes[]) {
     retail.series ? seriesSet.add(retail.series) : null;
   }
   const seriesArray: string[] = Array.from(seriesSet);
@@ -105,10 +102,14 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
             </section>
 
             <div className="deck" key={series}>
-              {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
+              {(data.allStrapiRetail.nodes as RetailCardTypes[])
                 .filter((retail) => retail.series === series)
                 .map((retail) => (
-                  <PaddleCard key={retail.id} {...retail} />
+                  <PaddleCard
+                    key={retail.id}
+                    {...retail}
+                    link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                  />
                 ))}
             </div>
           </React.Fragment>
@@ -116,16 +117,19 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
       }
 
       <section className="deck">
-        {(data.allStrapiRetail.nodes as PaddlePurchaseTypesWithSeries[])
+        {(data.allStrapiRetail.nodes as RetailCardTypes[])
           .filter((retail) => retail.series === null)
           .map((retail) => (
-            <PaddleCard key={retail.id} {...retail} />
+            <PaddleCard
+              key={retail.id}
+              {...retail}
+              link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+            />
           ))}
       </section>
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/retail/">Retail</Link></Breadcrumb>
-        {/* // ! sport */}
         <Breadcrumb><Link to={`/retail/${middleSegment}/`}>{middleSegment}</Link></Breadcrumb>
         <Breadcrumb>{data.strapiBrand.name}</Breadcrumb>
       </Breadcrumbs>

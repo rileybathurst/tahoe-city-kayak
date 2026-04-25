@@ -33,16 +33,18 @@ const GroupPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <h1>Group</h1>
 
-      <div className="react-markdown">
+      <main>
+
+        <h1>Group</h1>
+
         <ReactMarkdown>
           {data.strapiGroup.text.data.text}
         </ReactMarkdown>
         <Phone />
-      </div>
+      </main>
 
-      <Footer />
+      <Footer topHR={true} />
     </React.Fragment>
   )
 }

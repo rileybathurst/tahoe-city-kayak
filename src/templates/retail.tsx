@@ -16,7 +16,9 @@ import {
   PaddleSpecs,
   PaddleTextureBackgrounds,
   type PaddleGatsbyImageType,
-  type PaddlePurchaseTypes
+  type PaddleCardTypes,
+  type PaddleBrandListTypes,
+  PaddleCard
 } from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
 import Hero from "../components/hero";
@@ -35,7 +37,7 @@ const Series = ({ series }: { series: string }) => {
   return null;
 }
 
-type ExtentdedPurchaseTypes = PaddlePurchaseTypes & {
+type ExtentdedPurchaseTypes = PaddleCardTypes & {
   series: string;
   crew: number;
   hullweight: number;
@@ -194,8 +196,11 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             </h2>
           </section>
           <section className="deck">
-            {data.allStrapiRetail.nodes.map((retail: PaddlePurchaseTypes) => (
-              <PaddleCard key={retail.id} {...retail} />
+            {data.allStrapiRetail.nodes.map((retail: PaddleCardTypes) => (
+              <PaddleCard
+                key={retail.id}
+                {...retail}
+              />
             ))}
           </section>
           <section className="condor">

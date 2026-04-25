@@ -33,14 +33,10 @@ const JobsPage = ({ data }: JobsPageType) => {
     <>
       <Header />
 
-      <main className="jobs">
+      <main>
 
         <section>
-          <hgroup className="crest">
-            {/* // TODO: only one h and then p */}
-            <h1 className="brow">Jobs</h1>
-            <h2 className="supra">Help Wanted</h2>
-          </hgroup>
+          <h1>Jobs</h1>
           <hr />
           <p>Tahoe City Kayak is hiring for Summer <strong>May 1st to Oct 31</strong>.</p>
 
@@ -100,7 +96,7 @@ export const Head = () => {
         }
       ]}
 
-      // TODO: jobs
+    // TODO: jobs
     />
   )
 }

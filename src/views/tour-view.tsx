@@ -8,7 +8,6 @@ import {
   PaddleSpecs,
   PaddleMoonlightDatesTimes,
   type PaddleGatsbyImageType,
-  type PaddleLocationTypes
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -16,7 +15,6 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import Composition from "../components/composition";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import Locales from "../components/locales";
@@ -81,7 +79,7 @@ interface TourViewTypes {
     };
 
     allStrapiTour: {
-      nodes: PaddleCardTypes[];
+      nodes: (PaddleCardTypes & { slug: string })[];
     };
 
     strapiBranch: {
@@ -187,7 +185,6 @@ const TourView = ({ data }: TourViewTypes) => {
     timeframe: data.strapiTour.timeframe,
     slug: data.strapiTour.slug,
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
-    // allStrapiMoonlightTourDateTime: data.allStrapiMoonlightTourDateTime,
   });
 
   return (
@@ -212,7 +209,6 @@ const TourView = ({ data }: TourViewTypes) => {
             ) : (
               <BookNow />
             )}
-            {/* // TODO: do some work on the vertical center align */}
             {data.strapiTour.minimum ? (
               <p>
                 * Prices based on a<br /> {data.strapiTour.minimum} person
@@ -249,13 +245,6 @@ const TourView = ({ data }: TourViewTypes) => {
           </section>
 
         </div>
-
-        <div>
-
-          <hr />
-
-
-        </div>
       </main>
 
       <div className="panel everest-padding-block">
@@ -266,13 +255,12 @@ const TourView = ({ data }: TourViewTypes) => {
         </div>
 
         <section className="deck">
-          {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
+          {/* // ! I dont think this is whaty were doing */}
+          {data.allStrapiTour.nodes.map((tour: PaddleCardTypes & { slug: string }) => (
             <PaddleCard
               key={tour.id}
               {...tour}
-              tour_page="tours-lessons"
-              peek_tours_fall_back={data.strapiTour.branch.peek_tours}
-              allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
+              link={`/tours-lessons/${tour.slug}`}
             />
           ))}
         </section>

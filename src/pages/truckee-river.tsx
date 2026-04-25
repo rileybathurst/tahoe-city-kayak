@@ -13,110 +13,7 @@ import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { PaddleGatsbyImageType } from "@rileybathurst/paddle";
-// import Composition from "../../components/composition";
-
-/* const TahoeCity = { name: 'Tahoe City', lat: 39.16879, lng: -120.14199 }
-const AlpineMeadows = { name: 'Alpine Meadows', lat: 39.18528, lng: -120.19494 }
-const RetailLocation = { name: 'Retail Location', lat: 39.17123, lng: -120.14093 }
-const OnWaterRental = { name: 'On Water Rental', lat: 39.16879, lng: -120.14199 }
-const SixtyFourAcres = { name: '64 Acres', lat: 39.16418, lng: -120.14717 }
-const zoom = 14 */
-
-/* function DisplayPosition({ map }): JSX.Element {
-  const toTahoeCity = () => {
-    map.setView([TahoeCity.lat, TahoeCity.lng], zoom)
-  }
-  const toAlpineMeadows = () => {
-    map.setView([AlpineMeadows.lat, AlpineMeadows.lng], zoom)
-  }
-
-  return (
-    <div className="buttonGroup">
-      <button onClick={toTahoeCity}>Tahoe City</button>
-      <button onClick={toAlpineMeadows}>Alpine Meadows</button>
-    </div>
-  )
-} */
-
-/* function Markers() {
-  const [marks, setMarks] = useState([
-    TahoeCity,
-    AlpineMeadows
-  ]);
-
-  const map = useMapEvents({
-    zoom: () => {
-      if (map.getZoom() > 12) {
-        // console.log('show popup');
-        setMarks([
-          // ...marks, // if i want to keep the previous ones
-          RetailLocation,
-          OnWaterRental,
-          SixtyFourAcres,
-          AlpineMeadows
-        ]);
-      }
-
-      if (map.getZoom() < 12) {
-        // console.log('hide popup');
-        // remove the last item in the array
-        setMarks([
-          // ...marks, // if i want to keep the previous ones
-          TahoeCity,
-          AlpineMeadows
-        ]);
-      }
-    },
-  })
-
-  return (
-    <>
-      {marks.map((mark, index) => (
-        <Marker key={index} position={[mark.lat, mark.lng]}>
-          <Popup>
-            {mark.name}
-          </Popup>
-        </Marker>
-      ))}
-    </>
-  )
-} */
-
-/* function Map() {
-  const [mapped, setMapped] = useState(null)
-  const ref = useRef(null);
-
-  return (
-    <>
-      {mapped ? <DisplayPosition map={mapped} /> : null}
-      <MapContainer
-        // move this to a component with props on whats needed per page
-        // TODO change this to a classname
-        // this could be interesting as a container query
-        style={{ height: '400px' }}
-        center={[TahoeCity.lat, TahoeCity.lng]}
-        zoom={12}
-        scrollWheelZoom={false}
-        // MapContainer doesnt take a ref
-        // https://github.com/PaulLeCam/react-leaflet/issues/841
-        // ref={ref}
-        // although it is useful here in diffferent ways so this kinda has two things for this
-        ref={setMapped}
-        whenCreated={map => {
-          <>
-            ref={ref}
-          </>
-        }}
-      >
-        <Markers />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </MapContainer>
-    </>
-  )
-} */
+import Hero from "../components/hero";
 
 
 type RiverTypes = {
@@ -136,30 +33,18 @@ const TruckeeRiverPage = ({ data }: { data: RiverTypes }) => {
     <>
       <Header />
 
-      <main className="albatross">
-        <div>
-          <section className="condor">
-            <h1>{data.strapiRiver.title}</h1>
-            <ReactMarkdown>
-              {data.strapiRiver.description.data.description}
-            </ReactMarkdown>
-          </section>
-        </div>
+      <Hero
+        image={data.strapiRiver.equipment[0]}
+      />
 
-        <div className="equipment">
-          {data.strapiRiver.equipment.map((image) => (
-            <GatsbyImage
-              key={image.alternativeText}
-              image={image.localFile.childImageSharp.gatsbyImageData}
-              alt={image.alternativeText}
-              className="equipment-images"
-            />
-          ))}
-        </div>
-
+      <main>
+        <h1>{data.strapiRiver.title}</h1>
+        <ReactMarkdown>
+          {data.strapiRiver.description.data.description}
+        </ReactMarkdown>
       </main>
 
-      <Footer />
+      <Footer topHR={true} />
     </>
   )
 }

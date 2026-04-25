@@ -8,7 +8,6 @@ import {
   // PaddleBrandList,
   PaddleTestimonial,
   type PaddleCardTypes,
-  type PaddlePurchaseTypes,
   type PaddleTestimonialTypes,
   type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
@@ -26,6 +25,8 @@ import Experience from "../content/experience";
 import ReactMarkdown from "react-markdown";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
+import { TourCardTypes } from "../types/tour-card-types";
+import { RetailCardTypes } from "../types/retail-card-types";
 
 const IndexPage = () => {
 
@@ -34,7 +35,7 @@ const IndexPage = () => {
       image: PaddleGatsbyImageType
     };
     allStrapiTour: {
-      nodes: PaddleCardTypes[];
+      nodes: TourCardTypes[];
     };
     allStrapiSunsetTourTime: {
       nodes: {
@@ -45,8 +46,8 @@ const IndexPage = () => {
         startTime: string;
       }[];
     };
-    kayak: PaddlePurchaseTypes;
-    paddleboard: PaddlePurchaseTypes;
+    kayak: RetailCardTypes;
+    paddleboard: RetailCardTypes;
     strapiBranch: {
       name: string;
       peek_tours: string;
@@ -111,14 +112,14 @@ const IndexPage = () => {
         featured: {eq: true},
         sport: {slug: {eq: "kayak"}}
         ) {
-          ...brandedFragment
+          ...CardRetailFragmentPlusBrand
       }
       
       paddleboard: strapiRetail(
         featured: {eq: true},
         sport: {slug: {eq: "paddleboard"}}
         ) {
-          ...brandedFragment
+          ...CardRetailFragmentPlusBrand
       }
 
       strapiBranch(slug: {eq: "tahoe-city"}) {
@@ -181,7 +182,7 @@ const IndexPage = () => {
   // console.log(data.kayak);
   // console.log(data.paddleboard);
 
-  const products = [data.kayak, data.paddleboard] as PaddlePurchaseTypes[];
+  const products = [data.kayak, data.paddleboard] as RetailCardTypes[];
   const retailSports = [
     { slug: "kayak", label: "Kayaks" },
     { slug: "paddleboard", label: "Paddleboards" },
@@ -243,17 +244,15 @@ const IndexPage = () => {
           <Experience />
         </div>
 
-        {/* // ! this is where I got to working in paddle to make one card */}
-        {/* <div className="deck">
+
+        <div className="deck">
           {sortedList
             .map((tour) => {
               return (
                 <PaddleCard
                   key={tour.id}
-                  title={tour.name}
+                  {...tour}
                   link={`/tours-lessons/${tour.slug}`}
-                  image={tour.ogimage}
-                  excerpt={tour.excerpt}
                   paddleBookNow={{
                     peek_base: data.strapiBranch.peek_base,
                     strapiBranchName: data.strapiBranch.name,
@@ -262,7 +261,7 @@ const IndexPage = () => {
                 />
               );
             })}
-        </div> */}
+        </div>
         <div className="condor aconcagua-padding-block-end">
           {hasMore ? (
             <button onClick={handleLoadMore} type="button">
@@ -312,7 +311,7 @@ const IndexPage = () => {
         <ul className='albatross brand_list'>
           {data.allStrapiBrand.nodes
             .filter(brand => brand.retail.some((item) => retailSports.some(sport => sport.slug === item.sport.slug)))
-            .map((brand: PaddleBrandListTypes) => {
+            .map((brand) => {
               const sportSlug = brand.retail.some(item => item.sport.slug === 'kayak') ? 'kayak' : 'paddleboard';
               return (
                 <li key={brand.id}>
@@ -332,13 +331,11 @@ const IndexPage = () => {
 
         <div className="everest-padding-block">
           <div className="deck">
-            {products.map((retail: PaddleCardRetailTypes) => (
+            {products.map((retail) => (
               <PaddleCard
                 key={retail.id}
+                {...retail}
                 link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
-                title={retail.title}
-                image={retail.cutout}
-                excerpt={retail.excerpt}
               />
             ))}
           </div>

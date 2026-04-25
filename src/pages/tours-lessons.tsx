@@ -68,6 +68,7 @@ const ToursLessonsPage = () => {
 
   const sports = [query.kayak, query.paddleBoard];
 
+
   return (
     <>
       <Header />
@@ -104,13 +105,11 @@ const ToursLessonsPage = () => {
 
             <div className="deck">
               {sport.nodes
-                .map((tour: PaddleCardTypes) => (
+                .map((tour: TourCardTypes) => (
                   <PaddleCard
                     key={tour.id}
                     {...tour}
                     link={`/tours-lessons/${tour.slug}`}
-                  // peek_tours_fall_back={query.strapiBranch.peek_tours}
-                  // allStrapiSunsetTourTime={query.allStrapiSunsetTourTime}
                   />
                 ))}
             </div>

@@ -22,14 +22,13 @@ const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
     <>
       <Header />
 
-      <main className="measure">
-        {/* // TODO: add an eyebrow to this */}
-        <h2 className="crest">404 - {location.pathname}</h2>
+      <main>
+        <h1>404 - {location.pathname}</h1>
+        <h2>{data.strapiError.excerpt}</h2>
 
-        <h1 className="mixta">{data.strapiError.excerpt}</h1>
         <BlocksRenderer content={data.strapiError.return} />
       </main>
-      <Footer />
+      <Footer topHR={true} />
     </>
   )
 }

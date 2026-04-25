@@ -3,7 +3,9 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
+import { PaddleCard } from "@rileybathurst/paddle";
+import { SEO } from "../../components/seo";
+import type { TourCardTypes } from "../../types/tour-card-types";
 
 function TourCatchAll({ params }: { params: { name: string } }) {
   const data = useStaticQuery(graphql`
@@ -37,38 +39,44 @@ function TourCatchAll({ params }: { params: { name: string } }) {
   return (
     <>
       <Header />
-      <main className="measure">
-        <h2 className="crest">
+      <main>
+        <h2>
           <Link to="/tours-lessons">Tours &amp; Lessons</Link> / {params.name}
         </h2>
 
         {/* // TODO: this should be a component */}
-        <h1 className="mixta">
+        <h1>
           Looks like you&apos;ve paddled into uncharted waters!
         </h1>
         <p>
           Don&apos;t worry, we&apos;ll help you navigate{" "}
           <Link to="/">back to our homepage.</Link>
         </p>
+
+        <hr />
       </main>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: PaddleCardTypes) => (
+        {data.allStrapiTour.nodes.map((tour: TourCardTypes) => (
           <PaddleCard
             key={tour.id}
             {...tour}
-            tour_page="tours-lessons"
-            peek_tours_fall_back={data.strapiBranch.peek_tours}
-            allStrapiSunsetTourTime={data.allStrapiSunsetTourTime}
+            link={`/tours-lessons/${tour.slug}`}
           />
         ))}
       </section>
 
-      <Footer />
+      <Footer topHR={true} />
     </>
   );
 }
 
 export default TourCatchAll;
 
-// TODO: SEO
+export const Head = () => {
+  return (
+    <SEO
+      title="Tours 404"
+    />
+  );
+}

@@ -34,7 +34,7 @@ export const query = graphql`
       sort: {featured: ASC}
     ) {
       nodes {
-        ...attributeRetailFragment
+        ...CardRetailFragment
       }
     }
 
