@@ -11,13 +11,15 @@ import {
   PaddleCard,
   PaddleBrandList,
   type PaddleBrandListTypes,
-  type PaddleCardTypes,
 } from "@rileybathurst/paddle";
 
 import Sport from "../../components/sport";
 import FeatureList from "../../components/feature-list";
 import SVG from 'react-inlinesvg';
 import Locales from "../../components/locales";
+
+import type { RetailCardTypes } from "../../types/retail-card-types";
+
 
 export const strapiSport = graphql`
   query RetailSportQuery($slug: String!) {
@@ -58,7 +60,7 @@ export const strapiSport = graphql`
 // ? I dont understand omit
 type PaddleBrandTypesWithTagline = Omit<PaddleBrandListTypes, "retail"> & {
   tagline: string;
-  retail: PaddleCardTypes[];
+  retail: RetailCardTypes[];
 };
 
 type retailSportTypes = {
@@ -78,7 +80,7 @@ type retailSportTypes = {
       nodes: PaddleBrandTypesWithTagline[];
     };
     allStrapiRetail: {
-      nodes: PaddleCardTypes[];
+      nodes: RetailCardTypes[];
     };
   }
 }
@@ -117,8 +119,8 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         <PaddleBrandList
           brands={Array.from(
             new Map(data.allStrapiRetail.nodes
-              .filter((retail: PaddleCardTypes) => retail.sport.slug === data.strapiSport.slug)
-              .map((retail: PaddleCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+              .filter((retail: RetailCardTypes) => retail.sport.slug === data.strapiSport.slug)
+              .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
               .values()
           )}
           sport={data.strapiSport.slug}
@@ -152,9 +154,10 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                   .map((retail) => (
                     <PaddleCard
                       key={retail.id}
+                      id={retail.id}
                       link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
                       title={retail.title}
-                      image={retail.cutout}
+                      image={retail.image}
                       excerpt={retail.excerpt}
                     />
                   ))}

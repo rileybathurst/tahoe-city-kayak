@@ -255,7 +255,6 @@ const TourView = ({ data }: TourViewTypes) => {
         </div>
 
         <section className="deck">
-          {/* // ! I dont think this is whaty were doing */}
           {data.allStrapiTour.nodes.map((tour: PaddleCardTypes & { slug: string }) => (
             <PaddleCard
               key={tour.id}

@@ -68,7 +68,6 @@ const ToursLessonsPage = () => {
 
   const sports = [query.kayak, query.paddleBoard];
 
-
   return (
     <>
       <Header />
@@ -105,11 +104,11 @@ const ToursLessonsPage = () => {
 
             <div className="deck">
               {sport.nodes
-                .map((tour: TourCardTypes) => (
+                .map((tour: PaddleCardTypes) => (
                   <PaddleCard
                     key={tour.id}
                     {...tour}
-                    link={`/tours-lessons/${tour.slug}`}
+                    link={`/tours-lessons/${tour.link}`}
                   />
                 ))}
             </div>

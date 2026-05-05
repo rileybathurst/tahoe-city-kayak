@@ -1,27 +1,24 @@
 import React from "react";
 import { Link, graphql, Script } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 
 import Markdown from "react-markdown";
 import Sport from "../components/sport";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Purchase from "../components/purchase";
 import Phone from "../components/phone";
 import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import {
   PaddleSpecs,
-  PaddleTextureBackgrounds,
   type PaddleGatsbyImageType,
   type PaddleCardTypes,
-  type PaddleBrandListTypes,
   PaddleCard
 } from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
 import Hero from "../components/hero";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const Series = ({ series }: { series: string }) => {
   if (series) {
@@ -54,6 +51,7 @@ type ExtentdedPurchaseTypes = PaddleCardTypes & {
       features: string;
     };
   };
+  cutout: PaddleGatsbyImageType;
 };
 
 type RetailTypeViewProps = {
@@ -69,60 +67,22 @@ type RetailTypeViewProps = {
     allStrapiRetail: {
       nodes: ExtentdedPurchaseTypes[];
     };
-    baseOne: {
-      image: PaddleGatsbyImageType;
-    };
-    baseTwo: {
-      image: PaddleGatsbyImageType;
-    }
-    baseThree: {
-      image: PaddleGatsbyImageType;
-    }
-    topOne: {
-      image: PaddleGatsbyImageType;
-    }
-    topTwo: {
-      image: PaddleGatsbyImageType;
-    }
-    topThree: {
-      image: PaddleGatsbyImageType;
-    }
+    strapiMedia: PaddleGatsbyImageType;
   };
 };
 
 const RetailTypeView = ({ data }: RetailTypeViewProps) => {
 
+  console.log(data.strapiRetail.cutout);
+
   return (
     <>
       <Header />
 
-      <Hero />
-
-      {/* <div className="collage card-collage hero">
-        <PaddleTextureBackgrounds
-          baseOne={data.baseOne}
-          baseTwo={data.baseTwo}
-          baseThree={data.baseThree}
-          topOne={data.topOne}
-          topTwo={data.topTwo}
-          topThree={data.topThree}
-        /> */}
-
-      {/* // ! needs something for getting the layered image on the hero */}
-      {/* <GatsbyImage
-          image={
-            data.strapiRetail?.cutout?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={
-            data.strapiRetail?.cutout?.alternativeText ||
-            `${data.strapiRetail.title} image`
-          }
-          className="cutout"
-          objectFit="contain"
-        />
-        {/* {data.strapiRetail?.cutout?.alternativeText}
-      </div> */}
+      <Hero
+        image={data.strapiMedia}
+        collage={data.strapiRetail.cutout ? data.strapiRetail.cutout : null}
+      />
 
       <main>
         <Link to={`/retail/${data.strapiRetail.sport.slug}/${data.strapiRetail.brand.slug}`}>
@@ -359,18 +319,18 @@ export const query = graphql`
       }
     }
 
-      strapiDemo {
-        text {
+    strapiDemo {
+      text {
         data {
-        text
-      }
+          text
+        }
       }
     }
 
-      allStrapiRetail(filter:
+    allStrapiRetail(filter:
       {
         slug: {ne: $slug},
-      brand: {slug: {eq: $brand}}
+        brand: {slug: {eq: $brand}}
       }
       limit: 2,
       sort: {featured: DESC}
@@ -380,65 +340,17 @@ export const query = graphql`
       }
     }
 
-      baseOne: strapiImagegrab(title: {eq: "BaseOne"}) {
-        image {
-        localFile {
+    strapiMedia(name: {regex: "/tim-mossholder-z3Xp1ZcvzgE-unsplash.jpg/"}) {
+      localFile {
         childImageSharp {
-        gatsbyImageData
-      }
+          gatsbyImageData
         }
       }
+      alternativeText
     }
 
-      baseTwo: strapiImagegrab(title: {eq: "BaseTwo"}) {
-        image {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-        }
-      }
-    }
-
-      baseThree: strapiImagegrab(title: {eq: "BaseThree"}) {
-        image {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-        }
-      }
-    }
-
-      topOne: strapiImagegrab(title: {eq: "TopOne"}) {
-        image {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-        }
-      }
-    }
-      topTwo: strapiImagegrab(title: {eq: "TopTwo"}) {
-        image {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-        }
-      }
-    }
-      topThree: strapiImagegrab(title: {eq: "TopThree"}) {
-        image {
-        localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
-        }
-      }
-    }
   }
-      `;
+`;
 
 // * discount was removed as currently we dont have it in use so its breaking the build
 // * volume was removed as currently we dont have it in use so its breaking the build

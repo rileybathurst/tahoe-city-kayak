@@ -9,4 +9,5 @@ export type RetailCardTypes = PaddleCardTypes & {
     id: React.Key;
     slug: string;
   };
+  series?: string | null;
 };

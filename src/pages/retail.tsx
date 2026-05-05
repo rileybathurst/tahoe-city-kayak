@@ -102,7 +102,7 @@ const RetailPage = () => {
             key={kayak.id}
             {...kayak}
             link={`/retail/kayak/${kayak.brand.slug}/${kayak.slug}`}
-            breadcrumb="kayak"
+          // breadcrumb="kayak"
           />
         ))}
 
@@ -124,8 +124,8 @@ const RetailPage = () => {
           <PaddleBrandList
             brands={Array.from(
               new Map(query.paddleBoard.nodes
-                .filter((retail: PaddleCardTypes) => retail.sport.slug === "paddleboard")
-                .map((retail: PaddleCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+                .filter((retail: RetailCardTypes) => retail.sport.slug === "paddleboard")
+                .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
                 .values()
             ) as PaddleBrandListTypes[]}
             sport="paddleboard"

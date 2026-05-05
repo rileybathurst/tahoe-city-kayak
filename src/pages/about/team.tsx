@@ -35,7 +35,7 @@ const TeamPage = () => {
     }
   `)
 
-  // ! O think we were meant to go the other way
+  // * maybe we were meant to go the other way
   type teamTypes = Omit<PaddleCardTypes, 'link'> & {
     slug: string,
   }
@@ -53,6 +53,7 @@ const TeamPage = () => {
           {data.allStrapiTeam.nodes.map((team: teamTypes) => (
             <PaddleCard
               key={team.id}
+              id={team.id}
               link={`/about/team/${team.slug}`}
               image={team.image}
               title={team.title}

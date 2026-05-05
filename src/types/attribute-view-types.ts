@@ -1,11 +1,11 @@
 // * SEO isnt here its on the templates
-import type { PaddleCardTypes } from "@rileybathurst/paddle";
+import type { RetailCardTypes } from "./retail-card-types";
 
 export type AttributeViewTypes = {
   allStrapiRetail: {
     title: string;
     description: string;
-    nodes: PaddleCardTypes[];
+    nodes: RetailCardTypes[];
   };
   strapiAttribute: {
     name: string;

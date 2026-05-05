@@ -2,20 +2,21 @@ import * as React from "react"
 import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle"
 import { graphql, useStaticQuery } from "gatsby"
 
-type heroTypes = {
+type heroDataTypes = {
   strapiMedia: PaddleGatsbyImageType
 }
 
 type HeroTypes = {
   image?: PaddleGatsbyImageType
+  collage?: PaddleGatsbyImageType | null
   overlay?: React.ReactNode
 }
 
-const Hero = ({ image, overlay }: HeroTypes) => {
+const Hero = ({ image, collage, overlay }: HeroTypes) => {
 
-  console.log(overlay);
+  console.log(collage);
 
-  const data: heroTypes = useStaticQuery(graphql`
+  const data: heroDataTypes = useStaticQuery(graphql`
     query HeroQuery {
 
       strapiMedia(localFile: {name: {regex: "/hero_2025/"}}) {
@@ -32,7 +33,8 @@ const Hero = ({ image, overlay }: HeroTypes) => {
   return (
     <PaddleHero
       image={image ? image : data.strapiMedia}
-      overlay={overlay ? overlay : null}
+      collage={collage || undefined}
+      overlay={overlay ? overlay : undefined}
     />
   )
 }

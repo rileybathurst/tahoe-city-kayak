@@ -5,7 +5,7 @@ export const query = graphql`
   fragment CardTourFragment on STRAPI_TOUR {
     id
     title: name
-    slug
+    link: slug
     peek
     excerpt
     order

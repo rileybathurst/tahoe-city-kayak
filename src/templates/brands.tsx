@@ -32,11 +32,11 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
 
   const pathSegments = location.pathname.split('/').filter(Boolean);
   const middleSegment = pathSegments[1]; // Gets the second segment (index 1)
-  const isValidSport = middleSegment === 'kayak' || middleSegment === 'paddleboard';
+  // const isValidSport = middleSegment === 'kayak' || middleSegment === 'paddleboard';
 
-  console.log('Path segments:', pathSegments);
+  /* console.log('Path segments:', pathSegments);
   console.log('Middle segment:', middleSegment);
-  console.log('Is valid sport:', isValidSport);
+  console.log('Is valid sport:', isValidSport); */
 
   const seriesSet = new Set<string>();
   for (const retail of data.allStrapiRetail.nodes as RetailCardTypes[]) {
@@ -69,7 +69,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
                 <Link
                   key={series}
                   to={`#${series}`}
-                  onClick={(e) => scrollTo(`#${series}`)}
+                  onClick={() => scrollTo(`#${series}`)}
                 >
                   <span className="typography__secondary">
                     {series.replace(/-/g, " ")} Series
