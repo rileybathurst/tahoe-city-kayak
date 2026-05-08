@@ -98,6 +98,9 @@ type retailSportTypes = {
     allStrapiRetail: {
       nodes: RetailCardTypes[];
     };
+    strapiImagegrab: {
+      image: PaddleGatsbyImageType;
+    };
   }
 }
 const RetailSportPage = ({ data }: retailSportTypes) => {
