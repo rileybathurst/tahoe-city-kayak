@@ -8,7 +8,7 @@ export const useStrapiKayaker = () => {
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(aspectRatio: 1)
+              gatsbyImageData
             }
           }
         }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import { PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard, PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
@@ -27,6 +27,9 @@ type BrandsViewTypes = {
   allStrapiRetail: {
     nodes: RetailCardTypes[];
   };
+  strapiImagegrab: {
+    image: PaddleGatsbyImageType;
+  };
 };
 const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pathname: string } }) => {
 
@@ -47,6 +50,13 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
   return (
     <>
       <Header />
+
+      <PaddleHero
+        image={data.strapiImagegrab.image}
+        overlay={<Locales
+          retail={true}
+        />}
+      />
 
       {/* // TODO: needs to be wider but not let the text get too long */}
       <main className="pelican">
@@ -81,9 +91,6 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
             : null}
         </section>
 
-        <Locales
-          retail={true}
-        />
       </main>
 
       {seriesArray.length > 0
@@ -186,6 +193,18 @@ export const query = graphql`
         series
       }
     }
+
+    strapiImagegrab(title: {eq: "hero2025"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+
 
   }
 `;

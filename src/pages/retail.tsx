@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
-import { PaddleHero, PaddleCard } from "@rileybathurst/paddle";
+import { PaddleHero, PaddleCard, PaddleBrandList, type PaddleBrandListTypes } from "@rileybathurst/paddle";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -15,19 +15,32 @@ import Locales from "../components/locales";
 
 import Markdown from "react-markdown";
 
-import { PaddleBrandList, type PaddleCardTypes, type PaddleBrandListTypes } from "@rileybathurst/paddle";
-import { RetailCardTypes } from "../types/retail-card-types";
+import type { RetailCardTypes } from "../types/retail-card-types";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
     query RetailsQuery {
-      kayak: allStrapiRetail(filter: {type: {eq: "kayak"}}, limit: 4, sort: {featured: ASC}) {
+      kayak: allStrapiRetail(
+        filter: {
+          type: {eq: "kayak"},
+          cutout: { id: { ne: null } }
+          }
+        , limit: 4,
+        sort: {featured: ASC}
+        ) {
         nodes {
           ...CardRetailFragmentPlusBrand
         }
       }
 
-    paddleBoard: allStrapiRetail(filter: {type: {eq: "sup"}}, limit: 4, sort: {featured: ASC}) {
+    paddleBoard: allStrapiRetail(
+      filter: {
+        type: {eq: "sup"},
+        cutout: { id: { ne: null } }
+      }
+      , limit: 4,
+      sort: {featured: ASC}
+      ) {
       nodes {
         ...CardRetailFragmentPlusBrand
       }
@@ -45,7 +58,7 @@ const RetailPage = () => {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData(aspectRatio: 1)
+            gatsbyImageData
           }
         }
         alternativeText
@@ -70,30 +83,24 @@ const RetailPage = () => {
         <h1>Retail</h1>
 
         <Shop />
+        <hr />
 
-        <article className="pelican">
-          <section className="blocked">
-            <h2>
-              <Link to="/retail/kayak">Kayaks</Link>
-            </h2>
-            <h3 className="condensed">Browse By Feature</h3>
-            <FeatureList sport="kayak" />
-          </section>
-        </article >
+        <h2>
+          <Link to="/retail/kayak">Kayaks</Link>
+        </h2>
+        <h3 className="condensed">Browse By Feature</h3>
+        <FeatureList sport="kayak" />
 
-        <section className="albatross">
-          <h3>Browse By Brand</h3>
-          <PaddleBrandList
-            brands={Array.from(
-              new Map(query.kayak.nodes
-                .filter((retail: RetailCardTypes) => retail.sport.slug === "kayak")
-                .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                .values()
-            ) as PaddleBrandListTypes[]}
-            sport="kayak"
-          />
-        </section>
-
+        <h3>Browse By Brand</h3>
+        <PaddleBrandList
+          brands={Array.from(
+            new Map(query.kayak.nodes
+              .filter((retail: RetailCardTypes) => retail.sport.slug === "kayak")
+              .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+              .values()
+          ) as PaddleBrandListTypes[]}
+          sport="kayak"
+        />
       </main>
 
       <section className="deck">
@@ -106,53 +113,56 @@ const RetailPage = () => {
           />
         ))}
 
+      </section>
+
+      <section className="pelican">
         <h2>
           <Link to="/retail/kayak">All Kayaks</Link>
         </h2>
+
+
+        <hr />
+
+        <h2>
+          <Link to="/retail/paddleboard">Stand Up Paddle boards (SUPs)</Link>
+        </h2>
+        <h3 className="condensed">Browse By Feature</h3>
+        <FeatureList sport="paddleboard" />
+        <h3>Browse By Brand</h3>
+        <PaddleBrandList
+          brands={Array.from(
+            new Map(query.paddleBoard.nodes
+              .filter((retail: RetailCardTypes) => retail.sport.slug === "paddleboard")
+              .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
+              .values()
+          ) as PaddleBrandListTypes[]}
+          sport="paddleboard"
+        />
       </section>
-
-      <hr className="albatross" />
-
-      <article className="albatross">
-        <section className="">
-          <h2>
-            <Link to="/retail/paddleboard">Stand Up Paddle boards (SUPs)</Link>
-          </h2>
-          <h3 className="condensed">Browse By Feature</h3>
-          <FeatureList sport="paddleboard" />
-          <h3>Browse By Brand</h3>
-          <PaddleBrandList
-            brands={Array.from(
-              new Map(query.paddleBoard.nodes
-                .filter((retail: RetailCardTypes) => retail.sport.slug === "paddleboard")
-                .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-                .values()
-            ) as PaddleBrandListTypes[]}
-            sport="paddleboard"
-          />
-        </section>
-
-      </article>
 
       <section className="deck">
-        {/* {query.paddleBoard.nodes.map((sup: PaddleCardTypes) => (
-          <PaddleCard key={sup.id} {...sup} image={sup.cutout} />
-        ))} */}
+        {query.paddleBoard.nodes.map((sup: RetailCardTypes) => (
+          <PaddleCard
+            key={sup.id}
+            {...sup}
+            link={`/retail/paddleboard/${sup.brand.slug}/${sup.slug}`}
+          />
+        ))}
       </section>
 
-      <h2 className="albatross">
+      <h2 className="pelican">
         <Link to="/retail/paddleboard">All Paddle boards</Link>
       </h2>
 
       <div className="pelican">
         <hr />
-        <h3>
+        <h3 className="aconcagua">
           <Link to="/retail/demos">Demos</Link>
         </h3>
         <Markdown>{query.strapiDemo.text.data.text}</Markdown>
       </div>
 
-      <Footer />
+      <Footer topHR />
     </>
   );
 };

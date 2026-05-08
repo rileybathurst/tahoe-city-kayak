@@ -10,7 +10,9 @@ import Footer from "../../components/footer";
 import {
   PaddleCard,
   PaddleBrandList,
+  PaddleHero,
   type PaddleBrandListTypes,
+  type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
 
 import Sport from "../../components/sport";
@@ -49,9 +51,23 @@ export const strapiSport = graphql`
       }
     }
 
-    allStrapiRetail(sort: {featured: ASC}) {
+    allStrapiRetail(
+      filter: {cutout: { localFile: { id: { ne: null } } }},
+      sort: {featured: ASC}
+      ) {
       nodes {
         ...CardRetailFragmentPlusBrand
+      }
+    }
+
+    strapiImagegrab(title: {eq: "hero2025"}) {
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
       }
     }
   }
@@ -96,9 +112,23 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
   }
   const brandArray = Array.from(brandSet);
 
+  console.log(
+    data.allStrapiRetail.nodes
+      .filter((retail) => !retail.image?.localFile?.childImageSharp?.gatsbyImageData)
+      .map((retail) => retail.image?.alternativeText ?? retail.title)
+  )
+
   return (
     <>
       <Header />
+
+      <PaddleHero
+        image={data.strapiImagegrab.image}
+        overlay={<Locales
+          retail={true}
+        />}
+      />
+
       <main className="pelican">
         <h1>{data.strapiSport.title} Retail</h1>
         <div className="react-markdown">
@@ -106,10 +136,6 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
             {data.strapiShop.text.data.text}
           </Markdown>
         </div>
-
-        <Locales
-          retail={true}
-        />
 
         <FeatureList sport={data.strapiSport.slug} />
       </main>
@@ -139,43 +165,48 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                 {brand.svg ?
                   <SVG src={brand.svg} />
                   : null}
-                <h2 className='capitalize'>{brand.name}</h2>
+                <h2 className='capitalize'>
+                  <Link to={brand.slug}>
+                    {brand.name}
+                  </Link>
+                </h2>
                 <p>{brand.tagline}</p>
 
                 <hr />
               </section>
 
-              <div
-                className='deck'
-              >
+              <div className='deck'>
                 {brand.retail
-                  .filter((retail) => retail.sport.slug === data.strapiSport.slug)
-                  .splice(0, 4)
+                  .filter((retail) =>
+                    retail.sport.slug === data.strapiSport.slug
+                    // * this shouldnt be needed with the filter but was hitting errors
+                    && !!retail.image?.localFile?.childImageSharp?.gatsbyImageData
+                  )
+                  .slice(0, 4)
                   .map((retail) => (
                     <PaddleCard
                       key={retail.id}
-                      id={retail.id}
+                      {...retail}
                       link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
-                      title={retail.title}
-                      image={retail.image}
-                      excerpt={retail.excerpt}
                     />
                   ))}
               </div>
 
-              {brand.retail.length > 4 ?
-                <section
-                  className="condor"
-                >
-                  <h3 className='capitalize'>
-                    <Link to={brand.slug}>
-                      All {brand.retail.length} {brand.name} <Sport sport={`${data.strapiSport.slug}s`} />
-                    </Link>
-                  </h3>
-                  <hr />
-                </section>
-                : null}
-            </React.Fragment>
+              {
+                brand.retail.length > 4 ?
+                  <section
+                    className="condor"
+                  >
+                    <h3 className='capitalize'>
+                      <Link to={brand.slug}>
+                        All {brand.retail.length} {brand.name} <Sport sport={`${data.strapiSport.slug}s`} />
+                      </Link>
+                    </h3>
+                    <hr />
+                  </section>
+                  : null
+              }
+            </React.Fragment >
           ))
       ))}
 

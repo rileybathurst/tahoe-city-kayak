@@ -17,7 +17,7 @@ const Composition = ({ sport, image }: compositionTypes) => {
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(aspectRatio: 1)
+              gatsbyImageData
             }
           }
           alternativeText
@@ -29,7 +29,7 @@ const Composition = ({ sport, image }: compositionTypes) => {
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData(aspectRatio: 1)
+              gatsbyImageData
             }
           }
           alternativeText
