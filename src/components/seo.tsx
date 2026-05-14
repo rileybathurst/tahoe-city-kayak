@@ -31,6 +31,8 @@ export const SEO = ({
         name
         excerpt
         url
+
+        # * im using a string here if its an image itd be easier to see in strapi
         og_image
         og_image_description
         latitude
