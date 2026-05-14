@@ -133,7 +133,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </div>
 
       {data.strapiRetail.demo ? (
-        <div className="single__book">
+        <article>
           <h3>Demo</h3>
           <div className="react-markdown">
             <Markdown>
@@ -143,7 +143,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
           <p>
             <Phone />
           </p>
-        </div>
+        </article>
       ) : null}
 
       <hr className="albatross" />
