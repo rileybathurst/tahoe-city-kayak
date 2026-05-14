@@ -14,7 +14,7 @@ type HeroTypes = {
 
 const Hero = ({ image, collage, overlay }: HeroTypes) => {
 
-  console.log(collage);
+  // console.log(collage);
 
   const data: heroDataTypes = useStaticQuery(graphql`
     query HeroQuery {

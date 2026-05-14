@@ -51,20 +51,26 @@ export const SEO = ({
         }
       }
 
-      # main locations 
-      strapiLocation(
-          name: {eq: "Retail Location"},
-          branch: {slug: {eq: "tahoe-city"}}
-        ) {
-          streetAddress
-          addressLocality
-          addressRegion
-          postalCode
-        }
+      address: strapiLocation(
+        name: {eq: "Retail Location"},
+        branch: {slug: {eq: "tahoe-city"}}
+      ) {
+        streetAddress
+        addressLocality
+        addressRegion
+        postalCode
+      }
 
-      # department locations
+      openingHours: strapiLocation(
+        name: {eq: "On Water Rental"},
+        branch: {slug: {eq: "tahoe-city"}}
+      ) {
+        opening_time
+        closing_time
+      }
+
       # currently only using one but if I put more this code is cleaner
-      allStrapiLocation(
+      departments: allStrapiLocation(
         filter: {
           name: {in: ["On Water Rental"]},
           branch: {slug: {eq: "tahoe-city"}}
