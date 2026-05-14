@@ -16,7 +16,6 @@ type HeroTypes = {
   image?: PaddleGatsbyImageType
   collage?: PaddleGatsbyImageType | null
   overlay?: React.ReactNode
-  absolutePath?: string
 }
 
 const Hero = ({ image, collage, overlay }: HeroTypes) => {
@@ -39,6 +38,7 @@ const Hero = ({ image, collage, overlay }: HeroTypes) => {
   `);
 
   console.log(data.strapiMedia.localFile.absolutePath)
+  console.log(data.strapiMedia?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src)
 
   return (
     <PaddleHero
