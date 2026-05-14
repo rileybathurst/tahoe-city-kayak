@@ -30,6 +30,7 @@ const ToursLessonsPage = () => {
       {
         nodes {
           ...CardTourFragment
+          sport
         }
       }
   
@@ -43,6 +44,7 @@ const ToursLessonsPage = () => {
         {
           nodes {
             ...CardTourFragment
+            sport
           }
         }
 

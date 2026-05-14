@@ -25,8 +25,8 @@ import Experience from "../content/experience";
 import ReactMarkdown from "react-markdown";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import { TourCardTypes } from "../types/tour-card-types";
-import { RetailCardTypes } from "../types/retail-card-types";
+import type { TourCardTypes } from "../types/tour-card-types";
+import type { RetailCardTypes } from "../types/retail-card-types";
 
 const IndexPage = () => {
 
@@ -293,6 +293,7 @@ const IndexPage = () => {
 
           <hr />
 
+          {/* // TODO: why did this get removed */}
           {/*           {retailSports.map((sport, index) => (
             <React.Fragment key={sport.slug}>
               {index > 0 ? <hr /> : null}
@@ -307,7 +308,7 @@ const IndexPage = () => {
 
         </div>
 
-
+        {/* // ? should these be combined */}
         <ul className='albatross brand_list'>
           {data.allStrapiBrand.nodes
             .filter(brand => brand.retail.some((item) => retailSports.some(sport => sport.slug === item.sport.slug)))
@@ -326,8 +327,6 @@ const IndexPage = () => {
               );
             })}
         </ul>
-
-
 
         <div className="everest-padding-block">
           <div className="deck">

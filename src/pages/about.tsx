@@ -11,6 +11,9 @@ const AboutPage = () => {
   return (
     <>
       <Header />
+
+      {/* TODO: Hero */}
+
       <main>
         <h1>About Us</h1>
         {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
@@ -26,7 +29,6 @@ const AboutPage = () => {
           <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
         </ul>
       </main>
-
 
       <Footer />
     </>

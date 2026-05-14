@@ -7,6 +7,7 @@ import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 
 import { PaddleCompare } from "@rileybathurst/paddle";
 
+// ? how close to the card tour fragment can I use on this?
 const ComparePage = () => {
   const data = useStaticQuery(graphql`
     query TourCompareQuery {
