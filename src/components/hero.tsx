@@ -1,28 +1,25 @@
 import * as React from "react"
+import type { ReactNode } from "react"
 import { PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle"
 import { graphql, useStaticQuery } from "gatsby"
-
-type HeroImageType = PaddleGatsbyImageType & {
-  localFile: NonNullable<PaddleGatsbyImageType["localFile"]> & {
-    absolutePath: string
-  }
-}
-
-type heroDataTypes = {
-  strapiMedia: HeroImageType
-}
 
 type HeroTypes = {
   image?: PaddleGatsbyImageType
   collage?: PaddleGatsbyImageType | null
-  overlay?: React.ReactNode
+  overlay?: ReactNode
+}
+
+type HeroQueryTypes = {
+  strapiMedia: PaddleGatsbyImageType & {
+    localFile: NonNullable<PaddleGatsbyImageType["localFile"]>
+  }
 }
 
 const Hero = ({ image, collage, overlay }: HeroTypes) => {
 
   // console.log(collage);
 
-  const data: heroDataTypes = useStaticQuery(graphql`
+  const data: HeroQueryTypes = useStaticQuery(graphql`
     query HeroQuery {
 
       strapiMedia(localFile: {name: {regex: "/hero_2025/"}}) {
@@ -30,22 +27,22 @@ const Hero = ({ image, collage, overlay }: HeroTypes) => {
           childImageSharp {
             gatsbyImageData
           }
-          absolutePath
         }
         alternativeText
       }
     }
   `);
 
-  console.log(data.strapiMedia.localFile.absolutePath)
   console.log(data.strapiMedia?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src)
 
   return (
-    <PaddleHero
-      image={image ? image : data.strapiMedia}
-      collage={collage || undefined}
-      overlay={overlay ? overlay : undefined}
-    />
+    <React.Fragment>
+      <PaddleHero
+        image={image ? image : data.strapiMedia}
+        collage={collage || undefined}
+        overlay={overlay ? overlay : undefined}
+      />
+    </React.Fragment>
   )
 }
 

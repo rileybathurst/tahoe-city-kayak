@@ -46,6 +46,15 @@ export const SEO = ({
         price_range
         slogan
 
+        hero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+
         topbar {
           data {
             topbar
