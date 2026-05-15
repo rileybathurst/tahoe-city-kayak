@@ -191,21 +191,19 @@ const IndexPage = () => {
 
         <PricingChart />
 
-
-        <div className='pelican'>
-          <div className="margin-block-end-aconcagua">
-            <h2 className="denali">
-              <ReactMarkdown>
-                {data.strapiBranch.lead.data.lead}
-              </ReactMarkdown>
-            </h2>
-            <div className="react-markdown">
-              <AboutUs />
-            </div>
+        <div className="condor aconcagua-margin-block">
+          {/* // TODO: font serif */}
+          <h2 className="denali">
+            <ReactMarkdown>
+              {data.strapiBranch.lead.data.lead}
+            </ReactMarkdown>
+          </h2>
+          <div className=" react-markdown">
+            <AboutUs />
           </div>
         </div>
 
-        <div className="pelican multi_button">
+        <div className="condor multi_button">
           <PaddleBookNow
             peek_base={data.strapiBranch.peek_base}
             strapiBranchName={data.strapiBranch.name}
@@ -270,10 +268,9 @@ const IndexPage = () => {
       {/* // TODO add this back inthis probably still needs more */}
       {/* <MapSVG /> */}
 
-      <section id="retail" className="albatross kilimanjaro-block-end">
-        <div className="pelican">
-
-          <h3 className="aconcagua">
+      <section id="retail" className="albatross kilimanjaro-block-end aconcagua-margin-block">
+        <div className="condor">
+          <h3 className="aconcagua font-serif">
             <Link to="/retail">
               Retail Store
             </Link>
@@ -281,7 +278,7 @@ const IndexPage = () => {
 
           <Shop />
 
-          <hr />
+          <hr className=" aconcagua-margin-block-end" />
 
           {/* // TODO: why did this get removed */}
           {/*           {retailSports.map((sport, index) => (
