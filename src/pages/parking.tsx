@@ -43,9 +43,11 @@ const ParkingPage = ({ data }: ParkingPageTypes) => {
     <React.Fragment>
       <Header />
 
-      <h1>Parking Information</h1>
+      <main>
+        <h1>Parking Information</h1>
 
-      <EverestToDenali blocks={data.strapiParking.blocks} />
+        <EverestToDenali blocks={data.strapiParking.blocks} />
+      </main>
 
       <Footer />
     </React.Fragment>

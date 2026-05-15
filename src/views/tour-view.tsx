@@ -42,7 +42,7 @@ interface TourViewTypes {
       excerpt: string;
       price: number;
       slug: string;
-      ogImage: PaddleGatsbyImageType;
+      hero: PaddleGatsbyImageType;
 
       branch: {
         name: string;
@@ -51,8 +51,6 @@ interface TourViewTypes {
         season_end: string;
         phone: string;
       };
-
-      compositionImage: PaddleGatsbyImageType;
     };
 
     allStrapiMoonlightTourDateTime: {
@@ -113,19 +111,10 @@ export const data = graphql`
       excerpt
       price
 
-      ogimage {
+      hero {
         localFile {
           childImageSharp {
             gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-
-      compositionImage {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(aspectRatio: 1, layout: CONSTRAINED)
           }
         }
         alternativeText
@@ -192,6 +181,7 @@ const TourView = ({ data }: TourViewTypes) => {
       <Header />
 
       <Hero
+        image={data.strapiTour.hero}
         overlay={<Locales
           water={true}
           parking={true}

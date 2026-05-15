@@ -29,7 +29,7 @@ const ComparePage = () => {
         excerpt
         duration
 
-        ogimage {
+        hero {
           localFile {
             childImageSharp {
               gatsbyImageData(

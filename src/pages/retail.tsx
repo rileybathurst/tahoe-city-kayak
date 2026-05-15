@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
 
-import { PaddleHero, PaddleCard, PaddleBrandList, type PaddleBrandListTypes } from "@rileybathurst/paddle";
+import { PaddleCard, PaddleBrandList, type PaddleBrandListTypes } from "@rileybathurst/paddle";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -16,6 +16,7 @@ import Locales from "../components/locales";
 import Markdown from "react-markdown";
 
 import type { RetailCardTypes } from "../types/retail-card-types";
+import Hero from "../components/hero";
 
 const RetailPage = () => {
   const query = useStaticQuery(graphql`
@@ -54,8 +55,11 @@ const RetailPage = () => {
       }
     }
 
-    strapiImagegrab(title: {eq: "hero2025"}) {
-      image {
+    strapiLocation(
+      name: {eq: "Retail Location"}
+      branch: {slug: {eq: "tahoe-city"}}
+    ) {
+      hero {
         localFile {
           childImageSharp {
             gatsbyImageData
@@ -72,8 +76,8 @@ const RetailPage = () => {
     <>
       <Header />
 
-      <PaddleHero
-        image={query.strapiImagegrab.image}
+      <Hero
+        image={query.strapiLocation.hero}
         overlay={<Locales
           retail={true}
         />}

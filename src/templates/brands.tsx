@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import { PaddleCard, PaddleHero, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
+import { PaddleCard } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
@@ -12,6 +12,7 @@ import Footer from "../components/footer";
 import SVG from 'react-inlinesvg';
 import Locales from "../components/locales";
 import type { RetailCardTypes } from "../types/retail-card-types";
+import Hero from "../components/hero";
 
 type BrandsViewTypes = {
   strapiBrand: {
@@ -26,9 +27,6 @@ type BrandsViewTypes = {
   };
   allStrapiRetail: {
     nodes: RetailCardTypes[];
-  };
-  strapiImagegrab: {
-    image: PaddleGatsbyImageType;
   };
 };
 const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pathname: string } }) => {
@@ -51,8 +49,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
     <>
       <Header />
 
-      <PaddleHero
-        image={data.strapiImagegrab.image}
+      <Hero
         overlay={<Locales
           retail={true}
         />}
@@ -193,18 +190,6 @@ export const query = graphql`
         series
       }
     }
-
-    strapiImagegrab(title: {eq: "hero2025"}) {
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-    }
-
 
   }
 `;

@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { useStrapiLogos } from "../hooks/use-strapi-logos";
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
-function LogoLight() {
-  const { query } = useStrapiLogos()
+type LogoQueryData = {
+  logoLight: {
+    image: PaddleGatsbyImageType;
+  };
+  logoDark: {
+    image: PaddleGatsbyImageType;
+  };
+};
+
+function LogoLight({ query }: { query: LogoQueryData }) {
   return <GatsbyImage
     // the best version I could find. its small at best
     image={query.logoLight.image.localFile.childImageSharp.gatsbyImageData}
@@ -11,8 +20,7 @@ function LogoLight() {
   />
 }
 
-function LogoDark() {
-  const { query } = useStrapiLogos()
+function LogoDark({ query }: { query: LogoQueryData }) {
   return <GatsbyImage
     // the best version I could find. its small at best
     image={query.logoDark.image.localFile.childImageSharp.gatsbyImageData}
@@ -22,9 +30,9 @@ function LogoDark() {
 
 // light to dark switch
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const media = window.matchMedia(query);
     if (media.matches !== matches) {
       setMatches(media.matches);
@@ -35,14 +43,44 @@ export function useMediaQuery(query: string): boolean {
 }
 
 function Logo() {
+  const query = useStaticQuery<LogoQueryData>(graphql`
+    query LogosQuery {
+      logoLight: strapiImagegrab(title: {eq: "logoLight"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 294
+                transformOptions: {fit: CONTAIN}
+              )
+            }
+          }
+        }
+      }
+
+      logoDark: strapiImagegrab(title: {eq: "logoDark"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 294)
+            }
+          }
+        }
+      }
+    }
+  `);
+
   var isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
     <>
-      {isSiteDark && <LogoDark />}
-      {isSiteDark || <LogoLight />}
+      {isSiteDark && <LogoDark query={query} />}
+      {isSiteDark || <LogoLight query={query} />}
     </>
   );
 }
 
 export default Logo;
+

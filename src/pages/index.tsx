@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-// import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+
 import SVG from 'react-inlinesvg';
 import {
   PaddleBookNow,
   PaddleCard,
-  // PaddleBrandList,
   PaddleTestimonial,
-  type PaddleCardTypes,
   type PaddleTestimonialTypes,
-  type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PricingChart from "../components/pricing-chart";
-// import FeatureList from "../components/feature-list";
 import AboutUs from "../content/about-us";
 import Shop from "../content/shop";
 
 import Experience from "../content/experience";
-// import Purchase from "../components/purchase";
 import ReactMarkdown from "react-markdown";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
@@ -31,9 +26,6 @@ import type { RetailCardTypes } from "../types/retail-card-types";
 const IndexPage = () => {
 
   type indexTypes = {
-    strapiImagegrab: {
-      image: PaddleGatsbyImageType
-    };
     allStrapiTour: {
       nodes: TourCardTypes[];
     };
@@ -188,8 +180,6 @@ const IndexPage = () => {
     { slug: "paddleboard", label: "Paddleboards" },
   ] as const;
 
-  // console.log(data.strapiImagegrab.image.localFile.childImageSharp.gatsbyImageData);
-
   return (
     <React.Fragment>
       <Header />
@@ -252,7 +242,7 @@ const IndexPage = () => {
                 <PaddleCard
                   key={tour.id}
                   {...tour}
-                  link={`/tours-lessons/${tour.slug}`}
+                  link={`/tours-lessons/${tour.link}`}
                   paddleBookNow={{
                     peek_base: data.strapiBranch.peek_base,
                     strapiBranchName: data.strapiBranch.name,

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";
 
-import { PaddlePricingChart } from "@rileybathurst/paddle";
+import { PaddlePricingChart, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -40,16 +40,19 @@ type RentalsPageTypes = {
       excerpt: string;
       six: string;
     };
+
+    strapiLocation: {
+      hero: PaddleGatsbyImageType;
+    };
   };
 };
 const RentalsPage = ({ data }: RentalsPageTypes) => {
-
-
   return (
     <>
       <Header />
 
       <Hero
+        image={data.strapiLocation.hero}
         overlay={<PaddlePricingChart
           rentalRates={data.allStrapiRentalRate}
         />}
@@ -138,5 +141,19 @@ export const data = graphql`
         six
       }
 
+    strapiLocation(
+      name: {eq: "On Water Rental"}
+      branch: {slug: {eq: "tahoe-city"}}
+    ) {
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
+  }
+
 `;

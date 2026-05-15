@@ -1,8 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from 'gatsby';
 import Markdown from "react-markdown";
-
-// Paddle
 import { SEO } from "../../components/seo";
 
 import Header from "../../components/header";
@@ -10,7 +8,6 @@ import Footer from "../../components/footer";
 import {
   PaddleCard,
   PaddleBrandList,
-  PaddleHero,
   type PaddleBrandListTypes,
   type PaddleGatsbyImageType
 } from "@rileybathurst/paddle";
@@ -21,6 +18,7 @@ import SVG from 'react-inlinesvg';
 import Locales from "../../components/locales";
 
 import type { RetailCardTypes } from "../../types/retail-card-types";
+import Hero from "../../components/hero";
 
 
 export const strapiSport = graphql`
@@ -60,8 +58,11 @@ export const strapiSport = graphql`
       }
     }
 
-    strapiImagegrab(title: {eq: "hero2025"}) {
-      image {
+    strapiLocation(
+      name: {eq: "Retail Location"}
+      branch: {slug: {eq: "tahoe-city"}}
+    ) {
+      hero {
         localFile {
           childImageSharp {
             gatsbyImageData
@@ -98,9 +99,9 @@ type retailSportTypes = {
     allStrapiRetail: {
       nodes: RetailCardTypes[];
     };
-    strapiImagegrab: {
-      image: PaddleGatsbyImageType;
-    };
+    strapiLocation: {
+      hero: PaddleGatsbyImageType;
+    }
   }
 }
 const RetailSportPage = ({ data }: retailSportTypes) => {
@@ -125,8 +126,8 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
     <>
       <Header />
 
-      <PaddleHero
-        image={data.strapiImagegrab.image}
+      <Hero
+        image={data.strapiLocation.hero}
         overlay={<Locales
           retail={true}
         />}
@@ -143,7 +144,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 
-      <div className="albatross">
+      <div className="pelican">
 
         <PaddleBrandList
           brands={Array.from(
@@ -165,6 +166,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
               <section
                 className="condor"
               >
+                {/* // TODO: make these larger */}
                 {brand.svg ?
                   <SVG src={brand.svg} />
                   : null}

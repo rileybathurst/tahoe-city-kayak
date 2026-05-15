@@ -3,11 +3,10 @@ import { Link, graphql } from "gatsby";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-// import { Hero } from "../components/hero";
 import { SEO } from "../components/seo";
-import { PaddleHero } from "@rileybathurst/paddle";
+import Hero from "../components/hero";
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 export const data = graphql`
   query TeamViewQuery($slug: String!) {
@@ -45,14 +44,7 @@ type TeamViewTypes = {
           bio: string
         }
       },
-      profile: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData
-          }
-        },
-        alternativeText: string
-      }
+      profile: PaddleGatsbyImageType;
     }
   }
 }
@@ -63,7 +55,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
       <Header />
 
       {data.strapiTeam.profile &&
-        <PaddleHero
+        <Hero
           image={data.strapiTeam.profile}
         />
       }
@@ -93,6 +85,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
 export default TeamView;
 
 export const Head = ({ data }: TeamViewTypes) => {
+  // TODO: image
   return (
     <SEO
       title={data.strapiTeam.name}

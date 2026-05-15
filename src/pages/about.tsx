@@ -5,6 +5,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import AboutUs from "../content/about-us";
+import Hero from "../components/hero";
 
 const AboutPage = () => {
 
@@ -12,11 +13,10 @@ const AboutPage = () => {
     <>
       <Header />
 
-      {/* TODO: Hero */}
+      <Hero />
 
       <main>
         <h1>About Us</h1>
-        {/* // ? I might be able to query this its not the slogan but its almost the same maybe a single strapi */}
         <AboutUs />
 
         <ul>
@@ -30,7 +30,7 @@ const AboutPage = () => {
         </ul>
       </main>
 
-      <Footer />
+      <Footer topHR />
     </>
   )
 }

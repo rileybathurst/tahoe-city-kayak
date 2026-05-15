@@ -56,7 +56,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-    // TODO: keep a lookout
     {
       resolve: "gatsby-plugin-csp",
       options: {
