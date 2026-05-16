@@ -6,6 +6,7 @@ import Footer from "../../components/footer";
 import { PaddleCard } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
 import type { TourCardTypes } from "../../types/tour-card-types";
+import ReactMarkdown from "react-markdown";
 
 function TourCatchAll({ params }: { params: { name: string } }) {
   const data = useStaticQuery(graphql`
@@ -24,14 +25,8 @@ function TourCatchAll({ params }: { params: { name: string } }) {
         peek_tours
       }
 
-      allStrapiSunsetTourTime(sort: {startDate: ASC}) {
-        nodes {
-          id
-          endDate
-          endTime
-          startDate
-          startTime
-        }
+      strapiError {
+        ...errorFragment
       }
     }
   `);
@@ -44,14 +39,10 @@ function TourCatchAll({ params }: { params: { name: string } }) {
           <Link to="/tours-lessons">Tours &amp; Lessons</Link> / {params.name}
         </h2>
 
-        {/* // TODO: this should be a component */}
-        <h1>
-          Looks like you&apos;ve paddled into uncharted waters!
-        </h1>
-        <p>
-          Don&apos;t worry, we&apos;ll help you navigate{" "}
-          <Link to="/">back to our homepage.</Link>
-        </p>
+        <h1>{data.strapiError.title}</h1>
+        <ReactMarkdown>
+          {data.strapiError.description.data.description}
+        </ReactMarkdown>
 
         <hr />
       </main>

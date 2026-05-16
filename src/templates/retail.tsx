@@ -354,3 +354,5 @@ export const query = graphql`
 
 // * discount was removed as currently we dont have it in use so its breaking the build
 // * volume was removed as currently we dont have it in use so its breaking the build
+
+// TODO: should I do something with strapiMedia grab? this is the last one left

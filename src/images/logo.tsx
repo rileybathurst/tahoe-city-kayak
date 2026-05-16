@@ -4,26 +4,24 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 type LogoQueryData = {
-  logoLight: {
-    image: PaddleGatsbyImageType;
-  };
-  logoDark: {
-    image: PaddleGatsbyImageType;
+  strapiBranch: {
+    logoImage: PaddleGatsbyImageType;
+    logoImageNegative: PaddleGatsbyImageType;
   };
 };
 
-function LogoLight({ query }: { query: LogoQueryData }) {
+function LogoLight({ query }: { query: PaddleGatsbyImageType }) {
   return <GatsbyImage
     // the best version I could find. its small at best
-    image={query.logoLight.image.localFile.childImageSharp.gatsbyImageData}
+    image={query.localFile.childImageSharp.gatsbyImageData}
     alt="tahoe city kayak and paddleboard logo"
   />
 }
 
-function LogoDark({ query }: { query: LogoQueryData }) {
+function LogoDark({ query }: { query: PaddleGatsbyImageType }) {
   return <GatsbyImage
     // the best version I could find. its small at best
-    image={query.logoDark.image.localFile.childImageSharp.gatsbyImageData}
+    image={query.localFile.childImageSharp.gatsbyImageData}
     alt="tahoe city kayak and paddleboard logo"
   />
 }
@@ -43,30 +41,24 @@ export function useMediaQuery(query: string): boolean {
 }
 
 function Logo() {
-  const query = useStaticQuery<LogoQueryData>(graphql`
+  const { strapiBranch } = useStaticQuery<LogoQueryData>(graphql`
     query LogosQuery {
-      logoLight: strapiImagegrab(title: {eq: "logoLight"}) {
-        title
-        image {
+      strapiBranch(slug: {eq: "tahoe-city"}) {
+        logoImage {
           localFile {
             childImageSharp {
-              gatsbyImageData(
-                width: 294
-                transformOptions: {fit: CONTAIN}
-              )
+              gatsbyImageData
             }
           }
+          alternativeText
         }
-      }
-
-      logoDark: strapiImagegrab(title: {eq: "logoDark"}) {
-        title
-        image {
+        logoImageNegative {
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 294)
+              gatsbyImageData
             }
           }
+          alternativeText
         }
       }
     }
@@ -76,8 +68,8 @@ function Logo() {
 
   return (
     <>
-      {isSiteDark && <LogoDark query={query} />}
-      {isSiteDark || <LogoLight query={query} />}
+      {isSiteDark && <LogoDark query={strapiBranch.logoImageNegative} />}
+      {isSiteDark || <LogoLight query={strapiBranch.logoImage} />}
     </>
   );
 }

@@ -5,6 +5,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from 'react-markdown';
+import Hero from "../../components/hero";
 
 const ProtectPage = () => {
 
@@ -17,6 +18,13 @@ const ProtectPage = () => {
             details
           }
         }
+        hero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
       }
     }
   `)
@@ -24,6 +32,10 @@ const ProtectPage = () => {
   return (
     <>
       <Header />
+
+      <Hero
+        image={strapiProtect.hero}
+      />
 
       <main className="pelican">
         <h1>{strapiProtect.title}</h1>

@@ -4,15 +4,21 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { SEO } from "../../components/seo";
+import ReactMarkdown from "react-markdown";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 
 function AnnouncementCatchAll({ params }: { params: { name: string } }) {
 
-  const { allStrapiAnnouncement } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query AnnouncementCatchAllQuery {
       allStrapiAnnouncement {
         nodes {
           slug
         }
+      }
+
+      strapiError {
+        ...errorFragment
       }
     }
   `)
@@ -24,14 +30,15 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
         <h2>
           <Link to="/announcement">Announcement</Link> / {params.name}</h2>
 
-        <h1>Looks like you&apos;ve paddled into uncharted waters!</h1>
-        <p>Don&apos;t worry, we&apos;ll help you navigate <Link to="/">back to our homepage.</Link></p>
-
+        <h1>{data.strapiError.title}</h1>
+        <ReactMarkdown>
+          {data.strapiError.description.data.description}
+        </ReactMarkdown>
         <hr />
         <h2>Announcements</h2>
 
         <ul>
-          {allStrapiAnnouncement.nodes.map((announcement: { slug: string }) => (
+          {data.allStrapiAnnouncement.nodes.map((announcement: { slug: string }) => (
             <li key={announcement.slug}>
               <Link to={`/announcement/${announcement.slug}`}>{announcement.slug}</Link>
             </li>
@@ -39,6 +46,12 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
         </ul>
 
       </main>
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/announcement/">Announcement</Link></Breadcrumb>
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer topHR={true} />
     </>
   )

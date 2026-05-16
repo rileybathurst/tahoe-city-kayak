@@ -105,7 +105,7 @@ export const SEO = ({
     }
   `);
 
-  console.log(data.strapiBranch.og_image);
+  // console.log(data.strapiBranch.og_image);
 
   return (
     <>

@@ -19,6 +19,7 @@ import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
+import { TourCardTypes } from "../types/tour-card-types";
 
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
@@ -77,11 +78,7 @@ interface TourViewTypes {
     };
 
     allStrapiTour: {
-      nodes: (PaddleCardTypes & { slug: string })[];
-    };
-
-    strapiBranch: {
-      peek_tours: string;
+      nodes: TourCardTypes[];
     };
   };
 }
@@ -122,6 +119,7 @@ export const data = graphql`
 
       branch {
         name
+        peek_base
         peek_tours
         season_start
         season_end
@@ -245,11 +243,16 @@ const TourView = ({ data }: TourViewTypes) => {
         </div>
 
         <section className="deck">
-          {data.allStrapiTour.nodes.map((tour: PaddleCardTypes & { slug: string }) => (
+          {data.allStrapiTour.nodes.map((tour) => (
             <PaddleCard
               key={tour.id}
               {...tour}
               link={`/tours-lessons/${tour.slug}`}
+              paddleBookNow={{
+                peek_base: data.strapiTour.branch.peek_tours,
+                strapiBranchName: data.strapiTour.branch.name,
+                specificLink: tour.peek,
+              }}
             />
           ))}
         </section>
