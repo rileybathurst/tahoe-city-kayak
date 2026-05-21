@@ -201,6 +201,8 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
       component: path.resolve("src/views/tour-view.tsx"),
       context: {
         slug: node.slug,
+        yearStart: `${new Date().getFullYear()}-01-01`,
+        yearEnd: `${new Date().getFullYear()}-12-31`,
       },
     });
   }

@@ -2,15 +2,15 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Markdown from "react-markdown";
 
-type BrandNode = {
+type RetailItem = {
   slug: string;
-  retail?: Array<{ slug: string }> | null;
+  sport: { slug: string };
 };
 
-const getSlugFromHref = (href: string) => {
-  const cleanHref = href.split("?")[0].split("#")[0].replace(/\/$/, "");
-  const parts = cleanHref.split("/").filter(Boolean);
-  return parts[parts.length - 1] || "";
+type BrandNode = {
+  name: string;
+  slug: string;
+  retail?: Array<RetailItem> | null;
 };
 
 const Shop = () => {
@@ -27,10 +27,14 @@ const Shop = () => {
 
       allStrapiBrand {
         nodes {
+          name
           slug
 
           retail {
-            slug
+            slug 
+            sport {
+              slug
+            }
           }
         }
       }
@@ -39,19 +43,25 @@ const Shop = () => {
 
   // console.log(data.strapiShop.text.data.text)
 
-  const publishedBrandSlugs = (data.allStrapiBrand.nodes as BrandNode[])
-    .filter((brand: BrandNode) => Array.isArray(brand.retail) && brand.retail.length > 0)
-    .map((brand: BrandNode) => brand.slug);
+  const publishedBrands = (data.allStrapiBrand.nodes as BrandNode[])
+    .filter((brand: BrandNode) => Array.isArray(brand.retail) && brand.retail.length > 0);
 
-  // console.log(publishedBrandSlugs);
+  const kayakBrands = publishedBrands
+    .filter((brand: BrandNode) => (brand.retail ?? []).some((item) => item.sport?.slug === "kayak"));
 
-  const cleanedMarkdown = data.strapiShop.text.data.text.replace(
-    /\[([^\]]+)\]\(([^)]+)\)/g,
-    (fullMatch: string, linkText: string, href: string) => {
-      const slug = getSlugFromHref(href);
-      return publishedBrandSlugs.includes(slug) ? fullMatch : linkText;
-    }
-  );
+  const paddleboardBrands = publishedBrands
+    .filter((brand: BrandNode) => (brand.retail ?? []).some((item) => item.sport?.slug === "paddleboard"));
+
+  const kayakBrandLinks = kayakBrands
+    .map((brand: BrandNode) => `[${brand.name}](/retail/kayak/${brand.slug}/)`)
+    .join(", ");
+
+  const paddleboardBrandLinks = paddleboardBrands
+    .map((brand: BrandNode) => `[${brand.name}](/retail/paddleboard/${brand.slug}/)`)
+    .join(", ");
+
+  const cleanedMarkdown = data.strapiShop.text.data.text.replace(/\r?\n?```[\t ]*\r?\nbrands\r?\n```[\t ]*\r?\n?/gi, `kayaks brands such as ${kayakBrandLinks} and paddleboard brands such as ${paddleboardBrandLinks}`);
+  // console.log(cleanedMarkdown)
 
   return (
     <div className="react-markdown">

@@ -84,7 +84,7 @@ interface TourViewTypes {
 }
 
 export const data = graphql`
-  query TourQuery($slug: String!) {
+  query TourQuery($slug: String!, $yearStart: Date!, $yearEnd: Date!) {
     strapiTour(
       slug: { eq: $slug },
       branch: {slug: {eq: "tahoe-city"}}
@@ -127,7 +127,10 @@ export const data = graphql`
       }
     }
 
-    allStrapiSunsetTourTime(sort: {startDate: ASC}) {
+    allStrapiSunsetTourTime(
+        filter: {startDate: {gte: $yearStart, lte: $yearEnd}},
+        sort: {startDate: ASC}
+    ) {
       nodes {
         id
         endDate
@@ -162,7 +165,6 @@ export const data = graphql`
 `;
 
 // TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
-
 const TourView = ({ data }: TourViewTypes) => {
 
   const time = PaddleTime({
