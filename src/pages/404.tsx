@@ -23,7 +23,7 @@ type NotFoundPageTypes = {
 };
 const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
@@ -32,7 +32,7 @@ const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
         <p>{data.strapiError.description.data.description}</p>
       </main>
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   )
 }
 

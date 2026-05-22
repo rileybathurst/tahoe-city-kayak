@@ -71,7 +71,7 @@ const ToursLessonsPage = () => {
   const sports = [query.kayak, query.paddleBoard];
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -119,7 +119,7 @@ const ToursLessonsPage = () => {
       </div>
 
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   );
 };
 

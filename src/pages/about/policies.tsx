@@ -39,7 +39,7 @@ const PoliciesPage = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
@@ -66,7 +66,7 @@ const PoliciesPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

@@ -53,7 +53,7 @@ const ComparePage = () => {
 `);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="pelican">
@@ -74,7 +74,7 @@ const ComparePage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

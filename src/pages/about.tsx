@@ -58,7 +58,7 @@ const AboutPage = () => {
   // console.log(data.strapiTestimonial);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero />
@@ -78,40 +78,7 @@ const AboutPage = () => {
         <hr />
       </main>
 
-      <section className="pelican">
-        <h3 className="font-serif">
-          <Link to="/about/team">
-            Team
-          </Link>
-        </h3>
-        <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
-        <hr />
-
-        <section className="deck">
-          {data.allStrapiTeam.nodes.map((team: TeamCardTypes) => (
-            <PaddleCard
-              key={team.id}
-              {...team}
-              link={`/about/team/${team.slug}`}
-            />
-          ))}
-        </section>
-
-      </section>
-
-
-      {/* // * specifically using a single here */}
-      <section className="panel denali-padding-block">
-        <h3 className="pelican font-serif">
-          <Link to="/about/testimonials">
-            Testimonials
-          </Link></h3>
-        <ul className='pelican aconcagua-margin-block-end'>
-          <PaddleTestimonial {...data.strapiTestimonial} />
-        </ul>
-      </section>
-
-      <Footer />
+      <Footer topHR />
     </>
   )
 }

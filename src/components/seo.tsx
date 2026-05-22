@@ -108,7 +108,7 @@ export const SEO = ({
   // console.log(data.strapiBranch.og_image);
 
   return (
-    <>
+    <React.Fragment>
       <html lang="en" />
       {/* // if a page doesnt have this linked it wont pull thge theme as it needs this line */}
       {/* // TODO: write a test to check this is on pages */}
@@ -124,6 +124,6 @@ export const SEO = ({
       >
         {children}
       </PaddleSEO>
-    </>
+    </React.Fragment>
   );
 };

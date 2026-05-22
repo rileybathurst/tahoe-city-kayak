@@ -79,15 +79,16 @@ const RetailPage = () => {
   }
 `);
 
-  const getBrands = (nodes: RetailCardTypes[], sport: string): PaddleBrandListTypes[] => {
-    return Array.from(
-      new Map(
-        nodes
-          .filter((retail: RetailCardTypes) => retail.sport.slug === sport)
-          .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes])
-      ).values()
-    ) as PaddleBrandListTypes[];
-  };
+  // ! havent finished this
+  /*   const getBrands = (nodes: RetailCardTypes[], sport: string): PaddleBrandListTypes[] => {
+      return Array.from(
+        new Map(
+          nodes
+            .filter((retail: RetailCardTypes) => retail.sport.slug === sport)
+            .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes])
+        ).values()
+      ) as PaddleBrandListTypes[];
+    }; */
 
   const sports = [
     {

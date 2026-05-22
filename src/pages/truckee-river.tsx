@@ -30,7 +30,7 @@ type RiverTypes = {
 const TruckeeRiverPage = ({ data }: { data: RiverTypes }) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -45,7 +45,7 @@ const TruckeeRiverPage = ({ data }: { data: RiverTypes }) => {
       </main>
 
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   )
 }
 

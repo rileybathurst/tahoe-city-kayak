@@ -18,21 +18,6 @@ import SVG from 'react-inlinesvg';
 import Hero from "../components/hero";
 import type { RetailCardTypes } from "../types/retail-card-types";
 
-// * this was a thing we used for Hobie its no longer really needed
-/* const Series = ({ series }: { series: string }) => {
-  if (series) {
-    return (
-      <div className="h_series">
-        <div className="spec">
-          <h2>Series</h2>
-          <h3>{series}</h3>
-        </div>
-      </div>
-    );
-  }
-  return null;
-} */
-
 type RetailTemplateType = {
   data: {
     strapiRetail: {

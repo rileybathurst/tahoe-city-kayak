@@ -30,7 +30,7 @@ type JobsPageType = {
 const JobsPage = ({ data }: JobsPageType) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main>
@@ -75,7 +75,7 @@ const JobsPage = ({ data }: JobsPageType) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 export default JobsPage

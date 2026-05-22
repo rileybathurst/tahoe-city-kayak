@@ -56,7 +56,7 @@ type AnnouncementTypes = {
 const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       {data.strapiAnnouncement?.hero?.localFile?.childImageSharp?.gatsbyImageData &&
         <Hero
@@ -88,7 +88,7 @@ const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

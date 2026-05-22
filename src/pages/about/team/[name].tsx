@@ -25,7 +25,7 @@ function TeamCatchAll({ params }: { params: { name: string } }) {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main className="condor">
         <h2>
@@ -55,7 +55,7 @@ function TeamCatchAll({ params }: { params: { name: string } }) {
         <Breadcrumb>{params.name}</Breadcrumb>
       </Breadcrumbs>
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

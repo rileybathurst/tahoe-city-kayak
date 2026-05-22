@@ -19,7 +19,7 @@ function AnnouncementPage() {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main>
         <h1>Announcements</h1>
@@ -34,7 +34,7 @@ function AnnouncementPage() {
 
       </main >
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   )
 }
 
