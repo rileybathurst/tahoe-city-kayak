@@ -122,7 +122,7 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
     } */
 
   return (
-    <ul className=''>
+    <ul className='denali font-serif'>
       {FeatureArray.map((feature: string) => (
         data.allStrapiAttribute.nodes
           .filter((attribute: AttributeNode) => attribute.slug === feature)

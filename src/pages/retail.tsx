@@ -54,6 +54,15 @@ const RetailPage = () => {
       }
     }
 
+    paddleBoardBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "paddleboard"}}}}}) {
+      nodes {
+        name
+        svg
+        slug
+        id
+      }
+    }
+
     strapiDemo {
       text {
         data {
@@ -79,27 +88,18 @@ const RetailPage = () => {
   }
 `);
 
-  // ! havent finished this
-  /*   const getBrands = (nodes: RetailCardTypes[], sport: string): PaddleBrandListTypes[] => {
-      return Array.from(
-        new Map(
-          nodes
-            .filter((retail: RetailCardTypes) => retail.sport.slug === sport)
-            .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes])
-        ).values()
-      ) as PaddleBrandListTypes[];
-    }; */
-
   const sports = [
     {
       slug: "kayak",
       heading: "Kayaks",
-      nodes: query.kayak.nodes as RetailCardTypes[]
+      nodes: query.kayak.nodes as RetailCardTypes[],
+      brands: query.kayakBrands.nodes as PaddleBrandListTypes[]
     },
     {
       slug: "paddleboard",
       heading: "Stand Up Paddle boards (SUPs)",
-      nodes: query.paddleBoard.nodes as RetailCardTypes[]
+      nodes: query.paddleBoard.nodes as RetailCardTypes[],
+      brands: query.paddleBoardBrands.nodes as PaddleBrandListTypes[]
     },
   ];
 
@@ -121,19 +121,17 @@ const RetailPage = () => {
 
       {sports.map((sport) => (
         <section key={sport.slug}>
-          <hr className="pelican" />
-
           <div className="pelican">
+            <hr />
             <h2 className='font-serif'>
               <Link to={`/retail/${sport.slug}`}>{sport.heading}</Link>
             </h2>
-            {/* // TODO: sport descriptions */}
+            {/* // TODO: sport descriptions needed from TCK */}
             <h3 className="condensed">Browse By Feature</h3>
             <FeatureList sport={sport.slug} />
 
             <h3>Browse By Brand</h3>
-            {/* // ! this doesnt work with the base query due to the limit */}
-            <PaddleBrandList brands={query.kayakBrands.nodes} sport={sport.slug} />
+            <PaddleBrandList brands={sport.brands} sport={sport.slug} />
           </div>
 
           <section key={`${sport.slug}-cards`}>

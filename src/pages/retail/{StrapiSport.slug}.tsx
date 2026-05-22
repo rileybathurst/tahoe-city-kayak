@@ -138,11 +138,13 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         <h1>{data.strapiSport.title} Retail</h1>
         <Shop />
 
+        <h3 className="condensed">Browse By Feature</h3>
         <FeatureList sport={data.strapiSport.slug} />
       </main>
 
       <div className="pelican">
 
+        <h3>Browse By Brand</h3>
         <PaddleBrandList
           brands={Array.from(
             new Map(data.allStrapiRetail.nodes
@@ -163,7 +165,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
               <section
                 className="condor"
               >
-                {/* // TODO: make these larger */}
+                <hr />
                 {brand.svg ?
                   <SVG src={brand.svg} />
                   : null}
@@ -173,8 +175,6 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                   </Link>
                 </h2>
                 <p>{brand.tagline}</p>
-
-                <hr />
               </section>
 
               <div className='deck'>
@@ -204,7 +204,6 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                         All {brand.retail.length} {brand.name} <Sport sport={`${data.strapiSport.slug}s`} />
                       </Link>
                     </h3>
-                    <hr />
                   </section>
                   : null
               }

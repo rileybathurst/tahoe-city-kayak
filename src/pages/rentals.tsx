@@ -62,8 +62,10 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
 
         <h1>Rentals</h1>
 
-        <h2>Commons Beach Rentals</h2>
-        <div className="react-markdown">
+        <h2 className="font-serif">Commons Beach Rentals</h2>
+
+        {/* // TODO: keep working on makdown-mods */}
+        <div className="react-markdown markdown-mods">
           <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
         </div >
         <p><Link to="/about/faq">
@@ -81,7 +83,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
           specificLink={data.strapiBranch.peek_membership}
         />
 
-        <h4>Paddler's 6-Pack Deal </h4>
+        <h4 className="font-serif">Paddler's 6-Pack Deal </h4>
         <p><em>- Single Kayak or Paddleboard</em></p>
         <p>{data.strapiMembership.six}</p>
 

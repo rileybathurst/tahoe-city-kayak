@@ -8,14 +8,14 @@ import AboutUs from "../content/about-us";
 import Hero from "../components/hero";
 
 import { PaddleTestimonial, type PaddleTestimonialTypes, PaddleCard } from "@rileybathurst/paddle";
-import { TeamCardTypes } from "../types/team-card-types";
+import type { TeamCardTypes } from "../types/team-card-types";
 
 const AboutPage = () => {
 
   type aboutTypes = {
     strapiTestimonial: PaddleTestimonialTypes;
     allStrapiTeam: {
-      nodes: teamTypes[]
+      nodes: TeamCardTypes[]
     }
     strapiBranch: {
       name: string
@@ -67,7 +67,7 @@ const AboutPage = () => {
         <h1>About Us</h1>
         <AboutUs />
 
-        <ul>
+        <ul className="denali font-serif">
           <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
           <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
           <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
