@@ -5,7 +5,7 @@ import Markdown from "react-markdown"
 const AboutUs = () => {
 
   const { strapiBranch } = useStaticQuery(graphql`
-    query AboutQuery {
+    query AboutUsQuery {
       strapiBranch(slug: {eq: "tahoe-city"}) {
         about {
           data {

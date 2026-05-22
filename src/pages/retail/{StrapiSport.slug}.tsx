@@ -19,6 +19,7 @@ import Locales from "../../components/locales";
 
 import type { RetailCardTypes } from "../../types/retail-card-types";
 import Hero from "../../components/hero";
+import Shop from "../../content/shop";
 
 
 export const strapiSport = graphql`
@@ -135,11 +136,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
 
       <main className="pelican">
         <h1>{data.strapiSport.title} Retail</h1>
-        <div className="react-markdown">
-          <Markdown>
-            {data.strapiShop.text.data.text}
-          </Markdown>
-        </div>
+        <Shop />
 
         <FeatureList sport={data.strapiSport.slug} />
       </main>

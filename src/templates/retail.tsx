@@ -7,20 +7,19 @@ import Sport from "../components/sport";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Phone from "../components/phone";
-import type { RetailType } from "../types/retail";
 
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import {
   PaddleSpecs,
   type PaddleGatsbyImageType,
-  type PaddleCardTypes,
   PaddleCard
 } from "@rileybathurst/paddle";
 import SVG from 'react-inlinesvg';
 import Hero from "../components/hero";
-import { GatsbyImage } from "gatsby-plugin-image";
+import type { RetailCardTypes } from "../types/retail-card-types";
 
-const Series = ({ series }: { series: string }) => {
+// * this was a thing we used for Hobie its no longer really needed
+/* const Series = ({ series }: { series: string }) => {
   if (series) {
     return (
       <div className="h_series">
@@ -32,31 +31,54 @@ const Series = ({ series }: { series: string }) => {
     );
   }
   return null;
-}
+} */
 
-type ExtentdedPurchaseTypes = PaddleCardTypes & {
-  series: string;
-  crew: number;
-  hullweight: number;
-  riggedweight: number;
-  thickness: number;
-  price: number;
-  description: {
-    data: {
-      description: string;
-    };
-  };
-  features: {
-    data: {
-      features: string;
-    };
-  };
-  cutout: PaddleGatsbyImageType;
-};
-
-type RetailTypeViewProps = {
+type RetailTemplateType = {
   data: {
-    strapiRetail: RetailType;
+    strapiRetail: {
+      id: React.Key;
+      title: string;
+      brand: {
+        name: string;
+        slug: string;
+        svg: string;
+      };
+      slug: string;
+      price: number;
+      excerpt: string;
+      start?: Date;
+      end?: Date;
+      duration?: number;
+      peek: string;
+      sport: {
+        slug: string;
+      };
+      crew: number;
+      hullweight: number;
+      riggedweight: number;
+      thickness: number;
+      // volume?: number;
+
+      inflatable: boolean;
+      demo: boolean;
+
+      // discount?: number; currently unused so has to be removed from query
+      length: number;
+      width: number;
+      capacity: number;
+      cutout: PaddleGatsbyImageType;
+      features: {
+        data: {
+          features: string;
+        };
+      };
+      description: {
+        data: {
+          description: string;
+        };
+      };
+      series: string;
+    };
     strapiDemo: {
       text: {
         data: {
@@ -65,22 +87,22 @@ type RetailTypeViewProps = {
       };
     };
     allStrapiRetail: {
-      nodes: ExtentdedPurchaseTypes[];
+      nodes: RetailCardTypes[];
     };
-    strapiMedia: PaddleGatsbyImageType;
+    strapiShop: {
+      collage: PaddleGatsbyImageType;
+    };
   };
 };
 
-const RetailTypeView = ({ data }: RetailTypeViewProps) => {
-
-  console.log(data.strapiRetail.cutout);
+const RetailTemplate = ({ data }: RetailTemplateType) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
-        image={data.strapiMedia}
+        image={data.strapiShop.collage}
         collage={data.strapiRetail.cutout ? data.strapiRetail.cutout : null}
       />
 
@@ -91,8 +113,26 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </Link>
 
         <h1>{data.strapiRetail.title}</h1>
+        {/* <Series series={data.strapiRetail.series} /> */}
 
-        <Series series={data.strapiRetail.series} />
+        <hr />
+
+        <div className="react-markdown">
+          <Markdown>
+            {data.strapiRetail.description?.data?.description}
+          </Markdown>
+        </div>
+
+        {data.strapiRetail.features && (
+          <React.Fragment>
+            <hr />
+            <h3>Features</h3>
+            <div className="react-markdown features">
+              <Markdown>{data.strapiRetail.features.data.features}</Markdown>
+            </div>
+            <hr />
+          </React.Fragment>
+        )}
 
         <section className="specs">
           <h3>SPECS:</h3>
@@ -106,31 +146,15 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
               riggedweight: data.strapiRetail.riggedweight,
             }}
             thickness={data.strapiRetail.thickness}
-            inflatable={data.strapiRetail.inflatable ? "Yes" : "No"}
-            demo={data.strapiRetail.demo ? "Yes" : "No"}
+            inflatable={data.strapiRetail.inflatable ? "Yes" : null}
+            demo={data.strapiRetail.demo ? "Yes" : null}
             cost={{
               price: data.strapiRetail.price,
               // discount: data.strapiRetail.discount // * currently unused so has to be removed
             }}
           />
         </section>
-
-        {data.strapiRetail.features && (
-          <>
-            <h3>Features</h3>
-            <div className="react-markdown features">
-              <Markdown>{data.strapiRetail.features.data.features}</Markdown>
-            </div>
-            <hr />
-          </>
-        )}
       </main>
-
-      <div className="react-markdown pelican">
-        <Markdown>
-          {data.strapiRetail.description?.data?.description}
-        </Markdown>
-      </div>
 
       {data.strapiRetail.demo ? (
         <article>
@@ -156,10 +180,11 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
             </h2>
           </section>
           <section className="deck">
-            {data.allStrapiRetail.nodes.map((retail: PaddleCardTypes) => (
+            {data.allStrapiRetail.nodes.map((retail) => (
               <PaddleCard
                 key={retail.id}
                 {...retail}
+                link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
               />
             ))}
           </section>
@@ -208,22 +233,26 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
-export default RetailTypeView;
+export default RetailTemplate;
 
-type RetailTypeViewHeadProps = {
+const capitalizeWords = (str: string) =>
+  str.replace(/\b\w/g, (c) => c.toUpperCase());
+
+type RetailTemplateHeadProps = {
   data: {
-    strapiRetail: RetailType;
+    strapiRetail: RetailTemplateType["data"]["strapiRetail"];
   };
 };
-export const Head = ({ data }: RetailTypeViewHeadProps) => {
+export const Head = ({ data }: RetailTemplateHeadProps) => {
+  const brandName = capitalizeWords(data.strapiRetail.brand.name);
+
   return (
     <SEO
-      // TODO: can I make the brands capitalize?
-      title={`${data.strapiRetail.title} by ${data.strapiRetail.brand.name}`}
+      title={`${data.strapiRetail.title} by ${brandName}`}
       description={data.strapiRetail.excerpt}
       breadcrumbs={[
         { name: "Retail", item: "retail" },
@@ -250,7 +279,7 @@ export const Head = ({ data }: RetailTypeViewHeadProps) => {
             "description": "${data.strapiRetail.excerpt}",
             "brand": {
               "@type": "Brand",
-              "name": "${data.strapiRetail.brand.name}"
+              "name": "${brandName}"
             },
             "image": "${data.strapiRetail?.cutout?.alternativeText}",
             "offers": {
@@ -267,12 +296,12 @@ export const Head = ({ data }: RetailTypeViewHeadProps) => {
 };
 
 export const query = graphql`
-      query (
-      $slug: String!,
-      $brand: String!
-      ) {
-        strapiRetail(slug: {eq: $slug}) {
-        id
+  query (
+    $slug: String!,
+    $brand: String!
+  ) {
+    strapiRetail(slug: {eq: $slug}) {
+      id
       title
       excerpt
       series
@@ -294,28 +323,28 @@ export const query = graphql`
       brand {
         name
         slug
-      svg
-      }
+        svg
+      } 
 
       description {
         data {
-        description
-      }
+          description
+        }
       }
 
       features {
         data {
-        features
-      }
+          features
+        }
       }
 
       cutout {
         localFile {
-        childImageSharp {
-        gatsbyImageData
-      }
+          childImageSharp {
+            gatsbyImageData
+          }
         }
-      alternativeText
+        alternativeText
       }
     }
 
@@ -340,13 +369,15 @@ export const query = graphql`
       }
     }
 
-    strapiMedia(name: {regex: "/tim-mossholder-z3Xp1ZcvzgE-unsplash.jpg/"}) {
-      localFile {
-        childImageSharp {
-          gatsbyImageData
+    strapiShop {
+      collage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
         }
+        alternativeText
       }
-      alternativeText
     }
 
   }

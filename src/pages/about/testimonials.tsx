@@ -7,21 +7,18 @@ import Footer from "../../components/footer";
 import { PaddleTestimonials } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
+
 const TestimonialsPage = () => {
 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
     query TestimonialsQuery {
       allStrapiTestimonial(filter: {branch: {slug: {eq: "tahoe-city"}}}) {
       nodes {
-        id
-        testimonial
-        customer
-        sign
-        location
+        ...TestimonialFragment
         }
       }
     }
-  `)
+  `);
 
   return (
     <>

@@ -5,7 +5,8 @@ import { SEO } from "../../components/seo"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
-import { PaddleCard, type PaddleCardTypes } from "@rileybathurst/paddle";
+import { PaddleCard } from "@rileybathurst/paddle";
+import type { TeamCardTypes } from "../../types/team-card-types";
 
 const TeamPage = () => {
 
@@ -35,11 +36,6 @@ const TeamPage = () => {
     }
   `)
 
-  // * maybe we were meant to go the other way
-  type teamTypes = Omit<PaddleCardTypes, 'link'> & {
-    slug: string,
-  }
-
   return (
     <>
       <Header />
@@ -50,14 +46,11 @@ const TeamPage = () => {
         <hr />
 
         <section className="deck">
-          {data.allStrapiTeam.nodes.map((team: teamTypes) => (
+          {data.allStrapiTeam.nodes.map((team: TeamCardTypes) => (
             <PaddleCard
               key={team.id}
-              id={team.id}
+              {...team}
               link={`/about/team/${team.slug}`}
-              image={team.image}
-              title={team.title}
-              excerpt={team.excerpt}
             />
           ))}
         </section>

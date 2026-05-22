@@ -1,5 +1,3 @@
-// TODO: loop this
-
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { SEO } from "../components/seo";
@@ -23,7 +21,7 @@ const RetailPage = () => {
     query RetailsQuery {
       kayak: allStrapiRetail(
         filter: {
-          type: {eq: "kayak"},
+          sport: { slug: { eq: "kayak" } },
           cutout: { id: { ne: null } }
           }
         , limit: 4,
@@ -34,9 +32,18 @@ const RetailPage = () => {
         }
       }
 
+    kayakBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "kayak"}}}}}) {
+      nodes {
+        name
+        svg
+        slug
+        id
+      }
+    }
+
     paddleBoard: allStrapiRetail(
       filter: {
-        type: {eq: "sup"},
+        sport: { slug: { eq: "paddleboard" } },
         cutout: { id: { ne: null } }
       }
       , limit: 4,
@@ -72,8 +79,31 @@ const RetailPage = () => {
   }
 `);
 
+  const getBrands = (nodes: RetailCardTypes[], sport: string): PaddleBrandListTypes[] => {
+    return Array.from(
+      new Map(
+        nodes
+          .filter((retail: RetailCardTypes) => retail.sport.slug === sport)
+          .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes])
+      ).values()
+    ) as PaddleBrandListTypes[];
+  };
+
+  const sports = [
+    {
+      slug: "kayak",
+      heading: "Kayaks",
+      nodes: query.kayak.nodes as RetailCardTypes[]
+    },
+    {
+      slug: "paddleboard",
+      heading: "Stand Up Paddle boards (SUPs)",
+      nodes: query.paddleBoard.nodes as RetailCardTypes[]
+    },
+  ];
+
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -85,89 +115,54 @@ const RetailPage = () => {
 
       <main className="pelican">
         <h1>Retail</h1>
-
         <Shop />
-        <hr />
-
-        <h2>
-          <Link to="/retail/kayak">Kayaks</Link>
-        </h2>
-        <h3 className="condensed">Browse By Feature</h3>
-        <FeatureList sport="kayak" />
-
-        <h3>Browse By Brand</h3>
-        <PaddleBrandList
-          brands={Array.from(
-            new Map(query.kayak.nodes
-              .filter((retail: RetailCardTypes) => retail.sport.slug === "kayak")
-              .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-              .values()
-          ) as PaddleBrandListTypes[]}
-          sport="kayak"
-        />
       </main>
 
-      <section className="deck">
-        {query.kayak.nodes.map((kayak: RetailCardTypes) => (
-          <PaddleCard
-            key={kayak.id}
-            {...kayak}
-            link={`/retail/kayak/${kayak.brand.slug}/${kayak.slug}`}
-          // breadcrumb="kayak"
-          />
-        ))}
+      {sports.map((sport) => (
+        <section key={sport.slug}>
+          <hr className="pelican" />
 
-      </section>
+          <div className="pelican">
+            <h2 className='font-serif'>
+              <Link to={`/retail/${sport.slug}`}>{sport.heading}</Link>
+            </h2>
+            {/* // TODO: sport descriptions */}
+            <h3 className="condensed">Browse By Feature</h3>
+            <FeatureList sport={sport.slug} />
 
-      <section className="pelican">
-        <h2>
-          <Link to="/retail/kayak">All Kayaks</Link>
-        </h2>
+            <h3>Browse By Brand</h3>
+            {/* // ! this doesnt work with the base query due to the limit */}
+            <PaddleBrandList brands={query.kayakBrands.nodes} sport={sport.slug} />
+          </div>
+
+          <section key={`${sport.slug}-cards`}>
+            <section className="deck">
+              {sport.nodes.map((retail: RetailCardTypes) => (
+                <PaddleCard
+                  key={retail.id}
+                  {...retail}
+                  link={`/retail/${sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                />
+              ))}
+            </section>
+
+            <h2 className="pelican">
+              <Link to={`/retail/${sport.slug}`}>All {sport.heading}</Link>
+            </h2>
+          </section>
+        </section>
+      ))}
 
 
-        <hr />
-
-        <h2>
-          <Link to="/retail/paddleboard">Stand Up Paddle boards (SUPs)</Link>
-        </h2>
-        <h3 className="condensed">Browse By Feature</h3>
-        <FeatureList sport="paddleboard" />
-        <h3>Browse By Brand</h3>
-        <PaddleBrandList
-          brands={Array.from(
-            new Map(query.paddleBoard.nodes
-              .filter((retail: RetailCardTypes) => retail.sport.slug === "paddleboard")
-              .map((retail: RetailCardTypes) => [retail.brand.id, retail.brand] as [string, PaddleBrandListTypes]))
-              .values()
-          ) as PaddleBrandListTypes[]}
-          sport="paddleboard"
-        />
-      </section>
-
-      <section className="deck">
-        {query.paddleBoard.nodes.map((sup: RetailCardTypes) => (
-          <PaddleCard
-            key={sup.id}
-            {...sup}
-            link={`/retail/paddleboard/${sup.brand.slug}/${sup.slug}`}
-          />
-        ))}
-      </section>
-
-      <h2 className="pelican">
-        <Link to="/retail/paddleboard">All Paddle boards</Link>
-      </h2>
-
-      <div className="pelican">
-        <hr />
-        <h3 className="aconcagua">
+      <div className="pelican panel">
+        <h3 className="aconcagua font-serif">
           <Link to="/retail/demos">Demos</Link>
         </h3>
         <Markdown>{query.strapiDemo.text.data.text}</Markdown>
       </div>
 
-      <Footer topHR />
-    </>
+      <Footer />
+    </React.Fragment>
   );
 };
 

@@ -60,7 +60,7 @@ const Shop = () => {
     .map((brand: BrandNode) => `[${brand.name}](/retail/paddleboard/${brand.slug}/)`)
     .join(", ");
 
-  const cleanedMarkdown = data.strapiShop.text.data.text.replace(/\r?\n?```[\t ]*\r?\nbrands\r?\n```[\t ]*\r?\n?/gi, `kayaks brands such as ${kayakBrandLinks} and paddleboard brands such as ${paddleboardBrandLinks}`);
+  const cleanedMarkdown = data.strapiShop.text.data.text.replace(/\r?\n?```[\t ]*\r?\nbrands\r?\n```[\t ]*\r?\n?/gi, ` kayaks brands such as ${kayakBrandLinks} and paddleboard brands such as ${paddleboardBrandLinks}`);
   // console.log(cleanedMarkdown)
 
   return (

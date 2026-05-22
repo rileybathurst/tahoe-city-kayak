@@ -130,10 +130,7 @@ const IndexPage = () => {
       }
 
       strapiTestimonial(branch: {slug: {eq: "tahoe-city"}}) {
-        testimonial
-        customer
-        sign
-        location
+        ...TestimonialFragment
       }
     }
   `);
