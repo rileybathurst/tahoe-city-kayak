@@ -24,7 +24,7 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
       <main>
         <h2>
@@ -53,7 +53,7 @@ function AnnouncementCatchAll({ params }: { params: { name: string } }) {
       </Breadcrumbs>
 
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   )
 }
 

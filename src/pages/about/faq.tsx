@@ -32,7 +32,7 @@ export const data = graphql`
 const FaqPage = ({ data }: allFaqTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="pelican">
@@ -65,7 +65,7 @@ const FaqPage = ({ data }: allFaqTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

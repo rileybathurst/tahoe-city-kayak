@@ -51,7 +51,7 @@ type TeamViewTypes = {
 const TeamView = ({ data }: TeamViewTypes) => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       {data.strapiTeam.profile &&
@@ -78,7 +78,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
         <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
       </Breadcrumbs>
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

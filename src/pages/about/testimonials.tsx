@@ -24,7 +24,7 @@ const TestimonialsPage = () => {
   `)
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="condor">
@@ -40,7 +40,7 @@ const TestimonialsPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 }
 

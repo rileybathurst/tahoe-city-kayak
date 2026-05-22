@@ -33,7 +33,7 @@ function Dedupedbrands(props: DedupedbrandsProps) {
   const dedupedbrands = getUniqueListBy<BrandType>({ arr: props.brand, key: "name" });
 
   return (
-    <>
+    <React.Fragment>
       {dedupedbrands.map((brand) => (
         <li key={brand.slug} className="capitalize">
           <h3 className="kilimanjaro">
@@ -41,7 +41,7 @@ function Dedupedbrands(props: DedupedbrandsProps) {
           </h3>
         </li>
       ))}
-    </>
+    </React.Fragment>
   );
 }
 
@@ -103,7 +103,7 @@ const DemosPage = () => {
   ].filter(({ nodes }) => nodes.length > 0);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <div className="albatross">
@@ -164,7 +164,7 @@ const DemosPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

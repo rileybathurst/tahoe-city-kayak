@@ -10,7 +10,7 @@ import { PaddleCard } from "@rileybathurst/paddle";
 const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes) => {
   return (
     allStrapiRetail.nodes.length > 0 ?
-      <>
+      <React.Fragment>
         <Header />
 
         <main>
@@ -41,7 +41,7 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
 
         {/* // TODO: Breadcrumbs */}
         <Footer />
-      </>
+      </React.Fragment>
       // TODO: move this inside a bit with a 404 but you shouldnt be able to get here
       : null
   )

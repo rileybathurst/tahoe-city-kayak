@@ -26,7 +26,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 const InformationPage = () => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       {/* this page could use accordions to make it easier to read */}
@@ -123,7 +123,7 @@ const InformationPage = () => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

@@ -41,7 +41,7 @@ const TeamPage = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="pelican">
@@ -69,7 +69,7 @@ const TeamPage = () => {
       </Breadcrumbs>
 
       < Footer />
-    </>
+    </React.Fragment>
   )
 }
 

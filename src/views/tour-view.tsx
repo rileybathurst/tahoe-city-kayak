@@ -177,7 +177,7 @@ const TourView = ({ data }: TourViewTypes) => {
   });
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -274,7 +274,7 @@ const TourView = ({ data }: TourViewTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

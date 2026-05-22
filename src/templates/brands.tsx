@@ -46,7 +46,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
   const seriesArray: string[] = Array.from(seriesSet);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -139,7 +139,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

@@ -40,7 +40,7 @@ type MembershipPageTypes = {
 };
 const MembershipPage = ({ data }: MembershipPageTypes) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero />
@@ -70,7 +70,7 @@ const MembershipPage = ({ data }: MembershipPageTypes) => {
       </main>
 
       <Footer topHR={true} />
-    </>
+    </React.Fragment>
   );
 };
 

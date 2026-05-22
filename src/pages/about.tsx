@@ -10,7 +10,7 @@ import Hero from "../components/hero";
 const AboutPage = () => {
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero />
@@ -31,7 +31,7 @@ const AboutPage = () => {
       </main>
 
       <Footer topHR />
-    </>
+    </React.Fragment>
   )
 }
 

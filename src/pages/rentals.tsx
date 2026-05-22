@@ -48,7 +48,7 @@ type RentalsPageTypes = {
 };
 const RentalsPage = ({ data }: RentalsPageTypes) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero

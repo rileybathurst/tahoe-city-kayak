@@ -67,10 +67,10 @@ function Logo() {
   var isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
-    <>
+    <React.Fragment>
       {isSiteDark && <LogoDark query={strapiBranch.logoImageNegative} />}
       {isSiteDark || <LogoLight query={strapiBranch.logoImage} />}
-    </>
+    </React.Fragment>
   );
 }
 

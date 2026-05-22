@@ -123,7 +123,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
   )
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -216,7 +216,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
       ))}
 
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

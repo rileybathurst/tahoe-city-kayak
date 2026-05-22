@@ -73,7 +73,7 @@ const RetailPage = () => {
 `);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -167,7 +167,7 @@ const RetailPage = () => {
       </div>
 
       <Footer topHR />
-    </>
+    </React.Fragment>
   );
 };
 

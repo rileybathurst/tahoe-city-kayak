@@ -76,7 +76,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
   console.log(data.strapiRetail.cutout);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero
@@ -116,13 +116,13 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
         </section>
 
         {data.strapiRetail.features && (
-          <>
+          <React.Fragment>
             <h3>Features</h3>
             <div className="react-markdown features">
               <Markdown>{data.strapiRetail.features.data.features}</Markdown>
             </div>
             <hr />
-          </>
+          </React.Fragment>
         )}
       </main>
 
@@ -208,7 +208,7 @@ const RetailTypeView = ({ data }: RetailTypeViewProps) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
