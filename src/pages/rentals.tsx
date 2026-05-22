@@ -92,7 +92,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
       </div>
 
       <Footer topHR={true} />
-    </ >
+    </React.Fragment>
   );
 };
 
