@@ -7,6 +7,8 @@ type HeroTypes = {
   image?: PaddleGatsbyImageType
   collage?: PaddleGatsbyImageType | null
   overlay?: ReactNode
+  background?: boolean
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
 type HeroQueryTypes = {
@@ -17,7 +19,7 @@ type HeroQueryTypes = {
   }
 }
 
-const Hero = ({ image, collage, overlay }: HeroTypes) => {
+const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => {
 
   // console.log(collage);
 
@@ -45,6 +47,8 @@ const Hero = ({ image, collage, overlay }: HeroTypes) => {
         image={image ? image : data.strapiBranch.hero}
         collage={collage || undefined}
         overlay={overlay ? overlay : undefined}
+        background={background}
+        objectFit={objectFit}
       />
     </React.Fragment>
   )

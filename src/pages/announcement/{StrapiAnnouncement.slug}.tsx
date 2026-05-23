@@ -74,7 +74,7 @@ const AnnouncmentPostPage = ({ data }: AnnouncementTypes) => {
         {/* <Calendar {...strapiAnnouncement.calendar} /> */}
         <hr />
 
-        <div className="react-markdown">
+        <div className="react-markdown markdown-mods">
           <Markdown>
             {data.strapiAnnouncement.post.data.post}
           </Markdown>

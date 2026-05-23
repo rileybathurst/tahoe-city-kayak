@@ -190,6 +190,7 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
                       key={retail.id}
                       {...retail}
                       link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                      objectFit="contain"
                     />
                   ))}
               </div>

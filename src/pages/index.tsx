@@ -190,7 +190,7 @@ const IndexPage = () => {
 
         <div className="condor aconcagua-margin-block">
           {/* // TODO: font serif */}
-          <h2 className="denali">
+          <h2 className="denali font-serif-child">
             <ReactMarkdown>
               {data.strapiBranch.lead.data.lead}
             </ReactMarkdown>
@@ -319,6 +319,7 @@ const IndexPage = () => {
                 key={retail.id}
                 {...retail}
                 link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                objectFit="contain"
               />
             ))}
           </div>

@@ -87,8 +87,9 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
       <Header />
 
       <Hero
-        image={data.strapiShop.collage}
-        collage={data.strapiRetail.cutout ? data.strapiRetail.cutout : null}
+        image={data.strapiRetail.cutout}
+        background={true}
+        objectFit="contain"
       />
 
       <main>
@@ -170,6 +171,7 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
                 key={retail.id}
                 {...retail}
                 link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                objectFit="contain"
               />
             ))}
           </section>

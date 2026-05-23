@@ -72,18 +72,25 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
           Frequently Asked Questions about getting out on the water
         </Link></p>
 
-        <BookNow />
+        {/* // * margin adds to the original .book-now */}
+        <div className="elbrus-margin-block-end">
+          <BookNow />
+        </div>
 
-        <br />
-        <h3>{data.strapiMembership.title}</h3>
+        <hr />
+        <h3 className="font-serif" >{data.strapiMembership.title}</h3>
         <p>{data.strapiMembership.excerpt}</p>
 
-        <BookNow
-          specificName="MEMBERSHIP"
-          specificLink={data.strapiBranch.peek_membership}
-        />
+        <div className="everest-margin-block-end">
+          <BookNow
+            specificName="MEMBERSHIP"
+            specificLink={data.strapiBranch.peek_membership}
+          />
+        </div>
 
-        <h4 className="font-serif">Paddler's 6-Pack Deal </h4>
+        <hr />
+
+        <h3 className="font-serif">Paddler's 6-Pack Deal </h3>
         <p><em>- Single Kayak or Paddleboard</em></p>
         <p>{data.strapiMembership.six}</p>
 

@@ -4,6 +4,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import type { AnnouncementType } from "../types/announcement-type";
+import Hero from "../components/hero";
 
 function AnnouncementPage() {
 
@@ -21,6 +22,8 @@ function AnnouncementPage() {
   return (
     <React.Fragment>
       <Header />
+
+      <Hero />
       <main>
         <h1>Announcements</h1>
 

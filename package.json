@@ -14,7 +14,7 @@
   "engineStrict": true,
   "scripts": {
     "develop": "gatsby develop",
-    "start": "npm run typecheck && npm run stay-gold && gatsby develop",
+    "start": "tsc --noEmit && npm run stay-gold && gatsby develop",
     "dirty": "gatsby develop",
     "build": "gatsby build",
     "sentry-build": "SENTRY_TELEMETRY=false gatsby build && SENTRY_TELEMETRY=false npm run sentry:sourcemaps",
@@ -22,13 +22,12 @@
     "clean": "gatsby clean",
     "cleanstart": "gatsby clean && gatsby develop",
     "sentry:sourcemaps": "if [ -n \"$CI\" ] && [ -n \"$SENTRY_AUTH_TOKEN\" ] && [ -n \"$SENTRY_ORG\" ] && [ -n \"$SENTRY_PROJECT\" ]; then sentry-cli sourcemaps inject ./public && sentry-cli sourcemaps upload --org \"$SENTRY_ORG\" --project \"$SENTRY_PROJECT\" ./public; else echo 'Skipping Sentry sourcemaps upload (missing CI, SENTRY_AUTH_TOKEN, SENTRY_ORG, or SENTRY_PROJECT).'; fi",
-    "typecheck": "tsc --noEmit",
     "stay-gold": "stay-gold"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.2.5",
     "@fontsource/barlow-condensed": "^5.2.5",
-    "@rileybathurst/paddle": "^1.12.8",
+    "@rileybathurst/paddle": "^1.13.1",
     "@sentry/cli": "^2.45.0",
     "@sentry/gatsby": "^9.20.0",
     "gatsby": "^5.14.3",
@@ -58,7 +57,7 @@
     "react-wrap-balancer": "^1.1.1",
     "sharp": "^0.34.1",
     "smooth-scroll": "^16.1.3",
-    "stay-gold": "^1.3.2"
+    "stay-gold": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

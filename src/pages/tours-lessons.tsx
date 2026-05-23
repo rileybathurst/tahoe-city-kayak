@@ -1,12 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-// Paddle
-import {
-  PaddleLocales,
-  PaddleCard,
-  type PaddleCardTypes,
-} from "@rileybathurst/paddle";
+import { PaddleCard } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -16,6 +11,7 @@ import Experience from "../content/experience";
 import Sport from "../components/sport";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
+import type { TourCardTypes } from "../types/tour-card-types";
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -63,6 +59,7 @@ const ToursLessonsPage = () => {
           season_start
           season_end
           phone
+          ...BookNowFragment
         }
 
       }
@@ -106,11 +103,16 @@ const ToursLessonsPage = () => {
 
             <div className="deck">
               {sport.nodes
-                .map((tour: PaddleCardTypes) => (
+                .map((tour: TourCardTypes) => (
                   <PaddleCard
                     key={tour.id}
                     {...tour}
                     link={`/tours-lessons/${tour.link}`}
+                    paddleBookNow={{
+                      peek_base: query.strapiBranch.peek_base,
+                      strapiBranchName: query.strapiBranch.name,
+                      specificLink: tour.peek,
+                    }}
                   />
                 ))}
             </div>

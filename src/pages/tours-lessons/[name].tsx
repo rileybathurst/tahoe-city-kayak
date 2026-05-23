@@ -23,6 +23,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
 
       strapiBranch(slug: {eq: "tahoe-city"}) {
         peek_tours
+        ...BookNowFragment
       }
 
       strapiError {
@@ -53,6 +54,11 @@ function TourCatchAll({ params }: { params: { name: string } }) {
             key={tour.id}
             {...tour}
             link={`/tours-lessons/${tour.slug}`}
+            paddleBookNow={{
+              peek_base: data.strapiBranch.peek_base,
+              strapiBranchName: data.strapiBranch.name,
+              specificLink: tour.peek,
+            }}
           />
         ))}
       </section>

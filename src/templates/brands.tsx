@@ -113,6 +113,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
                     key={retail.id}
                     {...retail}
                     link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                    objectFit="contain"
                   />
                 ))}
             </div>
@@ -128,6 +129,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
               key={retail.id}
               {...retail}
               link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+              objectFit="contain"
             />
           ))}
       </section>
