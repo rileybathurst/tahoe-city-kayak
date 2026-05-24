@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import {
   PaddleCard,
-  type PaddleCardTypes,
   PaddleTime,
   PaddleSunsetTourTimes,
   PaddleSpecs,
@@ -19,7 +18,7 @@ import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import { TourCardTypes } from "../types/tour-card-types";
+import type { TourCardTypes } from "../types/tour-card-types";
 
 // TODO: move more of these types to paddle to make sure everything is inline
 interface TourViewTypes {
@@ -199,26 +198,13 @@ const TourView = ({ data }: TourViewTypes) => {
             ) : (
               <BookNow />
             )}
-            {data.strapiTour.minimum ? (
+            {data.strapiTour.minimum && (
               <p>
-                * Prices based on a<br /> {data.strapiTour.minimum} person
+                * Prices based on a {data.strapiTour.minimum} person
                 minimum
               </p>
-            ) : null}
+            )}
           </div>
-
-          <PaddleSpecs
-            sport={data.strapiTour.sport}
-            fitness={data.strapiTour.fitness}
-            // ? experience={data.strapiTour.experience}
-            price={data.strapiTour.price}
-          />
-          {/* * needed as theres a bunch of values that may be passed but none is specific */}
-          {time.value ? <PaddleSpecs time={time} /> : null}
-
-          {data.strapiTour.slug === "sunset" ? (
-            <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
-          ) : null}
 
           <section className="elbrus-margin-block">
             <div className="react-markdown ">
@@ -226,6 +212,21 @@ const TourView = ({ data }: TourViewTypes) => {
                 {data.strapiTour.information?.data?.information}
               </Markdown>
             </div>
+
+            <PaddleSpecs
+              sport={data.strapiTour.sport}
+              fitness={data.strapiTour.fitness}
+              // ? experience={data.strapiTour.experience}
+              price={data.strapiTour.price}
+            />
+            {/* * needed as theres a bunch of values that may be passed but none is specific */}
+            {time.value ? <PaddleSpecs time={time} /> : null}
+
+
+
+            {data.strapiTour.slug === "sunset" ? (
+              <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
+            ) : null}
 
             {data.strapiTour.slug === "moonlight" ? (
               <PaddleMoonlightDatesTimes
@@ -249,7 +250,7 @@ const TourView = ({ data }: TourViewTypes) => {
             <PaddleCard
               key={tour.id}
               {...tour}
-              link={`/tours-lessons/${tour.slug}`}
+              link={`/tours-lessons/${tour.link}`}
               paddleBookNow={{
                 peek_base: data.strapiTour.branch.peek_tours,
                 strapiBranchName: data.strapiTour.branch.name,

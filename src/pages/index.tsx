@@ -70,6 +70,10 @@ const IndexPage = () => {
       }[];
     };
     strapiTestimonial: PaddleTestimonialTypes;
+    strapiFaq: {
+      question: string;
+      answer: string;
+    };
   }
 
   const data: indexTypes = useStaticQuery(graphql`
@@ -131,6 +135,11 @@ const IndexPage = () => {
 
       strapiTestimonial(branch: {slug: {eq: "tahoe-city"}}) {
         ...TestimonialFragment
+      }
+
+      strapiFaq {
+        question
+        answer
       }
     }
   `);
@@ -332,9 +341,22 @@ const IndexPage = () => {
           {/* TODO: quotes need the spacing to be cleaned up */}
           <PaddleTestimonial {...data.strapiTestimonial} />
         </ul>
+
+        <h4 className="pelican">
+          <Link to="/about/testimonials">Why Paddlers Keep Coming Back</Link>
+        </h4>
       </section>
 
-      <Footer />
+      <section className="pelican denali-padding-block">
+        <h3 className="font-serif">{data.strapiFaq.question}</h3>
+        <p>{data.strapiFaq.answer}</p>
+
+        <h4>
+          <Link to="/about/faq">Paddle through our FAQs</Link>
+        </h4>
+      </section>
+
+      <Footer topHR />
     </React.Fragment >
   );
 };

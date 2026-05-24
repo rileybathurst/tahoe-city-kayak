@@ -7,7 +7,6 @@ export const query = graphql`
     oneHour
     threeHour
     fullDay
-    pedalAdd
 
     branches {
       slug

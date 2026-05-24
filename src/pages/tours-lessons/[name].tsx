@@ -53,7 +53,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
           <PaddleCard
             key={tour.id}
             {...tour}
-            link={`/tours-lessons/${tour.slug}`}
+            link={`/tours-lessons/${tour.link}`}
             paddleBookNow={{
               peek_base: data.strapiBranch.peek_base,
               strapiBranchName: data.strapiBranch.name,

@@ -34,10 +34,7 @@ const RetailPage = () => {
 
     kayakBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "kayak"}}}}}) {
       nodes {
-        name
-        svg
-        slug
-        id
+        ...brandFragment
       }
     }
 
@@ -56,10 +53,7 @@ const RetailPage = () => {
 
     paddleBoardBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "paddleboard"}}}}}) {
       nodes {
-        name
-        svg
-        slug
-        id
+        ...brandFragment
       }
     }
 
@@ -141,6 +135,7 @@ const RetailPage = () => {
                   key={retail.id}
                   {...retail}
                   link={`/retail/${sport.slug}/${retail.brand.slug}/${retail.slug}`}
+                  objectFit="contain"
                 />
               ))}
             </section>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import { PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard, PaddleBrandList, type PaddleBrandListTypes, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
@@ -28,7 +28,16 @@ type BrandsViewTypes = {
   allStrapiRetail: {
     nodes: RetailCardTypes[];
   };
-};
+  kayakBrands: {
+    nodes: PaddleBrandListTypes[];
+  };
+  paddleBoardBrands: {
+    nodes: PaddleBrandListTypes[];
+  };
+  strapiLocation: {
+    hero: PaddleGatsbyImageType;
+  };
+}
 const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pathname: string } }) => {
 
   const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -50,6 +59,7 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
       <Header />
 
       <Hero
+        image={data.strapiLocation.hero}
         overlay={<Locales
           retail={true}
         />}
@@ -134,6 +144,16 @@ const BrandsView = ({ data, location }: { data: BrandsViewTypes, location: { pat
           ))}
       </section>
 
+      <section className="pelican">
+        <hr />
+        <h3 className="font-serif capitalize">
+          Browse More {middleSegment} Brands
+        </h3>
+
+        <PaddleBrandList brands={middleSegment === "kayak" ? data.kayakBrands.nodes : data.paddleBoardBrands.nodes} sport={middleSegment} />
+
+      </section>
+
       <Breadcrumbs>
         <Breadcrumb><Link to="/retail/">Retail</Link></Breadcrumb>
         <Breadcrumb><Link to={`/retail/${middleSegment}/`}>{middleSegment}</Link></Breadcrumb>
@@ -190,6 +210,33 @@ export const query = graphql`
           nodes {
           ...CardRetailFragment
         series
+      }
+    }
+
+    kayakBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "kayak"}}}}}) {
+      nodes {
+        ...brandFragment
+      }
+    }
+
+
+    paddleBoardBrands: allStrapiBrand(filter: {retail: {elemMatch: {sport: {slug: {eq: "paddleboard"}}}}}) {
+      nodes {
+        ...brandFragment
+      }
+    }
+
+    strapiLocation(
+      name: {eq: "Retail Location"}
+      branch: {slug: {eq: "tahoe-city"}}
+    ) {
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
       }
     }
 

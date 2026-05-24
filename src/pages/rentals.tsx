@@ -124,12 +124,7 @@ export const data = graphql`
       filter: {favorite: {eq: true}}
       ) {
       nodes {
-        id
-        item
-        oneHour
-        threeHour
-        fullDay
-        pedalAdd
+        ...pricingChartFragment
       }
     }
 

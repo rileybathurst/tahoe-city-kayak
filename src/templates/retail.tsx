@@ -190,7 +190,7 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
         </article>
       ) : (
         <section className="condor">
-          <h3>
+          <h3 className="font-serif">
             <Link to={`/retail/${data.strapiRetail.sport.slug}`}>
               Browse other <Sport sport={data.strapiRetail.sport.slug} />s
             </Link>

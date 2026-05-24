@@ -28,7 +28,8 @@ const AttributeView = ({ allStrapiRetail, strapiAttribute }: AttributeViewTypes)
             <PaddleCard
               key={retail.id}
               {...retail}
-              link={`/retail/kayak/${retail.brand.slug}/${retail.slug}`}
+              link={`/retail/${retail.sport.slug}/${retail.brand.slug}/${retail.slug}`}
+              objectFit="contain"
             />
           ))}
         </section>
