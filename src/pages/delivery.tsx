@@ -41,6 +41,7 @@ export const data = graphql`
 
 const DeliveryPage = (data: deliveryTypes) => {
 
+  // TODO:: this could go to paddle
   const phoneAndEmailLinks = data.strapiDelivery.text.data.text
     .replaceAll(
       "(phoneLink)",

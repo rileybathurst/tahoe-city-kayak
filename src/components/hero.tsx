@@ -11,6 +11,7 @@ type HeroTypes = {
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
+// TODO: this is the weird type I need to use other places for SEO 
 type HeroQueryTypes = {
   strapiBranch: {
     hero: PaddleGatsbyImageType & {
@@ -20,8 +21,6 @@ type HeroQueryTypes = {
 }
 
 const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => {
-
-  // console.log(collage);
 
   const data: HeroQueryTypes = useStaticQuery(graphql`
     query HeroQuery {
@@ -38,8 +37,6 @@ const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => 
       }
     }
   `);
-
-  // console.log(data.strapiMedia?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src)
 
   return (
     <React.Fragment>

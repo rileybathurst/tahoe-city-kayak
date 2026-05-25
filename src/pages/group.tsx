@@ -6,6 +6,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
 import Phone from "../components/phone";
+import Hero from "../components/hero";
 
 type groupTypes = {
   strapiGroup: {
@@ -33,6 +34,9 @@ const GroupPage = () => {
   return (
     <React.Fragment>
       <Header />
+
+
+      <Hero />
 
       <main>
 

@@ -6,7 +6,7 @@ import {
   PaddleSunsetTourTimes,
   PaddleSpecs,
   PaddleMoonlightDatesTimes,
-  type PaddleGatsbyImageType,
+  type PaddleTourViewTypes,
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -18,69 +18,6 @@ import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import BookNow from "../components/book-now";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import type { TourCardTypes } from "../types/tour-card-types";
-
-// TODO: move more of these types to paddle to make sure everything is inline
-interface TourViewTypes {
-  data: {
-    strapiTour: {
-      id: React.Key;
-      name: string;
-      information: {
-        data: {
-          information: string;
-        };
-      };
-      start: string;
-      finish: string;
-      duration: number;
-      timeframe: string;
-      minimum: number;
-      fitness: string;
-      peek: string;
-      sport: string;
-      excerpt: string;
-      price: number;
-      slug: string;
-      hero: PaddleGatsbyImageType;
-
-      branch: {
-        name: string;
-        peek_tours: string;
-        season_start: string;
-        season_end: string;
-        phone: string;
-      };
-    };
-
-    allStrapiMoonlightTourDateTime: {
-      nodes: {
-        id: React.Key;
-        date: string;
-        start: string;
-        finish: string;
-      }[];
-    };
-
-    allStrapiSunsetTourTime: {
-      nodes: {
-        id: React.Key;
-        startDate: string;
-        endDate: string;
-        startTime: string;
-        endTime: string;
-      }[];
-    };
-
-    branch: {
-      name: string;
-    };
-
-    allStrapiTour: {
-      nodes: TourCardTypes[];
-    };
-  };
-}
 
 export const data = graphql`
   query TourQuery($slug: String!, $yearStart: Date!, $yearEnd: Date!) {
@@ -115,15 +52,14 @@ export const data = graphql`
         }
         alternativeText
       }
+    }
 
-      branch {
-        name
-        peek_base
-        peek_tours
-        season_start
-        season_end
-        phone
-      }
+    strapiBranch(slug: {eq: "tahoe-city"}) {
+      ...BookNowFragment
+      season_start
+      season_end
+      peek_tours
+      phone
     }
 
     allStrapiSunsetTourTime(
@@ -164,7 +100,7 @@ export const data = graphql`
 `;
 
 // TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
-const TourView = ({ data }: TourViewTypes) => {
+const TourView = ({ data }: PaddleTourViewTypes) => {
 
   const time = PaddleTime({
     start: data.strapiTour.start,
@@ -252,8 +188,8 @@ const TourView = ({ data }: TourViewTypes) => {
               {...tour}
               link={`/tours-lessons/${tour.link}`}
               paddleBookNow={{
-                peek_base: data.strapiTour.branch.peek_tours,
-                strapiBranchName: data.strapiTour.branch.name,
+                peek_base: data.strapiBranch.peek_tours,
+                strapiBranchName: data.strapiBranch.name,
                 specificLink: tour.peek,
               }}
             />

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";
 
-import { PaddlePricingChart, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
+import { PaddlePricingChart, type PaddleRentalsPageTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -11,42 +11,8 @@ import BookNow from "../components/book-now";
 
 import Hero from "../components/hero";
 
-type RentalsPageTypes = {
-  data: {
-    allStrapiRentalRate: {
-      nodes: {
-        id: string;
-        item: string;
-        oneHour: number;
-        threeHour: number;
-        fullDay: number;
-        pedalAdd: number;
-      }[];
-    };
 
-    strapiBranch: {
-      rental_excerpt: string;
-      rental: {
-        data: {
-          rental: string;
-        };
-      };
-      peek_membership: string;
-      peek_six_pack: string;
-    };
-
-    strapiMembership: {
-      title: string;
-      excerpt: string;
-      six: string;
-    };
-
-    strapiLocation: {
-      hero: PaddleGatsbyImageType;
-    };
-  };
-};
-const RentalsPage = ({ data }: RentalsPageTypes) => {
+const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
   return (
     <React.Fragment>
       <Header />
@@ -107,7 +73,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
 
 export default RentalsPage;
 
-export const Head = ({ data }: RentalsPageTypes) => {
+export const Head = ({ data }: PaddleRentalsPageTypes) => {
 
   return (
     <SEO
