@@ -44,7 +44,7 @@ const TruckeeRiverPage = ({ data }: { data: RiverTypes }) => {
         </ReactMarkdown>
       </main>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   )
 }

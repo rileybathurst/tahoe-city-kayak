@@ -63,7 +63,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
         ))}
       </section>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   );
 }

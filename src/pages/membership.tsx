@@ -69,7 +69,7 @@ const MembershipPage = ({ data }: MembershipPageTypes) => {
         />
       </main>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   );
 };

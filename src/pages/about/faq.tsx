@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Script, Link, graphql, useStaticQuery } from 'gatsby';
+import { Script, Link, graphql } from 'gatsby';
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -71,7 +71,7 @@ const FaqPage = ({ data }: allFaqTypes) => {
 
 export default FaqPage
 
-export const Head = ({data}: allFaqTypes) => {
+export const Head = ({ data }: allFaqTypes) => {
 
   return (
     <SEO

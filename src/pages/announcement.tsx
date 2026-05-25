@@ -36,7 +36,7 @@ function AnnouncementPage() {
         </ul>
 
       </main >
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   )
 }

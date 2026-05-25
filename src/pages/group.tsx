@@ -44,7 +44,7 @@ const GroupPage = () => {
         <Phone />
       </main>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   )
 }

@@ -31,7 +31,7 @@ const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
         <h2>{data.strapiError.title}</h2>
         <p>{data.strapiError.description.data.description}</p>
       </main>
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   )
 }

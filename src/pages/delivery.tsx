@@ -2,43 +2,44 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { SEO } from "../components/seo";
 
-import Phone from "../components/phone";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 
-const DeliveryPage = () => {
 
-  type deliveryTypes = {
-    strapiDelivery: {
-      text: {
-        data: {
-          text: string;
+type deliveryTypes = {
+  strapiDelivery: {
+    text: {
+      data: {
+        text: string;
+      }
+    }
+    excerpt: string;
+  },
+  strapiBranch: {
+    email: string;
+    phone: number;
+  }
+}
+
+export const data = graphql`
+  query DeliveryQuery {
+    strapiDelivery {
+      text {
+        data {
+          text
         }
       }
-    },
-    strapiBranch: {
-      email: string;
-      phone: number;
+    }
+
+    strapiBranch(slug: {eq: "tahoe-city"}) {
+      email
+      phone
     }
   }
+`
 
-  const data: deliveryTypes = useStaticQuery(graphql`
-    query DeliveryQuery {
-      strapiDelivery {
-        text {
-          data {
-            text
-          }
-        }
-      }
-
-      strapiBranch(slug: {eq: "tahoe-city"}) {
-        email
-        phone
-      }
-    }
-  `)
+const DeliveryPage = (data: deliveryTypes) => {
 
   const phoneAndEmailLinks = data.strapiDelivery.text.data.text
     .replaceAll(
@@ -67,20 +68,18 @@ const DeliveryPage = () => {
         </div>
       </main>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   )
 }
 
 export default DeliveryPage
 
-export const Head = () => {
+export const Head = (data: deliveryTypes) => {
   return (
     <SEO
       title='Delivery'
-      description="Whether you need retail kayaks or paddleboards, or our rental watercraft, we can deliver throughout the Tahoe Region and beyond &#40;Sacramento and Reno areas included&#41;"
+      description={data.strapiDelivery.excerpt}
     />
   )
 }
-
-// todo service areas

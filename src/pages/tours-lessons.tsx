@@ -120,7 +120,7 @@ const ToursLessonsPage = () => {
         ))}
       </div>
 
-      <Footer topHR={true} />
+      <Footer topHR />
     </React.Fragment>
   );
 };
