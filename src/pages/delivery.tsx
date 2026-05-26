@@ -5,6 +5,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
+import Hero from "../components/hero";
 
 
 type deliveryTypes = {
@@ -39,7 +40,7 @@ export const data = graphql`
   }
 `
 
-const DeliveryPage = (data: deliveryTypes) => {
+const DeliveryPage = ({ data }: { data: deliveryTypes }) => {
 
   // TODO:: this could go to paddle
   const phoneAndEmailLinks = data.strapiDelivery.text.data.text
@@ -55,6 +56,8 @@ const DeliveryPage = (data: deliveryTypes) => {
   return (
     <React.Fragment>
       <Header />
+
+      <Hero />
 
       <main>
         <h1>Delivery</h1>
@@ -76,7 +79,7 @@ const DeliveryPage = (data: deliveryTypes) => {
 
 export default DeliveryPage
 
-export const Head = (data: deliveryTypes) => {
+export const Head = ({ data }: { data: deliveryTypes }) => {
   return (
     <SEO
       title='Delivery'
