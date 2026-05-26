@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import { PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard, PaddleTourCardTypes } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -11,7 +11,6 @@ import Experience from "../content/experience";
 import Sport from "../components/sport";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import type { TourCardTypes } from "../types/tour-card-types";
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -103,7 +102,7 @@ const ToursLessonsPage = () => {
 
             <div className="deck">
               {sport.nodes
-                .map((tour: TourCardTypes) => (
+                .map((tour: PaddleTourCardTypes) => (
                   <PaddleCard
                     key={tour.id}
                     {...tour}

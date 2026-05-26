@@ -3,9 +3,8 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard, type PaddleTourCardTypes } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
-import type { TourCardTypes } from "../../types/tour-card-types";
 import ReactMarkdown from "react-markdown";
 
 function TourCatchAll({ params }: { params: { name: string } }) {
@@ -49,7 +48,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
       </main>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: TourCardTypes) => (
+        {data.allStrapiTour.nodes.map((tour: PaddleTourCardTypes) => (
           <PaddleCard
             key={tour.id}
             {...tour}

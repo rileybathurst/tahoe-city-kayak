@@ -20,8 +20,6 @@ type SEOtypes = {
 export const SEO = ({
   title,
   description,
-  og_image,
-  og_image_description,
   breadcrumbs,
   children,
 }: SEOtypes) => {
@@ -31,10 +29,6 @@ export const SEO = ({
         name
         excerpt
         url
-
-        # * im using a string here if its an image itd be easier to see in strapi
-        og_image
-        og_image_description
         latitude
         longitude
         geo_radius
@@ -118,8 +112,6 @@ export const SEO = ({
         title={title || null}
         description={description || null}
         breadcrumbs={breadcrumbs || null}
-        og_image={og_image || null}
-        og_image_description={og_image_description || null}
         {...data}
       >
         {children}

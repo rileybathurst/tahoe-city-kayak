@@ -7,6 +7,7 @@ import {
   PaddleCard,
   PaddleTestimonial,
   type PaddleTestimonialTypes,
+  type PaddleTourCardTypes
 } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
@@ -20,14 +21,13 @@ import Experience from "../content/experience";
 import ReactMarkdown from "react-markdown";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
-import type { TourCardTypes } from "../types/tour-card-types";
 import type { RetailCardTypes } from "../types/retail-card-types";
 
 const IndexPage = () => {
 
   type indexTypes = {
     allStrapiTour: {
-      nodes: TourCardTypes[];
+      nodes: PaddleTourCardTypes[];
     };
     allStrapiSunsetTourTime: {
       nodes: {
