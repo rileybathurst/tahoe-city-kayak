@@ -158,8 +158,6 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
             {/* * needed as theres a bunch of values that may be passed but none is specific */}
             {time.value ? <PaddleSpecs time={time} /> : null}
 
-
-
             {data.strapiTour.slug === "sunset" ? (
               <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
             ) : null}

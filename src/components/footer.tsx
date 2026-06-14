@@ -29,17 +29,11 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
         }
       }
 
-      allStrapiAnnouncement(
-        filter: 
-        {
-          branches: {elemMatch: {slug: {eq: "tahoe-city"}}},
-          featured: {eq: true}
-        }
-      )  {
+      allStrapiConnection {
         nodes {
-          id
-          title
-          slug
+          name
+          excerpt
+          link
         }
       }
 
@@ -62,13 +56,28 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
     }
   `)
 
+  /* allStrapiAnnouncement(
+    filter: 
+    {
+      branches: {elemMatch: {slug: {eq: "tahoe-city"}}},
+      featured: {eq: true}
+    }
+  )  {
+    nodes {
+      id
+      title
+      slug
+    }
+  } */
+
   const MenuPlus = [...MenuList,
   { href: "/group", label: "Group" },
   { href: "/membership", label: "Membership" },
-  { href: "/announcement", label: "Announcements" },
-  ...data.allStrapiAnnouncement.nodes.map((announcement: { title: string, slug: string }) => (
-    { href: `/announcement/${announcement.slug}`, label: announcement.title }
-  ))
+    // * taking these out and replacing with connections
+    // { href: "/announcement", label: "Announcements" },
+    // ...data.allStrapiAnnouncement.nodes.map((announcement: { title: string, slug: string }) => (
+    //   { href: `/announcement/${announcement.slug}`, label: announcement.title }
+    // ))
   ]
 
   return (
@@ -77,6 +86,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       strapiBranch={data.strapiBranch}
       logo={<Logo />}
       allStrapiBranch={data.allStrapiBranch}
+      allStrapiConnection={data.allStrapiConnection}
       allStrapiRentalRate={data.allStrapiRentalRate}
       allStrapiLocation={data.allStrapiLocation}
       MenuPlus={MenuPlus}

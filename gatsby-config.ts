@@ -12,6 +12,7 @@ const strapiConfig = {
     "branch",
     "brand",
     "condition",
+    "connection",
     "faq",
     "job",
     "location",

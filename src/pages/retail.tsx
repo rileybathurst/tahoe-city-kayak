@@ -167,6 +167,7 @@ export const Head = () => {
   return (
     <SEO
       title="Retail"
+      // TODO: strapi this
       description="Our North-Shore Tahoe City retail store has been a trusted name for Lake Tahoe kayak rentals, retailing, and sales for over 17 years."
     />
   );

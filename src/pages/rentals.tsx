@@ -66,6 +66,15 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
         />
       </div>
 
+      <section className="pelican">
+        <hr />
+        <h3>
+          <Link to="/about/policies">
+            Store Policies
+          </Link>
+        </h3>
+      </section>
+
       <Footer topHR />
     </React.Fragment>
   );

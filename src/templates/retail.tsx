@@ -86,6 +86,7 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
     <React.Fragment>
       <Header />
 
+      {/* I want to try put a background into  this again maybe a whole bunch of blur and then different images based on the theme doesnt need south */}
       <Hero
         image={data.strapiRetail.cutout}
         background={true}
@@ -116,12 +117,13 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
             <div className="react-markdown features">
               <Markdown>{data.strapiRetail.features.data.features}</Markdown>
             </div>
-            <hr />
           </React.Fragment>
         )}
 
+        <hr />
         <section className="specs">
           <h3>SPECS:</h3>
+
           <PaddleSpecs
             crew={data.strapiRetail.crew}
             capacity={data.strapiRetail.capacity}
@@ -195,6 +197,8 @@ const RetailTemplate = ({ data }: RetailTemplateType) => {
               Browse other <Sport sport={data.strapiRetail.sport.slug} />s
             </Link>
           </h3>
+
+          {/* // TODO: cards here for nothing else in this brand */}
         </section>
       )}
 

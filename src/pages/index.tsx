@@ -337,17 +337,17 @@ const IndexPage = () => {
 
       {/* // * specifically using a single here */}
       <section className="panel denali-padding-block">
-        <ul className='pelican aconcagua-margin-block-end'>
+        <ul className='condor aconcagua-margin-block-end'>
           {/* TODO: quotes need the spacing to be cleaned up */}
           <PaddleTestimonial {...data.strapiTestimonial} />
         </ul>
 
-        <h4 className="pelican">
+        <h4 className="condor">
           <Link to="/about/testimonials">Why Paddlers Keep Coming Back</Link>
         </h4>
       </section>
 
-      <section className="pelican denali-padding-block">
+      <section className="condor denali-padding-block">
         <h3 className="font-serif">{data.strapiFaq.question}</h3>
         <p>{data.strapiFaq.answer}</p>
 

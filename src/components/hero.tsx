@@ -40,6 +40,7 @@ const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => 
 
   return (
     <React.Fragment>
+
       <PaddleHero
         image={image ? image : data.strapiBranch.hero}
         collage={collage || undefined}
