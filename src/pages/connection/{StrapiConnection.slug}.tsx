@@ -6,6 +6,7 @@ import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import Hero from "../../components/hero";
+import ReferralLink from "../../components/referral-link";
 
 export const query = graphql`
   query ConnectionPageQuery($slug: String!) {
@@ -48,32 +49,25 @@ type ConnectionTypes = {
 
 const ConnectionPage = ({ data }: ConnectionTypes) => {
 
-  var refferalLink = `${data.strapiConnection.link}/?=${data.strapiBranch.name}-kayak-paddleboard`
-
   return (
     <React.Fragment>
       <Header />
       {data.strapiConnection?.hero &&
-        <a href={refferalLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ReferralLink link={data.strapiConnection.link}>
+
           {/* // TODO: link should have an visual representation */}
           <Hero
             image={data.strapiConnection.hero}
           />
-        </a>
+        </ReferralLink>
       }
       <main>
         <h5>{data.strapiBranch.name} Kayak and Paddleboard Recommends</h5>
         <h1>{data.strapiConnection.name}</h1>
         <p>{data.strapiConnection.excerpt}</p>
-        <a href={refferalLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ReferralLink link={data.strapiConnection.link}>
           {data.strapiConnection.link}
-        </a>
+        </ReferralLink>
 
       </main>
 

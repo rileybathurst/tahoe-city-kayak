@@ -1,11 +1,11 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import Hero from "../components/hero";
+import ReferralLink from "../components/referral-link";
 
 export const query = graphql`
   query ConnectionQuery {
@@ -52,8 +52,6 @@ type ConnectionTypes = {
 
 const ConnectionPage = ({ data }: ConnectionTypes) => {
 
-  var refferalLink = (link: string) => `${link}/?=${data.strapiBranch.name}-kayak-paddleboard`
-
   return (
     <React.Fragment>
       <Header />
@@ -61,33 +59,24 @@ const ConnectionPage = ({ data }: ConnectionTypes) => {
       {data.allStrapiConnection.nodes.map((connection) => (
         connection?.hero &&
         <>
-          <a href={refferalLink(connection.link)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ReferralLink link={connection.link}>
             {/* // TODO: link should have an visual representation */}
             <Hero
               image={connection.hero}
             />
-          </a>
+          </ReferralLink>
 
           <article className="condor">
             <h5>{data.strapiBranch.name} Kayak and Paddleboard Recommends</h5>
             <h1>
-              <a href={refferalLink(connection.link)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <ReferralLink link={connection.link}>
                 {connection.name}
-              </a>
+              </ReferralLink>
             </h1>
             <p>{connection.excerpt}</p>
-            <a href={refferalLink(connection.link)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <ReferralLink link={connection.link}>
               {connection.link}
-            </a>
+            </ReferralLink>
             <hr />
 
           </article>
