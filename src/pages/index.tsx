@@ -23,7 +23,7 @@ import Locales from "../components/locales";
 import Hero from "../components/hero";
 import type { RetailCardTypes } from "../types/retail-card-types";
 
-const IndexPage = () => {
+const IndexPage = ({ location }: { location: Location }) => {
 
   type indexTypes = {
     allStrapiTour: {
@@ -186,9 +186,14 @@ const IndexPage = () => {
     { slug: "paddleboard", label: "Paddleboards" },
   ] as const;
 
+  // TODO: testing
+  console.log(location)
+
   return (
     <React.Fragment>
-      <Header />
+      <Header
+        location={location}
+      />
       <main className="albatross">
 
         <Hero

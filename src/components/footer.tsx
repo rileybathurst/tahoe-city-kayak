@@ -37,7 +37,13 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
         }
       }
 
-      allStrapiRentalRate(filter: {favorite: {eq: true}}) {
+      allStrapiRentalRate(
+        sort: {order: ASC},
+        filter: {
+          favorite: {eq: true},
+          branches: {elemMatch: {slug: {eq: "tahoe-city"}}}
+        }
+      ) {
         nodes {
           ...pricingChartFragment
         }
@@ -87,6 +93,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       logo={<Logo />}
       allStrapiBranch={data.allStrapiBranch}
       allStrapiConnection={data.allStrapiConnection}
+      // TODO: on mobile paddleboard is dropping a line
       allStrapiRentalRate={data.allStrapiRentalRate}
       allStrapiLocation={data.allStrapiLocation}
       MenuPlus={MenuPlus}

@@ -96,8 +96,10 @@ export const data = graphql`
   query {
     allStrapiRentalRate(
       sort: {order: ASC},
-      filter: {favorite: {eq: true}}
-      ) {
+      filter: {
+        favorite: {eq: true},
+        branches: {elemMatch: {slug: {eq: "tahoe-city"}}}
+      }) {
       nodes {
         ...pricingChartFragment
       }

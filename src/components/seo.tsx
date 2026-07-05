@@ -103,8 +103,9 @@ export const SEO = ({
 
   return (
     <React.Fragment>
+      {/* // ? Um like 99% sure I dont need this in gatsby */}
       <html lang="en" />
-      {/* // if a page doesnt have this linked it wont pull thge theme as it needs this line */}
+      {/* // if a page doesnt have this whole file linked it wont pull the theme as it needs this line */}
       {/* // TODO: write a test to check this is on pages */}
 
       <body className="tahoe-city" />
