@@ -71,7 +71,7 @@ module.exports = {
           "img-src":
             "'self' google-analytics.com www.google.com p.typekit.net data: about:", // ? I think  is a tracking pixel
           "connect-src":
-            "'self' data: google-analytics.com *.google-analytics.com www.google.com googleads.g.doubleclick.net www.googleadservices.com sentry.io",
+            "'self' data: google-analytics.com *.google-analytics.com www.google.com googleads.g.doubleclick.net ad.doubleclick.net www.googleadservices.com sentry.io",
           "media-src": "'self' data:",
         },
       },
