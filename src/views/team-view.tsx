@@ -11,12 +11,13 @@ import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 export const data = graphql`
   query TeamViewQuery($slug: String!) {
     strapiTeam(
-      slug: { eq: $slug },
-      branches: {elemMatch: {slug: {eq: "tahoe-city"}}}
+      slug: { eq: $slug }
     ) {
       id
       name
       slug
+      hometown
+      position
       bio {
         data {
           bio
@@ -30,6 +31,11 @@ export const data = graphql`
         }
         alternativeText
       }
+      questions {
+        order
+        answer
+        question
+      }
     }
   }
 `
@@ -39,12 +45,19 @@ type TeamViewTypes = {
     strapiTeam: {
       name: string,
       slug: string,
-      bio: {
+      hometown?: string,
+      position?: string,
+      bio?: {
         data: {
           bio: string
         }
       },
-      profile: PaddleGatsbyImageType;
+      profile?: PaddleGatsbyImageType;
+      questions?: {
+        order: number;
+        question: string;
+        answer: string;
+      }[];
     }
   }
 }
@@ -54,7 +67,8 @@ const TeamView = ({ data }: TeamViewTypes) => {
     <React.Fragment>
       <Header />
 
-      {data.strapiTeam.profile &&
+      {/* // TODO: less crop on hero image for teams */}
+      {data.strapiTeam?.profile &&
         <Hero
           image={data.strapiTeam.profile}
         />
@@ -63,12 +77,28 @@ const TeamView = ({ data }: TeamViewTypes) => {
       <main className="condor">
 
         <h1>{data.strapiTeam.name}</h1>
-        {data.strapiTeam.bio &&
+        {data.strapiTeam?.position && <h2 className="denali">{data.strapiTeam.position}</h2>}
+        <hr />
+        {data.strapiTeam?.hometown && <h2 className="denali">Hometown: {data.strapiTeam.hometown}</h2>}
+        {data.strapiTeam?.bio &&
           <div className='react-markdown'>
             <ReactMarkdown>
               {data.strapiTeam.bio.data.bio}
             </ReactMarkdown>
           </div>
+        }
+
+        {/* TODO: order by order */}
+        {data.strapiTeam?.questions &&
+          <section className="questions">
+            {data.strapiTeam.questions.map((q) => (
+              <div key={q.question}>
+                <hr />
+                <h3>{q.question}</h3>
+                <p>{q.answer}</p>
+              </div>
+            ))}
+          </section>
         }
       </main>
 
@@ -86,10 +116,12 @@ export default TeamView;
 
 export const Head = ({ data }: TeamViewTypes) => {
   // TODO: image
+  // TODO: needs real work on the seo includeing position
   return (
     <SEO
       title={data.strapiTeam.name}
-      description={data.strapiTeam.bio.data.bio}
+      // TODO: deal with what if we dont
+      description={data.strapiTeam.bio?.data?.bio}
       breadcrumbs={[
         { name: "About", item: "/about" },
         { name: "Team", item: "/about/team" },

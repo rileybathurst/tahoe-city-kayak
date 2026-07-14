@@ -6,6 +6,7 @@ import {
   PaddleBookNow,
   PaddleCard,
   PaddleTestimonial,
+  paddleSortToursByOrderNegativeLast,
   type PaddleTestimonialTypes,
   type PaddleTourCardTypes
 } from "@rileybathurst/paddle";
@@ -145,13 +146,16 @@ const IndexPage = ({ location }: { location: Location }) => {
   `);
 
   const allTours = data.allStrapiTour.nodes;
-  const [sortedList, setList] = useState([...allTours.slice(0, 4)]);
+
+  const sortedTours = [...allTours].sort(paddleSortToursByOrderNegativeLast);
+
+  const [slicedList, setList] = useState([...sortedTours.slice(0, 4)]);
 
   // State to trigger load more
   const [loadMore, setLoadMore] = useState(false);
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(data.allStrapiTour.nodes.length > 4);
+  const [hasMore, setHasMore] = useState(sortedTours.length > 4);
 
   // Load more button click
   const handleLoadMore = () => {
@@ -161,21 +165,21 @@ const IndexPage = ({ location }: { location: Location }) => {
   // Handle loading more articles
   useEffect(() => {
     if (loadMore && hasMore) {
-      const currentLength = sortedList.length;
-      const isMore = currentLength < data.allStrapiTour.nodes.length;
+      const currentLength = slicedList.length;
+      const isMore = currentLength < sortedTours.length;
       const nextResults = isMore
-        ? data.allStrapiTour.nodes.slice(currentLength, currentLength + 2)
+        ? sortedTours.slice(currentLength, currentLength + 2)
         : [];
-      setList([...sortedList, ...nextResults]);
+      setList([...slicedList, ...nextResults]);
       setLoadMore(false);
     }
-  }, [loadMore, hasMore, sortedList, data.allStrapiTour.nodes.length, data.allStrapiTour.nodes.slice]);
+  }, [loadMore, hasMore, slicedList, sortedTours.length, sortedTours.slice]);
 
   //Check if there is more
   useEffect(() => {
-    const isMore = sortedList.length < data.allStrapiTour.nodes.length;
+    const isMore = slicedList.length < sortedTours.length;
     setHasMore(isMore);
-  }, [sortedList, data.allStrapiTour.nodes.length]);
+  }, [slicedList, sortedTours.length]);
 
   // console.log(data.kayak);
   // console.log(data.paddleboard);
@@ -245,7 +249,7 @@ const IndexPage = ({ location }: { location: Location }) => {
 
 
         <div className="deck">
-          {sortedList
+          {slicedList
             .map((tour) => {
               return (
                 <PaddleCard

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import { PaddleCard, PaddleTourCardTypes } from "@rileybathurst/paddle";
+import { PaddleCard, PaddleTourCardTypes, paddleSortToursByOrderNegativeLast } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -11,6 +11,10 @@ import Experience from "../content/experience";
 import Sport from "../components/sport";
 import Locales from "../components/locales";
 import Hero from "../components/hero";
+
+type TourNode = PaddleTourCardTypes & {
+  order?: number | null;
+};
 
 const ToursLessonsPage = () => {
   const query = useStaticQuery(graphql`
@@ -43,16 +47,6 @@ const ToursLessonsPage = () => {
           }
         }
 
-        allStrapiSunsetTourTime(sort: {startDate: ASC}) {
-          nodes {
-            id
-            endDate
-            endTime
-            startDate
-            startTime
-          }
-        }
-
         strapiBranch(slug: {eq: "tahoe-city"}) {
           peek_tours
           season_start
@@ -64,7 +58,10 @@ const ToursLessonsPage = () => {
       }
     `);
 
-  const sports = [query.kayak, query.paddleBoard];
+  const sports = [query.kayak, query.paddleBoard].map((sport) => ({
+    ...sport,
+    nodes: [...(sport.nodes as TourNode[])].sort(paddleSortToursByOrderNegativeLast),
+  }));
 
   return (
     <React.Fragment>

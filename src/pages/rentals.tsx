@@ -1,3 +1,5 @@
+// ? how am i dealing with Inflatable docks $140-$200 per day
+
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Markdown from "react-markdown";

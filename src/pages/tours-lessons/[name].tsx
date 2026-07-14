@@ -3,7 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { PaddleCard, type PaddleTourCardTypes } from "@rileybathurst/paddle";
+import { PaddleCard, paddleSortToursByOrderNegativeLast, type PaddleTourCardTypes } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
 import ReactMarkdown from "react-markdown";
 
@@ -48,7 +48,7 @@ function TourCatchAll({ params }: { params: { name: string } }) {
       </main>
 
       <section className="deck">
-        {data.allStrapiTour.nodes.map((tour: PaddleTourCardTypes) => (
+        {data.allStrapiTour.nodes.sort(paddleSortToursByOrderNegativeLast).map((tour: PaddleTourCardTypes) => (
           <PaddleCard
             key={tour.id}
             {...tour}

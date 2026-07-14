@@ -207,11 +207,11 @@ exports.createPages = async ({ graphql, actions }: createPagesType) => {
     });
   }
 
+  // TODO: removed the filter until I get confirmation of who goes whewre
+  // * filter: { branches: { elemMatch: { slug: { eq: "tahoe-city" || eq: null } } } }
   const getStrapiTeam = await graphql(`
     query {
-      allStrapiTeam(
-        filter: { branches: { elemMatch: { slug: { eq: "tahoe-city" } } } }
-      ) {
+      allStrapiTeam{
         edges {
           node {
             slug

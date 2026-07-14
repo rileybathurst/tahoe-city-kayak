@@ -6,6 +6,7 @@ import {
   PaddleSunsetTourTimes,
   PaddleSpecs,
   PaddleMoonlightDatesTimes,
+  paddleSortToursByOrderNegativeLast,
   type PaddleTourViewTypes,
 } from "@rileybathurst/paddle";
 
@@ -180,7 +181,7 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
         </div>
 
         <section className="deck">
-          {data.allStrapiTour.nodes.map((tour) => (
+          {data.allStrapiTour.nodes.sort(paddleSortToursByOrderNegativeLast).map((tour) => (
             <PaddleCard
               key={tour.id}
               {...tour}

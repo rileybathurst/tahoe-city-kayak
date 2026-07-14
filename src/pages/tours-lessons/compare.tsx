@@ -1,3 +1,5 @@
+// TODO: compare is written in the top ccorner and this design could just use love
+
 import React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { SEO } from "../../components/seo";
@@ -5,7 +7,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 
-import { PaddleCompare } from "@rileybathurst/paddle";
+import { PaddleCompare, paddleSortToursByOrderNegativeLast } from "@rileybathurst/paddle";
 
 // ? how close to the card tour fragment can I use on this?
 const ComparePage = () => {
@@ -52,6 +54,11 @@ const ComparePage = () => {
   }
 `);
 
+  // TODO: this isnt sorting but its compare thats not the biggest deal right now
+  const sortedTours = data.allStrapiTour.nodes.sort(paddleSortToursByOrderNegativeLast);
+
+  // console.log(sortedTours);
+
   return (
     <React.Fragment>
       <Header />
@@ -59,7 +66,7 @@ const ComparePage = () => {
       <main className="pelican">
         <h1>Compare</h1>
         <PaddleCompare
-          tours={data.allStrapiTour.nodes}
+          tours={sortedTours}
           breadcrumb="tours-lessons"
           strapiBranchName={data.strapiBranch.name}
           peek_base={data.strapiBranch.peek_base}

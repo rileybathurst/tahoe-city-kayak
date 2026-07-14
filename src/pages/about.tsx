@@ -9,6 +9,7 @@ import Hero from "../components/hero";
 
 import { PaddleTestimonial, type PaddleTestimonialTypes, PaddleCard } from "@rileybathurst/paddle";
 import type { TeamCardTypes } from "../types/team-card-types";
+import { TeamCards } from "../components/team-cards";
 
 const AboutPage = () => {
 
@@ -22,10 +23,11 @@ const AboutPage = () => {
     }
   }
 
+  // TODO: remove the team (filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}})
   const data: aboutTypes = useStaticQuery(graphql`
     query AboutPageQuery {
 
-      allStrapiTeam(filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}}) {
+      allStrapiTeam {
       nodes {
         id
         title: name
@@ -73,6 +75,7 @@ const AboutPage = () => {
           <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
           <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
           <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
+          <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
         </ul>
 
         <hr />
@@ -86,19 +89,9 @@ const AboutPage = () => {
         </h3>
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
-
-        <section className="deck">
-          {data.allStrapiTeam.nodes.map((team: TeamCardTypes) => (
-            <PaddleCard
-              key={team.id}
-              {...team}
-              link={`/about/team/${team.slug}`}
-            />
-          ))}
-        </section>
-
       </section>
 
+      <TeamCards />
 
       {/* // * specifically using a single here */}
       <section className="panel denali-padding-block">

@@ -1,3 +1,7 @@
+// TODO: add google to social links in footer
+// google has a retail and a on water rental?
+// TODO: partners and explore should look and feel the same
+
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -85,6 +89,8 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
     //   { href: `/announcement/${announcement.slug}`, label: announcement.title }
     // ))
   ]
+
+  // ? do we add visual google maps links
 
   return (
     <PaddleFooter

@@ -5,31 +5,13 @@ import { SEO } from "../../components/seo"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
-import { PaddleCard } from "@rileybathurst/paddle";
-import type { TeamCardTypes } from "../../types/team-card-types";
+import { TeamCards } from "../../components/team-cards"
 
 const TeamPage = () => {
 
+  // * this query brings all team not just tahoe city as the query is complex for null
   const data = useStaticQuery(graphql`
-    query TeamQuery {
-      allStrapiTeam(filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}}) {
-        nodes {
-          id
-          title: name
-          slug
-          excerpt
-
-          image: profile {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-
+    query TeamPageQuery {
       strapiBranch(slug: {eq: "tahoe-city"}) {
         name
       }
@@ -44,24 +26,16 @@ const TeamPage = () => {
         <h1>Team</h1>
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
         <hr />
-
-        <section className="deck">
-          {data.allStrapiTeam.nodes.map((team: TeamCardTypes) => (
-            <PaddleCard
-              key={team.id}
-              {...team}
-              link={`/about/team/${team.slug}`}
-            />
-          ))}
-        </section>
-
       </main>
+
+      <TeamCards />
+
       <Breadcrumbs>
         <Breadcrumb><Link to="/about/">About</Link></Breadcrumb>
         <Breadcrumb>Team</Breadcrumb>
       </Breadcrumbs>
 
-      < Footer />
+      <Footer />
     </React.Fragment>
   )
 }
@@ -72,8 +46,7 @@ export const Head = () => {
   return (
     <SEO
       title='Team'
-    // TODO:
-    // description="We have many different Kayak Tours to offer, as well as Stand Up Paddleboard Lessons. Our tours leave from multiple locations around the lake."
+    // description={`Meet the team at ${data.strapiBranch.name} Kayak & Paddleboard`}
     />
   )
 }
