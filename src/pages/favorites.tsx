@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 const FavoritesPage = ({ data }: { data: any }) => {
-  // data = useStaticQuery(query);
+  data = useStaticQuery(query);
 
   type favoriteConnections = {
     id: string;
