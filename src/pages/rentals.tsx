@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import Markdown from "react-markdown";
+import Markdown from "react-markdown"
 
-import { PaddlePricingChart, type PaddleRentalsPageTypes } from "@rileybathurst/paddle";
+import { PaddlePricingChart, type PaddleRentalRateType, type PaddleGatsbyImageType } from "@rileybathurst/paddle";
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -13,8 +13,55 @@ import BookNow from "../components/book-now";
 
 import Hero from "../components/hero";
 
+type RentalsPageTypes = {
+  data: {
+    favorites: {
+      nodes: PaddleRentalRateType[]
+    },
+    fullDayOnly: {
+      nodes: PaddleRentalRateType[]
+    },
+    strapiBranch: {
+      rental_excerpt: string,
+      rental: {
+        data: {
+          rental: string
+        }
+      },
+      peek_membership: string,
+      peek_six_pack: string
+    },
+    strapiMembership: {
+      title: string,
+      excerpt: string,
+      six: string
+    },
+    strapiLocation: {
+      hero: PaddleGatsbyImageType
+    }
+  }
+}
 
-const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
+const RentalsPage = ({ data }: RentalsPageTypes) => {
+
+  console.log('favs', data.favorites);
+
+  const allOneHourAreNull = data.favorites.nodes.every((rate) => rate.oneHour === null);
+  // console.log("all oneHour are null:", allOneHourAreNull);
+
+  const allThreeHourAreNull = data.favorites.nodes.every((rate) => rate.threeHour === null);
+  // console.log("all threeHour are null:", allThreeHourAreNull);
+
+  const allFullDayAreNull = data.favorites.nodes.every((rate) => rate.fullDay === null);
+  // console.log("all fullDay are null:", allFullDayAreNull);
+
+  // * this is where I decide number of rows
+  let numberOfRows = 1
+  if (!allOneHourAreNull) ++numberOfRows;
+  if (!allThreeHourAreNull) ++numberOfRows;
+  if (!allFullDayAreNull) ++numberOfRows;
+  console.log("🦄 number of rows:", numberOfRows);
+
   return (
     <React.Fragment>
       <Header />
@@ -22,9 +69,15 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
       <Hero
         image={data.strapiLocation.hero}
         overlay={<PaddlePricingChart
-          rentalRates={data.allStrapiRentalRate}
+          rentalRates={data.favorites}
         />}
       />
+
+      <div className="albatross">
+        <PaddlePricingChart
+          rentalRates={data.fullDayOnly}
+        />
+      </div>
 
       <div className="pelican">
 
@@ -84,7 +137,7 @@ const RentalsPage = ({ data }: PaddleRentalsPageTypes) => {
 
 export default RentalsPage;
 
-export const Head = ({ data }: PaddleRentalsPageTypes) => {
+export const Head = ({ data }: RentalsPageTypes) => {
 
   return (
     <SEO
@@ -94,13 +147,27 @@ export const Head = ({ data }: PaddleRentalsPageTypes) => {
   );
 };
 
+// favorite: {eq: true},
+// * item: {ne: "Inflatable Paddle Board*"} is brute force
 export const data = graphql`
   query {
-    allStrapiRentalRate(
+    favorites: allStrapiRentalRate(
       sort: {order: ASC},
       filter: {
         favorite: {eq: true},
         branches: {elemMatch: {slug: {eq: "tahoe-city"}}}
+      }) {
+      nodes {
+        ...pricingChartFragment
+      }
+    }
+
+    fullDayOnly: allStrapiRentalRate(
+      sort: {order: ASC},
+      filter: {
+        oneHour: {eq: null}, threeHour: {eq: null},
+        branches: {elemMatch: {slug: {eq: "tahoe-city"}}},
+        item: {ne: "Inflatable Paddle Board*"}
       }) {
       nodes {
         ...pricingChartFragment

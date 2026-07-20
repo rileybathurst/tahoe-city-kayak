@@ -7,6 +7,7 @@ import Footer from "../components/footer";
 import BookNow from "../components/book-now";
 import Hero from "../components/hero";
 
+// TODO: pull this type from paddle package
 type MembershipPageTypes = {
   data: {
     allStrapiRentalRate: {
