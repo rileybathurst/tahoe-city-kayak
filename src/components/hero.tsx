@@ -39,16 +39,13 @@ const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => 
   `);
 
   return (
-    <React.Fragment>
-
-      <PaddleHero
-        image={image ? image : data.strapiBranch.hero}
-        collage={collage || undefined}
-        overlay={overlay ? overlay : undefined}
-        background={background}
-        objectFit={objectFit}
-      />
-    </React.Fragment>
+    <PaddleHero
+      image={image ? image : data.strapiBranch.hero}
+      collage={collage || undefined}
+      overlay={overlay ? overlay : undefined}
+      background={background}
+      objectFit={objectFit}
+    />
   )
 }
 

@@ -35,6 +35,7 @@ export const TeamCards = () => {
             }
             alternativeText
           }
+          imageSlide
         }
       }
 
@@ -75,6 +76,10 @@ export const TeamCards = () => {
     })
 
   // TODO: use strapi point of interest Moose is specifically bad
+  console.log("teamCards", teamCards.map((team: TeamCardWithImageFlagAndOrder) => ({
+    name: team.title,
+    imageSlide: team.imageSlide,
+  })))
 
   return (
     <section className="deck">
@@ -83,6 +88,7 @@ export const TeamCards = () => {
           key={team.id}
           {...team}
           link={`/about/team/${team.slug}`}
+          imageSlide={team.imageSlide}
         />
       ))}
     </section>
