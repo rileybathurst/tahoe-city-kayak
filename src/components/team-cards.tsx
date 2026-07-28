@@ -1,41 +1,13 @@
-import * as React from "react"
+import React from "react";
 import { useStaticQuery, graphql } from 'gatsby';
-import type { TeamCardTypes } from "../types/team-card-types";
-import { PaddleCard } from "@rileybathurst/paddle";
+import { PaddleCard, paddleTeamFunctions, type PaddleTeamCardTypes } from "@rileybathurst/paddle";
 
 export const TeamCards = () => {
-
-  type TeamWithBranch = TeamCardTypes & {
-    order?: number | null
-    branches?: Array<{ slug?: string | null }> | null
-  }
-  type TeamCardWithImageFlagAndOrder = TeamCardTypes & {
-    order?: number | null
-    hasProfileImage: boolean
-  }
-
   const data = useStaticQuery(graphql`
     query TeamCardQuery {
       allStrapiTeam {
         nodes {
-          id
-          title: name
-          slug
-          order
-          excerpt
-          branches {
-            slug
-          }
-
-          image: profile {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-          imageSlide
+          ...TeamCardFragment
         }
       }
 
@@ -52,45 +24,88 @@ export const TeamCards = () => {
     }
   `)
 
+
+
+  // ? why am I doing this with a filter here instead of in the query?
   const filteredTeam = data.allStrapiTeam.nodes.filter(
-    (team: TeamWithBranch) =>
+    (team: PaddleTeamCardTypes) =>
       !team.branches?.length || team.branches.some((branch) => branch?.slug === "tahoe-city")
   )
 
-  const defaultGuideImage = data.strapiExperience?.guides
-  const teamCards: TeamCardWithImageFlagAndOrder[] = filteredTeam
-    .map((team: TeamCardTypes) => ({
-      ...team,
-      hasProfileImage: Boolean(team.image?.localFile),
-      image: team.image?.localFile ? team.image : defaultGuideImage,
-    }))
-    .sort((a: TeamCardWithImageFlagAndOrder, b: TeamCardWithImageFlagAndOrder) => {
-      const orderA = typeof a.order === "number" ? a.order : Number.POSITIVE_INFINITY
-      const orderB = typeof b.order === "number" ? b.order : Number.POSITIVE_INFINITY
+  paddleTeamFunctions(data.strapiExperience.guides, filteredTeam)
 
-      if (orderA !== orderB) {
-        return orderA - orderB
+  // console.log("filteredTeam", filteredTeam.map((team: PaddleTeamCardTypes) => team))
+  const teamMembers = paddleTeamFunctions(data.strapiExperience.guides, filteredTeam)
+  // console.log("team", data.allStrapiTeam.nodes.map((team: PaddleTeamCardTypes) => team))
+
+  const positionSets = [
+    {
+      name: "Guides",
+      order: 1,
+      positions: ["guide"],
+      members: teamMembers.filter((team: PaddleTeamCardTypes) => team.position?.trim().toLowerCase() === "guide"),
+    },
+    {
+      name: "Shop Dogs",
+      order: 2,
+      positions: ["shop dog"],
+      members: teamMembers.filter((team: PaddleTeamCardTypes) => team.position?.trim().toLowerCase() === "shop dog"),
+    },
+  ]
+    .filter((group) => group.members.length > 0)
+    .sort((a, b) => a.order - b.order)
+
+  const otherPositions = (members: PaddleTeamCardTypes[]) => {
+    const definedPositions = new Set(
+      positionSets.flatMap((group) => group.positions).map((position) => position.trim().toLowerCase())
+    )
+
+    return members.filter((team: PaddleTeamCardTypes) => {
+      const position = team.position?.trim().toLowerCase()
+      if (!position) {
+        return false
       }
 
-      return Number(b.hasProfileImage) - Number(a.hasProfileImage)
+      return !definedPositions.has(position)
     })
+  }
 
-  // TODO: use strapi point of interest Moose is specifically bad
-  console.log("teamCards", teamCards.map((team: TeamCardWithImageFlagAndOrder) => ({
-    name: team.title,
-    imageSlide: team.imageSlide,
-  })))
+  const ungroupedTeamMembers = otherPositions(teamMembers)
 
   return (
-    <section className="deck">
-      {teamCards.map((team: TeamCardTypes) => (
-        <PaddleCard
-          key={team.id}
-          {...team}
-          link={`/about/team/${team.slug}`}
-          imageSlide={team.imageSlide}
-        />
-      ))}
-    </section>
+    <React.Fragment>
+      {ungroupedTeamMembers.length > 0 && (
+        <section id="ungrouped">
+          <div className="deck">
+            {ungroupedTeamMembers.map((team: PaddleTeamCardTypes) => (
+              <PaddleCard
+                key={team.id}
+                {...team}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {positionSets.map((group) => (
+        <section key={group.name} id={group.name.toLowerCase().replace(/\s+/g, "-")}>
+          <div className="pelican">
+            <hr />
+            <h3>{group.name}</h3>
+          </div>
+          <div className="deck">
+            {group.members.map((team: PaddleTeamCardTypes) => (
+              <PaddleCard
+                key={team.id}
+                {...team}
+                link={`/about/team/${team.link}`}
+                imageSlide={team.imageSlide}
+              />
+            ))}
+          </div>
+        </section>
+      ))
+      }
+    </React.Fragment >
   )
 }

@@ -7,16 +7,17 @@ import Footer from "../components/footer";
 import AboutUs from "../content/about-us";
 import Hero from "../components/hero";
 
-import { PaddleTestimonial, type PaddleTestimonialTypes, PaddleCard } from "@rileybathurst/paddle";
-import type { TeamCardTypes } from "../types/team-card-types";
+import { PaddleTestimonial, type PaddleTestimonialTypes, type PaddleCardTypes } from "@rileybathurst/paddle";
 import { TeamCards } from "../components/team-cards";
 
 const AboutPage = () => {
 
+  // TODO: nodes: PaddleCardTypes[] isnt right but if it lets me through get it running
+
   type aboutTypes = {
     strapiTestimonial: PaddleTestimonialTypes;
     allStrapiTeam: {
-      nodes: TeamCardTypes[]
+      nodes: PaddleCardTypes[]
     }
     strapiBranch: {
       name: string
@@ -28,26 +29,14 @@ const AboutPage = () => {
     query AboutPageQuery {
 
       allStrapiTeam {
-      nodes {
-        id
-        title: name
-        slug
-        excerpt
-
-        image: profile {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
+        nodes {
+          ...TeamCardFragment
         }
       }
-    }
 
-    strapiBranch(slug: {eq: "tahoe-city"}) {
-      name
-    }
+      strapiBranch(slug: {eq: "tahoe-city"}) {
+        name
+      }
 
 
       strapiTestimonial(branch: {slug: {eq: "tahoe-city"}}) {
@@ -112,6 +101,7 @@ const AboutPage = () => {
 export default AboutPage
 
 // this isnt a https://schema.org/AboutPage as thats about creative works
+// TODO: strapi
 export const Head = () => {
   return (
     <SEO

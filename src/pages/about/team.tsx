@@ -25,6 +25,13 @@ const TeamPage = () => {
       <main className="pelican">
         <h1>Team</h1>
         <p>Meet the team at {data.strapiBranch.name} Kayak & Paddleboard</p>
+
+        {/* // * custom */}
+        <ul>
+          <li><a href="#guides">Guides</a></li>
+          <li><a href="#shop-dogs">Shop Dogs</a></li>
+        </ul>
+
         <hr />
       </main>
 
