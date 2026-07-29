@@ -7,6 +7,7 @@ import {
   PaddleSpecs,
   PaddleMoonlightDatesTimes,
   paddleSortToursByOrderNegativeLast,
+  type PaddleGatsbyImageType,
   type PaddleTourViewTypes,
 } from "@rileybathurst/paddle";
 
@@ -26,9 +27,7 @@ export const data = graphql`
       slug: { eq: $slug },
       branch: {slug: {eq: "tahoe-city"}}
       ) {
-      id
-      name
-      slug
+      ...CardTourFragment
       information {
         data {
           information
@@ -40,19 +39,8 @@ export const data = graphql`
       timeframe
       minimum
       fitness
-      peek
       sport
-      excerpt
       price
-
-      hero {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
     }
 
     strapiBranch(slug: {eq: "tahoe-city"}) {
@@ -100,15 +88,14 @@ export const data = graphql`
   }
 `;
 
-// TODO: strapiLocation.locale.name either needed everywhere and should be in the fragment or not needed
-const TourView = ({ data }: PaddleTourViewTypes) => {
+const TourView = ({ data }: { data: PaddleTourViewTypes["data"] }) => {
 
   const time = PaddleTime({
     start: data.strapiTour.start,
     finish: data.strapiTour.finish,
     duration: data.strapiTour.duration,
     timeframe: data.strapiTour.timeframe,
-    slug: data.strapiTour.slug,
+    slug: data.strapiTour.link,
     allStrapiSunsetTourTime: data.allStrapiSunsetTourTime,
   });
 
@@ -117,7 +104,7 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
       <Header />
 
       <Hero
-        image={data.strapiTour.hero}
+        image={data.strapiTour.image}
         overlay={<Locales
           water={true}
           parking={true}
@@ -126,7 +113,7 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
 
       <main className="pelican">
         <div>
-          <h1>{data.strapiTour.name}</h1>
+          <h1>{data.strapiTour.title}</h1>
           <div className="tour__minimum">
             {data.strapiTour.peek ? (
               <BookNow
@@ -159,11 +146,11 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
             {/* * needed as theres a bunch of values that may be passed but none is specific */}
             {time.value ? <PaddleSpecs time={time} /> : null}
 
-            {data.strapiTour.slug === "sunset" ? (
+            {data.strapiTour.link === "sunset" ? (
               <PaddleSunsetTourTimes {...data.allStrapiSunsetTourTime} />
             ) : null}
 
-            {data.strapiTour.slug === "moonlight" ? (
+            {data.strapiTour.link === "moonlight" ? (
               <PaddleMoonlightDatesTimes
                 nodes={data.allStrapiMoonlightTourDateTime.nodes}
               />
@@ -196,8 +183,8 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
         </section>
 
         <h4 className="albatross">
-          <Link to={`/tours-lessons/compare/?${data.strapiTour.slug}`}>
-            Compare the {data.strapiTour.name} to another tour.
+          <Link to={`/tours-lessons/compare/?${data.strapiTour.link}`}>
+            Compare the {data.strapiTour.title} to another tour.
           </Link>
         </h4>
       </div>
@@ -206,7 +193,7 @@ const TourView = ({ data }: PaddleTourViewTypes) => {
         <Breadcrumb>
           <Link to="/tours-lessons">Tours & Lessons</Link>
         </Breadcrumb>
-        <Breadcrumb>{data.strapiTour.name}</Breadcrumb>
+        <Breadcrumb>{data.strapiTour.title}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -219,25 +206,25 @@ export default TourView;
 type TourViewHeadTypes = {
   data: {
     strapiTour: {
-      name: string;
+      title: string;
       excerpt: string;
-      slug: string;
+      link: string;
     };
   };
 };
 export const Head = ({ data }: TourViewHeadTypes) => {
   return (
     <SEO
-      title={data.strapiTour.name}
+      title={data.strapiTour.title}
       description={data.strapiTour.excerpt}
       breadcrumbs={[
         {
           name: "Tours & Lessons",
-          item: "tours-lessons",
+          item: "/tours-lessons",
         },
         {
-          name: data.strapiTour.name,
-          item: `tours-lessons/${data.strapiTour.slug}`,
+          name: data.strapiTour.title,
+          item: `tours-lessons/${data.strapiTour.link}`,
         },
       ]}
     />
