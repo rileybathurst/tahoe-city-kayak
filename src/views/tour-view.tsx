@@ -7,7 +7,6 @@ import {
   PaddleSpecs,
   PaddleMoonlightDatesTimes,
   paddleSortToursByOrderNegativeLast,
-  type PaddleGatsbyImageType,
   type PaddleTourViewTypes,
 } from "@rileybathurst/paddle";
 

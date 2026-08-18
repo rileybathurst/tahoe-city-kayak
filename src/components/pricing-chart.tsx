@@ -14,7 +14,7 @@ const PricingChart = () => {
         }
       )  {
         nodes {
-          ...pricingChartFragment
+          ...PricingChartFragment
         }
       }
       strapiBranch(slug: {eq: "tahoe-city"}) {

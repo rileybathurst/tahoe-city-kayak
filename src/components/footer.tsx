@@ -54,7 +54,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
         }
       ) {
         nodes {
-          ...pricingChartFragment
+          ...PricingChartFragment
         }
       }
 

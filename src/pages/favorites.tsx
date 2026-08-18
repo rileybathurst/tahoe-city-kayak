@@ -4,15 +4,22 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const FavoritesPage = ({ data }: { data: any }) => {
-  data = useStaticQuery(query);
+type FavoritesPageTypes = {
+  allStrapiConnection: {
+    nodes: {
+      id: string,
+      name: string,
+      excerpt: string,
+      website?: string
+    }[]
+  },
+  strapiBranch: {
+    name: string
+  }
+}
 
-  type favoriteConnections = {
-    id: string;
-    name: string;
-    excerpt: string;
-    website?: string;
-  };
+const FavoritesPage = ({ data }: { data: FavoritesPageTypes }) => {
+  data = useStaticQuery(query);
 
   const WebsiteLink = ({ url }: { url: string }) => {
     url = url.includes('http') ? url.replace(/^https?:\/\//, '') : url;
@@ -33,7 +40,7 @@ const FavoritesPage = ({ data }: { data: any }) => {
         <hr />
         <ul className="">
 
-          {data.allStrapiConnection.nodes.map((connection: favoriteConnections) => (
+          {data.allStrapiConnection.nodes.map((connection) => (
             <li key={connection.id}>
               <h2>{connection.name}</h2>
               <p>{connection.excerpt}</p>
@@ -51,7 +58,7 @@ const FavoritesPage = ({ data }: { data: any }) => {
 
 export default FavoritesPage
 
-export const Head = (data: any) => {
+export const Head = ({ data }: { data: FavoritesPageTypes }) => {
   data = useStaticQuery(query);
   return (
     <SEO

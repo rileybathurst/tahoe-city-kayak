@@ -181,9 +181,6 @@ const IndexPage = ({ location }: { location: Location }) => {
     setHasMore(isMore);
   }, [slicedList, sortedTours.length]);
 
-  // console.log(data.kayak);
-  // console.log(data.paddleboard);
-
   const products = [data.kayak, data.paddleboard] as RetailCardTypes[];
   const retailSports = [
     { slug: "kayak", label: "Kayaks" },
@@ -191,7 +188,7 @@ const IndexPage = ({ location }: { location: Location }) => {
   ] as const;
 
   // TODO: testing
-  console.log(location)
+  // console.log(data.paddleboard);
 
   return (
     <React.Fragment>

@@ -44,7 +44,7 @@ type RentalsPageTypes = {
 
 const RentalsPage = ({ data }: RentalsPageTypes) => {
 
-  console.log('favs', data.favorites);
+  // console.log('favs', data.favorites);
 
   const allOneHourAreNull = data.favorites.nodes.every((rate) => rate.oneHour === null);
   // console.log("all oneHour are null:", allOneHourAreNull);
@@ -60,7 +60,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
   if (!allOneHourAreNull) ++numberOfRows;
   if (!allThreeHourAreNull) ++numberOfRows;
   if (!allFullDayAreNull) ++numberOfRows;
-  console.log("🦄 number of rows:", numberOfRows);
+  // console.log("🦄 number of rows:", numberOfRows);
 
   return (
     <React.Fragment>
@@ -158,7 +158,7 @@ export const data = graphql`
         branches: {elemMatch: {slug: {eq: "tahoe-city"}}}
       }) {
       nodes {
-        ...pricingChartFragment
+        ...PricingChartFragment
       }
     }
 
@@ -170,7 +170,7 @@ export const data = graphql`
         item: {ne: "Inflatable Paddle Board*"}
       }) {
       nodes {
-        ...pricingChartFragment
+        ...PricingChartFragment
       }
     }
 
