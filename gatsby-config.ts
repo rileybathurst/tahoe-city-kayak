@@ -40,6 +40,7 @@ const strapiConfig = {
     "shop",
     "membership",
   ],
+
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,
   },
@@ -105,16 +106,6 @@ module.exports = {
       options: {
         name: "pages",
         path: `${__dirname}/src/pages/`,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-postcss",
-      options: {
-        postCssPlugins: [
-          require("postcss-import"),
-          require("autoprefixer"),
-          require("postcss-nested"),
-        ],
       },
     },
     {
