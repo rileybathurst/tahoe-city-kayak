@@ -37,6 +37,25 @@ export const data = graphql`
         question
       }
     }
+
+    allStrapiConnection(
+      filter: {recommendation: {elemMatch: {team: {slug: {eq: $slug}}}}}
+    ) {
+      edges {
+        node {
+          name
+          excerpt
+          website
+          recommendation {
+            reason
+            team {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
   }
 `
 
@@ -62,6 +81,21 @@ type TeamViewTypes = {
   }
 }
 const TeamView = ({ data }: TeamViewTypes) => {
+
+  const teamRecommendations = data.allStrapiConnection.edges.map(({ node }) => {
+    const recommendations = node.recommendation.filter(
+      (recommendation) => recommendation.team.name === data.strapiTeam.name
+
+    );
+
+    return {
+      name: node.name,
+      excerpt: node.excerpt,
+      website: node.website,
+      recommendations,
+      hasRecommendations: recommendations.length > 0,
+    };
+  });
 
   return (
     <React.Fragment>
@@ -100,6 +134,32 @@ const TeamView = ({ data }: TeamViewTypes) => {
             ))}
           </section>
         }
+
+        {teamRecommendations.some(({ hasRecommendations }) => hasRecommendations) ? (
+          <div className="panel">
+            <h2>Off Water Favorites</h2>
+            <div className="deck">
+              {teamRecommendations.map(({ name, excerpt, website, recommendations, hasRecommendations }) => (
+                hasRecommendations ? (
+                  <div key={name} className="card">
+                    <h2>{name}</h2>
+                    {excerpt ? <p>{excerpt}</p> : null}
+                    {website ? <p><a href={website}>{website}</a></p> : null}
+                    {recommendations.map((recommendation, index) => (
+                      <div key={index}>
+                        <blockquote>
+                          {data.strapiTeam.name} says: "{recommendation.reason}"
+                        </blockquote>
+                      </div>
+                    ))}
+                  </div>
+                ) : null
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+
       </main>
 
       <Breadcrumbs>

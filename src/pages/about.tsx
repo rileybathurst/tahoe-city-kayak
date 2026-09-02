@@ -53,7 +53,6 @@ const AboutPage = () => {
 
   }
 
-  // TODO: remove the team (filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}})
   const data: aboutTypes = useStaticQuery(graphql`
     query AboutPageQuery {
 
