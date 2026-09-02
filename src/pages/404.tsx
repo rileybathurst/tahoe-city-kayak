@@ -29,6 +29,7 @@ const NotFoundPage = ({ location, data }: NotFoundPageTypes) => {
       <main>
         <h1>404 - {location.pathname}</h1>
         <h2>{data.strapiError.title}</h2>
+        {/* // TODO: this is markdown and needs to be treated as such */}
         <p>{data.strapiError.description.data.description}</p>
       </main>
       <Footer topHR />
