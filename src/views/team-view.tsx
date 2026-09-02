@@ -78,6 +78,22 @@ type TeamViewTypes = {
         answer: string;
       }[];
     }
+    allStrapiConnection: {
+      edges: {
+        node: {
+          name: string;
+          excerpt?: string;
+          website?: string;
+          recommendation: {
+            reason: string;
+            team: {
+              name: string;
+              slug: string;
+            }
+          }[];
+        };
+      }[];
+    }
   }
 }
 const TeamView = ({ data }: TeamViewTypes) => {
@@ -122,7 +138,7 @@ const TeamView = ({ data }: TeamViewTypes) => {
           </div>
         }
 
-        {/* TODO: order by order */}
+        {/* // TODO: order by order */}
         {data.strapiTeam?.questions &&
           <section className="questions">
             {data.strapiTeam.questions.map((q) => (
@@ -145,12 +161,10 @@ const TeamView = ({ data }: TeamViewTypes) => {
                     <h2>{name}</h2>
                     {excerpt ? <p>{excerpt}</p> : null}
                     {website ? <p><a href={website}>{website}</a></p> : null}
-                    {recommendations.map((recommendation, index) => (
-                      <div key={index}>
-                        <blockquote>
-                          {data.strapiTeam.name} says: "{recommendation.reason}"
-                        </blockquote>
-                      </div>
+                    {recommendations.map((recommendation) => (
+                      <blockquote key={recommendation.reason}>
+                        {data.strapiTeam.name} says: "{recommendation.reason}"
+                      </blockquote>
                     ))}
                   </div>
                 ) : null
@@ -158,7 +172,6 @@ const TeamView = ({ data }: TeamViewTypes) => {
             </div>
           </div>
         ) : null}
-
 
       </main>
 
