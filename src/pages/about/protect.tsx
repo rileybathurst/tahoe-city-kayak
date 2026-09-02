@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link, graphql, } from 'gatsby';
+import type { PaddleGatsbyImageType } from "@rileybathurst/paddle";
 import { SEO } from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -7,40 +8,34 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from 'react-markdown';
 import Hero from "../../components/hero";
 
-const ProtectPage = () => {
-
-  const { strapiProtect } = useStaticQuery(graphql`
-    query ProtectQuery {
-      strapiProtect {
-        title
-        details {
-          data {
-            details
-          }
+type ProtectPageTypes = {
+  data: {
+    strapiProtect: {
+      title: string,
+      details: {
+        data: {
+          details: string
         }
-        hero {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
+      },
+      hero: PaddleGatsbyImageType;
+      excerpt: string
     }
-  `)
+  }
+}
+const ProtectPage = ({ data }: ProtectPageTypes) => {
 
   return (
     <React.Fragment>
       <Header />
 
       <Hero
-        image={strapiProtect.hero}
+        image={data.strapiProtect.hero}
       />
 
       <main className="pelican">
-        <h1>{strapiProtect.title}</h1>
+        <h1>{data.strapiProtect.title}</h1>
         <ReactMarkdown>
-          {strapiProtect.details.data.details}
+          {data.strapiProtect.details.data.details}
         </ReactMarkdown>
       </main>
 
@@ -56,12 +51,12 @@ const ProtectPage = () => {
 
 export default ProtectPage
 
-export const Head = () => {
+export const Head = ({ data }: ProtectPageTypes) => {
 
   return (
     <SEO
       title='Protect Lake Tahoe'
-      description="Lake Tahoe is a unique and special environment. Our alpine lake is one of the cleanest and clearest in the world, and we'd like to preserve this place for future generations"
+      description={data.strapiProtect.excerpt}
       breadcrumbs={[
         {
           name: "About",
@@ -69,9 +64,31 @@ export const Head = () => {
         },
         {
           name: 'Protect Lake Tahoe',
-          item: 'protect'
+          item: 'about/protect'
         }
       ]}
     />
   )
 }
+
+export const query = graphql`
+  query ProtectQuery {
+    strapiProtect {
+      title
+      details {
+        data {
+          details
+        }
+      }
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+      excerpt
+    }
+  }
+`

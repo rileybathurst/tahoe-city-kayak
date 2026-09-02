@@ -22,6 +22,7 @@ type HeroQueryTypes = {
 
 const Hero = ({ image, collage, overlay, background, objectFit }: HeroTypes) => {
 
+  // ? are we using a fragment here?
   const data: HeroQueryTypes = useStaticQuery(graphql`
     query HeroQuery {
 

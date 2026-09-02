@@ -80,6 +80,7 @@ const JobsPage = ({ data }: JobsPageType) => {
 }
 export default JobsPage
 
+// TODO: move description to strapi
 export const Head = () => {
   return (
     <SEO

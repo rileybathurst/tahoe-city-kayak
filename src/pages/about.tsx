@@ -7,7 +7,7 @@ import Footer from "../components/footer";
 import AboutUs from "../content/about-us";
 import Hero from "../components/hero";
 
-import { PaddleTestimonial, type PaddleTestimonialTypes, type PaddleCardTypes } from "@rileybathurst/paddle";
+import type { PaddleTestimonialTypes, PaddleCardTypes } from "@rileybathurst/paddle";
 import { TeamCards } from "../components/team-cards";
 
 const AboutPage = () => {
@@ -22,6 +22,35 @@ const AboutPage = () => {
     strapiBranch: {
       name: string
     }
+    strapiConnection: {
+      name: string
+      excerpt: string
+    }
+    strapiProtect: {
+      title: string
+      excerpt: string
+    }
+    strapiFaq: {
+      question: string
+      answer: string
+    }
+    strapiPolicy: {
+      title: string
+      markdown: {
+        data: {
+          markdown: string
+        }
+      }
+    },
+    strapiJob: {
+      title: string
+      description: {
+        data: {
+          description: string
+        }
+      }
+    }
+
   }
 
   // TODO: remove the team (filter: {branches: {elemMatch: {slug: {eq: "tahoe-city"}}}})
@@ -38,15 +67,45 @@ const AboutPage = () => {
         name
       }
 
+      strapiFaq {
+        question
+        answer
+      }
+
+      strapiPolicy {
+        title
+        markdown {
+          data {
+            markdown
+          }
+        }
+      }
+
+      strapiJob(branches: {elemMatch: {slug: {eq: "tahoe-city"}}}) {
+        title
+        description {
+          data {
+            description
+          }
+        }
+      }
+
+    strapiProtect {
+      title
+      excerpt
+    }
 
       strapiTestimonial(branch: {slug: {eq: "tahoe-city"}}) {
         ...TestimonialFragment
       }
 
+      strapiConnection(branches: {elemMatch: {slug: {eq: "tahoe-city"}}}) {
+        name
+        excerpt
+      }
+
     }
   `)
-
-  // console.log(data.strapiTestimonial);
 
   return (
     <React.Fragment>
@@ -58,13 +117,117 @@ const AboutPage = () => {
         <h1>About Us</h1>
         <AboutUs />
 
-        <ul className="denali font-serif">
-          <li key="faq"><Link to="/about/faq">Frequently Asked Questions</Link></li>
-          <li key="info"><Link to="/about/information">Paddlesports Information</Link></li>
-          <li key="policies"><Link to="/about/policies">Store Policies</Link></li>
-          <li key="jobs"><Link to="/about/jobs">Jobs</Link></li>
-          <li key="protect"><Link to="/about/protect">Protect Lake Tahoe</Link></li>
-          <li key="testimonials"><Link to="/about/testimonials">Testimonials</Link></li>
+        <ul className="flow panel">
+          <li key="faq">
+            <h2>
+              <Link to="/about/faq">Frequently Asked Questions</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/faq">{data.strapiFaq.question}</Link>
+              </h3>
+              <p>{data.strapiFaq.answer}</p>
+            </section>
+            <h5>
+              <Link to="/about/faq">Explore More Frequently Asked Questions</Link>
+            </h5>
+          </li>
+
+          <hr />
+
+          <li key="info">
+            <h2>
+              <Link to="/about/information">Paddlesports Information</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/information">Dress for Success</Link>
+              </h3>
+              <ul>
+                <li>Properly Fitting Life Jacket (PFD)</li>
+                <li>Clothing &ndash; Wear clothing that dries quickly (non&ndash;cotton)</li>
+                <li>Sun Protection &ndash; Lake Tahoe reflects sunlight, &amp; UV is stronger at elevation</li>
+              </ul>
+            </section>
+            <Link to="/about/information">Explore More Paddlesports Information</Link>
+          </li>
+
+          <hr />
+
+          <li key="policies">
+            <h2>
+              <Link to="/about/policies">Store Policies</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/policies">{data.strapiPolicy.title}</Link>
+              </h3>
+              <p>{data.strapiPolicy.markdown.data.markdown}</p>
+            </section>
+            <Link to="/about/policies">Explore More Store Policies</Link>
+          </li>
+
+          <hr />
+
+          <li key="jobs">
+            <h2>
+              <Link to="/about/jobs">Jobs</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/jobs">{data.strapiJob.title}</Link>
+              </h3>
+              <p>{data.strapiJob.description.data.description}</p>
+            </section>
+            <Link to="/about/jobs">Explore More Job Opportunities</Link>
+          </li>
+
+          <hr />
+
+          <li key="protect">
+            <h2>
+              <Link to="/about/protect">Protect Lake Tahoe</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/protect">{data.strapiProtect.title}</Link>
+              </h3>
+              <p>{data.strapiProtect.excerpt}</p>
+            </section>
+            <Link to="/about/protect">Explore More Ways to Protect Lake Tahoe</Link>
+          </li>
+
+          <hr />
+
+          <li key="testimonials">
+            <h2>
+              <Link to="/about/testimonials">Testimonials</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/about/faq">{data.strapiTestimonial.customer}</Link>
+              </h3>
+              <p>{data.strapiTestimonial.testimonial}</p>
+            </section>
+            <h5>
+              <Link to="/about/testimonials">Explore More Testimonials</Link>
+            </h5>
+          </li>
+
+          <hr />
+
+          <li key='favorites'>
+            <h2>
+              <Link to="/favorites">Our Favorite Spots off the Water</Link>
+            </h2>
+            <section className="card">
+              <h3>
+                <Link to="/favorites">{data.strapiConnection.name}</Link>
+              </h3>
+              <p>{data.strapiConnection.excerpt}</p>
+            </section>
+            <Link to="/favorites">Explore More Favorite Spots</Link>
+          </li>
         </ul>
 
         <hr />
@@ -82,18 +245,7 @@ const AboutPage = () => {
 
       <TeamCards />
 
-      {/* // * specifically using a single here */}
-      <section className="panel denali-padding-block">
-        <h3 className="pelican font-serif">
-          <Link to="/about/testimonials">
-            Testimonials
-          </Link></h3>
-        <ul className='pelican aconcagua-margin-block-end'>
-          <PaddleTestimonial {...data.strapiTestimonial} />
-        </ul>
-      </section>
-
-      <Footer />
+      <Footer topHR />
     </React.Fragment>
   )
 }

@@ -108,6 +108,7 @@ const Footer = ({ topHR }: { topHR?: boolean }) => {
       allStrapiRentalRate={data.allStrapiRentalRate}
       allStrapiLocation={data.allStrapiLocation}
       MenuPlus={MenuPlus}
+      pricingChartLink="/rentals"
     />
   )
 }
