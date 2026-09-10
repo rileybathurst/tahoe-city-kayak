@@ -1,6 +1,7 @@
 // TODO: add google to social links in footer
 // google has a retail and a on water rental?
 // TODO: partners and explore should look and feel the same
+// TODO: add some links to profiles maybe a grid or a full team photo or something interesting
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
