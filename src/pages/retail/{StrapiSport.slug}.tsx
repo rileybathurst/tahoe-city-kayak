@@ -134,17 +134,12 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
         />}
       />
 
-      <main className="pelican">
+      <main className="condor">
         <h1>{data.strapiSport.title} Retail</h1>
         <Shop />
-
-        <h3 className="condensed">Browse By Feature</h3>
-        <FeatureList sport={data.strapiSport.slug} />
       </main>
 
       <div className="pelican">
-
-        <h3>Browse By Brand</h3>
         <PaddleBrandList
           brands={Array.from(
             new Map(data.allStrapiRetail.nodes
@@ -154,8 +149,13 @@ const RetailSportPage = ({ data }: retailSportTypes) => {
           )}
           sport={data.strapiSport.slug}
         />
-
       </div>
+
+      <div className="condor">
+        <h3 className="condensed">Browse By Feature</h3>
+        <FeatureList sport={data.strapiSport.slug} />
+      </div>
+
 
       {brandArray.map((brandSlug) => (
         data.allStrapiBrand.nodes

@@ -108,24 +108,29 @@ const RetailPage = () => {
         />}
       />
 
-      <main className="pelican">
+      <main>
         <h1>Retail</h1>
         <Shop />
       </main>
 
       {sports.map((sport) => (
         <section key={sport.slug}>
-          <div className="pelican">
+          {/* // ? this is wider than the measure can I fix that? */}
+          <div className="condor">
             <hr />
             <h2 className='font-serif'>
               <Link to={`/retail/${sport.slug}`}>{sport.heading}</Link>
             </h2>
-            {/* // TODO: sport descriptions needed from TCK */}
-            <h3 className="condensed">Browse By Feature</h3>
-            <FeatureList sport={sport.slug} />
+          </div>
 
-            <h3>Browse By Brand</h3>
+          <div className="pelican">
             <PaddleBrandList brands={sport.brands} sport={sport.slug} />
+          </div>
+
+          <div className="condor">
+            {/* // TODO: sport descriptions needed from TCK */}
+            <h3 className="condensed ">Browse By Feature</h3>
+            <FeatureList sport={sport.slug} />
           </div>
 
           <section key={`${sport.slug}-cards`}>
@@ -140,16 +145,13 @@ const RetailPage = () => {
               ))}
             </section>
 
-            <h2 className="pelican">
-              <Link to={`/retail/${sport.slug}`}>All {sport.heading}</Link>
-            </h2>
           </section>
         </section>
       ))}
 
 
-      <div className="pelican panel">
-        <h3 className="aconcagua font-serif">
+      <div className="condor panel">
+        <h3 className="aconcagua font-serif vinson-margin-block-end">
           <Link to="/retail/demos">Demos</Link>
         </h3>
         <Markdown>{query.strapiDemo.text.data.text}</Markdown>

@@ -1,5 +1,5 @@
 // TODO: this can be prettier with a map of the feature types but its fine for now
-// some of the features currently are empty so they have to be removed
+// * some of the features currently are empty so they have to be removed
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -122,7 +122,7 @@ const FeatureList = ({ sport }: FeatureListTypes) => {
     } */
 
   return (
-    <ul className='denali font-serif'>
+    <ul className='browse-by'>
       {FeatureArray.map((feature: string) => (
         data.allStrapiAttribute.nodes
           .filter((attribute: AttributeNode) => attribute.slug === feature)

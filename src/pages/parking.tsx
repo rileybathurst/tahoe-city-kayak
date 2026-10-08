@@ -82,7 +82,7 @@ export const data = graphql`
     }
 
     strapiBranch(slug: {eq: "tahoe-city"}) {
-                parking
-              }
+      parking
+    }
   }
-              `;
+`;
