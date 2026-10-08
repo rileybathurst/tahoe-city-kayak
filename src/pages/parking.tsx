@@ -70,7 +70,7 @@ export const Head = ({ data }: { data: ParkingTypes }) => {
 export const data = graphql`
   query ParkingQuery {
     allStrapiParking(
-      # filter: {}, // TODO: this isnt coming up for some reason, but currently only have tahoe city so its fine
+      filter: {branch: {slug: {eq: "tahoe-city"}}}
       sort: {order: ASC}
     ) {
       nodes {
