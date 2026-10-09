@@ -9,6 +9,7 @@ import Markdown from "react-markdown";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import Locales from "../../components/locales";
 import { PaddlePricingChart, type PaddleCardTypes, PaddleCard } from "@rileybathurst/paddle";
+import Hero from "../../components/hero";
 
 // I dont understand this but it works
 // https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
@@ -111,6 +112,9 @@ const DemosPage = () => {
   return (
     <React.Fragment>
       <Header />
+      <Hero
+        overlay={<Locales retail={true} />}
+      />
 
       <div className="albatross">
         <main>
@@ -121,9 +125,7 @@ const DemosPage = () => {
           <Phone />
         </main>
 
-        <Locales
-          retail={true}
-        />
+
 
       </div>
 

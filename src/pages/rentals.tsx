@@ -79,14 +79,12 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
         />
       </div>
 
-      <div className="pelican">
+      <main>
 
-        <h1>Rentals</h1>
-
-        <h2 className="font-serif">Commons Beach Rentals</h2>
+        <h1 className="vinson-margin-block-end">Commons Beach Rentals</h1>
 
         {/* // TODO: keep working on makdown-mods */}
-        <div className="react-markdown markdown-mods">
+        <div className="react-markdown relational-spacing ">
           <Markdown>{data.strapiBranch.rental.data.rental}</Markdown>
         </div >
         <p><Link to="/about/faq">
@@ -119,7 +117,7 @@ const RentalsPage = ({ data }: RentalsPageTypes) => {
           specificName="SIX PACK"
           specificLink={data.strapiBranch.peek_six_pack}
         />
-      </div>
+      </main>
 
       <section className="pelican">
         <hr />
